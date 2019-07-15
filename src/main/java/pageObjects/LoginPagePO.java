@@ -16,6 +16,8 @@ public class LoginPagePO {
 	By credentialsErrorMessage = By.xpath("//div[@id='loginForm']/form/div[1]/ul/li");
 	By usernameRequiredMessage = By.xpath("//span[@id='Username-error']");
 	By passwordRequiredMessage = By.xpath("//span[@id='Password-error']");
+	By ForgotUsername = By.xpath("//a[@onclick='ForgotUsername()']");
+	By ForgotPassword = By.xpath("//a[@onclick='ForgotPassword()']");
 	
 	
 // CONSTRUCTOR
@@ -49,5 +51,15 @@ public class LoginPagePO {
 	public WebElement getpasswordRequiredMessage()
 	{
 		return driver.findElement(passwordRequiredMessage);
+	}
+	public WebElement getForgotUsername()
+	{
+		return driver.findElement(ForgotUsername);
+		
+	}
+	public WebElement getForgotPassword()
+	{
+		return driver.findElement(ForgotPassword);
+		
 	}
 }

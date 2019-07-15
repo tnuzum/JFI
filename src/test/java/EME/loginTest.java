@@ -35,9 +35,13 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		l.getsigninButton().click();
 		log.info("Log In Button Clicked");
 		Assert.assertEquals(l.getusernameRequiredMessage().getText(), prop.getProperty("usernameRequiredMessage"));
-		log.info("Username Required Message Asserted");
+		log.info("Username Required Message Confirmed");
 		Assert.assertEquals(l.getpasswordRequiredMessage().getText(), prop.getProperty("passwordRequiredMessage"));
-		log.info("Password Required Message Asserted");
+		log.info("Password Required Message Confirmed");
+		Assert.assertEquals(l.getForgotUsername().getText(), "FORGOT USERNAME?");
+		log.info("Forgot Username link text Confirmed");
+		Assert.assertEquals(l.getForgotPassword().getText(), "FORGOT PASSWORD?");
+		log.info("Forgot Password link text Confirmed");
 		}
 	@Test (priority = 10)
 	public void activeUserLogin() throws InterruptedException
