@@ -61,6 +61,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d=new DashboardPO(driver);
 		d.getLogoutButton().click();
 		log.info("User Logged Out");
+		Thread.sleep(5000);
 	}
 	@Test (priority = 12)
 	public void invalidUserLogin() throws InterruptedException
