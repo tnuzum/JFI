@@ -11,7 +11,7 @@ import resources.base;
 
 public class reusableMethods extends base{
 
-	public static String activeUserLogin()
+	public static String activeMemberLogin()
 	{
 		LoginPagePO l=new LoginPagePO(driver);
 		l.getuserEmail().sendKeys(prop.getProperty("activeMember1_username"));

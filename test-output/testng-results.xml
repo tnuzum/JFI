@@ -1,41 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-07-15T19:52:09Z" name="Default suite" finished-at="2019-07-15T19:52:32Z" duration-ms="23122">
+  <suite started-at="2019-07-15T20:12:18Z" name="Default suite" finished-at="2019-07-15T20:12:41Z" duration-ms="23315">
     <groups>
     </groups>
-    <test started-at="2019-07-15T19:52:09Z" name="Default test" finished-at="2019-07-15T19:52:32Z" duration-ms="23122">
-      <class name="EME.loginTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.loginTest@2f058b8a]" started-at="2019-07-15T19:52:09Z" name="initialize" finished-at="2019-07-15T19:52:13Z" duration-ms="4064" status="PASS">
+    <test started-at="2019-07-15T20:12:18Z" name="Default test" finished-at="2019-07-15T20:12:41Z" duration-ms="23315">
+      <class name="EME.loginMemberTest">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.loginMemberTest@5b970f7]" started-at="2019-07-15T20:12:18Z" name="initialize" finished-at="2019-07-15T20:12:21Z" duration-ms="3766" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="pageVerifications()[pri:1, instance:EME.loginTest@2f058b8a]" started-at="2019-07-15T19:52:13Z" name="pageVerifications" finished-at="2019-07-15T19:52:13Z" duration-ms="11" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- pageVerifications -->
-        <test-method signature="pageValidations()[pri:2, instance:EME.loginTest@2f058b8a]" started-at="2019-07-15T19:52:13Z" name="pageValidations" finished-at="2019-07-15T19:52:13Z" duration-ms="249" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- pageValidations -->
-        <test-method signature="activeUserLogin()[pri:10, instance:EME.loginTest@2f058b8a]" started-at="2019-07-15T19:52:13Z" name="activeUserLogin" finished-at="2019-07-15T19:52:21Z" duration-ms="7356" status="PASS">
+        <test-method signature="activeUserLogin()[pri:10, instance:EME.loginMemberTest@5b970f7]" started-at="2019-07-15T20:12:21Z" name="activeUserLogin" finished-at="2019-07-15T20:12:29Z" duration-ms="7325" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeUserLogin -->
-        <test-method signature="activeUserLogout()[pri:11, instance:EME.loginTest@2f058b8a]" started-at="2019-07-15T19:52:21Z" name="activeUserLogout" finished-at="2019-07-15T19:52:22Z" depends-on-methods="EME.loginTest.activeUserLogin" duration-ms="1043" status="PASS">
+        <test-method signature="activeUserLogout()[pri:20, instance:EME.loginMemberTest@5b970f7]" started-at="2019-07-15T20:12:29Z" name="activeUserLogout" finished-at="2019-07-15T20:12:36Z" depends-on-methods="EME.loginMemberTest.activeUserLogin" duration-ms="7128" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeUserLogout -->
-        <test-method signature="invalidUserLogin()[pri:12, instance:EME.loginTest@2f058b8a]" started-at="2019-07-15T19:52:22Z" name="invalidUserLogin" finished-at="2019-07-15T19:52:27Z" duration-ms="5292" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- invalidUserLogin -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.loginTest@2f058b8a]" started-at="2019-07-15T19:52:27Z" name="teardown" finished-at="2019-07-15T19:52:32Z" duration-ms="5083" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.loginMemberTest@5b970f7]" started-at="2019-07-15T20:12:36Z" name="teardown" finished-at="2019-07-15T20:12:41Z" duration-ms="5077" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- EME.loginTest -->
+      </class> <!-- EME.loginMemberTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

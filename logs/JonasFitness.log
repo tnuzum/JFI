@@ -1,46 +1,25 @@
-15:06:46.320 [main] INFO  resources.base - User Name Entered
-15:06:46.422 [main] INFO  resources.base - Password Entered
-15:06:46.506 [main] INFO  resources.base - Log In Button Clicked
-15:06:53.512 [main] INFO  resources.base - Dashboard Title Verified
-15:06:53.548 [main] INFO  resources.base - Member Name Verified
-15:06:54.901 [main] INFO  resources.base - User Logged Out
-15:06:54.985 [main] INFO  resources.base - User Name Entered
-15:06:55.073 [main] INFO  resources.base - Password Entered
-15:06:55.167 [main] INFO  resources.base - Log In Button Clicked
-15:07:00.217 [main] INFO  resources.base - Error Message Title Verified
-15:26:38.792 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-15:26:40.869 [main] INFO  resources.base - Driver Initialized
-15:26:43.918 [main] INFO  resources.base - Page Title Verified
-15:26:44.026 [main] INFO  resources.base - Log In Button Clicked
-15:26:44.061 [main] INFO  resources.base - Username Required Message Confirmed
-15:26:44.098 [main] INFO  resources.base - Password Required Message Confirmed
-15:26:44.142 [main] INFO  resources.base - Forgot Username link text Confirmed
-15:26:44.182 [main] INFO  resources.base - Forgot Password link text Confirmed
-15:26:44.265 [main] INFO  resources.base - User Name Entered
-15:26:44.353 [main] INFO  resources.base - Password Entered
-15:26:44.432 [main] INFO  resources.base - Log In Button Clicked
-15:26:51.439 [main] INFO  resources.base - Dashboard Title Verified
-15:26:51.481 [main] INFO  resources.base - Member Name Verified
-15:26:52.475 [main] INFO  resources.base - User Logged Out
-15:26:52.550 [main] INFO  resources.base - User Name Entered
-15:26:52.636 [main] INFO  resources.base - Password Entered
-15:26:52.727 [main] INFO  resources.base - Log In Button Clicked
-15:26:57.760 [main] INFO  resources.base - Error Message Title Verified
-15:52:09.441 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-15:52:11.619 [main] INFO  resources.base - Driver Initialized
-15:52:13.514 [main] INFO  resources.base - Page Title Verified
-15:52:13.622 [main] INFO  resources.base - Log In Button Clicked
-15:52:13.658 [main] INFO  resources.base - Username Required Message Confirmed
-15:52:13.692 [main] INFO  resources.base - Password Required Message Confirmed
-15:52:13.735 [main] INFO  resources.base - Forgot Username link text Confirmed
-15:52:13.767 [main] INFO  resources.base - Forgot Password link text Confirmed
-15:52:13.856 [main] INFO  resources.base - User Name Entered
-15:52:13.956 [main] INFO  resources.base - Password Entered
-15:52:14.027 [main] INFO  resources.base - Log In Button Clicked
-15:52:21.072 [main] INFO  resources.base - Dashboard Title Verified
-15:52:21.125 [main] INFO  resources.base - Member Name Verified
-15:52:22.169 [main] INFO  resources.base - User Logged Out
-15:52:22.243 [main] INFO  resources.base - User Name Entered
-15:52:22.332 [main] INFO  resources.base - Password Entered
-15:52:22.422 [main] INFO  resources.base - Log In Button Clicked
-15:52:27.462 [main] INFO  resources.base - Error Message Title Verified
+16:09:40.707 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:09:42.818 [main] INFO  resources.base - Driver Initialized
+16:09:44.559 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:09:46.255 [main] INFO  resources.base - Driver Initialized
+16:09:48.006 [main] INFO  resources.base - Page Title Verified
+16:09:48.121 [main] INFO  resources.base - Log In Button Clicked
+16:09:48.159 [main] INFO  resources.base - Username Required Message Confirmed
+16:09:48.196 [main] INFO  resources.base - Password Required Message Confirmed
+16:09:48.236 [main] INFO  resources.base - Forgot Username link text Confirmed
+16:09:48.274 [main] INFO  resources.base - Forgot Password link text Confirmed
+16:09:48.367 [main] INFO  resources.base - User Name Entered
+16:09:48.480 [main] INFO  resources.base - Password Entered
+16:09:48.558 [main] INFO  resources.base - Log In Button Clicked
+16:09:53.593 [main] INFO  resources.base - Error Message Title Verified
+16:09:53.664 [main] INFO  resources.base - User Name Entered
+16:09:53.740 [main] INFO  resources.base - Password Entered
+16:09:53.834 [main] INFO  resources.base - Log In Button Clicked
+16:12:18.034 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:12:20.205 [main] INFO  resources.base - Driver Initialized
+16:12:21.894 [main] INFO  resources.base - User Name Entered
+16:12:21.984 [main] INFO  resources.base - Password Entered
+16:12:22.079 [main] INFO  resources.base - Log In Button Clicked
+16:12:29.087 [main] INFO  resources.base - Dashboard Title Verified
+16:12:29.121 [main] INFO  resources.base - Member Name Verified
+16:12:31.256 [main] INFO  resources.base - User Logged Out

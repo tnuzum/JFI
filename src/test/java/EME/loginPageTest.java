@@ -12,7 +12,7 @@ import resources.base;
 import resources.reusableMethods;
 
 
-public class loginTest extends base{
+public class loginPageTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 @BeforeTest
 	public void initialize() throws IOException
@@ -43,27 +43,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals(l.getForgotPassword().getText(), "FORGOT PASSWORD?");
 		log.info("Forgot Password link text Confirmed");
 		}
-	@Test (priority = 10)
-	public void activeUserLogin() throws InterruptedException
-	{
-		reusableMethods.activeUserLogin();
-		Thread.sleep(7000);
-		Assert.assertEquals(driver.getTitle(), "Dashboard");// Confirming Dashboard page is shown
-		log.info("Dashboard Title Verified");
-		DashboardPO d=new DashboardPO(driver);
-		Assert.assertEquals(d.getMemberName().getText(), prop.getProperty("activeMember1_fullname"));// Confirming correct member is logged in
-		log.info("Member Name Verified");
-		
-	}
-	@Test (priority = 11, dependsOnMethods = "activeUserLogin")
-	public void activeUserLogout() throws InterruptedException
-	{
-		DashboardPO d=new DashboardPO(driver);
-		d.getLogoutButton().click();
-		log.info("User Logged Out");
-		Thread.sleep(5000);
-	}
-	@Test (priority = 12)
+
+	@Test (priority = 3)
 	public void invalidUserLogin() throws InterruptedException
 	{
 		LoginPagePO l=new LoginPagePO(driver);
