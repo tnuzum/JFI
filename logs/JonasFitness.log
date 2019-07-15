@@ -1,0 +1,10 @@
+15:06:46.320 [main] INFO  resources.base - User Name Entered
+15:06:46.422 [main] INFO  resources.base - Password Entered
+15:06:46.506 [main] INFO  resources.base - Log In Button Clicked
+15:06:53.512 [main] INFO  resources.base - Dashboard Title Verified
+15:06:53.548 [main] INFO  resources.base - Member Name Verified
+15:06:54.901 [main] INFO  resources.base - User Logged Out
+15:06:54.985 [main] INFO  resources.base - User Name Entered
+15:06:55.073 [main] INFO  resources.base - Password Entered
+15:06:55.167 [main] INFO  resources.base - Log In Button Clicked
+15:07:00.217 [main] INFO  resources.base - Error Message Title Verified
