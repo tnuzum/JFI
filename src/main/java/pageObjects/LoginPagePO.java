@@ -10,14 +10,18 @@ public class LoginPagePO {
 
 // OBJECTS
 		
-	By userEmail = By.id("Username");
-	By userPassword = By.id("Password");
+	By userName = By.id("Username"); //text input field
+	By userPassword = By.id("Password"); //text input field
+	By userNameLabel = By.xpath("//label[@for='Username']");
+	By userPasswordLabel = By.xpath("//label[@for='Password']");
 	By signinButton = By.cssSelector("button[type='submit']");
 	By credentialsErrorMessage = By.xpath("//div[@id='loginForm']/form/div[1]/ul/li");
 	By usernameRequiredMessage = By.xpath("//span[@id='Username-error']");
 	By passwordRequiredMessage = By.xpath("//span[@id='Password-error']");
-	By ForgotUsername = By.xpath("//a[@onclick='ForgotUsername()']");
-	By ForgotPassword = By.xpath("//a[@onclick='ForgotPassword()']");
+	By ForgotUsername = By.xpath("//a[@onclick='ForgotUsername()']"); //link
+	By ForgotPassword = By.xpath("//a[@onclick='ForgotPassword()']"); //link
+	By RememberUsernameCheckbox = By.xpath("//input[@name='RememberUsername']");
+	By RememberUsernameLabel = By.xpath("//label[@for='RememberUsername']"); 
 	
 	
 // CONSTRUCTOR
@@ -28,9 +32,9 @@ public class LoginPagePO {
 	}
 // METHODS
 
-	public WebElement getuserEmail()
+	public WebElement getuserName()
 	{
-		return driver.findElement(userEmail);
+		return driver.findElement(userName);
 	}
 	public WebElement getuserPassword()
 	{
@@ -55,11 +59,25 @@ public class LoginPagePO {
 	public WebElement getForgotUsername()
 	{
 		return driver.findElement(ForgotUsername);
-		
 	}
 	public WebElement getForgotPassword()
 	{
 		return driver.findElement(ForgotPassword);
-		
+	}
+	public WebElement getuserNameLabel()
+	{
+		return driver.findElement(userNameLabel);
+	}
+	public WebElement getuserPasswordLabel()
+	{
+		return driver.findElement(userPasswordLabel);
+	}
+	public WebElement getRememberUsernameLabel()
+	{
+		return driver.findElement(RememberUsernameLabel);
+	}
+	public WebElement getRememberUsernameCheckbox()
+	{
+		return driver.findElement(RememberUsernameCheckbox);
 	}
 }

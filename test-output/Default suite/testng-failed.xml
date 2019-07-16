@@ -3,15 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="EME.loginTest">
+      <class name="EME.loginPageTest">
         <methods>
-          <include name="activeUserLogin"/>
-          <include name="invalidUserLogin"/>
-          <include name="activeUserLogout"/>
           <include name="initialize"/>
           <include name="teardown"/>
+          <include name="pageTextLabels"/>
         </methods>
-      </class> <!-- EME.loginTest -->
+      </class> <!-- EME.loginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
