@@ -34,7 +34,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		log.info("Member Name Verified");
 		
 	}
-	@Test (priority = 20, dependsOnMethods = "activeUserLogin")
+	@Test (priority = 20, dependsOnMethods = "activeMemberLogin")
 	public void activeMemberLogout() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);

@@ -23,3 +23,23 @@
 16:12:29.087 [main] INFO  resources.base - Dashboard Title Verified
 16:12:29.121 [main] INFO  resources.base - Member Name Verified
 16:12:31.256 [main] INFO  resources.base - User Logged Out
+08:52:16.453 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+08:52:18.955 [main] INFO  resources.base - Driver Initialized
+08:52:21.837 [main] INFO  resources.base - Page Title Verified
+08:52:21.962 [main] INFO  resources.base - Log In Button Clicked
+08:52:22.005 [main] INFO  resources.base - Username Required Message Confirmed
+08:52:22.049 [main] INFO  resources.base - Password Required Message Confirmed
+08:52:22.095 [main] INFO  resources.base - Forgot Username link text Confirmed
+08:52:22.137 [main] INFO  resources.base - Forgot Password link text Confirmed
+08:52:22.234 [main] INFO  resources.base - User Name Entered
+08:52:22.351 [main] INFO  resources.base - Password Entered
+08:52:22.437 [main] INFO  resources.base - Log In Button Clicked
+08:52:27.479 [main] INFO  resources.base - Error Message Title Verified
+08:52:32.571 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+08:52:34.240 [main] INFO  resources.base - Driver Initialized
+08:52:36.219 [main] INFO  resources.base - User Name Entered
+08:52:36.307 [main] INFO  resources.base - Password Entered
+08:52:36.405 [main] INFO  resources.base - Log In Button Clicked
+08:52:43.413 [main] INFO  resources.base - Dashboard Title Verified
+08:52:43.456 [main] INFO  resources.base - Member Name Verified
+08:52:44.385 [main] INFO  resources.base - User Logged Out
