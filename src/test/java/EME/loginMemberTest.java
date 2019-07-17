@@ -2,6 +2,9 @@ package EME;
 import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -25,7 +28,12 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	public void activeMemberLogin() throws InterruptedException
 	{
 		reusableMethods.activeMemberLogin();
-		Thread.sleep(7000);
+
+		
+//		WebDriverWait w = new WebDriverWait(driver, 20); // waiting for memeber name to be visible to confirm page has finished loading
+//		w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
+//		w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
+		Thread.sleep(10000);
 		Assert.assertEquals(driver.getTitle(), "Dashboard");// Confirming Dashboard page is shown
 		log.info("Dashboard Title Verified");
 		DashboardPO d=new DashboardPO(driver);
@@ -39,7 +47,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d=new DashboardPO(driver);
 		d.getLogoutButton().click();
 		log.info("User Logged Out");
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 	}
 	@AfterTest
 		public void teardown() throws InterruptedException
