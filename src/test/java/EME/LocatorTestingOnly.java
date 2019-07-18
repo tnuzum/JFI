@@ -29,17 +29,15 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		}
 		
 	@Test (priority = 1)
-		public void pageVerifications() throws IOException
+		public void locatorTestingOnly() throws IOException, InterruptedException
 		{	
-//		System.out.println(driver.findElement(By.xpath("//label[@for='RememberUsername']")).getText());
-		System.out.println(driver.findElement(By.xpath("//input[@name='RememberUsername']")).isSelected());
-		System.out.println(driver.findElement(By.xpath("//input[@name='RememberUsername']")).isEnabled());
-		
-		}
-	@Test (priority = 2)
-		public void pageValidations() throws IOException
-		{	
-	
+		reusableMethods.activeMemberLogin();
+		Thread.sleep(10000);
+//		System.out.println(driver.findElement(By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[3]/a[1]")).getText());
+		System.out.println(driver.findElement(By.xpath("//mat-nav-list[@class='mat-nav-list']/a[4]/div")).getText());
+		Thread.sleep(5000);
+		driver.findElement(By.xpath("//mat-nav-list[@class='mat-nav-list']/a[4]/div")).click();
+		Thread.sleep(5000);
 		}
 
 	@AfterTest

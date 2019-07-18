@@ -1,5 +1,7 @@
 package EME;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -29,15 +31,14 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	{
 		reusableMethods.activeMemberLogin();
 
-		
-//		WebDriverWait w = new WebDriverWait(driver, 20); // waiting for memeber name to be visible to confirm page has finished loading
-//		w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
-//		w.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
+//** explicit wait is not working, so I'm still using sleep **
+//		WebDriverWait w = new WebDriverWait(driver, 20); // waiting to confirm page has finished loading
+//		w.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2")));
 		Thread.sleep(10000);
 		Assert.assertEquals(driver.getTitle(), "Dashboard");// Confirming Dashboard page is shown
 		log.info("Dashboard Title Verified");
 		DashboardPO d=new DashboardPO(driver);
-		Assert.assertEquals(d.getMemberName().getText(), prop.getProperty("activeMember1_fullname"));// Confirming correct member is logged in
+		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember1_fullname"));// Confirming correct member is logged in
 		log.info("Member Name Verified");
 		
 	}
@@ -56,9 +57,5 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		driver.close();
 		driver=null;
 		}
-	
-	
-	
-	
 
 }
