@@ -17,6 +17,7 @@ import pageObjects.AppointmentsPO;
 import pageObjects.CartPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
+import pageObjects.ForgotPasswordPO;
 import pageObjects.ForgotUsernamePO;
 import pageObjects.LoginPO;
 import pageObjects.ManageFamilyPO;
@@ -29,7 +30,8 @@ import resources.reusableMethods;
 
 public class ButtonTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
-@BeforeTest
+	
+	@BeforeTest
 	public void initialize() throws IOException, InterruptedException
 	{
 		driver = initializeDriver();
@@ -39,27 +41,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(10000);
 	}
 	
-	@Test (priority = 10)
-	public void ForgotUsernameButtonTest()
-	{
-		LoginPO l = new LoginPO(driver);
-		l.getForgotPassword().click();
-		ForgotUsernamePO f = new ForgotUsernamePO(driver);
-		Assert.assertEquals(f.getPageHeader().getText(),"Forgot Your Username?");
-		
-		System.out.println(driver.findElement(By.xpath("//div[@id='loginForm']/form/h2")).getText());
-		
-		DashboardPO d=new DashboardPO(driver);
-		d.getMyPackagesButton().click();
-		d.getMyPackagesShopPackages().click();
-		PackagesPO p = new PackagesPO(driver);
-		Assert.assertEquals(p.getPageHeader().getText(),"Shop Packages");
-		log.info("Shop Packages Page Header Verified");
-		d.getDashboardButton().click();
-}
-
 	@Test (priority = 20)
-	public void myPackagesButtonTest()
+	public void myPackagesButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getMyPackagesButton().click();
@@ -67,40 +50,40 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		PackagesPO p = new PackagesPO(driver);
 		Assert.assertEquals(p.getPageHeader().getText(),"Shop Packages");
 		log.info("Shop Packages Page Header Verified");
-		d.getDashboardButton().click();
+		reusableMethods.returnToDashboard();
 	}
 	@Test (priority = 25)
-	public void CartButtonTest()
+	public void CartButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getCartButton().click();
 		CartPO c = new CartPO(driver);
 		Assert.assertEquals(c.getPageHeader().getText(),"Shopping Cart");
 		log.info("Shopping Cart Page Header Verified");
-		d.getDashboardButton().click();
+		reusableMethods.returnToDashboard();
 	}
 	@Test (priority = 30)
-	public void AcctHistoryButtonTest()
+	public void AcctHistoryButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getMyAccountAccountHistory().click();
 		AcctHistoryPO a = new AcctHistoryPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Account History");
 		log.info("Account History Page Header Verified");
-		d.getDashboardButton().click();
+		reusableMethods.returnToDashboard();
 	}
 	@Test (priority = 35)
-	public void PayNowButtonTest()
+	public void PayNowButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getMyAccountPayNow().click();
 		PayBalancePO pb = new PayBalancePO(driver);
 		Assert.assertEquals(pb.getPageHeader().getText(),"Pay Balance");
 		log.info("Pay Balance Page Header Verified");
-		d.getDashboardButton().click();
+		reusableMethods.returnToDashboard();
 	}
 	@Test (priority = 40)
-	public void ScheduleClassesButtonTest()
+	public void ScheduleClassesButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getMyClassesScheduleButton().click();//accessing from dashboard
@@ -112,10 +95,10 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		d.getMenuClassSignup().click();
 		Assert.assertEquals(cs.getPageHeader().getText(),"Select Classes");
 		log.info("Manage Profile Page Header Verified");
-		d.getDashboardButton().click();
+		reusableMethods.returnToDashboard();
 	}
 	@Test (priority = 45)
-	public void ScheduleApptsButtonTest()
+	public void ScheduleApptsButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();//accessing from dashboard
@@ -127,34 +110,57 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		d.getMenuBookAppointment().click();
 		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		log.info("Appointments Page Header Verified");
-		d.getDashboardButton().click();
+		reusableMethods.returnToDashboard();
 	}
 	@Test (priority = 50)
-	public void ManageFamilyButtonTest()
+	public void ManageFamilyButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getmyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Family");
 		log.info("Manage Family Page Header Verified");
-		d.getDashboardButton().click();
+		reusableMethods.returnToDashboard();
 	}
 	@Test (priority = 55)
-	public void EditMyInfoButtonTest()
+	public void EditMyInfoButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getMyInfoEditButton().click();
 		ManageProfilePO a = new ManageProfilePO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Profile");
 		log.info("Manage Profile Page Header Verified");
-		d.getDashboardButton().click();
+		reusableMethods.returnToDashboard();
+	}
+	@Test (priority = 60)
+	public void ForgotUsernameButtonTest() throws InterruptedException
+	{
+		DashboardPO d=new DashboardPO(driver);
+		d.getLogoutButton().click();
+		Thread.sleep(2000);
+		LoginPO l = new LoginPO(driver);
+		l.getForgotUsername().click();
+		ForgotUsernamePO f = new ForgotUsernamePO(driver);
+		Assert.assertEquals(f.getPageHeader().getText(),"Forgot your Username?");
+		log.info("Forgot Username Page Header Verified");
+		f.getCancelButton().click();
+	}
+	@Test (priority = 65)
+	public void ForgotPasswordButtonTest() throws InterruptedException
+	{
+		LoginPO l = new LoginPO(driver);
+		l.getForgotPassword().click();
+		ForgotPasswordPO f = new ForgotPasswordPO(driver);
+		Assert.assertEquals(f.getPageHeader().getText(),"Forgot your Password?");
+		log.info("Forgot Password Page Header Verified");
+		f.getCancelButton().click();
 	}
 
 	
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		driver.close();
 		driver=null;
 		}

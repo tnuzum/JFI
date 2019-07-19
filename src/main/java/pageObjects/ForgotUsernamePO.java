@@ -13,7 +13,7 @@ public class ForgotUsernamePO {
 	By pageHeader 				= By.xpath("//div[@id='loginForm']/form/h2");// displays "Forgot your Username?"
 	By pageDescription 			= By.xpath("//div[@id='loginForm']/form/p");
 	By cancelButton 			= By.xpath("//div[@id='loginForm']/form/div/div/div/a");
-	By recoverUsernameButton 	= By.xpath("//div[@id='loginForm']/form/div/div/div[5]/input");//use .getAttribute("value") to get text
+	By recoverUsernameButton 	= By.xpath("//input[@type='submit']");//use .getAttribute("value") to get text
 	By firstNameLabel			= By.xpath("//div[@id='loginForm']/form/div/div/label[1]");
 	By firstNameInputbox		= By.xpath("//div[@id='loginForm']/form/div/div/div[1]/input");
 	By firstNameRequiredMessage	= By.xpath("//div[@id='loginForm']/form/div/div/div[1]/span/span");

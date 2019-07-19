@@ -16,3 +16,5 @@ firstNameRequiredMessage = First Name is required
 lastNameRequiredMessage = Last Name is required
 phoneNumberRequiredMessage = Phone Number is required
 emailRequiredMessage = Email is required
+forgotPasswordDescription = Fill out the form below to reset your password. You will receive a temporary password via email.
+userNameRequiredMessage = Username is required

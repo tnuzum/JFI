@@ -9,6 +9,7 @@ public class DashboardPO {
 	public WebDriver driver;
 
 // OBJECTS
+	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By menuButton = By.xpath("//nav[@class='navbar navbar-static-top']/div/a/i");
 	By myPackagesButton = By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button");
 	By myPackagesShopPackages = By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/ul/li[5]/div/div/div");
@@ -65,6 +66,10 @@ public class DashboardPO {
 
 // METHODS
 	//Top Row Buttons
+	public WebElement getPageHeader()
+	{
+		return driver.findElement(pageHeader);
+	}
 	public WebElement getMenuButton()
 	{
 		return driver.findElement(menuButton);

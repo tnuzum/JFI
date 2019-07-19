@@ -1,67 +1,73 @@
-15:52:20.569 [main] INFO  resources.base - Driver Initialized
-15:52:24.265 [main] INFO  resources.base - User Name Entered
-15:52:24.354 [main] INFO  resources.base - Password Entered
-15:52:24.464 [main] INFO  resources.base - Log In Button Clicked
-15:52:34.907 [main] INFO  resources.base - Shop Packages Page Header Verified
-15:52:35.216 [main] INFO  resources.base - Shopping Cart Page Header Verified
-15:52:35.503 [main] INFO  resources.base - Account History Page Header Verified
-15:52:35.856 [main] INFO  resources.base - Pay Balance Page Header Verified
-15:52:36.216 [main] INFO  resources.base - Select Classes Page Header Verified
-15:52:36.594 [main] INFO  resources.base - Manage Profile Page Header Verified
-15:52:36.942 [main] INFO  resources.base - Appointments Page Header Verified
-15:52:37.344 [main] INFO  resources.base - Appointments Page Header Verified
-15:52:37.628 [main] INFO  resources.base - Manage Family Page Header Verified
-15:52:37.900 [main] INFO  resources.base - Manage Profile Page Header Verified
-09:49:17.157 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-09:49:19.435 [main] INFO  resources.base - Driver Initialized
-09:49:22.643 [main] INFO  resources.base - User Name Entered
-09:49:22.741 [main] INFO  resources.base - Password Entered
-09:49:22.869 [main] INFO  resources.base - Log In Button Clicked
-09:49:33.520 [main] INFO  resources.base - Shop Packages Page Header Verified
-09:49:33.867 [main] INFO  resources.base - Shopping Cart Page Header Verified
-09:49:34.209 [main] INFO  resources.base - Account History Page Header Verified
-09:49:34.611 [main] INFO  resources.base - Pay Balance Page Header Verified
-09:49:35.049 [main] INFO  resources.base - Select Classes Page Header Verified
-09:49:35.488 [main] INFO  resources.base - Manage Profile Page Header Verified
-09:49:35.899 [main] INFO  resources.base - Appointments Page Header Verified
-09:49:36.332 [main] INFO  resources.base - Appointments Page Header Verified
-09:49:36.627 [main] INFO  resources.base - Manage Family Page Header Verified
-09:49:36.929 [main] INFO  resources.base - Manage Profile Page Header Verified
-09:51:57.883 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-09:51:59.977 [main] INFO  resources.base - Driver Initialized
-09:52:03.592 [main] INFO  resources.base - User Name Entered
-09:52:03.681 [main] INFO  resources.base - Password Entered
-09:52:03.780 [main] INFO  resources.base - Log In Button Clicked
-09:54:32.880 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-09:54:35.046 [main] INFO  resources.base - Driver Initialized
-10:00:37.527 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:00:39.839 [main] INFO  resources.base - Driver Initialized
-10:20:09.146 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:20:11.239 [main] INFO  resources.base - Driver Initialized
-10:20:43.084 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:20:45.211 [main] INFO  resources.base - Driver Initialized
-10:23:06.741 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:23:08.875 [main] INFO  resources.base - Driver Initialized
-10:24:56.113 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:24:58.216 [main] INFO  resources.base - Driver Initialized
-10:26:21.056 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:26:23.151 [main] INFO  resources.base - Driver Initialized
-10:27:37.332 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:27:39.428 [main] INFO  resources.base - Driver Initialized
-10:28:57.426 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:28:59.520 [main] INFO  resources.base - Driver Initialized
-10:49:54.576 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:49:56.665 [main] INFO  resources.base - Driver Initialized
-10:50:53.249 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:50:55.343 [main] INFO  resources.base - Driver Initialized
-10:54:17.463 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:54:19.547 [main] INFO  resources.base - Driver Initialized
-10:54:57.127 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:54:59.228 [main] INFO  resources.base - Driver Initialized
-11:12:42.122 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-11:12:44.226 [main] INFO  resources.base - Driver Initialized
-11:15:45.670 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-11:15:47.748 [main] INFO  resources.base - Driver Initialized
-11:16:26.602 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-11:16:28.733 [main] INFO  resources.base - Driver Initialized
-11:17:35.222 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:25:04.199 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:25:06.344 [main] INFO  resources.base - Driver Initialized
+15:25:08.402 [main] INFO  resources.base - User Name Entered
+15:25:08.505 [main] INFO  resources.base - Password Entered
+15:25:08.614 [main] INFO  resources.base - Log In Button Clicked
+15:26:54.355 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:26:56.447 [main] INFO  resources.base - Driver Initialized
+15:26:58.839 [main] INFO  resources.base - User Name Entered
+15:26:58.925 [main] INFO  resources.base - Password Entered
+15:26:59.031 [main] INFO  resources.base - Log In Button Clicked
+15:29:10.197 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:29:12.298 [main] INFO  resources.base - Driver Initialized
+15:29:15.520 [main] INFO  resources.base - User Name Entered
+15:29:15.606 [main] INFO  resources.base - Password Entered
+15:29:15.717 [main] INFO  resources.base - Log In Button Clicked
+15:33:04.187 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:33:06.275 [main] INFO  resources.base - Driver Initialized
+15:33:08.241 [main] INFO  resources.base - User Name Entered
+15:33:08.334 [main] INFO  resources.base - Password Entered
+15:33:08.436 [main] INFO  resources.base - Log In Button Clicked
+15:34:36.729 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:34:38.847 [main] INFO  resources.base - Driver Initialized
+15:34:40.762 [main] INFO  resources.base - User Name Entered
+15:34:40.847 [main] INFO  resources.base - Password Entered
+15:34:40.955 [main] INFO  resources.base - Log In Button Clicked
+15:37:18.059 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:37:20.165 [main] INFO  resources.base - Driver Initialized
+15:37:22.380 [main] INFO  resources.base - User Name Entered
+15:37:22.470 [main] INFO  resources.base - Password Entered
+15:37:22.572 [main] INFO  resources.base - Log In Button Clicked
+15:56:13.959 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:56:16.073 [main] INFO  resources.base - Driver Initialized
+15:56:17.892 [main] INFO  resources.base - User Name Entered
+15:56:17.986 [main] INFO  resources.base - Password Entered
+15:56:18.109 [main] INFO  resources.base - Log In Button Clicked
+15:56:59.233 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:57:01.339 [main] INFO  resources.base - Driver Initialized
+15:57:03.284 [main] INFO  resources.base - User Name Entered
+15:57:03.372 [main] INFO  resources.base - Password Entered
+15:57:03.478 [main] INFO  resources.base - Log In Button Clicked
+15:59:43.868 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+15:59:45.960 [main] INFO  resources.base - Driver Initialized
+15:59:47.488 [main] INFO  resources.base - User Name Entered
+15:59:47.587 [main] INFO  resources.base - Password Entered
+15:59:47.693 [main] INFO  resources.base - Log In Button Clicked
+16:01:13.779 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:01:15.885 [main] INFO  resources.base - Driver Initialized
+16:01:19.159 [main] INFO  resources.base - User Name Entered
+16:01:19.255 [main] INFO  resources.base - Password Entered
+16:01:19.363 [main] INFO  resources.base - Log In Button Clicked
+16:05:53.475 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:05:55.608 [main] INFO  resources.base - Driver Initialized
+16:05:59.344 [main] INFO  resources.base - User Name Entered
+16:05:59.434 [main] INFO  resources.base - Password Entered
+16:05:59.551 [main] INFO  resources.base - Log In Button Clicked
+16:09:20.187 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:09:22.266 [main] INFO  resources.base - Driver Initialized
+16:09:25.450 [main] INFO  resources.base - User Name Entered
+16:09:25.537 [main] INFO  resources.base - Password Entered
+16:09:25.635 [main] INFO  resources.base - Log In Button Clicked
+16:13:14.595 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:13:16.729 [main] INFO  resources.base - Driver Initialized
+16:13:18.426 [main] INFO  resources.base - User Name Entered
+16:13:18.521 [main] INFO  resources.base - Password Entered
+16:13:18.628 [main] INFO  resources.base - Log In Button Clicked
+16:15:54.915 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:15:57.033 [main] INFO  resources.base - Driver Initialized
+16:15:58.925 [main] INFO  resources.base - User Name Entered
+16:15:59.013 [main] INFO  resources.base - Password Entered
+16:15:59.126 [main] INFO  resources.base - Log In Button Clicked
+16:19:27.293 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:19:29.351 [main] INFO  resources.base - Driver Initialized
+16:19:32.831 [main] INFO  resources.base - User Name Entered
