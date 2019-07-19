@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pageObjects.LoginPagePO;
+import pageObjects.LoginPO;
 import resources.base;
 
 
@@ -30,7 +30,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 2)
 	public void pageTextLabels() throws IOException
 	{	
-		LoginPagePO l=new LoginPagePO(driver);
+		LoginPO l=new LoginPO(driver);
 		Assert.assertEquals(l.getuserNameLabel().getText(), "Username");
 		log.info("Username input label text Confirmed");
 		Assert.assertEquals(l.getuserPasswordLabel().getText(), "Password");
@@ -53,7 +53,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 3)
 	public void noUserMessages() throws IOException
 	{	
-		LoginPagePO l=new LoginPagePO(driver);
+		LoginPO l=new LoginPO(driver);
 		l.getsigninButton().click();
 		log.info("Log In Button Clicked");
 		Assert.assertEquals(l.getusernameRequiredMessage().getText(), prop.getProperty("usernameRequiredMessage"));
@@ -65,7 +65,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 4)
 	public void wrongCredentialsMessages() throws InterruptedException
 	{
-		LoginPagePO l=new LoginPagePO(driver);
+		LoginPO l=new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("invalid_username"));
 		log.info("User Name Entered");
 		l.getuserPassword().sendKeys(prop.getProperty("invalid_password"));

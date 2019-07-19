@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pageObjects.LoginPagePO;
+import pageObjects.LoginPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;

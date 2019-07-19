@@ -1,6 +1,6 @@
 package resources;
 
-import pageObjects.LoginPagePO;
+import pageObjects.LoginPO;
 
 import resources.base;
 
@@ -9,7 +9,7 @@ public class reusableMethods extends base{
 
 	public static String activeMemberLogin()
 	{
-		LoginPagePO l=new LoginPagePO(driver);
+		LoginPO l=new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
 		log.info("User Name Entered");
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember1_password"));
