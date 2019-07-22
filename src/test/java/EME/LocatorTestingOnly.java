@@ -4,14 +4,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.LoginPO;
 import pageObjects.ManageProfilePO;
-import pageObjects.PayBalancePO;
+import pageObjects.PaymentPO;
 import pageObjects.DashboardPO;
 import pageObjects.ForgotPasswordPO;
 import pageObjects.ForgotUsernamePO;
@@ -37,34 +40,22 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 1)
 		public void locatorTestingOnly() throws IOException, InterruptedException
 		{	
-		reusableMethods.activeMemberLogin();
-		Thread.sleep(7000);
+		reusableMethods.activeMember1Login();
 //		driver.findElement(By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button")).click();
 		DashboardPO p = new DashboardPO(driver);
+
 		p.getMyAccountPayNow().click();
-		Thread.sleep(4000);	
-		PayBalancePO m = new PayBalancePO(driver);
+		Thread.sleep(2000);	
+		PaymentPO m = new PaymentPO(driver);
 		m.getAmountRadioButton3().click();
-//		Thread.sleep(2000);
-//		driver.findElement(By.xpath("(//div[@class='payment-card'])[1]/div[3]/div/button"))
-//		System.out.println(driver.findElement(By.xpath("//div[@id='swal2-content']")).getText());
+		Thread.sleep(2000);
+//		System.out.println(driver.findElement(By.xpath("//div[@class='payments-method']/div/div/h2/br")).getAttribute("value"));
+		WebElement w = driver.findElement(By.xpath("//div[@class='m-signature-pad--body']//canvas"));
 		Actions a= new Actions(driver);
-		a.moveToElement(driver.findElement(By.xpath("//input[@name='selectedPaymentAmount']"))).doubleClick().sendKeys(Keys.DELETE).build().perform();
-				
-				
-		driver.findElement(By.xpath("//input[@name='selectedPaymentAmount']")).sendKeys("20.00");
-		m.getPayWithThisMethodButton1().click();
-		System.out.println(driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).getText());
-		driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
-		Thread.sleep(4000);
-		System.out.println(driver.findElement(By.xpath("//div[@class='swal2-header']/h2")).getText());
-		driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
-		
-		
-		
+		a.moveToElement(driver.findElement(By.xpath("//div[@class='m-signature-pad--body']//canvas"))).click().doubleClick().sendKeys(Keys.DELETE).build().perform();	
+		a.dragAndDropBy(w, 1858, 1006).build().perform();
 		Thread.sleep(10000);
 		}
-
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{

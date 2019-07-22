@@ -23,12 +23,12 @@ import pageObjects.LoginPO;
 import pageObjects.ManageFamilyPO;
 import pageObjects.ManageProfilePO;
 import pageObjects.PackagesPO;
-import pageObjects.PayBalancePO;
+import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 
 
-public class ButtonTest extends base{
+public class PageLaunchTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 	
 	@BeforeTest
@@ -37,12 +37,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMEFuture2URL"));
-		reusableMethods.activeMemberLogin();
-		Thread.sleep(10000);
+		reusableMethods.activeMember1Login();
 	}
 	
 	@Test (priority = 20)
-	public void myPackagesButtonTest() throws InterruptedException
+	public void MyPackagesButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getMyPackagesButton().click();
@@ -77,7 +76,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getMyAccountPayNow().click();
-		PayBalancePO pb = new PayBalancePO(driver);
+		PaymentPO pb = new PaymentPO(driver);
 		Assert.assertEquals(pb.getPageHeader().getText(),"Pay Balance");
 		log.info("Pay Balance Page Header Verified");
 		reusableMethods.returnToDashboard();
@@ -116,7 +115,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	public void ManageFamilyButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
-		d.getmyFamilyManageButton().click();
+		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Family");
 		log.info("Manage Family Page Header Verified");
@@ -140,6 +139,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(2000);
 		LoginPO l = new LoginPO(driver);
 		l.getForgotUsername().click();
+		Thread.sleep(2000);
 		ForgotUsernamePO f = new ForgotUsernamePO(driver);
 		Assert.assertEquals(f.getPageHeader().getText(),"Forgot your Username?");
 		log.info("Forgot Username Page Header Verified");
@@ -150,6 +150,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	{
 		LoginPO l = new LoginPO(driver);
 		l.getForgotPassword().click();
+		Thread.sleep(2000);
 		ForgotPasswordPO f = new ForgotPasswordPO(driver);
 		Assert.assertEquals(f.getPageHeader().getText(),"Forgot your Password?");
 		log.info("Forgot Password Page Header Verified");

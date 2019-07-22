@@ -1,32 +1,12 @@
-16:19:32.922 [main] INFO  resources.base - Password Entered
-16:19:33.046 [main] INFO  resources.base - Log In Button Clicked
-16:26:36.063 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-16:26:38.144 [main] INFO  resources.base - Driver Initialized
-16:26:39.838 [main] INFO  resources.base - User Name Entered
-16:26:39.926 [main] INFO  resources.base - Password Entered
-16:26:40.032 [main] INFO  resources.base - Log In Button Clicked
-16:27:36.723 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-16:27:38.826 [main] INFO  resources.base - Driver Initialized
-16:27:41.848 [main] INFO  resources.base - User Name Entered
-16:27:41.938 [main] INFO  resources.base - Password Entered
-16:27:42.051 [main] INFO  resources.base - Log In Button Clicked
-16:30:18.159 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-16:30:20.280 [main] INFO  resources.base - Driver Initialized
-16:30:23.210 [main] INFO  resources.base - User Name Entered
-16:30:23.297 [main] INFO  resources.base - Password Entered
-16:30:23.400 [main] INFO  resources.base - Log In Button Clicked
-16:31:58.084 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-16:32:00.166 [main] INFO  resources.base - Driver Initialized
-16:32:02.832 [main] INFO  resources.base - User Name Entered
-16:32:02.929 [main] INFO  resources.base - Password Entered
-16:32:03.036 [main] INFO  resources.base - Log In Button Clicked
-16:38:24.123 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-16:38:26.256 [main] INFO  resources.base - Driver Initialized
-16:38:28.425 [main] INFO  resources.base - User Name Entered
-16:38:28.511 [main] INFO  resources.base - Password Entered
-16:38:28.622 [main] INFO  resources.base - Log In Button Clicked
-16:41:14.779 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-16:41:16.872 [main] INFO  resources.base - Driver Initialized
-16:41:19.190 [main] INFO  resources.base - User Name Entered
-16:41:19.283 [main] INFO  resources.base - Password Entered
-16:41:19.389 [main] INFO  resources.base - Log In Button Clicked
+16:10:03.327 [main] INFO  resources.base - Active Member 3 Logged In
+16:10:24.543 [main] INFO  resources.base - User Logged Out
+16:10:27.878 [main] INFO  resources.base - Active Member 4 Logged In
+16:10:39.220 [main] INFO  resources.base - User Logged Out
+16:10:42.269 [main] INFO  resources.base - Active Member 5 Logged In
+16:10:53.488 [main] INFO  resources.base - User Logged Out
+16:10:58.307 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:11:01.327 [main] INFO  resources.base - Driver Initialized
+16:11:05.940 [main] INFO  resources.base - Active Member 1 Logged In
+16:11:25.978 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:11:28.977 [main] INFO  resources.base - Driver Initialized
+16:11:33.301 [main] INFO  resources.base - Active Member 1 Logged In

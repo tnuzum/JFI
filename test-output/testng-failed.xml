@@ -3,13 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="EME.LocatorTestingOnly">
+      <class name="EME.ButtonTest">
         <methods>
-          <include name="initialize"/>
           <include name="teardown"/>
-          <include name="locatorTestingOnly"/>
+          <include name="initialize"/>
+          <include name="ForgotUsernameButtonTest"/>
+          <include name="ForgotPasswordButtonTest"/>
         </methods>
-      </class> <!-- EME.LocatorTestingOnly -->
+      </class> <!-- EME.ButtonTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

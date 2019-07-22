@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PayBalancePO {
+public class PaymentPO {
 
 	public WebDriver driver;
 
@@ -21,13 +21,26 @@ public class PayBalancePO {
 	By payWithThisMethodButton1 = By.xpath("(//div[@class='payment-card'])[1]/div[3]/div/button");
 	By zeroPaymentMessage	= By.xpath("//div[@id='swal2-content']");
 	By customAmountInput	= By.xpath("//input[@name='selectedPaymentAmount']");
+	By nameOnCard = By.xpath("//input[@name='nameCard']");
+	By cardNumber = By.xpath("//input[@name='cardNumber']");
+	By expireMonth = By.xpath("//input[@name='ExpireMonth']");
+	By expireYear = By.xpath("//input[@name='ExpireYear']");
+	By cvc = By.xpath("//input[@name='CVC']");
+	By saveCardNoRadio = By.xpath("//input[@id='sc-no']");
+	By saveCardYesRadio = By.xpath("//input[@id='sc-yes']");
+	By houseAcctNoRadio = By.xpath("//input[@id='ac-no']");
+	By houseAcctYesRadio = By.xpath("//input[@id='ac-yes']");
+	By inClubPurchaseNoRadio = By.xpath("//input[@id='ic-no']");
+	By inClubPurchaseYesRadio = By.xpath("//input[@id='ic-yes']");
+	By iAgreeCheckbox = By.xpath("(//input[@type='checkbox'])[2]");
+	By submitButton = By.xpath("//button[@type='submit']");
 	By popupPayButton = By.xpath("//div[@class='swal2-actions']/button[1]");
-	By popupConfirmation1 = By.xpath("//div[@class='swal2-header']/h2");//displays Payment Made!
+	By popupConfirmation1 = By.xpath("//div[@class='swal2-header']/h2");//displays Payment Made! message
 	By popupConfirmationButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 		
 // CONSTRUCTOR
 		
-	public PayBalancePO(WebDriver driver) {
+	public PaymentPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		this.driver = driver;
 	}
@@ -65,7 +78,6 @@ public class PayBalancePO {
 	{
 		return driver.findElement(payWithThisMethodButton1);
 	}
-	
 	public WebElement getZeroPaymentMessage()
 	{
 		return driver.findElement(zeroPaymentMessage);
@@ -74,6 +86,59 @@ public class PayBalancePO {
 	{
 		return driver.findElement(customAmountInput);
 	}
+	public WebElement getNameOnCard()
+	{
+		return driver.findElement(nameOnCard);
+	}
+	public WebElement getCardNumber()
+	{
+		return driver.findElement(cardNumber);
+	}
+	public WebElement getExpireMonth()
+	{
+		return driver.findElement(expireMonth);
+	}
+	public WebElement getExpireYear()
+	{
+		return driver.findElement(expireYear);
+	}
+	public WebElement getCVC()
+	{
+		return driver.findElement(cvc);
+	}
+	public WebElement getSaveCardNoRadio()
+	{
+		return driver.findElement(saveCardNoRadio);
+	}
+	public WebElement getSaveCardYesRadio()
+	{
+		return driver.findElement(saveCardYesRadio);
+	}
+	public WebElement getHouseAcctNoRadioButton()
+	{
+		return driver.findElement(houseAcctNoRadio);
+	}
+	public WebElement getHouseAcctYesRadio()
+	{
+		return driver.findElement(houseAcctYesRadio);
+	}
+	public WebElement getInClubPurchaseNoRadio()
+	{
+		return driver.findElement(inClubPurchaseNoRadio);
+	}
+	public WebElement getInClubPurchaseYesRadio()
+	{
+		return driver.findElement(inClubPurchaseYesRadio);
+	}
+	public WebElement getSubmitButton()
+	{
+		return driver.findElement(submitButton);
+	}
+	public WebElement getIAgreeCheckbox()
+	{
+		return driver.findElement(iAgreeCheckbox);
+	}
+	
 	public WebElement getPopupPayButton()
 	{
 		return driver.findElement(popupPayButton);

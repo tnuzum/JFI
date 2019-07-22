@@ -12,7 +12,7 @@ public class DashboardPO {
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By menuButton = By.xpath("//nav[@class='navbar navbar-static-top']/div/a/i");
 	By myPackagesButton = By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button");
-	By myPackagesShopPackages = By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/ul/li[5]/div/div/div");
+	By myPackagesShopPackages = By.linkText("Shop Packages");
 	By cartButton = By.xpath("//nav[@class='navbar navbar-static-top']/ul/li[2]/a");
 	By logoutButton = By.linkText("Log out"); 
 	
@@ -37,6 +37,8 @@ public class DashboardPO {
 	By myAccountAccountHistoryButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[1]");
 	By myAccountPayNowButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[2]");
 	By myAccountBalance = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2");
+	By myAccountBalDuelabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/div/small");
+	By myAccountTotChargesAmount = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small/strong/span");
 	
 	By myInfoSectionLabel = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[1]");
 	By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2");
@@ -53,7 +55,7 @@ public class DashboardPO {
 	By myVisitsSectionLabel = By.xpath("//div[@class='homeComponent']//checkinchart/div/div[1]");
 	
 	By myFamilySectionLabel = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]");
-	By myFamilyFamilyMemberCount = By.xpath("//div[@class='homeComponent']//familymembercount");
+	By myFamilyFamilyMemberCount = By.xpath("//div[@class='homeComponent']//familymembercount//div//div//h2");
 	By myFamilyManageButton = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[3]/a[1]");
 	
 	By AdditionalLinksSectionLabel = By.xpath("//div[@class='homeComponent']//externallinks/div/div[1]/div[1]");
@@ -174,6 +176,15 @@ public class DashboardPO {
 	{
 		return driver.findElement(myAccountBalance);
 	}
+	public WebElement getMyAccountBalDuelabel()
+	{
+		return driver.findElement(myAccountBalDuelabel);
+	}
+	
+	public WebElement getMyAccountTotChargesAmount()
+	{
+		return driver.findElement(myAccountTotChargesAmount);
+	}
 	
 	//My Info
 	public WebElement getMyInfoSectionLabel()
@@ -224,15 +235,15 @@ public class DashboardPO {
 	}
 	
 	//My Family
-	public WebElement myFamilySectionLabel()
+	public WebElement getMyFamilySectionLabel()
 	{
 		return driver.findElement(myFamilySectionLabel);
 	}
-	public WebElement getFamilyMemberCount()
+	public WebElement getMyFamilyMemberCount()
 	{
 		return driver.findElement(myFamilyFamilyMemberCount);
 	}
-	public WebElement getmyFamilyManageButton()
+	public WebElement getMyFamilyManageButton()
 	{
 		return driver.findElement(myFamilyManageButton);
 	}
