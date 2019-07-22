@@ -10,3 +10,15 @@
 16:11:25.978 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
 16:11:28.977 [main] INFO  resources.base - Driver Initialized
 16:11:33.301 [main] INFO  resources.base - Active Member 1 Logged In
+16:59:53.697 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:59:57.160 [main] INFO  resources.base - Driver Initialized
+16:59:59.666 [main] INFO  resources.base - Active Member 1 Logged In
+17:00:11.682 [main] INFO  resources.base - User Logged Out
+17:00:14.007 [main] INFO  resources.base - Active Member 2 Logged In
+17:00:35.717 [main] INFO  resources.base - User Logged Out
+17:00:38.029 [main] INFO  resources.base - Active Member 3 Logged In
+17:01:00.016 [main] INFO  resources.base - User Logged Out
+17:01:02.323 [main] INFO  resources.base - Active Member 4 Logged In
+17:01:14.167 [main] INFO  resources.base - User Logged Out
+17:01:17.460 [main] INFO  resources.base - Active Member 5 Logged In
+17:01:30.108 [main] INFO  resources.base - User Logged Out
