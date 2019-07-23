@@ -14,9 +14,17 @@ public class listeners extends base implements ITestListener{
 	
 	@Override
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
-		System.out.println("Listener is Listening!!!");
 		
+	}
+
+	@Override
+	public void onTestSuccess(ITestResult result) {
+		
+	}
+
+	@Override
+	public void onTestFailure(ITestResult result) {
+
 		result.getName();
 		try {
 			b.getScreenshot(result.getName());
@@ -27,25 +35,8 @@ public class listeners extends base implements ITestListener{
 	}
 
 	@Override
-	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onTestFailure(ITestResult result) {
-		// TODO Auto-generated method stub
-		try {
-			b.getScreenshot(result.getName());
-		} catch (IOException e) {
-			
-			e.printStackTrace();
-		}
-	}
-
-	@Override
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
+
 		result.getName();
 		try {
 			b.getScreenshot(result.getName());
@@ -57,19 +48,16 @@ public class listeners extends base implements ITestListener{
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
 		
 	}
 
