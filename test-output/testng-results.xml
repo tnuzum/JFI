@@ -1,166 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="16" passed="15" failed="1" skipped="0">
+<testng-results ignored="0" total="10" passed="10" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-07-23T13:06:20Z" name="EME - Smoke Testing" finished-at="2019-07-23T13:09:09Z" duration-ms="169618">
+  <suite started-at="2019-07-23T13:51:57Z" name="Default suite" finished-at="2019-07-23T13:52:25Z" duration-ms="28642">
     <groups>
     </groups>
-    <test started-at="2019-07-23T13:06:20Z" name="Member Login Test" finished-at="2019-07-23T13:08:07Z" duration-ms="106936">
-      <class name="EME.MemberLoginTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MemberLoginTest@591e58fa]" started-at="2019-07-23T13:06:20Z" name="initialize" finished-at="2019-07-23T13:06:26Z" duration-ms="5888" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initialize -->
-        <test-method signature="activeMember1Login()[pri:10, instance:EME.MemberLoginTest@591e58fa]" started-at="2019-07-23T13:06:26Z" name="activeMember1Login" description="Login Active Adult HOH Member" finished-at="2019-07-23T13:06:44Z" duration-ms="18072" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- activeMember1Login -->
-        <test-method signature="activeMember2Login()[pri:15, instance:EME.MemberLoginTest@591e58fa]" started-at="2019-07-23T13:06:44Z" name="activeMember2Login" description="Login Active Adult non-HOH Member" finished-at="2019-07-23T13:07:08Z" duration-ms="24505" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- activeMember2Login -->
-        <test-method signature="activeMember3Login()[pri:20, instance:EME.MemberLoginTest@591e58fa]" started-at="2019-07-23T13:07:08Z" name="activeMember3Login" description="Login Active Minor Member" finished-at="2019-07-23T13:07:34Z" duration-ms="25784" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- activeMember3Login -->
-        <test-method signature="activeMember4Login()[pri:25, instance:EME.MemberLoginTest@591e58fa]" started-at="2019-07-23T13:07:34Z" name="activeMember4Login" description="Login Active Adult No Family Member" finished-at="2019-07-23T13:07:49Z" duration-ms="14958" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- activeMember4Login -->
-        <test-method signature="activeMember5Login()[pri:25, instance:EME.MemberLoginTest@591e58fa]" started-at="2019-07-23T13:07:49Z" name="activeMember5Login" description="Login Inactive Adult" finished-at="2019-07-23T13:08:04Z" duration-ms="14928" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- activeMember5Login -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MemberLoginTest@591e58fa]" started-at="2019-07-23T13:08:04Z" name="teardown" finished-at="2019-07-23T13:08:07Z" duration-ms="2779" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- teardown -->
-      </class> <!-- EME.MemberLoginTest -->
-    </test> <!-- Member Login Test -->
-    <test started-at="2019-07-23T13:08:07Z" name="Payment Test" finished-at="2019-07-23T13:08:36Z" duration-ms="29463">
-      <class name="EME.MakePaymentTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MakePaymentTest@77307458]" started-at="2019-07-23T13:08:07Z" name="initialize" finished-at="2019-07-23T13:08:12Z" duration-ms="5129" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- initialize -->
-        <test-method signature="pageVerifications()[pri:1, instance:EME.MakePaymentTest@77307458]" started-at="2019-07-23T13:08:12Z" name="pageVerifications" finished-at="2019-07-23T13:08:33Z" duration-ms="21251" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- pageVerifications -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MakePaymentTest@77307458]" started-at="2019-07-23T13:08:33Z" name="teardown" finished-at="2019-07-23T13:08:36Z" duration-ms="3082" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- teardown -->
-      </class> <!-- EME.MakePaymentTest -->
-    </test> <!-- Payment Test -->
-    <test started-at="2019-07-23T13:08:36Z" name="Page Launch" finished-at="2019-07-23T13:09:09Z" duration-ms="33193">
+    <test started-at="2019-07-23T13:51:57Z" name="Default test" finished-at="2019-07-23T13:52:25Z" duration-ms="28642">
       <class name="EME.PageLaunchTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:08:36Z" name="initialize" finished-at="2019-07-23T13:08:53Z" duration-ms="16478" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:51:57Z" name="initialize" finished-at="2019-07-23T13:52:09Z" duration-ms="12406" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:08:53Z" name="MyPackagesButtonTest" finished-at="2019-07-23T13:08:54Z" duration-ms="961" status="PASS">
+        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:09Z" name="MyPackagesButtonTest" finished-at="2019-07-23T13:52:10Z" duration-ms="480" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MyPackagesButtonTest -->
-        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:08:54Z" name="CartButtonTest" finished-at="2019-07-23T13:08:54Z" duration-ms="601" status="PASS">
+        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:10Z" name="CartButtonTest" finished-at="2019-07-23T13:52:10Z" duration-ms="268" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CartButtonTest -->
-        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:08:54Z" name="AcctHistoryButtonTest" finished-at="2019-07-23T13:08:55Z" duration-ms="724" status="PASS">
+        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:10Z" name="AcctHistoryButtonTest" finished-at="2019-07-23T13:52:10Z" duration-ms="320" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AcctHistoryButtonTest -->
-        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:08:55Z" name="PayNowButtonTest" finished-at="2019-07-23T13:08:56Z" duration-ms="780" status="PASS">
+        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:10Z" name="PayNowButtonTest" finished-at="2019-07-23T13:52:11Z" duration-ms="546" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PayNowButtonTest -->
-        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:08:56Z" name="ScheduleClassesButtonTest" finished-at="2019-07-23T13:08:57Z" duration-ms="1454" status="PASS">
+        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:11Z" name="ScheduleClassesButtonTest" finished-at="2019-07-23T13:52:11Z" duration-ms="648" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleClassesButtonTest -->
-        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:08:57Z" name="ScheduleApptsButtonTest" finished-at="2019-07-23T13:08:59Z" duration-ms="1581" status="PASS">
+        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:11Z" name="ScheduleApptsButtonTest" finished-at="2019-07-23T13:52:12Z" duration-ms="823" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleApptsButtonTest -->
-        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:08:59Z" name="ManageFamilyButtonTest" finished-at="2019-07-23T13:09:00Z" duration-ms="646" status="PASS">
+        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:12Z" name="ManageFamilyButtonTest" finished-at="2019-07-23T13:52:13Z" duration-ms="286" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ManageFamilyButtonTest -->
-        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:09:00Z" name="EditMyInfoButtonTest" finished-at="2019-07-23T13:09:00Z" duration-ms="694" status="PASS">
+        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:13Z" name="EditMyInfoButtonTest" finished-at="2019-07-23T13:52:13Z" duration-ms="349" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- EditMyInfoButtonTest -->
-        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:09:00Z" name="ForgotUsernameButtonTest" finished-at="2019-07-23T13:09:06Z" duration-ms="6179" status="PASS">
+        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:13Z" name="ForgotUsernameButtonTest" finished-at="2019-07-23T13:52:21Z" duration-ms="8206" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ForgotUsernameButtonTest -->
-        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:09:06Z" name="ForgotPasswordButtonTest" finished-at="2019-07-23T13:09:06Z" duration-ms="16" status="FAIL">
-          <exception class="org.openqa.selenium.ElementNotInteractableException">
-            <message>
-              <![CDATA[Element <a class="text-uppercase"> could not be scrolled into view
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
-System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 11596, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 610bd8f6-fc08-41c1-961d-6e6401c79892]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.ElementNotInteractableException: Element <a class="text-uppercase"> could not be scrolled into view
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
-System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 11596, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 610bd8f6-fc08-41c1-961d-6e6401c79892
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
-at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
-at EME.PageLaunchTest.ForgotPasswordButtonTest(PageLaunchTest.java:147)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.ElementNotInteractableException -->
+        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:21Z" name="ForgotPasswordButtonTest" finished-at="2019-07-23T13:52:23Z" duration-ms="2218" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ForgotPasswordButtonTest -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@ec0c838]" started-at="2019-07-23T13:09:07Z" name="teardown" finished-at="2019-07-23T13:09:09Z" duration-ms="2970" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@5b057c8c]" started-at="2019-07-23T13:52:23Z" name="teardown" finished-at="2019-07-23T13:52:25Z" duration-ms="2065" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- EME.PageLaunchTest -->
-    </test> <!-- Page Launch -->
-  </suite> <!-- EME - Smoke Testing -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
 </testng-results>

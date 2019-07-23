@@ -25,7 +25,7 @@ import resources.reusableMethods;
 
 public class PageLaunchTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
-	
+
 	@BeforeTest
 	public void initialize() throws IOException, InterruptedException
 	{

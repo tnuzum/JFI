@@ -5,15 +5,29 @@
     <listener class-name="EME.listeners"/>
     <listener class-name="resources.ExtentReporterNG"/>
   </listeners>
-  <test thread-count="5" name="Page Launch(failed)">
+  <test thread-count="5" name="Member Login Test(failed)">
     <classes>
-      <class name="EME.PageLaunchTest">
+      <class name="EME.MemberLoginTest">
         <methods>
-          <include name="ForgotPasswordButtonTest"/>
           <include name="teardown"/>
+          <include name="activeMember5Login"/>
+          <include name="initialize"/>
+          <include name="activeMember3Login"/>
+          <include name="activeMember2Login"/>
+          <include name="activeMember1Login"/>
+        </methods>
+      </class> <!-- EME.MemberLoginTest -->
+    </classes>
+  </test> <!-- Member Login Test(failed) -->
+  <test thread-count="5" name="Payment Test(failed)">
+    <classes>
+      <class name="EME.MakePaymentTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="pageVerifications"/>
           <include name="initialize"/>
         </methods>
-      </class> <!-- EME.PageLaunchTest -->
+      </class> <!-- EME.MakePaymentTest -->
     </classes>
-  </test> <!-- Page Launch(failed) -->
+  </test> <!-- Payment Test(failed) -->
 </suite> <!-- Failed suite [EME - Smoke Testing] -->

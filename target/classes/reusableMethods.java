@@ -2,6 +2,7 @@ package resources;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -87,7 +88,18 @@ public class reusableMethods extends base{
 	        }
 	}
 	
-	
+	/* This is not working because 'unable to locate element'
+	 * public static String catchErrorMessage()
+	 
+	{
+		WebElement m = driver.findElement(By.xpath("//*[text()='An Error Has Occured']"));
+		if (m.isDisplayed())
+		{
+			log.info("ERROR Message displayed");
+			System.out.println("ERROR Message displayed");
+		}
+		return null;
+	}*/
 	
 	
 	}
