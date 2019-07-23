@@ -1,24 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Default test(failed)">
+<suite name="Failed suite [EME - Smoke Testing]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="EME.listeners"/>
+    <listener class-name="resources.ExtentReporterNG"/>
+  </listeners>
+  <test thread-count="5" name="Payment Test(failed)">
     <classes>
-      <class name="EME.PageLaunchTest">
+      <class name="EME.MakePaymentTest">
         <methods>
-          <include name="EditMyInfoButtonTest"/>
-          <include name="ManageFamilyButtonTest"/>
-          <include name="ScheduleClassesButtonTest"/>
-          <include name="ForgotUsernameButtonTest"/>
-          <include name="PayNowButtonTest"/>
-          <include name="MyPackagesButtonTest"/>
-          <include name="ForgotPasswordButtonTest"/>
           <include name="teardown"/>
-          <include name="AcctHistoryButtonTest"/>
-          <include name="ScheduleApptsButtonTest"/>
+          <include name="pageVerifications"/>
           <include name="initialize"/>
-          <include name="CartButtonTest"/>
         </methods>
-      </class> <!-- EME.PageLaunchTest -->
+      </class> <!-- EME.MakePaymentTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Payment Test(failed) -->
+</suite> <!-- Failed suite [EME - Smoke Testing] -->

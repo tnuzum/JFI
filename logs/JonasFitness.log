@@ -1,5 +1,33 @@
-10:56:48.974 [main] INFO  resources.base - Manage Profile Page Header Verified
-10:56:51.394 [main] INFO  resources.base - Appointments Page Header Verified
-10:56:51.737 [main] INFO  resources.base - Appointments Page Header Verified
-10:56:54.030 [main] INFO  resources.base - Manage Family Page Header Verified
-10:56:56.312 [main] INFO  resources.base - Manage Profile Page Header Verified
+11:39:56.716 [main] INFO  resources.base - Active Member 1 Logged In
+11:40:12.474 [main] INFO  resources.base - Active Member 2 Logged In
+11:40:37.491 [main] INFO  resources.base - Active Member 3 Logged In
+11:43:51.582 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+11:43:53.704 [main] INFO  resources.base - Driver Initialized
+11:43:55.802 [main] INFO  resources.base - Active Member 1 Logged In
+11:44:06.056 [main] INFO  resources.base - Shop Packages Page Header Verified
+11:44:08.414 [main] INFO  resources.base - Shopping Cart Page Header Verified
+11:44:10.756 [main] INFO  resources.base - Account History Page Header Verified
+11:44:13.143 [main] INFO  resources.base - Pay Balance Page Header Verified
+11:44:15.569 [main] INFO  resources.base - Select Classes Page Header Verified
+11:44:15.917 [main] INFO  resources.base - Manage Profile Page Header Verified
+11:44:18.275 [main] INFO  resources.base - Appointments Page Header Verified
+11:44:18.649 [main] INFO  resources.base - Appointments Page Header Verified
+11:44:20.925 [main] INFO  resources.base - Manage Family Page Header Verified
+11:44:23.208 [main] INFO  resources.base - Manage Profile Page Header Verified
+11:44:31.842 [main] INFO  resources.base - Forgot Username Page Header Verified
+11:44:34.074 [main] INFO  resources.base - Forgot Password Page Header Verified
+11:50:52.757 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+11:50:54.863 [main] INFO  resources.base - Driver Initialized
+11:50:57.121 [main] INFO  resources.base - Active Member 1 Logged In
+11:51:07.468 [main] INFO  resources.base - Shop Packages Page Header Verified
+11:51:12.618 [main] INFO  resources.base - Shopping Cart Page Header Verified
+11:51:16.906 [main] INFO  resources.base - Account History Page Header Verified
+11:51:21.263 [main] INFO  resources.base - Pay Balance Page Header Verified
+11:51:25.558 [main] INFO  resources.base - Select Classes Page Header Verified
+11:51:25.888 [main] INFO  resources.base - Manage Profile Page Header Verified
+11:51:30.212 [main] INFO  resources.base - Appointments Page Header Verified
+11:51:30.560 [main] INFO  resources.base - Appointments Page Header Verified
+11:51:34.814 [main] INFO  resources.base - Manage Family Page Header Verified
+11:51:39.105 [main] INFO  resources.base - Manage Profile Page Header Verified
+11:51:48.785 [main] INFO  resources.base - Forgot Username Page Header Verified
+11:51:51.026 [main] INFO  resources.base - Forgot Password Page Header Verified
