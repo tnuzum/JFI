@@ -10,6 +10,7 @@
       <class name="EME.MemberLoginTest">
         <methods>
           <include name="teardown"/>
+          <include name="activeMember4Login"/>
           <include name="activeMember5Login"/>
           <include name="initialize"/>
           <include name="activeMember3Login"/>
@@ -30,4 +31,24 @@
       </class> <!-- EME.MakePaymentTest -->
     </classes>
   </test> <!-- Payment Test(failed) -->
+  <test thread-count="5" name="Page Launch(failed)">
+    <classes>
+      <class name="EME.PageLaunchTest">
+        <methods>
+          <include name="EditMyInfoButtonTest"/>
+          <include name="ManageFamilyButtonTest"/>
+          <include name="ScheduleClassesButtonTest"/>
+          <include name="ForgotUsernameButtonTest"/>
+          <include name="PayNowButtonTest"/>
+          <include name="MyPackagesButtonTest"/>
+          <include name="ForgotPasswordButtonTest"/>
+          <include name="teardown"/>
+          <include name="AcctHistoryButtonTest"/>
+          <include name="ScheduleApptsButtonTest"/>
+          <include name="initialize"/>
+          <include name="CartButtonTest"/>
+        </methods>
+      </class> <!-- EME.PageLaunchTest -->
+    </classes>
+  </test> <!-- Page Launch(failed) -->
 </suite> <!-- Failed suite [EME - Smoke Testing] -->

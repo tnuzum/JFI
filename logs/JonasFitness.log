@@ -1,29 +1,5 @@
-09:51:15.773 [main] INFO  resources.base - Account History Page Header Verified
-09:51:16.204 [main] INFO  resources.base - Pay Balance Page Header Verified
-09:51:16.676 [main] INFO  resources.base - Select Classes Page Header Verified
-09:51:17.019 [main] INFO  resources.base - Manage Profile Page Header Verified
-09:51:17.441 [main] INFO  resources.base - Appointments Page Header Verified
-09:51:17.786 [main] INFO  resources.base - Appointments Page Header Verified
-09:51:18.102 [main] INFO  resources.base - Manage Family Page Header Verified
-09:51:18.428 [main] INFO  resources.base - Manage Profile Page Header Verified
-09:51:57.319 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-09:51:59.475 [main] INFO  resources.base - Driver Initialized
-09:52:01.712 [main] INFO  resources.base - Active Member 1 Logged In
-09:52:09.980 [main] INFO  resources.base - Shop Packages Page Header Verified
-09:52:10.345 [main] INFO  resources.base - Shopping Cart Page Header Verified
-09:52:10.657 [main] INFO  resources.base - Account History Page Header Verified
-09:52:11.056 [main] INFO  resources.base - Pay Balance Page Header Verified
-09:52:11.512 [main] INFO  resources.base - Select Classes Page Header Verified
-09:52:11.847 [main] INFO  resources.base - Manage Profile Page Header Verified
-09:52:12.308 [main] INFO  resources.base - Appointments Page Header Verified
-09:52:12.659 [main] INFO  resources.base - Appointments Page Header Verified
-09:52:12.972 [main] INFO  resources.base - Manage Family Page Header Verified
-09:52:13.304 [main] INFO  resources.base - Manage Profile Page Header Verified
-09:52:21.597 [main] INFO  resources.base - Forgot Username Page Header Verified
-09:52:23.819 [main] INFO  resources.base - Forgot Password Page Header Verified
-10:02:32.621 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:02:34.742 [main] INFO  resources.base - Driver Initialized
-10:02:41.673 [main] INFO  resources.base - Active Member 1 Logged In
-10:05:55.123 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
-10:05:57.255 [main] INFO  resources.base - Driver Initialized
-10:06:07.344 [main] INFO  resources.base - Active Member 1 Logged In
+10:56:48.974 [main] INFO  resources.base - Manage Profile Page Header Verified
+10:56:51.394 [main] INFO  resources.base - Appointments Page Header Verified
+10:56:51.737 [main] INFO  resources.base - Appointments Page Header Verified
+10:56:54.030 [main] INFO  resources.base - Manage Family Page Header Verified
+10:56:56.312 [main] INFO  resources.base - Manage Profile Page Header Verified

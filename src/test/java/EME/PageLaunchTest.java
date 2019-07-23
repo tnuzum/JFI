@@ -126,7 +126,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		log.info("Manage Profile Page Header Verified");
 		reusableMethods.returnToDashboard();
 	}
-	@Test (priority = 60)
+		@Test (priority = 60)
 	public void ForgotUsernameButtonTest() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);

@@ -21,6 +21,9 @@ public class reusableMethods extends base{
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember1_password"));
 		l.getsigninButton().click();
 		log.info("Active Member 1 Logged In");
+		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait w = new WebDriverWait(driver, 60);
+		w.until(ExpectedConditions.visibilityOf(d.getMyAccountTotChargesAmount()));
 		Thread.sleep(8000);
 		return null;
 	}
@@ -74,8 +77,9 @@ public class reusableMethods extends base{
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getDashboardButton().click();
-		WebDriverWait w = new WebDriverWait(driver, 10);
+		WebDriverWait w = new WebDriverWait(driver, 60);
 		w.until(ExpectedConditions.visibilityOf(d.getMyAccountTotChargesAmount()));
+		Thread.sleep(2000);
 		return null;
 	}
 	public static boolean isElementPresent(By by){
