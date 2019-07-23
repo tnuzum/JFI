@@ -8,8 +8,8 @@
   <packaging>jar</packaging>
 
   <name>JonasFitness</name>
-  <url>http://maven.apache.org</url>
-
+  	<!-- <url>http://maven.apache.org</url-->
+	<url>https://repo.maven.apache.org/maven2</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>

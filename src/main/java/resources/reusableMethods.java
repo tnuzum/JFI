@@ -30,7 +30,6 @@ public class reusableMethods extends base{
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember2_password"));
 		l.getsigninButton().click();
 		log.info("Active Member 2 Logged In");
-		DashboardPO d=new DashboardPO(driver);
 		Thread.sleep(8000);
 		return null;
 	}
@@ -41,7 +40,6 @@ public class reusableMethods extends base{
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember3_password"));
 		l.getsigninButton().click();
 		log.info("Active Member 3 Logged In");
-		DashboardPO d=new DashboardPO(driver);
 		Thread.sleep(8000);
 		return null;
 	}
@@ -51,8 +49,6 @@ public class reusableMethods extends base{
 		l.getuserName().sendKeys(prop.getProperty("activeMember4_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember4_password"));
 		l.getsigninButton().click();
-		log.info("Active Member 4 Logged In");
-		DashboardPO d=new DashboardPO(driver);
 		Thread.sleep(8000);
 		return null;
 	}
@@ -62,8 +58,6 @@ public class reusableMethods extends base{
 		l.getuserName().sendKeys(prop.getProperty("activeMember5_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember5_password"));
 		l.getsigninButton().click();
-		log.info("Active Member 5 Logged In");
-		DashboardPO d=new DashboardPO(driver);
 		Thread.sleep(8000);
 		return null;
 	}
@@ -72,7 +66,6 @@ public class reusableMethods extends base{
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getLogoutButton().click();
-		log.info("User Logged Out");
 		Thread.sleep(2000);
 		return null;
 	}
