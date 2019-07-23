@@ -103,11 +103,5 @@
     <artifactId>maven-surefire-common</artifactId>
     <version>3.0.0-M3</version>
 </dependency>
-<dependency>
-    <groupId>org.apache.maven.plugin-tools</groupId>
-    <artifactId>maven-plugin-annotations</artifactId>
-    <version>3.6.0</version>
-    <scope>provided</scope>
-</dependency>
   </dependencies>
 </project>
