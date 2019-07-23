@@ -5,16 +5,19 @@ import java.io.IOException;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
 import resources.base;
 
-public class listeners implements ITestListener{
-
+public class listeners extends base implements ITestListener{
+	
+	resources.base b = new resources.base();
+	
 	@Override
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
 		System.out.println("Listener is Listening!!!");
 		
-		resources.base b = new resources.base();
+		result.getName();
 		try {
 			b.getScreenshot(result.getName());
 		} catch (IOException e) {
@@ -32,13 +35,24 @@ public class listeners implements ITestListener{
 	@Override
 	public void onTestFailure(ITestResult result) {
 		// TODO Auto-generated method stub
-		
+		try {
+			b.getScreenshot(result.getName());
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
 		// TODO Auto-generated method stub
-		
+		result.getName();
+		try {
+			b.getScreenshot(result.getName());
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
 	}
 
 	@Override

@@ -96,8 +96,8 @@ public class base {
 
 	public void getScreenshot(String result) throws IOException {
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(src,
-				new File("C:\\Users\\tnuzum\\eclipse-workspace\\JonasFitness\\screenshots" + result + "screenshot.png"));
+		FileUtils.copyFile(src,new File("C:\\Users\\tnuzum\\eclipse-workspace\\JonasFitness\\screenshots" + result + "screenshot.png"));
+		FileUtils.copyFile(src,new File("C:\\screenshots\\screenshot.png"));
 	}
 
 }

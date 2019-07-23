@@ -22,3 +22,29 @@
 17:01:14.167 [main] INFO  resources.base - User Logged Out
 17:01:17.460 [main] INFO  resources.base - Active Member 5 Logged In
 17:01:30.108 [main] INFO  resources.base - User Logged Out
+18:10:56.954 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:11:01.592 [main] INFO  resources.base - Driver Initialized
+18:12:43.792 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:12:47.255 [main] INFO  resources.base - Driver Initialized
+18:14:26.343 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:14:29.851 [main] INFO  resources.base - Driver Initialized
+18:25:23.321 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:25:26.796 [main] INFO  resources.base - Driver Initialized
+18:31:49.647 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:31:53.123 [main] INFO  resources.base - Driver Initialized
+18:36:43.866 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:36:47.367 [main] INFO  resources.base - Driver Initialized
+18:43:33.389 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:43:36.852 [main] INFO  resources.base - Driver Initialized
+18:46:04.992 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:46:08.446 [main] INFO  resources.base - Driver Initialized
+18:46:29.951 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:46:32.971 [main] INFO  resources.base - Driver Initialized
+18:46:54.156 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:46:57.129 [main] INFO  resources.base - Driver Initialized
+18:47:56.581 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:48:00.082 [main] INFO  resources.base - Driver Initialized
+18:48:21.620 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:48:24.580 [main] INFO  resources.base - Driver Initialized
+18:48:45.776 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+18:48:48.738 [main] INFO  resources.base - Driver Initialized
