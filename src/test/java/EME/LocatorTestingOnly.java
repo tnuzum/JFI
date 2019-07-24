@@ -6,10 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pageObjects.PaymentPO;
+import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
@@ -34,24 +36,37 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void locatorTestingOnly() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMember1Login();
+		Assert.assertEquals((driver.findElement(By.xpath("(//span[@class='class-list-header'])[4]/strong")).getText()), "DRIVING RANGE PACKAGE");
 //		driver.findElement(By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button")).click();
-		DashboardPO p = new DashboardPO(driver);
+//		DashboardPO p = new DashboardPO(driver);
 
-		p.getMyAccountPayNow().click();
-		Thread.sleep(2000);	
-		PaymentPO m = new PaymentPO(driver);
-		m.getAmountRadioButton3().click();
+//		p.getMyApptsScheduleButton().click();
+
 		Thread.sleep(2000);
-//		System.out.println(driver.findElement(By.xpath("//div[@class='payments-method']/div/div/h2/br")).getAttribute("value"));
-		WebElement w = driver.findElement(By.xpath("//div[@class='m-signature-pad--body']//canvas"));
-		Actions a= new Actions(driver);
-		a.moveToElement(driver.findElement(By.xpath("//div[@class='m-signature-pad--body']//canvas"))).click().doubleClick().sendKeys(Keys.DELETE).build().perform();	
-		a.dragAndDropBy(w, 1858, 1006).build().perform();
-		Thread.sleep(10000);
+//		driver.findElement(By.xpath("(//select[@name='clubs'])[1]")).sendKeys("abcdefghijklmnopqrstuvwxyz");
+//		WebElement w = driver.findElement(By.xpath("(//select[@name='clubs'])[1]"));
+//		Actions a= new Actions(driver);
+//		driver.findElement(By.xpath("(//select[@name='clubs'])[1]")).sendKeys("c");
+//		a.moveToElement(driver.findElement(By.xpath("(//select[@name='clubs'])[1]"))).sendKeys(Keys.ENTER).build().perform();
+//		a.sendKeys(Keys.ENTER).build().perform();
+//		AppointmentsPO ap = new AppointmentsPO(driver);
+//		Thread.sleep(2000);
+//		ap.getBookableItemCategory().sendKeys("g",Keys.ENTER);
+//		driver.findElement(By.xpath("(//select[@name='bookableItemCategory'])")).sendKeys("g");
+//		a.moveToElement(driver.findElement(By.xpath("(//select[@name='bookableItemCategory'])"))).sendKeys(Keys.ENTER).build().perform();
+//		a.sendKeys(Keys.ENTER).build().perform();
+//		Thread.sleep(2000);
+/*		driver.findElement(By.xpath("(//select[@name='bookableItem'])")).sendKeys("g");
+		a.moveToElement(driver.findElement(By.xpath("(//select[@name='bookableItem'])"))).sendKeys(Keys.ENTER).build().perform();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("(//select[@name='primaryResourceType'])")).sendKeys("g");
+		a.moveToElement(driver.findElement(By.xpath("(//select[@name='primaryResourceType'])"))).sendKeys("g").sendKeys(Keys.ENTER).build().perform();
+		*/
 		}
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
+			Thread.sleep(10000);
 			driver.close();
 			driver=null;
 		}

@@ -5,7 +5,7 @@
     <listener class-name="EME.listeners"/>
     <listener class-name="resources.ExtentReporterNG"/>
   </listeners>
-  <test thread-count="5" name="Payment Test(failed)">
+  <test thread-count="5" name="Make Payment(failed)">
     <classes>
       <class name="EME.MakePaymentTest">
         <methods>
@@ -15,5 +15,5 @@
         </methods>
       </class> <!-- EME.MakePaymentTest -->
     </classes>
-  </test> <!-- Payment Test(failed) -->
+  </test> <!-- Make Payment(failed) -->
 </suite> <!-- Failed suite [EME - Smoke Testing] -->

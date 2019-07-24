@@ -31,7 +31,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			DashboardPO d = new DashboardPO(driver);
 			PaymentPO p = new PaymentPO(driver);
 		d.getMyAccountPayNow().click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		p.getAmountRadioButton3().click();
 			Actions a= new Actions(driver);
 		a.moveToElement(p.getAmountRadioButton3()).sendKeys(Keys.TAB).sendKeys(Keys.DELETE).build().perform();
@@ -41,7 +41,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		p.getExpireYear().sendKeys(prop.getProperty("MastercardExpireYear"));
 		p.getCVC().sendKeys(prop.getProperty("MastercardCVC"));
 		p.getSaveCardNoRadio().click();
-		p.getIAgreeCheckbox().click();
+//		p.getIAgreeCheckbox().click();not shown if getSaveCardNoRadio is used
+			Thread.sleep(2000);
 		p.getSubmitButton().click();
 			Thread.sleep(2000);
 		p.getPopupConfirmationButton().click();

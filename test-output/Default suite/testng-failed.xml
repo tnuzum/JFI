@@ -3,22 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="EME.PageLaunchTest">
+      <class name="EME.MakePaymentTest">
         <methods>
-          <include name="EditMyInfoButtonTest"/>
-          <include name="ManageFamilyButtonTest"/>
-          <include name="ScheduleClassesButtonTest"/>
-          <include name="ForgotUsernameButtonTest"/>
-          <include name="PayNowButtonTest"/>
-          <include name="MyPackagesButtonTest"/>
-          <include name="ForgotPasswordButtonTest"/>
           <include name="teardown"/>
-          <include name="AcctHistoryButtonTest"/>
-          <include name="ScheduleApptsButtonTest"/>
+          <include name="pageVerifications"/>
           <include name="initialize"/>
-          <include name="CartButtonTest"/>
         </methods>
-      </class> <!-- EME.PageLaunchTest -->
+      </class> <!-- EME.MakePaymentTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

@@ -5,19 +5,24 @@
 		<listener class-name = "EME.listeners"/>
 	<listener class-name = "resources.ExtentReporterNG"/>
 	</listeners> 
-  <!-- test thread-count="5" name="Member Login Test">
+  <test thread-count="5" name="Member Login">
     <classes>
       <class name="EME.MemberLoginTest"/>
     </classes>
-  </test-->
-  <!-- test thread-count="5" name="Payment Test">
-    <classes>
-      <class name="EME.MakePaymentTest"/>
-    </classes>
-  </test--> 
-  <test thread-count="5" name="Page Launch">
+  </test>
+    <test thread-count="5" name="Page Launch">
     <classes>
       <class name="EME.PageLaunchTest"/>
     </classes>
-  </test>  
+  </test> 
+  <test thread-count="5" name="Make Payment">
+    <classes>
+      <class name="EME.MakePaymentTest"/>
+    </classes>
+  </test> 
+  <test thread-count="5" name="Make Appointment">
+    <classes>
+      <class name="EME.MakeApptTest"/>
+    </classes>
+  </test> 
 </suite>

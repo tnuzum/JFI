@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.LogManager;
@@ -88,6 +91,12 @@ public class base {
 					driver = new InternetExplorerDriver(dc); }
 			}
 		}
+		
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy  HH:mm:ss");
+		Date date = new Date();
+		String DateTime= dateFormat.format(date);
+		System.out.println(DateTime+": Automated testing started");
+		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 

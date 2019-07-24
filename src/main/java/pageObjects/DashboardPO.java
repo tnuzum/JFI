@@ -48,6 +48,7 @@ public class DashboardPO {
 
 	By myApptsSectionLabel = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[1]");
 	By myApptsScheduleButton = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[3]/a[1]");
+	By myApptsAppt1Title = By.xpath("(//span[@class='class-list-header'])[4]/strong");
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classescourses/div/div[1]");
 	By myClassesScheduleButton = By.xpath("//div[@class='homeComponent']//classescourses/div/div[3]/a[1]");
@@ -216,6 +217,10 @@ public class DashboardPO {
 	public WebElement getMyApptsScheduleButton()
 	{
 		return driver.findElement(myApptsScheduleButton);
+	}
+	public WebElement getMyApptsAppt1Title()
+	{
+		return driver.findElement(myApptsAppt1Title);
 	}
 	
 	//My Classes

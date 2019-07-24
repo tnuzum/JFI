@@ -23,7 +23,7 @@ public class reusableMethods extends base{
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait w = new WebDriverWait(driver, 60);
 		w.until(ExpectedConditions.visibilityOf(d.getMyAccountTotChargesAmount()));
-		Thread.sleep(8000);
+		Thread.sleep(5000);
 		return null;
 	}
 	public static String activeMember2Login() throws InterruptedException
