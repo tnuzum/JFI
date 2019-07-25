@@ -8,10 +8,11 @@ public class PaymentPO {
 
 	public WebDriver driver;
 
+// This is the page for the link in the left pane under My Account labels Pay Balance
+	
 // OBJECTS
 		
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
-	
 	By amountRadioButton1 = By.xpath("(//div[@class='radio'])[1]/input");
 	By amountLabel1	= By.xpath("(//div[@class='radio'])[1]/label");
 	By amountRadioButton2 = By.xpath("(//div[@class='radio'])[2]/input");
@@ -37,6 +38,11 @@ public class PaymentPO {
 	By popupPayButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 	By popupConfirmation1 = By.xpath("//div[@class='swal2-header']/h2");//displays Payment Made! message
 	By popupConfirmationButton = By.xpath("//div[@class='swal2-actions']/button[1]");
+	By confirmPageThankYou = By.xpath("//h1[@class='text-uppercase']");
+	By selectPaymentOnAccountButton = By.xpath("//div[@id='accordion']/div[1]/div[1]/a/h5");
+	By selectPaymentOnAccountPayWithButton = By.xpath("//button[@class='btn btn-primary btn-sm use-method make-payment']");
+	By selectPaymentStoredCardsButton = By.xpath("//div[@id='accordion']/div[2]/div[1]/a/h5");
+	By selectPaymentNewCardButton = By.xpath("//div[@id='accordion']/div[3]/div[1]/a/h5");
 		
 // CONSTRUCTOR
 		
@@ -151,5 +157,27 @@ public class PaymentPO {
 	{
 		return driver.findElement(popupConfirmationButton);
 	}
+	public WebElement getSelectPaymentOnAccountButton()
+	{
+		return driver.findElement(selectPaymentOnAccountButton);
+	}
+	public WebElement getSelectPaymentStoredCardsButton()
+	{
+		return driver.findElement(selectPaymentStoredCardsButton);
+	}
+	public WebElement getSelectPaymentNewCardButton()
+	{
+		return driver.findElement(selectPaymentNewCardButton);
+	}
+	public WebElement getSelectPaymentOnAccountPayWithButton()
+	{
+		return driver.findElement(selectPaymentOnAccountPayWithButton);
+	}
+	public WebElement getConfirmPageThankYou()
+	{
+		return driver.findElement(confirmPageThankYou);
+	}
+	
+	
 	
 }

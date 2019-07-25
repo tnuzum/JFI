@@ -36,13 +36,17 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void locatorTestingOnly() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMember1Login();
-		Assert.assertEquals((driver.findElement(By.xpath("(//span[@class='class-list-header'])[4]/strong")).getText()), "DRIVING RANGE PACKAGE");
+		Thread.sleep(8000);
+		driver.findElement(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")).click();
+		Thread.sleep(2000);		
+		driver.findElement(By.xpath("//button[@title='UNENROLL']")).click();
+//		Assert.assertEquals((driver.findElement(By.xpath("(//span[@class='class-list-header'])[4]/strong")).getText()), "DRIVING RANGE PACKAGE");
 //		driver.findElement(By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button")).click();
 //		DashboardPO p = new DashboardPO(driver);
 
 //		p.getMyApptsScheduleButton().click();
 
-		Thread.sleep(2000);
+
 //		driver.findElement(By.xpath("(//select[@name='clubs'])[1]")).sendKeys("abcdefghijklmnopqrstuvwxyz");
 //		WebElement w = driver.findElement(By.xpath("(//select[@name='clubs'])[1]"));
 //		Actions a= new Actions(driver);

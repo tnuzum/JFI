@@ -39,6 +39,7 @@ public class DashboardPO {
 	By myAccountBalance = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2");
 	By myAccountBalDuelabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/div/small");
 	By myAccountTotChargesAmount = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small/strong/span");
+	By myAccountLastPaymentDate = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[2]");
 	
 	By myInfoSectionLabel = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[1]");
 	By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2");
@@ -52,6 +53,11 @@ public class DashboardPO {
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classescourses/div/div[1]");
 	By myClassesScheduleButton = By.xpath("//div[@class='homeComponent']//classescourses/div/div[3]/a[1]");
+	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
+	By myClassesUnenrollButton1 = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
+	By myClassesUnenrollButton2 = By.xpath("//mycalendarunenroll[1]/div[1]/div[1]/div[1]/div[2]/div[10]/a[2]");//button on Unenroll page
+	By myClassesUnenrollConfirmMessage1 = By.xpath("//h2[@id='swal2-title']");//displays "Unenrolled"
+	By myClassesUnenrollConfirmYesButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	
 	By myVisitsSectionLabel = By.xpath("//div[@class='homeComponent']//checkinchart/div/div[1]");
 	
@@ -181,10 +187,13 @@ public class DashboardPO {
 	{
 		return driver.findElement(myAccountBalDuelabel);
 	}
-	
 	public WebElement getMyAccountTotChargesAmount()
 	{
 		return driver.findElement(myAccountTotChargesAmount);
+	}
+	public WebElement getMyAccountLastPaymentDate()
+	{
+		return driver.findElement(myAccountLastPaymentDate);
 	}
 	
 	//My Info
@@ -232,6 +241,27 @@ public class DashboardPO {
 	{
 		return driver.findElement(myClassesScheduleButton);
 	}
+	public WebElement getMyClassesClass1GearButton()
+	{
+		return driver.findElement(myClassesClass1GearButton);
+	}
+	public WebElement getmyClassesUnenrollButton1()
+	{
+		return driver.findElement(myClassesUnenrollButton1);
+	}
+	public WebElement getmyClassesUnenrollButton2()
+	{
+		return driver.findElement(myClassesUnenrollButton2);
+	}
+	public WebElement getMyClassesUnenrollConfirmMessage1()
+	{
+		return driver.findElement(myClassesUnenrollConfirmMessage1);
+	}
+	public WebElement getMyClassesUnenrollConfirmYesButton()
+	{
+		return driver.findElement(myClassesUnenrollConfirmYesButton);
+	}
+
 	
 	//My Visits
 	public WebElement getMyVisitsSectionLabel()

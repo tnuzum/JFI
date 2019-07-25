@@ -92,7 +92,8 @@ public class base {
 			}
 		}
 		
-		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy  HH:mm:ss");
+//		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy  HH:mm:ss");
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
 		String DateTime= dateFormat.format(date);
 		System.out.println(DateTime+": Automated testing started");

@@ -11,6 +11,15 @@ public class ClassSignUpPO {
 // OBJECTS
 		
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By selectDateThisWeekButton = By.xpath("//label[@id='date-thisweek']");
+	By firstAvailClassButton = By.xpath("//div[@id='classes']/div/div[2]/div[1]/div/div");
+	By firstAvailClassNextDayButton = By.xpath("//div[@id='classes']/div[2]/div[2]/div[1]/div/div/div");
+	By golfClasslabel = By.xpath("//span[contains(text(),'Golf Swing Class')]");
+	By popupClassDesc = By.xpath("//classcoursedetail[@class='ng-star-inserted']/div/div[2]/div");
+	By popupCancelButton = By.xpath("(//button[@type='button'])[5]");
+	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
+	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
+	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
 	
 // CONSTRUCTOR
 		
@@ -23,6 +32,43 @@ public class ClassSignUpPO {
 	public WebElement getPageHeader()
 	{
 		return driver.findElement(pageHeader);
+	}
+	public WebElement getSelectDateThisWeekButton()
+	{
+		return driver.findElement(selectDateThisWeekButton);
+	}
+	
+	public WebElement getFirstAvailClassButton()
+	{
+		return driver.findElement(firstAvailClassButton);
+	}
+	public WebElement getfirstAvailClassNextDayButton()
+	{
+		return driver.findElement(firstAvailClassNextDayButton);
+	}
+	public WebElement getGolfClasslabel()
+	{
+		return driver.findElement(golfClasslabel);
+	}
+	public WebElement getPopupClassDesc()
+	{
+		return driver.findElement(popupClassDesc);
+	}
+	public WebElement getPopupCancelButton()
+	{
+		return driver.findElement(popupCancelButton);
+	}
+	public WebElement getPopupSignUpButton()
+	{
+		return driver.findElement(popupSignUpButton);
+	}
+	public WebElement getSelectRatesAddSelButton()
+	{
+		return driver.findElement(selectRatesAddSelButton);
+	}
+	public WebElement getConfirmationCheckout()
+	{
+		return driver.findElement(confirmationCheckout);
 	}
 	
 }
