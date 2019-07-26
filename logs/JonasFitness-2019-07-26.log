@@ -1,0 +1,66 @@
+15:55:59.626 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+15:56:03.095 [main] INFO  resources.base - Driver Initialized
+15:56:10.672 [main] INFO  resources.base - Active Member 1 Logged In
+15:58:02.638 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+15:58:06.113 [main] INFO  resources.base - Driver Initialized
+15:58:13.321 [main] INFO  resources.base - Active Member 1 Logged In
+16:11:15.496 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:11:18.980 [main] INFO  resources.base - Driver Initialized
+16:11:27.561 [main] INFO  resources.base - Active Member 1 Logged In
+16:14:39.252 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:14:42.713 [main] INFO  resources.base - Driver Initialized
+16:14:50.149 [main] INFO  resources.base - Active Member 1 Logged In
+16:20:25.723 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:20:29.165 [main] INFO  resources.base - Driver Initialized
+16:20:37.349 [main] INFO  resources.base - Active Member 1 Logged In
+16:22:36.831 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:22:40.298 [main] INFO  resources.base - Driver Initialized
+16:22:46.311 [main] INFO  resources.base - Active Member 1 Logged In
+16:22:57.531 [main] INFO  resources.base - Active Member 2 Logged In
+16:23:23.818 [main] INFO  resources.base - Active Member 3 Logged In
+16:24:18.125 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:24:21.098 [main] INFO  resources.base - Driver Initialized
+16:24:25.134 [main] INFO  resources.base - Active Member 1 Logged In
+16:24:30.839 [main] INFO  resources.base - Shop Packages Page Header Verified
+16:24:36.348 [main] INFO  resources.base - Shopping Cart Page Header Verified
+16:24:41.055 [main] INFO  resources.base - Account History Page Header Verified
+16:24:45.811 [main] INFO  resources.base - Pay Balance Page Header Verified
+16:24:50.441 [main] INFO  resources.base - Select Classes Page Header Verified
+16:24:51.273 [main] INFO  resources.base - Manage Profile Page Header Verified
+16:24:55.987 [main] INFO  resources.base - Appointments Page Header Verified
+16:24:56.855 [main] INFO  resources.base - Appointments Page Header Verified
+16:25:01.437 [main] INFO  resources.base - Manage Family Page Header Verified
+16:25:06.092 [main] INFO  resources.base - Manage Profile Page Header Verified
+16:25:17.684 [main] INFO  resources.base - Forgot Username Page Header Verified
+16:25:20.139 [main] INFO  resources.base - Forgot Password Page Header Verified
+16:25:23.174 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:25:26.134 [main] INFO  resources.base - Driver Initialized
+16:25:30.350 [main] INFO  resources.base - Active Member 1 Logged In
+16:25:59.844 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:26:02.819 [main] INFO  resources.base - Driver Initialized
+16:26:07.262 [main] INFO  resources.base - Active Member 1 Logged In
+16:26:42.578 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:26:45.552 [main] INFO  resources.base - Driver Initialized
+16:26:49.754 [main] INFO  resources.base - Active Member 1 Logged In
+08:56:59.955 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:57:03.457 [main] INFO  resources.base - Driver Initialized
+08:57:13.480 [main] INFO  resources.base - Active Member 1 Logged In
+08:58:07.597 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:58:11.057 [main] INFO  resources.base - Driver Initialized
+08:58:15.471 [main] INFO  resources.base - Active Member 1 Logged In
+09:02:20.955 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+09:02:24.406 [main] INFO  resources.base - Driver Initialized
+09:02:31.756 [main] INFO  resources.base - Active Member 1 Logged In
+09:15:26.082 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+09:15:29.542 [main] INFO  resources.base - Driver Initialized
+09:15:42.769 [main] INFO  resources.base - Active Member 1 Logged In
+09:20:43.323 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+09:20:46.774 [main] INFO  resources.base - Driver Initialized
+09:20:52.015 [main] INFO  resources.base - Active Member 1 Logged In
+09:24:00.411 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+09:24:03.896 [main] INFO  resources.base - Driver Initialized
+09:24:06.370 [main] INFO  resources.base - Active Member 1 Logged In
+09:30:12.595 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+09:30:16.054 [main] INFO  resources.base - Driver Initialized
+09:30:19.808 [main] INFO  resources.base - Active Member 1 Logged In
+09:48:43.060 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine

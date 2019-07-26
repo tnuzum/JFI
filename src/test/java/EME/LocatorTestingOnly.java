@@ -36,10 +36,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void locatorTestingOnly() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMember1Login();
-		Thread.sleep(8000);
-		driver.findElement(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")).click();
-		Thread.sleep(2000);		
-		driver.findElement(By.xpath("//button[@title='UNENROLL']")).click();
+		DashboardPO d = new DashboardPO(driver);
+		System.out.println(d.getMyInfoAddress1().getText());
+		
 //		Assert.assertEquals((driver.findElement(By.xpath("(//span[@class='class-list-header'])[4]/strong")).getText()), "DRIVING RANGE PACKAGE");
 //		driver.findElement(By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button")).click();
 //		DashboardPO p = new DashboardPO(driver);
@@ -70,9 +69,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
-			Thread.sleep(10000);
-			driver.close();
-			driver=null;
+//			Thread.sleep(10000);
+//			driver.close();
+//			driver=null;
 		}
 	
 	

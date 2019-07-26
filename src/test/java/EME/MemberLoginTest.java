@@ -29,7 +29,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember1_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"2");
-		Thread.sleep(2000);
 		reusableMethods.MemberLogout();
 		}
 	@Test (priority = 15, description = "Login Active Adult non-HOH Member")
@@ -39,7 +38,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember2_fullname"));
 		Assert.assertEquals(false, reusableMethods.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
-		Thread.sleep(2000);
 		reusableMethods.MemberLogout();
 		}
 	@Test (priority = 20, description = "Login Active Minor Member")
@@ -49,7 +47,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember3_fullname"));
 		Assert.assertEquals(false, reusableMethods.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
-		Thread.sleep(2000);
 		reusableMethods.MemberLogout();
 		}
 	@Test (priority = 25, description = "Login Active Adult No Family Member")
@@ -59,7 +56,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember4_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"0");
-		Thread.sleep(2000);
 		reusableMethods.MemberLogout();
 		}
 	@Test (priority = 25, description = "Login Inactive Adult")
@@ -69,14 +65,12 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember5_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"0");
-		Thread.sleep(2000);
 		reusableMethods.MemberLogout();
 		}
 
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
-		Thread.sleep(2000);
 		driver.close();
 		driver=null;
 		}
