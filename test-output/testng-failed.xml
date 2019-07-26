@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Default test(failed)">
+<suite name="Failed suite [EME - Smoke Testing]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="EME.listeners"/>
+    <listener class-name="resources.ExtentReporterNG"/>
+  </listeners>
+  <test thread-count="5" name="Page Launch(failed)">
     <classes>
-      <class name="EME.LocatorTestingOnly">
+      <class name="EME.PageLaunchTest">
         <methods>
-          <include name="initialize"/>
+          <include name="ForgotPasswordButtonTest"/>
           <include name="teardown"/>
-          <include name="locatorTestingOnly"/>
+          <include name="initialize"/>
         </methods>
-      </class> <!-- EME.LocatorTestingOnly -->
+      </class> <!-- EME.PageLaunchTest -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Page Launch(failed) -->
+</suite> <!-- Failed suite [EME - Smoke Testing] -->

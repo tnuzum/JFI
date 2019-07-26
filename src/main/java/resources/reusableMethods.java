@@ -19,7 +19,7 @@ public class reusableMethods extends base{
 		LoginPO l=new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember1_password"));
-		l.getsigninButton().click();
+		l.getLoginButton().click();
 		reusableWaits.dashboardMemberName();
 		return null;
 	}
@@ -28,7 +28,7 @@ public class reusableMethods extends base{
 		LoginPO l=new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember2_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember2_password"));
-		l.getsigninButton().click();
+		l.getLoginButton().click();
 		reusableWaits.dashboardMemberName();
 		return null;
 	}
@@ -37,7 +37,7 @@ public class reusableMethods extends base{
 		LoginPO l=new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember3_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember3_password"));
-		l.getsigninButton().click();
+		l.getLoginButton().click();
 		reusableWaits.dashboardMemberName();
 		return null;
 	}
@@ -46,25 +46,33 @@ public class reusableMethods extends base{
 		LoginPO l=new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember4_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember4_password"));
-		l.getsigninButton().click();
+		l.getLoginButton().click();
 		reusableWaits.dashboardMemberName();
 		return null;
 	}
-	public static String activeMember5Login() throws InterruptedException
+	public static String collectionsMember1Login() throws InterruptedException
 	{
 		LoginPO l=new LoginPO(driver);
-		l.getuserName().sendKeys(prop.getProperty("activeMember5_username"));
-		l.getuserPassword().sendKeys(prop.getProperty("activeMember5_password"));
-		l.getsigninButton().click();
+		l.getuserName().sendKeys(prop.getProperty("collectionsMember1_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("collectionsMember1_password"));
+		l.getLoginButton().click();
 		reusableWaits.dashboardMemberName();
 		return null;
 	}
-	
-	public static String MemberLogout() throws InterruptedException
+	public static String prospectMember1Login() throws InterruptedException
+	{
+		LoginPO l=new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("prospectMember1_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("prospectMember1_password"));
+		l.getLoginButton().click();
+		reusableWaits.dashboardMemberName();
+		return null;
+	}
+	public static String memberLogout() throws InterruptedException
 	{
 		DashboardPO d=new DashboardPO(driver);
 		d.getLogoutButton().click();
-		Thread.sleep(2000);
+		reusableWaits.loginLoginButton();
 		return null;
 	}
 	public static String returnToDashboard() throws InterruptedException
@@ -83,18 +91,6 @@ public class reusableMethods extends base{
 	            return false;
 	        }
 	}
-	/* This is not working because 'unable to locate element'
-	 * public static String catchErrorMessage()
-	 
-	{
-		WebElement m = driver.findElement(By.xpath("//*[text()='An Error Has Occurred']"));
-		if (m.isDisplayed())
-		{
-			log.info("ERROR Message displayed");
-			System.out.println("ERROR Message displayed");
-		}
-		return null;
-	}*/
 	
 	
 	}

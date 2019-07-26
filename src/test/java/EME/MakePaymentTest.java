@@ -75,7 +75,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
-			Thread.sleep(1000);
 			driver.close();
 			driver=null;
 		}

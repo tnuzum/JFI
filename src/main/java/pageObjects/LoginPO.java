@@ -14,7 +14,7 @@ public class LoginPO {
 	By userPassword = By.id("Password"); //text input field
 	By userNameLabel = By.xpath("//label[@for='Username']");
 	By userPasswordLabel = By.xpath("//label[@for='Password']");
-	By signinButton = By.cssSelector("button[type='submit']");
+	By loginButton = By.cssSelector("button[type='submit']");
 	By credentialsErrorMessage = By.xpath("//div[@id='loginForm']/form/div[1]/ul/li");
 	By usernameRequiredMessage = By.xpath("//span[@id='Username-error']");
 	By passwordRequiredMessage = By.xpath("//span[@id='Password-error']");
@@ -40,9 +40,9 @@ public class LoginPO {
 	{
 		return driver.findElement(userPassword);
 	}
-	public WebElement getsigninButton()
+	public WebElement getLoginButton()
 	{
-		return driver.findElement(signinButton);
+		return driver.findElement(loginButton);
 	}
 	public WebElement getcredentialsErrorMessage()
 	{

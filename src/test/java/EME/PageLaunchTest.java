@@ -2,6 +2,7 @@ package EME;
 import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -134,29 +135,35 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(2000);
 		LoginPO l = new LoginPO(driver);
 		l.getForgotUsername().click();
-		Thread.sleep(2000);
-		ForgotUsernamePO f = new ForgotUsernamePO(driver);
-		Assert.assertEquals(f.getPageHeader().getText(),"Forgot your Username?");
+
+		ForgotUsernamePO fu = new ForgotUsernamePO(driver);
+		WebElement w = fu.getPageHeader();
+		while (!w.isDisplayed())
+		{
+		Thread.sleep(200);
+		}
+		Assert.assertEquals(fu.getPageHeader().getText(),"Forgot your Username?");
 		log.info("Forgot Username Page Header Verified");
-		f.getCancelButton().click();
+		fu.getCancelButton().click();
 	}
 	@Test (priority = 65)
 	public void ForgotPasswordButtonTest() throws InterruptedException
 	{
 		LoginPO l = new LoginPO(driver);
 		l.getForgotPassword().click();
-		Thread.sleep(2000);
-		ForgotPasswordPO f = new ForgotPasswordPO(driver);
-		Assert.assertEquals(f.getPageHeader().getText(),"Forgot your Password?");
+		ForgotPasswordPO fp = new ForgotPasswordPO(driver);
+		WebElement w = fp.getPageHeader();
+		while (!w.isDisplayed())
+		{
+		Thread.sleep(200);
+		}
+		Assert.assertEquals(fp.getPageHeader().getText(),"Forgot your Password?");
 		log.info("Forgot Password Page Header Verified");
-		f.getCancelButton().click();
+		fp.getCancelButton().click();
 	}
-
-	
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
-		Thread.sleep(2000);
 		driver.close();
 		driver=null;
 		}

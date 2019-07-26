@@ -43,9 +43,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		log.info("Remember Username Checkbox Unchecked Confirmed");
 		Assert.assertEquals(l.getRememberUsernameLabel().getText(), "REMEMBER USERNAME");
 		log.info("Remember Username label text Confirmed");
-		Assert.assertEquals(l.getsigninButton().getText(), "Login");
+		Assert.assertEquals(l.getLoginButton().getText(), "Login");
 		log.info("Login button label text Confirmed");
-		Assert.assertTrue(l.getsigninButton().isEnabled());
+		Assert.assertTrue(l.getLoginButton().isEnabled());
 		log.info("Login button isEnabled Confirmed");
 		}
 	
@@ -54,7 +54,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	public void noUserMessages() throws IOException
 	{	
 		LoginPO l=new LoginPO(driver);
-		l.getsigninButton().click();
+		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
 		Assert.assertEquals(l.getusernameRequiredMessage().getText(), prop.getProperty("usernameRequiredMessage"));
 		log.info("Username Required Message Confirmed");
@@ -70,7 +70,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		log.info("User Name Entered");
 		l.getuserPassword().sendKeys(prop.getProperty("invalid_password"));
 		log.info("Password Entered");
-		l.getsigninButton().click();
+		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), prop.getProperty("wrongCredentialsMessage"));
 		log.info("Error Message Title Verified");

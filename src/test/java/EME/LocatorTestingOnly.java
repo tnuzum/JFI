@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 import pageObjects.PaymentPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
+import pageObjects.LoginPO;
 import resources.base;
 import resources.reusableMethods;
 
@@ -36,9 +37,15 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void locatorTestingOnly() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMember1Login();
-		DashboardPO d = new DashboardPO(driver);
-		System.out.println(d.getMyInfoAddress1().getText());
-		
+		reusableMethods.memberLogout();
+		LoginPO l = new LoginPO(driver);
+		WebElement n = l.getLoginButton();
+		while (!n.isEnabled())
+		{
+			System.out.println("sleeping");
+			Thread.sleep(1000);
+		}
+		System.out.println("done sleeping");
 //		Assert.assertEquals((driver.findElement(By.xpath("(//span[@class='class-list-header'])[4]/strong")).getText()), "DRIVING RANGE PACKAGE");
 //		driver.findElement(By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button")).click();
 //		DashboardPO p = new DashboardPO(driver);

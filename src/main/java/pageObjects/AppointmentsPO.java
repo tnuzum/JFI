@@ -11,6 +11,7 @@ public class AppointmentsPO {
 // OBJECTS
 		
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By loadingAvailabilityMessage = By.xpath("//div[@class='swal2-container swal2-center']");
 	By clubs = By.xpath("(//select[@name='clubs'])[1]");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
@@ -37,6 +38,10 @@ public class AppointmentsPO {
 	public WebElement getPageHeader()
 	{
 		return driver.findElement(pageHeader);
+	}
+	public WebElement getloadingAvailabilityMessage()
+	{
+		return driver.findElement(loadingAvailabilityMessage);
 	}
 	public WebElement getclubs()
 	{

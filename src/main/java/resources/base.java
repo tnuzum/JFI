@@ -98,7 +98,7 @@ public class base {
 		String DateTime= dateFormat.format(date);
 		System.out.println(DateTime+": Automated testing started");
 		
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
 		return driver;
