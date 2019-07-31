@@ -14,12 +14,14 @@ import org.testng.annotations.Test;
 import junit.framework.Assert;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
+import pageObjects.ErrorMessagesPO;
 import pageObjects.PaymentPO;
 import pageObjects.PaymentPO;
 import pageObjects.ShoppingCartPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 
 public class ScheduleClassTest extends base{
@@ -46,6 +48,19 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		c.getSelectDateThisWeekButton().click();		
 			Thread.sleep(2000);
 		c.getfirstAvailClassNextDayButton().click();
+		if (reusableMethods.catchErrorMessage())
+		{
+			System.out.println("An error has occurred");
+			ErrorMessagesPO e = new ErrorMessagesPO(driver);
+//			e.getOKButton().click();
+			Actions a= new Actions(driver);
+			  a.moveToElement(e.getOKButton()).click().build().perform();
+			reusableWaits.dashboardLoaded();
+			reusableMethods.returnToDashboard();
+		}
+		else
+		{
+			
 			Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
 			WebElement n = c.getSelectRatesAddSelButton();
@@ -74,6 +89,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals("THANK YOU FOR YOUR ORDER", p.getConfirmPageThankYou().getText());
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
+		}		
 		}
 	@Test (priority = 2)
 		public void unenrollFromClass() throws IOException, InterruptedException

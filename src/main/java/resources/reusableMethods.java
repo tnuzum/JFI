@@ -2,6 +2,7 @@ package resources;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -108,8 +109,23 @@ public class reusableMethods extends base{
 	p.getSubmitButton().click();
 	return null;
 	}
+	
+	public static boolean catchErrorMessage()
+    {
+		try{
+        driver.findElement(By.xpath("//*[text()='An Error Has Occurred']"));
+        return true;
+    }
+    catch(NoSuchElementException e){
+        return false;
+    }
+}
 
-
+	
+	
+	
+	
+	
 	
 	}
 	

@@ -15,6 +15,14 @@ public class AppointmentsPO {
 	By clubs = By.xpath("(//select[@name='clubs'])[1]");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
+	By groupApptsHeader = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div/h2");
+	By groupMinPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[1]/div/small[1]"); //minimum persons count
+	By groupMaxPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[2]/div/small[1]"); //maximum persons count
+	By groupMemberSearchInput = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[4]/div/input");
+	By groupMemberSearchButton = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[4]/div/span/a");
+	By groupPopupAddButton1 = By.xpath("//appointmentmembersearch/div[2]/div[1]/a");// first add button
+	By groupPopupAddButton2 = By.xpath("//appointmentmembersearch/div[2]/div[2]/a");// second add button
+	
 	By resourceType= By.xpath("(//select[@name='primaryResourceType'])");
 	By monthSelectBackButton = By.xpath("//div[@class='btn-group']/div[1]/i");
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
@@ -23,6 +31,9 @@ public class AppointmentsPO {
 	By selectTimeMorningLabel1 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTimeMorningLabel2 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTime1stAvailable = By.xpath("(//div[@class='tag-wrap'])[1]/button[1]");
+	By addlResourcesCancelButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[1]"); //cancel button
+	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book button
+	
 	By popup1BookButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2Title = By.xpath("//h2[@class='swal2-title']");
 	By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
@@ -64,6 +75,36 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(bookableItem);
 	}
+	public WebElement getGroupApptsHeader()
+	{
+		return driver.findElement(groupApptsHeader);
+	}
+	public WebElement getGroupMinPersons()
+	{
+		return driver.findElement(groupMinPersons);
+	}
+	public WebElement getGroupMaxPersons()
+	{
+		return driver.findElement(groupMaxPersons);
+	}
+	public WebElement getGroupMemberSearchInput()
+	{
+		return driver.findElement(groupMemberSearchInput);
+	}
+	public WebElement getGroupMemberSearchButton()
+	{
+		return driver.findElement(groupMemberSearchButton);
+	}
+	
+	public WebElement getGroupPopupAddButton1()
+	{
+		return driver.findElement(groupPopupAddButton1);
+	}
+	public WebElement getGroupPopupAddButton2()
+	{
+		return driver.findElement(groupPopupAddButton2);
+	}
+	
 	public WebElement getResourceType()
 	{
 		return driver.findElement(resourceType);
@@ -96,6 +137,15 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(selectTime1stAvailable);
 	}
+	public WebElement getAddlResourcesCancelButton()
+	{
+		return driver.findElement(addlResourcesCancelButton);
+	}
+	public WebElement getAddlResourcesBookButton()
+	{
+		return driver.findElement(addlResourcesBookButton);
+	}
+	
 	public WebElement getPopup1BookButton()
 	{
 		return driver.findElement(popup1BookButton);

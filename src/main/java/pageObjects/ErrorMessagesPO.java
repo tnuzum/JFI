@@ -10,7 +10,9 @@ public class ErrorMessagesPO {
 	// OBJECTS
 			
 		By xMark = By.xpath("//span[@class='swal2-x-mark']");
-		By errorMessage = By.xpath("//h2[@id='swal2-title']");
+//		By errorMessage = By.xpath("//h2[@id='swal2-title']");
+		By errorMessage = By.xpath("//*[text()='An Error Has Occurred']");
+		
 		By tryAgainMessage = By.xpath("//div[@id='swal2-content']");
 		By okButton = By.xpath("(//button[@type='button'])[4]");
 		
