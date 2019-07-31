@@ -134,6 +134,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			AppointmentsPO a = new AppointmentsPO(driver);
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 		a.getEditApptCancelButton().click();
+			Thread.sleep(1000);
 			WebElement wait2 = a.getEditApptProceedButton();
 			while (!wait2.isEnabled())//while button is NOT(!) enabled
 			{

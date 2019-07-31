@@ -41,7 +41,7 @@ public class AppointmentsPO {
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.cssSelector("#button-change");
 	By editApptCancelButton = By.cssSelector("#button-cancel");
-	By editApptProceedButton = By.xpath("//div[@id='show-hide-cancel']/div/div[2]/a");
+	By editApptProceedButton = By.xpath("//div[@id='show-hide-cancel']/div/div/a");
 	By editApptCancelYesButton = By.cssSelector("button[class*='confirm']");
 	By editApptCancelNoButton = By.cssSelector("button[class*='cancel']");
 	By editApptCanceledMessage = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/h2[1]");
