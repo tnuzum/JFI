@@ -1,5 +1,6 @@
 package resources;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,7 +17,7 @@ public class reusableWaits extends base{
 		public static String dashboardMemberName() throws InterruptedException
 	{
 		DashboardPO d = new DashboardPO(driver);
-		WebElement wait1 = d.getMyInfoMemberName();
+		/*WebElement wait1 = d.getMyInfoMemberName();
 		while (wait1.getText().isBlank())
 		{
 			Thread.sleep(500);
@@ -27,9 +28,12 @@ public class reusableWaits extends base{
 		{
 			Thread.sleep(500);
 			wait2.getText();
-		}
-		
+		}*/
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
 		return null;
+		
+
 	}
 		public static String loginLoginButton() throws InterruptedException
 	{

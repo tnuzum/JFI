@@ -52,7 +52,9 @@ public class DashboardPO {
 	By myApptsAppt1GearButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i");
 	By myApptsAddtoCalendarButton = By.xpath("//appointmentswidget/div/div[2]/div/div/div/div/div/div[1]/button");
 	By myApptsEditButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/div/div/div[2]/button");
-	By myApptsAppt1Title = By.xpath("(//span[@class='class-list-header'])[4]/strong");
+	By myApptsAppt1Title = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong");
+	By myApptsAppt2Title = By.xpath("//appointmentswidget/div/div[2]/div[2]/div/a/div/div[2]/span/strong");
+	By myApptsAppt3Title = By.xpath("//appointmentswidget/div/div[2]/div[3]/div/a/div/div[2]/span/strong");
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classescourses/div/div[1]");
 	By myClassesScheduleButton = By.xpath("//div[@class='homeComponent']//classescourses/div/div[3]/a[1]");
@@ -230,6 +232,14 @@ public class DashboardPO {
 	public WebElement getMyApptsAppt1Title()
 	{
 		return driver.findElement(myApptsAppt1Title);
+	}
+	public WebElement getMyApptsAppt2Title()
+	{
+		return driver.findElement(myApptsAppt2Title);
+	}
+	public WebElement getMyApptsAppt3Title()
+	{
+		return driver.findElement(myApptsAppt3Title);
 	}
 	public WebElement getMyApptsAppt1GearButton()
 	{

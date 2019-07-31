@@ -6,7 +6,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -38,7 +40,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void locatorTestingOnly() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMember1Login();
-
+		DashboardPO d = new DashboardPO(driver);
+//		WebDriverWait wait = new WebDriverWait(driver, 10);
+//		WebElement w = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
+		System.out.println(d.getMyInfoMemberName().getText());
+		
 //		AppointmentsPO ap = new AppointmentsPO(driver);
 //		Thread.sleep(2000);
 //		ap.getBookableItemCategory().sendKeys("g",Keys.ENTER);
