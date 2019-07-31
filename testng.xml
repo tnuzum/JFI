@@ -35,4 +35,9 @@
       <class name="EME.ScheduleClassTest"/>
     </classes>
   </test> 
+      <test thread-count="5" name="Schedule Course">
+    <classes>
+      <class name="EME.ScheduleCourseTest"/>
+    </classes>
+  </test>
 </suite>

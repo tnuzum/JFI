@@ -31,7 +31,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			 driver.get(prop.getProperty("EMEFuture2URL"));
 		}
 		
-	@Test (priority = 1, description = "Adding $1.00 to member's account")
+	@Test (priority = 1, description = "Adding $100.00 to member's account")
 		public void MakePayment() throws InterruptedException
 		{	
 		reusableMethods.activeMember1Login();
@@ -42,7 +42,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		p.getAmountRadioButton3().click();
 			Actions a= new Actions(driver);
 		a.moveToElement(p.getAmountRadioButton3()).sendKeys(Keys.TAB).sendKeys(Keys.DELETE).build().perform();
-		p.getCustomAmountInput().sendKeys("1.00");
+		p.getCustomAmountInput().sendKeys("100.00");
 		p.getCardNumber().sendKeys(prop.getProperty("MastercardNumber"));
 		p.getExpireMonth().sendKeys(prop.getProperty("MastercardExpireMonth"));
 		p.getExpireYear().sendKeys(prop.getProperty("MastercardExpireYear"));
@@ -59,8 +59,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 		}
-	@Test (priority = 2, description = "Confirming Last Payment date is updated after payment is made")
-	public void ConfirmLastPaymentDateUpdated() throws InterruptedException
+	@Test (priority = 2, description = "Confirming payment is applied")
+	public void ConfirmPaymentApplied() throws InterruptedException
 	{	
 		DashboardPO d = new DashboardPO(driver);
 		DateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");

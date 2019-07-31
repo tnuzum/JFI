@@ -27,7 +27,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class base {
 	public static WebDriver driver;
-	public static Properties prop;
+	public static Properties prop; //public static Properties prop = new Properties(); this was recommended to resolve an NPE, but I didn't need it
 	public static Logger log =LogManager.getLogger(base.class.getName());
 	public WebDriver initializeDriver() throws IOException {
 

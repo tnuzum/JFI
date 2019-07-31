@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class AppointmentsPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -27,11 +27,20 @@ public class AppointmentsPO {
 	By popup2Title = By.xpath("//h2[@class='swal2-title']");
 	By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	
-// CONSTRUCTOR
+	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By editApptChangeButton = By.cssSelector("#button-change");
+	By editApptCancelButton = By.cssSelector("#button-cancel");
+	By editApptProceedButton = By.xpath("//div[@id='show-hide-cancel']/div/div[2]/a");
+	By editApptCancelYesButton = By.cssSelector("button[class*='confirm']");
+	By editApptCancelNoButton = By.cssSelector("button[class*='cancel']");
+	By editApptCanceledMessage = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/h2[1]");
+	By editApptCanceledOKButton = By.cssSelector("button[class*='confirm']");
+
+	// CONSTRUCTOR
 		
 	public AppointmentsPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		AppointmentsPO.driver = driver;
 	}
 // METHODS
 
@@ -98,6 +107,38 @@ public class AppointmentsPO {
 	public WebElement getPopup2OKButton()
 	{
 		return driver.findElement(popup2OKButton);
+	}
+	public WebElement getEditApptPageHeader()
+	{
+		return driver.findElement(editApptPageHeader);
+	}
+	public WebElement getEditApptChangeButton()
+	{
+		return driver.findElement(editApptChangeButton);
+	}
+	public WebElement getEditApptCancelButton()
+	{
+		return driver.findElement(editApptCancelButton);
+	}
+	public WebElement getEditApptProceedButton()
+	{
+		return driver.findElement(editApptProceedButton);
+	}
+	public WebElement getEditApptCancelYesButton()
+	{
+		return driver.findElement(editApptCancelYesButton);
+	}
+	public WebElement getEditApptCancelNoButton()
+	{
+		return driver.findElement(editApptCancelNoButton);
+	}
+	public WebElement getEditApptCanceledMessage()
+	{
+		return driver.findElement(editApptCanceledMessage);
+	}
+	public WebElement getEditApptCanceledOKButton()
+	{
+		return driver.findElement(editApptCanceledOKButton);
 	}
 	
 }

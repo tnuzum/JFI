@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class CheckInHistoryPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -15,8 +15,7 @@ public class CheckInHistoryPO {
 // CONSTRUCTOR
 		
 	public CheckInHistoryPO(WebDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		CheckInHistoryPO.driver = driver;
 	}
 // METHODS
 

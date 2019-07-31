@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class CartPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -16,7 +16,7 @@ public class CartPO {
 		
 	public CartPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		CartPO.driver = driver;
 	}
 // METHODS
 

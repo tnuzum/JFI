@@ -71,6 +71,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		l.getuserPassword().sendKeys(prop.getProperty("invalid_password"));
 		log.info("Password Entered");
 		l.getLoginButton().click();
+		Thread.sleep(250);
 		log.info("Log In Button Clicked");
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), prop.getProperty("wrongCredentialsMessage"));
 		log.info("Error Message Title Verified");

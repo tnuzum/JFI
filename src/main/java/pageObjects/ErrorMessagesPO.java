@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class ErrorMessagesPO {
-	public WebDriver driver;
+	public static WebDriver driver;
 
 	// OBJECTS
 			
@@ -18,7 +18,7 @@ public class ErrorMessagesPO {
 	// CONSTRUCTOR
 			
 		public ErrorMessagesPO(WebDriver driver) {
-			this.driver = driver;
+			ErrorMessagesPO.driver = driver;
 		}
 	// METHODS
 

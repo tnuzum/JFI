@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class PaymentPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // This is the page for the link in the left pane under My Account labels Pay Balance
 	
@@ -47,8 +47,7 @@ public class PaymentPO {
 // CONSTRUCTOR
 		
 	public PaymentPO(WebDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		PaymentPO.driver = driver;
 	}
 // METHODS
 

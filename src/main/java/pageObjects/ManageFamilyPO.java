@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class ManageFamilyPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -16,7 +16,7 @@ public class ManageFamilyPO {
 		
 	public ManageFamilyPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		ManageFamilyPO.driver = driver;
 	}
 // METHODS
 

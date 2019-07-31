@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class PackagesPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -16,7 +16,7 @@ public class PackagesPO {
 		
 	public PackagesPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		PackagesPO.driver = driver;
 	}
 // METHODS
 

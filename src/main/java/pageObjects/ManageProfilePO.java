@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class ManageProfilePO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -28,8 +28,7 @@ public class ManageProfilePO {
 // CONSTRUCTOR
 		
 	public ManageProfilePO(WebDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		ManageProfilePO.driver = driver;
 	}
 // METHODS
 

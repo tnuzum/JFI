@@ -26,7 +26,7 @@ import resources.reusableMethods;
 
 public class PageLaunchTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
-
+DashboardPO d=new DashboardPO(driver);
 	@BeforeTest
 	public void initialize() throws IOException, InterruptedException
 	{
@@ -39,7 +39,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 20)
 	public void MyPackagesButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getMyPackagesButton().click();
 		d.getMyPackagesShopPackages().click();
 		PackagesPO p = new PackagesPO(driver);
@@ -50,7 +49,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 25)
 	public void CartButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getCartButton().click();
 		CartPO c = new CartPO(driver);
 		Assert.assertEquals(c.getPageHeader().getText(),"Shopping Cart");
@@ -60,7 +58,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 30)
 	public void AcctHistoryButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getMyAccountAccountHistory().click();
 		AcctHistoryPO a = new AcctHistoryPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Account History");
@@ -70,7 +67,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 35)
 	public void PayNowButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getMyAccountPayNow().click();
 		PaymentPO pb = new PaymentPO(driver);
 		Assert.assertEquals(pb.getPageHeader().getText(),"Pay Balance");
@@ -80,7 +76,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 40)
 	public void ScheduleClassesButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getMyClassesScheduleButton().click();//accessing from dashboard
 		ClassSignUpPO cs = new ClassSignUpPO(driver);
 		Assert.assertEquals(cs.getPageHeader().getText(),"Select Classes");
@@ -95,7 +90,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 45)
 	public void ScheduleApptsButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();//accessing from dashboard
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
@@ -110,7 +104,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Family");
@@ -120,7 +113,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 55)
 	public void EditMyInfoButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getMyInfoEditButton().click();
 		ManageProfilePO a = new ManageProfilePO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Profile");
@@ -130,7 +122,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		@Test (priority = 60)
 	public void ForgotUsernameButtonTest() throws InterruptedException
 	{
-		DashboardPO d=new DashboardPO(driver);
 		d.getLogoutButton().click();
 		Thread.sleep(2000);
 		LoginPO l = new LoginPO(driver);

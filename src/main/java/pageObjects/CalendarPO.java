@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class CalendarPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -15,8 +15,7 @@ public class CalendarPO {
 // CONSTRUCTOR
 		
 	public CalendarPO(WebDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		CalendarPO.driver = driver;
 	}
 // METHODS
 

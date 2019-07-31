@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class ForgotPasswordPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -22,8 +22,7 @@ public class ForgotPasswordPO {
 // CONSTRUCTOR
 		
 	public ForgotPasswordPO(WebDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		ForgotPasswordPO.driver = driver;
 	}
 // METHODS
 

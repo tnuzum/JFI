@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.util.PerformanceSensitive;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -95,9 +96,48 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException
 	{	
-			DashboardPO p = new DashboardPO(driver);
-			Thread.sleep(3000);
-		Assert.assertEquals(p.getMyApptsAppt1Title().getText(), "DRIVING RANGE PACKAGE");
+		reusableWaits.dashboardMemberName();
+		DashboardPO d = new DashboardPO(driver);
+		Assert.assertFalse(d.getMyApptsAppt1Title().getText().isBlank());
+	}
+	
+	@Test (priority = 3)
+	public void CancelAppointment() throws IOException, InterruptedException
+	{	
+			Thread.sleep(2000);	
+			DashboardPO d = new DashboardPO(driver);
+		d.getMyApptsAppt1GearButton().click();
+			WebElement wait1 = d.getMyApptsEditButton();
+			while (!wait1.isEnabled())//while button is NOT(!) enabled
+			{
+			Thread.sleep(200);
+			}
+		d.getMyApptsEditButton().click();
+		Thread.sleep(2000);	
+			AppointmentsPO a = new AppointmentsPO(driver);
+			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		a.getEditApptCancelButton().click();
+			WebElement wait2 = a.getEditApptProceedButton();
+			while (!wait2.isEnabled())//while button is NOT(!) enabled
+			{
+			Thread.sleep(200);
+			}
+		a.getEditApptProceedButton().click();
+			boolean result1 = reusableWaits.popupMessageYesButton();
+			if (result1 == true)
+			{
+				Thread.sleep(500);	
+			}
+		a.getEditApptCancelYesButton().click();
+			boolean result2 = reusableWaits.popupMessageYesButton();
+			if (result2 == true)
+			{
+				Thread.sleep(500);	
+			}
+		a.getEditApptCanceledOKButton().click();
+		Thread.sleep(2000);
+		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+			
 	}
 
 	@AfterTest

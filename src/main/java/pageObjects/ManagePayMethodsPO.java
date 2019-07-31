@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class ManagePayMethodsPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -15,8 +15,7 @@ public class ManagePayMethodsPO {
 // CONSTRUCTOR
 		
 	public ManagePayMethodsPO(WebDriver driver) {
-		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		ManagePayMethodsPO.driver = driver;
 	}
 // METHODS
 

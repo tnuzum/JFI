@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class AcctHistoryPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -16,7 +16,7 @@ public class AcctHistoryPO {
 		
 	public AcctHistoryPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		AcctHistoryPO.driver = driver;
 	}
 // METHODS
 

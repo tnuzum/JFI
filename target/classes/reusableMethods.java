@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.DashboardPO;
 import pageObjects.LoginPO;
-
+import pageObjects.PaymentPO;
 import resources.base;
 
 
@@ -92,6 +92,24 @@ public class reusableMethods extends base{
 	        }
 	}
 	
+	public static String useNewCard() throws InterruptedException
+	{
+		PaymentPO p = new PaymentPO(driver);
+		p.getSelectPaymentNewCardButton().click();
+		Thread.sleep(2000);
+	p.getCardNumber().sendKeys(prop.getProperty("MastercardNumber"));
+	p.getExpireMonth().sendKeys(prop.getProperty("MastercardExpireMonth"));
+	p.getExpireYear().sendKeys(prop.getProperty("MastercardExpireYear"));
+	p.getCVC().sendKeys(prop.getProperty("MastercardCVC"));
+	p.getSaveCardNoRadio().click();
+	Thread.sleep(2000);
+	//p.getIAgreeCheckbox().click();//might not be shown if getSaveCardNoRadio is used
+		Thread.sleep(2000);
+	p.getSubmitButton().click();
+	return null;
+	}
+
+
 	
 	}
 	

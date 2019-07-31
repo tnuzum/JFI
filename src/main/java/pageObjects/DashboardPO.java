@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class DashboardPO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
@@ -49,15 +49,15 @@ public class DashboardPO {
 
 	By myApptsSectionLabel = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[1]");
 	By myApptsScheduleButton = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[3]/a[1]");
+	By myApptsAppt1GearButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i");
+	By myApptsAddtoCalendarButton = By.xpath("//appointmentswidget/div/div[2]/div/div/div/div/div/div[1]/button");
+	By myApptsEditButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/div/div/div[2]/button");
 	By myApptsAppt1Title = By.xpath("(//span[@class='class-list-header'])[4]/strong");
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classescourses/div/div[1]");
 	By myClassesScheduleButton = By.xpath("//div[@class='homeComponent']//classescourses/div/div[3]/a[1]");
 	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
-	By myClassesUnenrollButton1 = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
-	By myClassesUnenrollButton2 = By.xpath("//mycalendarunenroll[1]/div[1]/div[1]/div[1]/div[2]/div[10]/a[2]");//button on Unenroll page
-	By myClassesUnenrollConfirmMessage1 = By.xpath("//h2[@id='swal2-title']");//displays "Unenrolled"
-	By myClassesUnenrollConfirmYesButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
+	By myClassesUnenrollButton = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
 	
 	By myVisitsSectionLabel = By.xpath("//div[@class='homeComponent']//checkinchart/div/div[1]");
 	
@@ -70,7 +70,7 @@ public class DashboardPO {
 // CONSTRUCTOR
 	public DashboardPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		DashboardPO.driver = driver;
 	}
 
 // METHODS
@@ -231,6 +231,18 @@ public class DashboardPO {
 	{
 		return driver.findElement(myApptsAppt1Title);
 	}
+	public WebElement getMyApptsAppt1GearButton()
+	{
+		return driver.findElement(myApptsAppt1GearButton);
+	}
+	public WebElement getMyApptsAddtoCalendarButton()
+	{
+		return driver.findElement(myApptsAddtoCalendarButton);
+	}
+	public WebElement getMyApptsEditButton()
+	{
+		return driver.findElement(myApptsEditButton);
+	}
 	
 	//My Classes
 	public WebElement getMyClassesSectionLabel()
@@ -245,21 +257,9 @@ public class DashboardPO {
 	{
 		return driver.findElement(myClassesClass1GearButton);
 	}
-	public WebElement getmyClassesUnenrollButton1()
+	public WebElement getmyClassesUnenrollButton()
 	{
-		return driver.findElement(myClassesUnenrollButton1);
-	}
-	public WebElement getmyClassesUnenrollButton2()
-	{
-		return driver.findElement(myClassesUnenrollButton2);
-	}
-	public WebElement getMyClassesUnenrollConfirmMessage1()
-	{
-		return driver.findElement(myClassesUnenrollConfirmMessage1);
-	}
-	public WebElement getMyClassesUnenrollConfirmYesButton()
-	{
-		return driver.findElement(myClassesUnenrollConfirmYesButton);
+		return driver.findElement(myClassesUnenrollButton);
 	}
 
 	

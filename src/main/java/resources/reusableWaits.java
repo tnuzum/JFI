@@ -16,12 +16,19 @@ public class reusableWaits extends base{
 		public static String dashboardMemberName() throws InterruptedException
 	{
 		DashboardPO d = new DashboardPO(driver);
-		WebElement n = d.getMyInfoMemberName();
-		while (n.getText().isBlank())
+		WebElement wait1 = d.getMyInfoMemberName();
+		while (wait1.getText().isBlank())
 		{
 			Thread.sleep(500);
-			n.getText();
+			wait1.getText();
 		}
+		WebElement wait2 = d.getMyAccountTotChargesAmount();
+		while (wait2.getText().isBlank())
+		{
+			Thread.sleep(500);
+			wait2.getText();
+		}
+		
 		return null;
 	}
 		public static String loginLoginButton() throws InterruptedException
@@ -30,11 +37,12 @@ public class reusableWaits extends base{
 			WebElement n = l.getLoginButton();
 			while (!n.isEnabled())//while button is NOT(!) enabled
 			{
-				Thread.sleep(500);
+				Thread.sleep(1000);
+				System.out.println("waiting for login page to load");
 			}
 		return null;
 	}
-		public static boolean loadingAvailability() throws InterruptedException
+		public static boolean loadingAvailability()
 	{
 			try {
 				AppointmentsPO a = new AppointmentsPO(driver);
@@ -43,11 +51,19 @@ public class reusableWaits extends base{
 			}
 	        catch(NoSuchElementException e){
 	            return false;
-	        }
-
-		
+	        }	
 	}	
-
+		public static boolean popupMessageYesButton()
+	{
+			try {
+				AppointmentsPO a = new AppointmentsPO(driver);
+				a.getEditApptCancelYesButton();
+				return true;
+			}
+	        catch(NoSuchElementException e){
+	            return false;
+	        }	
+	}
 
 }
 	

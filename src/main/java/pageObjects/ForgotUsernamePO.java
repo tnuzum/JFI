@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class ForgotUsernamePO {
 
-	public WebDriver driver;
+	public static WebDriver driver;
 
 // OBJECTS
 		
@@ -32,7 +32,7 @@ public class ForgotUsernamePO {
 		
 	public ForgotUsernamePO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		this.driver = driver;
+		ForgotUsernamePO.driver = driver;
 	}
 // METHODS
 

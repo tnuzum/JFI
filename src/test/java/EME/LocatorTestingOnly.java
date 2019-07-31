@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
@@ -37,28 +38,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void locatorTestingOnly() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMember1Login();
-		reusableMethods.memberLogout();
-		LoginPO l = new LoginPO(driver);
-		WebElement n = l.getLoginButton();
-		while (!n.isEnabled())
-		{
-			System.out.println("sleeping");
-			Thread.sleep(1000);
-		}
-		System.out.println("done sleeping");
-//		Assert.assertEquals((driver.findElement(By.xpath("(//span[@class='class-list-header'])[4]/strong")).getText()), "DRIVING RANGE PACKAGE");
-//		driver.findElement(By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button")).click();
-//		DashboardPO p = new DashboardPO(driver);
 
-//		p.getMyApptsScheduleButton().click();
-
-
-//		driver.findElement(By.xpath("(//select[@name='clubs'])[1]")).sendKeys("abcdefghijklmnopqrstuvwxyz");
-//		WebElement w = driver.findElement(By.xpath("(//select[@name='clubs'])[1]"));
-//		Actions a= new Actions(driver);
-//		driver.findElement(By.xpath("(//select[@name='clubs'])[1]")).sendKeys("c");
-//		a.moveToElement(driver.findElement(By.xpath("(//select[@name='clubs'])[1]"))).sendKeys(Keys.ENTER).build().perform();
-//		a.sendKeys(Keys.ENTER).build().perform();
 //		AppointmentsPO ap = new AppointmentsPO(driver);
 //		Thread.sleep(2000);
 //		ap.getBookableItemCategory().sendKeys("g",Keys.ENTER);
