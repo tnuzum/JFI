@@ -14,34 +14,41 @@ import resources.base;
 
 public class reusableWaits extends base{
 
-		public static String dashboardMemberName() throws InterruptedException
+		public static String dashboardLoaded() throws InterruptedException
 	{
+		// Check 1: wait for member name element
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
+		// Check 2: wait for member name element to not be blank	
 		DashboardPO d = new DashboardPO(driver);
-		/*WebElement wait1 = d.getMyInfoMemberName();
+		WebElement wait1 = d.getMyInfoMemberName();
 		while (wait1.getText().isBlank())
 		{
+			System.out.println("Waiting for member name element to not be blank");
 			Thread.sleep(500);
 			wait1.getText();
 		}
+		// Check 3: wait for Total Charges element to not be blank
 		WebElement wait2 = d.getMyAccountTotChargesAmount();
 		while (wait2.getText().isBlank())
 		{
+			System.out.println("Waiting for Total Charges element to not be blank");
 			Thread.sleep(500);
 			wait2.getText();
-		}*/
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
+		}
 		return null;
 		
 
 	}
 		public static String loginLoginButton() throws InterruptedException
 	{
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
 			LoginPO l = new LoginPO(driver);
 			WebElement n = l.getLoginButton();
 			while (!n.isEnabled())//while button is NOT(!) enabled
 			{
-				Thread.sleep(1000);
+				Thread.sleep(500);
 				System.out.println("waiting for login page to load");
 			}
 		return null;

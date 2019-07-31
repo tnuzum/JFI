@@ -5,15 +5,28 @@
     <listener class-name="EME.listeners"/>
     <listener class-name="resources.ExtentReporterNG"/>
   </listeners>
-  <test thread-count="5" name="Make Appointment(failed)">
+  <test thread-count="5" name="Schedule Class(failed)">
     <classes>
-      <class name="EME.MakeApptTest">
+      <class name="EME.ScheduleClassTest">
         <methods>
-          <include name="ConfirmAppointmentIsScheduled"/>
           <include name="teardown"/>
           <include name="initialize"/>
+          <include name="unenrollFromClass"/>
+          <include name="scheduleClass"/>
         </methods>
-      </class> <!-- EME.MakeApptTest -->
+      </class> <!-- EME.ScheduleClassTest -->
     </classes>
-  </test> <!-- Make Appointment(failed) -->
+  </test> <!-- Schedule Class(failed) -->
+  <test thread-count="5" name="Schedule Course(failed)">
+    <classes>
+      <class name="EME.ScheduleCourseTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="scheduleCourse"/>
+          <include name="initialize"/>
+          <include name="unenrollFromCourse"/>
+        </methods>
+      </class> <!-- EME.ScheduleCourseTest -->
+    </classes>
+  </test> <!-- Schedule Course(failed) -->
 </suite> <!-- Failed suite [EME - Smoke Testing] -->
