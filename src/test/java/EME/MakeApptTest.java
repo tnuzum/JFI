@@ -98,6 +98,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	{	
 		reusableWaits.dashboardMemberName();
 		DashboardPO d = new DashboardPO(driver);
+		Thread.sleep(2000);
 		Assert.assertFalse(d.getMyApptsAppt1Title().getText().isBlank());
 	}
 	
