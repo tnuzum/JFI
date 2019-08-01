@@ -26,6 +26,7 @@ public class AppointmentsPO {
 	By resourceType= By.xpath("(//select[@name='primaryResourceType'])");
 	By monthSelectBackButton = By.xpath("//div[@class='btn-group']/div[1]/i");
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
+	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
 	By calendarMonday1stFullWeek = By.xpath("//div[@class='cal-month-view']/div/div[2]/div/mwl-calendar-month-cell[2]");
 	By selectTimeMorningButton = By.xpath("//div[@class='tabs-container']/ul/li[1]");
 	By selectTimeMorningLabel1 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
@@ -117,6 +118,11 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(monthSelectForwardButton);
 	}
+	public WebElement getCalendarTomorrow()
+	{
+		return driver.findElement(calendarTomorrow);
+	}
+	
 	public WebElement getCalendarMonday1stFullWeek()
 	{
 		return driver.findElement(calendarMonday1stFullWeek);

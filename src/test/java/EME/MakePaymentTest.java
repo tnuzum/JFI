@@ -6,8 +6,11 @@ import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -59,18 +62,23 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 		}
+	
 	@Test (priority = 2, description = "Confirming payment is applied")
 	public void ConfirmPaymentApplied() throws InterruptedException
 	{	
 		DashboardPO d = new DashboardPO(driver);
-		DateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[2]")));
+			while (d.getMyAccountLastPaymentDate().getText().equalsIgnoreCase("Last Payment:"))
+			{
+				Thread.sleep(1000);
+				System.out.println("Sleeping for 1 second");
+			}
+		DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
 		Date date = new Date();
 		String DateTime= dateFormat.format(date);
-		Thread.sleep(3000);
 		Assert.assertEquals("Last Payment: "+DateTime, d.getMyAccountLastPaymentDate().getText());
-		
 	}
-
 
 	@AfterTest
 		public void teardown() throws InterruptedException

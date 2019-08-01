@@ -2,7 +2,10 @@ package EME;
 import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -29,7 +32,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 1)
 		public void scheduleCourse() throws IOException, InterruptedException
 		{	
-			reusableMethods.activeMember1Login();
+			reusableMethods.activeMember2Login();
 			DashboardPO d = new DashboardPO(driver);
 		d.getMyClassesScheduleButton().click();
 			Thread.sleep(4000);
@@ -56,12 +59,19 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 2)
 	public void unenrollFromCourse() throws IOException, InterruptedException
 	{	
-			Thread.sleep(4000);
-			DashboardPO d = new DashboardPO(driver);
+		DashboardPO d = new DashboardPO(driver);	
+		/*Thread.sleep(4000);
 			if (!d.getMyClassesClass1GearButton().isDisplayed())
 			{
 				Thread.sleep(1000);
 				System.out.println("looking for gear button");
+			}*/
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
+			while (!d.getMyClassesClass1GearButton().isDisplayed())
+			{
+				Thread.sleep(1000);
+				System.out.println("Sleeping for 1 second");
 			}
 		d.getMyClassesClass1GearButton().click();
 			Thread.sleep(2000);

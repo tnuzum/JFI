@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-EME_-_Smoke_Testing" class="navigator-link">
-              <span class="suite-name border-failed">EME - Smoke Testing</span>
+              <span class="suite-name border-passed">EME - Smoke Testing</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,21 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">32 methods, 1 failed,   31 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-EME_-_Smoke_Testing" class="hide-methods failed suite-EME_-_Smoke_Testing"> (hide)</a> <!-- hide-methods failed suite-EME_-_Smoke_Testing -->
-                      <a href="#" panel-name="suite-EME_-_Smoke_Testing" class="show-methods failed suite-EME_-_Smoke_Testing"> (show)</a> <!-- show-methods failed suite-EME_-_Smoke_Testing -->
-                    </span>
-                    <div class="method-list-content failed suite-EME_-_Smoke_Testing">
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-EME_-_Smoke_Testing" title="EME.ScheduleCourseTest" class="method navigator-link" hash-for-method="unenrollFromCourse">unenrollFromCourse</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-EME_-_Smoke_Testing -->
+                    <span class="method-stats">32 methods,   32 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -266,6 +252,11 @@
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-EME_-_Smoke_Testing" title="EME.ScheduleCourseTest" class="method navigator-link" hash-for-method="unenrollFromCourse">unenrollFromCourse</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-EME_-_Smoke_Testing" title="EME.loginPageTest" class="method navigator-link" hash-for-method="wrongCredentialsMessages">wrongCredentialsMessages</a> <!-- method navigator-link -->
                       </span>
                       <br/>
@@ -281,52 +272,64 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-EME_-_Smoke_Testing" class="panel EME_-_Smoke_Testing">
-          <div class="suite-EME_-_Smoke_Testing-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">EME.ScheduleCourseTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="unenrollFromCourse">
-                  </a> <!-- unenrollFromCourse -->
-                  <span class="method-name">unenrollFromCourse</span>
-                  <div class="stack-trace">junit.framework.ComparisonFailure: expected:&lt;Unenro...&gt; but was:&lt;Cance...&gt;
-	at junit.framework.Assert.assertEquals(Assert.java:81)
-	at junit.framework.Assert.assertEquals(Assert.java:87)
-	at EME.ScheduleCourseTest.unenrollFromCourse(ScheduleCourseTest.java:75)
-... Removed 25 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-EME_-_Smoke_Testing-class-failed -->
           <div class="suite-EME_-_Smoke_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">EME.MakeGroupApptTest</span>
+              <span class="class-name">EME.MemberLoginTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="CancelAppointment">
-                  </a> <!-- CancelAppointment -->
-                  <span class="method-name">CancelAppointment</span>
+                  <a name="activeMember1Login">
+                  </a> <!-- activeMember1Login -->
+                  <span class="method-name">activeMember1Login</span>
+                  <em>
+(Login Active Adult HOH Member)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="ConfirmAppointmentIsScheduled">
-                  </a> <!-- ConfirmAppointmentIsScheduled -->
-                  <span class="method-name">ConfirmAppointmentIsScheduled</span>
+                  <a name="activeMember2Login">
+                  </a> <!-- activeMember2Login -->
+                  <span class="method-name">activeMember2Login</span>
+                  <em>
+(Login Active Adult non-HOH Member)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="ScheduleAppointment">
-                  </a> <!-- ScheduleAppointment -->
-                  <span class="method-name">ScheduleAppointment</span>
+                  <a name="activeMember3Login">
+                  </a> <!-- activeMember3Login -->
+                  <span class="method-name">activeMember3Login</span>
+                  <em>
+(Login Active Minor Member)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="activeMember4Login">
+                  </a> <!-- activeMember4Login -->
+                  <span class="method-name">activeMember4Login</span>
+                  <em>
+(Login Active Adult No Family Member)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="collectionsMember1Login">
+                  </a> <!-- collectionsMember1Login -->
+                  <span class="method-name">collectionsMember1Login</span>
+                  <em>
+(Login Member in Collections)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="prospectMember1Login">
+                  </a> <!-- prospectMember1Login -->
+                  <span class="method-name">prospectMember1Login</span>
+                  <em>
+(Login Prospect Member)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -412,6 +415,61 @@
           <div class="suite-EME_-_Smoke_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
+              <span class="class-name">EME.MakeApptTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="CancelAppointment">
+                  </a> <!-- CancelAppointment -->
+                  <span class="method-name">CancelAppointment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ConfirmAppointmentIsScheduled">
+                  </a> <!-- ConfirmAppointmentIsScheduled -->
+                  <span class="method-name">ConfirmAppointmentIsScheduled</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ScheduleAppointment">
+                  </a> <!-- ScheduleAppointment -->
+                  <span class="method-name">ScheduleAppointment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-EME_-_Smoke_Testing-class-passed -->
+          <div class="suite-EME_-_Smoke_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">EME.MakePaymentTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="ConfirmPaymentApplied">
+                  </a> <!-- ConfirmPaymentApplied -->
+                  <span class="method-name">ConfirmPaymentApplied</span>
+                  <em>
+(Confirming payment is applied)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="MakePayment">
+                  </a> <!-- MakePayment -->
+                  <span class="method-name">MakePayment</span>
+                  <em>
+(Adding $100.00 to member's account)                  </em>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-EME_-_Smoke_Testing-class-passed -->
+          <div class="suite-EME_-_Smoke_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
               <span class="class-name">EME.ScheduleClassTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
@@ -427,6 +485,57 @@
                   <a name="unenrollFromClass">
                   </a> <!-- unenrollFromClass -->
                   <span class="method-name">unenrollFromClass</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-EME_-_Smoke_Testing-class-passed -->
+          <div class="suite-EME_-_Smoke_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">EME.ScheduleCourseTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="scheduleCourse">
+                  </a> <!-- scheduleCourse -->
+                  <span class="method-name">scheduleCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="unenrollFromCourse">
+                  </a> <!-- unenrollFromCourse -->
+                  <span class="method-name">unenrollFromCourse</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+            </div> <!-- main-panel-content rounded-window-bottom -->
+          </div> <!-- suite-EME_-_Smoke_Testing-class-passed -->
+          <div class="suite-EME_-_Smoke_Testing-class-passed">
+            <div class="main-panel-header rounded-window-top">
+              <img src="passed.png"/>
+              <span class="class-name">EME.MakeGroupApptTest</span>
+            </div> <!-- main-panel-header rounded-window-top -->
+            <div class="main-panel-content rounded-window-bottom">
+              <div class="method">
+                <div class="method-content">
+                  <a name="CancelAppointment">
+                  </a> <!-- CancelAppointment -->
+                  <span class="method-name">CancelAppointment</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ConfirmAppointmentIsScheduled">
+                  </a> <!-- ConfirmAppointmentIsScheduled -->
+                  <span class="method-name">ConfirmAppointmentIsScheduled</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="ScheduleAppointment">
+                  </a> <!-- ScheduleAppointment -->
+                  <span class="method-name">ScheduleAppointment</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -463,138 +572,6 @@
                   <a name="wrongCredentialsMessages">
                   </a> <!-- wrongCredentialsMessages -->
                   <span class="method-name">wrongCredentialsMessages</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-EME_-_Smoke_Testing-class-passed -->
-          <div class="suite-EME_-_Smoke_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">EME.MakeApptTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="CancelAppointment">
-                  </a> <!-- CancelAppointment -->
-                  <span class="method-name">CancelAppointment</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="ConfirmAppointmentIsScheduled">
-                  </a> <!-- ConfirmAppointmentIsScheduled -->
-                  <span class="method-name">ConfirmAppointmentIsScheduled</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="ScheduleAppointment">
-                  </a> <!-- ScheduleAppointment -->
-                  <span class="method-name">ScheduleAppointment</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-EME_-_Smoke_Testing-class-passed -->
-          <div class="suite-EME_-_Smoke_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">EME.ScheduleCourseTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="scheduleCourse">
-                  </a> <!-- scheduleCourse -->
-                  <span class="method-name">scheduleCourse</span>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-EME_-_Smoke_Testing-class-passed -->
-          <div class="suite-EME_-_Smoke_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">EME.MakePaymentTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="ConfirmPaymentApplied">
-                  </a> <!-- ConfirmPaymentApplied -->
-                  <span class="method-name">ConfirmPaymentApplied</span>
-                  <em>
-(Confirming payment is applied)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="MakePayment">
-                  </a> <!-- MakePayment -->
-                  <span class="method-name">MakePayment</span>
-                  <em>
-(Adding $100.00 to member's account)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-EME_-_Smoke_Testing-class-passed -->
-          <div class="suite-EME_-_Smoke_Testing-class-passed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="passed.png"/>
-              <span class="class-name">EME.MemberLoginTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="activeMember1Login">
-                  </a> <!-- activeMember1Login -->
-                  <span class="method-name">activeMember1Login</span>
-                  <em>
-(Login Active Adult HOH Member)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="activeMember2Login">
-                  </a> <!-- activeMember2Login -->
-                  <span class="method-name">activeMember2Login</span>
-                  <em>
-(Login Active Adult non-HOH Member)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="activeMember3Login">
-                  </a> <!-- activeMember3Login -->
-                  <span class="method-name">activeMember3Login</span>
-                  <em>
-(Login Active Minor Member)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="activeMember4Login">
-                  </a> <!-- activeMember4Login -->
-                  <span class="method-name">activeMember4Login</span>
-                  <em>
-(Login Active Adult No Family Member)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="collectionsMember1Login">
-                  </a> <!-- collectionsMember1Login -->
-                  <span class="method-name">collectionsMember1Login</span>
-                  <em>
-(Login Member in Collections)                  </em>
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-              <div class="method">
-                <div class="method-content">
-                  <a name="prospectMember1Login">
-                  </a> <!-- prospectMember1Login -->
-                  <span class="method-name">prospectMember1Login</span>
-                  <em>
-(Login Prospect Member)                  </em>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -715,131 +692,131 @@ data.addRows(32);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'scheduleClass')
 data.setCell(0, 2, 'EME.ScheduleClassTest')
-data.setCell(0, 3, 40619);
+data.setCell(0, 3, 38689);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'ScheduleAppointment')
 data.setCell(1, 2, 'EME.MakeGroupApptTest')
-data.setCell(1, 3, 39830);
+data.setCell(1, 3, 34681);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'scheduleCourse')
-data.setCell(2, 2, 'EME.ScheduleCourseTest')
-data.setCell(2, 3, 24270);
+data.setCell(2, 1, 'MakePayment')
+data.setCell(2, 2, 'EME.MakePaymentTest')
+data.setCell(2, 3, 24218);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'MakePayment')
-data.setCell(3, 2, 'EME.MakePaymentTest')
-data.setCell(3, 3, 23117);
+data.setCell(3, 1, 'scheduleCourse')
+data.setCell(3, 2, 'EME.ScheduleCourseTest')
+data.setCell(3, 3, 23246);
 data.setCell(4, 0, 4)
 data.setCell(4, 1, 'ScheduleAppointment')
 data.setCell(4, 2, 'EME.MakeApptTest')
-data.setCell(4, 3, 19947);
+data.setCell(4, 3, 14188);
 data.setCell(5, 0, 5)
 data.setCell(5, 1, 'unenrollFromCourse')
 data.setCell(5, 2, 'EME.ScheduleCourseTest')
-data.setCell(5, 3, 15034);
+data.setCell(5, 3, 11322);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'unenrollFromClass')
-data.setCell(6, 2, 'EME.ScheduleClassTest')
-data.setCell(6, 3, 12258);
+data.setCell(6, 1, 'activeMember3Login')
+data.setCell(6, 2, 'EME.MemberLoginTest')
+data.setCell(6, 3, 10763);
 data.setCell(7, 0, 7)
-data.setCell(7, 1, 'activeMember2Login')
+data.setCell(7, 1, 'prospectMember1Login')
 data.setCell(7, 2, 'EME.MemberLoginTest')
-data.setCell(7, 3, 11140);
+data.setCell(7, 3, 10459);
 data.setCell(8, 0, 8)
-data.setCell(8, 1, 'activeMember3Login')
+data.setCell(8, 1, 'activeMember2Login')
 data.setCell(8, 2, 'EME.MemberLoginTest')
-data.setCell(8, 3, 10372);
+data.setCell(8, 3, 9789);
 data.setCell(9, 0, 9)
-data.setCell(9, 1, 'collectionsMember1Login')
-data.setCell(9, 2, 'EME.MemberLoginTest')
-data.setCell(9, 3, 10136);
+data.setCell(9, 1, 'unenrollFromClass')
+data.setCell(9, 2, 'EME.ScheduleClassTest')
+data.setCell(9, 3, 9265);
 data.setCell(10, 0, 10)
-data.setCell(10, 1, 'prospectMember1Login')
+data.setCell(10, 1, 'collectionsMember1Login')
 data.setCell(10, 2, 'EME.MemberLoginTest')
-data.setCell(10, 3, 9590);
+data.setCell(10, 3, 8930);
 data.setCell(11, 0, 11)
-data.setCell(11, 1, 'activeMember1Login')
-data.setCell(11, 2, 'EME.MemberLoginTest')
-data.setCell(11, 3, 7072);
+data.setCell(11, 1, 'ForgotUsernameButtonTest')
+data.setCell(11, 2, 'EME.PageLaunchTest')
+data.setCell(11, 3, 7289);
 data.setCell(12, 0, 12)
-data.setCell(12, 1, 'CartButtonTest')
-data.setCell(12, 2, 'EME.PageLaunchTest')
-data.setCell(12, 3, 5821);
+data.setCell(12, 1, 'CancelAppointment')
+data.setCell(12, 2, 'EME.MakeGroupApptTest')
+data.setCell(12, 3, 6664);
 data.setCell(13, 0, 13)
-data.setCell(13, 1, 'ScheduleApptsButtonTest')
-data.setCell(13, 2, 'EME.PageLaunchTest')
-data.setCell(13, 3, 5683);
+data.setCell(13, 1, 'activeMember4Login')
+data.setCell(13, 2, 'EME.MemberLoginTest')
+data.setCell(13, 3, 6397);
 data.setCell(14, 0, 14)
-data.setCell(14, 1, 'activeMember4Login')
-data.setCell(14, 2, 'EME.MemberLoginTest')
-data.setCell(14, 3, 5346);
+data.setCell(14, 1, 'CartButtonTest')
+data.setCell(14, 2, 'EME.PageLaunchTest')
+data.setCell(14, 3, 5795);
 data.setCell(15, 0, 15)
 data.setCell(15, 1, 'CancelAppointment')
-data.setCell(15, 2, 'EME.MakeGroupApptTest')
-data.setCell(15, 3, 5109);
+data.setCell(15, 2, 'EME.MakeApptTest')
+data.setCell(15, 3, 5655);
 data.setCell(16, 0, 16)
-data.setCell(16, 1, 'ForgotUsernameButtonTest')
+data.setCell(16, 1, 'ScheduleClassesButtonTest')
 data.setCell(16, 2, 'EME.PageLaunchTest')
-data.setCell(16, 3, 4144);
+data.setCell(16, 3, 5552);
 data.setCell(17, 0, 17)
-data.setCell(17, 1, 'EditMyInfoButtonTest')
-data.setCell(17, 2, 'EME.PageLaunchTest')
-data.setCell(17, 3, 3696);
+data.setCell(17, 1, 'activeMember1Login')
+data.setCell(17, 2, 'EME.MemberLoginTest')
+data.setCell(17, 3, 5238);
 data.setCell(18, 0, 18)
-data.setCell(18, 1, 'ManageFamilyButtonTest')
+data.setCell(18, 1, 'MyPackagesButtonTest')
 data.setCell(18, 2, 'EME.PageLaunchTest')
-data.setCell(18, 3, 3636);
+data.setCell(18, 3, 3976);
 data.setCell(19, 0, 19)
-data.setCell(19, 1, 'CancelAppointment')
-data.setCell(19, 2, 'EME.MakeApptTest')
-data.setCell(19, 3, 3598);
+data.setCell(19, 1, 'EditMyInfoButtonTest')
+data.setCell(19, 2, 'EME.PageLaunchTest')
+data.setCell(19, 3, 3188);
 data.setCell(20, 0, 20)
-data.setCell(20, 1, 'MyPackagesButtonTest')
-data.setCell(20, 2, 'EME.PageLaunchTest')
-data.setCell(20, 3, 3514);
+data.setCell(20, 1, 'ConfirmAppointmentIsScheduled')
+data.setCell(20, 2, 'EME.MakeApptTest')
+data.setCell(20, 3, 2113);
 data.setCell(21, 0, 21)
-data.setCell(21, 1, 'ConfirmPaymentApplied')
-data.setCell(21, 2, 'EME.MakePaymentTest')
-data.setCell(21, 3, 3014);
+data.setCell(21, 1, 'ConfirmAppointmentIsScheduled')
+data.setCell(21, 2, 'EME.MakeGroupApptTest')
+data.setCell(21, 3, 2105);
 data.setCell(22, 0, 22)
-data.setCell(22, 1, 'AcctHistoryButtonTest')
+data.setCell(22, 1, 'ManageFamilyButtonTest')
 data.setCell(22, 2, 'EME.PageLaunchTest')
-data.setCell(22, 3, 2769);
+data.setCell(22, 3, 2092);
 data.setCell(23, 0, 23)
-data.setCell(23, 1, 'ScheduleClassesButtonTest')
+data.setCell(23, 1, 'ScheduleApptsButtonTest')
 data.setCell(23, 2, 'EME.PageLaunchTest')
-data.setCell(23, 3, 2446);
+data.setCell(23, 3, 2089);
 data.setCell(24, 0, 24)
-data.setCell(24, 1, 'PayNowButtonTest')
+data.setCell(24, 1, 'AcctHistoryButtonTest')
 data.setCell(24, 2, 'EME.PageLaunchTest')
-data.setCell(24, 3, 2242);
+data.setCell(24, 3, 1240);
 data.setCell(25, 0, 25)
-data.setCell(25, 1, 'ConfirmAppointmentIsScheduled')
-data.setCell(25, 2, 'EME.MakeApptTest')
-data.setCell(25, 3, 2239);
+data.setCell(25, 1, 'PayNowButtonTest')
+data.setCell(25, 2, 'EME.PageLaunchTest')
+data.setCell(25, 3, 1235);
 data.setCell(26, 0, 26)
-data.setCell(26, 1, 'ConfirmAppointmentIsScheduled')
-data.setCell(26, 2, 'EME.MakeGroupApptTest')
-data.setCell(26, 3, 2108);
+data.setCell(26, 1, 'ForgotPasswordButtonTest')
+data.setCell(26, 2, 'EME.PageLaunchTest')
+data.setCell(26, 3, 1080);
 data.setCell(27, 0, 27)
-data.setCell(27, 1, 'ForgotPasswordButtonTest')
-data.setCell(27, 2, 'EME.PageLaunchTest')
-data.setCell(27, 3, 1052);
+data.setCell(27, 1, 'ConfirmPaymentApplied')
+data.setCell(27, 2, 'EME.MakePaymentTest')
+data.setCell(27, 3, 1046);
 data.setCell(28, 0, 28)
 data.setCell(28, 1, 'wrongCredentialsMessages')
 data.setCell(28, 2, 'EME.loginPageTest')
-data.setCell(28, 3, 347);
+data.setCell(28, 3, 349);
 data.setCell(29, 0, 29)
 data.setCell(29, 1, 'noUserMessages')
 data.setCell(29, 2, 'EME.loginPageTest')
-data.setCell(29, 3, 285);
+data.setCell(29, 3, 290);
 data.setCell(30, 0, 30)
 data.setCell(30, 1, 'pageTextLabels')
 data.setCell(30, 2, 'EME.loginPageTest')
-data.setCell(30, 3, 130);
+data.setCell(30, 3, 128);
 data.setCell(31, 0, 31)
 data.setCell(31, 1, 'pageTitle')
 data.setCell(31, 2, 'EME.loginPageTest')
-data.setCell(31, 3, 10);
+data.setCell(31, 3, 9);
 window.suiteTableData['EME_-_Smoke_Testing']= { tableData: data, tableDiv: 'times-div-EME_-_Smoke_Testing'}
 return data;
 }
@@ -877,214 +854,212 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">pageTitle</span>
-                <span class="method-start">6304 ms</span>
+                <span class="method-start">6043 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">pageTextLabels</span>
-                <span class="method-start">6317 ms</span>
+                <span class="method-start">6054 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">noUserMessages</span>
-                <span class="method-start">6449 ms</span>
+                <span class="method-start">6184 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">wrongCredentialsMessages</span>
-                <span class="method-start">6735 ms</span>
+                <span class="method-start">6475 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">7082 ms</span>
+                <span class="method-start">6825 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.MemberLoginTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">8169 ms</span>
+                <span class="method-start">7915 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">activeMember1Login</span>
-                <span class="method-start">14823 ms</span>
+                <span class="method-start">13373 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">activeMember2Login</span>
-                <span class="method-start">21896 ms</span>
+                <span class="method-start">18612 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">activeMember3Login</span>
-                <span class="method-start">33037 ms</span>
+                <span class="method-start">28402 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">activeMember4Login</span>
-                <span class="method-start">43410 ms</span>
+                <span class="method-start">39166 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">collectionsMember1Login</span>
-                <span class="method-start">48757 ms</span>
+                <span class="method-start">45564 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">prospectMember1Login</span>
-                <span class="method-start">58894 ms</span>
+                <span class="method-start">54495 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">68485 ms</span>
+                <span class="method-start">64955 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.PageLaunchTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">69291 ms</span>
+                <span class="method-start">65757 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">MyPackagesButtonTest</span>
-                <span class="method-start">79948 ms</span>
+                <span class="method-start">74726 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">CartButtonTest</span>
-                <span class="method-start">83462 ms</span>
+                <span class="method-start">78703 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">AcctHistoryButtonTest</span>
-                <span class="method-start">89284 ms</span>
+                <span class="method-start">84499 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">PayNowButtonTest</span>
-                <span class="method-start">92054 ms</span>
+                <span class="method-start">85740 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ScheduleClassesButtonTest</span>
-                <span class="method-start">94297 ms</span>
+                <span class="method-start">86976 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ScheduleApptsButtonTest</span>
-                <span class="method-start">96744 ms</span>
+                <span class="method-start">92529 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ManageFamilyButtonTest</span>
-                <span class="method-start">102428 ms</span>
+                <span class="method-start">94619 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">EditMyInfoButtonTest</span>
-                <span class="method-start">106065 ms</span>
+                <span class="method-start">96712 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ForgotUsernameButtonTest</span>
-                <span class="method-start">109762 ms</span>
+                <span class="method-start">99901 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ForgotPasswordButtonTest</span>
-                <span class="method-start">113906 ms</span>
+                <span class="method-start">107191 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">114959 ms</span>
+                <span class="method-start">108271 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.MakePaymentTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">115781 ms</span>
+                <span class="method-start">109083 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">MakePayment</span>
-                <span class="method-start">120831 ms</span>
+                <span class="method-start">114509 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ConfirmPaymentApplied</span>
-                <span class="method-start">143948 ms</span>
+                <span class="method-start">138728 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">146963 ms</span>
+                <span class="method-start">139774 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.MakeApptTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">147971 ms</span>
+                <span class="method-start">140784 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">ScheduleAppointment</span>
-                <span class="method-start">153146 ms</span>
+                <span class="method-start">146327 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ConfirmAppointmentIsScheduled</span>
-                <span class="method-start">173093 ms</span>
+                <span class="method-start">160516 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">CancelAppointment</span>
-                <span class="method-start">175333 ms</span>
+                <span class="method-start">162630 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">178932 ms</span>
+                <span class="method-start">168286 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.ScheduleClassTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">179938 ms</span>
+                <span class="method-start">169281 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">scheduleClass</span>
-                <span class="method-start">186772 ms</span>
+                <span class="method-start">174935 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">unenrollFromClass</span>
-                <span class="method-start">227392 ms</span>
+                <span class="method-start">213624 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">239651 ms</span>
+                <span class="method-start">222890 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.ScheduleCourseTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">240450 ms</span>
+                <span class="method-start">223809 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">scheduleCourse</span>
-                <span class="method-start">246080 ms</span>
+                <span class="method-start">228975 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">unenrollFromCourse</span>
-                <span class="method-start">270351 ms</span>
+                <span class="method-start">252221 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">285476 ms</span>
+                <span class="method-start">263544 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.MakeGroupApptTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">291277 ms</span>
+                <span class="method-start">269348 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">ScheduleAppointment</span>
-                <span class="method-start">296782 ms</span>
+                <span class="method-start">274873 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ConfirmAppointmentIsScheduled</span>
-                <span class="method-start">336612 ms</span>
+                <span class="method-start">309555 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">CancelAppointment</span>
-                <span class="method-start">338721 ms</span>
+                <span class="method-start">311661 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">343830 ms</span>
+                <span class="method-start">318325 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

@@ -63,17 +63,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				{
 //					Thread.sleep(500);	
 				}
-		ap.getMonthSelectForwardButton().click();
-				boolean result2 = reusableWaits.loadingAvailability();
-				if (result2 == true)
-				{
-//					Thread.sleep(500);	
-				}
-		ap.getCalendarMonday1stFullWeek().click();
+		ap.getCalendarTomorrow().click();
 				WebElement st1 = ap.getSelectTimeMorningButton();
 				while (!st1.isEnabled())//while button is NOT(!) enabled
 				{
-//				Thread.sleep(200);
+				System.out.println("Waiting for available times");
 				}
 		ap.getSelectTimeMorningButton().click();	
 				WebElement st2 = ap.getSelectTime1stAvailable();

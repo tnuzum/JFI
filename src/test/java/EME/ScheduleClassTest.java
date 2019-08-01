@@ -39,7 +39,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 1)
 		public void scheduleClass() throws IOException, InterruptedException
 		{	
-		reusableMethods.activeMember1Login();
+		reusableMethods.activeMember2Login();
 			DashboardPO d = new DashboardPO(driver);
 		
 		 d.getMyClassesScheduleButton().click();
@@ -94,14 +94,15 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 2)
 		public void unenrollFromClass() throws IOException, InterruptedException
 		{	
-		Thread.sleep(3000);
 		DashboardPO d = new DashboardPO(driver);
-		if (!d.getMyClassesClass1GearButton().isDisplayed())
-				{
-			Thread.sleep(1000);
-			System.out.println("sleeping");
-				}
-		System.out.println("looking for gear button");
+
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
+			while (!d.getMyClassesClass1GearButton().isDisplayed())
+			{
+				Thread.sleep(1000);
+				System.out.println("Sleeping for 1 second");
+			}
 		d.getMyClassesClass1GearButton().click();
 			Thread.sleep(2000);
 		d.getmyClassesUnenrollButton().click();

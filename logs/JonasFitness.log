@@ -1,58 +1,39 @@
-15:26:04.728 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:26:08.180 [main] INFO  resources.base - Driver Initialized
-15:27:19.393 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:27:22.831 [main] INFO  resources.base - Driver Initialized
-15:28:57.355 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:29:00.798 [main] INFO  resources.base - Driver Initialized
-15:30:29.186 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:30:32.650 [main] INFO  resources.base - Driver Initialized
-15:44:12.568 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:44:16.637 [main] INFO  resources.base - Driver Initialized
-15:48:00.020 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:48:03.471 [main] INFO  resources.base - Driver Initialized
-15:49:20.493 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:49:23.939 [main] INFO  resources.base - Driver Initialized
-15:50:27.774 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:50:31.222 [main] INFO  resources.base - Driver Initialized
-15:50:34.075 [main] INFO  resources.base - Page Title Verified
-15:50:34.108 [main] INFO  resources.base - Username input label text Confirmed
-15:50:34.123 [main] INFO  resources.base - Username input label text Confirmed
-15:50:34.139 [main] INFO  resources.base - Forgot Username link text Confirmed
-15:50:34.153 [main] INFO  resources.base - Forgot Password link text Confirmed
-15:50:34.167 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
-15:50:34.180 [main] INFO  resources.base - Remember Username label text Confirmed
-15:50:34.194 [main] INFO  resources.base - Login button label text Confirmed
-15:50:34.208 [main] INFO  resources.base - Login button isEnabled Confirmed
-15:50:34.459 [main] INFO  resources.base - Log In Button Clicked
-15:50:34.482 [main] INFO  resources.base - Username Required Message Confirmed
-15:50:34.495 [main] INFO  resources.base - Password Required Message Confirmed
-15:50:34.537 [main] INFO  resources.base - User Name Entered
-15:50:34.583 [main] INFO  resources.base - Password Entered
-15:50:34.829 [main] INFO  resources.base - Log In Button Clicked
-15:50:34.842 [main] INFO  resources.base - Error Message Title Verified
-15:50:35.931 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:50:38.939 [main] INFO  resources.base - Driver Initialized
-15:51:37.052 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:51:40.022 [main] INFO  resources.base - Driver Initialized
-15:51:48.316 [main] INFO  resources.base - Shop Packages Page Header Verified
-15:51:51.546 [main] INFO  resources.base - Shopping Cart Page Header Verified
-15:51:57.430 [main] INFO  resources.base - Account History Page Header Verified
-15:52:00.195 [main] INFO  resources.base - Pay Balance Page Header Verified
-15:52:02.364 [main] INFO  resources.base - Select Classes Page Header Verified
-15:52:03.172 [main] INFO  resources.base - Manage Profile Page Header Verified
-15:52:04.890 [main] INFO  resources.base - Appointments Page Header Verified
-15:52:05.759 [main] INFO  resources.base - Appointments Page Header Verified
-15:52:10.451 [main] INFO  resources.base - Manage Family Page Header Verified
-15:52:14.137 [main] INFO  resources.base - Manage Profile Page Header Verified
-15:52:21.444 [main] INFO  resources.base - Forgot Username Page Header Verified
-15:52:22.501 [main] INFO  resources.base - Forgot Password Page Header Verified
-15:52:23.542 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:52:26.505 [main] INFO  resources.base - Driver Initialized
-15:52:55.733 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:52:58.705 [main] INFO  resources.base - Driver Initialized
-15:53:27.700 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:53:30.722 [main] INFO  resources.base - Driver Initialized
-15:54:28.212 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:54:31.206 [main] INFO  resources.base - Driver Initialized
-15:55:19.039 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-15:55:22.006 [main] INFO  resources.base - Driver Initialized
+13:33:32.865 [main] INFO  resources.base - Forgot Username link text Confirmed
+13:33:32.885 [main] INFO  resources.base - Forgot Password link text Confirmed
+13:33:32.898 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+13:33:32.910 [main] INFO  resources.base - Remember Username label text Confirmed
+13:33:32.923 [main] INFO  resources.base - Login button label text Confirmed
+13:33:32.936 [main] INFO  resources.base - Login button isEnabled Confirmed
+13:33:33.189 [main] INFO  resources.base - Log In Button Clicked
+13:33:33.213 [main] INFO  resources.base - Username Required Message Confirmed
+13:33:33.227 [main] INFO  resources.base - Password Required Message Confirmed
+13:33:33.270 [main] INFO  resources.base - User Name Entered
+13:33:33.314 [main] INFO  resources.base - Password Entered
+13:33:33.565 [main] INFO  resources.base - Log In Button Clicked
+13:33:33.578 [main] INFO  resources.base - Error Message Title Verified
+13:33:34.669 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:33:37.688 [main] INFO  resources.base - Driver Initialized
+13:34:32.512 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:34:35.488 [main] INFO  resources.base - Driver Initialized
+13:34:42.042 [main] INFO  resources.base - Shop Packages Page Header Verified
+13:34:45.765 [main] INFO  resources.base - Shopping Cart Page Header Verified
+13:34:51.647 [main] INFO  resources.base - Account History Page Header Verified
+13:34:52.885 [main] INFO  resources.base - Pay Balance Page Header Verified
+13:34:54.042 [main] INFO  resources.base - Select Classes Page Header Verified
+13:34:54.863 [main] INFO  resources.base - Manage Profile Page Header Verified
+13:34:59.670 [main] INFO  resources.base - Appointments Page Header Verified
+13:35:00.542 [main] INFO  resources.base - Appointments Page Header Verified
+13:35:01.628 [main] INFO  resources.base - Manage Family Page Header Verified
+13:35:03.786 [main] INFO  resources.base - Manage Profile Page Header Verified
+13:35:13.719 [main] INFO  resources.base - Forgot Username Page Header Verified
+13:35:14.805 [main] INFO  resources.base - Forgot Password Page Header Verified
+13:35:15.838 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:35:18.788 [main] INFO  resources.base - Driver Initialized
+13:35:47.538 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:35:50.504 [main] INFO  resources.base - Driver Initialized
+13:36:16.035 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:36:19.020 [main] INFO  resources.base - Driver Initialized
+13:37:10.564 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:37:13.554 [main] INFO  resources.base - Driver Initialized
+13:37:56.102 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:37:59.087 [main] INFO  resources.base - Driver Initialized
