@@ -16,25 +16,28 @@ public class reusableWaits extends base{
 
 		public static String dashboardLoaded() throws InterruptedException
 	{
-		// Check 1: wait for member name element
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
-		// Check 2: wait for member name element to not be blank	
+	// Check 1: wait for member name element
+		WebDriverWait wait1 = new WebDriverWait(driver, 10);
+		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
+	// Check 2: wait for member name element to not be blank	
 		DashboardPO d = new DashboardPO(driver);
-		WebElement wait1 = d.getMyInfoMemberName();
-		while (wait1.getText().isBlank())
+		WebElement wait2 = d.getMyInfoMemberName();
+		while (wait2.getText().isBlank())
 		{
 			System.out.println("Waiting for member name element to not be blank");
 			Thread.sleep(500);
-			wait1.getText();
+			wait2.getText();
 		}
-		// Check 3: wait for Total Charges element to not be blank
-		WebElement wait2 = d.getMyAccountTotChargesAmount();
-		while (wait2.getText().isBlank())
+	// Check 3: wait for Total Charges element
+		WebDriverWait wait3 = new WebDriverWait(driver, 10);
+		wait3.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2")));
+	// Check 4: wait for Total Charges element to not be blank
+		WebElement wait4 = d.getMyAccountBalance();
+		while (wait4.getText().isBlank())
 		{
 			System.out.println("Waiting for Total Charges element to not be blank");
 			Thread.sleep(500);
-			wait2.getText();
+			wait4.getText();
 		}
 		return null;
 		

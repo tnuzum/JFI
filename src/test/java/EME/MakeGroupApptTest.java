@@ -66,25 +66,29 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //				Actions a= new Actions(driver);
 //				a.moveToElement(ap.getGroupMemberSearchButton()).click();
 				ap.getGroupMemberSearchButton().click();
-				Thread.sleep(4000);
+					Thread.sleep(4000);
 				ap.getGroupPopupAddButton1().click();
-				Thread.sleep(4000);
+					WebElement ct = ap.getCalendarTomorrow();
+					while (!ct.isDisplayed())//while button is NOT(!) displayed
+					{
+						System.out.println("Waiting for calendar day buttons");
+					}
+					Thread.sleep(4000);
 				ap.getCalendarTomorrow().click();
-				WebElement st1 = ap.getSelectTimeMorningButton();
-				while (!st1.isEnabled())//while button is NOT(!) enabled
-				{
-					System.out.println("Waiting for available times");
-				}
-
-		ap.getSelectTimeMorningButton().click();	
-				WebElement st2 = ap.getSelectTime1stAvailable();
-				while (!st2.isEnabled())//while button is NOT(!) enabled
-				{
-				Thread.sleep(500);
-				}
-		ap.getSelectTime1stAvailable().click();
-		Thread.sleep(4000);
-		ap.getAddlResourcesBookButton().click();
+					WebElement st1 = ap.getSelectTimeMorningButton();
+					while (!st1.isDisplayed())//while button is NOT(!) displayed
+					{
+						System.out.println("Waiting for available times");
+					}
+				ap.getSelectTimeMorningButton().click();		
+					WebElement st2 = ap.getSelectTime1stAvailable();
+					while (!st2.isEnabled())//while button is NOT(!) enabled
+					{
+					Thread.sleep(500);
+					}
+				ap.getSelectTime1stAvailable().click();
+					Thread.sleep(4000);
+				ap.getAddlResourcesBookButton().click();
 		Thread.sleep(4000);		
 		
 		WebElement p1 = ap.getPopup1BookButton();

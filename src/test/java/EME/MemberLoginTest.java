@@ -73,7 +73,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableMethods.prospectMember1Login();
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("prospectMember1_fullname"));
-		Assert.assertEquals(false, reusableMethods.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
+//      This assert was checking for no My Family section, but since 7.28 that section is showing for prospects too
+//		Assert.assertEquals(false, reusableMethods.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
 		reusableMethods.memberLogout();
 		}
 

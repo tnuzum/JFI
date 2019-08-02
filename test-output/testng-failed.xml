@@ -1,36 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [EME - Smoke Testing]" guice-stage="DEVELOPMENT">
-  <listeners>
-    <listener class-name="EME.listeners"/>
-    <listener class-name="resources.ExtentReporterNG"/>
-  </listeners>
-  <test thread-count="5" name="Member Login(failed)">
-    <classes>
-      <class name="EME.MemberLoginTest">
-        <methods>
-          <include name="teardown"/>
-          <include name="activeMember4Login"/>
-          <include name="prospectMember1Login"/>
-          <include name="collectionsMember1Login"/>
-          <include name="initialize"/>
-        </methods>
-      </class> <!-- EME.MemberLoginTest -->
-    </classes>
-  </test> <!-- Member Login(failed) -->
-  <test thread-count="5" name="Make Appointment(failed)">
-    <classes>
-      <class name="EME.MakeApptTest">
-        <methods>
-          <include name="ConfirmAppointmentIsScheduled"/>
-          <include name="CancelAppointment"/>
-          <include name="teardown"/>
-          <include name="initialize"/>
-        </methods>
-      </class> <!-- EME.MakeApptTest -->
-    </classes>
-  </test> <!-- Make Appointment(failed) -->
-  <test thread-count="5" name="Make Group Appointment(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
       <class name="EME.MakeGroupApptTest">
         <methods>
@@ -42,5 +13,5 @@
         </methods>
       </class> <!-- EME.MakeGroupApptTest -->
     </classes>
-  </test> <!-- Make Group Appointment(failed) -->
-</suite> <!-- Failed suite [EME - Smoke Testing] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

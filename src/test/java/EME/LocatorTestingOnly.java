@@ -33,7 +33,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("EMEFuture2URL"));
+			 driver.get(prop.getProperty("EMEFutureURL"));
 		}
 		
 	@Test (priority = 1)
