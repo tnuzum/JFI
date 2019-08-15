@@ -22,6 +22,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -29,6 +30,7 @@ public class base {
 	public static WebDriver driver;
 	public static Properties prop; //public static Properties prop = new Properties(); this was recommended to resolve an NPE, but I didn't need it
 	public static Logger log =LogManager.getLogger(base.class.getName());
+
 	public WebDriver initializeDriver() throws IOException {
 
 		prop = new Properties();
@@ -59,14 +61,14 @@ public class base {
 				dc.setBrowserName("MicrosoftEdge");
 				dc.setPlatform(Platform.WINDOWS);
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);}
-			if (browserName.equals("ie")) {
+			if (browserName.equals("IE")) {
 				log.info("IE Browser: Running Tests on Selenium Grid");
 				DesiredCapabilities dc =
 				DesiredCapabilities.internetExplorer();
 				dc.setCapability("ignoreZoomSetting", true);
 //				dc.setBrowserName("internetexplorer");
 				dc.setPlatform(Platform.WINDOWS);
-				System.setProperty("webdriver.ie.driver","C:\\Users\\tnuzum\\Automation\\libs\\webdrivers\\IEDriverServer.exe");
+//				System.setProperty("webdriver.ie.driver","C:\\Users\\tnuzum\\Automation\\libs\\webdrivers\\IEDriverServer.exe");
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);}
 		}
 		else {
@@ -82,13 +84,13 @@ public class base {
 				if (browserName.equals("Edge")) {
 					log.info("Edge Browser: Running Tests on local machine");
 					driver = new EdgeDriver(); }
-				if (browserName.equals("ie")) {
+				if (browserName.equals("IE")) {
 					log.info("IE Browser: Running Tests on local machine");
-					DesiredCapabilities dc =
-					DesiredCapabilities.internetExplorer();
-					dc.setCapability("ignoreZoomSetting", true);
-					System.setProperty("webdriver.ie.driver","C:\\Users\\tnuzum\\Automation\\webdrivers\\IEDriverServer.exe");
-					driver = new InternetExplorerDriver(dc); }
+					InternetExplorerOptions options = new InternetExplorerOptions();
+					System.setProperty("webdriver.ie.driver","C:\\Users\\tnuzum\\Automation\\libs\\webdrivers\\IEDriverServer.exe");
+					options.setCapability("ignoreZoomSetting", true);
+					driver = new InternetExplorerDriver(options); 
+					}		
 			}
 		}
 		
@@ -96,9 +98,9 @@ public class base {
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
 		String DateTime= dateFormat.format(date);
-		System.out.println(DateTime+": Automated testing started");
+		System.out.println(DateTime+" INFO: WebDriver Initialized");
 		
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 
 		return driver;
@@ -107,7 +109,6 @@ public class base {
 	public void getScreenshot(String result) throws IOException {
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(src,new File("C:\\Users\\tnuzum\\eclipse-workspace\\JonasFitness\\screenshots\\" + result + "screenshot.png"));
-		FileUtils.copyFile(src,new File("C:\\screenshots\\screenshot.png"));
 	}
 
 }

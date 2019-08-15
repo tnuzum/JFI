@@ -1,14 +1,11 @@
 package EME;
 import java.io.IOException;
 
-import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.logging.log4j.util.PerformanceSensitive;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -18,7 +15,6 @@ import org.testng.annotations.Test;
 
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
-import pageObjects.LoginPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -32,7 +28,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("EMEFuture2URL"));
+			 driver.get(prop.getProperty("URL"));
 		}
 		
 	@Test (priority = 1)

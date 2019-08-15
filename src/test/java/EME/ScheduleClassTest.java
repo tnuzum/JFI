@@ -4,7 +4,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -14,14 +13,11 @@ import org.testng.annotations.Test;
 import junit.framework.Assert;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
-import pageObjects.ErrorMessagesPO;
-import pageObjects.PaymentPO;
 import pageObjects.PaymentPO;
 import pageObjects.ShoppingCartPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
-import resources.reusableWaits;
 
 
 public class ScheduleClassTest extends base{
@@ -33,7 +29,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("EMEFuture2URL"));
+			 driver.get(prop.getProperty("URL"));
 		}
 		
 	@Test (priority = 1)
@@ -45,10 +41,15 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		 d.getMyClassesScheduleButton().click();
 			Thread.sleep(4000);
 			ClassSignUpPO c = new ClassSignUpPO(driver);
-		c.getSelectDateThisWeekButton().click();		
+/* working on selecting specific class			
+		c.getSelectCategory().click();
+		Actions a = new Actions(driver);
+		a.click(c.getSelectCategory().sendKeys("g", Keys.ENTER));
+		*/	
+	c.getSelectDateThisWeekButton().click();		
 			Thread.sleep(2000);
 		c.getfirstAvailClassNextDayButton().click();
-		if (reusableMethods.catchErrorMessage())
+/*		if (reusableMethods.catchErrorMessage())
 		{
 			System.out.println("An error has occurred");
 			ErrorMessagesPO e = new ErrorMessagesPO(driver);
@@ -58,8 +59,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			reusableWaits.dashboardLoaded();
 			reusableMethods.returnToDashboard();
 		}
-		else
-		{
+		else{}*/
 			
 			Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
@@ -90,7 +90,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 		}		
-		}
 	@Test (priority = 2)
 		public void unenrollFromClass() throws IOException, InterruptedException
 		{	

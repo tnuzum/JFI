@@ -7,7 +7,7 @@
 	</listeners> 
   <test thread-count="5" name="Login Page Test">
     <classes>
-      <class name="EME.loginPageTest"/>
+      <class name="EME.L_LoginPageTest"/>
     </classes>
   </test>
   <test thread-count="5" name="Member Login">
@@ -27,7 +27,7 @@
   </test> 
   <test thread-count="5" name="Make Appointment">
     <classes>
-      <class name="EME.MakeApptTest"/>
+      <class name="EME.F_MakeApptTest"/>
     </classes>
   </test> 
     <test thread-count="5" name="Schedule Class">

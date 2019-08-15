@@ -18,7 +18,6 @@ import org.testng.annotations.Test;
 import junit.framework.Assert;
 import pageObjects.PaymentPO;
 import pageObjects.DashboardPO;
-import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 
@@ -31,7 +30,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("EMEFuture2URL"));
+			 driver.get(prop.getProperty("URL"));
 		}
 		
 	@Test (priority = 1, description = "Adding $100.00 to member's account")
@@ -41,15 +40,27 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			DashboardPO d = new DashboardPO(driver);
 			PaymentPO p = new PaymentPO(driver);
 		d.getMyAccountPayNow().click();
-			Thread.sleep(3000);
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//enterpaymentamount/div/div/div/div/div/h2")));
+			
+//			if (p.getAmountDueLabel().getText().equals("$0.00 DUE FOR"))
+//			{
+//				System.out.println("Amount due is $0.00");
 		p.getAmountRadioButton3().click();
 			Actions a= new Actions(driver);
 		a.moveToElement(p.getAmountRadioButton3()).sendKeys(Keys.TAB).sendKeys(Keys.DELETE).build().perform();
-		p.getCustomAmountInput().sendKeys("100.00");
+		p.getCustomAmountInput().sendKeys("1.00");
+		Thread.sleep(500);
+//		}
+//		System.out.println("Amount due is greater than $0.00");
 		p.getCardNumber().sendKeys(prop.getProperty("MastercardNumber"));
+			Thread.sleep(500);
 		p.getExpireMonth().sendKeys(prop.getProperty("MastercardExpireMonth"));
+			Thread.sleep(500);
 		p.getExpireYear().sendKeys(prop.getProperty("MastercardExpireYear"));
+			Thread.sleep(500);
 		p.getCVC().sendKeys(prop.getProperty("MastercardCVC"));
+		Thread.sleep(500);
 		p.getSaveCardNoRadio().click();
 		Thread.sleep(2000);
 //		p.getIAgreeCheckbox().click();//might not be shown if getSaveCardNoRadio is used

@@ -3,15 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="EME.MakeGroupApptTest">
+      <class name="EME.loginPageTest">
         <methods>
-          <include name="ScheduleAppointment"/>
-          <include name="teardown"/>
-          <include name="CancelAppointment"/>
-          <include name="ConfirmAppointmentIsScheduled"/>
           <include name="initialize"/>
+          <include name="teardown"/>
+          <include name="noUserMessages"/>
+          <include name="wrongCredentialsMessages"/>
+          <include name="pageTitle"/>
+          <include name="pageTextLabels"/>
         </methods>
-      </class> <!-- EME.MakeGroupApptTest -->
+      </class> <!-- EME.loginPageTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

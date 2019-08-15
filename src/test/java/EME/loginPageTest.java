@@ -13,14 +13,14 @@ import pageObjects.LoginPO;
 import resources.base;
 
 
-public class loginPageTest extends base{
+public class LoginPageTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 @BeforeTest
 	public void initialize() throws IOException
 	{
 		 driver = initializeDriver();
 		 log.info("Driver Initialized");
-		 driver.get(prop.getProperty("EMEFuture2URL"));
+		 driver.get(prop.getProperty("URL"));
 	}
 	
 	@Test (priority = 1)
@@ -51,7 +51,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertTrue(l.getLoginButton().isEnabled());
 		log.info("Login button isEnabled Confirmed");
 		}
-	
 	
 	@Test (priority = 3)
 	public void noUserMessages() throws IOException

@@ -13,6 +13,7 @@ public class PaymentPO {
 // OBJECTS
 		
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By amountDueLabel = By.xpath("//enterpaymentamount/div/div/div/div/div/h2");
 	By amountRadioButton1 = By.xpath("(//div[@class='radio'])[1]/input");
 	By amountLabel1	= By.xpath("(//div[@class='radio'])[1]/label");
 	By amountRadioButton2 = By.xpath("(//div[@class='radio'])[2]/input");
@@ -54,6 +55,10 @@ public class PaymentPO {
 	public WebElement getPageHeader()
 	{
 		return driver.findElement(pageHeader);
+	}
+	public WebElement getAmountDueLabel()
+	{
+		return driver.findElement(amountDueLabel);
 	}
 	public WebElement getAmountRadioButton1()
 	{

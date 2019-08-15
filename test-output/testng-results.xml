@@ -1,229 +1,732 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="32" passed="32" failed="0" skipped="0">
+<testng-results ignored="0" total="32" passed="24" failed="8" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-08-02T13:02:41Z" name="EME - Smoke Testing" finished-at="2019-08-02T13:08:01Z" duration-ms="320312">
+  <suite started-at="2019-08-15T15:14:46Z" name="EME - Smoke Testing" finished-at="2019-08-15T15:19:23Z" duration-ms="276454">
     <groups>
     </groups>
-    <test started-at="2019-08-02T13:02:41Z" name="Login Page Test" finished-at="2019-08-02T13:02:50Z" duration-ms="8401">
-      <class name="EME.loginPageTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.loginPageTest@12dae582]" started-at="2019-08-02T13:02:41Z" name="initialize" finished-at="2019-08-02T13:02:48Z" duration-ms="6557" status="PASS">
+    <test started-at="2019-08-15T15:14:46Z" name="Login Page Test" finished-at="2019-08-15T15:14:54Z" duration-ms="7720">
+      <class name="EME.L_LoginPageTest">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.L_LoginPageTest@12dae582]" started-at="2019-08-15T15:14:46Z" name="initialize" finished-at="2019-08-15T15:14:50Z" duration-ms="3190" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="pageTitle()[pri:1, instance:EME.loginPageTest@12dae582]" started-at="2019-08-02T13:02:48Z" name="pageTitle" finished-at="2019-08-02T13:02:48Z" duration-ms="9" status="PASS">
+        <test-method signature="pageTitle()[pri:1, instance:EME.L_LoginPageTest@12dae582]" started-at="2019-08-15T15:14:50Z" name="pageTitle" finished-at="2019-08-15T15:14:50Z" duration-ms="8" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- pageTitle -->
-        <test-method signature="pageTextLabels()[pri:2, instance:EME.loginPageTest@12dae582]" started-at="2019-08-02T13:02:48Z" name="pageTextLabels" finished-at="2019-08-02T13:02:48Z" duration-ms="134" status="PASS">
+        <test-method signature="pageTextLabels()[pri:2, instance:EME.L_LoginPageTest@12dae582]" started-at="2019-08-15T15:14:50Z" name="pageTextLabels" finished-at="2019-08-15T15:14:51Z" duration-ms="1723" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- pageTextLabels -->
-        <test-method signature="noUserMessages()[pri:3, instance:EME.loginPageTest@12dae582]" started-at="2019-08-02T13:02:48Z" name="noUserMessages" finished-at="2019-08-02T13:02:48Z" duration-ms="285" status="PASS">
+        <test-method signature="noUserMessages()[pri:3, instance:EME.L_LoginPageTest@12dae582]" started-at="2019-08-15T15:14:51Z" name="noUserMessages" finished-at="2019-08-15T15:14:52Z" duration-ms="891" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- noUserMessages -->
-        <test-method signature="wrongCredentialsMessages()[pri:4, instance:EME.loginPageTest@12dae582]" started-at="2019-08-02T13:02:48Z" name="wrongCredentialsMessages" finished-at="2019-08-02T13:02:48Z" duration-ms="350" status="PASS">
+        <test-method signature="wrongCredentialsMessages()[pri:4, instance:EME.L_LoginPageTest@12dae582]" started-at="2019-08-15T15:14:52Z" name="wrongCredentialsMessages" finished-at="2019-08-15T15:14:54Z" duration-ms="1626" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- wrongCredentialsMessages -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.loginPageTest@12dae582]" started-at="2019-08-02T13:02:48Z" name="teardown" finished-at="2019-08-02T13:02:50Z" duration-ms="1043" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.L_LoginPageTest@12dae582]" started-at="2019-08-15T15:14:54Z" name="teardown" finished-at="2019-08-15T15:14:54Z" duration-ms="257" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- EME.loginPageTest -->
+      </class> <!-- EME.L_LoginPageTest -->
     </test> <!-- Login Page Test -->
-    <test started-at="2019-08-02T13:02:50Z" name="Member Login" finished-at="2019-08-02T13:03:43Z" duration-ms="53819">
+    <test started-at="2019-08-15T15:14:54Z" name="Member Login" finished-at="2019-08-15T15:15:47Z" duration-ms="52724">
       <class name="EME.MemberLoginTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-02T13:02:50Z" name="initialize" finished-at="2019-08-02T13:02:55Z" duration-ms="4991" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-15T15:14:54Z" name="initialize" finished-at="2019-08-15T15:14:56Z" duration-ms="2120" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="activeMember1Login()[pri:10, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-02T13:02:55Z" name="activeMember1Login" description="Login Active Adult HOH Member" finished-at="2019-08-02T13:03:02Z" duration-ms="7474" status="PASS">
+        <test-method signature="activeMember1Login()[pri:10, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-15T15:14:56Z" name="activeMember1Login" description="Login Active Adult HOH Member" finished-at="2019-08-15T15:15:08Z" duration-ms="11239" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeMember1Login -->
-        <test-method signature="activeMember2Login()[pri:15, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-02T13:03:02Z" name="activeMember2Login" description="Login Active Adult non-HOH Member" finished-at="2019-08-02T13:03:12Z" duration-ms="9662" status="PASS">
+        <test-method signature="activeMember2Login()[pri:15, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-15T15:15:08Z" name="activeMember2Login" description="Login Active Adult non-HOH Member" finished-at="2019-08-15T15:15:15Z" duration-ms="7706" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeMember2Login -->
-        <test-method signature="activeMember3Login()[pri:20, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-02T13:03:12Z" name="activeMember3Login" description="Login Active Minor Member" finished-at="2019-08-02T13:03:22Z" duration-ms="10306" status="PASS">
+        <test-method signature="activeMember3Login()[pri:20, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-15T15:15:15Z" name="activeMember3Login" description="Login Active Minor Member" finished-at="2019-08-15T15:15:24Z" duration-ms="8869" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeMember3Login -->
-        <test-method signature="activeMember4Login()[pri:25, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-02T13:03:22Z" name="activeMember4Login" description="Login Active Adult No Family Member" finished-at="2019-08-02T13:03:29Z" duration-ms="6715" status="PASS">
+        <test-method signature="activeMember4Login()[pri:25, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-15T15:15:24Z" name="activeMember4Login" description="Login Active Adult No Family Member" finished-at="2019-08-15T15:15:33Z" duration-ms="9075" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeMember4Login -->
-        <test-method signature="collectionsMember1Login()[pri:30, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-02T13:03:29Z" name="collectionsMember1Login" description="Login Member in Collections" finished-at="2019-08-02T13:03:38Z" duration-ms="9641" status="PASS">
+        <test-method signature="collectionsMember1Login()[pri:30, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-15T15:15:33Z" name="collectionsMember1Login" description="Login Member in Collections" finished-at="2019-08-15T15:15:41Z" duration-ms="7495" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- collectionsMember1Login -->
-        <test-method signature="prospectMember1Login()[pri:35, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-02T13:03:38Z" name="prospectMember1Login" description="Login Prospect Member" finished-at="2019-08-02T13:03:43Z" duration-ms="4249" status="PASS">
+        <test-method signature="prospectMember1Login()[pri:35, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-15T15:15:41Z" name="prospectMember1Login" description="Login Prospect Member" finished-at="2019-08-15T15:15:47Z" duration-ms="5982" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prospectMember1Login -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-02T13:03:43Z" name="teardown" finished-at="2019-08-02T13:03:43Z" duration-ms="774" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-15T15:15:47Z" name="teardown" finished-at="2019-08-15T15:15:47Z" duration-ms="231" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- EME.MemberLoginTest -->
     </test> <!-- Member Login -->
-    <test started-at="2019-08-02T13:03:43Z" name="Page Launch" finished-at="2019-08-02T13:04:31Z" duration-ms="47197">
+    <test started-at="2019-08-15T15:15:47Z" name="Page Launch" finished-at="2019-08-15T15:16:33Z" duration-ms="45729">
       <class name="EME.PageLaunchTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:03:43Z" name="initialize" finished-at="2019-08-02T13:03:53Z" duration-ms="10030" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:15:47Z" name="initialize" finished-at="2019-08-15T15:15:59Z" duration-ms="11915" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:03:53Z" name="MyPackagesButtonTest" finished-at="2019-08-02T13:03:57Z" duration-ms="3568" status="PASS">
+        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:15:59Z" name="MyPackagesButtonTest" finished-at="2019-08-15T15:16:03Z" duration-ms="4487" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MyPackagesButtonTest -->
-        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:03:57Z" name="CartButtonTest" finished-at="2019-08-02T13:04:03Z" duration-ms="6275" status="PASS">
+        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:03Z" name="CartButtonTest" finished-at="2019-08-15T15:16:08Z" duration-ms="4697" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CartButtonTest -->
-        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:03Z" name="AcctHistoryButtonTest" finished-at="2019-08-02T13:04:07Z" duration-ms="3805" status="PASS">
+        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:08Z" name="AcctHistoryButtonTest" finished-at="2019-08-15T15:16:13Z" duration-ms="4742" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AcctHistoryButtonTest -->
-        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:07Z" name="PayNowButtonTest" finished-at="2019-08-02T13:04:10Z" duration-ms="3288" status="PASS">
+        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:13Z" name="PayNowButtonTest" finished-at="2019-08-15T15:16:16Z" duration-ms="3238" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PayNowButtonTest -->
-        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:10Z" name="ScheduleClassesButtonTest" finished-at="2019-08-02T13:04:12Z" duration-ms="1961" status="PASS">
+        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:16Z" name="ScheduleClassesButtonTest" finished-at="2019-08-15T15:16:19Z" duration-ms="3196" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleClassesButtonTest -->
-        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:12Z" name="ScheduleApptsButtonTest" finished-at="2019-08-02T13:04:15Z" duration-ms="3142" status="PASS">
+        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:19Z" name="ScheduleApptsButtonTest" finished-at="2019-08-15T15:16:24Z" duration-ms="4363" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleApptsButtonTest -->
-        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:15Z" name="ManageFamilyButtonTest" finished-at="2019-08-02T13:04:19Z" duration-ms="3636" status="PASS">
+        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:24Z" name="ManageFamilyButtonTest" finished-at="2019-08-15T15:16:27Z" duration-ms="3124" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ManageFamilyButtonTest -->
-        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:19Z" name="EditMyInfoButtonTest" finished-at="2019-08-02T13:04:23Z" duration-ms="3720" status="PASS">
+        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:27Z" name="EditMyInfoButtonTest" finished-at="2019-08-15T15:16:28Z" duration-ms="1671" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- EditMyInfoButtonTest -->
-        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:23Z" name="ForgotUsernameButtonTest" finished-at="2019-08-02T13:04:29Z" duration-ms="5913" status="PASS">
+        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:28Z" name="ForgotUsernameButtonTest" finished-at="2019-08-15T15:16:31Z" duration-ms="3177" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ForgotUsernameButtonTest -->
-        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:29Z" name="ForgotPasswordButtonTest" finished-at="2019-08-02T13:04:30Z" duration-ms="1063" status="PASS">
+        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:31Z" name="ForgotPasswordButtonTest" finished-at="2019-08-15T15:16:32Z" duration-ms="896" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ForgotPasswordButtonTest -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-02T13:04:30Z" name="teardown" finished-at="2019-08-02T13:04:31Z" duration-ms="787" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-15T15:16:32Z" name="teardown" finished-at="2019-08-15T15:16:33Z" duration-ms="212" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- EME.PageLaunchTest -->
     </test> <!-- Page Launch -->
-    <test started-at="2019-08-02T13:04:31Z" name="Make Payment" finished-at="2019-08-02T13:05:04Z" duration-ms="33203">
+    <test started-at="2019-08-15T15:16:33Z" name="Make Payment" finished-at="2019-08-15T15:17:06Z" duration-ms="32978">
       <class name="EME.MakePaymentTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MakePaymentTest@2692b61e]" started-at="2019-08-02T13:04:31Z" name="initialize" finished-at="2019-08-02T13:04:37Z" duration-ms="6270" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MakePaymentTest@2692b61e]" started-at="2019-08-15T15:16:33Z" name="initialize" finished-at="2019-08-15T15:16:35Z" duration-ms="2555" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="MakePayment()[pri:1, instance:EME.MakePaymentTest@2692b61e]" started-at="2019-08-02T13:04:37Z" name="MakePayment" description="Adding $100.00 to member&#039;s account" finished-at="2019-08-02T13:05:03Z" duration-ms="25815" status="PASS">
+        <test-method signature="MakePayment()[pri:1, instance:EME.MakePaymentTest@2692b61e]" started-at="2019-08-15T15:16:35Z" name="MakePayment" description="Adding $100.00 to member&#039;s account" finished-at="2019-08-15T15:17:05Z" duration-ms="29513" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MakePayment -->
-        <test-method signature="ConfirmPaymentApplied()[pri:2, instance:EME.MakePaymentTest@2692b61e]" started-at="2019-08-02T13:05:03Z" name="ConfirmPaymentApplied" description="Confirming payment is applied" finished-at="2019-08-02T13:05:03Z" duration-ms="33" status="PASS">
+        <test-method signature="ConfirmPaymentApplied()[pri:2, instance:EME.MakePaymentTest@2692b61e]" started-at="2019-08-15T15:17:05Z" name="ConfirmPaymentApplied" description="Confirming payment is applied" finished-at="2019-08-15T15:17:05Z" duration-ms="665" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ConfirmPaymentApplied -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MakePaymentTest@2692b61e]" started-at="2019-08-02T13:05:03Z" name="teardown" finished-at="2019-08-02T13:05:04Z" duration-ms="1084" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MakePaymentTest@2692b61e]" started-at="2019-08-15T15:17:05Z" name="teardown" finished-at="2019-08-15T15:17:06Z" duration-ms="243" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- EME.MakePaymentTest -->
     </test> <!-- Make Payment -->
-    <test started-at="2019-08-02T13:05:04Z" name="Make Appointment" finished-at="2019-08-02T13:05:31Z" duration-ms="27655">
-      <class name="EME.MakeApptTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MakeApptTest@878452d]" started-at="2019-08-02T13:05:04Z" name="initialize" finished-at="2019-08-02T13:05:09Z" duration-ms="5141" status="PASS">
+    <test started-at="2019-08-15T15:17:06Z" name="Make Appointment" finished-at="2019-08-15T15:17:31Z" duration-ms="25055">
+      <class name="EME.F_MakeApptTest">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.F_MakeApptTest@878452d]" started-at="2019-08-15T15:17:06Z" name="initialize" finished-at="2019-08-15T15:17:08Z" duration-ms="2397" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="ScheduleAppointment()[pri:1, instance:EME.MakeApptTest@878452d]" started-at="2019-08-02T13:05:09Z" name="ScheduleAppointment" finished-at="2019-08-02T13:05:24Z" duration-ms="14802" status="PASS">
+        <test-method signature="ScheduleAppointment()[pri:1, instance:EME.F_MakeApptTest@878452d]" started-at="2019-08-15T15:17:08Z" name="ScheduleAppointment" finished-at="2019-08-15T15:17:20Z" duration-ms="11771" status="FAIL">
+          <exception class="org.openqa.selenium.InvalidSelectorException">
+            <message>
+              <![CDATA[The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 07BC92AD-C92B-4B77-97AC-0496E5101D23
+*** Element info: {Using=xpath, value=//div[@class='tabs-container']/ul/li[1]}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.InvalidSelectorException: The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 07BC92AD-C92B-4B77-97AC-0496E5101D23
+*** Element info: {Using=xpath, value=//div[@class='tabs-container']/ul/li[1]}
+at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at pageObjects.AppointmentsPO.getSelectTimeMorningButton(AppointmentsPO.java:132)
+at EME.F_MakeApptTest.ScheduleAppointment(F_MakeApptTest.java:67)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.InvalidSelectorException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleAppointment -->
-        <test-method signature="ConfirmAppointmentIsScheduled()[pri:2, instance:EME.MakeApptTest@878452d]" started-at="2019-08-02T13:05:24Z" name="ConfirmAppointmentIsScheduled" finished-at="2019-08-02T13:05:26Z" duration-ms="2118" status="PASS">
+        <test-method signature="ConfirmAppointmentIsScheduled()[pri:2, instance:EME.F_MakeApptTest@878452d]" started-at="2019-08-15T15:17:20Z" name="ConfirmAppointmentIsScheduled" finished-at="2019-08-15T15:17:30Z" duration-ms="10124" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for presence of element located by: By.xpath: //div[@class='homeComponent']//memberinfo/div/div[2]/h2 (tried for 10 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //div[@class='homeComponent']//memberinfo/div/div[2]/h2 (tried for 10 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+at resources.reusableWaits.dashboardLoaded(reusableWaits.java:30)
+at EME.F_MakeApptTest.ConfirmAppointmentIsScheduled(F_MakeApptTest.java:94)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.InvalidSelectorException: The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 07BC92AD-C92B-4B77-97AC-0496E5101D23
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+... 27 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ConfirmAppointmentIsScheduled -->
-        <test-method signature="CancelAppointment()[pri:3, instance:EME.MakeApptTest@878452d]" started-at="2019-08-02T13:05:26Z" name="CancelAppointment" finished-at="2019-08-02T13:05:30Z" duration-ms="4623" status="PASS">
+        <test-method signature="CancelAppointment()[pri:3, instance:EME.F_MakeApptTest@878452d]" started-at="2019-08-15T15:17:30Z" name="CancelAppointment" finished-at="2019-08-15T15:17:30Z" duration-ms="209" status="FAIL">
+          <exception class="org.openqa.selenium.InvalidSelectorException">
+            <message>
+              <![CDATA[The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 07BC92AD-C92B-4B77-97AC-0496E5101D23
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.InvalidSelectorException: The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 07BC92AD-C92B-4B77-97AC-0496E5101D23
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i}
+at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at pageObjects.DashboardPO.getMyApptsAppt1GearButton(DashboardPO.java:256)
+at EME.F_MakeApptTest.CancelAppointment(F_MakeApptTest.java:105)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.InvalidSelectorException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CancelAppointment -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MakeApptTest@878452d]" started-at="2019-08-02T13:05:30Z" name="teardown" finished-at="2019-08-02T13:05:31Z" duration-ms="969" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.F_MakeApptTest@878452d]" started-at="2019-08-15T15:17:30Z" name="teardown" finished-at="2019-08-15T15:17:31Z" duration-ms="209" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- EME.MakeApptTest -->
+      </class> <!-- EME.F_MakeApptTest -->
     </test> <!-- Make Appointment -->
-    <test started-at="2019-08-02T13:05:31Z" name="Schedule Class" finished-at="2019-08-02T13:06:27Z" duration-ms="55675">
+    <test started-at="2019-08-15T15:17:31Z" name="Schedule Class" finished-at="2019-08-15T15:18:18Z" duration-ms="47794">
       <class name="EME.ScheduleClassTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.ScheduleClassTest@6f603e89]" started-at="2019-08-02T13:05:31Z" name="initialize" finished-at="2019-08-02T13:05:37Z" duration-ms="5582" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.ScheduleClassTest@6f603e89]" started-at="2019-08-15T15:17:31Z" name="initialize" finished-at="2019-08-15T15:17:33Z" duration-ms="2690" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="scheduleClass()[pri:1, instance:EME.ScheduleClassTest@6f603e89]" started-at="2019-08-02T13:05:37Z" name="scheduleClass" finished-at="2019-08-02T13:06:17Z" duration-ms="39704" status="PASS">
+        <test-method signature="scheduleClass()[pri:1, instance:EME.ScheduleClassTest@6f603e89]" started-at="2019-08-15T15:17:33Z" name="scheduleClass" finished-at="2019-08-15T15:18:08Z" duration-ms="34852" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- scheduleClass -->
-        <test-method signature="unenrollFromClass()[pri:2, instance:EME.ScheduleClassTest@6f603e89]" started-at="2019-08-02T13:06:17Z" name="unenrollFromClass" finished-at="2019-08-02T13:06:26Z" duration-ms="9388" status="PASS">
+        <test-method signature="unenrollFromClass()[pri:2, instance:EME.ScheduleClassTest@6f603e89]" started-at="2019-08-15T15:18:08Z" name="unenrollFromClass" finished-at="2019-08-15T15:18:18Z" duration-ms="10021" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- unenrollFromClass -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.ScheduleClassTest@6f603e89]" started-at="2019-08-02T13:06:26Z" name="teardown" finished-at="2019-08-02T13:06:27Z" duration-ms="998" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.ScheduleClassTest@6f603e89]" started-at="2019-08-15T15:18:18Z" name="teardown" finished-at="2019-08-15T15:18:18Z" duration-ms="229" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- EME.ScheduleClassTest -->
     </test> <!-- Schedule Class -->
-    <test started-at="2019-08-02T13:06:27Z" name="Schedule Course" finished-at="2019-08-02T13:07:14Z" duration-ms="46759">
+    <test started-at="2019-08-15T15:18:18Z" name="Schedule Course" finished-at="2019-08-15T15:18:57Z" duration-ms="38101">
       <class name="EME.ScheduleCourseTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.ScheduleCourseTest@470a696f]" started-at="2019-08-02T13:06:27Z" name="initialize" finished-at="2019-08-02T13:06:33Z" duration-ms="5786" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.ScheduleCourseTest@470a696f]" started-at="2019-08-15T15:18:18Z" name="initialize" finished-at="2019-08-15T15:18:21Z" duration-ms="2508" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="scheduleCourse()[pri:1, instance:EME.ScheduleCourseTest@470a696f]" started-at="2019-08-02T13:06:33Z" name="scheduleCourse" finished-at="2019-08-02T13:06:57Z" duration-ms="23873" status="PASS">
+        <test-method signature="scheduleCourse()[pri:1, instance:EME.ScheduleCourseTest@470a696f]" started-at="2019-08-15T15:18:21Z" name="scheduleCourse" finished-at="2019-08-15T15:18:41Z" duration-ms="20044" status="FAIL">
+          <exception class="org.openqa.selenium.InvalidSelectorException">
+            <message>
+              <![CDATA[The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: B38726E6-3BC3-4CCB-AC55-E86DCA4744B5
+*** Element info: {Using=xpath, value=//div[@id='courses']/div/div[2]/div[1]/div/div}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.InvalidSelectorException: The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: B38726E6-3BC3-4CCB-AC55-E86DCA4744B5
+*** Element info: {Using=xpath, value=//div[@id='courses']/div/div[2]/div[1]/div/div}
+at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at pageObjects.ClassSignUpPO.getFirstAvailCourseButton(ClassSignUpPO.java:63)
+at EME.ScheduleCourseTest.scheduleCourse(ScheduleCourseTest.java:45)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.InvalidSelectorException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- scheduleCourse -->
-        <test-method signature="unenrollFromCourse()[pri:2, instance:EME.ScheduleCourseTest@470a696f]" started-at="2019-08-02T13:06:57Z" name="unenrollFromCourse" finished-at="2019-08-02T13:07:08Z" duration-ms="11327" status="PASS">
+        <test-method signature="unenrollFromCourse()[pri:2, instance:EME.ScheduleCourseTest@470a696f]" started-at="2019-08-15T15:18:41Z" name="unenrollFromCourse" finished-at="2019-08-15T15:18:51Z" duration-ms="10130" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for presence of element located by: By.xpath: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1] (tried for 10 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1] (tried for 10 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+at EME.ScheduleCourseTest.unenrollFromCourse(ScheduleCourseTest.java:70)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.InvalidSelectorException: The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: B38726E6-3BC3-4CCB-AC55-E86DCA4744B5
+*** Element info: {Using=xpath, value=//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]}
+at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+... 26 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- unenrollFromCourse -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.ScheduleCourseTest@470a696f]" started-at="2019-08-02T13:07:08Z" name="teardown" finished-at="2019-08-02T13:07:14Z" duration-ms="5770" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.ScheduleCourseTest@470a696f]" started-at="2019-08-15T15:18:51Z" name="teardown" finished-at="2019-08-15T15:18:57Z" duration-ms="5216" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- EME.ScheduleCourseTest -->
     </test> <!-- Schedule Course -->
-    <test started-at="2019-08-02T13:07:14Z" name="Make Group Appointment" finished-at="2019-08-02T13:08:01Z" duration-ms="47547">
+    <test started-at="2019-08-15T15:18:57Z" name="Make Group Appointment" finished-at="2019-08-15T15:19:23Z" duration-ms="26283">
       <class name="EME.MakeGroupApptTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-02T13:07:14Z" name="initialize" finished-at="2019-08-02T13:07:19Z" duration-ms="4889" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-15T15:18:57Z" name="initialize" finished-at="2019-08-15T15:19:01Z" duration-ms="4027" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="ScheduleAppointment()[pri:1, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-02T13:07:19Z" name="ScheduleAppointment" finished-at="2019-08-02T13:07:52Z" duration-ms="33028" status="PASS">
+        <test-method signature="ScheduleAppointment()[pri:1, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-15T15:19:01Z" name="ScheduleAppointment" finished-at="2019-08-15T15:19:12Z" duration-ms="11364" status="FAIL">
+          <exception class="org.openqa.selenium.InvalidSelectorException">
+            <message>
+              <![CDATA[The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 6F364839-AF0A-43D4-8F1A-C86B834807CB
+*** Element info: {Using=xpath, value=//appointmentresourceselection/div/div[4]/div[2]/div/div/h2}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.InvalidSelectorException: The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 6F364839-AF0A-43D4-8F1A-C86B834807CB
+*** Element info: {Using=xpath, value=//appointmentresourceselection/div/div[4]/div[2]/div/div/h2}
+at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at pageObjects.AppointmentsPO.getGroupApptsHeader(AppointmentsPO.java:81)
+at EME.MakeGroupApptTest.ScheduleAppointment(MakeGroupApptTest.java:61)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.InvalidSelectorException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleAppointment -->
-        <test-method signature="ConfirmAppointmentIsScheduled()[pri:2, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-02T13:07:52Z" name="ConfirmAppointmentIsScheduled" finished-at="2019-08-02T13:07:54Z" duration-ms="2111" status="PASS">
+        <test-method signature="ConfirmAppointmentIsScheduled()[pri:2, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-15T15:19:12Z" name="ConfirmAppointmentIsScheduled" finished-at="2019-08-15T15:19:22Z" duration-ms="10113" status="FAIL">
+          <exception class="org.openqa.selenium.TimeoutException">
+            <message>
+              <![CDATA[Expected condition failed: waiting for presence of element located by: By.xpath: //div[@class='homeComponent']//memberinfo/div/div[2]/h2 (tried for 10 second(s) with 500 milliseconds interval)]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //div[@class='homeComponent']//memberinfo/div/div[2]/h2 (tried for 10 second(s) with 500 milliseconds interval)
+at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+at resources.reusableWaits.dashboardLoaded(reusableWaits.java:30)
+at EME.MakeGroupApptTest.ConfirmAppointmentIsScheduled(MakeGroupApptTest.java:110)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+Caused by: org.openqa.selenium.InvalidSelectorException: The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 6F364839-AF0A-43D4-8F1A-C86B834807CB
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+... 27 more
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.TimeoutException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ConfirmAppointmentIsScheduled -->
-        <test-method signature="CancelAppointment()[pri:3, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-02T13:07:54Z" name="CancelAppointment" finished-at="2019-08-02T13:08:01Z" duration-ms="6651" status="PASS">
+        <test-method signature="CancelAppointment()[pri:3, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-15T15:19:22Z" name="CancelAppointment" finished-at="2019-08-15T15:19:22Z" duration-ms="208" status="FAIL">
+          <exception class="org.openqa.selenium.InvalidSelectorException">
+            <message>
+              <![CDATA[The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 6F364839-AF0A-43D4-8F1A-C86B834807CB
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i}]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.InvalidSelectorException: The specified selector is invalid.
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/invalid_selector_exception.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:25:53'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 44.17763.1.0, javascriptEnabled: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}}
+Session ID: 6F364839-AF0A-43D4-8F1A-C86B834807CB
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i}
+at jdk.internal.reflect.GeneratedConstructorAccessor20.newInstance(Unknown Source)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+at pageObjects.DashboardPO.getMyApptsAppt1GearButton(DashboardPO.java:256)
+at EME.MakeGroupApptTest.CancelAppointment(MakeGroupApptTest.java:121)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
+at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
+at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
+at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
+at org.testng.TestRunner.privateRun(TestRunner.java:648)
+at org.testng.TestRunner.run(TestRunner.java:505)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
+at org.testng.SuiteRunner.run(SuiteRunner.java:364)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
+at org.testng.TestNG.runSuites(TestNG.java:1049)
+at org.testng.TestNG.run(TestNG.java:1017)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.InvalidSelectorException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CancelAppointment -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-02T13:08:01Z" name="teardown" finished-at="2019-08-02T13:08:01Z" duration-ms="867" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MakeGroupApptTest@376a312c]" started-at="2019-08-15T15:19:23Z" name="teardown" finished-at="2019-08-15T15:19:23Z" duration-ms="255" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

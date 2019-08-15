@@ -25,14 +25,14 @@ import resources.reusableMethods;
 
 
 public class PageLaunchTest extends base{
-private static Logger log =LogManager.getLogger(base.class.getName());
-DashboardPO d=new DashboardPO(driver);
+	private static Logger log =LogManager.getLogger(base.class.getName());
+	DashboardPO d=new DashboardPO(driver);
 	@BeforeTest
 	public void initialize() throws IOException, InterruptedException
 	{
 		driver = initializeDriver();
 		log.info("Driver Initialized");
-		driver.get(prop.getProperty("EMEFuture2URL"));
+		driver.get(prop.getProperty("URL"));
 		reusableMethods.activeMember1Login();
 	}
 	

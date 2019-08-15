@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import resources.base;
 
 
-public class TestCaseTemplate extends base{
+public class NewTestCaseTemplate extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 
 // This class is used as a template for making new test case classes.
@@ -19,7 +19,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("EMEFuture2URL"));
+			 driver.get(prop.getProperty("URL"));
 		}
 		
 	@Test (priority = 1)
@@ -36,7 +36,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
-			Thread.sleep(5000);
 			driver.close();
 			driver=null;
 		}

@@ -1,8 +1,12 @@
 test_environment = local
-browser = Firefox
-EMEFuture2URL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/101
-EMEFutureURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101
-EMECurrentURL = https://ourclublogin.test-jfisoftware.com:8909/account/login/101
+browser = Edge
+URL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/101
+	**************************************************************************************
+	Web addresses for URL parameter
+	EMEFuture2URL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/101
+	EMEFutureURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101
+	EMECurrentURL = https://ourclublogin.test-jfisoftware.com:8909/account/login/101
+	**************************************************************************************
 MastercardNumber = 5454545454545454
 MastercardExpireMonth = 01
 MastercardExpireYear = 25
