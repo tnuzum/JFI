@@ -35,3 +35,21 @@
 11:18:20.063 [main] INFO  resources.base - Driver Initialized
 11:18:57.072 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
 11:18:58.174 [main] INFO  resources.base - Driver Initialized
+11:49:22.904 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+11:49:24.679 [main] INFO  resources.base - Driver Initialized
+11:49:26.127 [main] INFO  resources.base - Page Title Verified
+11:49:26.354 [main] INFO  resources.base - Username input label text Confirmed
+11:49:26.569 [main] INFO  resources.base - Username input label text Confirmed
+11:49:26.780 [main] INFO  resources.base - Forgot Username link text Confirmed
+11:49:26.992 [main] INFO  resources.base - Forgot Password link text Confirmed
+11:49:27.204 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+11:49:27.418 [main] INFO  resources.base - Remember Username label text Confirmed
+11:49:27.634 [main] INFO  resources.base - Login button label text Confirmed
+11:49:27.846 [main] INFO  resources.base - Login button isEnabled Confirmed
+11:49:28.095 [main] INFO  resources.base - Log In Button Clicked
+11:49:28.531 [main] INFO  resources.base - Username Required Message Confirmed
+11:49:28.743 [main] INFO  resources.base - Password Required Message Confirmed
+11:49:29.197 [main] INFO  resources.base - User Name Entered
+11:49:29.679 [main] INFO  resources.base - Password Entered
+11:49:30.155 [main] INFO  resources.base - Log In Button Clicked
+11:49:30.380 [main] INFO  resources.base - Error Message Title Verified
