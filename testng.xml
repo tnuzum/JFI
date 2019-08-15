@@ -5,11 +5,11 @@
 		<listener class-name = "EME.listeners"/>
 	<listener class-name = "resources.ExtentReporterNG"/>
 	</listeners> 
-  <test thread-count="5" name="Login Page Test">
+  <!-- test thread-count="5" name="Login Page Test">
     <classes>
       <class name="EME.LoginPageTest"/>
     </classes>
-  </test>
+  </test-->
   <test thread-count="5" name="Member Login">
     <classes>
       <class name="EME.MemberLoginTest"/>
