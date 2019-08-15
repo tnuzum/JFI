@@ -13,9 +13,10 @@ import pageObjects.LoginPO;
 import resources.base;
 
 
-public class LoginPageTest extends base{
+public class loginPageTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
-@BeforeTest
+
+	@BeforeTest
 	public void initialize() throws IOException
 	{
 		 driver = initializeDriver();

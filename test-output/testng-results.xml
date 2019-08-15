@@ -2,36 +2,36 @@
 <testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-08-15T16:07:11Z" name="Default suite" finished-at="2019-08-15T16:07:19Z" duration-ms="7387">
+  <suite started-at="2019-08-15T16:20:43Z" name="Default suite" finished-at="2019-08-15T16:20:50Z" duration-ms="7268">
     <groups>
     </groups>
-    <test started-at="2019-08-15T16:07:11Z" name="Default test" finished-at="2019-08-15T16:07:19Z" duration-ms="7387">
-      <class name="EME.LoginPageTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.LoginPageTest@636e8cc]" started-at="2019-08-15T16:07:11Z" name="initialize" finished-at="2019-08-15T16:07:14Z" duration-ms="2876" status="PASS">
+    <test started-at="2019-08-15T16:20:43Z" name="Default test" finished-at="2019-08-15T16:20:50Z" duration-ms="7268">
+      <class name="EME.loginPageTest">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.loginPageTest@636e8cc]" started-at="2019-08-15T16:20:43Z" name="initialize" finished-at="2019-08-15T16:20:45Z" duration-ms="2749" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="pageTitle()[pri:1, instance:EME.LoginPageTest@636e8cc]" started-at="2019-08-15T16:07:14Z" name="pageTitle" finished-at="2019-08-15T16:07:14Z" duration-ms="9" status="PASS">
+        <test-method signature="pageTitle()[pri:1, instance:EME.loginPageTest@636e8cc]" started-at="2019-08-15T16:20:45Z" name="pageTitle" finished-at="2019-08-15T16:20:45Z" duration-ms="9" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- pageTitle -->
-        <test-method signature="pageTextLabels()[pri:2, instance:EME.LoginPageTest@636e8cc]" started-at="2019-08-15T16:07:14Z" name="pageTextLabels" finished-at="2019-08-15T16:07:16Z" duration-ms="1710" status="PASS">
+        <test-method signature="pageTextLabels()[pri:2, instance:EME.loginPageTest@636e8cc]" started-at="2019-08-15T16:20:45Z" name="pageTextLabels" finished-at="2019-08-15T16:20:47Z" duration-ms="1723" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- pageTextLabels -->
-        <test-method signature="noUserMessages()[pri:3, instance:EME.LoginPageTest@636e8cc]" started-at="2019-08-15T16:07:16Z" name="noUserMessages" finished-at="2019-08-15T16:07:17Z" duration-ms="900" status="PASS">
+        <test-method signature="noUserMessages()[pri:3, instance:EME.loginPageTest@636e8cc]" started-at="2019-08-15T16:20:47Z" name="noUserMessages" finished-at="2019-08-15T16:20:48Z" duration-ms="895" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- noUserMessages -->
-        <test-method signature="wrongCredentialsMessages()[pri:4, instance:EME.LoginPageTest@636e8cc]" started-at="2019-08-15T16:07:17Z" name="wrongCredentialsMessages" finished-at="2019-08-15T16:07:18Z" duration-ms="1628" status="PASS">
+        <test-method signature="wrongCredentialsMessages()[pri:4, instance:EME.loginPageTest@636e8cc]" started-at="2019-08-15T16:20:48Z" name="wrongCredentialsMessages" finished-at="2019-08-15T16:20:50Z" duration-ms="1631" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- wrongCredentialsMessages -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.LoginPageTest@636e8cc]" started-at="2019-08-15T16:07:18Z" name="teardown" finished-at="2019-08-15T16:07:19Z" duration-ms="242" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.loginPageTest@636e8cc]" started-at="2019-08-15T16:20:50Z" name="teardown" finished-at="2019-08-15T16:20:50Z" duration-ms="240" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- EME.LoginPageTest -->
+      </class> <!-- EME.loginPageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
