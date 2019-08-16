@@ -24,11 +24,11 @@ public class MakeGroupApptTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 
 	@BeforeTest
-		public void initialize() throws IOException
+		public void initialize() throws IOException, InterruptedException
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("URL"));
+			 driver.get(prop.getProperty("EMELoginPage"));
 		}
 		
 	@Test (priority = 1)
@@ -103,7 +103,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException
 	{	
-		reusableWaits.dashboardLoaded();
+		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong")));
@@ -145,7 +145,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //				Thread.sleep(500);	
 			}
 		a.getEditApptCanceledOKButton().click();
-		reusableWaits.dashboardLoaded();
+		reusableWaits.waitForDashboardLoaded();
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		}
 

@@ -10,22 +10,24 @@ import org.testng.annotations.Test;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 public class MemberLoginTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 	
 	@BeforeTest
-		public void initialize() throws IOException
+		public void initialize() throws IOException, InterruptedException
 		{
 		 driver = initializeDriver();
 		 log.info("Driver Initialized");
-		 driver.get(prop.getProperty("URL"));
+		 driver.get(prop.getProperty("EMELoginPage"));
 		}
 	
 	@Test (priority = 10, description = "Login Active Adult HOH Member")
 		public void activeMember1Login() throws InterruptedException
 		{
 		reusableMethods.activeMember1Login();
+		reusableWaits.waitForFamilyCount();
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember1_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"2");
@@ -53,6 +55,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void activeMember4Login() throws InterruptedException
 		{
 		reusableMethods.activeMember4Login();
+		reusableWaits.waitForFamilyCount();
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember4_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"0");
@@ -79,7 +82,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		}
 
 	@AfterTest
-		public void teardown() throws InterruptedException
+		public void teardown()
 		{
 		driver.close();
 		driver=null;

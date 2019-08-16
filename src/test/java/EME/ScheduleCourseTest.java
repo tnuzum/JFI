@@ -22,11 +22,11 @@ public class ScheduleCourseTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 
 	@BeforeTest
-		public void initialize() throws IOException
+		public void initialize() throws IOException, InterruptedException
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("URL"));
+			 driver.get(prop.getProperty("EMELoginPage"));
 		}
 		
 	@Test (priority = 1)

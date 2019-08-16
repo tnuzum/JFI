@@ -39,7 +39,7 @@ public class DashboardPO {
 	By myAccountBalance = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2");
 	By myAccountBalDuelabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/div/small");
 	By myAccountTotChargesAmount = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small/strong/span");
-	By myAccountLastPaymentDate = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[2]");
+	By myAccountLastPaymentDate = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[1]");
 	
 	By myInfoSectionLabel = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[1]");
 	By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2");

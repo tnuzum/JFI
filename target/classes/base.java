@@ -61,7 +61,7 @@ public class base {
 				dc.setBrowserName("MicrosoftEdge");
 				dc.setPlatform(Platform.WINDOWS);
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);}
-			if (browserName.equals("IE")) {
+		/*	if (browserName.equals("IE")) {
 				log.info("IE Browser: Running Tests on Selenium Grid");
 				DesiredCapabilities dc =
 				DesiredCapabilities.internetExplorer();
@@ -69,7 +69,7 @@ public class base {
 //				dc.setBrowserName("internetexplorer");
 				dc.setPlatform(Platform.WINDOWS);
 //				System.setProperty("webdriver.ie.driver","C:\\Users\\tnuzum\\Automation\\libs\\webdrivers\\IEDriverServer.exe");
-				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);}
+				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);}*/
 		}
 		else {
 		if (testEnvironment.equals("local")){
@@ -90,7 +90,7 @@ public class base {
 					System.setProperty("webdriver.ie.driver","C:\\Users\\tnuzum\\Automation\\libs\\webdrivers\\IEDriverServer.exe");
 					options.setCapability("ignoreZoomSetting", true);
 					driver = new InternetExplorerDriver(options); 
-					}		
+					}	
 			}
 		}
 		
@@ -102,7 +102,6 @@ public class base {
 		
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
-
 		return driver;
 	}
 

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [EME - Smoke Testing]" guice-stage="DEVELOPMENT" verbose="0">
+  <listeners>
+    <listener class-name="EME.listeners"/>
+    <listener class-name="resources.ExtentReporterNG"/>
+  </listeners>
+  <test thread-count="5" name="Page Launch(failed)" verbose="0">
+    <classes>
+      <class name="EME.PageLaunchTest">
+        <methods>
+          <include name="EditMyInfoButtonTest"/>
+          <include name="ManageFamilyButtonTest"/>
+          <include name="ScheduleClassesButtonTest"/>
+          <include name="ForgotUsernameButtonTest"/>
+          <include name="PayNowButtonTest"/>
+          <include name="MyPackagesButtonTest"/>
+          <include name="ForgotPasswordButtonTest"/>
+          <include name="teardown"/>
+          <include name="AcctHistoryButtonTest"/>
+          <include name="ScheduleApptsButtonTest"/>
+          <include name="initialize"/>
+          <include name="CartButtonTest"/>
+        </methods>
+      </class> <!-- EME.PageLaunchTest -->
+    </classes>
+  </test> <!-- Page Launch(failed) -->
+  <test thread-count="5" name="Make Payment(failed)" verbose="0">
+    <classes>
+      <class name="EME.MakePaymentTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="MakePayment"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- EME.MakePaymentTest -->
+    </classes>
+  </test> <!-- Make Payment(failed) -->
+  <test thread-count="5" name="Make Appointment(failed)" verbose="0">
+    <classes>
+      <class name="EME.MakeApptTest">
+        <methods>
+          <include name="ConfirmAppointmentIsScheduled"/>
+          <include name="CancelAppointment"/>
+          <include name="ScheduleAppointment"/>
+          <include name="teardown"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- EME.MakeApptTest -->
+    </classes>
+  </test> <!-- Make Appointment(failed) -->
+  <test thread-count="5" name="Schedule Class(failed)" verbose="0">
+    <classes>
+      <class name="EME.ScheduleClassTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="initialize"/>
+          <include name="unenrollFromClass"/>
+          <include name="scheduleClass"/>
+        </methods>
+      </class> <!-- EME.ScheduleClassTest -->
+    </classes>
+  </test> <!-- Schedule Class(failed) -->
+  <test thread-count="5" name="Schedule Course(failed)" verbose="0">
+    <classes>
+      <class name="EME.ScheduleCourseTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="scheduleCourse"/>
+          <include name="initialize"/>
+          <include name="unenrollFromCourse"/>
+        </methods>
+      </class> <!-- EME.ScheduleCourseTest -->
+    </classes>
+  </test> <!-- Schedule Course(failed) -->
+  <test thread-count="5" name="Make Group Appointment(failed)" verbose="0">
+    <classes>
+      <class name="EME.MakeGroupApptTest">
+        <methods>
+          <include name="ScheduleAppointment"/>
+          <include name="teardown"/>
+          <include name="CancelAppointment"/>
+          <include name="ConfirmAppointmentIsScheduled"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- EME.MakeGroupApptTest -->
+    </classes>
+  </test> <!-- Make Group Appointment(failed) -->
+</suite> <!-- Failed suite [EME - Smoke Testing] -->

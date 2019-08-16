@@ -19,7 +19,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("URL"));
+			 driver.get(prop.getProperty("EMELoginPage"));
 		}
 		
 	@Test (priority = 1)

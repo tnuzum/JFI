@@ -5,19 +5,42 @@
     <listener class-name="EME.listeners"/>
     <listener class-name="resources.ExtentReporterNG"/>
   </listeners>
+  <test thread-count="5" name="Page Launch(failed)">
+    <classes>
+      <class name="EME.PageLaunchTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="ScheduleApptsButtonTest"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- EME.PageLaunchTest -->
+    </classes>
+  </test> <!-- Page Launch(failed) -->
   <test thread-count="5" name="Make Appointment(failed)">
     <classes>
-      <class name="EME.F_MakeApptTest">
+      <class name="EME.MakeApptTest">
         <methods>
-          <include name="initialize"/>
-          <include name="CancelAppointment"/>
           <include name="ConfirmAppointmentIsScheduled"/>
+          <include name="CancelAppointment"/>
           <include name="ScheduleAppointment"/>
           <include name="teardown"/>
+          <include name="initialize"/>
         </methods>
-      </class> <!-- EME.F_MakeApptTest -->
+      </class> <!-- EME.MakeApptTest -->
     </classes>
   </test> <!-- Make Appointment(failed) -->
+  <test thread-count="5" name="Schedule Class(failed)">
+    <classes>
+      <class name="EME.ScheduleClassTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="initialize"/>
+          <include name="unenrollFromClass"/>
+          <include name="scheduleClass"/>
+        </methods>
+      </class> <!-- EME.ScheduleClassTest -->
+    </classes>
+  </test> <!-- Schedule Class(failed) -->
   <test thread-count="5" name="Schedule Course(failed)">
     <classes>
       <class name="EME.ScheduleCourseTest">

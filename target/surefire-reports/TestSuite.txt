@@ -1,0 +1,144 @@
+-------------------------------------------------------------------------------
+Test set: TestSuite
+-------------------------------------------------------------------------------
+Tests run: 34, Failures: 12, Errors: 0, Skipped: 11, Time elapsed: 165.327 s <<< FAILURE! - in TestSuite
+initialize(EME.PageLaunchTest)  Time elapsed: 15.05 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Tried to run command without establishing a connection
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 17276, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: d1e48d67-2702-49a3-a659-0ac25b97e874
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+	at EME.PageLaunchTest.initialize(PageLaunchTest.java:36)
+
+MakePayment(EME.MakePaymentTest)  Time elapsed: 1.409 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Tried to run command without establishing a connection
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 17276, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: d1e48d67-2702-49a3-a659-0ac25b97e874
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+	at EME.MakePaymentTest.MakePayment(MakePaymentTest.java:40)
+
+ScheduleAppointment(EME.MakeApptTest)  Time elapsed: 3.539 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Tried to run command without establishing a connection
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 16328, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: c7aa15d0-bc44-4647-986d-fd52c572a729
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+	at EME.MakeApptTest.ScheduleAppointment(MakeApptTest.java:37)
+
+ConfirmAppointmentIsScheduled(EME.MakeApptTest)  Time elapsed: 0.012 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Tried to run command without establishing a connection
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 16328, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: c7aa15d0-bc44-4647-986d-fd52c572a729
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+	at EME.MakeApptTest.ConfirmAppointmentIsScheduled(MakeApptTest.java:91)
+
+CancelAppointment(EME.MakeApptTest)  Time elapsed: 10.012 s  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: 
+Unable to locate element: //appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 14520, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 38d6b282-e605-45fc-a99c-b79b6918049f
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i}
+	at EME.MakeApptTest.CancelAppointment(MakeApptTest.java:102)
+
+scheduleClass(EME.ScheduleClassTest)  Time elapsed: 1.308 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Tried to run command without establishing a connection
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 14520, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 38d6b282-e605-45fc-a99c-b79b6918049f
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+	at EME.ScheduleClassTest.scheduleClass(ScheduleClassTest.java:38)
+
+unenrollFromClass(EME.ScheduleClassTest)  Time elapsed: 10.008 s  <<< FAILURE!
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1] (tried for 10 second(s) with 500 milliseconds interval)
+	at EME.ScheduleClassTest.unenrollFromClass(ScheduleClassTest.java:99)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+Unable to locate element: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 18380, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 50465787-36e0-47c3-975c-f23c805b73f1
+*** Element info: {Using=xpath, value=//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]}
+	at EME.ScheduleClassTest.unenrollFromClass(ScheduleClassTest.java:99)
+
+scheduleCourse(EME.ScheduleCourseTest)  Time elapsed: 1.591 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Tried to run command without establishing a connection
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 18380, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 50465787-36e0-47c3-975c-f23c805b73f1
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+	at EME.ScheduleCourseTest.scheduleCourse(ScheduleCourseTest.java:36)
+
+unenrollFromCourse(EME.ScheduleCourseTest)  Time elapsed: 10.028 s  <<< FAILURE!
+org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1] (tried for 10 second(s) with 500 milliseconds interval)
+	at EME.ScheduleCourseTest.unenrollFromCourse(ScheduleCourseTest.java:71)
+Caused by: org.openqa.selenium.NoSuchElementException: 
+Unable to locate element: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 15456, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: b1e35eb4-53bc-430a-a382-f7dfef2f0d08
+*** Element info: {Using=xpath, value=//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]}
+	at EME.ScheduleCourseTest.unenrollFromCourse(ScheduleCourseTest.java:71)
+
+ScheduleAppointment(EME.MakeGroupApptTest)  Time elapsed: 1.34 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Tried to run command without establishing a connection
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 15456, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: b1e35eb4-53bc-430a-a382-f7dfef2f0d08
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+	at EME.MakeGroupApptTest.ScheduleAppointment(MakeGroupApptTest.java:37)
+
+ConfirmAppointmentIsScheduled(EME.MakeGroupApptTest)  Time elapsed: 0.008 s  <<< FAILURE!
+org.openqa.selenium.NoSuchSessionException: 
+Tried to run command without establishing a connection
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 15456, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: b1e35eb4-53bc-430a-a382-f7dfef2f0d08
+*** Element info: {Using=xpath, value=//div[@class='homeComponent']//memberinfo/div/div[2]/h2}
+	at EME.MakeGroupApptTest.ConfirmAppointmentIsScheduled(MakeGroupApptTest.java:106)
+
+CancelAppointment(EME.MakeGroupApptTest)  Time elapsed: 10.015 s  <<< FAILURE!
+org.openqa.selenium.NoSuchElementException: 
+Unable to locate element: //appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 15928, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: f6a4862b-bc3d-4788-b5e4-4f926f4a3c42
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i}
+	at EME.MakeGroupApptTest.CancelAppointment(MakeGroupApptTest.java:117)
+

@@ -20,20 +20,21 @@ import pageObjects.PaymentPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 
 public class MakePaymentTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 
 	@BeforeTest
-		public void initialize() throws IOException
+		public void initialize() throws IOException, InterruptedException
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("URL"));
+			 driver.get(prop.getProperty("EMELoginPage"));
 		}
 		
-	@Test (priority = 1, description = "Adding $100.00 to member's account")
+	@Test (priority = 1, description = "Adding $1.00 to member's account")
 		public void MakePayment() throws InterruptedException
 		{	
 		reusableMethods.activeMember1Login();
@@ -42,17 +43,34 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		d.getMyAccountPayNow().click();
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//enterpaymentamount/div/div/div/div/div/h2")));
-			
-//			if (p.getAmountDueLabel().getText().equals("$0.00 DUE FOR"))
-//			{
-//				System.out.println("Amount due is $0.00");
-		p.getAmountRadioButton3().click();
-			Actions a= new Actions(driver);
-		a.moveToElement(p.getAmountRadioButton3()).sendKeys(Keys.TAB).sendKeys(Keys.DELETE).build().perform();
-		p.getCustomAmountInput().sendKeys("1.00");
+		p.getPaymentAmountInput().clear();
+		p.getPaymentAmountInput().sendKeys("1.00");
 		Thread.sleep(500);
-//		}
-//		System.out.println("Amount due is greater than $0.00");
+		String amount = p.getPaymentAmountInput().getAttribute("ng-reflect-model");
+		int amountInt = Integer.parseInt(amount);
+		System.out.println(amountInt);
+		if (amountInt == 01.00)
+		{
+			Thread.sleep(500);
+			p.getPayWithThisMethodButton1().click();
+		}
+		else
+		{
+			System.out.println("Amount not $1.00, not click pay button");
+			reusableMethods.returnToDashboard();
+			Assert.assertFalse(true);//fails test if this condition is found
+		}
+		// THIS CODE IS USED FOR ENTERING NEW CREDIT CARD
+		/*p.getAmountRadioButton3().click();
+			p.getPaymentAmountInput().clear();
+			if (!p.getCustomAmountInput().getText().isBlank())
+			{
+				Thread.sleep(500);
+				p.getPaymentAmountInput().clear();
+				System.out.println("Info: Waiting 500ms; Amount field is not blank");
+			}
+		p.getCustomAmountInput().sendKeys("1.00");
+			Thread.sleep(500);
 		p.getCardNumber().sendKeys(prop.getProperty("MastercardNumber"));
 			Thread.sleep(500);
 		p.getExpireMonth().sendKeys(prop.getProperty("MastercardExpireMonth"));
@@ -60,17 +78,17 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		p.getExpireYear().sendKeys(prop.getProperty("MastercardExpireYear"));
 			Thread.sleep(500);
 		p.getCVC().sendKeys(prop.getProperty("MastercardCVC"));
-		Thread.sleep(500);
+			Thread.sleep(500);
 		p.getSaveCardNoRadio().click();
-		Thread.sleep(2000);
 //		p.getIAgreeCheckbox().click();//might not be shown if getSaveCardNoRadio is used
-			Thread.sleep(2000);
-		p.getSubmitButton().click();
-			Thread.sleep(2000);
+			reusableWaits.waitForPaymentSubmitButton();
+		p.getSubmitButton().click();*/
+			
+			reusableWaits.waitForAcceptButton();
+		p.getPopupConfirmationButton().click();
+			reusableWaits.waitForAcceptButton();
 		p.getPopupConfirmationButton().click();
 			Thread.sleep(2000);
-		p.getPopupConfirmationButton().click();
-		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 		}
 	
@@ -79,11 +97,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	{	
 		DashboardPO d = new DashboardPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 10);
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[2]")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[1]")));
 			while (d.getMyAccountLastPaymentDate().getText().equalsIgnoreCase("Last Payment:"))
 			{
-				Thread.sleep(1000);
-				System.out.println("Sleeping for 1 second");
+				Thread.sleep(500);
+				System.out.println("Sleeping for 500ms");
 			}
 		DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
 		Date date = new Date();

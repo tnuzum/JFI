@@ -8,14 +8,301 @@
 <body>
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
-<tr><th colspan="7">Default suite</th></tr>
-<tr><td><a href="#t0">Default test</a></td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">7,268</td><td></td><td></td></tr>
+<tr><th colspan="7">EME - Smoke Testing</th></tr>
+<tr><td><a href="#t0">Login Page Test</a></td><td class="num">4</td><td class="num">0</td><td class="num">0</td><td class="num">6,836</td><td></td><td></td></tr>
+<tr class="stripe"><td><a href="#t1">Member Login</a></td><td class="num">6</td><td class="num">0</td><td class="num">0</td><td class="num">59,602</td><td></td><td></td></tr>
+<tr><td><a href="#t2">Page Launch</a></td><td class="num">9</td><td class="num">0</td><td class="num attn">1</td><td class="num">46,610</td><td></td><td></td></tr>
+<tr class="stripe"><td><a href="#t3">Make Payment</a></td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num">16,555</td><td></td><td></td></tr>
+<tr><td><a href="#t4">Make Appointment</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">3</td><td class="num">38,341</td><td></td><td></td></tr>
+<tr class="stripe"><td><a href="#t5">Schedule Class</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">2</td><td class="num">36,547</td><td></td><td></td></tr>
+<tr><td><a href="#t6">Schedule Course</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">2</td><td class="num">45,343</td><td></td><td></td></tr>
+<tr class="stripe"><td><a href="#t7">Make Group Appointment</a></td><td class="num">0</td><td class="num">0</td><td class="num attn">3</td><td class="num">38,281</td><td></td><td></td></tr>
+<tr><th>Total</th><th class="num">21</th><th class="num">0</th><th class="num attn">11</th><th class="num">288,115</th><th colspan="2"></th></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Default suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Default test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="4">EME.loginPageTest</td><td><a href="#m0">noUserMessages</a></td><td rowspan="1">1565886047533</td><td rowspan="1">895</td></tr><tr class="passedeven"><td><a href="#m1">pageTextLabels</a></td><td rowspan="1">1565886045809</td><td rowspan="1">1723</td></tr><tr class="passedeven"><td><a href="#m2">pageTitle</a></td><td rowspan="1">1565886045797</td><td rowspan="1">9</td></tr><tr class="passedeven"><td><a href="#m3">wrongCredentialsMessages</a></td><td rowspan="1">1565886048429</td><td rowspan="1">1631</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">EME - Smoke Testing</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Login Page Test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="4">EME.loginPageTest</td><td><a href="#m0">noUserMessages</a></td><td rowspan="1">1565967424501</td><td rowspan="1">288</td></tr><tr class="passedeven"><td><a href="#m1">pageTextLabels</a></td><td rowspan="1">1565967424362</td><td rowspan="1">138</td></tr><tr class="passedeven"><td><a href="#m2">pageTitle</a></td><td rowspan="1">1565967424349</td><td rowspan="1">10</td></tr><tr class="passedeven"><td><a href="#m3">wrongCredentialsMessages</a></td><td rowspan="1">1565967424790</td><td rowspan="1">349</td></tr></tbody>
+<tbody id="t1"><tr><th colspan="4">Member Login &#8212; passed</th></tr><tr class="passedeven"><td rowspan="6">EME.MemberLoginTest</td><td><a href="#m4">activeMember1Login</a></td><td rowspan="1">1565967430779</td><td rowspan="1">4208</td></tr><tr class="passedeven"><td><a href="#m5">activeMember2Login</a></td><td rowspan="1">1565967434988</td><td rowspan="1">14733</td></tr><tr class="passedeven"><td><a href="#m6">activeMember3Login</a></td><td rowspan="1">1565967449722</td><td rowspan="1">14472</td></tr><tr class="passedeven"><td><a href="#m7">activeMember4Login</a></td><td rowspan="1">1565967464194</td><td rowspan="1">4222</td></tr><tr class="passedeven"><td><a href="#m8">collectionsMember1Login</a></td><td rowspan="1">1565967468417</td><td rowspan="1">12940</td></tr><tr class="passedeven"><td><a href="#m9">prospectMember1Login</a></td><td rowspan="1">1565967481358</td><td rowspan="1">3665</td></tr></tbody>
+<tbody id="t2"><tr><th colspan="4">Page Launch &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">EME.PageLaunchTest</td><td><a href="#m10">ScheduleApptsButtonTest</a></td><td rowspan="1">1565967513091</td><td rowspan="1">10017</td></tr><tr><th colspan="4">Page Launch &#8212; passed</th></tr><tr class="passedeven"><td rowspan="9">EME.PageLaunchTest</td><td><a href="#m11">AcctHistoryButtonTest</a></td><td rowspan="1">1565967502741</td><td rowspan="1">2768</td></tr><tr class="passedeven"><td><a href="#m12">CartButtonTest</a></td><td rowspan="1">1565967498928</td><td rowspan="1">3813</td></tr><tr class="passedeven"><td><a href="#m13">EditMyInfoButtonTest</a></td><td rowspan="1">1565967526337</td><td rowspan="1">1176</td></tr><tr class="passedeven"><td><a href="#m14">ForgotPasswordButtonTest</a></td><td rowspan="1">1565967531155</td><td rowspan="1">472</td></tr><tr class="passedeven"><td><a href="#m15">ForgotUsernameButtonTest</a></td><td rowspan="1">1565967527514</td><td rowspan="1">3640</td></tr><tr class="passedeven"><td><a href="#m16">ManageFamilyButtonTest</a></td><td rowspan="1">1565967523205</td><td rowspan="1">3131</td></tr><tr class="passedeven"><td><a href="#m17">MyPackagesButtonTest</a></td><td rowspan="1">1565967494830</td><td rowspan="1">4097</td></tr><tr class="passedeven"><td><a href="#m18">PayNowButtonTest</a></td><td rowspan="1">1565967505510</td><td rowspan="1">2798</td></tr><tr class="passedeven"><td><a href="#m19">ScheduleClassesButtonTest</a></td><td rowspan="1">1565967508309</td><td rowspan="1">4781</td></tr></tbody>
+<tbody id="t3"><tr><th colspan="4">Make Payment &#8212; passed</th></tr><tr class="passedeven"><td rowspan="2">EME.MakePaymentTest</td><td><a href="#m20">ConfirmPaymentApplied</a></td><td rowspan="1">1565967547346</td><td rowspan="1">552</td></tr><tr class="passedeven"><td><a href="#m21">MakePayment</a></td><td rowspan="1">1565967536717</td><td rowspan="1">10628</td></tr></tbody>
+<tbody id="t4"><tr><th colspan="4">Make Appointment &#8212; failed</th></tr><tr class="failedeven"><td rowspan="3">EME.MakeApptTest</td><td><a href="#m22">CancelAppointment</a></td><td rowspan="1">1565967576367</td><td rowspan="1">10012</td></tr><tr class="failedeven"><td><a href="#m23">ConfirmAppointmentIsScheduled</a></td><td rowspan="1">1565967566227</td><td rowspan="1">10062</td></tr><tr class="failedeven"><td><a href="#m24">ScheduleAppointment</a></td><td rowspan="1">1565967553201</td><td rowspan="1">12941</td></tr></tbody>
+<tbody id="t5"><tr><th colspan="4">Schedule Class &#8212; failed</th></tr><tr class="failedeven"><td rowspan="2">EME.ScheduleClassTest</td><td><a href="#m25">scheduleClass</a></td><td rowspan="1">1565967591628</td><td rowspan="1">21231</td></tr><tr class="failedeven"><td><a href="#m26">unenrollFromClass</a></td><td rowspan="1">1565967612937</td><td rowspan="1">10018</td></tr></tbody>
+<tbody id="t6"><tr><th colspan="4">Schedule Course &#8212; failed</th></tr><tr class="failedeven"><td rowspan="2">EME.ScheduleCourseTest</td><td><a href="#m27">scheduleCourse</a></td><td rowspan="1">1565967628156</td><td rowspan="1">25037</td></tr><tr class="failedeven"><td><a href="#m28">unenrollFromCourse</a></td><td rowspan="1">1565967653273</td><td rowspan="1">10006</td></tr></tbody>
+<tbody id="t7"><tr><th colspan="4">Make Group Appointment &#8212; failed</th></tr><tr class="failedeven"><td rowspan="3">EME.MakeGroupApptTest</td><td><a href="#m29">CancelAppointment</a></td><td rowspan="1">1565967696690</td><td rowspan="1">10013</td></tr><tr class="failedeven"><td><a href="#m30">ConfirmAppointmentIsScheduled</a></td><td rowspan="1">1565967686552</td><td rowspan="1">10065</td></tr><tr class="failedeven"><td><a href="#m31">ScheduleAppointment</a></td><td rowspan="1">1565967673549</td><td rowspan="1">12925</td></tr></tbody>
 </table>
-<h2>Default test</h2><h3 id="m0">EME.loginPageTest#noUserMessages</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Login Page Test</h2><h3 id="m0">EME.loginPageTest#noUserMessages</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 <h3 id="m1">EME.loginPageTest#pageTextLabels</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 <h3 id="m2">EME.loginPageTest#pageTitle</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 <h3 id="m3">EME.loginPageTest#wrongCredentialsMessages</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Member Login</h2><h3 id="m4">EME.MemberLoginTest#activeMember1Login</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">EME.MemberLoginTest#activeMember2Login</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">EME.MemberLoginTest#activeMember3Login</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">EME.MemberLoginTest#activeMember4Login</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m8">EME.MemberLoginTest#collectionsMember1Login</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m9">EME.MemberLoginTest#prospectMember1Login</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Page Launch</h2><h3 id="m10">EME.PageLaunchTest#ScheduleApptsButtonTest</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Unable to locate element: //div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 17880, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 4de3cd39-3489-40d3-a635-4ed1ad0df16f
+*** Element info: {Using=xpath, value=//div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at pageObjects.DashboardPO.getMyApptsScheduleButton(DashboardPO.java:240)
+	at EME.PageLaunchTest.ScheduleApptsButtonTest(PageLaunchTest.java:93)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m11">EME.PageLaunchTest#AcctHistoryButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m12">EME.PageLaunchTest#CartButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m13">EME.PageLaunchTest#EditMyInfoButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m14">EME.PageLaunchTest#ForgotPasswordButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m15">EME.PageLaunchTest#ForgotUsernameButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m16">EME.PageLaunchTest#ManageFamilyButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m17">EME.PageLaunchTest#MyPackagesButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m18">EME.PageLaunchTest#PayNowButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m19">EME.PageLaunchTest#ScheduleClassesButtonTest</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Make Payment</h2><h3 id="m20">EME.MakePaymentTest#ConfirmPaymentApplied</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m21">EME.MakePaymentTest#MakePayment</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Make Appointment</h2><h3 id="m22">EME.MakeApptTest#CancelAppointment</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Unable to locate element: //appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 21184, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: a83be3c9-8a5f-4727-aa02-65b17e411baf
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at pageObjects.DashboardPO.getMyApptsAppt1GearButton(DashboardPO.java:256)
+	at EME.MakeApptTest.CancelAppointment(MakeApptTest.java:102)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m23">EME.MakeApptTest#ConfirmAppointmentIsScheduled</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at EME.MakeApptTest.ConfirmAppointmentIsScheduled(MakeApptTest.java:94)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 21184, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: a83be3c9-8a5f-4727-aa02-65b17e411baf
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 26 more
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m24">EME.MakeApptTest#ScheduleAppointment</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Unable to locate element: //div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 21184, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: a83be3c9-8a5f-4727-aa02-65b17e411baf
+*** Element info: {Using=xpath, value=//div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at pageObjects.DashboardPO.getMyApptsScheduleButton(DashboardPO.java:240)
+	at EME.MakeApptTest.ScheduleAppointment(MakeApptTest.java:39)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Schedule Class</h2><h3 id="m25">EME.ScheduleClassTest#scheduleClass</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Unable to locate element: //div[@id=&apos;classes&apos;]/div[2]/div[2]/div[1]/div/div/div
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 16540, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: bfba57b6-4d32-477c-ab8e-21975fe5e5ff
+*** Element info: {Using=xpath, value=//div[@id=&apos;classes&apos;]/div[2]/div[2]/div[1]/div/div/div}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at pageObjects.ClassSignUpPO.getfirstAvailClassNextDayButton(ClassSignUpPO.java:59)
+	at EME.ScheduleClassTest.scheduleClass(ScheduleClassTest.java:51)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m26">EME.ScheduleClassTest#unenrollFromClass</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1] (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at EME.ScheduleClassTest.unenrollFromClass(ScheduleClassTest.java:99)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 16540, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: bfba57b6-4d32-477c-ab8e-21975fe5e5ff
+*** Element info: {Using=xpath, value=//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 26 more
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Schedule Course</h2><h3 id="m27">EME.ScheduleCourseTest#scheduleCourse</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Unable to locate element: //div[@id=&apos;courses&apos;]/div/div[2]/div[1]/div/div
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 14796, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: d22b09f7-a4ce-4563-a21b-b23a393b6fd7
+*** Element info: {Using=xpath, value=//div[@id=&apos;courses&apos;]/div/div[2]/div[1]/div/div}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at pageObjects.ClassSignUpPO.getFirstAvailCourseButton(ClassSignUpPO.java:63)
+	at EME.ScheduleCourseTest.scheduleCourse(ScheduleCourseTest.java:45)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m28">EME.ScheduleCourseTest#unenrollFromCourse</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1] (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at EME.ScheduleCourseTest.unenrollFromCourse(ScheduleCourseTest.java:70)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 14796, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: d22b09f7-a4ce-4563-a21b-b23a393b6fd7
+*** Element info: {Using=xpath, value=//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 26 more
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Make Group Appointment</h2><h3 id="m29">EME.MakeGroupApptTest#CancelAppointment</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Unable to locate element: //appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 17148, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 6b96c64e-1993-44e2-9d68-cded2ff72f4c
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at pageObjects.DashboardPO.getMyApptsAppt1GearButton(DashboardPO.java:256)
+	at EME.MakeGroupApptTest.CancelAppointment(MakeGroupApptTest.java:117)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m30">EME.MakeGroupApptTest#ConfirmAppointmentIsScheduled</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.TimeoutException: Expected condition failed: waiting for presence of element located by: By.xpath: //appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong (tried for 10 second(s) with 500 milliseconds interval)
+	at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:95)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:272)
+	at EME.MakeGroupApptTest.ConfirmAppointmentIsScheduled(MakeGroupApptTest.java:109)
+Caused by: org.openqa.selenium.NoSuchElementException: Unable to locate element: //appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 17148, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 6b96c64e-1993-44e2-9d68-cded2ff72f4c
+*** Element info: {Using=xpath, value=//appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:182)
+	at org.openqa.selenium.support.ui.ExpectedConditions$6.apply(ExpectedConditions.java:179)
+	at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:249)
+	... 26 more
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m31">EME.MakeGroupApptTest#ScheduleAppointment</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.NoSuchElementException: Unable to locate element: //div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
+Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
+System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
+Driver info: org.openqa.selenium.firefox.FirefoxDriver
+Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 17148, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 6b96c64e-1993-44e2-9d68-cded2ff72f4c
+*** Element info: {Using=xpath, value=//div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]}
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
+	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
+	at pageObjects.DashboardPO.getMyApptsScheduleButton(DashboardPO.java:240)
+	at EME.MakeGroupApptTest.ScheduleAppointment(MakeGroupApptTest.java:39)
+... Removed 29 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

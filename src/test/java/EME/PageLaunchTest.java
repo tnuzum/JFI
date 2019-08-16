@@ -32,7 +32,7 @@ public class PageLaunchTest extends base{
 	{
 		driver = initializeDriver();
 		log.info("Driver Initialized");
-		driver.get(prop.getProperty("URL"));
+		driver.get(prop.getProperty("EMELoginPage"));
 		reusableMethods.activeMember1Login();
 	}
 	

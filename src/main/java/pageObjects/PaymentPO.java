@@ -23,6 +23,7 @@ public class PaymentPO {
 	By payWithThisMethodButton1 = By.xpath("(//div[@class='payment-card'])[1]/div[3]/div/button");
 	By zeroPaymentMessage	= By.xpath("//div[@id='swal2-content']");
 	By customAmountInput	= By.xpath("//input[@name='selectedPaymentAmount']");
+	By paymentAmountInput	= By.xpath("//input[@name='payment']");
 	By nameOnCard = By.xpath("//input[@name='nameCard']");
 	By cardNumber = By.xpath("//input[@name='cardNumber']");
 	By expireMonth = By.xpath("//input[@name='ExpireMonth']");
@@ -95,6 +96,10 @@ public class PaymentPO {
 	public WebElement getCustomAmountInput()
 	{
 		return driver.findElement(customAmountInput);
+	}
+	public WebElement getPaymentAmountInput()
+	{
+		return driver.findElement(paymentAmountInput);
 	}
 	public WebElement getNameOnCard()
 	{
