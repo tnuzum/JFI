@@ -2,7 +2,10 @@ package resources;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.testng.Assert;
+
 import pageObjects.DashboardPO;
+import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
 import pageObjects.PaymentPO;
 import resources.base;
@@ -87,7 +90,6 @@ public class reusableMethods extends base{
 	            return false;
 	        }
 	}
-	
 	public static String useNewCard() throws InterruptedException
 	{
 		PaymentPO p = new PaymentPO(driver);
@@ -104,8 +106,7 @@ public class reusableMethods extends base{
 	p.getSubmitButton().click();
 	return null;
 	}
-	
-	public static boolean catchErrorMessage()
+	private static boolean catchErrorMessagePrivate()//only used by catchErrorMessage method below; not available from other classes
     {
 		try{
         driver.findElement(By.xpath("//*[text()='An Error Has Occurred']"));
@@ -115,8 +116,20 @@ public class reusableMethods extends base{
         return false;
     }
 }
+	public static String catchErrorMessage() throws InterruptedException
+	{
+		boolean e = reusableMethods.catchErrorMessagePrivate();
+		if (e == true)
+		{
+			System.out.println("ERROR: An Error Has Occurred");
+			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			er.getOKButton().click();
+			reusableMethods.returnToDashboard();
+			Assert.assertFalse(e);
+		}
+		return null;
+	}
 
-	
 	
 	
 	

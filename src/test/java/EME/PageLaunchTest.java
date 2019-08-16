@@ -13,6 +13,7 @@ import pageObjects.AppointmentsPO;
 import pageObjects.CartPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
+import pageObjects.ErrorMessagesPO;
 import pageObjects.ForgotPasswordPO;
 import pageObjects.ForgotUsernamePO;
 import pageObjects.LoginPO;
@@ -91,6 +92,7 @@ public class PageLaunchTest extends base{
 	public void ScheduleApptsButtonTest() throws InterruptedException
 	{
 		d.getMyApptsScheduleButton().click();//accessing from dashboard
+			reusableMethods.catchErrorMessage();
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		log.info("Appointments Page Header Verified");

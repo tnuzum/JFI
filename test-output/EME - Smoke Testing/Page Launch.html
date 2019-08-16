@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>9/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Fri Aug 16 11:04:34 EDT 2019</td>
+<td>Started on:</td><td>Fri Aug 16 12:13:18 EDT 2019</td>
 </tr>
-<tr><td>Total time:</td><td>46 seconds (46005 ms)</td>
+<tr><td>Total time:</td><td>41 seconds (41540 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,51 +76,17 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='EME.PageLaunchTest.ScheduleApptsButtonTest()'><b>ScheduleApptsButtonTest</b><br>Test class: EME.PageLaunchTest</td>
-<td><div><pre>org.openqa.selenium.NoSuchElementException: Unable to locate element: //div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
-System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 8852, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: b67923b2-7796-435f-98cc-96c33f926c40
-*** Element info: {Using=xpath, value=//div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]}
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at pageObjects.DashboardPO.getMyApptsScheduleButton(DashboardPO.java:240)
-	at EME.PageLaunchTest.ScheduleApptsButtonTest(PageLaunchTest.java:93)
-... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1715413882", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1715413882'><pre>org.openqa.selenium.NoSuchElementException: Unable to locate element: //div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;
-System info: host: &apos;COL-TNUZUM&apos;, ip: &apos;10.143.8.48&apos;, os.name: &apos;Windows 10&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;11.0.3&apos;
-Driver info: org.openqa.selenium.firefox.FirefoxDriver
-Capabilities {acceptInsecureCerts: true, browserName: firefox, browserVersion: 68.0.1, javascriptEnabled: true, moz:accessibilityChecks: false, moz:buildID: 20190717172542, moz:geckodriverVersion: 0.24.0, moz:headless: false, moz:processID: 8852, moz:profile: C:\Users\tnuzum\AppData\Loc..., moz:shutdownTimeout: 60000, moz:useNonSpecCompliantPointerOrigin: false, moz:webdriverClick: true, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, platformVersion: 10.0, rotatable: false, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: b67923b2-7796-435f-98cc-96c33f926c40
-*** Element info: {Using=xpath, value=//div[@class=&apos;homeComponent&apos;]//appointmentswidget/div/div[3]/a[1]}
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-	at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-	at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-	at pageObjects.DashboardPO.getMyApptsScheduleButton(DashboardPO.java:240)
-	at EME.PageLaunchTest.ScheduleApptsButtonTest(PageLaunchTest.java:93)
+<td><div><pre>java.lang.AssertionError: expected [false] but found [true]
+	at resources.reusableMethods.catchErrorMessage(reusableMethods.java:128)
+	at EME.PageLaunchTest.ScheduleApptsButtonTest(PageLaunchTest.java:95)
+... Removed 29 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1292784864", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1292784864'><pre>java.lang.AssertionError: expected [false] but found [true]
+	at org.testng.Assert.fail(Assert.java:96)
+	at org.testng.Assert.failNotEquals(Assert.java:776)
+	at org.testng.Assert.assertFalse(Assert.java:65)
+	at org.testng.Assert.assertFalse(Assert.java:75)
+	at resources.reusableMethods.catchErrorMessage(reusableMethods.java:128)
+	at EME.PageLaunchTest.ScheduleApptsButtonTest(PageLaunchTest.java:95)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -147,7 +113,7 @@ Session ID: b67923b2-7796-435f-98cc-96c33f926c40
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>10</td>
+<td>5</td>
 <td>EME.PageLaunchTest@51e8e6e6</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
@@ -160,7 +126,7 @@ Session ID: b67923b2-7796-435f-98cc-96c33f926c40
 <tr>
 <td title='EME.PageLaunchTest.AcctHistoryButtonTest()'><b>AcctHistoryButtonTest</b><br>Test class: EME.PageLaunchTest</td>
 <td></td>
-<td>3</td>
+<td>2</td>
 <td>EME.PageLaunchTest@51e8e6e6</td></tr>
 <tr>
 <td title='EME.PageLaunchTest.CartButtonTest()'><b>CartButtonTest</b><br>Test class: EME.PageLaunchTest</td>
@@ -185,7 +151,7 @@ Session ID: b67923b2-7796-435f-98cc-96c33f926c40
 <tr>
 <td title='EME.PageLaunchTest.ManageFamilyButtonTest()'><b>ManageFamilyButtonTest</b><br>Test class: EME.PageLaunchTest</td>
 <td></td>
-<td>1</td>
+<td>3</td>
 <td>EME.PageLaunchTest@51e8e6e6</td></tr>
 <tr>
 <td title='EME.PageLaunchTest.MyPackagesButtonTest()'><b>MyPackagesButtonTest</b><br>Test class: EME.PageLaunchTest</td>
@@ -195,12 +161,12 @@ Session ID: b67923b2-7796-435f-98cc-96c33f926c40
 <tr>
 <td title='EME.PageLaunchTest.PayNowButtonTest()'><b>PayNowButtonTest</b><br>Test class: EME.PageLaunchTest</td>
 <td></td>
-<td>3</td>
+<td>2</td>
 <td>EME.PageLaunchTest@51e8e6e6</td></tr>
 <tr>
 <td title='EME.PageLaunchTest.ScheduleClassesButtonTest()'><b>ScheduleClassesButtonTest</b><br>Test class: EME.PageLaunchTest</td>
 <td></td>
-<td>3</td>
+<td>2</td>
 <td>EME.PageLaunchTest@51e8e6e6</td></tr>
 </table><p>
 </body>

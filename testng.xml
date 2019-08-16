@@ -20,7 +20,7 @@
       <class name="EME.PageLaunchTest"/>
     </classes>
   </test> 
-  <test thread-count="5" name="Make Payment">
+  <!-- test thread-count="5" name="Make Payment">
     <classes>
       <class name="EME.MakePaymentTest"/>
     </classes>
@@ -44,5 +44,5 @@
     <classes>
       <class name="EME.MakeGroupApptTest"/>
     </classes>
-  </test>
+  </test-->
 </suite>

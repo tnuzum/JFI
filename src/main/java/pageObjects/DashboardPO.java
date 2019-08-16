@@ -50,7 +50,7 @@ public class DashboardPO {
 	By myApptsSectionLabel = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[1]");
 	
 // use this section for Future 2; appointmentswidget section changed to appoinments
-	By myApptsScheduleButton = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[3]/a[1]");
+	By myApptsScheduleButton = By.xpath("//a[@href='#/Appointments']/i");
 	By myApptsAppt1GearButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i");
 	By myApptsAddtoCalendarButton = By.xpath("//appointmentswidget/div/div[2]/div/div/div/div/div/div[1]/button");
 	By myApptsEditButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/div/div/div[2]/button");
