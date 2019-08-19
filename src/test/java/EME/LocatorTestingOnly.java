@@ -32,7 +32,6 @@ DashboardPO d = new DashboardPO(driver);
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
 			 driver.get(prop.getProperty("EMELoginPage"));
-			 //driver.get("https://www.google.com");
 		}
 		
 	@Test (priority = 1)

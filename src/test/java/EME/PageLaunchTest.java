@@ -77,12 +77,12 @@ public class PageLaunchTest extends base{
 	@Test (priority = 40)
 	public void ScheduleClassesButtonTest() throws InterruptedException
 	{
-		d.getMyClassesScheduleButton().click();//accessing from dashboard
+		d.getMyClassesScheduleButton().click();//Accessing from Dashboard
 		ClassSignUpPO cs = new ClassSignUpPO(driver);
 		Assert.assertEquals(cs.getPageHeader().getText(),"Select Classes");
 		log.info("Select Classes Page Header Verified");
 		d.getDashboardButton().click();
-		d.getMenuMyActivies().click();//accessing from left pane menu
+		d.getMenuMyActivies().click();//Accessing from left pane menu
 		d.getMenuClassSignup().click();
 		Assert.assertEquals(cs.getPageHeader().getText(),"Select Classes");
 		log.info("Manage Profile Page Header Verified");
@@ -91,13 +91,13 @@ public class PageLaunchTest extends base{
 	@Test (priority = 45)
 	public void ScheduleApptsButtonTest() throws InterruptedException
 	{
-		d.getMyApptsScheduleButton().click();//accessing from dashboard
+		d.getMyApptsScheduleButton().click();//Accessing from Dashboard
 			reusableMethods.catchErrorMessage();
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		log.info("Appointments Page Header Verified");
 		d.getDashboardButton().click();
-		d.getMenuMyActivies().click();//accessing from left pane menu
+		d.getMenuMyActivies().click();//Accessing from left pane menu
 		d.getMenuBookAppointment().click();
 		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		log.info("Appointments Page Header Verified");

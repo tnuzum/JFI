@@ -24,7 +24,7 @@
     <div class="top-banner-root">
       <span class="top-banner-title-font">Test results</span>
       <br/>
-      <span class="top-banner-font-1">1 suite, 1 failed test</span>
+      <span class="top-banner-font-1">1 suite</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -38,7 +38,7 @@
         <div class="rounded-window">
           <div class="suite-header light-rounded-window-top">
             <a href="#" panel-name="suite-EME_-_Smoke_Testing" class="navigator-link">
-              <span class="suite-name border-failed">EME - Smoke Testing</span>
+              <span class="suite-name border-passed">EME - Smoke Testing</span>
             </a> <!-- navigator-link -->
           </div> <!-- suite-header light-rounded-window-top -->
           <div class="navigator-suite-content">
@@ -91,21 +91,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">20 methods, 1 failed,   19 passed</span>
-                  </li>
-                  <li>
-                    <span class="method-list-title failed">Failed methods</span>
-                    <span class="show-or-hide-methods failed">
-                      <a href="#" panel-name="suite-EME_-_Smoke_Testing" class="hide-methods failed suite-EME_-_Smoke_Testing"> (hide)</a> <!-- hide-methods failed suite-EME_-_Smoke_Testing -->
-                      <a href="#" panel-name="suite-EME_-_Smoke_Testing" class="show-methods failed suite-EME_-_Smoke_Testing"> (show)</a> <!-- show-methods failed suite-EME_-_Smoke_Testing -->
-                    </span>
-                    <div class="method-list-content failed suite-EME_-_Smoke_Testing">
-                      <span>
-                        <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-EME_-_Smoke_Testing" title="EME.PageLaunchTest" class="method navigator-link" hash-for-method="ScheduleApptsButtonTest">ScheduleApptsButtonTest</a> <!-- method navigator-link -->
-                      </span>
-                      <br/>
-                    </div> <!-- method-list-content failed suite-EME_-_Smoke_Testing -->
+                    <span class="method-stats">20 methods,   20 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -152,6 +138,11 @@
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-EME_-_Smoke_Testing" title="EME.PageLaunchTest" class="method navigator-link" hash-for-method="PayNowButtonTest">PayNowButtonTest</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-EME_-_Smoke_Testing" title="EME.PageLaunchTest" class="method navigator-link" hash-for-method="ScheduleApptsButtonTest">ScheduleApptsButtonTest</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
@@ -221,26 +212,6 @@
     <div class="wrapper">
       <div class="main-panel-root">
         <div panel-name="suite-EME_-_Smoke_Testing" class="panel EME_-_Smoke_Testing">
-          <div class="suite-EME_-_Smoke_Testing-class-failed">
-            <div class="main-panel-header rounded-window-top">
-              <img src="failed.png"/>
-              <span class="class-name">EME.PageLaunchTest</span>
-            </div> <!-- main-panel-header rounded-window-top -->
-            <div class="main-panel-content rounded-window-bottom">
-              <div class="method">
-                <div class="method-content">
-                  <a name="ScheduleApptsButtonTest">
-                  </a> <!-- ScheduleApptsButtonTest -->
-                  <span class="method-name">ScheduleApptsButtonTest</span>
-                  <div class="stack-trace">java.lang.AssertionError: expected [false] but found [true]
-	at resources.reusableMethods.catchErrorMessage(reusableMethods.java:128)
-	at EME.PageLaunchTest.ScheduleApptsButtonTest(PageLaunchTest.java:95)
-... Removed 29 stack frames
-</div> <!-- stack-trace -->
-                </div> <!-- method-content -->
-              </div> <!-- method -->
-            </div> <!-- main-panel-content rounded-window-bottom -->
-          </div> <!-- suite-EME_-_Smoke_Testing-class-failed -->
           <div class="suite-EME_-_Smoke_Testing-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
@@ -367,6 +338,13 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
+                  <a name="ScheduleApptsButtonTest">
+                  </a> <!-- ScheduleApptsButtonTest -->
+                  <span class="method-name">ScheduleApptsButtonTest</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
                   <a name="ScheduleClassesButtonTest">
                   </a> <!-- ScheduleClassesButtonTest -->
                   <span class="method-name">ScheduleClassesButtonTest</span>
@@ -484,85 +462,85 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(20);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'activeMember4Login')
+data.setCell(0, 1, 'activeMember2Login')
 data.setCell(0, 2, 'EME.MemberLoginTest')
-data.setCell(0, 3, 27366);
+data.setCell(0, 3, 14155);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'activeMember3Login')
 data.setCell(1, 2, 'EME.MemberLoginTest')
-data.setCell(1, 3, 14904);
+data.setCell(1, 3, 14093);
 data.setCell(2, 0, 2)
 data.setCell(2, 1, 'collectionsMember1Login')
 data.setCell(2, 2, 'EME.MemberLoginTest')
-data.setCell(2, 3, 14231);
+data.setCell(2, 3, 13431);
 data.setCell(3, 0, 3)
-data.setCell(3, 1, 'activeMember2Login')
-data.setCell(3, 2, 'EME.MemberLoginTest')
-data.setCell(3, 3, 13760);
+data.setCell(3, 1, 'ScheduleApptsButtonTest')
+data.setCell(3, 2, 'EME.PageLaunchTest')
+data.setCell(3, 3, 12127);
 data.setCell(4, 0, 4)
-data.setCell(4, 1, 'ScheduleApptsButtonTest')
-data.setCell(4, 2, 'EME.PageLaunchTest')
-data.setCell(4, 3, 5503);
+data.setCell(4, 1, 'activeMember1Login')
+data.setCell(4, 2, 'EME.MemberLoginTest')
+data.setCell(4, 3, 7716);
 data.setCell(5, 0, 5)
-data.setCell(5, 1, 'CartButtonTest')
-data.setCell(5, 2, 'EME.PageLaunchTest')
-data.setCell(5, 3, 5287);
+data.setCell(5, 1, 'activeMember4Login')
+data.setCell(5, 2, 'EME.MemberLoginTest')
+data.setCell(5, 3, 5651);
 data.setCell(6, 0, 6)
-data.setCell(6, 1, 'ForgotUsernameButtonTest')
-data.setCell(6, 2, 'EME.PageLaunchTest')
-data.setCell(6, 3, 4689);
+data.setCell(6, 1, 'prospectMember1Login')
+data.setCell(6, 2, 'EME.MemberLoginTest')
+data.setCell(6, 3, 5195);
 data.setCell(7, 0, 7)
-data.setCell(7, 1, 'prospectMember1Login')
-data.setCell(7, 2, 'EME.MemberLoginTest')
-data.setCell(7, 3, 4660);
+data.setCell(7, 1, 'ForgotUsernameButtonTest')
+data.setCell(7, 2, 'EME.PageLaunchTest')
+data.setCell(7, 3, 4771);
 data.setCell(8, 0, 8)
-data.setCell(8, 1, 'MyPackagesButtonTest')
+data.setCell(8, 1, 'ScheduleClassesButtonTest')
 data.setCell(8, 2, 'EME.PageLaunchTest')
-data.setCell(8, 3, 4510);
+data.setCell(8, 3, 4024);
 data.setCell(9, 0, 9)
-data.setCell(9, 1, 'ManageFamilyButtonTest')
+data.setCell(9, 1, 'AcctHistoryButtonTest')
 data.setCell(9, 2, 'EME.PageLaunchTest')
-data.setCell(9, 3, 3655);
+data.setCell(9, 3, 3763);
 data.setCell(10, 0, 10)
-data.setCell(10, 1, 'activeMember1Login')
-data.setCell(10, 2, 'EME.MemberLoginTest')
-data.setCell(10, 3, 3553);
+data.setCell(10, 1, 'EditMyInfoButtonTest')
+data.setCell(10, 2, 'EME.PageLaunchTest')
+data.setCell(10, 3, 3196);
 data.setCell(11, 0, 11)
-data.setCell(11, 1, 'AcctHistoryButtonTest')
+data.setCell(11, 1, 'PayNowButtonTest')
 data.setCell(11, 2, 'EME.PageLaunchTest')
-data.setCell(11, 3, 2858);
+data.setCell(11, 3, 2776);
 data.setCell(12, 0, 12)
-data.setCell(12, 1, 'PayNowButtonTest')
+data.setCell(12, 1, 'CartButtonTest')
 data.setCell(12, 2, 'EME.PageLaunchTest')
-data.setCell(12, 3, 2752);
+data.setCell(12, 3, 2688);
 data.setCell(13, 0, 13)
-data.setCell(13, 1, 'ScheduleClassesButtonTest')
+data.setCell(13, 1, 'MyPackagesButtonTest')
 data.setCell(13, 2, 'EME.PageLaunchTest')
-data.setCell(13, 3, 2019);
+data.setCell(13, 3, 2448);
 data.setCell(14, 0, 14)
-data.setCell(14, 1, 'EditMyInfoButtonTest')
-data.setCell(14, 2, 'EME.PageLaunchTest')
-data.setCell(14, 3, 636);
+data.setCell(14, 1, 'wrongCredentialsMessages')
+data.setCell(14, 2, 'EME.loginPageTest')
+data.setCell(14, 3, 1751);
 data.setCell(15, 0, 15)
 data.setCell(15, 1, 'ForgotPasswordButtonTest')
 data.setCell(15, 2, 'EME.PageLaunchTest')
-data.setCell(15, 3, 471);
+data.setCell(15, 3, 1112);
 data.setCell(16, 0, 16)
-data.setCell(16, 1, 'wrongCredentialsMessages')
-data.setCell(16, 2, 'EME.loginPageTest')
-data.setCell(16, 3, 353);
+data.setCell(16, 1, 'ManageFamilyButtonTest')
+data.setCell(16, 2, 'EME.PageLaunchTest')
+data.setCell(16, 3, 1086);
 data.setCell(17, 0, 17)
 data.setCell(17, 1, 'noUserMessages')
 data.setCell(17, 2, 'EME.loginPageTest')
-data.setCell(17, 3, 281);
+data.setCell(17, 3, 289);
 data.setCell(18, 0, 18)
 data.setCell(18, 1, 'pageTextLabels')
 data.setCell(18, 2, 'EME.loginPageTest')
-data.setCell(18, 3, 121);
+data.setCell(18, 3, 127);
 data.setCell(19, 0, 19)
 data.setCell(19, 1, 'pageTitle')
 data.setCell(19, 2, 'EME.loginPageTest')
-data.setCell(19, 3, 9);
+data.setCell(19, 3, 10);
 window.suiteTableData['EME_-_Smoke_Testing']= { tableData: data, tableDiv: 'times-div-EME_-_Smoke_Testing'}
 return data;
 }
@@ -600,111 +578,109 @@ return data;
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">pageTitle</span>
-                <span class="method-start">5138 ms</span>
+                <span class="method-start">5025 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">pageTextLabels</span>
-                <span class="method-start">5150 ms</span>
+                <span class="method-start">5037 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">noUserMessages</span>
-                <span class="method-start">5272 ms</span>
+                <span class="method-start">5165 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">wrongCredentialsMessages</span>
-                <span class="method-start">5554 ms</span>
+                <span class="method-start">5455 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">5908 ms</span>
+                <span class="method-start">7207 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.MemberLoginTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">6986 ms</span>
+                <span class="method-start">8282 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">activeMember1Login</span>
-                <span class="method-start">11273 ms</span>
+                <span class="method-start">20786 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">activeMember2Login</span>
-                <span class="method-start">14827 ms</span>
+                <span class="method-start">28503 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">activeMember3Login</span>
-                <span class="method-start">28588 ms</span>
+                <span class="method-start">42659 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">activeMember4Login</span>
-                <span class="method-start">43493 ms</span>
+                <span class="method-start">56753 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">collectionsMember1Login</span>
-                <span class="method-start">70860 ms</span>
+                <span class="method-start">62405 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">prospectMember1Login</span>
-                <span class="method-start">85092 ms</span>
+                <span class="method-start">75837 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">89753 ms</span>
+                <span class="method-start">81033 ms</span>
               </div> <!-- configuration-test after -->
             </div> <!-- chronological-class -->
             <div class="chronological-class">
               <div class="chronological-class-name">EME.PageLaunchTest</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">initialize</span>
-                <span class="method-start">90543 ms</span>
+                <span class="method-start">81829 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">MyPackagesButtonTest</span>
-                <span class="method-start">98801 ms</span>
+                <span class="method-start">90377 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">CartButtonTest</span>
-                <span class="method-start">103312 ms</span>
+                <span class="method-start">92826 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">AcctHistoryButtonTest</span>
-                <span class="method-start">108600 ms</span>
+                <span class="method-start">95515 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">PayNowButtonTest</span>
-                <span class="method-start">111459 ms</span>
+                <span class="method-start">99279 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ScheduleClassesButtonTest</span>
-                <span class="method-start">114212 ms</span>
+                <span class="method-start">102056 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">ScheduleApptsButtonTest</span>
-                <span class="method-start">116232 ms</span>
+                <span class="method-start">106081 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ManageFamilyButtonTest</span>
-                <span class="method-start">121831 ms</span>
+                <span class="method-start">118209 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">EditMyInfoButtonTest</span>
-                <span class="method-start">125487 ms</span>
+                <span class="method-start">119296 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ForgotUsernameButtonTest</span>
-                <span class="method-start">126124 ms</span>
+                <span class="method-start">122492 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <span class="method-name">ForgotPasswordButtonTest</span>
-                <span class="method-start">130814 ms</span>
+                <span class="method-start">127264 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-test after">
                 <span class="method-name">teardown</span>
-                <span class="method-start">131286 ms</span>
+                <span class="method-start">128377 ms</span>
               </div> <!-- configuration-test after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

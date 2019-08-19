@@ -1,161 +1,121 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="20" passed="19" failed="1" skipped="0">
+<testng-results ignored="0" total="20" passed="20" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-08-16T16:11:47Z" name="EME - Smoke Testing" finished-at="2019-08-16T16:13:59Z" duration-ms="132085">
+  <suite started-at="2019-08-19T13:27:05Z" name="EME - Smoke Testing" finished-at="2019-08-19T13:29:15Z" duration-ms="129183">
     <groups>
     </groups>
-    <test started-at="2019-08-16T16:11:47Z" name="Login Page Test" finished-at="2019-08-16T16:11:54Z" duration-ms="6969">
+    <test started-at="2019-08-19T13:27:05Z" name="Login Page Test" finished-at="2019-08-19T13:27:14Z" duration-ms="8264">
       <class name="EME.loginPageTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.loginPageTest@12dae582]" started-at="2019-08-16T16:11:47Z" name="initialize" finished-at="2019-08-16T16:11:52Z" duration-ms="5124" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.loginPageTest@12dae582]" started-at="2019-08-19T13:27:05Z" name="initialize" finished-at="2019-08-19T13:27:10Z" duration-ms="5011" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="pageTitle()[pri:1, instance:EME.loginPageTest@12dae582]" started-at="2019-08-16T16:11:52Z" name="pageTitle" finished-at="2019-08-16T16:11:52Z" duration-ms="9" status="PASS">
+        <test-method signature="pageTitle()[pri:1, instance:EME.loginPageTest@12dae582]" started-at="2019-08-19T13:27:10Z" name="pageTitle" finished-at="2019-08-19T13:27:10Z" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- pageTitle -->
-        <test-method signature="pageTextLabels()[pri:2, instance:EME.loginPageTest@12dae582]" started-at="2019-08-16T16:11:52Z" name="pageTextLabels" finished-at="2019-08-16T16:11:52Z" duration-ms="121" status="PASS">
+        <test-method signature="pageTextLabels()[pri:2, instance:EME.loginPageTest@12dae582]" started-at="2019-08-19T13:27:10Z" name="pageTextLabels" finished-at="2019-08-19T13:27:11Z" duration-ms="127" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- pageTextLabels -->
-        <test-method signature="noUserMessages()[pri:3, instance:EME.loginPageTest@12dae582]" started-at="2019-08-16T16:11:52Z" name="noUserMessages" finished-at="2019-08-16T16:11:53Z" duration-ms="281" status="PASS">
+        <test-method signature="noUserMessages()[pri:3, instance:EME.loginPageTest@12dae582]" started-at="2019-08-19T13:27:11Z" name="noUserMessages" finished-at="2019-08-19T13:27:11Z" duration-ms="289" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- noUserMessages -->
-        <test-method signature="wrongCredentialsMessages()[pri:4, instance:EME.loginPageTest@12dae582]" started-at="2019-08-16T16:11:53Z" name="wrongCredentialsMessages" finished-at="2019-08-16T16:11:53Z" duration-ms="353" status="PASS">
+        <test-method signature="wrongCredentialsMessages()[pri:4, instance:EME.loginPageTest@12dae582]" started-at="2019-08-19T13:27:11Z" name="wrongCredentialsMessages" finished-at="2019-08-19T13:27:13Z" duration-ms="1751" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- wrongCredentialsMessages -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.loginPageTest@12dae582]" started-at="2019-08-16T16:11:53Z" name="teardown" finished-at="2019-08-16T16:11:54Z" duration-ms="1059" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.loginPageTest@12dae582]" started-at="2019-08-19T13:27:13Z" name="teardown" finished-at="2019-08-19T13:27:14Z" duration-ms="1055" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- EME.loginPageTest -->
     </test> <!-- Login Page Test -->
-    <test started-at="2019-08-16T16:11:54Z" name="Member Login" finished-at="2019-08-16T16:13:18Z" duration-ms="83552">
+    <test started-at="2019-08-19T13:27:14Z" name="Member Login" finished-at="2019-08-19T13:28:27Z" duration-ms="73540">
       <class name="EME.MemberLoginTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-16T16:11:54Z" name="initialize" finished-at="2019-08-16T16:11:58Z" duration-ms="4287" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-19T13:27:14Z" name="initialize" finished-at="2019-08-19T13:27:26Z" duration-ms="12503" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="activeMember1Login()[pri:10, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-16T16:11:58Z" name="activeMember1Login" description="Login Active Adult HOH Member" finished-at="2019-08-16T16:12:02Z" duration-ms="3553" status="PASS">
+        <test-method signature="activeMember1Login()[pri:10, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-19T13:27:26Z" name="activeMember1Login" description="Login Active Adult HOH Member" finished-at="2019-08-19T13:27:34Z" duration-ms="7716" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeMember1Login -->
-        <test-method signature="activeMember2Login()[pri:15, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-16T16:12:02Z" name="activeMember2Login" description="Login Active Adult non-HOH Member" finished-at="2019-08-16T16:12:16Z" duration-ms="13760" status="PASS">
+        <test-method signature="activeMember2Login()[pri:15, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-19T13:27:34Z" name="activeMember2Login" description="Login Active Adult non-HOH Member" finished-at="2019-08-19T13:27:48Z" duration-ms="14155" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeMember2Login -->
-        <test-method signature="activeMember3Login()[pri:20, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-16T16:12:16Z" name="activeMember3Login" description="Login Active Minor Member" finished-at="2019-08-16T16:12:31Z" duration-ms="14904" status="PASS">
+        <test-method signature="activeMember3Login()[pri:20, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-19T13:27:48Z" name="activeMember3Login" description="Login Active Minor Member" finished-at="2019-08-19T13:28:02Z" duration-ms="14093" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeMember3Login -->
-        <test-method signature="activeMember4Login()[pri:25, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-16T16:12:31Z" name="activeMember4Login" description="Login Active Adult No Family Member" finished-at="2019-08-16T16:12:58Z" duration-ms="27366" status="PASS">
+        <test-method signature="activeMember4Login()[pri:25, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-19T13:28:02Z" name="activeMember4Login" description="Login Active Adult No Family Member" finished-at="2019-08-19T13:28:08Z" duration-ms="5651" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- activeMember4Login -->
-        <test-method signature="collectionsMember1Login()[pri:30, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-16T16:12:58Z" name="collectionsMember1Login" description="Login Member in Collections" finished-at="2019-08-16T16:13:12Z" duration-ms="14231" status="PASS">
+        <test-method signature="collectionsMember1Login()[pri:30, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-19T13:28:08Z" name="collectionsMember1Login" description="Login Member in Collections" finished-at="2019-08-19T13:28:21Z" duration-ms="13431" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- collectionsMember1Login -->
-        <test-method signature="prospectMember1Login()[pri:35, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-16T16:13:12Z" name="prospectMember1Login" description="Login Prospect Member" finished-at="2019-08-16T16:13:17Z" duration-ms="4660" status="PASS">
+        <test-method signature="prospectMember1Login()[pri:35, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-19T13:28:21Z" name="prospectMember1Login" description="Login Prospect Member" finished-at="2019-08-19T13:28:26Z" duration-ms="5195" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prospectMember1Login -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-16T16:13:17Z" name="teardown" finished-at="2019-08-16T16:13:18Z" duration-ms="784" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MemberLoginTest@4de41af9]" started-at="2019-08-19T13:28:26Z" name="teardown" finished-at="2019-08-19T13:28:27Z" duration-ms="788" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
       </class> <!-- EME.MemberLoginTest -->
     </test> <!-- Member Login -->
-    <test started-at="2019-08-16T16:13:18Z" name="Page Launch" finished-at="2019-08-16T16:13:59Z" duration-ms="41540">
+    <test started-at="2019-08-19T13:28:27Z" name="Page Launch" finished-at="2019-08-19T13:29:15Z" duration-ms="47353">
       <class name="EME.PageLaunchTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:18Z" name="initialize" finished-at="2019-08-16T16:13:26Z" duration-ms="8257" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:28:27Z" name="initialize" finished-at="2019-08-19T13:28:36Z" duration-ms="8547" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:26Z" name="MyPackagesButtonTest" finished-at="2019-08-16T16:13:30Z" duration-ms="4510" status="PASS">
+        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:28:36Z" name="MyPackagesButtonTest" finished-at="2019-08-19T13:28:38Z" duration-ms="2448" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MyPackagesButtonTest -->
-        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:30Z" name="CartButtonTest" finished-at="2019-08-16T16:13:36Z" duration-ms="5287" status="PASS">
+        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:28:38Z" name="CartButtonTest" finished-at="2019-08-19T13:28:41Z" duration-ms="2688" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CartButtonTest -->
-        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:36Z" name="AcctHistoryButtonTest" finished-at="2019-08-16T16:13:39Z" duration-ms="2858" status="PASS">
+        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:28:41Z" name="AcctHistoryButtonTest" finished-at="2019-08-19T13:28:45Z" duration-ms="3763" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AcctHistoryButtonTest -->
-        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:39Z" name="PayNowButtonTest" finished-at="2019-08-16T16:13:41Z" duration-ms="2752" status="PASS">
+        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:28:45Z" name="PayNowButtonTest" finished-at="2019-08-19T13:28:48Z" duration-ms="2776" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PayNowButtonTest -->
-        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:41Z" name="ScheduleClassesButtonTest" finished-at="2019-08-16T16:13:43Z" duration-ms="2019" status="PASS">
+        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:28:48Z" name="ScheduleClassesButtonTest" finished-at="2019-08-19T13:28:52Z" duration-ms="4024" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleClassesButtonTest -->
-        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:43Z" name="ScheduleApptsButtonTest" finished-at="2019-08-16T16:13:49Z" duration-ms="5503" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[expected [false] but found [true]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [false] but found [true]
-at org.testng.Assert.fail(Assert.java:96)
-at org.testng.Assert.failNotEquals(Assert.java:776)
-at org.testng.Assert.assertFalse(Assert.java:65)
-at org.testng.Assert.assertFalse(Assert.java:75)
-at resources.reusableMethods.catchErrorMessage(reusableMethods.java:128)
-at EME.PageLaunchTest.ScheduleApptsButtonTest(PageLaunchTest.java:95)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:28:52Z" name="ScheduleApptsButtonTest" finished-at="2019-08-19T13:29:04Z" duration-ms="12127" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleApptsButtonTest -->
-        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:49Z" name="ManageFamilyButtonTest" finished-at="2019-08-16T16:13:53Z" duration-ms="3655" status="PASS">
+        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:29:04Z" name="ManageFamilyButtonTest" finished-at="2019-08-19T13:29:05Z" duration-ms="1086" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ManageFamilyButtonTest -->
-        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:53Z" name="EditMyInfoButtonTest" finished-at="2019-08-16T16:13:53Z" duration-ms="636" status="PASS">
+        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:29:05Z" name="EditMyInfoButtonTest" finished-at="2019-08-19T13:29:08Z" duration-ms="3196" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- EditMyInfoButtonTest -->
-        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:53Z" name="ForgotUsernameButtonTest" finished-at="2019-08-16T16:13:58Z" duration-ms="4689" status="PASS">
+        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:29:08Z" name="ForgotUsernameButtonTest" finished-at="2019-08-19T13:29:13Z" duration-ms="4771" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ForgotUsernameButtonTest -->
-        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:58Z" name="ForgotPasswordButtonTest" finished-at="2019-08-16T16:13:58Z" duration-ms="471" status="PASS">
+        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:29:13Z" name="ForgotPasswordButtonTest" finished-at="2019-08-19T13:29:14Z" duration-ms="1112" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ForgotPasswordButtonTest -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-16T16:13:58Z" name="teardown" finished-at="2019-08-16T16:13:59Z" duration-ms="797" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@51e8e6e6]" started-at="2019-08-19T13:29:14Z" name="teardown" finished-at="2019-08-19T13:29:15Z" duration-ms="804" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
