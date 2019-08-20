@@ -6,6 +6,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import resources.base;
+import pageObjects.LoginPO;
 
 
 public class NewTestCaseTemplate extends base{
@@ -18,7 +19,6 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void initialize() throws IOException
 		{
 			 driver = initializeDriver();
-			 log.info("Driver Initialized");
 			 driver.get(prop.getProperty("EMELoginPage"));
 		}
 		

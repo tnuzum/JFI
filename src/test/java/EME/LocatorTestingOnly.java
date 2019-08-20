@@ -37,7 +37,13 @@ DashboardPO d = new DashboardPO(driver);
 	@Test (priority = 1)
 		public void locatorTestingOnly() throws IOException, InterruptedException
 		{
-
+		
+		String up = System.getenv("USERPROFILE");
+		String projectPath = System.getenv("ECLIPSE_HOME");
+		System.out.println(projectPath);
+		System.out.println(up);
+		
+		
 		reusableMethods.activeMember1Login();
 		d.getMyAccountPayNow().click();
 		/*WebDriverWait wait = new WebDriverWait(driver, 10);

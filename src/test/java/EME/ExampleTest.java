@@ -1,34 +1,46 @@
 package EME;
 
-import org.mozilla.javascript.tools.shell.Environment;
+import java.io.IOException;
+
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import pageObjects.LoginPO;
 
+import resources.base;
 
+public class ExampleTest extends base{
 
-public class ExampleTest {
+	public static void main(String[] args) throws InterruptedException
+//	@Test
+//	public void initialize() throws IOException, InterruptedException
+	{
 
-	public static void main(String[] args) throws InterruptedException {
-
-
-		String up = System.getenv("USERPROFILE");
-		String projectPath = System.getenv("ECLIPSE_HOME");
-		System.out.println(projectPath);
-		System.out.println(up);
-//		System.setProperty("webdriver.gecko.driver", "C:\\webdrivers\\geckodriver.exe");
-/*		System.setProperty("webdriver.gecko.driver", up + "\\Webdrivers\\geckodriver.exe");
-				WebDriver driver = new FirefoxDriver();
+//		** Initial Driver Open Browser, Navigate to Web Site **
+		System.setProperty("webdriver.gecko.driver", "C:\\Users\\tnuzum\\webdrivers\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.navigate().to("https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101");
+		
+//		driver = initializeDriver();
+//		driver.get(prop.getProperty("EMELoginPage"));
 				
-				driver.navigate().to("https://www.google.com");
-				System.out.println(driver.getTitle());
-				
-				driver.findElement(By.id("gb_70")).click(); // click sign-in
-				System.out.println(driver.getTitle());	 */	
-			
 
-				
-				
-			}
+//		** Login Member ** 
+		driver.findElement(By.id("Username")).sendKeys("rauto");
+		driver.findElement(By.id("Password")).sendKeys("Testing1!");
+		driver.findElement(By.cssSelector("button[type='submit']")).click();
+		
+//		LoginPO l=new LoginPO(driver);
+//		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
+//		l.getuserPassword().sendKeys(prop.getProperty("activeMember1_password"));
+//		l.getLoginButton().click();
+		
+		
+		Thread.sleep(10000);		
+		driver.close();
+		driver=null;		
+
+		}
 
 	}
