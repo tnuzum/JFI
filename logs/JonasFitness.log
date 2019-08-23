@@ -51,3 +51,9 @@
 13:51:49.614 [main] INFO  resources.base - Manage Profile Page Header Verified
 13:51:55.807 [main] INFO  resources.base - Forgot Username Page Header Verified
 13:51:56.846 [main] INFO  resources.base - Forgot Password Page Header Verified
+16:12:01.859 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:12:05.350 [main] INFO  resources.base - Driver Initialized
+16:13:53.615 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:13:57.084 [main] INFO  resources.base - Driver Initialized
+16:14:44.668 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+16:14:48.816 [main] INFO  resources.base - Driver Initialized

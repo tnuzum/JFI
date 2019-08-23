@@ -3,11 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="EME.ExampleTest">
+      <class name="EME.MemberLoginTest">
         <methods>
+          <include name="teardown"/>
+          <include name="collectionsMember1Login"/>
           <include name="initialize"/>
         </methods>
-      </class> <!-- EME.ExampleTest -->
+      </class> <!-- EME.MemberLoginTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
