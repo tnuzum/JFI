@@ -2,19 +2,21 @@ package EME;
 
 import java.io.IOException;
 
-import org.junit.Test;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.Test;
+
 import pageObjects.LoginPO;
 
 import resources.base;
 
 public class ExampleTest extends base{
 
-	public static void main(String[] args) throws InterruptedException
-//	@Test
-//	public void initialize() throws IOException, InterruptedException
+//	public static void main(String[] args) throws InterruptedException
+	@Test
+	public void initialize() throws IOException, InterruptedException
 	{
 
 //		** Initial Driver Open Browser, Navigate to Web Site **
