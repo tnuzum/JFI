@@ -1,0 +1,65 @@
+19:26:44.012 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+19:26:47.537 [main] INFO  resources.base - Driver Initialized
+08:12:13.397 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:12:18.009 [main] INFO  resources.base - Driver Initialized
+08:12:28.570 [main] INFO  resources.base - Page Title Verified
+08:12:28.603 [main] INFO  resources.base - Username input label text Confirmed
+08:12:28.620 [main] INFO  resources.base - Username input label text Confirmed
+08:12:28.636 [main] INFO  resources.base - Forgot Username link text Confirmed
+08:12:28.662 [main] INFO  resources.base - Forgot Password link text Confirmed
+08:12:28.679 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+08:12:28.694 [main] INFO  resources.base - Remember Username label text Confirmed
+08:12:28.706 [main] INFO  resources.base - Login button label text Confirmed
+08:12:28.720 [main] INFO  resources.base - Login button isEnabled Confirmed
+08:12:28.994 [main] INFO  resources.base - Log In Button Clicked
+08:12:29.019 [main] INFO  resources.base - Username Required Message Confirmed
+08:12:29.031 [main] INFO  resources.base - Password Required Message Confirmed
+08:12:29.073 [main] INFO  resources.base - User Name Entered
+08:12:29.120 [main] INFO  resources.base - Password Entered
+08:12:30.037 [main] INFO  resources.base - Log In Button Clicked
+08:12:30.049 [main] INFO  resources.base - Error Message Title Verified
+08:12:31.041 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:12:34.025 [main] INFO  resources.base - Driver Initialized
+08:13:39.779 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:13:42.809 [main] INFO  resources.base - Driver Initialized
+08:13:55.562 [main] INFO  resources.base - Shop Packages Page Header Verified
+08:14:13.154 [main] INFO  resources.base - Shopping Cart Page Header Verified
+08:14:23.036 [main] INFO  resources.base - Account History Page Header Verified
+08:14:27.309 [main] INFO  resources.base - Pay Balance Page Header Verified
+08:14:27.932 [main] INFO  resources.base - Select Classes Page Header Verified
+08:14:28.733 [main] INFO  resources.base - Manage Profile Page Header Verified
+08:14:45.095 [main] INFO  resources.base - Appointments Page Header Verified
+08:14:45.938 [main] INFO  resources.base - Appointments Page Header Verified
+08:14:49.589 [main] INFO  resources.base - Manage Family Page Header Verified
+08:14:53.275 [main] INFO  resources.base - Manage Profile Page Header Verified
+08:15:08.502 [main] INFO  resources.base - Forgot Username Page Header Verified
+08:15:08.980 [main] INFO  resources.base - Forgot Password Page Header Verified
+08:15:10.018 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:15:13.008 [main] INFO  resources.base - Driver Initialized
+08:15:41.231 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:15:44.259 [main] INFO  resources.base - Driver Initialized
+08:29:54.792 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:29:58.317 [main] INFO  resources.base - Driver Initialized
+08:32:24.140 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:32:27.600 [main] INFO  resources.base - Driver Initialized
+08:37:29.044 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:37:32.514 [main] INFO  resources.base - Driver Initialized
+08:38:21.706 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:38:25.182 [main] INFO  resources.base - Driver Initialized
+08:42:47.012 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:42:50.533 [main] INFO  resources.base - Driver Initialized
+08:46:31.487 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:46:34.999 [main] INFO  resources.base - Driver Initialized
+08:50:09.277 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:50:12.751 [main] INFO  resources.base - Driver Initialized
+08:52:15.032 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:52:18.539 [main] INFO  resources.base - Driver Initialized
+08:55:25.993 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:55:29.479 [main] INFO  resources.base - Driver Initialized
+08:56:49.686 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+08:56:53.161 [main] INFO  resources.base - Driver Initialized
+10:52:13.740 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+10:52:17.339 [main] INFO  resources.base - Driver Initialized
+10:56:00.943 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+10:56:04.398 [main] INFO  resources.base - Driver Initialized
+10:57:41.779 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
