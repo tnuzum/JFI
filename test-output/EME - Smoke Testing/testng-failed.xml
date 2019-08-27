@@ -5,18 +5,65 @@
     <listener class-name="EME.listeners"/>
     <listener class-name="resources.ExtentReporterNG"/>
   </listeners>
-  <test thread-count="5" name="Member Login(failed)">
+  <test thread-count="5" name="Make Payment(failed)">
     <classes>
-      <class name="EME.MemberLoginTest">
+      <class name="EME.MakePaymentTest">
         <methods>
           <include name="teardown"/>
-          <include name="activeMember4Login"/>
-          <include name="prospectMember1Login"/>
-          <include name="collectionsMember1Login"/>
+          <include name="ConfirmPaymentApplied"/>
+          <include name="MakePayment"/>
           <include name="initialize"/>
-          <include name="activeMember3Login"/>
         </methods>
-      </class> <!-- EME.MemberLoginTest -->
+      </class> <!-- EME.MakePaymentTest -->
     </classes>
-  </test> <!-- Member Login(failed) -->
+  </test> <!-- Make Payment(failed) -->
+  <test thread-count="5" name="Make Appointment(failed)">
+    <classes>
+      <class name="EME.MakeApptTest">
+        <methods>
+          <include name="ConfirmAppointmentIsScheduled"/>
+          <include name="CancelAppointment"/>
+          <include name="ScheduleAppointment"/>
+          <include name="teardown"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- EME.MakeApptTest -->
+    </classes>
+  </test> <!-- Make Appointment(failed) -->
+  <test thread-count="5" name="Schedule Class(failed)">
+    <classes>
+      <class name="EME.ScheduleClassTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="initialize"/>
+          <include name="unenrollFromClass"/>
+          <include name="scheduleClass"/>
+        </methods>
+      </class> <!-- EME.ScheduleClassTest -->
+    </classes>
+  </test> <!-- Schedule Class(failed) -->
+  <test thread-count="5" name="Schedule Course(failed)">
+    <classes>
+      <class name="EME.ScheduleCourseTest">
+        <methods>
+          <include name="teardown"/>
+          <include name="initialize"/>
+          <include name="unenrollFromCourse"/>
+        </methods>
+      </class> <!-- EME.ScheduleCourseTest -->
+    </classes>
+  </test> <!-- Schedule Course(failed) -->
+  <test thread-count="5" name="Make Group Appointment(failed)">
+    <classes>
+      <class name="EME.MakeGroupApptTest">
+        <methods>
+          <include name="ScheduleAppointment"/>
+          <include name="teardown"/>
+          <include name="CancelAppointment"/>
+          <include name="ConfirmAppointmentIsScheduled"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- EME.MakeGroupApptTest -->
+    </classes>
+  </test> <!-- Make Group Appointment(failed) -->
 </suite> <!-- Failed suite [EME - Smoke Testing] -->

@@ -1,21 +1,15 @@
 package EME;
 import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
-import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
-import pageObjects.PaymentPO;
 import resources.base;
-import resources.reusableMethods;
 
 
 public class LocatorTestingOnly extends base{
@@ -31,7 +25,7 @@ DashboardPO d = new DashboardPO(driver);
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("EMELoginPage"));
+//			 driver.get(prop.getProperty("EMELoginPage"));
 		}
 		
 	@Test (priority = 1)
@@ -43,42 +37,17 @@ DashboardPO d = new DashboardPO(driver);
 		System.out.println(projectPath);
 		System.out.println(up);
 		
+		SoftAssert sa = new SoftAssert();
+		sa.assertTrue(false);
+		sa.assertTrue(true);
+		sa.assertTrue(false);
 		
-		reusableMethods.activeMember1Login();
-		d.getMyAccountPayNow().click();
-		/*WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//enterpaymentamount/div/div/div/div/div/h2")));
-		Thread.sleep(3000);
-		System.out.println(p.getPaymentAmountInput().getAttribute("ng-reflect-model"));
+		sa.assertAll();
+		}
 
-		p.getPaymentAmountInput().clear();
-		Thread.sleep(3000);
-		System.out.println(p.getPaymentAmountInput().getAttribute("ng-reflect-model"));
-		String amount = p.getPaymentAmountInput().getAttribute("ng-reflect-model");
-		int amountInt = Integer.parseInt(amount);
-		if (amountInt == 0)
-		{
-			System.out.println("zero");
-		}
-		else
-		{
-			System.out.println("not zero");
-		}*/
-		
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-//		WebElement w = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
-//		ap.getBookableItemCategory().sendKeys("g",Keys.ENTER);
-//		driver.findElement(By.xpath("(//select[@name='bookableItemCategory'])")).sendKeys("g");
-//		a.moveToElement(driver.findElement(By.xpath("(//select[@name='bookableItemCategory'])"))).sendKeys(Keys.ENTER).build().perform();
-//		a.sendKeys(Keys.ENTER).build().perform();
-//		Thread.sleep(2000);
-/*		driver.findElement(By.xpath("(//select[@name='bookableItem'])")).sendKeys("g");
-		a.moveToElement(driver.findElement(By.xpath("(//select[@name='bookableItem'])"))).sendKeys(Keys.ENTER).build().perform();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("(//select[@name='primaryResourceType'])")).sendKeys("g");
-		a.moveToElement(driver.findElement(By.xpath("(//select[@name='primaryResourceType'])"))).sendKeys("g").sendKeys(Keys.ENTER).build().perform();
-		*/
-		}
+	
+	
+
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
