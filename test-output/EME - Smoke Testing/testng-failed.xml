@@ -5,18 +5,6 @@
     <listener class-name="EME.listeners"/>
     <listener class-name="resources.ExtentReporterNG"/>
   </listeners>
-  <test thread-count="5" name="Make Payment(failed)">
-    <classes>
-      <class name="EME.MakePaymentTest">
-        <methods>
-          <include name="teardown"/>
-          <include name="ConfirmPaymentApplied"/>
-          <include name="MakePayment"/>
-          <include name="initialize"/>
-        </methods>
-      </class> <!-- EME.MakePaymentTest -->
-    </classes>
-  </test> <!-- Make Payment(failed) -->
   <test thread-count="5" name="Make Appointment(failed)">
     <classes>
       <class name="EME.MakeApptTest">

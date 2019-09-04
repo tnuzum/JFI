@@ -11,6 +11,10 @@ public class CartPO {
 // OBJECTS
 		
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By checkoutButton = By.xpath("//*[text()='CHECKOUT']"); // Checkout button
+	By clearCart = By.xpath("//*[text()='CLEAR CART']");
+	
+	
 	
 // CONSTRUCTOR
 		
@@ -23,6 +27,14 @@ public class CartPO {
 	public WebElement getPageHeader()
 	{
 		return driver.findElement(pageHeader);
+	}
+	public WebElement getCheckoutButton()
+	{
+		return driver.findElement(checkoutButton);
+	}
+	public WebElement getClearCart()
+	{
+		return driver.findElement(clearCart);
 	}
 	
 }
