@@ -25,10 +25,10 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/tnuzum/Automation/libs/commons-io-2.6/commons-io-2.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tnuzum/Automation/libs/commons-io-2.6/commons-io-2.6-javadoc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tnuzum/Automation/libs/commons-io-2.6/commons-io-2.6-sources.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tnuzum/Automation/libs/commons-io-2.6/commons-io-2.6-tests.jar"/>
-	<classpathentry kind="lib" path="C:/Users/tnuzum/Automation/libs/commons-io-2.6/commons-io-2.6-test-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bkalle/Desktop/Selenium/Java-Selenium-Eclipse Installations/commons-io-2.6/commons-io-2.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bkalle/Desktop/Selenium/Java-Selenium-Eclipse Installations/commons-io-2.6/commons-io-2.6-javadoc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bkalle/Desktop/Selenium/Java-Selenium-Eclipse Installations/commons-io-2.6/commons-io-2.6-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bkalle/Desktop/Selenium/Java-Selenium-Eclipse Installations/commons-io-2.6/commons-io-2.6-tests.jar"/>
+	<classpathentry kind="lib" path="C:/Users/bkalle/Desktop/Selenium/Java-Selenium-Eclipse Installations/commons-io-2.6/commons-io-2.6-test-sources.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
