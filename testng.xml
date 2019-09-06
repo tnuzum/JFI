@@ -20,26 +20,26 @@
       <class name="EME.PageLaunchTest"/>
     </classes>
   </test> 
-  <test thread-count="5" name="Make Payment">
+  <!-- test thread-count="5" name="Make Payment">
     <classes>
       <class name="EME.MakePaymentTest"/>
     </classes>
-  </test> 
-  <test thread-count="5" name="Make Appointment">
+  </test--> 
+  <!-- test thread-count="5" name="Make Appointment">
     <classes>
       <class name="EME.MakeApptTest"/>
     </classes>
-  </test> 
-    <test thread-count="5" name="Schedule Class">
+  </test--> 
+    <!-- test thread-count="5" name="Schedule Class">
     <classes>
       <class name="EME.ScheduleClassTest"/>
     </classes>
-  </test> 
-      <test thread-count="5" name="Schedule Course">
+  </test--> 
+      <!-- test thread-count="5" name="Schedule Course">
     <classes>
       <class name="EME.ScheduleCourseTest"/>
     </classes>
-  </test>
+  </test-->
         <test thread-count="5" name="Make Group Appointment">
     <classes>
       <class name="EME.MakeGroupApptTest"/>
