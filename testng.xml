@@ -10,11 +10,11 @@
       <class name="EME.loginPageTest"/>
     </classes>
   </test>
-  <test thread-count="5" name="Member Login">
+  <!-- test thread-count="5" name="Member Login">
     <classes>
       <class name="EME.MemberLoginTest"/>
     </classes>
-  </test>
+  </test-->
     <test thread-count="5" name="Page Launch">
     <classes>
       <class name="EME.PageLaunchTest"/>
@@ -40,9 +40,9 @@
       <class name="EME.ScheduleCourseTest"/>
     </classes>
   </test-->
-        <test thread-count="5" name="Make Group Appointment">
+        <!-- test thread-count="5" name="Make Group Appointment">
     <classes>
       <class name="EME.MakeGroupApptTest"/>
     </classes>
-  </test>
+  </test-->
 </suite>

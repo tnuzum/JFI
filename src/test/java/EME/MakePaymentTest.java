@@ -49,6 +49,7 @@ public class MakePaymentTest extends base {
 			variable++;
 		}
 		p.getCustomAmountInput().sendKeys("1.00");
+		
 		p.getPayWithThisMethodButton1().click();
 		reusableWaits.waitForAcceptButton();
 		p.getPopupConfirmationButton().click();

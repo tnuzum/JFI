@@ -1,25 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="14" passed="14" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-09-04T21:30:28Z" name="Default suite" finished-at="2019-09-04T21:30:38Z" duration-ms="9625">
+  <suite started-at="2019-09-11T17:10:51Z" name="EME - Smoke Testing" finished-at="2019-09-11T17:11:47Z" duration-ms="55223">
     <groups>
     </groups>
-    <test started-at="2019-09-04T21:30:28Z" name="Default test" finished-at="2019-09-04T21:30:38Z" duration-ms="9625">
-      <class name="EME.LocatorTestingOnly">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.LocatorTestingOnly@24111ef1]" started-at="2019-09-04T21:30:28Z" name="initialize" finished-at="2019-09-04T21:30:33Z" duration-ms="4149" status="PASS">
+    <test started-at="2019-09-11T17:10:51Z" name="Login Page Test" finished-at="2019-09-11T17:10:56Z" duration-ms="5191">
+      <class name="EME.loginPageTest">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.loginPageTest@3b220bcb]" started-at="2019-09-11T17:10:51Z" name="initialize" finished-at="2019-09-11T17:10:55Z" duration-ms="4164" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="locatorTestingOnly()[pri:1, instance:EME.LocatorTestingOnly@24111ef1]" started-at="2019-09-04T21:30:33Z" name="locatorTestingOnly" finished-at="2019-09-04T21:30:38Z" duration-ms="5457" status="PASS">
+        <test-method signature="pageTitle()[pri:1, instance:EME.loginPageTest@3b220bcb]" started-at="2019-09-11T17:10:55Z" name="pageTitle" finished-at="2019-09-11T17:10:55Z" duration-ms="11" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- locatorTestingOnly -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.LocatorTestingOnly@24111ef1]" started-at="2019-09-04T21:30:38Z" name="teardown" finished-at="2019-09-04T21:30:38Z" duration-ms="0" status="PASS">
+        </test-method> <!-- pageTitle -->
+        <test-method signature="pageTextLabels()[pri:2, instance:EME.loginPageTest@3b220bcb]" started-at="2019-09-11T17:10:56Z" name="pageTextLabels" finished-at="2019-09-11T17:10:56Z" duration-ms="284" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- pageTextLabels -->
+        <test-method signature="noUserMessages()[pri:3, instance:EME.loginPageTest@3b220bcb]" started-at="2019-09-11T17:10:56Z" name="noUserMessages" finished-at="2019-09-11T17:10:56Z" duration-ms="197" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- noUserMessages -->
+        <test-method signature="wrongCredentialsMessages()[pri:4, instance:EME.loginPageTest@3b220bcb]" started-at="2019-09-11T17:10:56Z" name="wrongCredentialsMessages" finished-at="2019-09-11T17:10:56Z" duration-ms="412" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- wrongCredentialsMessages -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.loginPageTest@3b220bcb]" started-at="2019-09-11T17:10:56Z" name="teardown" finished-at="2019-09-11T17:10:56Z" duration-ms="92" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- EME.LocatorTestingOnly -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- EME.loginPageTest -->
+    </test> <!-- Login Page Test -->
+    <test started-at="2019-09-11T17:10:57Z" name="Page Launch" finished-at="2019-09-11T17:11:47Z" duration-ms="50003">
+      <class name="EME.PageLaunchTest">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:10:57Z" name="initialize" finished-at="2019-09-11T17:11:06Z" duration-ms="9580" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:06Z" name="MyPackagesButtonTest" finished-at="2019-09-11T17:11:12Z" duration-ms="5690" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- MyPackagesButtonTest -->
+        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:12Z" name="CartButtonTest" finished-at="2019-09-11T17:11:16Z" duration-ms="3918" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- CartButtonTest -->
+        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:16Z" name="AcctHistoryButtonTest" finished-at="2019-09-11T17:11:18Z" duration-ms="1905" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- AcctHistoryButtonTest -->
+        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:18Z" name="PayNowButtonTest" finished-at="2019-09-11T17:11:21Z" duration-ms="2981" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- PayNowButtonTest -->
+        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:21Z" name="ScheduleClassesButtonTest" finished-at="2019-09-11T17:11:24Z" duration-ms="3255" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ScheduleClassesButtonTest -->
+        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:24Z" name="ScheduleApptsButtonTest" finished-at="2019-09-11T17:11:36Z" duration-ms="12340" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ScheduleApptsButtonTest -->
+        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:36Z" name="ManageFamilyButtonTest" finished-at="2019-09-11T17:11:41Z" duration-ms="4421" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ManageFamilyButtonTest -->
+        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:41Z" name="EditMyInfoButtonTest" finished-at="2019-09-11T17:11:42Z" duration-ms="891" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EditMyInfoButtonTest -->
+        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:42Z" name="ForgotUsernameButtonTest" finished-at="2019-09-11T17:11:46Z" duration-ms="4564" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotUsernameButtonTest -->
+        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:46Z" name="ForgotPasswordButtonTest" finished-at="2019-09-11T17:11:46Z" duration-ms="366" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ForgotPasswordButtonTest -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@76f7d241]" started-at="2019-09-11T17:11:46Z" name="teardown" finished-at="2019-09-11T17:11:47Z" duration-ms="81" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- teardown -->
+      </class> <!-- EME.PageLaunchTest -->
+    </test> <!-- Page Launch -->
+  </suite> <!-- EME - Smoke Testing -->
 </testng-results>
