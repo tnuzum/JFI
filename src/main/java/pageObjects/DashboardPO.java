@@ -75,6 +75,8 @@ public class DashboardPO {
 	
 	By myFamilySectionLabel = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]");
 	By myFamilyFamilyMemberCount = By.xpath("//div[@class='homeComponent']//familymembercount//div//div//h2");
+	By myFamilyFamilyMemberCount2 = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]");
+	
 	By myFamilyManageButton = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[3]/a[1]");
 	
 	By AdditionalLinksSectionLabel = By.xpath("//div[@class='homeComponent']//externallinks/div/div[1]/div[1]");
@@ -297,6 +299,10 @@ public class DashboardPO {
 	public WebElement getMyFamilyMemberCount()
 	{
 		return driver.findElement(myFamilyFamilyMemberCount);
+	}
+	public WebElement getMyFamilyMemberCount2()
+	{
+		return driver.findElement(myFamilyFamilyMemberCount2);
 	}
 	public WebElement getMyFamilyManageButton()
 	{

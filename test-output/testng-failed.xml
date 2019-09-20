@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [EME - Smoke Testing]" guice-stage="DEVELOPMENT">
-  <listeners>
-    <listener class-name="EME.listeners"/>
-    <listener class-name="resources.ExtentReporterNG"/>
-  </listeners>
-  <test thread-count="5" name="Make Group Appointment(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="EME.MakeGroupApptTest">
+      <class name="EME.FamilyMemberCount">
         <methods>
-          <include name="ScheduleAppointment"/>
-          <include name="teardown"/>
-          <include name="CancelAppointment"/>
-          <include name="ConfirmAppointmentIsScheduled"/>
           <include name="initialize"/>
+          <include name="teardown"/>
+          <include name="pageValidations"/>
         </methods>
-      </class> <!-- EME.MakeGroupApptTest -->
+      </class> <!-- EME.FamilyMemberCount -->
     </classes>
-  </test> <!-- Make Group Appointment(failed) -->
-</suite> <!-- Failed suite [EME - Smoke Testing] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->
