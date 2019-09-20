@@ -1,95 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
+<testng-results ignored="1" total="2" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-09-20T17:17:15Z" name="Default suite" finished-at="2019-09-20T17:17:39Z" duration-ms="24024">
+  <suite started-at="2019-09-20T18:41:49Z" name="Default suite" finished-at="2019-09-20T18:42:04Z" duration-ms="14974">
     <groups>
     </groups>
-    <test started-at="2019-09-20T17:17:15Z" name="Default test" finished-at="2019-09-20T17:17:39Z" duration-ms="24024">
-      <class name="EME.FamilyMemberCount">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.FamilyMemberCount@5bfa8cc5]" started-at="2019-09-20T17:17:15Z" name="initialize" finished-at="2019-09-20T17:17:18Z" duration-ms="3091" status="PASS">
+    <test started-at="2019-09-20T18:41:49Z" name="Default test" finished-at="2019-09-20T18:42:04Z" duration-ms="14974">
+      <class name="EME.ValidateMember">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.ValidateMember@4a3329b9]" started-at="2019-09-20T18:41:49Z" name="initialize" finished-at="2019-09-20T18:41:53Z" duration-ms="3725" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="activeMember1Login()[pri:1, instance:EME.FamilyMemberCount@5bfa8cc5]" started-at="2019-09-20T17:17:18Z" name="activeMember1Login" description="..." finished-at="2019-09-20T17:17:25Z" duration-ms="7788" status="PASS">
+        <test-method signature="ValidateMemberName()[pri:1, instance:EME.ValidateMember@4a3329b9]" started-at="2019-09-20T18:41:53Z" name="ValidateMemberName" description="..." finished-at="2019-09-20T18:42:01Z" duration-ms="8147" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- activeMember1Login -->
-        <test-method signature="pageValidations()[pri:2, instance:EME.FamilyMemberCount@5bfa8cc5]" started-at="2019-09-20T17:17:26Z" name="pageValidations" description="..." finished-at="2019-09-20T17:17:39Z" duration-ms="13045" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
-            <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='homeComponent']//familymembercount//div//div//h2"}
-  (Session info: chrome=77.0.3865.90)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 77.0.3865.90, chrome: {chromedriverVersion: 76.0.3809.68 (420c9498db8ce..., userDataDir: C:\Users\tnuzum\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:57404}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 1dd563d0767f3b925b8e14abce5ccf9b
-*** Element info: {Using=xpath, value=//div[@class='homeComponent']//familymembercount//div//div//h2}]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//div[@class='homeComponent']//familymembercount//div//div//h2"}
-  (Session info: chrome=77.0.3865.90)
-For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/no_such_element.html
-Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
-System info: host: 'COL-TNUZUM', ip: '10.143.8.48', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.3'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 77.0.3865.90, chrome: {chromedriverVersion: 76.0.3809.68 (420c9498db8ce..., userDataDir: C:\Users\tnuzum\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:57404}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
-Session ID: 1dd563d0767f3b925b8e14abce5ccf9b
-*** Element info: {Using=xpath, value=//div[@class='homeComponent']//familymembercount//div//div//h2}
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
-at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
-at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
-at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
-at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:323)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:428)
-at org.openqa.selenium.By$ByXPath.findElement(By.java:353)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:315)
-at pageObjects.DashboardPO.getMyFamilyMemberCount(DashboardPO.java:301)
-at EME.FamilyMemberCount.pageValidations(FamilyMemberCount.java:49)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:124)
-at org.testng.internal.Invoker.invokeMethod(Invoker.java:583)
-at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:719)
-at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:989)
-at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:125)
-at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:109)
-at org.testng.TestRunner.privateRun(TestRunner.java:648)
-at org.testng.TestRunner.run(TestRunner.java:505)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:455)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:450)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:415)
-at org.testng.SuiteRunner.run(SuiteRunner.java:364)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:84)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1208)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1137)
-at org.testng.TestNG.runSuites(TestNG.java:1049)
-at org.testng.TestNG.run(TestNG.java:1017)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- pageValidations -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.FamilyMemberCount@5bfa8cc5]" started-at="2019-09-20T17:17:39Z" name="teardown" finished-at="2019-09-20T17:17:39Z" duration-ms="79" status="PASS">
+        </test-method> <!-- ValidateMemberName -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.ValidateMember@4a3329b9]" started-at="2019-09-20T18:42:01Z" name="teardown" finished-at="2019-09-20T18:42:04Z" duration-ms="3085" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- EME.FamilyMemberCount -->
+      </class> <!-- EME.ValidateMember -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
