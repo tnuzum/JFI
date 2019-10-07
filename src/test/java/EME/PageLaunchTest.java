@@ -99,7 +99,9 @@ public class PageLaunchTest extends base{
 		d.getDashboardButton().click();
 		d.getMenuMyActivies().click();//Accessing from left pane menu
 		d.getMenuBookAppointment().click();
-		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
+// The pageHeader changed in 7.28
+//		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
+		Assert.assertEquals(a.getPageHeader().getText(),"Select Courses / Events");
 		log.info("Appointments Page Header Verified");
 		reusableMethods.returnToDashboard();
 	}

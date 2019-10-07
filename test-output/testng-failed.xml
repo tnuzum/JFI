@@ -6,9 +6,13 @@
       <class name="EME.MemberLoginTest">
         <methods>
           <include name="teardown"/>
+          <include name="activeMember4Login"/>
           <include name="prospectMember1Login"/>
           <include name="collectionsMember1Login"/>
           <include name="initialize"/>
+          <include name="activeMember3Login"/>
+          <include name="activeMember2Login"/>
+          <include name="activeMember1Login"/>
         </methods>
       </class> <!-- EME.MemberLoginTest -->
     </classes>
