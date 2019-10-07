@@ -25,13 +25,13 @@ public class base {
 	public static WebDriver driver;
 	public static Properties prop; //or, public static Properties prop = new Properties(); this was recommended to resolve an NPE, but I didn't need it
 	public static Logger log =LogManager.getLogger(base.class.getName());
-	String projectPath = System.getenv("ECLIPSE_HOME");
+	String projectPath = System.getenv("PROJECT_HOME");
 	String userProfile = System.getenv("USERPROFILE");
 
 	public WebDriver initializeDriver() throws IOException {
 		
 		prop = new Properties();
-		FileInputStream fis=new FileInputStream(projectPath + "\\JonasFitness\\src\\main\\java\\resources\\properties");
+		FileInputStream fis=new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
 
 		prop.load(fis);
 		String browserName = prop.getProperty("browser");
