@@ -1,9 +1,25 @@
-10:56:20.032 [main] INFO  resources.base - Pay Balance Page Header Verified
-10:56:24.297 [main] INFO  resources.base - Select Classes Page Header Verified
-10:56:25.300 [main] INFO  resources.base - Manage Profile Page Header Verified
-10:56:28.781 [main] INFO  resources.base - Appointments Page Header Verified
-10:56:29.884 [main] INFO  resources.base - Appointments Page Header Verified
-10:56:33.597 [main] INFO  resources.base - Manage Family Page Header Verified
-10:56:36.813 [main] INFO  resources.base - Manage Profile Page Header Verified
-10:56:42.964 [main] INFO  resources.base - Forgot Username Page Header Verified
-10:56:43.844 [main] INFO  resources.base - Forgot Password Page Header Verified
+14:32:40.064 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+14:32:40.285 [main] INFO  resources.base - Remember Username label text Confirmed
+14:32:40.499 [main] INFO  resources.base - Login button label text Confirmed
+14:32:40.712 [main] INFO  resources.base - Login button isEnabled Confirmed
+14:32:40.957 [main] INFO  resources.base - Log In Button Clicked
+14:32:41.390 [main] INFO  resources.base - Username Required Message Confirmed
+14:32:41.603 [main] INFO  resources.base - Password Required Message Confirmed
+14:32:42.060 [main] INFO  resources.base - User Name Entered
+14:32:42.541 [main] INFO  resources.base - Password Entered
+14:32:43.022 [main] INFO  resources.base - Log In Button Clicked
+14:32:43.231 [main] INFO  resources.base - Error Message Title Verified
+14:32:43.494 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+14:32:44.606 [main] INFO  resources.base - Driver Initialized
+14:32:52.394 [main] INFO  resources.base - Shop Packages Page Header Verified
+14:32:57.102 [main] INFO  resources.base - Shopping Cart Page Header Verified
+14:33:03.873 [main] INFO  resources.base - Account History Page Header Verified
+14:33:08.690 [main] INFO  resources.base - Pay Balance Page Header Verified
+14:33:11.404 [main] INFO  resources.base - Select Classes Page Header Verified
+14:33:12.443 [main] INFO  resources.base - Manage Profile Page Header Verified
+14:33:15.487 [main] INFO  resources.base - Appointments Page Header Verified
+14:33:16.628 [main] INFO  resources.base - Appointments Page Header Verified
+14:33:22.396 [main] INFO  resources.base - Manage Family Page Header Verified
+14:33:26.676 [main] INFO  resources.base - Manage Profile Page Header Verified
+14:33:33.359 [main] INFO  resources.base - Forgot Username Page Header Verified
+14:33:34.310 [main] INFO  resources.base - Forgot Password Page Header Verified
