@@ -69,7 +69,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableMethods.collectionsMember1Login();
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("collectionsMember1_fullname"));
-		Assert.assertEquals(false, reusableMethods.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
+//		Assert.assertEquals(false, reusableMethods.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
 		reusableMethods.memberLogout();
 		}
 	@Test (priority = 35, description = "Login Prospect Member")

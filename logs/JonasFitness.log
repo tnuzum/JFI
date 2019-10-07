@@ -26,3 +26,15 @@
 16:24:48.887 [main] INFO  resources.base - Password Entered
 16:24:49.352 [main] INFO  resources.base - Log In Button Clicked
 16:24:49.573 [main] INFO  resources.base - Error Message Title Verified
+16:51:00.136 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:51:02.499 [main] INFO  resources.base - Driver Initialized
+17:09:48.918 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:09:50.774 [main] INFO  resources.base - Driver Initialized
+17:12:10.419 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:12:12.277 [main] INFO  resources.base - Driver Initialized
+17:13:24.719 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:13:26.624 [main] INFO  resources.base - Driver Initialized
+17:16:00.554 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:16:02.420 [main] INFO  resources.base - Driver Initialized
+17:16:20.918 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:16:22.778 [main] INFO  resources.base - Driver Initialized
