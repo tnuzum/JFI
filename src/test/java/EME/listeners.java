@@ -21,7 +21,7 @@ public class listeners extends base implements ITestListener{
 	public void onTestSuccess(ITestResult result) {
 		
 	}
-
+	/*
 	@Override
 	public void onTestFailure(ITestResult result) {
 
@@ -45,7 +45,7 @@ public class listeners extends base implements ITestListener{
 			e.printStackTrace();
 		}
 	}
-
+*/
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 		
