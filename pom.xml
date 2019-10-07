@@ -31,6 +31,7 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
+					<forkMode>never</forkMode>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -103,16 +104,11 @@
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
 		</dependency>
-		<!-- dependency>
+		<dependency>
 			<groupId>org.apache.maven.surefire</groupId>
 			<artifactId>maven-surefire-common</artifactId>
 			<version>3.0.0-M3</version>
-			<version>2.20</version>
+			<!-- version>2.20</version-->
 		</dependency>
-		<dependency>
-			<groupId>org.apache.maven.surefire</groupId>
-			<artifactId>surefire-booter</artifactId>
-			<version>3.0.0-M3</version>
-		</dependency-->
 	</dependencies>
 </project>
