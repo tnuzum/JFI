@@ -1,0 +1,65 @@
+10:41:59.915 [main] INFO  resources.base - Forgot Username link text Confirmed
+10:42:00.139 [main] INFO  resources.base - Forgot Password link text Confirmed
+10:42:00.347 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+10:42:00.567 [main] INFO  resources.base - Remember Username label text Confirmed
+10:42:00.782 [main] INFO  resources.base - Login button label text Confirmed
+10:42:00.997 [main] INFO  resources.base - Login button isEnabled Confirmed
+10:42:01.264 [main] INFO  resources.base - Log In Button Clicked
+10:42:01.700 [main] INFO  resources.base - Username Required Message Confirmed
+10:42:01.914 [main] INFO  resources.base - Password Required Message Confirmed
+10:42:02.369 [main] INFO  resources.base - User Name Entered
+10:42:02.830 [main] INFO  resources.base - Password Entered
+10:42:04.738 [main] INFO  resources.base - Log In Button Clicked
+10:42:04.953 [main] INFO  resources.base - Error Message Title Verified
+10:42:05.223 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+10:42:06.268 [main] INFO  resources.base - Driver Initialized
+10:42:18.609 [main] INFO  resources.base - Shop Packages Page Header Verified
+10:42:25.371 [main] INFO  resources.base - Shopping Cart Page Header Verified
+10:42:33.177 [main] INFO  resources.base - Account History Page Header Verified
+10:42:36.468 [main] INFO  resources.base - Pay Balance Page Header Verified
+10:42:40.684 [main] INFO  resources.base - Select Classes Page Header Verified
+10:42:41.704 [main] INFO  resources.base - Manage Profile Page Header Verified
+10:42:44.693 [main] INFO  resources.base - Appointments Page Header Verified
+10:42:45.799 [main] INFO  resources.base - Appointments Page Header Verified
+10:42:49.508 [main] INFO  resources.base - Manage Family Page Header Verified
+10:42:51.670 [main] INFO  resources.base - Manage Profile Page Header Verified
+10:43:45.031 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+10:43:46.605 [main] INFO  resources.base - Driver Initialized
+10:43:56.354 [main] INFO  resources.base - Forgot Username Page Header Verified
+10:54:04.077 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+10:54:05.698 [main] INFO  resources.base - Driver Initialized
+10:54:13.987 [main] INFO  resources.base - Shop Packages Page Header Verified
+10:54:18.709 [main] INFO  resources.base - Shopping Cart Page Header Verified
+10:54:24.958 [main] INFO  resources.base - Account History Page Header Verified
+10:54:29.223 [main] INFO  resources.base - Pay Balance Page Header Verified
+10:54:33.438 [main] INFO  resources.base - Select Classes Page Header Verified
+10:54:34.481 [main] INFO  resources.base - Manage Profile Page Header Verified
+10:54:39.083 [main] INFO  resources.base - Appointments Page Header Verified
+10:54:40.200 [main] INFO  resources.base - Appointments Page Header Verified
+10:54:42.326 [main] INFO  resources.base - Manage Family Page Header Verified
+10:54:44.562 [main] INFO  resources.base - Manage Profile Page Header Verified
+10:54:51.737 [main] INFO  resources.base - Forgot Username Page Header Verified
+10:54:52.677 [main] INFO  resources.base - Forgot Password Page Header Verified
+10:55:52.543 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+10:55:54.097 [main] INFO  resources.base - Driver Initialized
+10:55:55.524 [main] INFO  resources.base - Page Title Verified
+10:55:55.752 [main] INFO  resources.base - Username input label text Confirmed
+10:55:55.968 [main] INFO  resources.base - Username input label text Confirmed
+10:55:56.176 [main] INFO  resources.base - Forgot Username link text Confirmed
+10:55:56.391 [main] INFO  resources.base - Forgot Password link text Confirmed
+10:55:56.605 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+10:55:56.818 [main] INFO  resources.base - Remember Username label text Confirmed
+10:55:57.032 [main] INFO  resources.base - Login button label text Confirmed
+10:55:57.243 [main] INFO  resources.base - Login button isEnabled Confirmed
+10:55:57.487 [main] INFO  resources.base - Log In Button Clicked
+10:55:57.926 [main] INFO  resources.base - Username Required Message Confirmed
+10:55:58.151 [main] INFO  resources.base - Password Required Message Confirmed
+10:55:58.602 [main] INFO  resources.base - User Name Entered
+10:55:59.090 [main] INFO  resources.base - Password Entered
+10:55:59.558 [main] INFO  resources.base - Log In Button Clicked
+10:55:59.767 [main] INFO  resources.base - Error Message Title Verified
+10:56:00.053 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+10:56:01.123 [main] INFO  resources.base - Driver Initialized
+10:56:09.445 [main] INFO  resources.base - Shop Packages Page Header Verified
+10:56:13.113 [main] INFO  resources.base - Shopping Cart Page Header Verified
+10:56:15.773 [main] INFO  resources.base - Account History Page Header Verified
