@@ -25,7 +25,7 @@
       <class name="EME.MakePaymentTest"/>
     </classes>
   </test--> 
-  < test thread-count="5" name="Make Appointment">
+  <test thread-count="5" name="Make Appointment">
     <classes>
       <class name="EME.MakeApptTest"/>
     </classes>
