@@ -3,18 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="EME.MemberLoginTest">
+      <class name="EME.MakeApptTest">
         <methods>
+          <include name="CancelAppointment"/>
           <include name="teardown"/>
-          <include name="activeMember4Login"/>
-          <include name="prospectMember1Login"/>
-          <include name="collectionsMember1Login"/>
           <include name="initialize"/>
-          <include name="activeMember3Login"/>
-          <include name="activeMember2Login"/>
-          <include name="activeMember1Login"/>
         </methods>
-      </class> <!-- EME.MemberLoginTest -->
+      </class> <!-- EME.MakeApptTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

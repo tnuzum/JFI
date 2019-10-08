@@ -45,7 +45,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				{
 					System.out.println("Waiting for Bookable Item Category to not be blank");
 				}	
-		ap.getBookableItemCategory().sendKeys("golf",Keys.ENTER);
+		ap.getBookableItemCategory().sendKeys("golf",Keys.ARROW_DOWN,Keys.ENTER);
 				WebElement bi = ap.getBookableItem();
 				while (!bi.isEnabled())//while button is NOT(!) enabled
 				{
@@ -84,16 +84,17 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				}
 				ap.getPopup1BookButton().click();
 				Thread.sleep(2000);
-		ap.getPackageRequiredContinueButton().click();
-		Thread.sleep(2000);
-		CartPO co = new CartPO(driver);
-		co.getCheckoutButton().click();
-		Thread.sleep(2000);
-		reusableMethods.useNewCard();
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'swal2-success')]")));
-//		Assert.assertEquals(ap.getPopup2Title().getText(),"Booked!");
-//		ap.getPopup2OKButton().click();
+//		ap.getPackageRequiredContinueButton().click();
+//		Thread.sleep(2000);
+//		CartPO co = new CartPO(driver);
+//		co.getCheckoutButton().click();
+//		Thread.sleep(2000);
+//		reusableMethods.useNewCard();
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'swal2-success')]")));
+		Assert.assertEquals(ap.getPopup2Title().getText(),"Booked!");
+		ap.getPopup2OKButton().click();
+		reusableMethods.returnToDashboard();
 		}
 	@Test (priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException
@@ -101,7 +102,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/a/div/div[2]/span/strong")));
 		Assert.assertFalse(d.getMyApptsAppt1Title().getText().isBlank());
 	}
 	
@@ -138,7 +139,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			{
 //				Thread.sleep(500);	
 			}
-		a.getEditApptCanceledOKButton().click();
+//		a.getEditApptCanceledOKButton().click();
 		reusableWaits.waitForDashboardLoaded();
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		}

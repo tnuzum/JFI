@@ -109,6 +109,8 @@ public class reusableMethods extends base {
 		// used
 		Thread.sleep(2000);
 		p.getSubmitButton().click();
+		Thread.sleep(5000);
+		p.getPopupPayButton().click();
 		return null;
 	}
 
