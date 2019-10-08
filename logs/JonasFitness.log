@@ -42,3 +42,7 @@
 18:06:10.285 [main] INFO  resources.base - Driver Initialized
 18:06:39.513 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
 18:06:41.444 [main] INFO  resources.base - Driver Initialized
+12:17:36.587 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:17:41.307 [main] INFO  resources.base - Driver Initialized
+12:18:50.921 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:18:54.426 [main] INFO  resources.base - Driver Initialized
