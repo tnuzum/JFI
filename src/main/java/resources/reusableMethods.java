@@ -1,5 +1,9 @@
 package resources;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
@@ -136,5 +140,13 @@ public class reusableMethods extends base {
 		}
 		return null;
 	}
+	
+	public static String getDateFormater() {
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		Date date = new Date();
+		String DateTime= dateFormat.format(date);
+		return DateTime;
+	}
+
 
 }
