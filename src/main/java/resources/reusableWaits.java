@@ -28,7 +28,7 @@ public class reusableWaits extends base{
 	{
 	// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
-		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2")));
+		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
 		System.out.println(DateTime+" INFO: MEMBER NAME Element is now present");
 	// Check 2: wait for MEMBER NAME element to not be blank	
 		DashboardPO d = new DashboardPO(driver);

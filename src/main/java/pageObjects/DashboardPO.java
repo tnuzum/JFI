@@ -42,7 +42,9 @@ public class DashboardPO {
 	By myAccountLastPaymentDate = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[2]");
 	
 	By myInfoSectionLabel = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[1]");
-	By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2");
+	//By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2"); change in Future 2 on 10/15
+	By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3");
+	
 	By myInfoAddress1 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/small[1]");
 	By myInfoAddress2 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/small[2]");
 	By myInfoEditButton = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[3]/a[1]");

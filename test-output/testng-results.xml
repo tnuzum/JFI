@@ -1,33 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="0" total="6" passed="6" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-10-08T15:15:24 EDT" name="Default suite" finished-at="2019-10-08T15:16:12 EDT" duration-ms="47348">
+  <suite started-at="2019-10-15T13:10:00 EDT" name="Default suite" finished-at="2019-10-15T13:11:01 EDT" duration-ms="60880">
     <groups>
     </groups>
-    <test started-at="2019-10-08T15:15:24 EDT" name="Default test" finished-at="2019-10-08T15:16:12 EDT" duration-ms="47348">
-      <class name="EME.MakeApptTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MakeApptTest@fd8294b]" started-at="2019-10-08T15:15:24 EDT" name="initialize" finished-at="2019-10-08T15:15:31 EDT" duration-ms="6497" status="PASS">
+    <test started-at="2019-10-15T13:10:00 EDT" name="Default test" finished-at="2019-10-15T13:11:01 EDT" duration-ms="60880">
+      <class name="EME.MemberLoginTest">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.MemberLoginTest@3b77a04f]" started-at="2019-10-15T13:10:00 EDT" name="initialize" finished-at="2019-10-15T13:10:07 EDT" duration-ms="6419" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="ScheduleAppointment()[pri:1, instance:EME.MakeApptTest@fd8294b]" started-at="2019-10-08T15:15:31 EDT" name="ScheduleAppointment" finished-at="2019-10-08T15:15:59 EDT" duration-ms="28538" status="PASS">
+        <test-method signature="activeMember1Login()[pri:10, instance:EME.MemberLoginTest@3b77a04f]" started-at="2019-10-15T13:10:07 EDT" name="activeMember1Login" description="Login Active Adult HOH Member" finished-at="2019-10-15T13:10:13 EDT" duration-ms="6294" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ScheduleAppointment -->
-        <test-method signature="ConfirmAppointmentIsScheduled()[pri:2, instance:EME.MakeApptTest@fd8294b]" started-at="2019-10-08T15:15:59 EDT" name="ConfirmAppointmentIsScheduled" finished-at="2019-10-08T15:15:59 EDT" duration-ms="49" status="PASS">
+        </test-method> <!-- activeMember1Login -->
+        <test-method signature="activeMember2Login()[pri:15, instance:EME.MemberLoginTest@3b77a04f]" started-at="2019-10-15T13:10:13 EDT" name="activeMember2Login" description="Login Active Adult non-HOH Member" finished-at="2019-10-15T13:10:29 EDT" duration-ms="15967" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ConfirmAppointmentIsScheduled -->
-        <test-method signature="CancelAppointment()[pri:3, instance:EME.MakeApptTest@fd8294b]" started-at="2019-10-08T15:15:59 EDT" name="CancelAppointment" finished-at="2019-10-08T15:16:11 EDT" duration-ms="11357" status="PASS">
+        </test-method> <!-- activeMember2Login -->
+        <test-method signature="activeMember3Login()[pri:20, instance:EME.MemberLoginTest@3b77a04f]" started-at="2019-10-15T13:10:29 EDT" name="activeMember3Login" description="Login Active Minor Member" finished-at="2019-10-15T13:10:45 EDT" duration-ms="15630" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CancelAppointment -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MakeApptTest@fd8294b]" started-at="2019-10-08T15:16:11 EDT" name="teardown" finished-at="2019-10-08T15:16:12 EDT" duration-ms="878" status="PASS">
+        </test-method> <!-- activeMember3Login -->
+        <test-method signature="activeMember4Login()[pri:25, instance:EME.MemberLoginTest@3b77a04f]" started-at="2019-10-15T13:10:45 EDT" name="activeMember4Login" description="Login Active Adult No Family Member" finished-at="2019-10-15T13:10:50 EDT" duration-ms="4882" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- activeMember4Login -->
+        <test-method signature="collectionsMember1Login()[pri:30, instance:EME.MemberLoginTest@3b77a04f]" started-at="2019-10-15T13:10:50 EDT" name="collectionsMember1Login" description="Login Member in Collections" finished-at="2019-10-15T13:10:54 EDT" duration-ms="4681" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- collectionsMember1Login -->
+        <test-method signature="prospectMember1Login()[pri:35, instance:EME.MemberLoginTest@3b77a04f]" started-at="2019-10-15T13:10:54 EDT" name="prospectMember1Login" description="Login Prospect Member" finished-at="2019-10-15T13:11:00 EDT" duration-ms="6204" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- prospectMember1Login -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.MemberLoginTest@3b77a04f]" started-at="2019-10-15T13:11:00 EDT" name="teardown" finished-at="2019-10-15T13:11:01 EDT" duration-ms="767" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- EME.MakeApptTest -->
+      </class> <!-- EME.MemberLoginTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
