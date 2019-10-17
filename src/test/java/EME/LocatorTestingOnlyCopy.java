@@ -30,7 +30,7 @@ public class LocatorTestingOnlyCopy extends base {
 		driver.get(prop.getProperty("EMELoginPage"));
 
 	}
-
+//Test
 	@Test(priority = 1)
 	public void locatorTestingOnly() throws IOException, InterruptedException {
 
