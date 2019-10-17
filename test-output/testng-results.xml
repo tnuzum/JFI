@@ -2,56 +2,56 @@
 <testng-results ignored="0" total="10" passed="10" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2019-10-15T13:23:32 EDT" name="Default suite" finished-at="2019-10-15T13:24:29 EDT" duration-ms="56858">
+  <suite started-at="2019-10-17T16:17:36 EDT" name="Default suite" finished-at="2019-10-17T16:18:28 EDT" duration-ms="52234">
     <groups>
     </groups>
-    <test started-at="2019-10-15T13:23:32 EDT" name="Default test" finished-at="2019-10-15T13:24:29 EDT" duration-ms="56858">
+    <test started-at="2019-10-17T16:17:36 EDT" name="Default test" finished-at="2019-10-17T16:18:28 EDT" duration-ms="52234">
       <class name="EME.PageLaunchTest">
-        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:23:32 EDT" name="initialize" finished-at="2019-10-15T13:23:43 EDT" duration-ms="11117" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:17:36 EDT" name="initialize" finished-at="2019-10-17T16:17:46 EDT" duration-ms="9672" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- initialize -->
-        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:23:43 EDT" name="MyPackagesButtonTest" finished-at="2019-10-15T13:23:48 EDT" duration-ms="4593" status="PASS">
+        <test-method signature="MyPackagesButtonTest()[pri:20, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:17:46 EDT" name="MyPackagesButtonTest" finished-at="2019-10-17T16:17:51 EDT" duration-ms="5591" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- MyPackagesButtonTest -->
-        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:23:48 EDT" name="CartButtonTest" finished-at="2019-10-15T13:23:52 EDT" duration-ms="4806" status="PASS">
+        <test-method signature="CartButtonTest()[pri:25, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:17:51 EDT" name="CartButtonTest" finished-at="2019-10-17T16:17:55 EDT" duration-ms="3259" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- CartButtonTest -->
-        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:23:52 EDT" name="AcctHistoryButtonTest" finished-at="2019-10-15T13:23:56 EDT" duration-ms="3828" status="PASS">
+        <test-method signature="AcctHistoryButtonTest()[pri:30, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:17:55 EDT" name="AcctHistoryButtonTest" finished-at="2019-10-17T16:17:59 EDT" duration-ms="4919" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- AcctHistoryButtonTest -->
-        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:23:56 EDT" name="PayNowButtonTest" finished-at="2019-10-15T13:23:58 EDT" duration-ms="2249" status="PASS">
+        <test-method signature="PayNowButtonTest()[pri:35, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:17:59 EDT" name="PayNowButtonTest" finished-at="2019-10-17T16:18:03 EDT" duration-ms="3409" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- PayNowButtonTest -->
-        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:23:58 EDT" name="ScheduleClassesButtonTest" finished-at="2019-10-15T13:24:03 EDT" duration-ms="4528" status="PASS">
+        <test-method signature="ScheduleClassesButtonTest()[pri:40, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:18:03 EDT" name="ScheduleClassesButtonTest" finished-at="2019-10-17T16:18:07 EDT" duration-ms="4559" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleClassesButtonTest -->
-        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:24:03 EDT" name="ScheduleApptsButtonTest" finished-at="2019-10-15T13:24:15 EDT" duration-ms="12074" status="PASS">
+        <test-method signature="ScheduleApptsButtonTest()[pri:45, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:18:07 EDT" name="ScheduleApptsButtonTest" finished-at="2019-10-17T16:18:15 EDT" duration-ms="7524" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ScheduleApptsButtonTest -->
-        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:24:15 EDT" name="ManageFamilyButtonTest" finished-at="2019-10-15T13:24:19 EDT" duration-ms="3658" status="PASS">
+        <test-method signature="ManageFamilyButtonTest()[pri:50, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:18:15 EDT" name="ManageFamilyButtonTest" finished-at="2019-10-17T16:18:20 EDT" duration-ms="4675" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ManageFamilyButtonTest -->
-        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:24:19 EDT" name="EditMyInfoButtonTest" finished-at="2019-10-15T13:24:20 EDT" duration-ms="1658" status="PASS">
+        <test-method signature="EditMyInfoButtonTest()[pri:55, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:18:20 EDT" name="EditMyInfoButtonTest" finished-at="2019-10-17T16:18:23 EDT" duration-ms="3743" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- EditMyInfoButtonTest -->
-        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:24:20 EDT" name="ForgotUsernameButtonTest" finished-at="2019-10-15T13:24:27 EDT" duration-ms="7055" status="PASS">
+        <test-method signature="ForgotUsernameButtonTest()[pri:60, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:18:23 EDT" name="ForgotUsernameButtonTest" finished-at="2019-10-17T16:18:27 EDT" duration-ms="3583" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ForgotUsernameButtonTest -->
-        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:24:27 EDT" name="ForgotPasswordButtonTest" finished-at="2019-10-15T13:24:28 EDT" duration-ms="471" status="PASS">
+        <test-method signature="ForgotPasswordButtonTest()[pri:65, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:18:27 EDT" name="ForgotPasswordButtonTest" finished-at="2019-10-17T16:18:27 EDT" duration-ms="473" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- ForgotPasswordButtonTest -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@590c73d3]" started-at="2019-10-15T13:24:28 EDT" name="teardown" finished-at="2019-10-15T13:24:29 EDT" duration-ms="787" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:EME.PageLaunchTest@6b9ce1bf]" started-at="2019-10-17T16:18:27 EDT" name="teardown" finished-at="2019-10-17T16:18:28 EDT" duration-ms="786" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
