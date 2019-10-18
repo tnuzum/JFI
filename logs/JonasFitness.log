@@ -49,3 +49,5 @@
 09:30:53.893 [main] INFO  resources.base - Driver Initialized
 09:31:00.712 [main] INFO  resources.base - Select Classes Page Header Verified
 09:31:01.629 [main] INFO  resources.base - Manage Profile Page Header Verified
+17:37:58.237 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+17:38:02.396 [main] INFO  resources.base - Driver Initialized

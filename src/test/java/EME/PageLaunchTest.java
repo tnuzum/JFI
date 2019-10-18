@@ -110,6 +110,11 @@ public class PageLaunchTest extends base{
 	{
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
+		WebElement w = a.getPageHeader();
+		while (!w.isDisplayed())
+		{
+		Thread.sleep(200);
+		}
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Family");
 		log.info("Manage Family Page Header Verified");
 		reusableMethods.returnToDashboard();
