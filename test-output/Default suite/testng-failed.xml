@@ -5,8 +5,8 @@
     <classes>
       <class name="EME.PageLaunchTest">
         <methods>
+          <include name="ScheduleClassesButtonTest"/>
           <include name="teardown"/>
-          <include name="ScheduleApptsButtonTest"/>
           <include name="initialize"/>
         </methods>
       </class> <!-- EME.PageLaunchTest -->

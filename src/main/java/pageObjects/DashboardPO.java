@@ -62,10 +62,7 @@ public class DashboardPO {
 	By myApptsAppt3Title = By.xpath("//appointmentswidget/div/div[2]/div[3]/div/div/a/div/div[2]/span/strong");
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classescourses/div/div[1]");
-	// The myClassesScheduleButton object's path changed drom classescouses to classeswidget in 7.28
-	//	By myClassesScheduleButton = By.xpath("//div[@class='homeComponent']//classescourses/div/div[3]/a[1]");
-	By myClassesScheduleButton = By.xpath("//div[@class='homeComponent']//classeswidget/div/div[3]/a[1]");	
-	//div[@class='homeComponent']//classeswidget/div/div[3]/a[1]
+	By myClassesScheduleButton = By.xpath("//button[contains(text(),'find classes')]");	
 	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
 	By myClassesUnenrollButton = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
 	

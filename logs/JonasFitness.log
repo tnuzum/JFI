@@ -34,3 +34,18 @@
 16:18:20.468 [main] INFO  resources.base - Manage Profile Page Header Verified
 16:18:27.231 [main] INFO  resources.base - Forgot Username Page Header Verified
 16:18:27.706 [main] INFO  resources.base - Forgot Password Page Header Verified
+09:26:28.385 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+09:26:32.976 [main] INFO  resources.base - Driver Initialized
+09:26:40.395 [main] INFO  resources.base - Shop Packages Page Header Verified
+09:26:45.215 [main] INFO  resources.base - Shopping Cart Page Header Verified
+09:26:48.568 [main] INFO  resources.base - Account History Page Header Verified
+09:26:50.864 [main] INFO  resources.base - Pay Balance Page Header Verified
+09:27:02.293 [main] INFO  resources.base - Appointments Page Header Verified
+09:27:07.515 [main] INFO  resources.base - Manage Family Page Header Verified
+09:27:11.759 [main] INFO  resources.base - Manage Profile Page Header Verified
+09:27:18.560 [main] INFO  resources.base - Forgot Username Page Header Verified
+09:27:19.043 [main] INFO  resources.base - Forgot Password Page Header Verified
+09:30:50.336 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+09:30:53.893 [main] INFO  resources.base - Driver Initialized
+09:31:00.712 [main] INFO  resources.base - Select Classes Page Header Verified
+09:31:01.629 [main] INFO  resources.base - Manage Profile Page Header Verified
