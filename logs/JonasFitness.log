@@ -1,53 +1,12 @@
-16:00:58.614 [main] INFO  resources.base - Login button label text Confirmed
-16:00:58.636 [main] INFO  resources.base - Login button isEnabled Confirmed
-16:00:58.887 [main] INFO  resources.base - Log In Button Clicked
-16:00:58.911 [main] INFO  resources.base - Username Required Message Confirmed
-16:00:58.925 [main] INFO  resources.base - Password Required Message Confirmed
-16:00:58.968 [main] INFO  resources.base - User Name Entered
-16:00:59.014 [main] INFO  resources.base - Password Entered
-16:00:59.258 [main] INFO  resources.base - Log In Button Clicked
-16:00:59.297 [main] INFO  resources.base - Error Message Title Verified
-16:01:00.269 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-16:01:03.252 [main] INFO  resources.base - Driver Initialized
-16:02:05.674 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-16:02:08.816 [main] INFO  resources.base - Driver Initialized
-16:02:20.690 [main] INFO  resources.base - Shop Packages Page Header Verified
-16:02:24.424 [main] INFO  resources.base - Shopping Cart Page Header Verified
-16:02:28.775 [main] INFO  resources.base - Account History Page Header Verified
-16:02:33.090 [main] INFO  resources.base - Pay Balance Page Header Verified
-16:02:37.820 [main] INFO  resources.base - Select Classes Page Header Verified
-16:02:38.641 [main] INFO  resources.base - Manage Profile Page Header Verified
-16:02:49.782 [main] INFO  resources.base - Manage Family Page Header Verified
-16:02:54.542 [main] INFO  resources.base - Manage Profile Page Header Verified
-16:03:01.685 [main] INFO  resources.base - Forgot Username Page Header Verified
-16:03:03.537 [main] INFO  resources.base - Forgot Password Page Header Verified
-16:17:36.509 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-16:17:39.989 [main] INFO  resources.base - Driver Initialized
-16:17:46.757 [main] INFO  resources.base - Shop Packages Page Header Verified
-16:17:52.104 [main] INFO  resources.base - Shopping Cart Page Header Verified
-16:17:55.403 [main] INFO  resources.base - Account History Page Header Verified
-16:18:00.393 [main] INFO  resources.base - Pay Balance Page Header Verified
-16:18:03.677 [main] INFO  resources.base - Select Classes Page Header Verified
-16:18:04.511 [main] INFO  resources.base - Manage Profile Page Header Verified
-16:18:08.456 [main] INFO  resources.base - Appointments Page Header Verified
-16:18:15.710 [main] INFO  resources.base - Manage Family Page Header Verified
-16:18:20.468 [main] INFO  resources.base - Manage Profile Page Header Verified
-16:18:27.231 [main] INFO  resources.base - Forgot Username Page Header Verified
-16:18:27.706 [main] INFO  resources.base - Forgot Password Page Header Verified
-09:26:28.385 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-09:26:32.976 [main] INFO  resources.base - Driver Initialized
-09:26:40.395 [main] INFO  resources.base - Shop Packages Page Header Verified
-09:26:45.215 [main] INFO  resources.base - Shopping Cart Page Header Verified
-09:26:48.568 [main] INFO  resources.base - Account History Page Header Verified
-09:26:50.864 [main] INFO  resources.base - Pay Balance Page Header Verified
-09:27:02.293 [main] INFO  resources.base - Appointments Page Header Verified
-09:27:07.515 [main] INFO  resources.base - Manage Family Page Header Verified
-09:27:11.759 [main] INFO  resources.base - Manage Profile Page Header Verified
-09:27:18.560 [main] INFO  resources.base - Forgot Username Page Header Verified
-09:27:19.043 [main] INFO  resources.base - Forgot Password Page Header Verified
-09:30:50.336 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-09:30:53.893 [main] INFO  resources.base - Driver Initialized
-09:31:00.712 [main] INFO  resources.base - Select Classes Page Header Verified
-09:31:01.629 [main] INFO  resources.base - Manage Profile Page Header Verified
-17:37:58.237 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
-17:38:02.396 [main] INFO  resources.base - Driver Initialized
+08:22:14.341 [main] INFO  resources.base - Driver Initialized
+08:22:22.533 [main] INFO  resources.base - Shop Packages Page Header Verified
+08:22:25.830 [main] INFO  resources.base - Shopping Cart Page Header Verified
+08:22:30.750 [main] INFO  resources.base - Account History Page Header Verified
+08:22:34.566 [main] INFO  resources.base - Pay Balance Page Header Verified
+08:22:36.760 [main] INFO  resources.base - Select Classes Page Header Verified
+08:22:37.620 [main] INFO  resources.base - Manage Profile Page Header Verified
+08:22:41.574 [main] INFO  resources.base - Appointments Page Header Verified
+08:22:44.297 [main] INFO  resources.base - Manage Family Page Header Verified
+08:22:49.564 [main] INFO  resources.base - Manage Profile Page Header Verified
+08:22:57.523 [main] INFO  resources.base - Forgot Username Page Header Verified
+08:22:58.002 [main] INFO  resources.base - Forgot Password Page Header Verified

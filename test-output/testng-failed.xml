@@ -5,18 +5,9 @@
     <classes>
       <class name="EME.PageLaunchTest">
         <methods>
-          <include name="EditMyInfoButtonTest"/>
-          <include name="ManageFamilyButtonTest"/>
           <include name="ScheduleClassesButtonTest"/>
-          <include name="ForgotUsernameButtonTest"/>
-          <include name="PayNowButtonTest"/>
-          <include name="MyPackagesButtonTest"/>
-          <include name="ForgotPasswordButtonTest"/>
           <include name="teardown"/>
-          <include name="AcctHistoryButtonTest"/>
-          <include name="ScheduleApptsButtonTest"/>
           <include name="initialize"/>
-          <include name="CartButtonTest"/>
         </methods>
       </class> <!-- EME.PageLaunchTest -->
     </classes>
