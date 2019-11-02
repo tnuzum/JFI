@@ -91,12 +91,12 @@ public class PageLaunchTest extends base{
 	@Test (priority = 45)
 	public void ScheduleApptsButtonTest() throws InterruptedException
 	{
-		d.getMyApptsScheduleButton().click();//Accessing from Dashboard
-			reusableMethods.catchErrorMessage();
+//		d.getMyApptsScheduleButton().click();//Accessing from Dashboard
+//			reusableMethods.catchErrorMessage();
 		AppointmentsPO a = new AppointmentsPO(driver);
-		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
-		log.info("Appointments Page Header Verified");
-		d.getDashboardButton().click();
+//		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
+//		log.info("Appointments Page Header Verified");
+//		d.getDashboardButton().click();
 		d.getMenuMyActivies().click();//Accessing from left pane menu
 		d.getMenuBookAppointment().click();
 // The pageHeader changed in 7.28
@@ -110,6 +110,11 @@ public class PageLaunchTest extends base{
 	{
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
+		WebElement w = a.getPageHeader();
+		while (!w.isDisplayed())
+		{
+		Thread.sleep(200);
+		}
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Family");
 		log.info("Manage Family Page Header Verified");
 		reusableMethods.returnToDashboard();

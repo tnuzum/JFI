@@ -29,31 +29,28 @@ public class reusableWaits extends base{
 	// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
 		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
-		System.out.println(DateTime+" INFO: MEMBER NAME Element is now present");
+//		System.out.println(DateTime+" INFO: MEMBER NAME Element is now present");
 	// Check 2: wait for MEMBER NAME element to not be blank	
 		DashboardPO d = new DashboardPO(driver);
 		WebElement wait2 = d.getMyInfoMemberName();
 		while (wait2.getText().isBlank())
 		{
-			System.out.println(DateTime+" INFO:Dashboard Wait - Waiting 500ms for MEMBER NAME element to populate");
+//			System.out.println(DateTime+" INFO:Dashboard Wait - Waiting 500ms for MEMBER NAME element to populate");
 			Thread.sleep(500);
 			wait2.getText();
 		}
 	// Check 3: wait for TOTAL CHARGES element
 		WebDriverWait wait3 = new WebDriverWait(driver, 10);
 		wait3.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2")));
-		System.out.println(DateTime+" INFO: TOTAL CHARGES Element is now present");
+//		System.out.println(DateTime+" INFO: TOTAL CHARGES Element is now present");
 	// Check 4: wait for TOTAL CHARGES element to not be blank
 		WebElement wait4 = d.getMyAccountBalance();
 		while (wait4.getText().isBlank())
 		{
-			System.out.println(DateTime+" INFO: Waiting 500ms for TOTAL CHARGES element to populate");
+//			System.out.println(DateTime+" INFO: Waiting 500ms for TOTAL CHARGES element to populate");
 			Thread.sleep(500);
 			wait4.getText();
 		}
-		
-		
-		
 		return null;
 		
 	}
@@ -62,13 +59,13 @@ public class reusableWaits extends base{
 			// Check 1: wait for member name element
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
 		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//familymembercount//div//div//h2")));
-		System.out.println(DateTime+" INFO: Element is now present");
+//		System.out.println(DateTime+" INFO: Element is now present");
 			// Check 2: wait for member name element to not be blank	
 		DashboardPO d = new DashboardPO(driver);
 		WebElement wait = d.getMyFamilyMemberCount();
 		while (wait.getText().isBlank())
 		{
-			System.out.println(DateTime+" INFO: Waiting 500ms for Family Member Count element to populate");
+//			System.out.println(DateTime+" INFO: Waiting 500ms for Family Member Count element to populate");
 			Thread.sleep(500);
 			wait.getText();
 		}
@@ -80,13 +77,13 @@ public class reusableWaits extends base{
 			// Check 1: wait for member name element
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
 		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@type='submit']")));
-		System.out.println(DateTime+" INFO: Element is now present");
+//		System.out.println(DateTime+" INFO: Element is now present");
 			// Check 2: wait for member name element to not be blank	
 		PaymentPO p = new PaymentPO(driver);
 		WebElement wait = p.getSubmitButton();
 		while (!wait.isEnabled())
 		{
-			System.out.println(DateTime+" INFO: Waiting 500ms for Submit button to be enabled");
+//			System.out.println(DateTime+" INFO: Waiting 500ms for Submit button to be enabled");
 			Thread.sleep(500);
 			wait.getText();
 		}
@@ -97,13 +94,13 @@ public class reusableWaits extends base{
 	{
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
-			System.out.println(DateTime+" INFO: Element is now present");
+//			System.out.println(DateTime+" INFO: Element is now present");
 			LoginPO l = new LoginPO(driver);
 			WebElement n = l.getLoginButton();
 			while (!n.isEnabled())//while button is NOT(!) enabled
 			{
 				Thread.sleep(500);
-				System.out.println(DateTime+" INFO: waiting 500ms for element to be enabled");
+//				System.out.println(DateTime+" INFO: waiting 500ms for element to be enabled");
 			}
 		return null;
 	}
@@ -111,13 +108,13 @@ public class reusableWaits extends base{
 	{
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
-			System.out.println(DateTime+" INFO: Element is now present");
+//			System.out.println(DateTime+" INFO: Element is now present");
 			PaymentPO p = new PaymentPO(driver);
 			WebElement n = p.getPopupConfirmationButton();
 			while (!n.isEnabled())//while button is NOT(!) enabled
 			{
 				Thread.sleep(500);
-				System.out.println(DateTime+" INFO: waiting 500ms for Accept Button to be enabled");
+//				System.out.println(DateTime+" INFO: waiting 500ms for Accept Button to be enabled");
 			}
 		return null;
 	}
