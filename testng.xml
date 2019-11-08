@@ -3,7 +3,7 @@
 <suite name="EME - Smoke Testing">
     <listeners>
 		<listener class-name = "EME.listeners"/>
-	<listener class-name = "resources.ExtentReporterNG"/>
+	<!--listener class-name = "resources.ExtentReporterNG"/-->
 	</listeners> 
   <test thread-count="5" name="Login Page Test">
     <classes>
@@ -24,23 +24,23 @@
     <classes>
       <class name="EME.MakePaymentTest"/>
     </classes>
-  </test> 
-  <test thread-count="5" name="Make Appointment">
+  </test--> 
+  <!-- test thread-count="5" name="Make Appointment">
     <classes>
       <class name="EME.MakeApptTest"/>
     </classes>
-  </test> 
-    <test thread-count="5" name="Schedule Class">
+  </test--> 
+    <!-- test thread-count="5" name="Schedule Class">
     <classes>
       <class name="EME.ScheduleClassTest"/>
     </classes>
-  </test> 
-      <test thread-count="5" name="Schedule Course">
+  </test--> 
+      <!-- test thread-count="5" name="Schedule Course">
     <classes>
       <class name="EME.ScheduleCourseTest"/>
     </classes>
-  </test>
-        <test thread-count="5" name="Make Group Appointment">
+  </test-->
+        <!-- test thread-count="5" name="Make Group Appointment">
     <classes>
       <class name="EME.MakeGroupApptTest"/>
     </classes>

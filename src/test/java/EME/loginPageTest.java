@@ -1,14 +1,17 @@
 package EME;
 import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import pageObjects.LoginPO;
 import resources.base;
 
@@ -76,9 +79,17 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		l.getuserPassword().sendKeys(prop.getProperty("invalid_password"));
 			log.info("Password Entered");
 		l.getLoginButton().click();
+			log.info("Log In Button Clicked");
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='loginForm']/form/div[1]/ul/li")));
-			log.info("Log In Button Clicked");
+			WebElement wait2 = l.getcredentialsErrorMessage();
+			while (wait2.getText().isBlank())
+			{
+				System.out.println("INFO: Waiting 500ms for element to populate");
+				Thread.sleep(500);
+				wait2.getText();
+			}
+
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), prop.getProperty("wrongCredentialsMessage"));
 			log.info("Error Message Title Verified");
 	}

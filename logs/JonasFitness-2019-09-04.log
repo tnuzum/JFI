@@ -1,0 +1,76 @@
+11:59:59.366 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:00:02.367 [main] INFO  resources.base - Driver Initialized
+12:00:17.539 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:00:20.500 [main] INFO  resources.base - Driver Initialized
+12:02:16.266 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:02:19.353 [main] INFO  resources.base - Driver Initialized
+12:02:57.155 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:03:00.271 [main] INFO  resources.base - Driver Initialized
+12:03:44.993 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:03:47.955 [main] INFO  resources.base - Driver Initialized
+13:01:59.019 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:02:03.207 [main] INFO  resources.base - Driver Initialized
+13:25:02.267 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:25:05.807 [main] INFO  resources.base - Driver Initialized
+13:32:01.876 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+13:32:05.391 [main] INFO  resources.base - Driver Initialized
+13:35:40.320 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+13:35:42.106 [main] INFO  resources.base - Driver Initialized
+13:38:16.379 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+13:38:49.411 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+13:38:51.031 [main] INFO  resources.base - Driver Initialized
+13:41:24.648 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+13:41:26.848 [main] INFO  resources.base - Driver Initialized
+13:43:40.916 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+13:43:42.979 [main] INFO  resources.base - Driver Initialized
+13:44:31.903 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+13:44:33.971 [main] INFO  resources.base - Driver Initialized
+13:55:07.340 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+13:55:09.382 [main] INFO  resources.base - Driver Initialized
+13:56:38.674 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+13:56:40.686 [main] INFO  resources.base - Driver Initialized
+14:39:07.324 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+14:39:09.366 [main] INFO  resources.base - Driver Initialized
+14:46:04.673 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+14:46:06.788 [main] INFO  resources.base - Driver Initialized
+14:48:45.286 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+14:48:47.300 [main] INFO  resources.base - Driver Initialized
+16:27:09.798 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:27:12.001 [main] INFO  resources.base - Driver Initialized
+16:27:13.607 [main] INFO  resources.base - Page Title Verified
+16:27:13.665 [main] INFO  resources.base - Username input label text Confirmed
+16:27:13.708 [main] INFO  resources.base - Username input label text Confirmed
+16:27:13.748 [main] INFO  resources.base - Forgot Username link text Confirmed
+16:27:13.789 [main] INFO  resources.base - Forgot Password link text Confirmed
+16:27:13.827 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+16:27:13.871 [main] INFO  resources.base - Remember Username label text Confirmed
+16:27:13.914 [main] INFO  resources.base - Login button label text Confirmed
+16:27:13.941 [main] INFO  resources.base - Login button isEnabled Confirmed
+16:27:14.044 [main] INFO  resources.base - Log In Button Clicked
+16:27:14.109 [main] INFO  resources.base - Username Required Message Confirmed
+16:27:14.157 [main] INFO  resources.base - Password Required Message Confirmed
+16:27:14.262 [main] INFO  resources.base - User Name Entered
+16:27:14.401 [main] INFO  resources.base - Password Entered
+11:33:36.172 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+11:33:38.633 [main] INFO  resources.base - Driver Initialized
+11:45:09.722 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+11:45:11.746 [main] INFO  resources.base - Driver Initialized
+<<<<<<< HEAD
+11:59:03.689 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+11:59:06.265 [main] INFO  resources.base - Driver Initialized
+12:07:05.265 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+12:07:07.935 [main] INFO  resources.base - Driver Initialized
+12:21:51.306 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+12:21:53.712 [main] INFO  resources.base - Driver Initialized
+12:23:41.644 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+12:23:44.001 [main] INFO  resources.base - Driver Initialized
+=======
+12:26:20.719 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+12:26:22.758 [main] INFO  resources.base - Driver Initialized
+12:26:24.438 [main] INFO  resources.base - Page Title Verified
+12:26:24.492 [main] INFO  resources.base - Username input label text Confirmed
+12:26:24.534 [main] INFO  resources.base - Username input label text Confirmed
+12:26:24.578 [main] INFO  resources.base - Forgot Username link text Confirmed
+12:26:24.621 [main] INFO  resources.base - Forgot Password link text Confirmed
+12:26:24.660 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+>>>>>>> cb795503296892dcb19454770ddeb0f8f63182d3

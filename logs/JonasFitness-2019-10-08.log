@@ -1,0 +1,66 @@
+16:17:31.778 [main] INFO  resources.base - Remember Username label text Confirmed
+16:17:31.996 [main] INFO  resources.base - Login button label text Confirmed
+16:17:32.208 [main] INFO  resources.base - Login button isEnabled Confirmed
+16:17:32.458 [main] INFO  resources.base - Log In Button Clicked
+16:17:32.894 [main] INFO  resources.base - Username Required Message Confirmed
+16:17:33.108 [main] INFO  resources.base - Password Required Message Confirmed
+16:17:33.559 [main] INFO  resources.base - User Name Entered
+16:17:34.037 [main] INFO  resources.base - Password Entered
+16:17:35.224 [main] INFO  resources.base - Log In Button Clicked
+16:17:35.439 [main] INFO  resources.base - Error Message Title Verified
+16:24:41.896 [main] INFO  resources.base - Edge Browser: Running Tests on local machine
+16:24:43.612 [main] INFO  resources.base - Driver Initialized
+16:24:45.340 [main] INFO  resources.base - Page Title Verified
+16:24:45.575 [main] INFO  resources.base - Username input label text Confirmed
+16:24:45.792 [main] INFO  resources.base - Username input label text Confirmed
+16:24:46.008 [main] INFO  resources.base - Forgot Username link text Confirmed
+16:24:46.222 [main] INFO  resources.base - Forgot Password link text Confirmed
+16:24:46.434 [main] INFO  resources.base - Remember Username Checkbox Unchecked Confirmed
+16:24:46.649 [main] INFO  resources.base - Remember Username label text Confirmed
+16:24:46.862 [main] INFO  resources.base - Login button label text Confirmed
+16:24:47.073 [main] INFO  resources.base - Login button isEnabled Confirmed
+16:24:47.323 [main] INFO  resources.base - Log In Button Clicked
+16:24:47.756 [main] INFO  resources.base - Username Required Message Confirmed
+16:24:47.970 [main] INFO  resources.base - Password Required Message Confirmed
+16:24:48.417 [main] INFO  resources.base - User Name Entered
+16:24:48.887 [main] INFO  resources.base - Password Entered
+16:24:49.352 [main] INFO  resources.base - Log In Button Clicked
+16:24:49.573 [main] INFO  resources.base - Error Message Title Verified
+16:51:00.136 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+16:51:02.499 [main] INFO  resources.base - Driver Initialized
+17:09:48.918 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:09:50.774 [main] INFO  resources.base - Driver Initialized
+17:12:10.419 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:12:12.277 [main] INFO  resources.base - Driver Initialized
+17:13:24.719 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:13:26.624 [main] INFO  resources.base - Driver Initialized
+17:16:00.554 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:16:02.420 [main] INFO  resources.base - Driver Initialized
+17:16:20.918 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+17:16:22.778 [main] INFO  resources.base - Driver Initialized
+18:06:08.299 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+18:06:10.285 [main] INFO  resources.base - Driver Initialized
+18:06:39.513 [main] INFO  resources.base - Chrome Browser: Running Tests on local machine
+18:06:41.444 [main] INFO  resources.base - Driver Initialized
+12:17:36.587 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:17:41.307 [main] INFO  resources.base - Driver Initialized
+12:18:50.921 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:18:54.426 [main] INFO  resources.base - Driver Initialized
+12:27:05.095 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:27:09.265 [main] INFO  resources.base - Driver Initialized
+12:28:49.300 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:28:52.949 [main] INFO  resources.base - Driver Initialized
+12:29:52.915 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:29:56.433 [main] INFO  resources.base - Driver Initialized
+12:31:14.183 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:31:33.932 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:31:37.451 [main] INFO  resources.base - Driver Initialized
+12:34:46.364 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:34:49.869 [main] INFO  resources.base - Driver Initialized
+12:37:45.975 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:37:50.069 [main] INFO  resources.base - Driver Initialized
+12:38:38.303 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:38:41.786 [main] INFO  resources.base - Driver Initialized
+12:39:54.923 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine
+12:39:58.453 [main] INFO  resources.base - Driver Initialized
+12:41:21.453 [main] INFO  resources.base - Firefox Browser: Running Tests on local machine

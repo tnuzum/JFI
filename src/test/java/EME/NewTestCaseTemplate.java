@@ -1,12 +1,13 @@
 package EME;
 import java.io.IOException;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import resources.base;
-import pageObjects.LoginPO;
 
 
 public class NewTestCaseTemplate extends base{
@@ -22,15 +23,17 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			 driver.get(prop.getProperty("EMELoginPage"));
 		}
 		
-	@Test (priority = 1)
+	@Test (priority = 1, description="...")
 		public void pageVerifications() throws IOException
-		{	
-	
+		{
+		
+		log.info("...");
 		}
-	@Test (priority = 2)
+	@Test (priority = 2, description="...")
 		public void pageValidations() throws IOException
-		{	
-	
+		{
+		
+		log.info("...");
 		}
 
 	@AfterTest

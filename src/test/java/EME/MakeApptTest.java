@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.AppointmentsPO;
+import pageObjects.CartPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
@@ -38,17 +39,20 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 				AppointmentsPO ap = new AppointmentsPO(driver);
-				while (ap.getBookableItemCategory().getText().isEmpty())		
+				WebElement bic = ap.getBookableItemCategory();
+				Thread.sleep(2000);
+				while (!bic.isEnabled())		
 				{
 					System.out.println("Waiting for Bookable Item Category to not be blank");
 				}	
-		ap.getBookableItemCategory().sendKeys("g",Keys.ENTER);
+		ap.getBookableItemCategory().sendKeys("golf",Keys.ARROW_DOWN,Keys.ENTER);
 				WebElement bi = ap.getBookableItem();
 				while (!bi.isEnabled())//while button is NOT(!) enabled
 				{
 //				Thread.sleep(200);
 				}
-		ap.getBookableItem().sendKeys("d",Keys.ENTER);
+				Thread.sleep(2000);
+		ap.getBookableItem().sendKeys("dr",Keys.ENTER);
 				WebElement rt = ap.getResourceType();
 				while (!rt.isEnabled())//while button is NOT(!) enabled
 				{
@@ -78,12 +82,19 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				{
 //				Thread.sleep(200);
 				}
-		ap.getPopup1BookButton().click();
+				ap.getPopup1BookButton().click();
+				Thread.sleep(2000);
+//		ap.getPackageRequiredContinueButton().click();
+//		Thread.sleep(2000);
+//		CartPO co = new CartPO(driver);
+//		co.getCheckoutButton().click();
+//		Thread.sleep(2000);
+//		reusableMethods.useNewCard();
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'swal2-success')]")));
-		Thread.sleep(1000);
 		Assert.assertEquals(ap.getPopup2Title().getText(),"Booked!");
 		ap.getPopup2OKButton().click();
+		reusableMethods.returnToDashboard();
 		}
 	@Test (priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException
@@ -91,7 +102,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/a/div/div[2]/span/strong")));
 		Assert.assertFalse(d.getMyApptsAppt1Title().getText().isBlank());
 	}
 	
@@ -128,7 +139,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			{
 //				Thread.sleep(500);	
 			}
-		a.getEditApptCanceledOKButton().click();
+//		a.getEditApptCanceledOKButton().click();
 		reusableWaits.waitForDashboardLoaded();
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		}

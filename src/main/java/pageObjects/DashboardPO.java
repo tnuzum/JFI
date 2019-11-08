@@ -39,35 +39,30 @@ public class DashboardPO {
 	By myAccountBalance = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2");
 	By myAccountBalDuelabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/div/small");
 	By myAccountTotChargesAmount = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small/strong/span");
-	By myAccountLastPaymentDate = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[1]");
+	By myAccountLastPaymentDate = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[2]");
 	
 	By myInfoSectionLabel = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[1]");
-	By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2");
+	//By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2"); change in Future 2 on 10/15
+	By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3");
+	
 	By myInfoAddress1 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/small[1]");
 	By myInfoAddress2 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/small[2]");
 	By myInfoEditButton = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[3]/a[1]");
 
 	By myApptsSectionLabel = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[1]");
 	
-// use this section for Future 2; appointmentswidget section changed to appoinments
-	By myApptsScheduleButton = By.xpath("//a[@href='#/Appointments']/i");
-	By myApptsAppt1GearButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[3]/i");
+	By myApptsScheduleButton = By.xpath("//a[contains(text(),'schedule appointments')]");
+	By myApptsAppt1GearButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div[1]/div/a/div/div[3]/i");
+	By myApptsNoApptsMessage = By.xpath("//strong[contains(text(),'You have no scheduled appointments.')]");
+	
 	By myApptsAddtoCalendarButton = By.xpath("//appointmentswidget/div/div[2]/div/div/div/div/div/div[1]/button");
-	By myApptsEditButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/div/div/div[2]/button");
-	By myApptsAppt1Title = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong");
-	By myApptsAppt2Title = By.xpath("//appointmentswidget/div/div[2]/div[2]/div/a/div/div[2]/span/strong");
-	By myApptsAppt3Title = By.xpath("//appointmentswidget/div/div[2]/div[3]/div/a/div/div[2]/span/strong");
-// use this section for Future
-/*	By myApptsScheduleButton = By.xpath("//appointments/div/div[3]/a[1]");
-	By myApptsAppt1GearButton = By.xpath("//appointments/div/div[2]/div[1]/div/a/div/div[3]/i");
-	By myApptsAddtoCalendarButton = By.xpath("//appointments/div/div[2]/div/div/div/div/div/div[1]/button");
-	By myApptsEditButton = By.xpath("//appointments/div/div[2]/div[1]/div/div/div/div/div[2]/button");
-	By myApptsAppt1Title = By.xpath("//appointments/div/div[2]/div[1]/div/a/div/div[2]/span/strong");
-	By myApptsAppt2Title = By.xpath("//appointments/div/div[2]/div[2]/div/a/div/div[2]/span/strong");
-	By myApptsAppt3Title = By.xpath("//appointments/div/div[2]/div[3]/div/a/div/div[2]/span/strong");*/
+	By myApptsEditButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div[1]/div/div/div/div/div[2]/button");
+	By myApptsAppt1Title = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/a/div/div[2]/span/strong");
+	By myApptsAppt2Title = By.xpath("//appointmentswidget/div/div[2]/div[2]/div/div/a/div/div[2]/span/strong");
+	By myApptsAppt3Title = By.xpath("//appointmentswidget/div/div[2]/div[3]/div/div/a/div/div[2]/span/strong");
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classescourses/div/div[1]");
-	By myClassesScheduleButton = By.xpath("//div[@class='homeComponent']//classescourses/div/div[3]/a[1]");
+	By myClassesScheduleButton = By.xpath("//button[contains(text(),'class schedule')]");	
 	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
 	By myClassesUnenrollButton = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
 	
@@ -75,6 +70,8 @@ public class DashboardPO {
 	
 	By myFamilySectionLabel = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]");
 	By myFamilyFamilyMemberCount = By.xpath("//div[@class='homeComponent']//familymembercount//div//div//h2");
+	By myFamilyFamilyMemberCount2 = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]");
+	
 	By myFamilyManageButton = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[3]/a[1]");
 	
 	By AdditionalLinksSectionLabel = By.xpath("//div[@class='homeComponent']//externallinks/div/div[1]/div[1]");
@@ -239,6 +236,10 @@ public class DashboardPO {
 	{
 		return driver.findElement(myApptsScheduleButton);
 	}
+	public WebElement getMyApptsNoApptsMessage()
+	{
+		return driver.findElement(myApptsNoApptsMessage);
+	}
 	public WebElement getMyApptsAppt1Title()
 	{
 		return driver.findElement(myApptsAppt1Title);
@@ -297,6 +298,10 @@ public class DashboardPO {
 	public WebElement getMyFamilyMemberCount()
 	{
 		return driver.findElement(myFamilyFamilyMemberCount);
+	}
+	public WebElement getMyFamilyMemberCount2()
+	{
+		return driver.findElement(myFamilyFamilyMemberCount2);
 	}
 	public WebElement getMyFamilyManageButton()
 	{
