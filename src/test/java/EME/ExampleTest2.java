@@ -38,7 +38,8 @@ public class ExampleTest2 extends base{
 		
 		Thread.sleep(10000);		
 		driver.close();
-		driver=null;		
+		driver=null;	
+		System.out.println("testing the merge conflicts");
 
 		}
 
