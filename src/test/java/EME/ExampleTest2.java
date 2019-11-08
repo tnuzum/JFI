@@ -10,6 +10,8 @@ import org.testng.annotations.Test;
 import resources.base;
 
 public class ExampleTest2 extends base{
+	
+	//testing repository
 
 //	public static void main(String[] args) throws InterruptedException
 	@Test
