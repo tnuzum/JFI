@@ -42,7 +42,11 @@ public class ExampleTest2 extends base{
 		Thread.sleep(10000);		
 		driver.close();
 		driver=null;	
+
+		System.out.println("Bhagya - testing the merge conflicts");
+
 		System.out.println("todd - testing the merge conflicts");
+
 
 		}
 
