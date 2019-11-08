@@ -51,7 +51,7 @@ public class DashboardPO {
 
 	By myApptsSectionLabel = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[1]");
 	
-	By myApptsScheduleButton = By.xpath("//a[contains(text(),'schedule appointments')]");
+	By myApptsScheduleButton = By.xpath("//button[contains(text(),'book appointment')]");
 	By myApptsAppt1GearButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div[1]/div/a/div/div[3]/i");
 	By myApptsNoApptsMessage = By.xpath("//strong[contains(text(),'You have no scheduled appointments.')]");
 	
