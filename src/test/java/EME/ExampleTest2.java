@@ -12,6 +12,7 @@ import resources.base;
 public class ExampleTest2 extends base{
 	
 	//testing repository
+	//more changes
 
 //	public static void main(String[] args) throws InterruptedException
 	@Test
