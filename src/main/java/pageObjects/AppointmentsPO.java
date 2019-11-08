@@ -28,7 +28,7 @@ public class AppointmentsPO {
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
 	By calendarMonday1stFullWeek = By.xpath("//div[@class='cal-month-view']/div/div[2]/div/mwl-calendar-month-cell[2]");
-	By selectTimeMorningButton = By.xpath("//div[@class='tabs-container']/ul/li[1]");
+	By selectTimeMorningButton = By.xpath("//strong[contains(text(),'MORNING')]");
 	By selectTimeMorningLabel1 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTimeMorningLabel2 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTime1stAvailable = By.xpath("(//div[@class='tag-wrap'])[1]/button[1]");
