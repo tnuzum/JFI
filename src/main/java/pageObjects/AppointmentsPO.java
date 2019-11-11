@@ -31,7 +31,7 @@ public class AppointmentsPO {
 	By selectTimeMorningButton = By.xpath("//strong[contains(text(),'MORNING')]");
 	By selectTimeMorningLabel1 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTimeMorningLabel2 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
-	By selectTime1stAvailable = By.xpath("(//div[@class='tag-wrap'])[1]/button[1]");
+	By selectTime1stAvailable = By.xpath("(//div[contains(@class,'tag-wrap')]/button[1]");
 	By addlResourcesCancelButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[1]"); //cancel button
 	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book button
 	By packageRequiredContinueButton = By.xpath("//*[text()='CONTINUE']"); // Continue button

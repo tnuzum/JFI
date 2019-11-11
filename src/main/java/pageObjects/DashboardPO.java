@@ -41,12 +41,14 @@ public class DashboardPO {
 	By myAccountTotChargesAmount = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small/strong/span");
 	By myAccountLastPaymentDate = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[2]");
 	
-	By myInfoSectionLabel = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[1]");
+	By myInfoSectionLabel = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[1]/h5");
+	//By myInfoSectionLabel = By.xpath("//h5[contains(text(),'My Info')]");
 	//By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/h2"); change in Future 2 on 10/15
-	By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3");
+	//By myInfoMemberName = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3");
+	By myInfoMemberName = By.xpath("//h3[@class='no-margins']");
 	
-	By myInfoAddress1 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/small[1]");
-	By myInfoAddress2 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/small[2]");
+	By myInfoAddress1 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/div/small[1]");
+	By myInfoAddress2 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/div/div/small[1]");
 	By myInfoEditButton = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[3]/a[1]");
 
 	By myApptsSectionLabel = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[1]");
@@ -61,10 +63,13 @@ public class DashboardPO {
 	By myApptsAppt2Title = By.xpath("//appointmentswidget/div/div[2]/div[2]/div/div/a/div/div[2]/span/strong");
 	By myApptsAppt3Title = By.xpath("//appointmentswidget/div/div[2]/div[3]/div/div/a/div/div[2]/span/strong");
 	
-	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classescourses/div/div[1]");
+	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classeswidget/div/div[1]");
 	By myClassesScheduleButton = By.xpath("//button[contains(text(),'class schedule')]");	
 	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
 	By myClassesUnenrollButton = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
+	
+	By myCoursesEventsSectionLabel = By.xpath("//div[@class='homeComponent']//courseswidget/div/div[1]");
+	By myCoursesEventsScheduleButton = By.xpath("//button[contains(text(),'Courses/Events Schedule')]");
 	
 	By myVisitsSectionLabel = By.xpath("//div[@class='homeComponent']//checkinchart/div/div[1]");
 	
@@ -208,7 +213,7 @@ public class DashboardPO {
 	//My Info
 	public WebElement getMyInfoSectionLabel()
 	{
-		return driver.findElement(myInfoMemberName);
+		return driver.findElement(myInfoSectionLabel);
 	}
 	public WebElement getMyInfoMemberName()
 	{
@@ -283,6 +288,15 @@ public class DashboardPO {
 		return driver.findElement(myClassesUnenrollButton);
 	}
 
+	//My Courses/Events
+		public WebElement getMyCoursesEventsSectionLabel()
+		{
+			return driver.findElement(myCoursesEventsSectionLabel);
+		}
+		public WebElement getMyCoursesEventsScheduleButton()
+		{
+			return driver.findElement(myCoursesEventsScheduleButton);
+		}
 	
 	//My Visits
 	public WebElement getMyVisitsSectionLabel()
