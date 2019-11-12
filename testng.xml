@@ -45,8 +45,7 @@
       <class name="EME.MakeGroupApptTest"/>
     </classes>
   </test-->
-  </test>
-        <test thread-count="5" name="Dashboard layout">
+   <test thread-count="5" name="Dashboard layout">
     <classes>
       <class name="EME.DashBoard_Layout"/>
     </classes>
