@@ -25,7 +25,7 @@ public class base {
 	public static WebDriver driver;
 	public static Properties prop; //or, public static Properties prop = new Properties(); this was recommended to resolve an NPE, but I didn't need it
 	public static Logger log =LogManager.getLogger(base.class.getName());
-	String projectPath = System.getenv("PROJECT_HOME");
+	String projectPath = System.getenv("PROJECT1_HOME");
 	String userProfile = System.getenv("USERPROFILE");
 
 	public WebDriver initializeDriver() throws IOException {
