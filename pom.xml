@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>EME</groupId>
-	<artifactId>JonasFitness</artifactId>
+	<artifactId>EME</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>JonasFitness</name>
+	<name>JonasFitness-EME</name>
 	<!-- <url>http://maven.apache.org</url -->
 	<url>https://repo.maven.apache.org/maven2</url>
 	<properties>
