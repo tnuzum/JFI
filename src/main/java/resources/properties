@@ -1,8 +1,9 @@
 test_environment = local
 browser = Chrome
-EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/101
+EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
 	**************************************************************************************
 	Web addresses for URL parameter
+	EMEFuture2AutoURL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
 	EMEFuture2URL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/101
 	EMEFutureURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101
 	EMECurrentURL = https://ourclublogin.test-jfisoftware.com:8909/account/login/101
