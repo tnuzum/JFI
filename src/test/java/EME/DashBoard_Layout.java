@@ -105,7 +105,7 @@ public class DashBoard_Layout extends base{
 			Assert.assertEquals(infoSectionLabel,  "My Info");
 			Assert.assertTrue(d.getMyInfoMemberName().isDisplayed());
 			Assert.assertTrue(d.getMyInfoAddress1().isDisplayed());
-			Assert.assertTrue(d.getMyInfoAddress2().isDisplayed());
+			//Assert.assertTrue(d.getMyInfoAddress2().isDisplayed());
 			Assert.assertTrue(d.getMyInfoEditButton().isDisplayed());
 			}
 			@Test (priority = 7)
