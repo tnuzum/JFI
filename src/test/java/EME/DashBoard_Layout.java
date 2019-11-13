@@ -94,7 +94,7 @@ public class DashBoard_Layout extends base{
 			Assert.assertEquals(myCoursesSectionLabel, "My Upcoming Courses / Events");
 			Assert.assertTrue(d.getMyCoursesEventsScheduleButton().isDisplayed());
 			}
-			@Test (priority = 5)
+			@Test (priority = 6)
 			public void VerifyMyInfo() {
 				
 				DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
@@ -108,7 +108,7 @@ public class DashBoard_Layout extends base{
 			Assert.assertTrue(d.getMyInfoAddress2().isDisplayed());
 			Assert.assertTrue(d.getMyInfoEditButton().isDisplayed());
 			}
-			@Test (priority = 5)
+			@Test (priority = 7)
 			public void VerifyMyFamily()  {
 				
 				DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
@@ -121,7 +121,7 @@ public class DashBoard_Layout extends base{
 			Assert.assertTrue(d.getMyFamilyManageButton().isDisplayed());
 			Assert.assertTrue(d.getMyFamilyMemberCount().isDisplayed());
 			}
-			@Test (priority = 6)
+			@Test (priority = 8)
 			public void VerifyVisitsSection() {
 				
 				DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
@@ -131,7 +131,7 @@ public class DashBoard_Layout extends base{
 			String visitsSectionLabel = d.getMyVisitsSectionLabel().getText();
 			Assert.assertEquals(visitsSectionLabel, "Visits By Month");
 			}
-			@Test (priority = 7)
+			@Test (priority = 9)
 			public void VerifyAdditionalLinksSection()  {
 				
 				DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
