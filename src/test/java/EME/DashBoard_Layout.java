@@ -3,6 +3,7 @@ package EME;
 import java.io.IOException;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -140,8 +141,15 @@ public class DashBoard_Layout extends base{
 			Assert.assertTrue(d.getAdditionalLinksSectionLabel().isDisplayed());
 			String additionalLinksSectionLabel = d.getAdditionalLinksSectionLabel().getText();
 			Assert.assertEquals(additionalLinksSectionLabel, "Additional Links");
+			}
+			
+			@AfterTest
+			public void teardown() throws InterruptedException
+			{
+			driver.close();
+			driver=null;
+			}
 
 
-}
 }
 	
