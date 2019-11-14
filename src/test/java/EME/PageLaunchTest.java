@@ -23,6 +23,7 @@ import pageObjects.PackagesPO;
 import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 
 public class PageLaunchTest extends base{
@@ -83,7 +84,7 @@ public class PageLaunchTest extends base{
 		log.info("Select Classes Page Header Verified");
 		d.getDashboardButton().click();
 		d.getMenuMyActivies().click();//Accessing from left pane menu
-		d.getMenuClassSignup().click();
+		d.getMenuClassSchedule().click();
 		Assert.assertEquals(cs.getPageHeader().getText(),"Select Classes");
 		log.info("Manage Profile Page Header Verified");
 		reusableMethods.returnToDashboard();
@@ -101,9 +102,10 @@ public class PageLaunchTest extends base{
 		d.getMenuBookAppointment().click();
 // The pageHeader changed in 7.28
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
-		Assert.assertEquals(a.getPageHeader().getText(),"Select Courses / Events");
+		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		log.info("Appointments Page Header Verified");
 		reusableMethods.returnToDashboard();
+		reusableWaits.waitForDashboardLoaded();
 	}
 	@Test (priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException
@@ -118,6 +120,7 @@ public class PageLaunchTest extends base{
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Family");
 		log.info("Manage Family Page Header Verified");
 		reusableMethods.returnToDashboard();
+		reusableWaits.waitForDashboardLoaded();
 	}
 	@Test (priority = 55)
 	public void EditMyInfoButtonTest() throws InterruptedException
@@ -127,6 +130,7 @@ public class PageLaunchTest extends base{
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Profile");
 		log.info("Manage Profile Page Header Verified");
 		reusableMethods.returnToDashboard();
+		reusableWaits.waitForDashboardLoaded();
 	}
 		@Test (priority = 60)
 	public void ForgotUsernameButtonTest() throws InterruptedException

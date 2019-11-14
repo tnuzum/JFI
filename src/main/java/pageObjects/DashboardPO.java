@@ -16,23 +16,26 @@ public class DashboardPO {
 	By cartButton = By.xpath("//nav[@class='navbar navbar-static-top']/ul/li[2]/a");
 	By logoutButton = By.linkText("Log out"); 
 	
+	By leftMenu = By.xpath("//div[@id = 'wrapper']/mat-sidenav-container/mat-sidenav");
 	By menuDashboardButton = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[1]/div");
 	By menuMyActivies = By.xpath("//mat-nav-list[@class='mat-nav-list']/mat-list-item[1]/div/span");
+	By menuMyActivitiesSubMenu = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]");
 	By menuMyAccount = By.xpath("//mat-nav-list[@class='mat-nav-list']/mat-list-item[2]/div/span");
-	By menuShopPackages = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[2]/div");
-	By menuCart = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[3]/div");
-	By menuLogOut = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[4]/div");
-	By menuClassSignup = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[1]/a[1]");
-	By menuBookAppointment = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[1]/a[2]");
-	By menuMyCalendar = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[1]/a[3]");
-	By menuPayBalance = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[2]/a[1]");
-	By menuManagePmntMethods = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[2]/a[2]");
-	By menuManageProfile = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[2]/a[3]");
-	By menuManageFamily = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[2]/a[4]");
-	By menuAccountHistory = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[2]/a[5]");
-	By menuPackages = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[2]/a[6]");
-	By menuCheckInHistory = By.xpath("(//mat-nav-list[@class='mat-nav-list'])/div[2]/a[7]");
-	
+	By menuMyAccountSubMenu = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]");
+	By menuShopPackages = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[2]/div[1]/span");
+	By menuCart = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[3]/div[1]/span");
+	By menuLogOut = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[4]/div[1]/span");
+	By menuClassSchedule = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[1]");
+	By menuCourseEventsSchedule = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[2]");
+	By menuBookAppointment = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[3]");
+	By menuMyCalendar = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[4]");
+	By menuPayBalance = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[1]");
+	By menuManagePmntMethods = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[2]");
+	By menuManageProfile = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[3]");
+	By menuManageFamily = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[4]");
+	By menuAccountHistory = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[5]");
+	By menuPackages = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[6]");
+	By menuCheckInHistory = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[7]");
 	By myAccountSectionLabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[1]");
 	By myAccountAccountHistoryButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[1]");
 	By myAccountPayNowButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[2]");
@@ -119,6 +122,14 @@ public class DashboardPO {
 	{
 		return driver.findElement(menuMyActivies);
 	}
+	public WebElement getmenuMyActivitiesSubMenu()
+	{
+		return driver.findElement(menuMyActivitiesSubMenu);
+	}
+	public WebElement getLeftMenu()
+	{
+		return driver.findElement(leftMenu);
+	}
 	public WebElement getDashboardButton()
 	{
 		return driver.findElement(menuDashboardButton);
@@ -126,6 +137,10 @@ public class DashboardPO {
 	public WebElement getMenuMyAccount()
 	{
 		return driver.findElement(menuMyAccount);
+	}
+	public WebElement getmenuMyAccountSubMenu()
+	{
+		return driver.findElement(menuMyAccountSubMenu);
 	}
 	public WebElement getMenuShopPackages()
 	{
@@ -139,9 +154,13 @@ public class DashboardPO {
 	{
 		return driver.findElement(menuLogOut);
 	}
-	public WebElement getMenuClassSignup()
+	public WebElement getMenuClassSchedule()
 	{
-		return driver.findElement(menuClassSignup);
+		return driver.findElement(menuClassSchedule);
+	}
+	public WebElement getMenuCourseEventSchedule()
+	{
+		return driver.findElement(menuCourseEventsSchedule);
 	}
 	public WebElement getMenuBookAppointment()
 	{

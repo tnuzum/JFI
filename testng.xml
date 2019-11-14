@@ -50,4 +50,9 @@
       <class name="EME.DashBoard_Layout"/>
     </classes>
   </test>
+  <test thread-count="5" name="Dashboard Menu">
+    <classes>
+      <class name="EME.DashBoard_Menu"/>
+    </classes>
+  </test>
 </suite>
