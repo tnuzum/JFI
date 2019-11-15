@@ -11,7 +11,7 @@ public class AppointmentsPO {
 // OBJECTS
 		
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
-	By loadingAvailabilityMessage = By.xpath("//div[@class='swal2-container swal2-center']");
+	By loadingAvailabilityMessage = By.xpath("//div[@class='swal2-container.swal2-center']");
 	By clubs = By.xpath("(//select[@name='clubs'])[1]");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
@@ -28,17 +28,20 @@ public class AppointmentsPO {
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
 	By calendarMonday1stFullWeek = By.xpath("//div[@class='cal-month-view']/div/div[2]/div/mwl-calendar-month-cell[2]");
-	By selectTimeMorningButton = By.xpath("//strong[contains(text(),'MORNING')]");
+	//By selectTimeMorningButton = By.xpath("//strong[contains(text(),'MORNING')]");
+	By selectTimeMorningButton = By.xpath("//div[@class = 'tabs-container']/div/ul/li[1]/a[1]");
 	By selectTimeMorningLabel1 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTimeMorningLabel2 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
-	By selectTime1stAvailable = By.xpath("(//div[contains(@class,'tag-wrap')]/button[1]");
+	By selectTime1stAvailable = By.xpath("//div[contains(@class,'tag-wrap')]/button[1]");
 	By addlResourcesCancelButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[1]"); //cancel button
 	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book button
 	By packageRequiredContinueButton = By.xpath("//*[text()='CONTINUE']"); // Continue button
 	
-	By popup1BookButton = By.xpath("(//button[@type='button'])[4]");
-	By popup2Title = By.xpath("//h2[@class='swal2-title']");
-	By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
+	//By popup1BookButton = By.xpath("(//button[@type='button'][4]");
+	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
+	By popup2Title = By.xpath("//h2[@id='swal2-title']");
+	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
+	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.cssSelector("#button-change");
