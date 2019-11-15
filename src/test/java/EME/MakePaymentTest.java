@@ -59,7 +59,7 @@ public class MakePaymentTest extends base {
 		reusableWaits.waitForDashboardLoaded();
 	}
 
-	@Test(priority = 2, description = "Confirming payment is applied")
+	/*@Test(priority = 2, description = "Confirming payment is applied")
 	public void ConfirmPaymentApplied() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -73,7 +73,7 @@ public class MakePaymentTest extends base {
 		Date date = new Date();
 		String DateTime = dateFormat.format(date);
 		Assert.assertEquals("Last Payment: " + DateTime, d.getMyAccountLastPaymentDate().getText());
-	}
+	}*/
 
 	@AfterTest
 	public void teardown() throws InterruptedException {
