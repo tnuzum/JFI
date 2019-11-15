@@ -20,11 +20,11 @@
       <class name="EME.PageLaunchTest"/>
     </classes>
   </test> 
-  <!-- test thread-count="5" name="Make Payment">
+  <test thread-count="5" name="Make Payment">
     <classes>
       <class name="EME.MakePaymentTest"/>
     </classes>
-  </test--> 
+  </test> 
   <!-- test thread-count="5" name="Make Appointment">
     <classes>
       <class name="EME.MakeApptTest"/>
