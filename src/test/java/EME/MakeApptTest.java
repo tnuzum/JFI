@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
@@ -40,62 +41,68 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		p.getMyApptsScheduleButton().click();
 				AppointmentsPO ap = new AppointmentsPO(driver);
 				WebElement bic = ap.getBookableItemCategory();
-				Thread.sleep(2000);
+				/*Thread.sleep(2000);
 				while (!bic.isEnabled())		
 				{
 					System.out.println("Waiting for Bookable Item Category to not be blank");
-				}	
-		ap.getBookableItemCategory().sendKeys("golf",Keys.ARROW_DOWN,Keys.ENTER);
-				WebElement bi = ap.getBookableItem();
-				while (!bi.isEnabled())//while button is NOT(!) enabled
-				{
-//				Thread.sleep(200);
-				}
-				Thread.sleep(2000);
-		ap.getBookableItem().sendKeys("dr",Keys.ENTER);
-				WebElement rt = ap.getResourceType();
-				while (!rt.isEnabled())//while button is NOT(!) enabled
-				{
-//				Thread.sleep(200);
-				}
-		ap.getResourceType().sendKeys("d",Keys.ENTER);
-				boolean result1 = reusableWaits.loadingAvailability();
-				if (result1 == true)
-				{
-//					Thread.sleep(500);	
-				}
-		ap.getCalendarTomorrow().click();
-				WebElement st1 = ap.getSelectTimeMorningButton();
-				while (!st1.isEnabled())//while button is NOT(!) enabled
-				{
-				System.out.println("Waiting for available times");
-				}
-		ap.getSelectTimeMorningButton().click();	
-				WebElement st2 = ap.getSelectTime1stAvailable();
-				while (!st2.isEnabled())//while button is NOT(!) enabled
-				{
-//				Thread.sleep(200);
-				}
-		ap.getSelectTime1stAvailable().click();
-				WebElement p1 = ap.getPopup1BookButton();
-				while (!p1.isEnabled())//while button is NOT(!) enabled
-				{
-//				Thread.sleep(200);
-				}
-				ap.getPopup1BookButton().click();
-				Thread.sleep(2000);
+				}	*/
+		 Select s = new Select(bic);
+				   s.selectByVisibleText("Personal Training");
+				
+		 Select s1 = new Select(ap.getBookableItem());
+				   s1.selectByVisibleText("PT 60 Mins");
+				  
+		 WebElement rt = ap.getResourceType();
+				  
+/*				  while (!rt.isEnabled())//while button is NOT(!) enabled
+					{
+//					Thread.sleep(200);
+					}*/
+		 Select s2 = new Select(rt);
+				  s2.selectByVisibleText("PT Smith, Andrew");
+				  
+				  boolean result1 = reusableWaits.loadingAvailability();
+					if (result1 == true)
+					{
+//						Thread.sleep(500);	
+					}
+		   ap.getCalendarTomorrow().click();
+					 				  				  
+					WebElement st1 = ap.getSelectTimeMorningButton();
+					while (!st1.isEnabled())//while button is NOT(!) enabled
+					{
+					System.out.println("Waiting for available times");
+					}
+			ap.getSelectTimeMorningButton().click();	
+					WebElement st2 = ap.getSelectTime1stAvailable();
+					while (!st2.isEnabled())//while button is NOT(!) enabled
+					{
+//					Thread.sleep(200);
+					}
+			ap.getSelectTime1stAvailable().click();
+						WebElement p1 = ap.getPopup1BookButton();
+						while (!p1.isEnabled())//while button is NOT(!) enabled
+						{
+//						Thread.sleep(200); 
+					}
+					
+					
+			ap.getPopup1BookButton().click();
+			Thread.sleep(2000);
+
 //		ap.getPackageRequiredContinueButton().click();
 //		Thread.sleep(2000);
 //		CartPO co = new CartPO(driver);
 //		co.getCheckoutButton().click();
-//		Thread.sleep(2000);
 //		reusableMethods.useNewCard();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'swal2-success')]")));
-		Assert.assertEquals(ap.getPopup2Title().getText(),"Booked!");
-		ap.getPopup2OKButton().click();
-		reusableMethods.returnToDashboard();
-		}
+//		WebDriverWait wait = new WebDriverWait(driver, 10);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'swal2-success')]")));
+			
+			Assert.assertEquals(ap.getPopup2Title().getText(),"Booked!");
+			ap.getPopup2OKButton().click();
+				    
+		}	
+	
 	@Test (priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException
 	{	
@@ -134,11 +141,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //				Thread.sleep(500);	
 			}
 		a.getEditApptCancelYesButton().click();
-			boolean result2 = reusableWaits.popupMessageYesButton();
-			if (result2 == true)
-			{
+//			boolean result2 = reusableWaits.popupMessageYesButton();
+//			if (result2 == true)
+//			{
 //				Thread.sleep(500);	
-			}
+//			}
 //		a.getEditApptCanceledOKButton().click();
 		reusableWaits.waitForDashboardLoaded();
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
