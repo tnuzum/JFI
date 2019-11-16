@@ -25,7 +25,7 @@ public class DashboardPO {
 	By menuShopPackages = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[2]/div[1]/span");
 	By menuCart = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[3]/div[1]/span");
 	By menuLogOut = By.xpath("//mat-nav-list[@class='mat-nav-list']/a[4]/div[1]/span");
-	By menuClassSchedule = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[1]");
+	By menuClassSchedule = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[1]/div[1]");
 	By menuCourseEventsSchedule = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[2]");
 	By menuBookAppointment = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[3]");
 	By menuMyCalendar = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[4]");
