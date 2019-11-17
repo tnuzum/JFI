@@ -22,7 +22,12 @@
   </test> 
   <test thread-count="5" name="Make Payment">
     <classes>
-      <class name="EME.MakePaymentTest"/>
+      <class name="EME.MakePaymentTest">
+     	 <methods>
+     		 <exclude name = "Confirming payment is applied">
+      		 </exclude>
+     	 </methods>
+      </class>
     </classes>
   </test> 
   <test thread-count="5" name="Make Appointment">
