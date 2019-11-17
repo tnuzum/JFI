@@ -106,7 +106,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException
 	{	
-		reusableWaits.waitForDashboardLoaded();
+		//reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/a/div/div[2]/span/strong")));
@@ -147,7 +147,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //				Thread.sleep(500);	
 //			}
 //		a.getEditApptCanceledOKButton().click();
-		reusableWaits.waitForDashboardLoaded();
+//		reusableWaits.waitForDashboardLoaded();
+		Thread.sleep(2000);
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		}
 

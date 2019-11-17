@@ -83,7 +83,7 @@ public class DashboardPO {
 	By myFamilyManageButton = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[3]/a[1]");
 	
 	By AdditionalLinksSectionLabel = By.xpath("//div[@class='homeComponent']//externallinks/div/div[1]/div[1]");
-	
+	By BreadcrumbDashboard = By.xpath("//a[@class='ng-star-inserted']");
 // CONSTRUCTOR
 	public DashboardPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -345,6 +345,11 @@ public class DashboardPO {
 	public WebElement getAdditionalLinksSectionLabel()
 	{
 		return driver.findElement(AdditionalLinksSectionLabel);
+	
+	}
+	public WebElement getBreadcrumbDashboard()
+	{
+		return driver.findElement(BreadcrumbDashboard);
 	}
 	
 }
