@@ -55,8 +55,9 @@ public class MakePaymentTest extends base {
 		p.getPopupConfirmationButton().click();
 		reusableWaits.waitForAcceptButton();
 		p.getPopupConfirmationButton().click();
-		reusableMethods.returnToDashboard();
-		//reusableWaits.waitForDashboardLoaded();
+//		reusableMethods.returnToDashboard();
+		d.getBreadcrumbDashboard().click();
+		
 	}
 
 	/*@Test(priority = 2, description = "Confirming payment is applied")
