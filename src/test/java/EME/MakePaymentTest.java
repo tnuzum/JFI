@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,12 +25,14 @@ import resources.reusableWaits;
 
 public class MakePaymentTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
+	
 
 	@BeforeTest
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
+//		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
 	@Test(priority = 1, description = "Adding $1.00 to member's account")
