@@ -17,8 +17,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import junit.framework.Assert;
-import pageObjects.DashboardPO;
-import pageObjects.PaymentPO;
+import pageObjectsEME.DashboardPO;
+import pageObjectsEME.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;

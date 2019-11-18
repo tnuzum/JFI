@@ -60,4 +60,9 @@
       <class name="EME.DashBoard_Menu"/>
     </classes>
   </test>
+    <!-- test thread-count="5" name="JOL - Landing Page Test">
+    <classes>
+      <class name="JOL.LandingPageTest"/>
+    </classes>
+  </test-->
 </suite>

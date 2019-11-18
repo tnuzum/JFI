@@ -14,9 +14,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import pageObjects.AppointmentsPO;
-import pageObjects.CartPO;
-import pageObjects.DashboardPO;
+import pageObjectsEME.AppointmentsPO;
+import pageObjectsEME.CartPO;
+import pageObjectsEME.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
