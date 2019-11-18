@@ -27,7 +27,7 @@ public class reusableWaits extends base{
 		public static String waitForDashboardLoaded() throws InterruptedException
 	{
 	// Check 1: wait for MEMBER NAME element
-		WebDriverWait wait1 = new WebDriverWait(driver, 10);
+		WebDriverWait wait1 = new WebDriverWait(driver, 20);
 		//wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
 		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[@class='no-margins']")));
 //		System.out.println(DateTime+" INFO: MEMBER NAME Element is now present");
