@@ -59,6 +59,7 @@ public class MakePaymentTest extends base {
 		reusableWaits.waitForAcceptButton();
 		p.getPopupConfirmationButton().click();
 //		reusableMethods.returnToDashboard();
+		Thread.sleep(3000);
 		d.getBreadcrumbDashboard().click();
 		
 	}
