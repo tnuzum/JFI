@@ -17,11 +17,13 @@ public class LandingPagePO {
 	By club1Location = By.xpath("//div[@id='clublist-result']/div[1]/div[1]/div[1]/div[2]/div/h2");
 	By club1AddressTitle = By.xpath("//div[@id='clublist-result']/div[1]/div[1]/div[2]/div[2]/div/h3");
 	By club1Address = By.xpath("//div[@id='clublist-result']/div[1]/div[1]/div[2]/div[2]/div");
+	By club1ViewPlansButton = By.xpath("//a[@href='/CompeteJOL/236/1']");
 	
 	By club2Name = By.xpath("//div[@id='clublist-result']/div[2]/div[1]/div[1]/div[1]/div/h2");
 	By club2Location = By.xpath("//div[@id='clublist-result']/div[2]/div[1]/div[1]/div[2]/div/h2");
 	By club2AddressTitle = By.xpath("//div[@id='clublist-result']/div[2]/div[1]/div[2]/div[2]/div/h3");
 	By club2Address = By.xpath("//div[@id='clublist-result']/div[2]/div[1]/div[2]/div[2]/div");
+	By club2ViewPlansButton = By.xpath("//a[@href='/CompeteJOL/236/1']");
 	
 // CONSTRUCTOR
 		
@@ -73,5 +75,13 @@ public class LandingPagePO {
 	public WebElement getClub2Address()
 	{
 		return driver.findElement(club2Address);
+	}
+	public WebElement getClub1ViewPlansButton()
+	{
+		return driver.findElement(club1ViewPlansButton);
+	}
+	public WebElement getClub2ViewPlansButton()
+	{
+		return driver.findElement(club2ViewPlansButton);
 	}
 }
