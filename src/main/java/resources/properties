@@ -8,6 +8,10 @@ EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/lo
 	EMEFutureURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101
 	EMECurrentURL = https://ourclublogin.test-jfisoftware.com:8909/account/login/101
 	**************************************************************************************
+JOLLoginPage = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236
+JOLSearchPromo = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236/1/searchpromo
+
+
 MastercardNumber = 5454545454545454
 MastercardExpireMonth = 01
 MastercardExpireYear = 25

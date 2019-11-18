@@ -9,7 +9,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import pageObjects.DashboardPO;
+import pageObjectsEME.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
 
