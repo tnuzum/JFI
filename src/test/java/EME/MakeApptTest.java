@@ -75,10 +75,12 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 					}
 			ap.getSelectTimeMorningButton().click();	
 					WebElement st2 = ap.getSelectTime1stAvailable();
-					while (!st2.isEnabled())//while button is NOT(!) enabled
-					{
+//					while (!st2.isEnabled())//while button is NOT(!) enabled
+//					{
 //					Thread.sleep(200);
-					}
+//					}
+					WebDriverWait wait = new WebDriverWait(driver, 30);
+					wait.until(ExpectedConditions.elementToBeClickable(st2));
 			ap.getSelectTime1stAvailable().click();
 						WebElement p1 = ap.getPopup1BookButton();
 						while (!p1.isEnabled())//while button is NOT(!) enabled
