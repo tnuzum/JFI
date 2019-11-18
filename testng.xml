@@ -24,7 +24,7 @@
     <classes>
       <class name="EME.MakePaymentTest">
      	 <methods>
-     		 <exclude name = "Confirming payment is applied">
+     		 <exclude name = "ConfirmPaymentApplied">
       		 </exclude>
      	 </methods>
       </class>
