@@ -10,10 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pageObjectsEME.AppointmentsPO;
-import pageObjectsEME.DashboardPO;
-import pageObjectsEME.LoginPO;
-import pageObjectsEME.PaymentPO;
+import pageObjects.AppointmentsPO;
+import pageObjects.DashboardPO;
+import pageObjects.LoginPO;
+import pageObjects.PaymentPO;
 import resources.base;
 
 

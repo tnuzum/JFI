@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="EME - Smoke Testing">
+<suite name="EME - Automated Testing">
     <listeners>
 		<listener class-name = "EME.listeners"/>
 	<!--listener class-name = "resources.ExtentReporterNG"/-->
@@ -58,11 +58,6 @@
   <test thread-count="5" name="Dashboard Menu">
     <classes>
       <class name="EME.DashBoard_Menu"/>
-    </classes>
-  </test>
-    <test thread-count="5" name="JOL - Landing Page Test">
-    <classes>
-      <class name="JOL.SelectClubPageTest"/>
     </classes>
   </test>
 </suite>
