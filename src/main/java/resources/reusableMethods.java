@@ -8,10 +8,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 
-import pageObjectsEME.DashboardPO;
-import pageObjectsEME.ErrorMessagesPO;
-import pageObjectsEME.LoginPO;
-import pageObjectsEME.PaymentPO;
+import pageObjects.DashboardPO;
+import pageObjects.ErrorMessagesPO;
+import pageObjects.LoginPO;
+import pageObjects.PaymentPO;
 import resources.base;
 
 public class reusableMethods extends base {

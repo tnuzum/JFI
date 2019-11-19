@@ -14,11 +14,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import junit.framework.Assert;
-import pageObjectsEME.ClassSignUpPO;
-import pageObjectsEME.DashboardPO;
-import pageObjectsEME.PaymentPO;
-import pageObjectsEME.ShoppingCartPO;
-import pageObjectsEME.UnenrollPO;
+import pageObjects.ClassSignUpPO;
+import pageObjects.DashboardPO;
+import pageObjects.PaymentPO;
+import pageObjects.ShoppingCartPO;
+import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
 

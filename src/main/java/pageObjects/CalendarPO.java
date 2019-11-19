@@ -1,10 +1,10 @@
-package pageObjectsEME;
+package pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CheckInHistoryPO {
+public class CalendarPO {
 
 	public static WebDriver driver;
 
@@ -14,8 +14,8 @@ public class CheckInHistoryPO {
 	
 // CONSTRUCTOR
 		
-	public CheckInHistoryPO(WebDriver driver) {
-		CheckInHistoryPO.driver = driver;
+	public CalendarPO(WebDriver driver) {
+		CalendarPO.driver = driver;
 	}
 // METHODS
 

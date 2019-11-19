@@ -1,10 +1,10 @@
-package pageObjectsEME;
+package pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class ManageFamilyPO {
+public class AcctHistoryPO {
 
 	public static WebDriver driver;
 
@@ -14,9 +14,9 @@ public class ManageFamilyPO {
 	
 // CONSTRUCTOR
 		
-	public ManageFamilyPO(WebDriver driver) {
+	public AcctHistoryPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		ManageFamilyPO.driver = driver;
+		AcctHistoryPO.driver = driver;
 	}
 // METHODS
 
