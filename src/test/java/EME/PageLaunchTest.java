@@ -87,7 +87,13 @@ public class PageLaunchTest extends base{
 		log.info("Select Classes Page Header Verified");
 		d.getDashboardButton().click();
 		d.getMenuMyActivies().click();//Accessing from left pane menu
+		
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1"))
+		{
+			Thread.sleep(1000);
+		}
 		d.getMenuClassSchedule().click();
+		
 		Assert.assertEquals(cs.getPageHeader().getText(),"Select Classes");
 		log.info("Manage Profile Page Header Verified");
 		reusableMethods.returnToDashboard();
