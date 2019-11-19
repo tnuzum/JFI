@@ -70,6 +70,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //						Thread.sleep(500);	
 					}
 		   ap.getCalendarTomorrow().click();
+		   Thread.sleep(3000);
 					 				  				  
 					WebElement st1 = ap.getSelectTimeMorningButton();
 					WebDriverWait wait = new WebDriverWait(driver, 30);
