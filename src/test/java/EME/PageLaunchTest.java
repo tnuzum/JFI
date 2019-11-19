@@ -5,7 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -29,7 +31,8 @@ import resources.reusableWaits;
 public class PageLaunchTest extends base{
 	private static Logger log =LogManager.getLogger(base.class.getName());
 	DashboardPO d=new DashboardPO(driver);
-	@BeforeTest
+//	@BeforeTest
+	@BeforeClass
 	public void initialize() throws IOException, InterruptedException
 	{
 		driver = initializeDriver();
@@ -165,7 +168,8 @@ public class PageLaunchTest extends base{
 		log.info("Forgot Password Page Header Verified");
 		fp.getCancelButton().click();
 	}
-	@AfterTest
+//	@AfterTest
+	@AfterClass
 		public void teardown() throws InterruptedException
 		{
 		driver.close();

@@ -3,7 +3,9 @@ package EME;
 import java.io.IOException;
 
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -12,7 +14,8 @@ import resources.base;
 import resources.reusableMethods;
 
 public class DashBoard_Layout extends base{
-	@BeforeTest
+//	@BeforeTest
+	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
@@ -143,7 +146,8 @@ public class DashBoard_Layout extends base{
 			Assert.assertEquals(additionalLinksSectionLabel, "Additional Links");
 			}
 			
-			@AfterTest
+//			@AfterTest
+			@AfterClass
 			public void teardown() throws InterruptedException
 			{
 			driver.close();
