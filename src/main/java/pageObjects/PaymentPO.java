@@ -18,7 +18,8 @@ public class PaymentPO {
 	By amountLabel1	= By.xpath("(//div[@class='radio'])[1]/label");
 	By amountRadioButton2 = By.xpath("(//div[@class='radio'])[2]/input");
 	By amountLabel2	= By.xpath("(//div[@class='radio'])[2]/label");
-	By amountRadioButton3 = By.xpath("(//div[@class='radio'])[3]/input");
+//	By amountRadioButton3 = By.xpath("(//div[@class='radio'])[3]/input");
+	By amountRadioButton3 = By.xpath("//input[@id='radio3']");
 	By amountLabel3	= By.xpath("(//div[@class='radio'])[3]/label");
 	By payWithThisMethodButton1 = By.xpath("//*[text()='pay with this method']");
 	By zeroPaymentMessage	= By.xpath("//div[@id='swal2-content']");
