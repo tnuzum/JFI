@@ -9,7 +9,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -23,7 +25,8 @@ import resources.reusableWaits;
 public class MakeGroupApptTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 
-	@BeforeTest
+//	@BeforeTest
+    @BeforeClass
 		public void initialize() throws IOException, InterruptedException
 		{
 			 driver = initializeDriver();
@@ -149,7 +152,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		}
 
-	@AfterTest
+//	@AfterTest
+	@AfterClass
 		public void teardown() throws InterruptedException
 		{
 			driver.close();

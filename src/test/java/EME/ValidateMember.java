@@ -5,7 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -20,7 +22,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 // This class is used as a template for making new test case classes.
 // Copy this class and paste into src/test/java/EME to create new test.
 
-	@BeforeTest
+//	@BeforeTest
+	@BeforeClass
 		public void initialize() throws IOException
 		{
 			 driver = initializeDriver();
@@ -45,7 +48,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		log.info("...");
 		}
 
-	@AfterTest
+//	@AfterTest
+	@AfterClass
 		public void teardown() throws InterruptedException
 		{
 		Thread.sleep(3000);	
