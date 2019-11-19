@@ -1,10 +1,10 @@
-package pageObjectsEME;
+package pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class CartPO {
+public class CartPOCopy {
 
 	public static WebDriver driver;
 
@@ -23,9 +23,9 @@ public class CartPO {
 	
 // CONSTRUCTOR
 		
-	public CartPO(WebDriver driver) {
+	public CartPOCopy(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		CartPO.driver = driver;
+		CartPOCopy.driver = driver;
 	}
 // METHODS
 

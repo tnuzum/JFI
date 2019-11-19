@@ -10,9 +10,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import pageObjectsEME.AppointmentsPO;
-import pageObjectsEME.CartPO;
-import pageObjectsEME.DashboardPO;
+import pageObjects.AppointmentsPO;
+import pageObjects.CartPO;
+import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
 

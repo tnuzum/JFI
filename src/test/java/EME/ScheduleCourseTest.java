@@ -12,9 +12,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import junit.framework.Assert;
-import pageObjectsEME.ClassSignUpPO;
-import pageObjectsEME.DashboardPO;
-import pageObjectsEME.UnenrollPO;
+import pageObjects.ClassSignUpPO;
+import pageObjects.DashboardPO;
+import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
 
