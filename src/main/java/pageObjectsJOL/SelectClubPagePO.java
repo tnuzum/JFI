@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class LandingPagePO {
+public class SelectClubPagePO {
 
 	public static WebDriver driver;
 
@@ -27,8 +27,8 @@ public class LandingPagePO {
 	
 // CONSTRUCTOR
 		
-	public LandingPagePO(WebDriver driver) {
-		LandingPagePO.driver = driver;
+	public SelectClubPagePO(WebDriver driver) {
+		SelectClubPagePO.driver = driver;
 	}
 // METHODS
 

@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import resources.base;
 
 
-public class NewTestCaseTemplate extends base{
+public class _NewTestCaseTemplate extends base{
 
 // This class is used as a template for making new test case classes.
 // Copy this class and paste into src/test/java/EME to create new test.

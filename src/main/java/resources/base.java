@@ -99,7 +99,7 @@ public class base {
 		String DateTime= dateFormat.format(date);
 		System.out.println(DateTime+" INFO: WebDriver Initialized");
 		
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		return driver;
 	}
