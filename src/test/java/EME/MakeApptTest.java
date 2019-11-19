@@ -72,6 +72,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		   ap.getCalendarTomorrow().click();
 					 				  				  
 					WebElement st1 = ap.getSelectTimeMorningButton();
+					WebDriverWait wait = new WebDriverWait(driver, 30);
+					wait.until(ExpectedConditions.elementToBeClickable(st1));
 					while (!st1.isEnabled())//while button is NOT(!) enabled
 					{
 					System.out.println("Waiting for available times");
@@ -82,8 +84,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //					{
 //					Thread.sleep(200);
 //					}
-					WebDriverWait wait = new WebDriverWait(driver, 30);
-					wait.until(ExpectedConditions.elementToBeClickable(st2));
+					WebDriverWait wait1 = new WebDriverWait(driver, 30);
+					wait1.until(ExpectedConditions.elementToBeClickable(st2));
 			ap.getSelectTime1stAvailable().click();
 						WebElement p1 = ap.getPopup1BookButton();
 						while (!p1.isEnabled())//while button is NOT(!) enabled
