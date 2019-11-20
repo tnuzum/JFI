@@ -85,8 +85,8 @@ public class reusableMethods extends base {
 
 	public static String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-//		d.getDashboardButton().click();
-		d.getBreadcrumbDashboard().click();
+		d.getDashboardButton().click();
+//		d.getBreadcrumbDashboard().click();
 		reusableWaits.waitForDashboardLoaded();
 		return null;
 	}
