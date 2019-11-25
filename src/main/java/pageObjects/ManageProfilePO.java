@@ -10,7 +10,8 @@ public class ManageProfilePO {
 
 // OBJECTS
 		
-	By pageHeader 			= By.xpath("//div[@class='col-sm-12']/h2");
+//	By pageHeader 			= By.xpath("//div[@class='col-sm-12']/h2");
+	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By question 			= By.xpath("//div[@class='ibox']/div[1]/h5");
 	By usernameButton		= By.xpath("//div[@class='ibox']/div[2]/div/div/div[1]/div[1]/h5/a");
 	By passwordButton		= By.xpath("//div[@class='ibox']/div[2]/div/div/div[2]/div/h4/a");

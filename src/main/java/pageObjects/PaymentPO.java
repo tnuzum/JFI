@@ -12,7 +12,8 @@ public class PaymentPO {
 	
 // OBJECTS
 		
-	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+//	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By amountDueLabel = By.xpath("//enterpaymentamount/div/div/div/div/div/h2");
 	By amountRadioButton1 = By.xpath("(//div[@class='radio'])[1]/input");
 	By amountLabel1	= By.xpath("(//div[@class='radio'])[1]/label");

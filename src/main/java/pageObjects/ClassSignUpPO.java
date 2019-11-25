@@ -10,7 +10,8 @@ public class ClassSignUpPO {
 
 // OBJECTS
 		
-	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+//	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By selectDateThisWeekButton = By.xpath("//label[@id='date-thisweek']");
 	By selectCategory = By.xpath("//classcourse[1]/mat-sidenav-container[1]/mat-sidenav-content[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[3]/div[1]/select[1]");
 	By selectCoursesButton = By.xpath("//input[@id='rbcourses']");

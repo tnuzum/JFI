@@ -9,7 +9,8 @@ public class DashboardPO {
 	public static WebDriver driver;
 
 // OBJECTS
-	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+//	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By menuButton = By.xpath("//nav[@class='navbar navbar-static-top']/div/a/i");
 	By myPackagesButton = By.xpath("//nav[@class='navbar navbar-static-top']/ul/li/div/button");
 	By myPackagesShopPackages = By.linkText("Shop Packages");
@@ -38,7 +39,8 @@ public class DashboardPO {
 	By menuCheckInHistory = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[7]");
 	By myAccountSectionLabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[1]");
 	By myAccountAccountHistoryButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[1]");
-	By myAccountPayNowButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[2]");
+//	By myAccountPayNowButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[2]");
+	By myAccountPayNowButton = By.xpath("//a[contains(@class, 'at-widget-paynow')]");
 	By myAccountBalance = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2");
 	By myAccountBalDuelabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/div/small");
 	By myAccountTotChargesAmount = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small/strong/span");
@@ -52,11 +54,13 @@ public class DashboardPO {
 	
 	By myInfoAddress1 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/div/small[1]");
 	By myInfoAddress2 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/div/div/small[1]");
-	By myInfoEditButton = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[3]/a[1]");
+//	By myInfoEditButton = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[3]/a[1]");
+	By myInfoEditButton = By.xpath("//a[contains(@class, 'at-widget-editmyinfo')]");
 
 	By myApptsSectionLabel = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[1]");
 	
-	By myApptsScheduleButton = By.xpath("//button[contains(text(),'book appointment')]");
+//	By myApptsScheduleButton = By.xpath("//button[contains(text(),'book appointment')]");
+	By myApptsScheduleButton = By.xpath("//button[contains(@class, 'at-widget-bookappointment')]");
 	By myApptsAppt1GearButton = By.xpath("//appointmentswidget/div/div[2]/div[1]/div[1]/div/a/div/div[3]/i");
 	By myApptsNoApptsMessage = By.xpath("//strong[contains(text(),'You have no scheduled appointments.')]");
 	
@@ -67,12 +71,14 @@ public class DashboardPO {
 	By myApptsAppt3Title = By.xpath("//appointmentswidget/div/div[2]/div[3]/div/div/a/div/div[2]/span/strong");
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classeswidget/div/div[1]");
-	By myClassesScheduleButton = By.xpath("//button[contains(text(),'class schedule')]");	
+//	By myClassesScheduleButton = By.xpath("//button[contains(text(),'class schedule')]");	
+	By myClassesScheduleButton = By.xpath("//button[contains(@class, 'at-widget-classschedule')]");
 	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
 	By myClassesUnenrollButton = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
 	
 	By myCoursesEventsSectionLabel = By.xpath("//div[@class='homeComponent']//courseswidget/div/div[1]");
-	By myCoursesEventsScheduleButton = By.xpath("//button[contains(text(),'Courses/Events Schedule')]");
+//	By myCoursesEventsScheduleButton = By.xpath("//button[contains(text(),'Courses/Events Schedule')]");
+	By myCoursesEventsScheduleButton = By.xpath("//button[contains(@class, 'at-widget-courseschedule')]");
 	
 	By myVisitsSectionLabel = By.xpath("//div[@class='homeComponent']//checkinchart/div/div[1]");
 	
@@ -80,7 +86,8 @@ public class DashboardPO {
 	By myFamilyFamilyMemberCount = By.xpath("//div[@class='homeComponent']//familymembercount//div//div//h2");
 	By myFamilyFamilyMemberCount2 = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]");
 	
-	By myFamilyManageButton = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[3]/a[1]");
+//	By myFamilyManageButton = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[3]/a[1]");
+	By myFamilyManageButton = By.xpath("//a[contains(@class, 'at-widget-managefamily')]");
 	
 	By AdditionalLinksSectionLabel = By.xpath("//div[@class='homeComponent']//externallinks/div/div[1]/div[1]");
 //	By BreadcrumbDashboard = By.xpath("//a[@class='ng-star-inserted']");

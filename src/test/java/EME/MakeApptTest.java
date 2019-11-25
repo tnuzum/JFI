@@ -1,5 +1,6 @@
 package EME;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,10 +51,41 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 					System.out.println("Waiting for Bookable Item Category to not be blank");
 				}	*/
 		 Select s = new Select(bic);
-				   s.selectByVisibleText("Personal Training");
+		 List<WebElement> ProductCategories = s.getOptions();
+		 
+		 int count = ProductCategories.size();
+		 System.out.println(count);
+		 
+		 for (int i = 0; i<count; i++)
+		 {
+			 String category = ProductCategories.get(i).getText();
+			 
+			 if (category.equals("Personal Training"))
+			 {
+				 s.selectByVisibleText(category);
+				 break;
+			 }
+		 }
+//				   s.selectByVisibleText("Personal Training");
 				
 		 Select s1 = new Select(ap.getBookableItem());
-				   s1.selectByVisibleText("PT 60 Mins");
+		 
+/*		List<WebElement> Products = s1.getOptions();
+		 
+		 int count1 = Products.size();
+		 System.out.println(count1);
+		 
+		 for (int j = 0; j<count1; j++)
+		 {
+			 String product = Products.get(j).getText();
+			 
+			 if (product.equals("PT 60 Mins"))
+			 {
+				 s1.selectByVisibleText(product);
+				 break;
+			 }
+		 }*/
+			   s1.selectByVisibleText("PT 60 Mins");
 				  
 		 WebElement rt = ap.getResourceType();
 				  
@@ -62,6 +94,21 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //					Thread.sleep(200);
 					}*/
 		 Select s2 = new Select(rt);
+/*	 List<WebElement> Resources = s2.getOptions();
+		 
+		 int count2 = Resources.size();
+		 System.out.println(count2);
+		 
+		 for (int k = 0; k<count2; k++)
+		 {
+			 String resource = Resources.get(k).getText();
+			 
+			 if (resource.equals("PT Smith, Andrew"))
+			 {
+				 s2.selectByVisibleText(resource);
+				 break;
+			 }
+		 }*/
 				  s2.selectByVisibleText("PT Smith, Andrew");
 				  
 				  boolean result1 = reusableWaits.loadingAvailability();
