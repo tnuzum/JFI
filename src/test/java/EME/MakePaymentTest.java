@@ -53,7 +53,7 @@ public class MakePaymentTest extends base {
 		while (variable < 13) {
 			p.getCustomAmountInput().sendKeys(Keys.BACK_SPACE);
 			variable++;
-		}
+					}
 		p.getCustomAmountInput().sendKeys("1.00");
 		
 		p.getPayWithThisMethodButton1().click();

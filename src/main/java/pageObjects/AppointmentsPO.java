@@ -10,7 +10,8 @@ public class AppointmentsPO {
 
 // OBJECTS
 		
-	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+//	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By loadingAvailabilityMessage = By.xpath("//div[@class='swal2-container.swal2-center']");
 	By clubs = By.xpath("(//select[@name='clubs'])[1]");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
