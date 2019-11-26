@@ -74,24 +74,24 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				System.out.println("sleeping");
 				n.getText();
 			}
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 		c.getSelectRatesAddSelButton().click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		c.getConfirmationCheckout().click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 			ShoppingCartPO s = new ShoppingCartPO(driver);
 		s.getCheckout().click();
 			Thread.sleep(2000);
 			PaymentPO p = new PaymentPO(driver);
 			
 		p.getSelectPaymentOnAccountButton().click();	
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		p.getSelectPaymentOnAccountPayWithButton().click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		p.getPopupConfirmationButton().click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 		Assert.assertEquals("Thank You For Your Order", p.getConfirmPageThankYou().getText());
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		reusableMethods.returnToDashboard();
 		}		
 	@Test (priority = 2)
