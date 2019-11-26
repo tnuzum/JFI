@@ -66,6 +66,17 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"0");
 		reusableMethods.memberLogout();
 		}
+	@Test (priority = 40, description = "Login Active Adult No Family Member")
+	public void activeMember5Login() throws InterruptedException
+	{
+	reusableMethods.activeMember5Login();
+	reusableWaits.waitForFamilyCount();
+	DashboardPO d=new DashboardPO(driver);
+	Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember5_fullname"));
+	Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"1");
+	reusableMethods.memberLogout();
+	}
+	
 	@Test (priority = 30, description = "Login Member in Collections")
 		public void collectionsMember1Login() throws InterruptedException
 		{
