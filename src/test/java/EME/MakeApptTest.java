@@ -69,8 +69,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //				   s.selectByVisibleText("Personal Training");
 				
 		 Select s1 = new Select(ap.getBookableItem());
-		 
-/*		List<WebElement> Products = s1.getOptions();
+		 Thread.sleep(2000);
+	List<WebElement> Products = s1.getOptions();
 		 
 		 int count1 = Products.size();
 		 System.out.println(count1);
@@ -84,8 +84,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				 s1.selectByVisibleText(product);
 				 break;
 			 }
-		 }*/
-			   s1.selectByVisibleText("PT 60 Mins");
+		 }
+//			   s1.selectByVisibleText("PT 60 Mins");
 				  
 		 WebElement rt = ap.getResourceType();
 				  
@@ -94,7 +94,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //					Thread.sleep(200);
 					}*/
 		 Select s2 = new Select(rt);
-/*	 List<WebElement> Resources = s2.getOptions();
+		 Thread.sleep(2000);
+	 List<WebElement> Resources = s2.getOptions();
 		 
 		 int count2 = Resources.size();
 		 System.out.println(count2);
@@ -108,8 +109,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				 s2.selectByVisibleText(resource);
 				 break;
 			 }
-		 }*/
-				  s2.selectByVisibleText("PT Smith, Andrew");
+		 }
+//				  s2.selectByVisibleText("PT Smith, Andrew");
 				  
 				  boolean result1 = reusableWaits.loadingAvailability();
 					if (result1 == true)

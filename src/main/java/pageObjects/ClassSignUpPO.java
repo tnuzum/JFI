@@ -23,7 +23,8 @@ public class ClassSignUpPO {
 	By popupCancelButton = By.xpath("(//button[@type='button'])[5]");
 	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
 	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
-	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
+//	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
+	By confirmationCheckout = By.xpath("//a[contains(text(), 'checkout')]");
 	By schedulingConflictMessage = By.xpath("//div[contains(@class,'alert-danger')]/small/i");
 	By classListHeader = By.xpath("//span[@class = 'class-list-header']");
 	
