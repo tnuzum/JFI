@@ -73,7 +73,8 @@ public class DashboardPO {
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classeswidget/div/div[1]");
 //	By myClassesScheduleButton = By.xpath("//button[contains(text(),'class schedule')]");	
 	By myClassesScheduleButton = By.xpath("//button[contains(@class, 'at-widget-classschedule')]");
-	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
+//	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
+	By myClassesClass1GearButton = By.xpath("//div[@class = 'class-table-container']/div[3]/i[1]");
 	By myClassesUnenrollButton = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
 	
 	By myCoursesEventsSectionLabel = By.xpath("//div[@class='homeComponent']//courseswidget/div/div[1]");

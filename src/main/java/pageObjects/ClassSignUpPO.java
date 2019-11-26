@@ -12,7 +12,7 @@ public class ClassSignUpPO {
 		
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By selectDateThisWeekButton = By.xpath("//label[@id='date-thisweek']");
+	By selectDateThisWeekButton = By.xpath("//label[@id='date-week']");
 	By selectCategory = By.xpath("//classcourse[1]/mat-sidenav-container[1]/mat-sidenav-content[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[3]/div[1]/select[1]");
 	By selectCoursesButton = By.xpath("//input[@id='rbcourses']");
 	By firstAvailClassButton = By.xpath("//div[@id='classes']/div/div[2]/div[1]/div/div");
@@ -25,6 +25,7 @@ public class ClassSignUpPO {
 	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
 	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
 	By schedulingConflictMessage = By.xpath("//div[contains(@class,'alert-danger')]/small/i");
+	By classListHeader = By.xpath("//span[@class = 'class-list-header']");
 	
 // CONSTRUCTOR
 		

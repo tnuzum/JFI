@@ -39,7 +39,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 1)
 		public void scheduleClass() throws IOException, InterruptedException
 		{	
-		reusableMethods.activeMember2Login();
+		reusableMethods.activeMember5Login();
 			DashboardPO d = new DashboardPO(driver);
 		
 		 d.getMyClassesScheduleButton().click();
@@ -90,7 +90,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			Thread.sleep(2000);
 		p.getPopupConfirmationButton().click();
 			Thread.sleep(2000);
-		Assert.assertEquals("THANK YOU FOR YOUR ORDER", p.getConfirmPageThankYou().getText());
+		Assert.assertEquals("Thank You For Your Order", p.getConfirmPageThankYou().getText());
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 		}		
@@ -100,7 +100,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d = new DashboardPO(driver);
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
+//			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 			while (!d.getMyClassesClass1GearButton().isDisplayed())
 			{
 				Thread.sleep(1000);

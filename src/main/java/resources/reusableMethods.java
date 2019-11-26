@@ -56,6 +56,16 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public static String activeMember5Login() throws InterruptedException {
+		reusableWaits.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("activeMember5_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("activeMember5_password"));
+		l.getLoginButton().click();
+		reusableWaits.waitForDashboardLoaded();
+		return null;
+	}
+
 	public static String collectionsMember1Login() throws InterruptedException {
 		reusableWaits.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
