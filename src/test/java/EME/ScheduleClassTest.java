@@ -84,7 +84,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(3000);
 			ShoppingCartPO s = new ShoppingCartPO(driver);
 		s.getCheckout().click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			PaymentPO p = new PaymentPO(driver);
 			
 		p.getSelectPaymentOnAccountButton().click();	
@@ -101,7 +101,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(3000);
 		reusableMethods.returnToDashboard();
 		}
-	@Test (priority = 2, dependsOnMethods = {"ScheduleClassTest"})
+	@Test (priority = 2, dependsOnMethods = {"scheduleClass"})
 		public void unenrollFromClass() throws IOException, InterruptedException
 		{	
 		DashboardPO d = new DashboardPO(driver);
