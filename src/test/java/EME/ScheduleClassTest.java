@@ -77,6 +77,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			Thread.sleep(3000);
 		c.getSelectRatesAddSelButton().click();
 			Thread.sleep(3000);
+		WebElement ErrorMsg = c.getPopupErrorMessage();
+		while (!ErrorMsg.isDisplayed())
+			{
 		c.getConfirmationCheckout().click();
 		Thread.sleep(3000);
 			ShoppingCartPO s = new ShoppingCartPO(driver);
@@ -93,8 +96,12 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals("Thank You For Your Order", p.getConfirmPageThankYou().getText());
 		Thread.sleep(3000);
 		reusableMethods.returnToDashboard();
-		}		
-	@Test (priority = 2)
+		}
+		c.getPopupClose().click();
+		Thread.sleep(3000);
+		reusableMethods.returnToDashboard();
+		}
+	@Test (priority = 2, dependsOnMethods = {"ScheduleClassTest"})
 		public void unenrollFromClass() throws IOException, InterruptedException
 		{	
 		DashboardPO d = new DashboardPO(driver);

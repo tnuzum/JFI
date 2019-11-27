@@ -23,6 +23,8 @@ public class ClassSignUpPO {
 	By popupCancelButton = By.xpath("(//button[@type='button'])[5]");
 	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
 	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
+	By popupErrorMessage = By.xpath("//h2[@id='swal2-title']");
+	By popupClose = By.xpath("//div[@class='swal2-actions']/button[1]");
 //	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
 	By confirmationCheckout = By.xpath("//a[contains(text(), 'checkout')]");
 	By schedulingConflictMessage = By.xpath("//div[contains(@class,'alert-danger')]/small/i");
@@ -93,5 +95,12 @@ public class ClassSignUpPO {
 	{
 		return driver.findElement(schedulingConflictMessage);
 	}
-	
+	public WebElement getPopupErrorMessage()
+	{
+		return driver.findElement(popupErrorMessage);
+	}
+	public WebElement getPopupClose()
+	{
+		return driver.findElement(popupClose);
+	}
 }
