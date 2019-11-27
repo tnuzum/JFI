@@ -44,7 +44,8 @@ public class PaymentPO {
 	By popupConfirmationButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 	By confirmPageThankYou = By.xpath("//h1[@class='text-capitalize']");
 	By selectPaymentOnAccountButton = By.xpath("//div[@id='accordion']/div[1]/div[1]/a/h5");
-	By selectPaymentOnAccountPayWithButton = By.xpath("//button[@class='btn btn-primary btn-sm use-method make-payment text-capitalize']");
+//	By selectPaymentOnAccountPayWithButton = By.xpath("//button[@class='btn btn-primary btn-sm use-method make-payment text-capitalize']");
+	By selectPaymentOnAccountPayWithButton = By.xpath("//div[@id = 'collapseOne']/cartpaymentonaccount/div/div[2]/div/button");
 	By selectPaymentStoredCardsButton = By.xpath("//div[@id='accordion']/div[2]/div[1]/a/h5");
 	By selectPaymentNewCardButton = By.xpath("//div[@id='accordion']/div[3]/div[1]/a/h5");
 		
