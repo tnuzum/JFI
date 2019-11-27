@@ -17,7 +17,7 @@
      		 </methods>
       </class>
       <class name="EME.MakeApptTest"/>
-      <!--  -->class name="EME.ScheduleClassTest"/-->
+      <!--class name="EME.ScheduleClassTest"/-->
       <!--lass name="EME.ScheduleCourseTest"/-->
       <!--class name="EME.MakeGroupApptTest"/-->
       <class name="EME.DashBoard_Layout"/>
