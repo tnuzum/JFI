@@ -100,9 +100,10 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		}
 		else
 		{
-		c.getPopupClose().click();
-		Thread.sleep(3000);
-		reusableMethods.returnToDashboard();
+			System.out.println("enrollement failed");
+			c.getPopupClose().click();
+			Thread.sleep(3000);
+			reusableMethods.returnToDashboard();
 		}
 		}
 	@Test (priority = 2, dependsOnMethods = {"scheduleClass"})
@@ -110,9 +111,14 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		{	
 		DashboardPO d = new DashboardPO(driver);
 
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+//			WebDriverWait wait = new WebDriverWait(driver, 10);
 //			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
+			Thread.sleep(2000);
+			boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
+//			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
+			if (enrolled = true)
+			{
+			
 			while (!d.getMyClassesClass1GearButton().isDisplayed())
 			{
 				Thread.sleep(1000);
@@ -130,6 +136,13 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
 				}
+		 
+			else
+				{
+		System.out.println("enrollement not displayed");
+				}
+		
+	}
 
 //	@AfterTest
 	@AfterClass
