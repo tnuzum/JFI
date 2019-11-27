@@ -77,8 +77,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			Thread.sleep(3000);
 		c.getSelectRatesAddSelButton().click();
 			Thread.sleep(3000);
-		WebElement ErrorMsg = c.getPopupErrorMessage();
-		while (!ErrorMsg.isDisplayed())
+		boolean	errorMsgPresent = reusableMethods.isElementPresent(By.xpath("//h2[@id='swal2-title']"));
+		
+		if (errorMsgPresent = false)
 			{
 		c.getConfirmationCheckout().click();
 		Thread.sleep(3000);
@@ -97,9 +98,12 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(3000);
 		reusableMethods.returnToDashboard();
 		}
+		else
+		{
 		c.getPopupClose().click();
 		Thread.sleep(3000);
 		reusableMethods.returnToDashboard();
+		}
 		}
 	@Test (priority = 2, dependsOnMethods = {"scheduleClass"})
 		public void unenrollFromClass() throws IOException, InterruptedException
