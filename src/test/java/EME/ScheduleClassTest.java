@@ -78,8 +78,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		c.getSelectRatesAddSelButton().click();
 			Thread.sleep(3000);
 		boolean	errorMsgPresent = reusableMethods.isElementPresent(By.xpath("//h2[@id='swal2-title']"));
-		
-		if (errorMsgPresent = false)
+		System.out.println(errorMsgPresent);
+		if (errorMsgPresent == false)
 			{
 		c.getConfirmationCheckout().click();
 		Thread.sleep(3000);
@@ -115,8 +115,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
 			Thread.sleep(2000);
 			boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
+			System.out.println(enrolled);
 //			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
-			if (enrolled = true)
+			if (enrolled == true)
 			{
 			
 			while (!d.getMyClassesClass1GearButton().isDisplayed())
