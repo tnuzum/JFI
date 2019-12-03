@@ -66,7 +66,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"0");
 		reusableMethods.memberLogout();
 		}
-	@Test (priority = 40, description = "Login Active Adult No Family Member")
+	@Test (priority = 40, description = "Login Active Adult one Family Member")
 	public void activeMember5Login() throws InterruptedException
 	{
 	reusableMethods.activeMember5Login();
