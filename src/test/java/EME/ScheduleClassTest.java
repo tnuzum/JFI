@@ -40,6 +40,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void scheduleClass() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMember5Login();
+		reusableMethods.unenrollFromClass();
+		Thread.sleep(3000);
+		reusableMethods.returnToDashboard();
 			DashboardPO d = new DashboardPO(driver);
 		
 		 d.getMyClassesScheduleButton().click();
