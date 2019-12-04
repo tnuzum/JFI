@@ -1,5 +1,6 @@
 package resources;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -12,6 +13,7 @@ import pageObjects.DashboardPO;
 import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
 import pageObjects.PaymentPO;
+import pageObjects.UnenrollPO;
 import resources.base;
 
 public class reusableMethods extends base {
@@ -109,7 +111,41 @@ public class reusableMethods extends base {
 			return false;
 		}
 	}
+	
+	public static String unenrollFromClass() throws IOException, InterruptedException
+	{	
+	DashboardPO d = new DashboardPO(driver);
 
+//		WebDriverWait wait = new WebDriverWait(driver, 10);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
+		Thread.sleep(2000);
+		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
+		System.out.println(enrolled);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
+		if (enrolled == true)
+		{
+		
+		while (!d.getMyClassesClass1GearButton().isDisplayed())
+		{
+			Thread.sleep(1000);
+			System.out.println("Sleeping for 1 second");
+		}
+	d.getMyClassesClass1GearButton().click();
+		Thread.sleep(2000);
+	d.getmyClassesUnenrollButton().click();
+		Thread.sleep(2000);
+		UnenrollPO u = new UnenrollPO(driver);
+			u.getUnenrollButton().click();
+				Thread.sleep(2000);
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			}
+	 
+		return null;
+	
+}
 	public static String useNewCard() throws InterruptedException {
 		PaymentPO p = new PaymentPO(driver);
 		p.getSelectPaymentNewCardButton().click();

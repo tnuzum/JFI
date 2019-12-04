@@ -21,7 +21,7 @@ public class listeners extends base implements ITestListener{
 	public void onTestSuccess(ITestResult result) {
 		
 	}
-	/*
+	
 	@Override
 	public void onTestFailure(ITestResult result) {
 
@@ -34,7 +34,7 @@ public class listeners extends base implements ITestListener{
 		}
 	}
 
-	@Override
+	/*	@Override
 	public void onTestSkipped(ITestResult result) {
 
 		result.getName();
