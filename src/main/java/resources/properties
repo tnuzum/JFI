@@ -1,5 +1,5 @@
 test_environment = local
-browser = Chrome
+browser = Firefox
 EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
 	**************************************************************************************
 	Web addresses for URL parameter

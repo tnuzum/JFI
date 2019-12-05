@@ -67,7 +67,7 @@ public class MakePaymentTest extends base {
 		
 	}
 
-	@Test(priority = 2, description = "Confirming payment is applied")
+	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {"MakePayment"} )
 	public void ConfirmPaymentApplied() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
