@@ -104,7 +104,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		 {
 			 String resource = Resources.get(k).getText();
 			 
-			 if (resource.equals("PT Smith, Andrew"))
+			 if (resource.equals("PT.Holmes, Jeff"))
 			 {
 				 s2.selectByVisibleText(resource);
 				 break;
