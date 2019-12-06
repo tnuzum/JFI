@@ -116,6 +116,7 @@ public class PageLaunchTest extends base{
 	@Test (priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException
 	{
+		reusableWaits.waitForDashboardLoaded();
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		WebElement w = a.getPageHeader();
