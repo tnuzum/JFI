@@ -120,9 +120,9 @@ public class PageLaunchTest extends base{
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		WebElement w = a.getPageHeader();
-		while (!w.isDisplayed())
+		while (!w.getText().equals("Manage Family"))
 		{
-		Thread.sleep(200);
+		Thread.sleep(2000);
 		}
 		Assert.assertEquals(a.getPageHeader().getText(),"Manage Family");
 		log.info("Manage Family Page Header Verified");
@@ -151,7 +151,7 @@ public class PageLaunchTest extends base{
 		WebElement w = fu.getPageHeader();
 		while (!w.isDisplayed())
 		{
-		Thread.sleep(200);
+		Thread.sleep(2000);
 		}
 		Assert.assertEquals(fu.getPageHeader().getText(),"Forgot your Username?");
 		log.info("Forgot Username Page Header Verified");
@@ -166,7 +166,7 @@ public class PageLaunchTest extends base{
 		WebElement w = fp.getPageHeader();
 		while (!w.isDisplayed())
 		{
-		Thread.sleep(200);
+		Thread.sleep(2000);
 		}
 		Assert.assertEquals(fp.getPageHeader().getText(),"Forgot your Password?");
 		log.info("Forgot Password Page Header Verified");
