@@ -13,6 +13,7 @@ public class ClassSignUpPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By selectDateThisWeekButton = By.xpath("//label[@id='date-week']");
+	By calendarIcon = By.cssSelector(".mat-datepicker-toggle");
 	By selectCategory = By.xpath("//classcourse[1]/mat-sidenav-container[1]/mat-sidenav-content[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[3]/div[1]/select[1]");
 	By selectCoursesButton = By.xpath("//input[@id='rbcourses']");
 	By firstAvailClassButton = By.xpath("//div[@id='classes']/div/div[2]/div[1]/div/div");
@@ -45,6 +46,10 @@ public class ClassSignUpPO {
 	public WebElement getSelectDateThisWeekButton()
 	{
 		return driver.findElement(selectDateThisWeekButton);
+	}
+	public WebElement getCalendarIcon()
+	{
+		return driver.findElement(calendarIcon);
 	}
 	public WebElement getSelectCategory()
 	{
