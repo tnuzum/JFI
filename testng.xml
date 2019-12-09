@@ -9,23 +9,10 @@
     <classes>
       <class name="EME.loginPageTest"/>
       <class name="EME.MemberLoginTest"/>
-      <class name="EME.PageLaunchTest">
-      		<methods>
-     		 	<exclude name = "PayNowButtonTest">
-      			 </exclude>
-     		 </methods>
-      </class>
-      <!--class name="EME.MakePaymentTest">
-      		
-      		<methods>     		
-     		 <exclude name = "ConfirmPaymentApplied"/>
-     		 <exclude name = "MakePayment"/>
-      		</methods>
-         	 
-      <class/-->
-      
+      <class name="EME.PageLaunchTest"/>
+      <class name="EME.MakePaymentTest"/>
       <class name="EME.MakeApptTest"/>
-      <!--class name="EME.ScheduleClassTest"/-->
+      <class name="EME.ScheduleClassTest"/>
       <!--class name="EME.ScheduleCourseTest"/-->
       <!--class name="EME.MakeGroupApptTest"/-->
       <class name="EME.DashBoard_Layout"/>

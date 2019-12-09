@@ -118,21 +118,16 @@ public class reusableMethods extends base {
 
 //		WebDriverWait wait = new WebDriverWait(driver, 10);
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
 		System.out.println(enrolled);
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 		if (enrolled == true)
 		{
 		
-		while (!d.getMyClassesClass1GearButton().isDisplayed())
-		{
-			Thread.sleep(1000);
-			System.out.println("Sleeping for 1 second");
-		}
-	d.getMyClassesClass1GearButton().click();
+			d.getMyClassesClass1GearButton().click();
 		Thread.sleep(2000);
-	d.getmyClassesUnenrollButton().click();
+		d.getmyClassesUnenrollButton().click();
 		Thread.sleep(2000);
 		UnenrollPO u = new UnenrollPO(driver);
 			u.getUnenrollButton().click();

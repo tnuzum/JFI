@@ -1,5 +1,9 @@
 package EME;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,21 +45,51 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		{	
 		reusableMethods.activeMember5Login();
 		reusableMethods.unenrollFromClass();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 			DashboardPO d = new DashboardPO(driver);
 		
 		 d.getMyClassesScheduleButton().click();
-			Thread.sleep(4000);
+			Thread.sleep(2000);
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 /* working on selecting specific class			
 		c.getSelectCategory().click();
 		Actions a = new Actions(driver);
 		a.click(c.getSelectCategory().sendKeys("g", Keys.ENTER));
 		*/	
-	c.getSelectDateThisWeekButton().click();		
+//	c.getSelectDateThisWeekButton().click();	
+			c.getCalendarIcon().click();
 			Thread.sleep(2000);
-		c.getfirstAvailClassNextDayButton().click();
+			DateFormat dateFormat = new SimpleDateFormat("d");
+			Calendar today = Calendar.getInstance();
+			 today.add(Calendar.DAY_OF_YEAR, 1);
+			 String tomorrowsDate = dateFormat.format(today.getTime());
+			 
+			 int daycount = driver.findElements(By.tagName("td")).size(); //Get the daycount from the calendar
+			 for (int i= 0; i<daycount; i++)
+			 {
+				String date = driver.findElements(By.tagName("td")).get(i).getText();
+				if (date.contains(tomorrowsDate))
+				{
+					 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
+					 break;
+				}
+			 }
+			 
+			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+			for (int j= 0; j<ClassCount; j++)
+			 {
+				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+				
+				if (className.contains("BARRE"))
+				{
+					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
+					 break;
+				}
+			 }
+			
+			 
+//		c.getfirstAvailClassNextDayButton().click();
 /*		if (reusableMethods.catchErrorMessage())
 		{
 			System.out.println("An error has occurred");
@@ -77,26 +111,26 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				System.out.println("sleeping");
 				n.getText();
 			}
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		c.getSelectRatesAddSelButton().click();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		boolean	errorMsgPresent = reusableMethods.isElementPresent(By.xpath("//h2[@id='swal2-title']"));
 		System.out.println(errorMsgPresent);
 		if (errorMsgPresent == false)
 			{
 		c.getConfirmationCheckout().click();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 			ShoppingCartPO s = new ShoppingCartPO(driver);
 		s.getCheckout().click();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 			PaymentPO p = new PaymentPO(driver);
 			
 		p.getSelectPaymentOnAccountButton().click();	
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		p.getSelectPaymentOnAccountPayWithButton().click();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		p.getPopupConfirmationButton().click();
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 		Assert.assertEquals("Thank You For Your Order", p.getConfirmPageThankYou().getText());
 		Thread.sleep(3000);
 		reusableMethods.returnToDashboard();
