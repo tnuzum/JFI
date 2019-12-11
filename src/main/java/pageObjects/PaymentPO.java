@@ -42,7 +42,7 @@ public class PaymentPO {
 	By popupPayButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 	By popupConfirmation1 = By.xpath("//div[@class='swal2-header']/h2");//displays Payment Made! message
 	By popupConfirmationButton = By.xpath("//div[@class='swal2-actions']/button[1]");
-	By popupText = By.xpath("//div[@id ='swal2-title']");
+	By popupText = By.xpath("//h2[@id ='swal2-title']");
 	By confirmPageThankYou = By.xpath("//h1[@class='text-capitalize']");
 	By selectPaymentOnAccountButton = By.xpath("//div[@id='accordion']/div[1]/div[1]/a/h5");
 //	By selectPaymentOnAccountPayWithButton = By.xpath("//button[@class='btn btn-primary btn-sm use-method make-payment text-capitalize']");
