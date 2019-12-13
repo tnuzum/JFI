@@ -21,8 +21,9 @@ import pageObjects.ForgotUsernamePO;
 import pageObjects.LoginPO;
 import pageObjects.ManageFamilyPO;
 import pageObjects.ManageProfilePO;
-import pageObjects.PackagesPO;
+import pageObjects.ShopPackagesPO;
 import pageObjects.PaymentPO;
+import pageObjects.ShopPackagesPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -46,7 +47,7 @@ public class PageLaunchTest extends base{
 	{
 		d.getMyPackagesButton().click();
 		d.getMyPackagesShopPackages().click();
-		PackagesPO p = new PackagesPO(driver);
+		ShopPackagesPO p = new ShopPackagesPO(driver);
 		Assert.assertEquals(p.getPageHeader().getText(),"Shop Packages");
 		log.info("Shop Packages Page Header Verified");
 		reusableMethods.returnToDashboard();

@@ -30,7 +30,8 @@ public class DashboardPO {
 	By menuCourseEventsSchedule = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[2]");
 	By menuBookAppointment = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[3]");
 	By menuMyCalendar = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]/a[4]");
-	By menuPayBalance = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[1]");
+//	By menuPayBalance = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[1]");
+	By menuPayBalance = By.xpath("//a[contains(@class, 'at-mainnav-paybalance')]");
 	By menuManagePmntMethods = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[2]");
 	By menuManageProfile = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[3]");
 	By menuManageFamily = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[4]");
