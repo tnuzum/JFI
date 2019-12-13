@@ -34,8 +34,6 @@ public class base {
 
 	String projectPath = System.getenv("EME_HOME");
 
-	String userProfile = System.getenv("USERPROFILE");
-
 	public WebDriver initializeDriver() throws IOException {
 		
 		prop = new Properties();
@@ -80,11 +78,11 @@ public class base {
 		if (testEnvironment.equals("local")){
 				if (browserName.equals("Chrome")) {
 					log.info("Chrome Browser: Running Tests on local machine");
-					System.setProperty("webdriver.chrome.driver", userProfile + "\\Webdrivers\\chromedriver.exe");
+					System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
 					driver = new ChromeDriver();}
 				if (browserName.equals("Firefox")) {
 					log.info("Firefox Browser: Running Tests on local machine");
-					System.setProperty("webdriver.gecko.driver", userProfile + "\\Webdrivers\\geckodriver.exe");
+					System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
 					driver = new FirefoxDriver(); }
 				if (browserName.equals("Edge")) {
 					log.info("Edge Browser: Running Tests on local machine");
@@ -92,7 +90,7 @@ public class base {
 				if (browserName.equals("IE")) {
 					log.info("IE Browser: Running Tests on local machine");
 					InternetExplorerOptions options = new InternetExplorerOptions();
-					System.setProperty("webdriver.ie.driver",userProfile + "\\Webdrivers\\IEDriverServer.exe");
+					System.setProperty("webdriver.ie.driver","C:\\Automation\\libs\\webdrivers\\IEDriverServer.exe");
 					options.setCapability("ignoreZoomSetting", true);
 					driver = new InternetExplorerDriver(options); 
 					}	
