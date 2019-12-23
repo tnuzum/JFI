@@ -23,7 +23,8 @@ public class ClassSignUpPO {
 	By popupClassDesc = By.xpath("//classcoursedetail[@class='ng-star-inserted']/div/div[2]/div");
 	By popupCancelButton = By.xpath("(//button[@type='button'])[5]");
 	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
-	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
+//	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
+	By continueButton =  By.xpath("//a[contains(text(), 'Continue')]");
 	By popupErrorMessage = By.xpath("//h2[@id='swal2-title']");
 	By popupClose = By.xpath("//div[@class='swal2-actions']/button[1]");
 //	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
@@ -88,9 +89,9 @@ public class ClassSignUpPO {
 	{
 		return driver.findElement(popupSignUpButton);
 	}
-	public WebElement getSelectRatesAddSelButton()
+	public WebElement getContinueButton()
 	{
-		return driver.findElement(selectRatesAddSelButton);
+		return driver.findElement(continueButton);
 	}
 	public WebElement getConfirmationCheckout()
 	{
@@ -108,4 +109,6 @@ public class ClassSignUpPO {
 	{
 		return driver.findElement(popupClose);
 	}
+
+	
 }

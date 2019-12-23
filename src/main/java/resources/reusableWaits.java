@@ -14,6 +14,7 @@ import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import pageObjects.LoginPO;
 import pageObjects.PaymentPO;
+import pageObjects.ThankYouPO;
 import resources.base;
 
 
@@ -141,6 +142,19 @@ public class reusableWaits extends base{
 	            return false;
 	        }	
 	}
+		
+		 public static String linksToBeClickable() 
+			{
+			   
+			   int count = driver.findElements(By.tagName("a")).size();
+			   for (int i = 0; i<count; i++)
+			   {
+			   WebDriverWait wait = new WebDriverWait(driver, 20);
+			   wait.until(ExpectedConditions.elementToBeClickable(driver.findElements(By.tagName("a")).get(i)));
+			   }
+				return null;
+				
+			}
 
 }
 	

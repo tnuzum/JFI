@@ -67,6 +67,60 @@ public class reusableMethods extends base {
 		reusableWaits.waitForDashboardLoaded();
 		return null;
 	}
+	public static String activeMember6Login() throws InterruptedException {
+		reusableWaits.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("activeMember6_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("activeMember6_password"));
+		l.getLoginButton().click();
+		reusableWaits.waitForDashboardLoaded();
+		return null;
+	}
+	public static String activeMember7Login() throws InterruptedException {
+		reusableWaits.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("activeMember7_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("activeMember7_password"));
+		l.getLoginButton().click();
+		reusableWaits.waitForDashboardLoaded();
+		return null;
+	}
+	public static String activeMember8Login() throws InterruptedException {
+		reusableWaits.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("activeMember8_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("activeMember8_password"));
+		l.getLoginButton().click();
+		reusableWaits.waitForDashboardLoaded();
+		return null;
+	}
+	public static String activeMember9Login() throws InterruptedException {
+		reusableWaits.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("activeMember9_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("activeMember9_password"));
+		l.getLoginButton().click();
+		reusableWaits.waitForDashboardLoaded();
+		return null;
+	}
+		public static String activeMember10Login() throws InterruptedException {
+			reusableWaits.waitForLoginLoginButton();
+			LoginPO l = new LoginPO(driver);
+			l.getuserName().sendKeys(prop.getProperty("activeMember10_username"));
+			l.getuserPassword().sendKeys(prop.getProperty("activeMember10_password"));
+			l.getLoginButton().click();
+			reusableWaits.waitForDashboardLoaded();
+			return null;
+		}
+			public static String activeMember11Login() throws InterruptedException {
+				reusableWaits.waitForLoginLoginButton();
+				LoginPO l = new LoginPO(driver);
+				l.getuserName().sendKeys(prop.getProperty("activeMember11_username"));
+				l.getuserPassword().sendKeys(prop.getProperty("activeMember11_password"));
+				l.getLoginButton().click();
+				reusableWaits.waitForDashboardLoaded();
+				return null;
+			}
 
 	public static String collectionsMember1Login() throws InterruptedException {
 		reusableWaits.waitForLoginLoginButton();
