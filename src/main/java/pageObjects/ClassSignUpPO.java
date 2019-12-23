@@ -23,7 +23,7 @@ public class ClassSignUpPO {
 	By popupClassDesc = By.xpath("//classcoursedetail[@class='ng-star-inserted']/div/div[2]/div");
 	By popupCancelButton = By.xpath("(//button[@type='button'])[5]");
 	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
-//	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
+	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
 	By continueButton =  By.xpath("//a[contains(text(), 'Continue')]");
 	By popupErrorMessage = By.xpath("//h2[@id='swal2-title']");
 	By popupClose = By.xpath("//div[@class='swal2-actions']/button[1]");
