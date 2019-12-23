@@ -1,4 +1,9 @@
 package EME;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
+import org.testng.AssertJUnit;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -17,7 +22,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import junit.framework.Assert;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentPO;
@@ -104,7 +108,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			
 			Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
-			WebElement n = c.getSelectRatesAddSelButton();
+			WebElement n = c.getContinueButton();
 			while (!n.isEnabled())
 			{
 				Thread.sleep(1000);
@@ -112,7 +116,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				n.getText();
 			}
 			Thread.sleep(2000);
-		c.getSelectRatesAddSelButton().click();
+		c.getContinueButton().click();
 			Thread.sleep(2000);
 		boolean	errorMsgPresent = reusableMethods.isElementPresent(By.xpath("//h2[@id='swal2-title']"));
 		System.out.println(errorMsgPresent);
@@ -171,7 +175,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 					Thread.sleep(2000);
 				u.getUnenrollConfirmYesButton().click();
 				Thread.sleep(2000);
-				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+				AssertJUnit.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
 				}
 		 
