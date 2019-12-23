@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,6 +51,7 @@ public class PaymentPO {
 	By selectPaymentOnAccountPayWithButton = By.xpath("//div[@id = 'collapseOne']/cartpaymentonaccount/div/div[2]/div/button");
 	By selectPaymentStoredCardsButton = By.xpath("//div[@id='accordion']/div[2]/div[1]/a/h5");
 	By selectPaymentNewCardButton = By.xpath("//div[@id='accordion']/div[3]/div[1]/a/h5");
+	By storedCards = By.xpath("//div[@class = 'payment-card']");
 		
 // CONSTRUCTOR
 		
@@ -89,9 +92,13 @@ public class PaymentPO {
 	{
 		return driver.findElement(amountLabel3);
 	}
-	public WebElement getPayWithThisMethodButton1()
+	public List<WebElement> getPayWithThisMethodButton1()
 	{
-		return driver.findElement(payWithThisMethodButton1);
+		return driver.findElements(payWithThisMethodButton1);
+	}
+	public List<WebElement> getStoredCards()
+	{
+		return driver.findElements(storedCards);
 	}
 	public WebElement getZeroPaymentMessage()
 	{

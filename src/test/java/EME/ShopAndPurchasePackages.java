@@ -257,6 +257,7 @@ public class ShopAndPurchasePackages extends base {
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 				.contains(FormatTotalAmt));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+		Thread.sleep(2000);
 		reusableMethods.memberLogout();
 	}
 
@@ -437,6 +438,7 @@ public class ShopAndPurchasePackages extends base {
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 						.contains(FormatTotalAmt1));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+				Thread.sleep(2000);
 				reusableMethods.memberLogout();
 
 	}
@@ -623,6 +625,7 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 					.contains(FormatTotalAmt2));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			Thread.sleep(2000);
 			reusableMethods.memberLogout();
 
 	}
@@ -663,6 +666,7 @@ public class ShopAndPurchasePackages extends base {
 		Labels.add(label);
 		}
 		Assert.assertFalse(Labels.contains(" On Account"));
+		Thread.sleep(2000);
 		reusableMethods.memberLogout();
 
 	}
@@ -703,6 +707,7 @@ public class ShopAndPurchasePackages extends base {
 		Labels.add(label);
 		}
 		Assert.assertFalse(Labels.contains("card"));
+		Thread.sleep(2000);
 		reusableMethods.memberLogout();
 
 
@@ -737,6 +742,7 @@ public class ShopAndPurchasePackages extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		Assert.assertEquals(0, count);
+		Thread.sleep(2000);
 		reusableMethods.memberLogout();
 
 
