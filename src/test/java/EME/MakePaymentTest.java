@@ -58,7 +58,7 @@ public class MakePaymentTest extends base {
 		Thread.sleep(300);
 		for (int i = 0; i<p.getStoredCards().size(); i++)
 		{
-			if (p.getStoredCards().get(i).getText().contains("0268"))
+			if (p.getStoredCards().get(i).getText().contains("5454"))
 					{
 				        p.getPayWithThisMethodButton1().get(i).click();
 				        break;
