@@ -97,8 +97,8 @@ public class reusableMethods extends base {
 	public static String activeMember9Login() throws InterruptedException {
 		reusableWaits.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
-		l.getuserName().sendKeys(prop.getProperty("activeMember9_username"));
-		l.getuserPassword().sendKeys(prop.getProperty("activeMember9_password"));
+		l.getuserName().sendKeys("NoOAMember");
+		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
 		reusableWaits.waitForDashboardLoaded();
 		return null;
@@ -106,8 +106,8 @@ public class reusableMethods extends base {
 		public static String activeMember10Login() throws InterruptedException {
 			reusableWaits.waitForLoginLoginButton();
 			LoginPO l = new LoginPO(driver);
-			l.getuserName().sendKeys(prop.getProperty("activeMember10_username"));
-			l.getuserPassword().sendKeys(prop.getProperty("activeMember10_password"));
+			l.getuserName().sendKeys("NoCCMember");
+			l.getuserPassword().sendKeys("Testing1!");
 			l.getLoginButton().click();
 			reusableWaits.waitForDashboardLoaded();
 			return null;
@@ -115,8 +115,8 @@ public class reusableMethods extends base {
 			public static String activeMember11Login() throws InterruptedException {
 				reusableWaits.waitForLoginLoginButton();
 				LoginPO l = new LoginPO(driver);
-				l.getuserName().sendKeys(prop.getProperty("activeMember11_username"));
-				l.getuserPassword().sendKeys(prop.getProperty("activeMember11_password"));
+				l.getuserName().sendKeys("NoOANoCCMember");
+				l.getuserPassword().sendKeys("Testing1!");
 				l.getLoginButton().click();
 				reusableWaits.waitForDashboardLoaded();
 				return null;
