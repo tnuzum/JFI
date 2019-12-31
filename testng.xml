@@ -11,7 +11,7 @@
       <class name="EME.MemberLoginTest"/>
       <class name="EME.PageLaunchTest"/>
       <class name="EME.MakePaymentTest"/>
-      <class name="EME.MakeApptTest"/>
+      <!--class name="EME.MakeApptTest"/-->
       <!--class name="EME.ScheduleClassTest"/-->
       <!--class name="EME.ScheduleCourseTest"/-->
       <!--class name="EME.MakeGroupApptTest"/-->
