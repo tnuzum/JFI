@@ -25,12 +25,16 @@ public class ClassSignUpPO {
 	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
 	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
 	By continueButton =  By.xpath("//a[contains(text(), 'Continue')]");
-	By popupErrorMessage = By.xpath("//h2[@id='swal2-title']");
+	By popupMessage = By.xpath("//h2[@id='swal2-title']");
 	By popupClose = By.xpath("//div[@class='swal2-actions']/button[1]");
 //	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
 	By confirmationCheckout = By.xpath("//a[contains(text(), 'checkout')]");
 	By schedulingConflictMessage = By.xpath("//div[contains(@class,'alert-danger')]/small/i");
 	By classListHeader = By.xpath("//span[@class = 'class-list-header']");
+	By className = By.xpath("//div[contains(@class, 'widget')]");
+	By classStartTime = By.xpath("//span[contains(@class, 'float')]/small[1]");
+	By classDate = By.xpath("//span[contains(@class, 'float')]/small[2]");
+	By classInstructor = By.xpath("//span[contains(@class, 'float')]/small[2]");
 	
 // CONSTRUCTOR
 		
@@ -101,14 +105,29 @@ public class ClassSignUpPO {
 	{
 		return driver.findElement(schedulingConflictMessage);
 	}
-	public WebElement getPopupErrorMessage()
+	public WebElement getPopupMessage()
 	{
-		return driver.findElement(popupErrorMessage);
+		return driver.findElement(popupMessage);
 	}
 	public WebElement getPopupClose()
 	{
 		return driver.findElement(popupClose);
 	}
-
+	public WebElement getClassName()
+	{
+		return driver.findElement(className);
+	}
+	public WebElement getClassStartTime()
+	{
+		return driver.findElement(classStartTime);
+	}
+	public WebElement getClassDate()
+	{
+		return driver.findElement(classDate);
+	}
+	public WebElement getClassInstructor()
+	{
+		return driver.findElement(classInstructor);
+	}
 	
 }
