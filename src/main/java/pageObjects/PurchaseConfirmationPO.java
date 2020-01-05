@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class PurchasePackagesPO {
+public class PurchaseConfirmationPO {
 
 	public static WebDriver driver;
 
@@ -29,9 +29,9 @@ public class PurchasePackagesPO {
 	
 // CONSTRUCTOR
 		
-	public PurchasePackagesPO(WebDriver driver) {
+	public PurchaseConfirmationPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		PurchasePackagesPO.driver = driver;
+		PurchaseConfirmationPO.driver = driver;
 	}
 // METHODS
 

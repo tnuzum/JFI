@@ -13,6 +13,7 @@ import pageObjects.DashboardPO;
 import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
 import pageObjects.PaymentPO;
+import pageObjects.PurchaseConfirmationPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 
@@ -121,6 +122,15 @@ public class reusableMethods extends base {
 				reusableWaits.waitForDashboardLoaded();
 				return null;
 			}
+			public static String activeMemberLogin(String username, String password) throws InterruptedException {
+				reusableWaits.waitForLoginLoginButton();
+				LoginPO l = new LoginPO(driver);
+				l.getuserName().sendKeys(username);
+				l.getuserPassword().sendKeys(password);
+				l.getLoginButton().click();
+				reusableWaits.waitForDashboardLoaded();
+				return null;
+			}
 
 	public static String collectionsMember1Login() throws InterruptedException {
 		reusableWaits.waitForLoginLoginButton();
@@ -191,6 +201,10 @@ public class reusableMethods extends base {
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			}
+		else
+		{
+			System.out.println("Not enrolled already");
+		}
 	 
 		return null;
 	
@@ -244,5 +258,26 @@ public class reusableMethods extends base {
 		return DateTime;
 	}
 
-
+	public static int getPackageUnits(String packageName) throws InterruptedException{
+		
+	PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+	
+	//Note the package units after purchase
+	PP.getMyPackagesButton().click();
+	//String packageName = null;
+	int IntUnitCount = 0;
+	Thread.sleep(3000);
+	int packagesCount = PP.getPackagesList().size();
+	for (int j = 0; j < packagesCount; j++) {
+		if (PP.getPackagesList().get(j).getText().contains(packageName)) {
+			String[] unitCount = PP.getUnitsCount().get(j).getText().split(" ");
+			String formattedUnitCount = unitCount[0].trim();
+			IntUnitCount = Integer.parseInt(formattedUnitCount);
+			PP.getMyPackagesButton().click();
+		}
+	}
+	return IntUnitCount;
+	}
+	
 }
+

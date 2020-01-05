@@ -3,8 +3,6 @@ package EME;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
@@ -14,7 +12,7 @@ import org.testng.annotations.Test;
 import pageObjects.AcctHistoryPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
-import pageObjects.PurchasePackagesPO;
+import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ShopPackagesPO;
 import pageObjects.ThankYouPO;
 import resources.base;
@@ -33,7 +31,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 1, description = "Confirming Add To Cart button text changed to Purchase and Page Header name Validation")
 	public void PurchaseBtnNameCheck() throws IOException, InterruptedException {
 
-		reusableMethods.activeMember6Login();
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
@@ -80,7 +78,7 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		Thread.sleep(5000);
-		PurchasePackagesPO pp = new PurchasePackagesPO(driver);
+		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 		Assert.assertEquals("ServiceOA", pp.getPackageName().getText());
 	}
 
@@ -88,7 +86,7 @@ public class ShopAndPurchasePackages extends base {
 
 	public void PageLayoutValidation() {
 
-		PurchasePackagesPO pp = new PurchasePackagesPO(driver);
+		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 		Assert.assertEquals("Dashboard", pp.getBreadcrumbDashboard().getText());
 		Assert.assertEquals("Shop", pp.getBreadcrumbShop().getText());
 		Assert.assertEquals("Confirm", pp.getBreadcrumbConfirm().getText());
@@ -123,7 +121,7 @@ public class ShopAndPurchasePackages extends base {
 	public void PurchaseOnAccount() throws InterruptedException {
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-		PurchasePackagesPO PP = new PurchasePackagesPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
 		// Noting down the total amount
 		System.out.println(PP.getTotalAmount().getText());
@@ -152,17 +150,17 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 
-		//Click the Pay button
-		while (!PM.getPaymentButton().isEnabled()) {
-			Thread.sleep(1000);
-		}
-
 		//Verifies the Pay button contains the total amount
-		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
-		//Clicks the Pay button
-		PM.getPaymentButton().click();
+				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
+				
+				//Click the Pay button
+				while (!PM.getPaymentButton().isEnabled())
+				{
+					Thread.sleep(1000);
+				}
+				PM.getPaymentButton().click();
 
-		Thread.sleep(2000);
+				Thread.sleep(2000);
 
 		//Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -263,7 +261,7 @@ public class ShopAndPurchasePackages extends base {
 
 	@Test(priority = 7, description = "Payment Method is Stored Card")
 	public void PurchaseStoredCard() throws InterruptedException {
-		reusableMethods.activeMember7Login();
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"), prop.getProperty("activeMember7_password"));
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
@@ -283,7 +281,7 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		Thread.sleep(5000);
-		PurchasePackagesPO PP = new PurchasePackagesPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 		Assert.assertEquals("ServiceCC", PP.getPackageName().getText());
 		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -325,17 +323,17 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 		}
+		//Verifies the Pay button contains the total amount
+		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
+		
 		//Click the Pay button
-				while (!PM.getPaymentButton().isEnabled()) {
-					Thread.sleep(1000);
-				}
+		while (!PM.getPaymentButton().isEnabled())
+		{
+			Thread.sleep(1000);
+		}
+		PM.getPaymentButton().click();
 
-				//Verifies the Pay button contains the total amount
-				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
-				//Clicks the Pay button
-				PM.getPaymentButton().click();
-
-				Thread.sleep(2000);
+		Thread.sleep(2000);
 
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -446,7 +444,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 8, description = "Payment Method is New Card")
 	public void PurchaseNewCard() throws InterruptedException {
 		
-	reusableMethods.activeMember8Login();
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
 	Thread.sleep(2000);
 	DashboardPO d = new DashboardPO(driver);
 	d.getMenuShopPackages().click();
@@ -466,7 +464,7 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 	Thread.sleep(5000);
-	PurchasePackagesPO PP = new PurchasePackagesPO(driver);
+	PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 	Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 	
 	PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -633,7 +631,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 9, description = "OnAccount Payment Method is not available for this Member")
 	
 	public void OnAccountNotAvailable() throws InterruptedException {
-		reusableMethods.activeMember9Login();
+		reusableMethods.activeMemberLogin("NoOAMember", "Testing1!");
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
@@ -653,7 +651,7 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		Thread.sleep(5000);
-		PurchasePackagesPO PP = new PurchasePackagesPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 		Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -674,7 +672,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 10, description = "Stored Card does not exist for this Member")
 	
 	public void StoredCardNotAvailable() throws InterruptedException {
-		reusableMethods.activeMember10Login();
+		reusableMethods.activeMemberLogin("NoCCMember", "Testing1!");
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
@@ -694,7 +692,7 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		Thread.sleep(5000);
-		PurchasePackagesPO PP = new PurchasePackagesPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 		Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -717,7 +715,7 @@ public class ShopAndPurchasePackages extends base {
 	
 	public void NoOANoStoredCardAvailable() throws InterruptedException {
     	
-		reusableMethods.activeMember11Login();
+    	reusableMethods.activeMemberLogin("NoOANoCCMember", "Testing1!");
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
@@ -737,7 +735,7 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		Thread.sleep(5000);
-		PurchasePackagesPO PP = new PurchasePackagesPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 		Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -748,7 +746,8 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 	
-	 @AfterClass public void teardown() throws InterruptedException
+	 @AfterClass
+	 public void teardown() throws InterruptedException
 	 {
 	     
 		 driver.close(); 
