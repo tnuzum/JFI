@@ -73,7 +73,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	reusableWaits.waitForFamilyCount();
 	DashboardPO d=new DashboardPO(driver);
 	Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember5_fullname"));
-	Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"1");
+	Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"3");
 	reusableMethods.memberLogout();
 	}
 	
