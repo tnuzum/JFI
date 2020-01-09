@@ -124,31 +124,17 @@ public class ShopAndPurchasePackages extends base {
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
 		// Noting down the total amount
-		System.out.println(PP.getTotalAmount().getText());
+//		System.out.println(PP.getTotalAmount().getText());
 		String[] totalAmt = PP.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
-		System.out.println(FormatTotalAmt);
+//		System.out.println(FormatTotalAmt);
 
 		//Noting down the Package Units before purchasing
 		int IntUnitCountBefore = 0;
 		int IntUnitCountAfter = 0;
 
-		Thread.sleep(2000);
-		PP.getMyPackagesButton().click();
-		Thread.sleep(3000);
-		int packagesCount = PP.getPackagesList().size();
-		for (int j = 0; j < packagesCount; j++) {
-			if (PP.getPackagesList().get(j).getText().contains("ServiceOA")) {
-
-				String[] unitCountBefore = PP.getUnitsCount().get(j).getText().split(" ");
-				String formattedUnitCountBefore = unitCountBefore[0].trim();
-				IntUnitCountBefore = Integer.parseInt(formattedUnitCountBefore);
-				System.out.println(IntUnitCountBefore);
-				break;
-
-			}
-
-		}
+		IntUnitCountBefore = reusableMethods.getPackageUnits("ServiceOA");
+//		System.out.println(IntUnitCountBefore);
 
 		//Verifies the Pay button contains the total amount
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -166,39 +152,26 @@ public class ShopAndPurchasePackages extends base {
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 		PP.getPopupOKButton().click();
 		ThankYouPO TY = new ThankYouPO(driver);
+		
+		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+		reusableMethods.ThankYouPageValidations();
 
-		//Verifies the text on Thank You page and Print Receipt Popup
-		Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
-		Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
-		Assert.assertTrue(TY.getsmallText().getText().contains("Have fun!"));
-		Assert.assertTrue(
-				TY.getsmallText().getText().contains("Everything was processed and you are all ready to go."));
-		Assert.assertTrue(TY.getsmallText().getText().contains(
-				"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
 		//Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
 		String receiptNumber1 = null;
+		
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-		Assert.assertTrue(
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-				.getAttribute("type").equals("button"));
-		Assert.assertTrue(
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
-				.getAttribute("type").equals("button"));
+		
+		//Verifies the buttons on Print Receipt Popup
+		reusableMethods.ReceiptPopupValidations();
+
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 
-		//Verifies the links to navigate to Dashboard and other pages are displayed
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
-
+		
 		//Navigate to Dashboard
 		int count = driver.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count; i++) {
@@ -214,24 +187,12 @@ public class ShopAndPurchasePackages extends base {
 		reusableWaits.waitForDashboardLoaded();
 		//Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		
 		//Note the package units after purchase
-		PP.getMyPackagesButton().click();
-		Thread.sleep(3000);
-
-		for (int j = 0; j < packagesCount; j++) {
-			if (PP.getPackagesList().get(j).getText().contains("ServiceOA")) {
-				String[] unitCountAfter = PP.getUnitsCount().get(j).getText().split(" ");
-				String formattedUnitCountAfter = unitCountAfter[0].trim();
-				IntUnitCountAfter = Integer.parseInt(formattedUnitCountAfter);
-				System.out.println(IntUnitCountAfter);
-
-			}
-		}
-
-		PP.getMyPackagesButton().click();
-		
+		IntUnitCountAfter = reusableMethods.getPackageUnits("ServiceOA");
+//		System.out.println(IntUnitCountAfter);
+			
 		//Verifies the package units is now incremented by one unit
 		IntUnitCountBefore++;
 		Assert.assertEquals(IntUnitCountBefore, IntUnitCountAfter); // verifies the unit count of the Package
@@ -251,7 +212,7 @@ public class ShopAndPurchasePackages extends base {
 		}
 
 		//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+//		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 				.contains(FormatTotalAmt));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -280,7 +241,7 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 		}
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 		Assert.assertEquals("ServiceCC", PP.getPackageName().getText());
 		
@@ -298,31 +259,18 @@ public class ShopAndPurchasePackages extends base {
 	
 
 		// Noting down the total amount
-		System.out.println(PP.getTotalAmount().getText());
+//		System.out.println(PP.getTotalAmount().getText());
 		String[] totalAmt1 = PP.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt1 = totalAmt1[1].trim();
-		System.out.println(FormatTotalAmt1);
+//		System.out.println(FormatTotalAmt1);
 
 		//Noting down the Package Units before purchasing
 		int IntUnitCountBefore1 = 0;
 		int IntUnitCountAfter1 = 0;
 
-		Thread.sleep(2000);
-		PP.getMyPackagesButton().click();
-		Thread.sleep(3000);
-		int packagesCount = PP.getPackagesList().size();
-		for (int j = 0; j < packagesCount; j++) {
-			if (PP.getPackagesList().get(j).getText().contains("ServiceCC")) {
+		IntUnitCountBefore1 = reusableMethods.getPackageUnits("ServiceCC");
+//		System.out.println(IntUnitCountBefore1);
 
-				String[] unitCountBefore1 = PP.getUnitsCount().get(j).getText().split(" ");
-				String formattedUnitCountBefore1 = unitCountBefore1[0].trim();
-				IntUnitCountBefore1 = Integer.parseInt(formattedUnitCountBefore1);
-				System.out.println(IntUnitCountBefore1);
-				break;
-
-			}
-
-		}
 		//Verifies the Pay button contains the total amount
 		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
 		
@@ -339,40 +287,26 @@ public class ShopAndPurchasePackages extends base {
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
 				ThankYouPO TY = new ThankYouPO(driver);
-
-				//Verifies the text on Thank You page and Print Receipt Popup
-				Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
-				Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
-				Assert.assertTrue(TY.getsmallText().getText().contains("Have fun!"));
-				Assert.assertTrue(
-						TY.getsmallText().getText().contains("Everything was processed and you are all ready to go."));
-				Assert.assertTrue(TY.getsmallText().getText().contains(
-						"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
 				
+				//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+				reusableMethods.ThankYouPageValidations();
+
 				//Note down the Receipt number
 				String receiptNumber2 = TY.getReceiptNumber().getText();
 				String receiptNumber3 = null;
+				
 				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);
 				Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-				Assert.assertTrue(
-						TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-						.getAttribute("type").equals("button"));
-				Assert.assertTrue(
-						TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
-						.getAttribute("type").equals("button"));
+				
+				//Verifies the buttons on Print Receipt Popup
+				reusableMethods.ReceiptPopupValidations();
+
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-				Thread.sleep(3000);
+				Thread.sleep(2000);
 
-				//Verifies the links to navigate to Dashboard and other pages are displayed
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
-
+				
 				//Navigate to Select Classes
 				int count1 = driver.findElements(By.tagName("a")).size();
 				for (int i = 0; i < count1; i++) {
@@ -388,31 +322,19 @@ public class ShopAndPurchasePackages extends base {
 				Thread.sleep(2000);
 				//Verifies the link navigates to the right page
 				Assert.assertEquals("Select Classes", driver.getTitle());
-				Thread.sleep(3000);
-				
+								
 				//Note the package units after purchase
-				PP.getMyPackagesButton().click();
-				Thread.sleep(3000);
-
-				for (int j = 0; j < packagesCount; j++) {
-					if (PP.getPackagesList().get(j).getText().contains("ServiceCC")) {
-						String[] unitCountAfter1 = PP.getUnitsCount().get(j).getText().split(" ");
-						String formattedUnitCountAfter1 = unitCountAfter1[0].trim();
-						IntUnitCountAfter1 = Integer.parseInt(formattedUnitCountAfter1);
-						System.out.println(IntUnitCountAfter1);
-
-					}
-				}
-
-				PP.getMyPackagesButton().click();
+				IntUnitCountAfter1 = reusableMethods.getPackageUnits("ServiceCC");
+//				System.out.println(IntUnitCountAfter1);
 				
+								
 				//Verifies the package units is now incremented by one unit
 				IntUnitCountBefore1++;
 				Assert.assertEquals(IntUnitCountBefore1, IntUnitCountAfter1); // verifies the unit count of the Package
 
 				DashboardPO dp = new DashboardPO(driver);
 				dp.getMenuMyAccount().click();
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				dp.getMenuAccountHistory().click();
 				
 				//Clicks on the Receiptnumber in Account History 
@@ -432,7 +354,7 @@ public class ShopAndPurchasePackages extends base {
 				}
 
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+//				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 						.contains(FormatTotalAmt1));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -444,7 +366,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 8, description = "Payment Method is New Card")
 	public void PurchaseNewCard() throws InterruptedException {
 		
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
+	reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
 	Thread.sleep(2000);
 	DashboardPO d = new DashboardPO(driver);
 	d.getMenuShopPackages().click();
@@ -463,7 +385,7 @@ public class ShopAndPurchasePackages extends base {
 		}
 
 	}
-	Thread.sleep(5000);
+	Thread.sleep(2000);
 	PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 	Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 	
@@ -473,7 +395,7 @@ public class ShopAndPurchasePackages extends base {
 				PM.getNewCardButton().click();
 				Assert.assertTrue(PM.getCloseButton().isDisplayed());
 				Assert.assertFalse(PM.getPaymentButton().isEnabled());
-				System.out.println(PM.getNameOnCardField().getAttribute("value"));
+//				System.out.println(PM.getNameOnCardField().getAttribute("value"));
 	     		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));
 				PM.getCardNumberField().sendKeys("4111111111111111");
 				PM.getExpirationMonth().sendKeys("12");
@@ -484,31 +406,16 @@ public class ShopAndPurchasePackages extends base {
 				
 	
 	// Noting down the total amount
-	System.out.println(PP.getTotalAmount().getText());
+//	System.out.println(PP.getTotalAmount().getText());
 	String[] totalAmt2 = PP.getTotalAmount().getText().split(": ");
 	String FormatTotalAmt2 = totalAmt2[1].trim();
-	System.out.println(FormatTotalAmt2);
+//	System.out.println(FormatTotalAmt2);
 
 	//Noting down the Package Units before purchasing
 	int IntUnitCountBefore2 = 0;
 	int IntUnitCountAfter2 = 0;
 
-	Thread.sleep(2000);
-	PP.getMyPackagesButton().click();
-	Thread.sleep(3000);
-	int packagesCount = PP.getPackagesList().size();
-	for (int j = 0; j < packagesCount; j++) {
-		if (PP.getPackagesList().get(j).getText().contains("ServiceNC")) {
-
-			String[] unitCountBefore2 = PP.getUnitsCount().get(j).getText().split(" ");
-			String formattedUnitCountBefore2 = unitCountBefore2[0].trim();
-			IntUnitCountBefore2= Integer.parseInt(formattedUnitCountBefore2);
-			System.out.println(IntUnitCountBefore2);
-			break;
-
-		}
-
-	}
+	IntUnitCountBefore2 = reusableMethods.getPackageUnits("ServiceNC");
 	//Click the Pay button
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
@@ -526,38 +433,23 @@ public class ShopAndPurchasePackages extends base {
 			PP.getPopupOKButton().click();
 			ThankYouPO TY = new ThankYouPO(driver);
 
-			//Verifies the text on Thank You page and Print Receipt Popup
-			Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
-			Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
-			Assert.assertTrue(TY.getsmallText().getText().contains("Have fun!"));
-			Assert.assertTrue(
-					TY.getsmallText().getText().contains("Everything was processed and you are all ready to go."));
-			Assert.assertTrue(TY.getsmallText().getText().contains(
-					"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
+			//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+			reusableMethods.ThankYouPageValidations();
 			
 			//Note down the Receipt number
 			String receiptNumber4 = TY.getReceiptNumber().getText();
 			String receiptNumber5 = null;
+			
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-			Assert.assertTrue(
-					TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-					.getAttribute("type").equals("button"));
-			Assert.assertTrue(
-					TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
-					.getAttribute("type").equals("button"));
+			
+			//Verifies the buttons on Print Receipt Popup
+			reusableMethods.ReceiptPopupValidations();
+			
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(3000);
-
-			//Verifies the links to navigate to Dashboard and other pages are displayed
-			Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-			Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-			Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-			Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
 
 			//Navigate to Select Classes
 			int count1 = driver.findElements(By.tagName("a")).size();
@@ -578,20 +470,7 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(3000);
 			
 			//Note the package units after purchase
-			PP.getMyPackagesButton().click();
-			Thread.sleep(3000);
-
-			for (int j = 0; j < packagesCount; j++) {
-				if (PP.getPackagesList().get(j).getText().contains("ServiceNC")) {
-					String[] unitCountAfter2 = PP.getUnitsCount().get(j).getText().split(" ");
-					String formattedUnitCountAfter2 = unitCountAfter2[0].trim();
-					IntUnitCountAfter2 = Integer.parseInt(formattedUnitCountAfter2);
-					System.out.println(IntUnitCountAfter2);
-
-				}
-			}
-
-			PP.getMyPackagesButton().click();
+			IntUnitCountAfter2 = reusableMethods.getPackageUnits("ServiceNC");
 			
 			//Verifies the package units is now incremented by one unit
 			IntUnitCountBefore2++;
@@ -599,7 +478,7 @@ public class ShopAndPurchasePackages extends base {
 
 			DashboardPO dp = new DashboardPO(driver);
 			dp.getMenuMyAccount().click();
-			Thread.sleep(2000);
+			Thread.sleep(1000);
 			dp.getMenuAccountHistory().click();
 			
 			//Clicks on the Receiptnumber in Account History 
@@ -619,7 +498,7 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 			//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-			System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+//			System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 					.contains(FormatTotalAmt2));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -631,7 +510,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 9, description = "OnAccount Payment Method is not available for this Member")
 	
 	public void OnAccountNotAvailable() throws InterruptedException {
-		reusableMethods.activeMemberLogin("NoOAMember", "Testing1!");
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember9_username"), prop.getProperty("activeMember9_password"));
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
@@ -672,7 +551,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 10, description = "Stored Card does not exist for this Member")
 	
 	public void StoredCardNotAvailable() throws InterruptedException {
-		reusableMethods.activeMemberLogin("NoCCMember", "Testing1!");
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember10_username"), prop.getProperty("activeMember10_password"));
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
@@ -711,11 +590,11 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 
-    @Test(priority = 10, description = "Stored Card does not exist for this Member")
+    @Test(priority = 11, description = "Stored Card does not exist for this Member and On Account is not available")
 	
 	public void NoOANoStoredCardAvailable() throws InterruptedException {
     	
-    	reusableMethods.activeMemberLogin("NoOANoCCMember", "Testing1!");
+    	reusableMethods.activeMemberLogin(prop.getProperty("activeMember11_username"), prop.getProperty("activeMember11_password"));
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
@@ -745,7 +624,8 @@ public class ShopAndPurchasePackages extends base {
 
 
 	}
-	
+    
+    
 	 @AfterClass
 	 public void teardown() throws InterruptedException
 	 {

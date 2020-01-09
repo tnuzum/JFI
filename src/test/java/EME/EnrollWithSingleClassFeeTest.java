@@ -24,6 +24,7 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
+import pageObjects.ShopPackagesPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
 import resources.base;
@@ -43,7 +44,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 	@Test(priority = 1, description = "Ui validations")
 	public void UIValidations() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember5_username"), prop.getProperty("activeMember5_password"));
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		reusableMethods.unenrollFromClass();
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
@@ -52,8 +53,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 		d.getMyClassesScheduleButton().click();
 		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Shop", BT.getBreadcrumb2().getText());
+		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
+		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
 		c.getCalendarIcon().click();
@@ -76,7 +78,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("BARRE Combat Fusion")) {
+			if (className.contains("BARRE COMBAT FUSION")) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -94,17 +96,12 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Assert.assertEquals("Start Time: 05:00 PM", c.getClassStartTime().getText());
 		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
 
-		DateFormat dateFormat11 = new SimpleDateFormat("E");
+		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDay = dateFormat11.format(today1.getTime());
+		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("mm/dd/yyyy");
-		Calendar today11 = Calendar.getInstance();
-		today11.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate1 = dateFormat1.format(today11.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDay + "day " + tomorrowsDate1, c.getClassDate());
+		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
 		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
@@ -117,19 +114,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 		}
 
 		c.getContinueButton().click();
-		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
-		Boolean ReviewLabelPresent = reusableMethods.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
-		Assert.assertTrue(ReviewLabelPresent);
-		Assert.assertEquals("Review", pp.getReviewLabel().getText());
-		Boolean FeesLabelPresent = reusableMethods.isElementPresent(By.xpath("//small[contains(text(),'Fee(s)')]"));
-		Assert.assertTrue(FeesLabelPresent);
-		Boolean SubTotalLabelPresent = reusableMethods
-				.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
-		Assert.assertTrue(SubTotalLabelPresent);
-		Boolean TaxLabelPresent = reusableMethods.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
-		Assert.assertTrue(TaxLabelPresent);
-		Boolean TotalLabelPresent = reusableMethods.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
-		Assert.assertTrue(TotalLabelPresent);
+		Thread.sleep(2000);
+		reusableMethods.ReviewSectionValidation();
+		
 	}
 
 	@Test(priority = 2, description = "Payment Method OnAccount is selected by default")
@@ -151,10 +138,11 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
 		// Noting down the total amount
-		System.out.println(PP.getTotalAmount().getText());
+		Thread.sleep(2000);
+//		System.out.println(PP.getTotalAmount().getText());
 		String[] totalAmt = PP.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
-		System.out.println(FormatTotalAmt);
+//		System.out.println(FormatTotalAmt);
 		
 		//Verifies the Pay button contains the total amount
 		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -173,37 +161,23 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PP.getPopupOKButton().click();
 		ThankYouPO TY = new ThankYouPO(driver);
 
-		//Verifies the text on Thank You page and Print Receipt Popup
-		Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
-		Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
-		Assert.assertTrue(TY.getsmallText().getText().contains("Have fun!"));
-		Assert.assertTrue(
-				TY.getsmallText().getText().contains("Everything was processed and you are all ready to go."));
-		Assert.assertTrue(TY.getsmallText().getText().contains(
-				"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
+		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+				reusableMethods.ThankYouPageValidations();
+				
 		//Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
 		String receiptNumber1 = null;
+		
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-		Assert.assertTrue(
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-				.getAttribute("type").equals("button"));
-		Assert.assertTrue(
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
-				.getAttribute("type").equals("button"));
+
+		//Verifies the buttons on Print Receipt Popup
+		reusableMethods.ReceiptPopupValidations();
+
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(3000);
-
-		//Verifies the links to navigate to Dashboard and other pages are displayed
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
 
 		//Navigate to Dashboard
 		int count = driver.findElements(By.tagName("a")).size();
@@ -231,13 +205,15 @@ public class EnrollWithSingleClassFeeTest extends base {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
 			if (receiptNumber1.equals(receiptNumber)) {
+				System.out.println(receiptNumber);
+				System.out.println(receiptNumber1);
 				ahp.getReceiptNumbers().get(k).click();
 				break;
 			}
 		}
 
 		//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+//		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 				.contains(FormatTotalAmt));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -249,7 +225,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 	
 	@Test(priority = 4, description = "Enroll With Saved Card")
 	public void EnrollWithSavedCard() throws InterruptedException, IOException {
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember5_username"), prop.getProperty("activeMember5_password"));
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"), prop.getProperty("activeMember7_password"));
 		reusableMethods.unenrollFromClass();
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
@@ -280,7 +256,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("BARRE Combat Fusion")) {
+			if (className.contains("BARRE COMBAT FUSION")) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -295,17 +271,14 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Assert.assertEquals("Start Time: 05:00 PM", c.getClassStartTime().getText());
 		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
 
-		DateFormat dateFormat11 = new SimpleDateFormat("E");
+		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDay = dateFormat11.format(today1.getTime());
+		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("mm/dd/yyyy");
-		Calendar today11 = Calendar.getInstance();
-		today11.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate1 = dateFormat1.format(today11.getTime());
+		
 
-		Assert.assertEquals("Date: " + tomorrowsDay + "day " + tomorrowsDate1, c.getClassDate());
+		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
 		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
@@ -319,7 +292,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 		c.getContinueButton().click();
 		
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 				
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -336,10 +309,10 @@ public class EnrollWithSingleClassFeeTest extends base {
 	
 
 		// Noting down the total amount
-		System.out.println(PP.getTotalAmount().getText());
+//		System.out.println(PP.getTotalAmount().getText());
 		String[] totalAmt1 = PP.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt1 = totalAmt1[1].trim();
-		System.out.println(FormatTotalAmt1);
+//		System.out.println(FormatTotalAmt1);
 		
 		//Verifies the Pay button contains the total amount
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
@@ -357,38 +330,22 @@ public class EnrollWithSingleClassFeeTest extends base {
 				PP.getPopupOKButton().click();
 				ThankYouPO TY = new ThankYouPO(driver);
 
-				//Verifies the text on Thank You page and Print Receipt Popup
-				Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
-				Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
-				Assert.assertTrue(TY.getsmallText().getText().contains("Have fun!"));
-				Assert.assertTrue(
-						TY.getsmallText().getText().contains("Everything was processed and you are all ready to go."));
-				Assert.assertTrue(TY.getsmallText().getText().contains(
-						"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
-				
+				//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+				reusableMethods.ThankYouPageValidations();
+
 				//Note down the Receipt number
 				String receiptNumber2 = TY.getReceiptNumber().getText();
 				String receiptNumber3 = null;
+				
 				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);
 				Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-				Assert.assertTrue(
-						TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-						.getAttribute("type").equals("button"));
-				Assert.assertTrue(
-						TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
-						.getAttribute("type").equals("button"));
+				
+				//Verifies the buttons on Print Receipt Popup
+				reusableMethods.ReceiptPopupValidations();
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(3000);
-
-				//Verifies the links to navigate to Dashboard and other pages are displayed
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
 
 				//Navigate to Select Classes
 				int count1 = driver.findElements(By.tagName("a")).size();
@@ -429,7 +386,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				}
 
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+//				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 						.contains(FormatTotalAmt1));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -442,7 +399,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 	@Test(priority=5, description = "Enroll in class with New Card")
 	
 	public void EnrollWithNewCard() throws InterruptedException, IOException {
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember5_username"), prop.getProperty("activeMember5_password"));
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
 		reusableMethods.unenrollFromClass();
 		Thread.sleep(1000);
 		reusableMethods.returnToDashboard();
@@ -473,7 +430,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("BARRE Combat Fusion")) {
+			if (className.contains("BARRE COMBAT FUSION")) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -488,17 +445,12 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Assert.assertEquals("Start Time: 05:00 PM", c.getClassStartTime().getText());
 		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
 
-		DateFormat dateFormat11 = new SimpleDateFormat("E");
+		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDay = dateFormat11.format(today1.getTime());
+		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("mm/dd/yyyy");
-		Calendar today11 = Calendar.getInstance();
-		today11.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate1 = dateFormat1.format(today11.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDay + "day " + tomorrowsDate1, c.getClassDate());
+		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
 		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
@@ -520,7 +472,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PM.getNewCardButton().click();
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
 		Assert.assertFalse(PM.getPaymentButton().isEnabled());
-		System.out.println(PM.getNameOnCardField().getAttribute("value"));
+//		System.out.println(PM.getNameOnCardField().getAttribute("value"));
  		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));
 		PM.getCardNumberField().sendKeys("4111111111111111");
 		PM.getExpirationMonth().sendKeys("12");
@@ -530,10 +482,10 @@ public class EnrollWithSingleClassFeeTest extends base {
 	
 
 		// Noting down the total amount
-		System.out.println(PP.getTotalAmount().getText());
+//		System.out.println(PP.getTotalAmount().getText());
 		String[] totalAmt1 = PP.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt1 = totalAmt1[1].trim();
-		System.out.println(FormatTotalAmt1);
+//		System.out.println(FormatTotalAmt1);
 		
 		//Verifies the Pay button contains the total amount
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
@@ -551,38 +503,23 @@ public class EnrollWithSingleClassFeeTest extends base {
 				PP.getPopupOKButton().click();
 				ThankYouPO TY = new ThankYouPO(driver);
 
-				//Verifies the text on Thank You page and Print Receipt Popup
-				Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
-				Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
-				Assert.assertTrue(TY.getsmallText().getText().contains("Have fun!"));
-				Assert.assertTrue(
-						TY.getsmallText().getText().contains("Everything was processed and you are all ready to go."));
-				Assert.assertTrue(TY.getsmallText().getText().contains(
-						"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
-				
+				//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+				reusableMethods.ThankYouPageValidations();
+
 				//Note down the Receipt number
-				String receiptNumber2 = TY.getReceiptNumber().getText();
-				String receiptNumber3 = null;
+				String receiptNumber4 = TY.getReceiptNumber().getText();
+				String receiptNumber5 = null;
+				
 				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);
 				Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-				Assert.assertTrue(
-						TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-						.getAttribute("type").equals("button"));
-				Assert.assertTrue(
-						TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
-						.getAttribute("type").equals("button"));
+				
+				//Verifies the buttons on Print Receipt Popup
+				reusableMethods.ReceiptPopupValidations();
+				
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(3000);
-
-				//Verifies the links to navigate to Dashboard and other pages are displayed
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-				Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
 
 				//Navigate to Select Classes
 				int count1 = driver.findElements(By.tagName("a")).size();
@@ -614,16 +551,16 @@ public class EnrollWithSingleClassFeeTest extends base {
 					Thread.sleep(2000);	
 				}
 				for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-					receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
+					receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
 
-					if (receiptNumber3.equals(receiptNumber2)) {
+					if (receiptNumber5.equals(receiptNumber4)) {
 						ahp.getReceiptNumbers().get(k).click();
 						break;
 					}
 				}
 
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+//				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 						.contains(FormatTotalAmt1));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -631,19 +568,19 @@ public class EnrollWithSingleClassFeeTest extends base {
 				reusableMethods.returnToDashboard();
 	}
 		
-	@Test(priority = 3, description = "Unenroll from the class")
+	@Test(priority = 6, description = "Unenroll from the class")
 	public void unenrollFromClass() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		
 		Thread.sleep(2000);
 		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
-		System.out.println(enrolled);
+//		System.out.println(enrolled);
 //			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 		if (enrolled == true) {
 
 			while (!d.getMyClassesClass1GearButton().isDisplayed()) {
 				Thread.sleep(1000);
-				System.out.println("Sleeping for 1 second");
+//				System.out.println("Sleeping for 1 second");
 			}
 			d.getMyClassesClass1GearButton().click();
 			Thread.sleep(2000);
@@ -661,9 +598,44 @@ public class EnrollWithSingleClassFeeTest extends base {
 		else {
 			System.out.println("enrollement not displayed");
 		}
-int m = reusableMethods.getPackageUnits("ServiceNC");
+
 	}
 
+/*@Test(priority = 11, description = "View Classes Unchecked For Club won't display the Class Schedule button")
+	
+   	public void ViewClassesUncheckedForClub() throws InterruptedException {
+       	
+       	reusableMethods.activeMemberLogin("CantCclasses", "Testing");
+   		Thread.sleep(2000);
+   		DashboardPO d = new DashboardPO(driver);
+   		d.getMenuShopPackages().click();
+   		ShopPackagesPO sp = new ShopPackagesPO(driver);
+   		sp.getKeyWord().sendKeys("Service");
+   		
+   				
+   		for (int i = 0; i < sp.getPackageNames().size(); i++)
+
+   		{
+   			if (sp.getPackageNames().get(i).getText().equals("ServiceNC"))
+
+   			{
+   				sp.getPurchaseButtons().get(i).click();
+   				break;
+   			}
+
+   		}
+   		Thread.sleep(5000);
+   		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+   		Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
+   		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+   		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+   		Assert.assertEquals(0, count);
+   		Thread.sleep(2000);
+   		reusableMethods.memberLogout();
+
+
+   	}*/
+   	
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {

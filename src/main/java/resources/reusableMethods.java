@@ -14,6 +14,7 @@ import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
 import pageObjects.PaymentPO;
 import pageObjects.PurchaseConfirmationPO;
+import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 
@@ -262,9 +263,8 @@ public class reusableMethods extends base {
 		
 	PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 	
-	//Note the package units after purchase
+	//Note the package units 
 	PP.getMyPackagesButton().click();
-	//String packageName = null;
 	int IntUnitCount = 0;
 	Thread.sleep(3000);
 	int packagesCount = PP.getPackagesList().size();
@@ -279,5 +279,59 @@ public class reusableMethods extends base {
 	return IntUnitCount;
 	}
 	
-}
+	public static Object ThankYouPageValidations()
+	{
+	ThankYouPO TY = new ThankYouPO(driver);
 
+	//Verifies the text on Thank You page and Print Receipt Popup
+	Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
+	Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
+	Assert.assertTrue(TY.getsmallText().getText().contains("Have fun!"));
+	Assert.assertTrue(
+			TY.getsmallText().getText().contains("Everything was processed and you are all ready to go."));
+	Assert.assertTrue(TY.getsmallText().getText().contains(
+			"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
+	
+	//Verifies the links to navigate to Dashboard and other pages are displayed
+			Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
+			Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
+			Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
+			Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
+	return null;
+}
+	
+	public static Object ReceiptPopupValidations()
+	{
+	ThankYouPO TY = new ThankYouPO(driver);
+
+	Assert.assertTrue(
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
+	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
+			.getAttribute("type").equals("button"));
+	Assert.assertTrue(
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
+	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
+			.getAttribute("type").equals("button"));
+	return null;
+}
+	
+	public static Object ReviewSectionValidation() {
+
+		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
+		Boolean ReviewLabelPresent = reusableMethods.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
+		Assert.assertTrue(ReviewLabelPresent);
+		Assert.assertEquals("Review", pp.getReviewLabel().getText());
+		Boolean FeesLabelPresent = reusableMethods.isElementPresent(By.xpath("//small[contains(text(),'Fee(s)')]"));
+		Assert.assertTrue(FeesLabelPresent);
+		Boolean SubTotalLabelPresent = reusableMethods
+				.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+		Assert.assertTrue(SubTotalLabelPresent);
+		Boolean TaxLabelPresent = reusableMethods.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+		Assert.assertTrue(TaxLabelPresent);
+		Boolean TotalLabelPresent = reusableMethods.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+		Assert.assertTrue(TotalLabelPresent);
+		return null;
+
+	}
+
+}

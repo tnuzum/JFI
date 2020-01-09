@@ -23,6 +23,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
+import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentPO;
@@ -55,9 +56,14 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(1000);
 		reusableMethods.returnToDashboard();
 			DashboardPO d = new DashboardPO(driver);
+			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		
 		 d.getMyClassesScheduleButton().click();
+		 Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 			Thread.sleep(2000);
+			
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 	
 			c.getCalendarIcon().click();
@@ -92,51 +98,52 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			
 
 			
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
+			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+			Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
+			Assert.assertEquals("Free Class", c.getClassName().getText());
+			Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
+			Assert.assertEquals("Instructor: ", c.getClassInstructor().getText());
+
+			DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
+			Calendar today1 = Calendar.getInstance();
+			today1.add(Calendar.DAY_OF_YEAR, 1);
+			String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
+
+			Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+			
+			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
+			
+			
 		c.getContinueButton().click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		ThankYouPO TY = new ThankYouPO(driver);
 
-		//Verifies the text on Thank You page and Print Receipt Popup
-		Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
-		Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
-		Assert.assertTrue(TY.getsmallText().getText().contains("Have fun!"));
-		Assert.assertTrue(
-				TY.getsmallText().getText().contains("Everything was processed and you are all ready to go."));
-		Assert.assertTrue(TY.getsmallText().getText().contains(
-				"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
-		//Note down the Receipt number
-		String receiptNumber = TY.getReceiptNumber().getText();
-		String receiptNumber1 = null;
-		//Verifies the Invoice amount is $0.00
-		
-		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
-		TY.getPrintReceiptButton().click();
-		Thread.sleep(2000);
-		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains("$0.00"));
-		Assert.assertTrue(
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-				.getAttribute("type").equals("button"));
-		Assert.assertTrue(
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
-				.getAttribute("type").equals("button"));
+		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+				reusableMethods.ThankYouPageValidations();
+
+				//Note down the Receipt number
+				String receiptNumber = TY.getReceiptNumber().getText();
+				String receiptNumber1 = null;
+				
+				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
+				TY.getPrintReceiptButton().click();
+				Thread.sleep(2000);
+				Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+				
+				//Verifies the buttons on Print Receipt Popup
+				reusableMethods.ReceiptPopupValidations();
+				
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(1000);
 
-		//Verifies the links to navigate to Dashboard and other pages are displayed
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
-
+		
 		//Navigate to Dashboard
 		int count = driver.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count; i++) {
@@ -175,7 +182,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableMethods.returnToDashboard();
 		}
 
-	@Test (priority = 2, dependsOnMethods = {"scheduleClass"})
+	@Test (priority = 2, dependsOnMethods = {"EnrollInClass"})
 		public void unenrollFromClass() throws IOException, InterruptedException
 		{	
 		DashboardPO d = new DashboardPO(driver);
