@@ -385,7 +385,7 @@ public class ShopAndPurchasePackages extends base {
 		}
 
 	}
-	Thread.sleep(2000);
+	Thread.sleep(3000);
 	PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 	Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 	

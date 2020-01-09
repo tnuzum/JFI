@@ -101,6 +101,7 @@ public class EnrollClass_ClubSettings extends base {
 	Thread.sleep(2000);
 	Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
 	c.getPopupCancelButton().click();
+	Thread.sleep(2000);
 	reusableMethods.memberLogout();
 	}
    	
