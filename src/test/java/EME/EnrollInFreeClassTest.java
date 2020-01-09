@@ -89,7 +89,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			 {
 				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 								
-				if (className.contains("FREE CLASS Auto"))
+				if (className.contains("FREE CLASS AUTO"))
 				{
 					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
 					 break;
