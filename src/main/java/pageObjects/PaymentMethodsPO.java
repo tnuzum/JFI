@@ -13,7 +13,8 @@ public class PaymentMethodsPO {
 // OBJECTS
 		
 	By onAccountAndSavedCards = By.xpath("//div[@class='radio no-padding']");
-	By paymentButton = By.xpath("//button[@type = 'submit']");
+//	By paymentButton = By.xpath("//button[@type = 'submit']");
+	By paymentButton = By.xpath("//button[contains(text(), 'Pay')]");
 	By newCardButton = By.xpath("//span[contains( text(), 'Add New Card')]");
 	By closeButton = By.xpath("//button[@id='close-button']");
 	By nameOnCardField = By.xpath("//input[@id='nameOnCard']");

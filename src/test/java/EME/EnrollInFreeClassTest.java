@@ -49,7 +49,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		}
 		
 	@Test (priority = 1)
-		public void EnrollInClass() throws IOException, InterruptedException
+		public void EnrollInZeroDollarClass() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMember5Login();
 		reusableMethods.unenrollFromClass();
@@ -216,6 +216,140 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		System.out.println("enrollement not displayed");
 				}
 		
+	}
+	
+	@Test (priority = 1)
+	public void EnrollInClassFreeWithExistingPunches() throws IOException, InterruptedException
+	{	
+	reusableMethods.activeMember5Login();
+	reusableMethods.unenrollFromClass();
+	Thread.sleep(1000);
+	reusableMethods.returnToDashboard();
+		DashboardPO d = new DashboardPO(driver);
+		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+	
+	 d.getMyClassesScheduleButton().click();
+	 Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		Thread.sleep(2000);
+		
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+
+		c.getCalendarIcon().click();
+		Thread.sleep(2000);
+		DateFormat dateFormat = new SimpleDateFormat("d");
+		Calendar today = Calendar.getInstance();
+		 today.add(Calendar.DAY_OF_YEAR, 1);
+		 String tomorrowsDate = dateFormat.format(today.getTime());
+		 
+		 int daycount = driver.findElements(By.tagName("td")).size(); //Get the daycount from the calendar
+		 for (int i= 0; i<daycount; i++)
+		 {
+			String date = driver.findElements(By.tagName("td")).get(i).getText();
+			if (date.contains(tomorrowsDate))
+			{
+				 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
+				 break;
+			}
+		 }
+		 
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j= 0; j<ClassCount; j++)
+		 {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+							
+			if (className.contains("FREE CLASS AUTO"))
+			{
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
+				 break;
+			}
+		 }
+		
+
+		
+		Thread.sleep(2000);
+	c.getPopupSignUpButton().click();
+		Thread.sleep(2000);
+		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
+		Assert.assertEquals("Free Class Auto", c.getClassName().getText());
+		Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
+		Assert.assertEquals("Instructor: ", c.getClassInstructor().getText());
+
+		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
+
+		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		
+		Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
+		
+		
+	c.getContinueButton().click();
+		Thread.sleep(2000);
+	Assert.assertEquals("Success", c.getPopupMessage().getText());
+	c.getPopupClose().click();
+	ThankYouPO TY = new ThankYouPO(driver);
+
+	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+			reusableMethods.ThankYouPageValidations();
+
+			//Note down the Receipt number
+			String receiptNumber = TY.getReceiptNumber().getText();
+			String receiptNumber1 = null;
+			
+			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
+			TY.getPrintReceiptButton().click();
+			Thread.sleep(2000);
+			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+			
+			//Verifies the buttons on Print Receipt Popup
+			reusableMethods.ReceiptPopupValidations();
+			
+	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+	Thread.sleep(1000);
+
+	
+	//Navigate to Dashboard
+	int count = driver.findElements(By.tagName("a")).size();
+	for (int i = 0; i < count; i++) {
+		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+		{
+			// reusableWaits.linksToBeClickable();
+			driver.findElements(By.tagName("a")).get(i).click();
+			break;
+		}
+
+	}
+	reusableWaits.waitForDashboardLoaded();
+	//Verifies the link navigates to the right page
+	Assert.assertEquals("Dashboard", driver.getTitle());
+	Thread.sleep(1000);
+	DashboardPO dp = new DashboardPO(driver);
+	dp.getMyAccountAccountHistory().click();
+	
+	//Clicks on the Receiptnumber in Account History 
+	AcctHistoryPO ahp = new AcctHistoryPO(driver);
+	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
+		receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
+
+		if (receiptNumber1.equals(receiptNumber)) {
+			ahp.getReceiptNumbers().get(k).click();
+			break;
+		}
+	}
+
+	//Verifies the Invoice amount is $0.00
+	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+			.contains("$0.00"));
+	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+	Thread.sleep(1000);
+	reusableMethods.returnToDashboard();
 	}
 
 //	@AfterTest
