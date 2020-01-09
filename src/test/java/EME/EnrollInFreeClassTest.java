@@ -105,7 +105,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 			Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
-			Assert.assertEquals("Free Class", c.getClassName().getText());
+			Assert.assertEquals("Free Class Auto", c.getClassName().getText());
 			Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
 			Assert.assertEquals("Instructor: ", c.getClassInstructor().getText());
 
