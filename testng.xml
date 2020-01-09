@@ -11,13 +11,16 @@
       <class name="EME.MemberLoginTest"/>
       <class name="EME.PageLaunchTest"/>
       <class name="EME.MakePaymentTest"/>
+       <class name = "EME.ShopAndPurchasePackages"/>
       <!--class name="EME.MakeApptTest"/-->
-      <!--class name="EME.ScheduleClassTest"/-->
+      <class name="EME.EnrollWithSingleClassFeeTest"/>
+      <class name="EME.EnrollInFreeClassTest"/>
+      <class name="EME.EnrollClass_ClubSettings"/>
       <!--class name="EME.ScheduleCourseTest"/-->
       <!--class name="EME.MakeGroupApptTest"/-->
       <class name="EME.DashBoard_Layout"/>
        <class name="EME.DashBoard_Menu"/>
-       <class name = "EME.ShopAndPurchasePackages"/>
+      
     </classes>
   </test>
 </suite>

@@ -31,10 +31,11 @@ public class ClassSignUpPO {
 	By confirmationCheckout = By.xpath("//a[contains(text(), 'checkout')]");
 	By schedulingConflictMessage = By.xpath("//div[contains(@class,'alert-danger')]/small/i");
 	By classListHeader = By.xpath("//span[@class = 'class-list-header']");
-	By className = By.xpath("//div[contains(@class, 'widget')]");
+	By className = By.xpath("//div[contains(@class, 'widget')]/h2");
 	By classStartTime = By.xpath("//span[contains(@class, 'float')]/small[1]");
 	By classDate = By.xpath("//span[contains(@class, 'float')]/small[2]");
-	By classInstructor = By.xpath("//span[contains(@class, 'float')]/small[2]");
+	By classInstructor = By.xpath("//span[contains(@class, 'float')]/small[3]");
+	By howYouWishToPay = By.xpath("//label[@for = 'radio1']");
 	
 // CONSTRUCTOR
 		
@@ -128,6 +129,11 @@ public class ClassSignUpPO {
 	public WebElement getClassInstructor()
 	{
 		return driver.findElement(classInstructor);
+	}
+	
+	public WebElement getHowYouWishToPay()
+	{
+		return driver.findElement(howYouWishToPay);
 	}
 	
 }
