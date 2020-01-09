@@ -46,7 +46,8 @@ public class MakePaymentTest extends base {
 		d.getMyAccountPayNow().click();
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(
-				ExpectedConditions.presenceOfElementLocated(By.xpath("//enterpaymentamount/div/div/div/div/div/h2")));
+				ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
+		Thread.sleep(1000);
 		p.getAmountRadioButton3().click();
 		Thread.sleep(500);
 		int variable = 1;
