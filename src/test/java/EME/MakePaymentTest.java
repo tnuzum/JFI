@@ -40,7 +40,7 @@ public class MakePaymentTest extends base {
 
 	@Test(priority = 1, description = "Adding $1.00 to member's account")
 	public void MakePayment() throws InterruptedException {
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember5_username"), prop.getProperty("activeMember5_password"));
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		d.getMyAccountPayNow().click();
