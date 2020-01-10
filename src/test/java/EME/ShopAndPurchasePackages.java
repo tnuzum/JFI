@@ -125,7 +125,7 @@ public class ShopAndPurchasePackages extends base {
 
 		// Noting down the total amount
 //		System.out.println(PP.getTotalAmount().getText());
-		String[] totalAmt = PP.getTotalAmount().getText().split(": ");
+		String[] totalAmt = PP.getShopPackageTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
 //		System.out.println(FormatTotalAmt);
 
@@ -260,9 +260,9 @@ public class ShopAndPurchasePackages extends base {
 
 		// Noting down the total amount
 //		System.out.println(PP.getTotalAmount().getText());
-		String[] totalAmt1 = PP.getTotalAmount().getText().split(": ");
+		String[] totalAmt1 = PP.getShopPackageTotalAmount().getText().split(": ");
 		String FormatTotalAmt1 = totalAmt1[1].trim();
-//		System.out.println(FormatTotalAmt1);
+		System.out.println(FormatTotalAmt1);
 
 		//Noting down the Package Units before purchasing
 		int IntUnitCountBefore1 = 0;
@@ -407,7 +407,7 @@ public class ShopAndPurchasePackages extends base {
 	
 	// Noting down the total amount
 //	System.out.println(PP.getTotalAmount().getText());
-	String[] totalAmt2 = PP.getTotalAmount().getText().split(": ");
+	String[] totalAmt2 = PP.getShopPackageTotalAmount().getText().split(": ");
 	String FormatTotalAmt2 = totalAmt2[1].trim();
 //	System.out.println(FormatTotalAmt2);
 

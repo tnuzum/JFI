@@ -140,12 +140,12 @@ public class EnrollWithSingleClassFeeTest extends base {
 		// Noting down the total amount
 		Thread.sleep(2000);
 //		System.out.println(PP.getTotalAmount().getText());
-		String[] totalAmt = PP.getTotalAmount().getText().split(": ");
-		String FormatTotalAmt = totalAmt[1].trim();
-//		System.out.println(FormatTotalAmt);
+		String totalAmt = PP.getClassesReviewtotalAmount().getText();
+		
+//		System.out.println(TotalAmt);
 		
 		//Verifies the Pay button contains the total amount
-		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
+		Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmt));
 		
 		//Click the Pay button
 		while (!PM.getPaymentButton().isEnabled())
@@ -215,7 +215,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(FormatTotalAmt));
+				.contains(totalAmt));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
@@ -310,12 +310,12 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 		// Noting down the total amount
 //		System.out.println(PP.getTotalAmount().getText());
-		String[] totalAmt1 = PP.getTotalAmount().getText().split(": ");
-		String FormatTotalAmt1 = totalAmt1[1].trim();
-//		System.out.println(FormatTotalAmt1);
+		String totalAmt1 = PP.getClassesReviewtotalAmount().getText();
+		
+		System.out.println(totalAmt1);
 		
 		//Verifies the Pay button contains the total amount
-				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
+				Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmt1));
 				
 				//Click the Pay button
 				while (!PM.getPaymentButton().isEnabled())
@@ -388,7 +388,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-						.contains(FormatTotalAmt1));
+						.contains(totalAmt1));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(2000);
 				reusableMethods.returnToDashboard();
@@ -483,12 +483,11 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 		// Noting down the total amount
 //		System.out.println(PP.getTotalAmount().getText());
-		String[] totalAmt1 = PP.getTotalAmount().getText().split(": ");
-		String FormatTotalAmt1 = totalAmt1[1].trim();
-//		System.out.println(FormatTotalAmt1);
+		String totalAmt2 = PP.getClassesReviewtotalAmount().getText();
+		//System.out.println(totalAmt2);
 		
 		//Verifies the Pay button contains the total amount
-				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
+				Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmt2));
 				
 				//Click the Pay button
 				while (!PM.getPaymentButton().isEnabled())
@@ -562,7 +561,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-						.contains(FormatTotalAmt1));
+						.contains(totalAmt2));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(2000);
 				reusableMethods.returnToDashboard();
