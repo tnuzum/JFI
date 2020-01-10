@@ -24,7 +24,8 @@ public class PurchaseConfirmationPO {
 	By myPackagesButton = By.xpath("//button[contains(@class,'btn btn-outline-secondary text-muted')]");
 	By packagesList = By.xpath("//a[@class = 'dropdown-item']");
 	By unitsCount = By.xpath("//span[@class = 'pull-right text-muted']");
-	By totalAmount = By.xpath("//h2[contains(@class,'at-shoppackage-text-total')]");		
+	By shopPackageTotalAmount = By.xpath("//h2[contains(@class,'at-shoppackage-text-total')]");
+	By classesReviewtotalAmount = By.xpath("//span[contains(@class,'At-classes-review-text-total')]");
 	
 	
 // CONSTRUCTOR
@@ -79,10 +80,16 @@ public class PurchaseConfirmationPO {
 	public List<WebElement> getUnitsCount()
 	{
 		return driver.findElements(unitsCount);
+		
 	}
-	public WebElement getTotalAmount()
+	
+	public WebElement getShopPackageTotalAmount()
 	{
-		return driver.findElement(totalAmount);
+		return driver.findElement(shopPackageTotalAmount);
+	}
+	public WebElement getClassesReviewtotalAmount()
+	{
+		return driver.findElement(classesReviewtotalAmount);
 	}
 }
 
