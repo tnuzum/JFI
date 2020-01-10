@@ -601,40 +601,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 	}
 
-/*@Test(priority = 11, description = "View Classes Unchecked For Club won't display the Class Schedule button")
-	
-   	public void ViewClassesUncheckedForClub() throws InterruptedException {
-       	
-       	reusableMethods.activeMemberLogin("CantCclasses", "Testing");
-   		Thread.sleep(2000);
-   		DashboardPO d = new DashboardPO(driver);
-   		d.getMenuShopPackages().click();
-   		ShopPackagesPO sp = new ShopPackagesPO(driver);
-   		sp.getKeyWord().sendKeys("Service");
-   		
-   				
-   		for (int i = 0; i < sp.getPackageNames().size(); i++)
 
-   		{
-   			if (sp.getPackageNames().get(i).getText().equals("ServiceNC"))
-
-   			{
-   				sp.getPurchaseButtons().get(i).click();
-   				break;
-   			}
-
-   		}
-   		Thread.sleep(5000);
-   		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
-   		Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
-   		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-   		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
-   		Assert.assertEquals(0, count);
-   		Thread.sleep(2000);
-   		reusableMethods.memberLogout();
-
-
-   	}*/
    	
 //	@AfterTest
 	@AfterClass
