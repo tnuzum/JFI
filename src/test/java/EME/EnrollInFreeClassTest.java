@@ -117,6 +117,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
 			
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
+			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
 			
 			
 		c.getContinueButton().click();
@@ -182,7 +183,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableMethods.returnToDashboard();
 		}
 
-	@Test (priority = 2, dependsOnMethods = {"EnrollInClass"})
+	@Test (priority = 2, dependsOnMethods = {"EnrollInZeroDollarClass"})
 		public void unenrollFromClass() throws IOException, InterruptedException
 		{	
 		DashboardPO d = new DashboardPO(driver);
@@ -209,6 +210,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				Thread.sleep(1000);
 				AssertJUnit.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
+				
+				reusableMethods.returnToDashboard();
+				reusableMethods.memberLogout();
 				}
 		 
 			else
@@ -218,7 +222,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		
 	}
 	
-	@Test (priority = 1)
+	@Test (priority = 3, description = "Enroll In Class Free Due to Existing Punches")
 	public void EnrollInClassFreeWithExistingPunches() throws IOException, InterruptedException
 	{	
 	reusableMethods.activeMember5Login();
@@ -259,7 +263,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		 {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 							
-			if (className.contains("FREE CLASS AUTO"))
+			if (className.contains("CLASSFREEWITHEXISTINGPUNCHES"))
 			{
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
 				 break;
@@ -275,9 +279,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
-		Assert.assertEquals("Free Class Auto", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: ", c.getClassInstructor().getText());
+		Assert.assertEquals("ClassFreeWithExistingPunches", c.getClassName().getText());
+		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
+		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -286,7 +290,16 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 
 		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
 		
-		Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
+		int radioButtonCount = driver.findElements(By.tagName("label")).size();
+		for (int i=0; i<radioButtonCount; i++)
+		{
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Use Existing Package"))
+					{
+					Assert.assertTrue(driver.findElements(By.tagName("label")).get(i).isEnabled());
+					driver.findElements(By.tagName("label")).get(i).click();
+					break;
+					}
+		}
 		
 		
 	c.getContinueButton().click();
@@ -314,10 +327,10 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	Thread.sleep(1000);
 
 	
-	//Navigate to Dashboard
+	//Navigate to Appointments Page
 	int count = driver.findElements(By.tagName("a")).size();
 	for (int i = 0; i < count; i++) {
-		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Appointments"))
 
 		{
 			// reusableWaits.linksToBeClickable();
@@ -326,12 +339,14 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		}
 
 	}
-	reusableWaits.waitForDashboardLoaded();
+	
 	//Verifies the link navigates to the right page
-	Assert.assertEquals("Dashboard", driver.getTitle());
+	Assert.assertEquals("Appointments", driver.getTitle());
 	Thread.sleep(1000);
 	DashboardPO dp = new DashboardPO(driver);
-	dp.getMyAccountAccountHistory().click();
+	dp.getMenuMyAccount().click();
+	Thread.sleep(2000);
+	dp.getMenuAccountHistory().click();
 	
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
@@ -350,6 +365,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 	Thread.sleep(1000);
 	reusableMethods.returnToDashboard();
+	reusableMethods.unenrollFromClass();
+	reusableMethods.memberLogout();
 	}
 
 //	@AfterTest
