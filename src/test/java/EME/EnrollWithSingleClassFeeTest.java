@@ -471,7 +471,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 		
 		PM.getNewCardButton().click();
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
-		Assert.assertFalse(PM.getPaymentButton().isEnabled());
+//		Assert.assertFalse(PM.getPaymentButton().isEnabled());
+//		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
  		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));
 		PM.getCardNumberField().sendKeys("4111111111111111");
