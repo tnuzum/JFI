@@ -222,7 +222,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		
 	}
 	
-	@Test (priority = 3, description = "Enroll In Class Free Due to Existing Punches")
+/*	@Test (priority = 3, description = "Enroll In Class Free Due to Existing Punches")
 	public void EnrollInClassFreeWithExistingPunches() throws IOException, InterruptedException
 	{	
 	reusableMethods.activeMember5Login();
@@ -367,7 +367,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	reusableMethods.returnToDashboard();
 	reusableMethods.unenrollFromClass();
 	reusableMethods.memberLogout();
-	}
+	}*/
 
 //	@AfterTest
 	@AfterClass
