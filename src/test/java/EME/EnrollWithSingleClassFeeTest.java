@@ -470,6 +470,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		PM.getNewCardButton().click();
+		Thread.sleep(2000);
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
 //		Assert.assertFalse(PM.getPaymentButton().isEnabled());
 //		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
