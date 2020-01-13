@@ -486,7 +486,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PM.getSecurityCode().sendKeys("123");
 		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 		PM.getSaveCardNo().click();
-		Assert.assertFalse(PM.getPaymentButton().isEnabled());
+		Assert.assertTrue(PM.getPaymentButton().isEnabled());
 	
 
 		// Noting down the total amount
