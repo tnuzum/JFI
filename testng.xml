@@ -15,6 +15,7 @@
       <!--class name="EME.MakeApptTest"/-->
       <class name="EME.EnrollWithSingleClassFeeTest"/>
       <class name="EME.EnrollInFreeClassTest"/>
+      <class name="EME.EmailConfirmations"/>
       <class name="EME.EnrollClass_ClubSettings"/>
       <!--class name="EME.ScheduleCourseTest"/-->
       <!--class name="EME.MakeGroupApptTest"/-->
