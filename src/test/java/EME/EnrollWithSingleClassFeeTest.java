@@ -464,24 +464,29 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 		c.getContinueButton().click();
 		
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 				
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		PM.getNewCardButton().click();
-		Thread.sleep(2000);
+//		Thread.sleep(2000);
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
-//		Assert.assertFalse(PM.getPaymentButton().isEnabled());
-//		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
-		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
+		Assert.assertFalse(PM.getPaymentButton().isEnabled());
+        System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+		
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
  		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));
 		PM.getCardNumberField().sendKeys("4111111111111111");
+		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 		PM.getExpirationMonth().sendKeys("12");
+		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 		PM.getExpirationYear().sendKeys("29");
+		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 		PM.getSecurityCode().sendKeys("123");
+		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 		PM.getSaveCardNo().click();
+		Assert.assertFalse(PM.getPaymentButton().isEnabled());
 	
 
 		// Noting down the total amount
