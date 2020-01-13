@@ -38,8 +38,13 @@ public class EmailConfirmations  {
 	    
 	    System.out.println(emailUtils.getMessageContent(email1));
 	    String emailMessage1 = emailUtils.getMessageContent(email1);
-	    Assert.assertTrue(emailUtils.isTextInMessage(email1, "You have been successfully e=nrolled in the following class."));
 	    Assert.assertTrue(emailMessage1.contains("You have been successfully e=nrolled in the following class."));
+	    
+	    Assert.assertTrue(emailUtils.isTextInMessage(email1, "You have been successfully e=nrolled in the following class."));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email1, "Locati=on: Jonas Sports-Plex"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email1, "Class Name: Free Class Auto"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email1, "Class T=ime: 1/14/2020 10:00 AM"));
+	   
 	    } catch (Exception e) {
 	      e.printStackTrace();
 	      Assert.fail(e.getMessage());
@@ -53,8 +58,13 @@ public class EmailConfirmations  {
 	    
 	    System.out.println(emailUtils.getMessageContent(email2));
 	    String emailMessage2 = emailUtils.getMessageContent(email2);
-	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "You have unenrolled from the following  class."));
 	    Assert.assertTrue(emailMessage2.contains("You have unenrolled from the following  class."));
+	    
+	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "You have unenrolled from the following  class."));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "Location: Jonas Sports-Plex"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "Class Name: Free Class Auto"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "Class Time: 1/14/2020 10:00:00 AM"));
+	   
 	    } catch (Exception e) {
 	      e.printStackTrace();
 	      Assert.fail(e.getMessage());
