@@ -174,7 +174,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				break;
 			}
 		}
-
+		Thread.sleep(1000);
 		//Verifies the Invoice amount is $0.00
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 				.contains("$0.00"));
@@ -222,7 +222,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		
 	}
 	
-/*	@Test (priority = 3, description = "Enroll In Class Free Due to Existing Punches")
+/*	@Test (priority = 3, description = "Enroll In Class Free Due to Existing Punches") -- Bug 155892 has been created
 	public void EnrollInClassFreeWithExistingPunches() throws IOException, InterruptedException
 	{	
 	reusableMethods.activeMember5Login();
@@ -358,7 +358,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			break;
 		}
 	}
-
+    Thread.sleep(1000);
 	//Verifies the Invoice amount is $0.00
 	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 			.contains("$0.00"));
