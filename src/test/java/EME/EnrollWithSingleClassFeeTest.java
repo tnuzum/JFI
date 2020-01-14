@@ -211,7 +211,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				break;
 			}
 		}
-
+		Thread.sleep(1000);
 		//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
@@ -384,7 +384,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 						break;
 					}
 				}
-
+				Thread.sleep(1000);
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
@@ -565,7 +565,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 						break;
 					}
 				}
-
+				Thread.sleep(1000);
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
