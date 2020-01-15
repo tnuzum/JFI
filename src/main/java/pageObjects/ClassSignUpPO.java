@@ -36,6 +36,8 @@ public class ClassSignUpPO {
 	By classDate = By.xpath("//span[contains(@class, 'float')]/small[2]");
 	By classInstructor = By.xpath("//span[contains(@class, 'float')]/small[3]");
 	By howYouWishToPay = By.xpath("//label[@for = 'radio1']");
+	By classCostinPunches = By.xpath("//div[@class='p-xs']//div[1]/small[1]");
+	By unitsDropdown = By.xpath("//select[contains(@class, 'ng-dirty')]");
 	
 // CONSTRUCTOR
 		
@@ -134,6 +136,15 @@ public class ClassSignUpPO {
 	public WebElement getHowYouWishToPay()
 	{
 		return driver.findElement(howYouWishToPay);
+	}
+	public WebElement getClassCostinPunches()
+	{
+		return driver.findElement(classCostinPunches);
+	}
+	
+	public WebElement getUnitsDropdown()
+	{
+		return driver.findElement(unitsDropdown);
 	}
 	
 }

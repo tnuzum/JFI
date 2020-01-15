@@ -9,9 +9,13 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
@@ -31,7 +35,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollWithSingleClassFeeTest extends base {
+public class EnrollByBuyingPackage extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 
 //	@BeforeTest
@@ -78,7 +82,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("BARRE COMBAT FUSION")) {
+			if (className.contains("CLASSNEEDSPUNCHES")) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -92,9 +96,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
-		Assert.assertEquals("BARRE Combat Fusion", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 05:00 PM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
+		Assert.assertEquals("ClassNeedsPunches", c.getClassName().getText());
+		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
+		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -106,16 +110,20 @@ public class EnrollWithSingleClassFeeTest extends base {
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Buy Day Pass"))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
 					}
 		}
-
+		Assert.assertEquals(c.getClassCostinPunches().getText(), "Class Cost: 2 unit(s)");
+		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
+		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
+		s.selectByValue("1: Object");
+		
 		c.getContinueButton().click();
 		Thread.sleep(2000);
-		reusableMethods.ReviewSectionValidation("Fee(s)");
+		reusableMethods.ReviewSectionValidation("Package(s)");
 		
 	}
 
@@ -201,6 +209,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
+		ahp.getSearchField().sendKeys("ClassNeedsPunches");
+		
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -214,8 +224,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Thread.sleep(1000);
 		//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(totalAmt));
+//		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+//				.contains(totalAmt));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
@@ -256,7 +266,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("BARRE COMBAT FUSION")) {
+			if (className.contains("CLASSNEEDSPUNCHES")) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -267,9 +277,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 		c.getPopupSignUpButton().click();
 		Thread.sleep(1000);
 		
-		Assert.assertEquals("BARRE Combat Fusion", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 05:00 PM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
+		Assert.assertEquals("ClassNeedsPunches", c.getClassName().getText());
+		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
+		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -283,7 +293,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Buy Day Pass"))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
@@ -371,7 +381,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys("BARRE Combat Fusion");
+				ahp.getSearchField().sendKeys("ClassNeedsPunches");
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -387,8 +397,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 				Thread.sleep(1000);
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-						.contains(totalAmt1));
+//				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+//						.contains(totalAmt1));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(2000);
 				reusableMethods.returnToDashboard();
@@ -431,7 +441,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("BARRE COMBAT FUSION")) {
+			if (className.contains("CLASSNEEDSPUNCHES")) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -442,9 +452,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 		c.getPopupSignUpButton().click();
 		Thread.sleep(1000);
 		
-		Assert.assertEquals("BARRE Combat Fusion", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 05:00 PM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
+		Assert.assertEquals("ClassNeedsPunches", c.getClassName().getText());
+		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
+		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -456,7 +466,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Buy Day Pass"))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
@@ -472,7 +482,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		
 		PM.getNewCardButton().click();
 //		Thread.sleep(2000);
-		 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
+		CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
 		while (!CloseBtnPresent == true)
 		{
 			PM.getNewCardButton().click();
@@ -559,7 +569,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys("BARRE Combat Fusion");
+				ahp.getSearchField().sendKeys("ClassNeedsPunches");
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -575,8 +585,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 				Thread.sleep(1000);
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-						.contains(totalAmt2));
+//				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+//						.contains(totalAmt2));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(2000);
 				reusableMethods.returnToDashboard();
@@ -618,7 +628,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
    	
 //	@AfterTest
-    @AfterClass
+	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;

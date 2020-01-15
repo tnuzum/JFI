@@ -315,14 +315,14 @@ public class reusableMethods extends base {
 	return null;
 }
 	
-	public static Object ReviewSectionValidation() {
+	public static Object ReviewSectionValidation(String feesOrPackages) {
 
 		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 		Boolean ReviewLabelPresent = reusableMethods.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
 		Assert.assertTrue(ReviewLabelPresent);
 		Assert.assertEquals("Review", pp.getReviewLabel().getText());
-		Boolean FeesLabelPresent = reusableMethods.isElementPresent(By.xpath("//small[contains(text(),'Fee(s)')]"));
-		Assert.assertTrue(FeesLabelPresent);
+		Boolean FeesPackagesLabelPresent = reusableMethods.isElementPresent(By.xpath("//small[contains(text(),feesOrPackages)]"));
+		Assert.assertTrue(FeesPackagesLabelPresent);
 		Boolean SubTotalLabelPresent = reusableMethods
 				.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
 		Assert.assertTrue(SubTotalLabelPresent);
