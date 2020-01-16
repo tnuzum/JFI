@@ -115,7 +115,7 @@ public class reusableWaits extends base{
 			WebElement n = p.getPopupConfirmationButton();
 			while (!n.isEnabled())//while button is NOT(!) enabled
 			{
-				Thread.sleep(1000);
+				Thread.sleep(500);
 //				System.out.println(DateTime+" INFO: waiting 500ms for Accept Button to be enabled");
 			}
 		return null;
