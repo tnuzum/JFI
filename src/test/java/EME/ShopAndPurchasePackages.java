@@ -365,6 +365,7 @@ public class ShopAndPurchasePackages extends base {
 
 	@Test(priority = 8, description = "Payment Method is New Card")
 	public void PurchaseNewCard() throws InterruptedException {
+		Boolean CloseBtnPresent;
 		
 	reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
 	Thread.sleep(2000);
@@ -393,6 +394,12 @@ public class ShopAndPurchasePackages extends base {
 	
 			
 				PM.getNewCardButton().click();
+				CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
+				while (!CloseBtnPresent == true)
+				{
+					PM.getNewCardButton().click();
+					 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
+				}
 				Assert.assertTrue(PM.getCloseButton().isDisplayed());
 				Assert.assertFalse(PM.getPaymentButton().isEnabled());
 //				System.out.println(PM.getNameOnCardField().getAttribute("value"));

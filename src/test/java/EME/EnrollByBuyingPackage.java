@@ -9,26 +9,19 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
-
 import pageObjects.AcctHistoryPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
-import pageObjects.ShopPackagesPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
 import resources.base;
@@ -37,6 +30,11 @@ import resources.reusableWaits;
 
 public class EnrollByBuyingPackage extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
+	private static String classToEnroll = "CLASSNEEDSPUNCHES";
+	private static String classNameDisplayed = "ClassNeedsPunches";
+	private static String classTimeDisplayed = "Start Time: 12:00 AM";
+	private static String classInstructorDisplayed = "Instructor: Max Gibbs";
+	private static String buyPackageName = "Buy Day Pass";
 
 //	@BeforeTest
 	@BeforeClass
@@ -46,7 +44,7 @@ public class EnrollByBuyingPackage extends base {
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
-	@Test(priority = 1, description = "Ui validations")
+	@Test(priority = 1, description = "Ui vclassToEnrollalidations")
 	public void UIValidations() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		reusableMethods.unenrollFromClass();
@@ -82,7 +80,7 @@ public class EnrollByBuyingPackage extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("CLASSNEEDSPUNCHES")) {
+			if (className.contains(classToEnroll)) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -96,9 +94,9 @@ public class EnrollByBuyingPackage extends base {
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
-		Assert.assertEquals("ClassNeedsPunches", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
+		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
+		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
+		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -110,13 +108,13 @@ public class EnrollByBuyingPackage extends base {
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Buy Day Pass"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals(buyPackageName))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
 					}
 		}
-		Assert.assertEquals(c.getClassCostinPunches().getText(), "Class Cost: 2 unit(s)");
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Class Cost: 2 unit(s)"));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		s.selectByValue("1: Object");
@@ -209,14 +207,14 @@ public class EnrollByBuyingPackage extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys("ClassNeedsPunches");
+		ahp.getSearchField().sendKeys(classNameDisplayed);
 		
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
 			if (receiptNumber1.equals(receiptNumber)) {
-				System.out.println(receiptNumber);
-				System.out.println(receiptNumber1);
+//				System.out.println(receiptNumber);
+//				System.out.println(receiptNumber1);
 				ahp.getReceiptNumbers().get(k).click();
 				break;
 			}
@@ -266,7 +264,7 @@ public class EnrollByBuyingPackage extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("CLASSNEEDSPUNCHES")) {
+			if (className.contains(classToEnroll)) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -277,9 +275,9 @@ public class EnrollByBuyingPackage extends base {
 		c.getPopupSignUpButton().click();
 		Thread.sleep(1000);
 		
-		Assert.assertEquals("ClassNeedsPunches", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
+		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
+		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
+		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -293,13 +291,16 @@ public class EnrollByBuyingPackage extends base {
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Buy Day Pass"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals(buyPackageName))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
 					}
 		}
-
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Class Cost: 2 unit(s)"));
+		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
+		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
+		s.selectByValue("1: Object");
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -322,7 +323,7 @@ public class EnrollByBuyingPackage extends base {
 //		System.out.println(PP.getTotalAmount().getText());
 		String totalAmt1 = PP.getClassesReviewtotalAmount().getText();
 		
-		System.out.println(totalAmt1);
+//		System.out.println(totalAmt1);
 		
 		//Verifies the Pay button contains the total amount
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmt1));
@@ -381,7 +382,7 @@ public class EnrollByBuyingPackage extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys("ClassNeedsPunches");
+				ahp.getSearchField().sendKeys(classNameDisplayed);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -441,7 +442,7 @@ public class EnrollByBuyingPackage extends base {
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("CLASSNEEDSPUNCHES")) {
+			if (className.contains(classToEnroll)) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
 				break;
@@ -452,9 +453,9 @@ public class EnrollByBuyingPackage extends base {
 		c.getPopupSignUpButton().click();
 		Thread.sleep(1000);
 		
-		Assert.assertEquals("ClassNeedsPunches", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
+		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
+		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
+		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -466,13 +467,17 @@ public class EnrollByBuyingPackage extends base {
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Buy Day Pass"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals(buyPackageName))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
 					}
 		}
-
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Class Cost: 2 unit(s)"));
+		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
+		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
+		s.selectByValue("1: Object");
+		
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -490,7 +495,7 @@ public class EnrollByBuyingPackage extends base {
 		}
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
 		Assert.assertFalse(PM.getPaymentButton().isEnabled());
-        System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+       System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
 		
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
  		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));
@@ -569,7 +574,7 @@ public class EnrollByBuyingPackage extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys("ClassNeedsPunches");
+				ahp.getSearchField().sendKeys(classNameDisplayed);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	

@@ -183,7 +183,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableMethods.returnToDashboard();
 		}
 
-	@Test (priority = 2, dependsOnMethods = {"EnrollInZeroDollarClass"})
+	@Test (priority = 2, description = "Unenroll from the class")
 		public void unenrollFromClass() throws IOException, InterruptedException
 		{	
 		DashboardPO d = new DashboardPO(driver);
