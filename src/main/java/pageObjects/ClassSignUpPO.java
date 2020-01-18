@@ -22,7 +22,9 @@ public class ClassSignUpPO {
 	By golfClasslabel = By.xpath("//span[contains(text(),'Golf Swing Class')]");
 	By popupClassDesc = By.xpath("//classcoursedetail[@class='ng-star-inserted']/div/div[2]/div");
 	By popupCancelButton = By.xpath("(//button[@type='button'])[5]");
+	By popupCancelButtonCourse = By.xpath("//button[contains(text(),'cancel')]");
 	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
+	By popupSignupButtonCourse = By.xpath("//button[contains(text(),'sign up')]");
 	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
 	By continueButton =  By.xpath("//a[contains(text(), 'Continue')]");
 	By popupMessage = By.xpath("//h2[@id='swal2-title']");
@@ -37,7 +39,11 @@ public class ClassSignUpPO {
 	By classInstructor = By.xpath("//span[contains(@class, 'float')]/small[3]");
 	By howYouWishToPay = By.xpath("//label[@for = 'radio1']");
 	By classCostinPunches = By.xpath("//div[@class='p-xs']//div[1]/small[1]");
-	By unitsDropdown = By.xpath("//select[contains(@class, 'ng-dirty')]");
+//	By unitsDropdown = By.xpath("//select[contains(@class, 'ng-dirty')]");
+	By courseFilter = By.xpath("//a[@class='add-filters']");
+	By courseKeyword = By.xpath("//h5[contains(text(),'Keyword')]");
+	By searchField = By.xpath("//input[@type = 'text']");
+	By applyFilters = By.xpath("//button[contains(text(),'Apply Filters')]");
 	
 // CONSTRUCTOR
 		
@@ -142,9 +148,40 @@ public class ClassSignUpPO {
 		return driver.findElement(classCostinPunches);
 	}
 	
-	public WebElement getUnitsDropdown()
+	public WebElement getCourseFilter()
+	{
+		return driver.findElement(courseFilter);
+	}
+	
+	public WebElement getCourseKeyword()
+	{
+		return driver.findElement(courseKeyword);
+	}
+	
+	public WebElement getSearchField()
+	{
+		return driver.findElement(searchField);
+	}
+	
+	public WebElement getApplyFilters()
+	{
+		return driver.findElement(applyFilters);
+	}
+	
+	public WebElement getPopupCancelButtonCourse()
+	{
+		return driver.findElement(popupCancelButtonCourse);
+	}
+	
+	public WebElement getPopupSignupButtonCourse()
+	{
+		return driver.findElement(popupSignupButtonCourse);
+	}
+/*	public WebElement getUnitsDropdown()
 	{
 		return driver.findElement(unitsDropdown);
-	}
+	}*/
+
+	
 	
 }

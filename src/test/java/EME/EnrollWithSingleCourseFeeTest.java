@@ -6,9 +6,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.Assert;
 import org.testng.AssertJUnit;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -26,12 +23,12 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollWithSingleClassFeeTest extends base {
+public class EnrollWithSingleCourseFeeTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String classToEnroll = "BARRE COMBAT FUSION";
-	private static String classNameDisplayed = "Barre Combat Fusion";
-	private static String classTimeDisplayed = "Start Time: 05:00 PM";
-	private static String classInstructorDisplayed = "Instructor: Andrea";
+	private static String courseToEnroll = "FIT FOR LIFE";
+	private static String courseNameDisplayed = "Fit For Life";
+	private static String courseTimeDisplayed = "Start Time: 09:00 AM";
+	private static String courseInstructorDisplayed = "Instructor: Andrea";
 
 //	@BeforeTest
 	@BeforeClass
@@ -44,68 +41,49 @@ public class EnrollWithSingleClassFeeTest extends base {
 	@Test(priority = 1, description = "Ui validations")
 	public void UIValidations() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
-		reusableMethods.unenrollFromClass();
-		Thread.sleep(2000);
-		reusableMethods.returnToDashboard();
+//		reusableMethods.unenrollFromCourse();
+//		Thread.sleep(2000);
+//		reusableMethods.returnToDashboard();
+		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
+		
 
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		int courseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < courseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (className.contains(classToEnroll)) {
+			if (courseName.contains(courseToEnroll)) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific class
+																									// specific course
 				break;
 			}
 		}
 
 		Thread.sleep(2000);
-		c.getPopupSignUpButton().click();
+		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
 		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
-		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
-		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
+		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
+		Assert.assertEquals(courseInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
-		
+				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee"))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
@@ -200,7 +178,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys(classNameDisplayed);
+		ahp.getSearchField().sendKeys(courseNameDisplayed);
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -219,71 +197,48 @@ public class EnrollWithSingleClassFeeTest extends base {
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
-		reusableMethods.unenrollFromClass();
+//		reusableMethods.unenrollFromCourse();
 		reusableMethods.memberLogout();
 	}
 	
 	@Test(priority = 4, description = "Enroll With Saved Card")
 	public void EnrollWithSavedCard() throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"), prop.getProperty("activeMember7_password"));
-		reusableMethods.unenrollFromClass();
+//		reusableMethods.unenrollFromCourse();
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 		DashboardPO d = new DashboardPO(driver);
 		
-		d.getMyClassesScheduleButton().click();
+		d.getMyCoursesEventsScheduleButton().click();
 		
 		Thread.sleep(1000);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		c.getCalendarIcon().click();
-		Thread.sleep(1000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
+		
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < CourseCount; j++) {
+			String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
-
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (className.contains(classToEnroll)) {
+			if (CourseName.contains(courseToEnroll)) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific class
+																									// specific Course
 				break;
 			}
 		}
 
 		Thread.sleep(1000);
-		c.getPopupSignUpButton().click();
+		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(1000);
 		
-		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
-		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
+		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
+		Assert.assertEquals(courseInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
-		
+				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee"))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
@@ -371,7 +326,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(classNameDisplayed);
+				ahp.getSearchField().sendKeys(courseNameDisplayed);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -392,71 +347,50 @@ public class EnrollWithSingleClassFeeTest extends base {
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(2000);
 				reusableMethods.returnToDashboard();
-				reusableMethods.unenrollFromClass();
+//				reusableMethods.unenrollFromCourse();
 				reusableMethods.memberLogout();
 
 	}
-	@Test(priority=5, description = "Enroll in class with New Card")
+	@Test(priority=5, description = "Enroll in Course with New Card")
 	
 	public void EnrollWithNewCard() throws InterruptedException, IOException {
 		Boolean CloseBtnPresent;
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
-		reusableMethods.unenrollFromClass();
+//		reusableMethods.unenrollFromCourse();
 		Thread.sleep(1000);
 		reusableMethods.returnToDashboard();
 		DashboardPO d = new DashboardPO(driver);
 		
-		d.getMyClassesScheduleButton().click();
+		d.getMyCoursesEventsScheduleButton().click();
 		
 		Thread.sleep(1000);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		c.getCalendarIcon().click();
-		Thread.sleep(1000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
+		
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < CourseCount; j++) {
+			String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
-
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (className.contains(classToEnroll)) {
+			if (CourseName.contains(courseToEnroll)) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific class
+																									// specific Course
 				break;
 			}
 		}
 
 		Thread.sleep(1000);
-		c.getPopupSignUpButton().click();
+		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(1000);
 		
-		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
-		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
+		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
+		Assert.assertEquals(courseInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
-		
+				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee"))
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee"))
 					{
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
@@ -535,7 +469,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(3000);
 
-				//Navigate to Select Classes
+				//Navigate to Select Courses
 				int count1 = driver.findElements(By.tagName("a")).size();
 				for (int i = 0; i < count1; i++) {
 					if (driver.findElements(By.tagName("a")).get(i).getText().equals("Courses / Events"))
@@ -559,7 +493,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(classNameDisplayed);
+				ahp.getSearchField().sendKeys(courseNameDisplayed);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -582,8 +516,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 				reusableMethods.returnToDashboard();
 	}
 		
-	@Test(priority = 6, description = "Unenroll from the class")
-	public void unenrollFromClass() throws IOException, InterruptedException {
+	@Test(priority = 6, description = "Unenroll from the course", enabled = false)
+	public void unenrollFromCourse() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		
 		Thread.sleep(2000);
