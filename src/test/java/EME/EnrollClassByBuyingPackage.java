@@ -28,7 +28,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollByBuyingPackage extends base {
+public class EnrollClassByBuyingPackage extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll = "CLASSNEEDSPUNCHES";
 	private static String classNameDisplayed = "ClassNeedsPunches";
@@ -44,7 +44,7 @@ public class EnrollByBuyingPackage extends base {
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
-	@Test(priority = 1, description = "Ui vclassToEnrollalidations")
+	@Test(priority = 1, description = "Ui validations")
 	public void UIValidations() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		reusableMethods.unenrollFromClass();
