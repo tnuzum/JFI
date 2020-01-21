@@ -587,7 +587,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		DashboardPO d = new DashboardPO(driver);
 		
 		Thread.sleep(2000);
-		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
+		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 //		System.out.println(enrolled);
 //			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 		if (enrolled == true) {
