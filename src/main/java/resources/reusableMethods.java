@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.testng.Assert;
 
+import pageObjects.CalendarPO;
 import pageObjects.DashboardPO;
 import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
@@ -184,7 +185,7 @@ public class reusableMethods extends base {
 //		WebDriverWait wait = new WebDriverWait(driver, 10);
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
 //		Thread.sleep(2000);
-		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
+		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 		System.out.println(enrolled);
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 		if (enrolled == true)
@@ -210,6 +211,44 @@ public class reusableMethods extends base {
 		return null;
 	
 }
+	
+	public static  Object unenrollFromCourse(String dsiredMonthYear) throws IOException, InterruptedException {
+		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
+		
+		Thread.sleep(2000);
+		d.getMenuMyActivies().click();
+		
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1"))
+		{
+			Thread.sleep(500);
+		}
+		
+		d.getMenuMyCalendar().click();
+		String monthYear = cp.getMonthYear().getText();
+		while(!monthYear.equals(dsiredMonthYear))
+		{
+			cp.getRightArrow().click();
+			monthYear = cp.getMonthYear().getText();
+		}
+		
+		cp.getCalDayBadge().click();
+		cp.getCalEventTitle().click();
+		Thread.sleep(1000);
+		cp.getUnEnrollBtn().click();
+		UnenrollPO u = new UnenrollPO(driver);
+		u.getUnenrollButton().click();
+		Thread.sleep(2000);
+		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(2000);
+		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+		u.getUnenrollConfirmYesButton().click();
+		reusableMethods.returnToDashboard();
+		
+		return null;
+	}
+	
+	
 	public static String useNewCard() throws InterruptedException {
 		PaymentPO p = new PaymentPO(driver);
 		p.getSelectPaymentNewCardButton().click();

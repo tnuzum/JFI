@@ -181,7 +181,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO d = new DashboardPO(driver);
 
 //		
-			boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
+			boolean enrolled = reusableMethods.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 //			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 			if (enrolled == true)
 			{

@@ -7,10 +7,12 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pageObjects.AcctHistoryPO;
 import pageObjects.BreadcrumbTrailPO;
+import pageObjects.CalendarPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.ThankYouPO;
@@ -22,6 +24,9 @@ import resources.reusableWaits;
 
 public class EnrollInFreeCourseTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
+
+private static String CourseStartMonth = "Dec";
+private static String dsiredMonthYear = "December 2020";
 
 
 //	@BeforeTest
@@ -38,7 +43,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	public void EnrollInZeroDollarCourse() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMemberLogin("MemberWithPunch", "Testing1!");
-		//reusableMethods.unenrollFromCourse();
+		//reusableMethods.unenrollFromCourse(dsiredMonthYear);
 		//Thread.sleep(1000);
 		//reusableMethods.returnToDashboard();
 		reusableWaits.waitForDashboardLoaded();
@@ -58,6 +63,20 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			c.getSearchField().sendKeys("FREE COURSE AUTO");
 			c.getApplyFilters().click();
 */			
+//			System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
+//			driver.findElement(By.xpath("//label[@id='dec']")).click();
+			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+			int monthCount = MonthNames.findElements(By.tagName("label")).size();
+					for (int i = 0; i < monthCount; i++)
+					{
+						String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+						if (monthName.equals(CourseStartMonth))
+						{
+							 MonthNames.findElements(By.tagName("label")).get(i).click();
+							 break;
+						}
+							
+					}
 			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 			for (int j= 0; j<CourseCount; j++)
 			 {
@@ -150,55 +169,54 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(1000);
 		reusableMethods.returnToDashboard();
-		reusableMethods.memberLogout();
+//		reusableMethods.memberLogout();
 		}
 
-	/*@Test (priority = 2, description = "Unenroll from the course")
+	@Test (priority = 2, description = "Unenroll from the course")
 		
-	public void unenrollFromCourse() throws IOException, InterruptedException
-		{	
+	public void unenrollFromCourse() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-
-//		
-			boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
-//			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
-			if (enrolled == true)
-			{
-			
-			while (!d.getMyClassesClass1GearButton().isDisplayed())
-			{
-				Thread.sleep(1000);
-				System.out.println("Sleeping for 1 second");
-			}
-		d.getMyClassesClass1GearButton().click();
-			Thread.sleep(2000);
-		d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
-			UnenrollPO u = new UnenrollPO(driver);
-				u.getUnenrollButton().click();
-					Thread.sleep(2000);
-				u.getUnenrollConfirmYesButton().click();
-				Thread.sleep(1000);
-				AssertJUnit.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
-				u.getUnenrollConfirmYesButton().click();
-				
-				reusableMethods.returnToDashboard();
-				reusableMethods.memberLogout();
-				}
-		 
-			else
-				{
-		System.out.println("enrollment not displayed");
-				}
+		CalendarPO cp = new CalendarPO(driver);
 		
-	}*/
+		Thread.sleep(2000);
+		d.getMenuMyActivies().click();
+		
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1"))
+		{
+			Thread.sleep(500);
+		}
+		
+		d.getMenuMyCalendar().click();
+		String monthYear = cp.getMonthYear().getText();
+		while(!monthYear.equals(dsiredMonthYear))
+		{
+			cp.getRightArrow().click();
+			monthYear = cp.getMonthYear().getText();
+		}
+		
+		cp.getCalDayBadge().click();
+		cp.getCalEventTitle().click();
+		cp.getUnEnrollBtn().click();
+		UnenrollPO u = new UnenrollPO(driver);
+		u.getUnenrollButton().click();
+		Thread.sleep(2000);
+		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(2000);
+		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+		u.getUnenrollConfirmYesButton().click();
+		
+		reusableMethods.returnToDashboard();
+		reusableMethods.memberLogout();
+		
+
+	}
 	
 	@Test (priority = 3, description = "Enroll In course Free Due to Existing Punches") //Bug 155892 has been created
 	
 	public void EnrollInCourseFreeWithExistingPunches() throws IOException, InterruptedException
 	{	
 	reusableMethods.activeMember6Login();
-//	reusableMethods.unenrollFromCourse();
+//	reusableMethods.unenrollFromCourse(dsiredMonthYear);
 //	Thread.sleep(1000);
 //	reusableMethods.returnToDashboard();
 	reusableWaits.waitForDashboardLoaded();
@@ -218,7 +236,22 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
-
+		
+//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
+//		driver.findElement(By.xpath("//label[@id='dec']")).click();
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+				for (int i = 0; i < monthCount; i++)
+				{
+					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+					if (monthName.equals(CourseStartMonth))
+					{
+						 MonthNames.findElements(By.tagName("label")).get(i).click();
+						 break;
+					}
+						
+				}
+		Thread.sleep(2000);
 			 
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<CourseCount; j++)
@@ -242,8 +275,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals("CourseFreeWithExistingPunches", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
+		Assert.assertEquals("Start Time: 08:00 PM", c.getClassStartTime().getText());
+		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
 
 				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
@@ -331,7 +364,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			//Verifies the package units is now decremented by one unit
 			IntPackageCountBefore--;
 			Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter); 
-//	reusableMethods.unenrollFromCourse();
+			
+	reusableMethods.unenrollFromCourse(dsiredMonthYear);
 	reusableMethods.memberLogout();
 	}
 	
@@ -340,7 +374,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	public void EnrollInCourseFreeWithServiceD() throws IOException, InterruptedException
 	{	
 	reusableMethods.activeMember3Login();
-//	reusableMethods.unenrollFromCourse();
+//	reusableMethods.unenrollFromCourse(dsiredMonthYear);
 //	Thread.sleep(1000);
 //	reusableMethods.returnToDashboard();
 	reusableWaits.waitForDashboardLoaded();
@@ -354,6 +388,22 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
+//		driver.findElement(By.xpath("//label[@id='dec']")).click();
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+				for (int i = 0; i < monthCount; i++)
+				{
+					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+					if (monthName.equals(CourseStartMonth))
+					{
+						 MonthNames.findElements(By.tagName("label")).get(i).click();
+						 break;
+					}
+						
+				}
+		Thread.sleep(2000);
 
 				 
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -378,8 +428,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals("CourseFreeWithServiceD", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Max Gibbs", c.getClassInstructor().getText());
+		Assert.assertEquals("Start Time: 06:30 PM", c.getClassStartTime().getText());
+		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
 		
 		Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 		Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
@@ -449,15 +499,15 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 	Thread.sleep(1000);
 	reusableMethods.returnToDashboard();
-//	reusableMethods.unenrollFromCourse();
+	reusableMethods.unenrollFromCourse(dsiredMonthYear);
 	reusableMethods.memberLogout();
 	}
 
 //	@AfterTest
-/*	@AfterClass
+	@AfterClass
 		public void teardown() throws InterruptedException
 		{
 			driver.close();
 			driver=null;
-		}*/
+		}
 }

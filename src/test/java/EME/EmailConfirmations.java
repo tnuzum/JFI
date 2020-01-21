@@ -30,14 +30,14 @@ public class EmailConfirmations  {
 	  public void numberOfUnreadMails() throws MessagingException {
     	int count = emailUtils.getNumberOfUnreadMessages();
     	System.out.println(count);
-    	Assert.assertTrue(count == 2);
+    	Assert.assertTrue(count > 0);
         }
 	  
 	  
-	  @Test(priority=2, description = "Verifies the Enrollment confirmation email")
-	  public void EnrollmentConfirmation() {
+	  @Test(priority=2, description = "Verifies the Class Enrollment confirmation email")
+	  public void ClassEnrollmentConfirmation() {
 	    try{
-	    Message email1 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 2)[0];
+	    Message email1 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 4)[0];
 	    
 	    System.out.println(emailUtils.getMessageContent(email1));
 	    String emailMessage1 = emailUtils.getMessageContent(email1);
@@ -60,10 +60,10 @@ public class EmailConfirmations  {
 	    }
 	    
   }
-	  @Test(priority=3, description = "Verifies the Unenrollment confirmation email")
-	  public void UnenrollmentConfirmation() {
+	  @Test(priority=3, description = "Verifies the Class Unenrollment confirmation email")
+	  public void ClassUnenrollmentConfirmation() {
 	    try{
-	    Message email2 = emailUtils.getMessagesBySubject("Unenrollment Notification for Member Self-Service", true, 2)[0];
+	    Message email2 = emailUtils.getMessagesBySubject("Unenrollment Notification for Member Self-Service", true, 4)[0];
 	    
 	    System.out.println(emailUtils.getMessageContent(email2));
 	    String emailMessage2 = emailUtils.getMessageContent(email2);
@@ -79,6 +79,47 @@ public class EmailConfirmations  {
 		 String classdateAndTime = "Class Time: " +tomorrowsDate+ " 10:00:00 AM";
 		 System.out.println(classdateAndTime);
 	    Assert.assertTrue(emailUtils.isTextInMessage(email2, classdateAndTime));
+	   
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	      Assert.fail(e.getMessage());
+	    }
+	    
+  }
+	  
+	  @Test(priority=4, description = "Verifies the Course Enrollment confirmation email")
+	  public void CourseEnrollmentConfirmation() {
+	    try{
+	    Message email3 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 4)[0];
+	    
+	    System.out.println(emailUtils.getMessageContent(email3));
+	    String emailMessage1 = emailUtils.getMessageContent(email3);
+	    Assert.assertTrue(emailMessage1.contains("You have been successfully e=nrolled in the following course."));
+	    
+	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "You have been successfully e=nrolled in the following course."));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "Location: Jonas Sports-Plex"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "Course Name: Free Course Auto"));
+	   
+	    } catch (Exception e) {
+	      e.printStackTrace();
+	      Assert.fail(e.getMessage());
+	    }
+	    
+  }
+	  
+	  @Test(priority=5, description = "Verifies the Course Unenrollment confirmation email")
+	  public void CourseUnenrollmentConfirmation() {
+	    try{
+	    Message email4 = emailUtils.getMessagesBySubject("Unenrollment Notification for Member Self-Service", true, 4)[0];
+	    
+	    System.out.println(emailUtils.getMessageContent(email4));
+	    String emailMessage2 = emailUtils.getMessageContent(email4);
+	    Assert.assertTrue(emailMessage2.contains("You have unenrolled from the following  course."));
+	    
+	    Assert.assertTrue(emailUtils.isTextInMessage(email4, "You have unenrolled from the following  course."));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email4, "Location: Jonas Sports-Plex"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email4, "Course Name: Free Course Auto"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email4, "Course Time: 4:30 PM"));
 	   
 	    } catch (Exception e) {
 	      e.printStackTrace();

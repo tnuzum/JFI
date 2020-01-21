@@ -9,10 +9,12 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pageObjects.AcctHistoryPO;
 import pageObjects.BreadcrumbTrailPO;
+import pageObjects.CalendarPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
@@ -29,6 +31,9 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	private static String courseNameDisplayed = "Fit For Life";
 	private static String courseTimeDisplayed = "Start Time: 09:00 AM";
 	private static String courseInstructorDisplayed = "Instructor: Andrea";
+	private static String CourseStartMonth = "Dec";
+	private static String dsiredMonthYear = "December 2020";
+
 
 //	@BeforeTest
 	@BeforeClass
@@ -41,7 +46,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	@Test(priority = 1, description = "Ui validations")
 	public void UIValidations() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
-//		reusableMethods.unenrollFromCourse();
+//		reusableMethods.unenrollFromCourse(dsiredMonthYear);
 //		Thread.sleep(2000);
 //		reusableMethods.returnToDashboard();
 		reusableWaits.waitForDashboardLoaded();
@@ -54,6 +59,23 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
+//		driver.findElement(By.xpath("//label[@id='dec']")).click();
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+				for (int i = 0; i < monthCount; i++)
+				{
+					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+					if (monthName.equals(CourseStartMonth))
+					{
+						 MonthNames.findElements(By.tagName("label")).get(i).click();
+						 break;
+					}
+						
+				}
+					
+		Thread.sleep(2000);
 
 		
 
@@ -197,22 +219,46 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
-//		reusableMethods.unenrollFromCourse();
+		reusableMethods.unenrollFromCourse(dsiredMonthYear);
 		reusableMethods.memberLogout();
 	}
 	
 	@Test(priority = 4, description = "Enroll With Saved Card")
 	public void EnrollWithSavedCard() throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"), prop.getProperty("activeMember7_password"));
-//		reusableMethods.unenrollFromCourse();
+//		reusableMethods.unenrollFromCourse(dsiredMonthYear);
 		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 		DashboardPO d = new DashboardPO(driver);
 		
-		d.getMyCoursesEventsScheduleButton().click();
+		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		
-		Thread.sleep(1000);
+		d.getMyCoursesEventsScheduleButton().click();
+			
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+		Thread.sleep(2000);
+		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
+//		driver.findElement(By.xpath("//label[@id='dec']")).click();
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+				for (int i = 0; i < monthCount; i++)
+				{
+					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+					if (monthName.equals(CourseStartMonth))
+					{
+						 MonthNames.findElements(By.tagName("label")).get(i).click();
+						 break;
+					}
+						
+				}
+					
+		Thread.sleep(2000);
+
 
 		
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -347,7 +393,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(2000);
 				reusableMethods.returnToDashboard();
-//				reusableMethods.unenrollFromCourse();
+				reusableMethods.unenrollFromCourse(dsiredMonthYear);
 				reusableMethods.memberLogout();
 
 	}
@@ -356,15 +402,39 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	public void EnrollWithNewCard() throws InterruptedException, IOException {
 		Boolean CloseBtnPresent;
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
-//		reusableMethods.unenrollFromCourse();
+//		reusableMethods.unenrollFromCourse(dsiredMonthYear);
 		Thread.sleep(1000);
 		reusableMethods.returnToDashboard();
 		DashboardPO d = new DashboardPO(driver);
 		
-		d.getMyCoursesEventsScheduleButton().click();
+		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		
-		Thread.sleep(1000);
+		d.getMyCoursesEventsScheduleButton().click();
+			
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+		Thread.sleep(2000);
+		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
+//		driver.findElement(By.xpath("//label[@id='dec']")).click();
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+				for (int i = 0; i < monthCount; i++)
+				{
+					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+					if (monthName.equals(CourseStartMonth))
+					{
+						 MonthNames.findElements(By.tagName("label")).get(i).click();
+						 break;
+					}
+						
+				}
+					
+		Thread.sleep(2000);
+
 
 		
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -516,36 +586,40 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				reusableMethods.returnToDashboard();
 	}
 		
-	@Test(priority = 6, description = "Unenroll from the course", enabled = false)
+	@Test(priority = 6, description = "Unenroll from the course", enabled = true)
 	public void unenrollFromCourse() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
 		
 		Thread.sleep(2000);
-		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//div[@class='class-table-container']"));
-//		System.out.println(enrolled);
-//			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
-		if (enrolled == true) {
-
-			while (!d.getMyClassesClass1GearButton().isDisplayed()) {
-				Thread.sleep(1000);
-//				System.out.println("Sleeping for 1 second");
-			}
-			d.getMyClassesClass1GearButton().click();
-			Thread.sleep(2000);
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(2000);
-			UnenrollPO u = new UnenrollPO(driver);
-			u.getUnenrollButton().click();
-			Thread.sleep(2000);
-			u.getUnenrollConfirmYesButton().click();
-			Thread.sleep(2000);
-			AssertJUnit.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
-			u.getUnenrollConfirmYesButton().click();
+		d.getMenuMyActivies().click();
+		
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1"))
+		{
+			Thread.sleep(500);
 		}
-
-		else {
-			System.out.println("enrollement not displayed");
+		
+		d.getMenuMyCalendar().click();
+		String monthYear = cp.getMonthYear().getText();
+		while(!monthYear.equals(dsiredMonthYear))
+		{
+			cp.getRightArrow().click();
+			monthYear = cp.getMonthYear().getText();
 		}
+		
+		cp.getCalDayBadge().click();
+		cp.getCalEventTitle().click();
+		cp.getUnEnrollBtn().click();
+		UnenrollPO u = new UnenrollPO(driver);
+		u.getUnenrollButton().click();
+		Thread.sleep(2000);
+		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(2000);
+		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+		u.getUnenrollConfirmYesButton().click();
+		
+		reusableMethods.returnToDashboard();
+		reusableMethods.memberLogout();
 
 	}
 
