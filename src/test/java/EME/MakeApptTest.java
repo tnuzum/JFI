@@ -40,7 +40,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 1)
 		public void ScheduleAppointment() throws IOException, InterruptedException
 		{	
-		reusableMethods.activeMember1Login();
+		reusableMethods.activeMemberLogin("scottauto", "Testing1!");
 				DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 				AppointmentsPO ap = new AppointmentsPO(driver);
@@ -104,7 +104,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		 {
 			 String resource = Resources.get(k).getText();
 			 
-			 if (resource.equals("PT Smith, Andrew"))
+			 if (resource.equals("PT.Smith, Andrew"))
 			 {
 				 s2.selectByVisibleText(resource);
 				 break;
@@ -206,6 +206,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 //		reusableWaits.waitForDashboardLoaded();
 		Thread.sleep(2000);
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+		reusableMethods.memberLogout();
 		}
 
 //	@AfterTest
