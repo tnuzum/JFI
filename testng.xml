@@ -9,9 +9,9 @@
     <classes>
       <class name="EME.loginPageTest"/>
       <class name="EME.MemberLoginTest"/>
-      <class name="EME.PageLaunchTest"/>
+      <!--class name="EME.PageLaunchTest"/-->
       <class name="EME.MakePaymentTest"/>
-       <class name = "EME.ShopAndPurchasePackages"/>
+       <!--class name = "EME.ShopAndPurchasePackages"/-->
       <class name="EME.MakeApptTest"/>
       <!--class name="EME.EnrollWithSingleClassFeeTest"/-->
       <!--class name="EME.EnrollInFreeClassTest"/-->
@@ -25,7 +25,7 @@
       <!--class name="EME.MakeGroupApptTest"/-->
       <class name="EME.DashBoard_Layout"/>
        <class name="EME.DashBoard_Menu"/>
-       <class name="EME.EmailConfirmations"/>
+       <!--class name="EME.EmailConfirmations"/-->
       
     </classes>
   </test>
