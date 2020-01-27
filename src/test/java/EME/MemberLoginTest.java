@@ -35,7 +35,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableWaits.waitForFamilyCount();
 		DashboardPO d=new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember1_fullname"));
-		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"2");
+		Assert.assertEquals(d.getMyFamilyMemberCount().getText(),"5");
 		reusableMethods.memberLogout();
 		}
 	@Test (priority = 15, description = "Login Active Adult non-HOH Member")
