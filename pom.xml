@@ -14,6 +14,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<profiles>
+	<profile>
+	 <id>EMEFuture2</id>
 	<build>
 		<resources>
 			<resource>
@@ -44,6 +47,43 @@
 			</plugin>
 		</plugins>
 	</build>
+	</profile>
+	
+	<profile>
+	 <id>EMEFuture</id>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<!-- version>2.20</version-->
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>testngFuture.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<forkMode>never</forkMode>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	</profile>
+	</profiles>
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>

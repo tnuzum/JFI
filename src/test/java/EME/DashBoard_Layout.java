@@ -14,12 +14,13 @@ import resources.base;
 import resources.reusableMethods;
 
 public class DashBoard_Layout extends base{
+	
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
-		driver.get(prop.getProperty("EMELoginPage"));
+		driver.get( prop.getProperty("EMELoginPage"));
 
 	}
 	
@@ -88,7 +89,7 @@ public class DashBoard_Layout extends base{
 			Assert.assertTrue(d.getMyClassesScheduleButton().isDisplayed());
 			}
 			@Test (priority = 5)
-			public void VerifyMyUpcomingCorsesEventsSection() {
+			public void VerifyMyUpcomingCoursesEventsSection() {
 				
 				DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
 			
