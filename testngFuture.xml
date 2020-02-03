@@ -6,16 +6,16 @@
 	<!--listener class-name = "resources.ExtentReporterNG"/-->
 	</listeners> 
   <test thread-count="5" name="EME_FutureURL- Smoke Testing">
-  <parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101"/>
+  <parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224"/>
     <classes>
      <class name="EME_EnvURL.loginPageTest"/>
       <class name="EME_EnvURL.MemberLoginTest"/>
       <class name="EME_EnvURL.PageLaunchTest"/>
       <class name="EME_EnvURL.MakePaymentTest"/>
        <class name="EME_EnvURL.ShopAndPurchasePackages"/>
-      <class name="EME_Env.MakeApptTest"/>
-      <class name="EME_Env.DashBoard_Layout"/>
-       <class name="EME_Env.DashBoard_Menu"/>
+      <class name="EME_EnvURL.MakeApptTest"/>
+      <class name="EME_EnvURL.DashBoard_Layout"/>
+       <class name="EME_EnvURL.DashBoard_Menu"/>
            
     </classes>
   </test>
