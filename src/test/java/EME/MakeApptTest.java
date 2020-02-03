@@ -118,7 +118,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 					{
 //						Thread.sleep(500);	
 					}
-					Boolean TomorrowDatePresent = reusableMethods.isElementPresent(By.xpath("//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
+					Boolean TomorrowDatePresent = reusableMethods.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
 					if (TomorrowDatePresent == false)
 					{
 						
