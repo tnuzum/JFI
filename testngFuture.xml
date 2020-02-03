@@ -8,14 +8,14 @@
   <test thread-count="5" name="EME_FutureURL- Smoke Testing">
   <parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101"/>
     <classes>
-     <class name="EME_FutureURL.loginPageTest"/>
-      <class name="EME_FutureURL.MemberLoginTest"/>
-      <class name="EME_FutureURL.PageLaunchTest"/>
-      <class name="EME_FutureURL.MakePaymentTest"/>
-       <class name="EME_FutureURL.ShopAndPurchasePackages"/>
-      <class name="EME_FutureURL.MakeApptTest"/>
-      <class name="EME_FutureURL.DashBoard_Layout"/>
-       <class name="EME_FutureURL.DashBoard_Menu"/>
+     <class name="EME_EnvURL.loginPageTest"/>
+      <class name="EME_EnvURL.MemberLoginTest"/>
+      <class name="EME_EnvURL.PageLaunchTest"/>
+      <class name="EME_EnvURL.MakePaymentTest"/>
+       <class name="EME_EnvURL.ShopAndPurchasePackages"/>
+      <class name="EME_Env.MakeApptTest"/>
+      <class name="EME_Env.DashBoard_Layout"/>
+       <class name="EME_Env.DashBoard_Menu"/>
            
     </classes>
   </test>
