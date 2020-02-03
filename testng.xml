@@ -6,7 +6,7 @@
 	<!--listener class-name = "resources.ExtentReporterNG"/-->
 	</listeners> 
   <test thread-count="5" name="EME - Smoke Testing">
-    <classes>
+     <classes>
       <class name="EME.loginPageTest"/>
       <class name="EME.MemberLoginTest"/>
       <class name="EME.PageLaunchTest"/>

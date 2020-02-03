@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="EME_FutureURL - Automated Testing">
+    <listeners>
+		<listener class-name = "EME.listeners"/>
+	<!--listener class-name = "resources.ExtentReporterNG"/-->
+	</listeners> 
+  <test thread-count="5" name="EME_FutureURL- Smoke Testing">
+  <parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101"/>
+    <classes>
+     <class name="EME_FutureURL.loginPageTest"/>
+      <class name="EME_FutureURL.MemberLoginTest"/>
+      <class name="EME_FutureURL.PageLaunchTest"/>
+      <class name="EME_FutureURL.MakePaymentTest"/>
+       <class name="EME_FutureURL.ShopAndPurchasePackages"/>
+      <class name="EME_FutureURL.MakeApptTest"/>
+      <class name="EME_FutureURL.DashBoard_Layout"/>
+       <class name="EME_FutureURL.DashBoard_Menu"/>
+           
+    </classes>
+  </test>
+</suite>
+
