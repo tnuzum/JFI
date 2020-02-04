@@ -13,7 +13,7 @@
       <!--class name="EME_EnvURL.PageLaunchTest"/-->
       <!--class name="EME_EnvURL.MakePaymentTest"/-->
        <!--class name="EME_EnvURL.ShopAndPurchasePackages"/-->
-      <class name="EME_EnvURL.MakeApptTest"/>
+      <!--class name="EME_EnvURL.MakeApptTest"/-->
       <!--class name="EME_EnvURL.DashBoard_Layout"/-->
        <!--class name="EME_EnvURL.DashBoard_Menu"/-->
            
