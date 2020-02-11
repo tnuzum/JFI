@@ -94,11 +94,11 @@ public class EmailConfirmations  {
 	    
 	    System.out.println(emailUtils.getMessageContent(email3));
 	    String emailMessage1 = emailUtils.getMessageContent(email3);
-	    Assert.assertTrue(emailMessage1.contains("You have been successfully e=nrolled in the following course."));
+	    Assert.assertTrue(emailMessage1.contains("You have been successfully e=nrolled in the following class."));
 	    
-	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "You have been successfully e=nrolled in the following course."));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "You have been successfully e=nrolled in the following class."));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "Location: Jonas Sports-Plex"));
-	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "Course Name: Free Course Auto"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "Class Name: Free Course Auto"));
 	   
 	    } catch (Exception e) {
 	      e.printStackTrace();
