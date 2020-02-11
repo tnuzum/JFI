@@ -32,9 +32,12 @@ public class EnrollClassByBuyingPackage extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll = "CLASSNEEDSPUNCHES";
 	private static String classNameDisplayed = "ClassNeedsPunches";
-	private static String classTimeDisplayed = "Start Time: 12:00 AM";
-	private static String classInstructorDisplayed = "Instructor: Max Gibbs";
+	private static String classTimeDisplayed = "Start Time: 10:00 AM";
+	private static String classInstructorDisplayed = "Class Instructor: Max Gibbs";
 	private static String buyPackageName = "Buy Day Pass";
+	private static String defaultSelection = null;
+	private static String unitsToBeSelected = "2 - $1.00/per";
+	private static String classCostInUnits = "Class Cost: 2 unit(s)";
 
 //	@BeforeTest
 	@BeforeClass
@@ -98,7 +101,7 @@ public class EnrollClassByBuyingPackage extends base {
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
@@ -114,10 +117,11 @@ public class EnrollClassByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Class Cost: 2 unit(s)"));
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-		s.selectByValue("1: Object");
+		 defaultSelection = s.getFirstSelectedOption().getText().trim();
+		    Assert.assertEquals(defaultSelection, unitsToBeSelected);
 		
 		c.getContinueButton().click();
 		Thread.sleep(2000);
@@ -207,7 +211,7 @@ public class EnrollClassByBuyingPackage extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys(classNameDisplayed);
+		ahp.getSearchField().sendKeys(receiptNumber);
 		
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
@@ -279,7 +283,7 @@ public class EnrollClassByBuyingPackage extends base {
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
@@ -297,10 +301,12 @@ public class EnrollClassByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Class Cost: 2 unit(s)"));
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-		s.selectByValue("1: Object");
+		defaultSelection = s.getFirstSelectedOption().getText().trim();
+	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
+	    
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -382,10 +388,10 @@ public class EnrollClassByBuyingPackage extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(classNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber2);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
-					Thread.sleep(2000);	
+					Thread.sleep(3000);	
 				}
 				for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 					receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
@@ -457,7 +463,7 @@ public class EnrollClassByBuyingPackage extends base {
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
@@ -473,10 +479,11 @@ public class EnrollClassByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Class Cost: 2 unit(s)"));
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-		s.selectByValue("1: Object");
+		defaultSelection = s.getFirstSelectedOption().getText().trim();
+	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
 		
 		c.getContinueButton().click();
 		
@@ -574,7 +581,7 @@ public class EnrollClassByBuyingPackage extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(classNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber4);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	

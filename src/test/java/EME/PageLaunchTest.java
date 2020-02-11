@@ -42,7 +42,7 @@ public class PageLaunchTest extends base{
 		reusableMethods.activeMember1Login();
 	}
 	
-	@Test (priority = 20)
+	@Test (priority = 20, enabled = false)
 	public void MyPackagesButtonTest() throws InterruptedException
 	{
 		d.getMyPackagesButton().click();
@@ -52,7 +52,7 @@ public class PageLaunchTest extends base{
 		log.info("Shop Packages Page Header Verified");
 		reusableMethods.returnToDashboard();
 	}
-	@Test (priority = 25)
+	@Test (priority = 25, enabled = false)
 	public void CartButtonTest() throws InterruptedException
 	{
 		d.getCartButton().click();

@@ -29,8 +29,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String courseToEnroll = "FIT FOR LIFE";
 	private static String courseNameDisplayed = "Fit For Life";
-	private static String courseTimeDisplayed = "Start Time: 09:00 AM";
-	private static String courseInstructorDisplayed = "Instructor: Andrea";
+	private static String courseTimeDisplayed = "Start Time: 9:00 AM";
+	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
 
@@ -99,7 +99,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(courseInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
 
 				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
@@ -200,7 +200,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys(courseNameDisplayed);
+		ahp.getSearchField().sendKeys(receiptNumber);
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -278,7 +278,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		
 		Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(courseInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
 
 				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
@@ -372,7 +372,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(courseNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber2);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -454,7 +454,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		
 		Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(courseInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
 
 				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
@@ -563,7 +563,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(courseNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber4);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	

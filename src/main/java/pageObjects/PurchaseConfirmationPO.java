@@ -14,14 +14,14 @@ public class PurchaseConfirmationPO {
 		
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By packageName = By.xpath("//div[@class='widget widget-callout']/h2");
+	By packageName = By.xpath("//div[@class='widget widget-callout']/h1");
 	By breadcrumbDashboard = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][1]");
 	By breadcrumbShop = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][2]");
 	By breadcrumbConfirm = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][3]");
 	By reviewLabel = By.xpath("//div[@class = 'rate-box']/h2");
 	By popupSuccessMessage = By.xpath("//div[@class='swal2-header']");
 	By popupOKButton = By.xpath("//div[@class='swal2-actions']/button[1]");
-	By myPackagesButton = By.xpath("//button[contains(@class,'btn btn-outline-secondary text-muted')]");
+	By myPackagesButton = By.xpath("//a[@class='at-topnavbar-mypackages']");
 	By packagesList = By.xpath("//a[@class = 'dropdown-item']");
 	By unitsCount = By.xpath("//span[@class = 'pull-right text-muted']");
 	By shopPackageTotalAmount = By.xpath("//h2[contains(@class,'at-shoppackage-text-total')]");
