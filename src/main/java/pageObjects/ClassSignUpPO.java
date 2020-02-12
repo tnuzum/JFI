@@ -29,7 +29,7 @@ public class ClassSignUpPO {
 	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
 	By popupSignupButtonCourse = By.xpath("//button[contains(text(),'sign up')]");
 	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
-	By continueButton =  By.xpath("//a[contains(text(), 'Continue')]");
+	By continueButton =  By.xpath("//button[contains(text(), 'Continue')]");
 	By popupMessage = By.xpath("//h2[@id='swal2-title']");
 	By popupClose = By.xpath("//div[@class='swal2-actions']/button[1]");
 //	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
