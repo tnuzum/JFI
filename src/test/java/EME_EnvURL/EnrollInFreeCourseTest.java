@@ -101,8 +101,8 @@ private static String dsiredMonthYear = "December 2020";
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 			Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 			Assert.assertEquals("Free Course Auto", c.getClassName().getText());
-			Assert.assertEquals("Start Time: 04:30 PM", c.getClassStartTime().getText());
-			Assert.assertEquals("Instructor: Jillian S", c.getClassInstructor().getText());
+			Assert.assertEquals("Start Time: 4:30 PM", c.getClassStartTime().getText());
+			Assert.assertEquals("Course Instructor: Jillian S", c.getCourseInstructor().getText());
 
 					
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
@@ -155,7 +155,7 @@ private static String dsiredMonthYear = "December 2020";
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys("Free Course Auto");
+		ahp.getSearchField().sendKeys(receiptNumber);
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -235,6 +235,8 @@ private static String dsiredMonthYear = "December 2020";
 	 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+		
+		
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -277,8 +279,8 @@ private static String dsiredMonthYear = "December 2020";
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals("CourseFreeWithExistingPunches", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 08:00 PM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
+		Assert.assertEquals("Start Time: 8:00 PM", c.getClassStartTime().getText());
+		Assert.assertEquals("Course Instructor: Andrea", c.getCourseInstructor().getText());
 
 				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
@@ -303,8 +305,8 @@ private static String dsiredMonthYear = "December 2020";
 			reusableMethods.ThankYouPageValidations();
 
 			//Note down the Receipt number
-			String receiptNumber = TY.getReceiptNumber().getText();
-			String receiptNumber1 = null;
+			String receiptNumber2 = TY.getReceiptNumber().getText();
+			String receiptNumber3 = null;
 			
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
@@ -342,11 +344,11 @@ private static String dsiredMonthYear = "December 2020";
 	
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
-	ahp.getSearchField().sendKeys("CourseFreeWithExistingPunches");
+	ahp.getSearchField().sendKeys(receiptNumber2);
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-		receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
+		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
 
-		if (receiptNumber1.equals(receiptNumber)) {
+		if (receiptNumber3.equals(receiptNumber2)) {
 			ahp.getReceiptNumbers().get(k).click();
 			break;
 		}
@@ -430,8 +432,8 @@ private static String dsiredMonthYear = "December 2020";
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals("CourseFreeWithServiceD", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 06:30 PM", c.getClassStartTime().getText());
-		Assert.assertEquals("Instructor: Andrea", c.getClassInstructor().getText());
+		Assert.assertEquals("Start Time: 6:30 PM", c.getClassStartTime().getText());
+		Assert.assertEquals("Course Instructor: Andrea", c.getCourseInstructor().getText());
 		
 		Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 		Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
@@ -447,8 +449,8 @@ private static String dsiredMonthYear = "December 2020";
 			reusableMethods.ThankYouPageValidations();
 
 			//Note down the Receipt number
-			String receiptNumber = TY.getReceiptNumber().getText();
-			String receiptNumber1 = null;
+			String receiptNumber4 = TY.getReceiptNumber().getText();
+			String receiptNumber5 = null;
 			
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
@@ -485,11 +487,11 @@ private static String dsiredMonthYear = "December 2020";
 	
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
-	ahp.getSearchField().sendKeys("CourseFreeWithServiceD");
+	ahp.getSearchField().sendKeys(receiptNumber4);
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-		receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
+		receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
 
-		if (receiptNumber1.equals(receiptNumber)) {
+		if (receiptNumber5.equals(receiptNumber4)) {
 			ahp.getReceiptNumbers().get(k).click();
 			break;
 		}

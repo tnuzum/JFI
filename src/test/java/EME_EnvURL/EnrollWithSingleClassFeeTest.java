@@ -32,8 +32,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll = "BARRE COMBAT FUSION";
 	private static String classNameDisplayed = "Barre Combat Fusion";
-	private static String classTimeDisplayed = "Start Time: 05:00 PM";
-	private static String classInstructorDisplayed = "Instructor: Andrea";
+	private static String classTimeDisplayed = "Start Time: 5:00 PM";
+	private static String classInstructorDisplayed = "Class Instructor: Andrea";
 
 //	@BeforeTest
 	@BeforeClass
@@ -98,7 +98,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
@@ -203,7 +203,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys(classNameDisplayed);
+		ahp.getSearchField().sendKeys(receiptNumber);
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -274,7 +274,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
@@ -374,7 +374,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(classNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber2);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -449,7 +449,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("EEEE MM/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
@@ -562,7 +562,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(classNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber4);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
