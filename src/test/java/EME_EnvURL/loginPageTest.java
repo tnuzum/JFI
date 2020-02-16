@@ -23,7 +23,7 @@ public class loginPageTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 
 //	@BeforeTest
-    @BeforeClass
+  @BeforeClass
     @Parameters({"EMELoginPage"})
 	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
 		driver = initializeDriver();
@@ -97,7 +97,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), prop.getProperty("wrongCredentialsMessage"));
 			log.info("Error Message Title Verified");
 	}
-//	@AfterTest
+//  @AfterTest
 	@AfterClass
 		public void teardown() throws InterruptedException
 		{

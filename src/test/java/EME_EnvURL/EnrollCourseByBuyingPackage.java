@@ -32,10 +32,14 @@ public class EnrollCourseByBuyingPackage extends base {
 	private static String CourseToEnroll = "COURSENEEDSPUNCHES";
 	private static String CourseNameDisplayed = "CourseNeedsPunches";
 	private static String CourseTimeDisplayed = "Start Time: 11:00 AM";
-	private static String CourseInstructorDisplayed = "Instructor: Andrea";
+	private static String CourseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String buyPackageName = "Buy Day Pass";
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
+	private static String defaultSelection = null;
+	private static String unitsToBeSelected = "2 - $1.00/per";
+	private static String classCostInUnits = "Course Cost: 2 unit(s)";
+	private static String CourseStartDate = "Date: 12/21/2020";
 
 //	@BeforeTest
 	@BeforeClass
@@ -101,7 +105,8 @@ public class EnrollCourseByBuyingPackage extends base {
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals(CourseNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(CourseTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(CourseInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(CourseStartDate, c.getClassDate().getText());
+		Assert.assertEquals(CourseInstructorDisplayed, c.getCourseInstructor().getText());
 
 				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
@@ -113,10 +118,11 @@ public class EnrollCourseByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Course Cost: 2 unit(s)"));
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-		s.selectByValue("1: Object");
+		defaultSelection = s.getFirstSelectedOption().getText().trim();
+	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
 		
 		c.getContinueButton().click();
 		Thread.sleep(2000);
@@ -206,7 +212,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys(CourseNameDisplayed);
+		ahp.getSearchField().sendKeys(receiptNumber);
 		
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
@@ -282,9 +288,14 @@ public class EnrollCourseByBuyingPackage extends base {
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(1000);
 		
+		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals(CourseNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(CourseTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(CourseInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(CourseStartDate, c.getClassDate().getText());
+		Assert.assertEquals(CourseInstructorDisplayed, c.getCourseInstructor().getText());
 		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
@@ -295,10 +306,12 @@ public class EnrollCourseByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Course Cost: 2 unit(s)"));
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-		s.selectByValue("1: Object");
+		defaultSelection = s.getFirstSelectedOption().getText().trim();
+	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
+	    
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -380,7 +393,7 @@ public class EnrollCourseByBuyingPackage extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(CourseNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber2);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -458,9 +471,14 @@ public class EnrollCourseByBuyingPackage extends base {
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(1000);
 		
+		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals(CourseNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(CourseTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(CourseInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(CourseStartDate, c.getClassDate().getText());
+		Assert.assertEquals(CourseInstructorDisplayed, c.getCourseInstructor().getText());
 
 				
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
@@ -472,11 +490,12 @@ public class EnrollCourseByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains("Course Cost: 2 unit(s)"));
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-		s.selectByValue("1: Object");
-		
+		defaultSelection = s.getFirstSelectedOption().getText().trim();
+	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
+	    
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -573,7 +592,7 @@ public class EnrollCourseByBuyingPackage extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(CourseNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber4);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	

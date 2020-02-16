@@ -27,9 +27,9 @@ import resources.reusableWaits;
 
 public class EnrollWithSingleCourseFeeTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String courseToEnroll = "FIT FOR LIFE";
-	private static String courseNameDisplayed = "Fit For Life";
-	private static String courseTimeDisplayed = "Start Time: 9:00 AM";
+	private static String courseToEnroll = "FEECOURSE";
+	private static String courseNameDisplayed = "FeeCourse";
+	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
