@@ -200,7 +200,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys(classNameDisplayed);
+		ahp.getSearchField().sendKeys(receiptNumber);
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -371,7 +371,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(classNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber2);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -559,7 +559,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				ahp.getSearchField().sendKeys(classNameDisplayed);
+				ahp.getSearchField().sendKeys(receiptNumber4);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	

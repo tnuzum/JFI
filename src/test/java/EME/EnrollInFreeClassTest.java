@@ -100,7 +100,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
 			Assert.assertEquals("Class Instructor: ", c.getClassInstructor().getText());
 
-			DateFormat dateFormat1 = new SimpleDateFormat(" MM/dd/yyyy");
+			DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 			Calendar today1 = Calendar.getInstance();
 			today1.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
@@ -158,7 +158,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		
 		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		ahp.getSearchField().sendKeys("Free Class Auto");
+		ahp.getSearchField().sendKeys(receiptNumber);
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -279,7 +279,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals("ClassFreeWithExistingPunches", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
+
+		Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
 		Assert.assertEquals("Class Instructor: Max Gibbs", c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
@@ -311,8 +312,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			reusableMethods.ThankYouPageValidations();
 
 			//Note down the Receipt number
-			String receiptNumber = TY.getReceiptNumber().getText();
-			String receiptNumber1 = null;
+			String receiptNumber2 = TY.getReceiptNumber().getText();
+			String receiptNumber3 = null;
 			
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
@@ -350,11 +351,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
-	ahp.getSearchField().sendKeys("ClassFreeWithExistingPunches");
+	ahp.getSearchField().sendKeys(receiptNumber2);
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-		receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
+		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
 
-		if (receiptNumber1.equals(receiptNumber)) {
+		if (receiptNumber3.equals(receiptNumber2)) {
 			ahp.getReceiptNumbers().get(k).click();
 			break;
 		}
@@ -436,7 +437,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals("ClassFreeWithServiceD", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 12:00 AM", c.getClassStartTime().getText());
+		Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
 		Assert.assertEquals("Class Instructor: Max Gibbs", c.getClassInstructor().getText());
 
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
@@ -460,8 +461,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			reusableMethods.ThankYouPageValidations();
 
 			//Note down the Receipt number
-			String receiptNumber = TY.getReceiptNumber().getText();
-			String receiptNumber1 = null;
+			String receiptNumber4 = TY.getReceiptNumber().getText();
+			String receiptNumber5 = null;
 			
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
@@ -498,11 +499,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
-	ahp.getSearchField().sendKeys("ClassFreeWithServiceD");
+	ahp.getSearchField().sendKeys(receiptNumber4);
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-		receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
+		receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
 
-		if (receiptNumber1.equals(receiptNumber)) {
+		if (receiptNumber5.equals(receiptNumber4)) {
 			ahp.getReceiptNumbers().get(k).click();
 			break;
 		}

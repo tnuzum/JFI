@@ -87,18 +87,18 @@ public class EmailConfirmations  {
 	    
   }
 	  
-	  @Test(priority=4, description = "Verifies the Course Enrollment confirmation email")
+	  @Test(priority=4, description = "Verifies the Course Enrollment confirmation email", enabled = false)
 	  public void CourseEnrollmentConfirmation() {
 	    try{
 	    Message email3 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 4)[0];
 	    
 	    System.out.println(emailUtils.getMessageContent(email3));
 	    String emailMessage1 = emailUtils.getMessageContent(email3);
-	    Assert.assertTrue(emailMessage1.contains("You have been successfully e=nrolled in the following course."));
+	    Assert.assertTrue(emailMessage1.contains("You have been successfully e=nrolled in the following class."));
 	    
-	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "You have been successfully e=nrolled in the following course."));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "You have been successfully e=nrolled in the following class."));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "Location: Jonas Sports-Plex"));
-	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "Course Name: Free Course Auto"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email3, "Class Name: Free Course Auto"));
 	   
 	    } catch (Exception e) {
 	      e.printStackTrace();
@@ -107,7 +107,7 @@ public class EmailConfirmations  {
 	    
   }
 	  
-	  @Test(priority=5, description = "Verifies the Course Unenrollment confirmation email")
+	  @Test(priority=5, description = "Verifies the Course Unenrollment confirmation email", enabled = false)
 	  public void CourseUnenrollmentConfirmation() {
 	    try{
 	    Message email4 = emailUtils.getMessagesBySubject("Unenrollment Notification for Member Self-Service", true, 4)[0];

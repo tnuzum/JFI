@@ -14,7 +14,7 @@ public class PurchaseConfirmationPO {
 		
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By packageName = By.xpath("//div[@class='widget widget-callout']/h2");
+	By packageName = By.xpath("//div[@class='widget widget-callout']/h1");
 	By breadcrumbDashboard = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][1]");
 	By breadcrumbShop = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][2]");
 	By breadcrumbConfirm = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][3]");

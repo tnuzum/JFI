@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,18 +22,20 @@ public class ClassSignUpPO {
 	By firstAvailClassNextDayButton = By.xpath("//div[@id='classes']/div[2]/div[2]/div[1]/div/div/div");
 	By firstAvailCourseButton = By.xpath("//div[@id='courses']/div/div[2]/div[1]/div/div");
 	By golfClasslabel = By.xpath("//span[contains(text(),'Golf Swing Class')]");
+	By classlabel = By.xpath("//h1[contains(@class, 'modal-title')]");
 	By popupClassDesc = By.xpath("//classcoursedetail[@class='ng-star-inserted']/div/div[2]/div");
 	By popupCancelButton = By.xpath("(//button[@type='button'])[5]");
 	By popupCancelButtonCourse = By.xpath("//button[contains(text(),'cancel')]");
 	By popupSignUpButton = By.xpath("(//button[@type='button'])[6]");
 	By popupSignupButtonCourse = By.xpath("//button[contains(text(),'sign up')]");
 	By selectRatesAddSelButton = By.xpath("//button[@type='button']");
-	By continueButton =  By.xpath("//a[contains(text(), 'Continue')]");
+	By continueButton =  By.xpath("//button[contains(text(), 'Continue')]");
 	By popupMessage = By.xpath("//h2[@id='swal2-title']");
 	By popupClose = By.xpath("//div[@class='swal2-actions']/button[1]");
 //	By confirmationCheckout = By.xpath("(//a[@href='#/ShoppingCart'])[3]");
 	By confirmationCheckout = By.xpath("//a[contains(text(), 'checkout')]");
 	By schedulingConflictMessage = By.xpath("//div[contains(@class,'alert-danger')]/small/i");
+	By popUpErrorMessage = By.xpath("//small[contains(@class, 'font')]");
 	By classListHeader = By.xpath("//span[@class = 'class-list-header']");
 	By className = By.xpath("//div[contains(@class, 'widget')]/h2");
 	By classStartTime = By.xpath("//span[contains(@class, 'float')]/small[1]");
@@ -45,6 +49,9 @@ public class ClassSignUpPO {
 	By courseKeyword = By.xpath("//h5[contains(text(),'Keyword')]");
 	By searchField = By.xpath("//input[@type = 'text']");
 	By applyFilters = By.xpath("//button[contains(text(),'Apply Filters')]");
+	By fmlyMemberSelections = By.xpath("//div[@class='modal-body'] //label");
+	By ratesOptions = By.xpath("//div[contains(@class, 'row-box')] //label");
+	By enrollingMemberNames = By.xpath("//div[@class = 'float-left']");
 	
 // CONSTRUCTOR
 		
@@ -181,6 +188,34 @@ public class ClassSignUpPO {
 	public WebElement getPopupSignupButtonCourse()
 	{
 		return driver.findElement(popupSignupButtonCourse);
+	}
+	
+	public WebElement getPopUpErrorMessage()
+
+	{
+		return driver.findElement(popUpErrorMessage);
+	}
+	public WebElement getClasslabel()
+
+	{
+		return driver.findElement(classlabel);
+	}
+	
+	public List<WebElement> getFmlyMemberSelections()
+
+	{
+		return driver.findElements(fmlyMemberSelections);
+	}
+	public List<WebElement> getRatesOptions()
+
+	{
+		return driver.findElements(ratesOptions);
+	}
+	
+	public List<WebElement> getEnrollingMemberNames()
+
+	{
+		return driver.findElements(enrollingMemberNames);
 	}
 /*	public WebElement getUnitsDropdown()
 	{

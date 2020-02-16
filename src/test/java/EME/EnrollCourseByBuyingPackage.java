@@ -491,8 +491,8 @@ public class EnrollCourseByBuyingPackage extends base {
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();
-	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
-		
+	       Assert.assertEquals(defaultSelection, unitsToBeSelected);
+
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -615,6 +615,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		
 @Test(priority = 6, description = "Unenroll from the Course")
 	public void unenrollFromCourse() throws IOException, InterruptedException {
+	
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
 		

@@ -32,13 +32,13 @@ public class EnrollClassByBuyingPackage extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll = "CLASSNEEDSPUNCHES";
 	private static String classNameDisplayed = "ClassNeedsPunches";
-	private static String classTimeDisplayed = "Start Time: 12:00 AM";
+	private static String classTimeDisplayed = "Start Time: 10:00 AM";
 	private static String classInstructorDisplayed = "Class Instructor: Max Gibbs";
 	private static String buyPackageName = "Buy Day Pass";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $1.00/per";
 	private static String classCostInUnits = "Class Cost: 2 unit(s)";
-	
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -120,8 +120,8 @@ public class EnrollClassByBuyingPackage extends base {
 		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-		defaultSelection = s.getFirstSelectedOption().getText().trim();
-	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
+		 defaultSelection = s.getFirstSelectedOption().getText().trim();
+		    Assert.assertEquals(defaultSelection, unitsToBeSelected);
 		
 		c.getContinueButton().click();
 		Thread.sleep(2000);
@@ -305,7 +305,8 @@ public class EnrollClassByBuyingPackage extends base {
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();
-	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
+	        Assert.assertEquals(defaultSelection, unitsToBeSelected);
+
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -390,7 +391,7 @@ public class EnrollClassByBuyingPackage extends base {
 				ahp.getSearchField().sendKeys(receiptNumber2);
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
-					Thread.sleep(2000);	
+					Thread.sleep(3000);	
 				}
 				for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 					receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
@@ -481,9 +482,9 @@ public class EnrollClassByBuyingPackage extends base {
 		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-	    defaultSelection = s.getFirstSelectedOption().getText().trim();
-	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
-	  		
+		defaultSelection = s.getFirstSelectedOption().getText().trim();
+	        Assert.assertEquals(defaultSelection, unitsToBeSelected);
+		
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -581,7 +582,7 @@ public class EnrollClassByBuyingPackage extends base {
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
 				ahp.getSearchField().sendKeys(receiptNumber4);
-						//classNameDisplayed);
+
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
