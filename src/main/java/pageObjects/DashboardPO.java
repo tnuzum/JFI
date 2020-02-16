@@ -12,7 +12,7 @@ public class DashboardPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By menuButton = By.xpath("//nav[@class='navbar navbar-static-top']/div/a/i");
-	By myPackagesButton = By.xpath("//button[contains(@class,'btn btn-outline-secondary text-muted')]");
+	By myPackagesButton = By.xpath("//a[@class='at-topnavbar-mypackages']");
 	By myPackagesShopPackages = By.linkText("Shop Packages");
 	By cartButton = By.xpath("//nav[@class='navbar navbar-static-top']/ul/li[2]/a");
 	By logoutButton = By.linkText("Log out"); 

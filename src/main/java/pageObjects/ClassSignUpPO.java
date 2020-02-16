@@ -37,7 +37,8 @@ public class ClassSignUpPO {
 	By classStartTime = By.xpath("//span[contains(@class, 'float')]/small[1]");
 	By classDate = By.xpath("//span[contains(@class, 'float')]/small[2]");
 	By classInstructor = By.xpath("//span[contains(@class, 'float')]/small[3]");
-	By howYouWishToPay = By.xpath("//label[@for = 'radio1']");
+	By courseInstructor = By.xpath("//span[contains(@class, 'float')]/small[4]");
+	By howYouWishToPay = By.xpath("//label[@for = 'radio0_0']");
 	By classCostinPunches = By.xpath("//div[@class='p-xs']//div[1]/small[1]");
 //	By unitsDropdown = By.xpath("//select[contains(@class, 'ng-dirty')]");
 	By courseFilter = By.xpath("//a[@class='add-filters']");
@@ -137,6 +138,10 @@ public class ClassSignUpPO {
 	public WebElement getClassInstructor()
 	{
 		return driver.findElement(classInstructor);
+	}
+	public WebElement getCourseInstructor()
+	{
+		return driver.findElement(courseInstructor);
 	}
 	
 	public WebElement getHowYouWishToPay()
