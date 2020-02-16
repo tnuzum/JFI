@@ -52,6 +52,7 @@ public class ClassSignUpPO {
 	By fmlyMemberSelections = By.xpath("//div[@class='modal-body'] //label");
 	By ratesOptions = By.xpath("//div[contains(@class, 'row-box')] //label");
 	By enrollingMemberNames = By.xpath("//div[@class = 'float-left']");
+	By detailsPopup = By.xpath("//div[@class='modal-body']");
 	
 // CONSTRUCTOR
 		
@@ -216,6 +217,12 @@ public class ClassSignUpPO {
 
 	{
 		return driver.findElements(enrollingMemberNames);
+	}
+	
+	public WebElement getDetailsPopup()
+
+	{
+		return driver.findElement(detailsPopup);
 	}
 /*	public WebElement getUnitsDropdown()
 	{

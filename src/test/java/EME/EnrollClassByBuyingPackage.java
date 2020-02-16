@@ -103,7 +103,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
+		today1.add(Calendar.DAY_OF_YEAR, 2);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
 		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
@@ -285,7 +285,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
+		today1.add(Calendar.DAY_OF_YEAR, 2);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
 		
@@ -305,8 +305,8 @@ public class EnrollClassByBuyingPackage extends base {
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();
-	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
-	    
+	        Assert.assertEquals(defaultSelection, unitsToBeSelected);
+
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
@@ -465,7 +465,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
+		today1.add(Calendar.DAY_OF_YEAR, 2);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
 		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
@@ -483,7 +483,7 @@ public class EnrollClassByBuyingPackage extends base {
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();
-	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
+	        Assert.assertEquals(defaultSelection, unitsToBeSelected);
 		
 		c.getContinueButton().click();
 		
@@ -582,6 +582,7 @@ public class EnrollClassByBuyingPackage extends base {
 				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
 				ahp.getSearchField().sendKeys(receiptNumber4);
+
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	

@@ -43,7 +43,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void EnrollInZeroDollarClass() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMemberLogin("MemberWithPunch", "Testing1!");
-		reusableMethods.unenrollFromClass();
+		//reusableMethods.unenrollFromClass();
 		Thread.sleep(1000);
 		reusableMethods.returnToDashboard();
 			DashboardPO d = new DashboardPO(driver);
@@ -104,8 +104,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			Calendar today1 = Calendar.getInstance();
 			today1.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
+			System.out.println(c.getClassDate().getText());
 
-			Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+			Assert.assertEquals("Date:" +tomorrowsDayAndDate, c.getClassDate().getText());
 			
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
@@ -278,6 +279,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 		Assert.assertEquals("ClassFreeWithExistingPunches", c.getClassName().getText());
+
 		Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
 		Assert.assertEquals("Class Instructor: Max Gibbs", c.getClassInstructor().getText());
 

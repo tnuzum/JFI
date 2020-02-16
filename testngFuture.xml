@@ -18,10 +18,12 @@
       <class name="EME_EnvURL.EnrollInFreeClassTest"/>
       <class name="EME_EnvURL.EnrollClassByBuyingPackage"/>
       <class name="EME_EnvURL.EnrollClass_ClubSettings"/>
-      <!--class name="EME_EnvURL.EnrollWithSingleCourseFeeTest"/-->
-      <!--class name="EME_EnvURL.EnrollInFreeCourseTest"/-->
-      <!--class name="EME_EnvURL.EnrollCourseByBuyingPackage"/-->
+      <class name="EME_EnvURL.EnrollWithSingleCourseFeeTest"/>
+      <class name="EME_EnvURL.EnrollInFreeCourseTest"/>
+      <class name="EME_EnvURL.EnrollCourseByBuyingPackage"/>
       <class name="EME_EnvURL.EnrollCourse_ClubSettings"/>
+      <!--class name="EME.ScheduleCourseTest"/-->
+      <!--class name="EME.MakeGroupApptTest"/-->
       <class name="EME_EnvURL.DashBoard_Layout"/>
        <class name="EME_EnvURL.DashBoard_Menu"/>
         <class name="EME_EnvURL.EmailConfirmations"/>

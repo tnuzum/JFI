@@ -281,9 +281,9 @@ public class EnrollCourseByBuyingPackage extends base {
 			}
 		}
 
-		Thread.sleep(2000);
+		Thread.sleep(500);
 		c.getPopupSignupButtonCourse().click();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		
 		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -491,8 +491,8 @@ public class EnrollCourseByBuyingPackage extends base {
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();
-	    Assert.assertEquals(defaultSelection, unitsToBeSelected);
-	    
+	       Assert.assertEquals(defaultSelection, unitsToBeSelected);
+
 		c.getContinueButton().click();
 		
 		Thread.sleep(3000);
