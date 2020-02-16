@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
+import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -333,6 +334,148 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
+		reusableMethods.memberLogout();
+
+}
+	
+	@Test(priority = 8, description = "Validating that the class cannnot be enrolled due to Membership Type Restrictions at the club")
+	public void ClubAccessDenied() throws IOException, InterruptedException {
+		reusableMethods.activeMemberLogin("hoh", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
+		DashboardPO d = new DashboardPO(driver);
+		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+		d.getMyClassesScheduleButton().click();
+		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		Thread.sleep(2000);
+		
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+							
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j= 0; j<ClassCount; j++)
+		 {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+							
+			if (className.contains("FAMILYENROLLCLASS"))
+			{
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
+				 break;
+			}
+		 }
+		int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
+		for (int i = 0; i<memberCount; i++)
+		{
+			if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Cadmember"))
+			{
+				Assert.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Membership restrictions have limited class/course enrollment at this club."));
+			}
+		}
+		
+		c.getPopupCancelButton().click();
+		Thread.sleep(1000);
+		reusableMethods.memberLogout();
+
+}
+	
+	@Test(priority = 9, description = "Validating that the class cannnot be enrolled due to Scheduling Conflict")
+	public void ClassSchedulingConflict() throws IOException, InterruptedException {
+		reusableMethods.activeMemberLogin("hoh", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
+		DashboardPO d = new DashboardPO(driver);
+		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+		d.getMyClassesScheduleButton().click();
+		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		Thread.sleep(2000);
+		
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+		c.getCalendarIcon().click();
+		Thread.sleep(2000);
+		DateFormat dateFormat = new SimpleDateFormat("d");
+		Calendar today = Calendar.getInstance();
+		 today.add(Calendar.DAY_OF_YEAR, 1);
+		 String tomorrowsDate = dateFormat.format(today.getTime());
+		 
+		 int daycount = driver.findElements(By.tagName("td")).size(); //Get the daycount from the calendar
+		 for (int i= 0; i<daycount; i++)
+		 {
+			String date = driver.findElements(By.tagName("td")).get(i).getText();
+			if (date.contains(tomorrowsDate))
+			{
+				 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
+				 break;
+			}
+		 }
+							
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j= 0; j<ClassCount; j++)
+		 {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+							
+			if (className.contains("FAMILYENROLLCLASS"))
+			{
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
+				 break;
+			}
+		 }
+		
+		Thread.sleep(500);
+		c.getPopupSignUpButton().click();
+		Thread.sleep(500);
+		c.getContinueButton().click();
+		Thread.sleep(500);
+	Assert.assertEquals("Success", c.getPopupMessage().getText());
+	c.getPopupClose().click();
+	
+	//Navigate to Classes
+	int count = driver.findElements(By.tagName("a")).size();
+	for (int i = 0; i < count; i++) {
+		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
+
+		{
+			// reusableWaits.linksToBeClickable();
+			driver.findElements(By.tagName("a")).get(i).click();
+			break;
+		}
+
+	}
+	c.getCalendarIcon().click();
+	Thread.sleep(500);
+	 
+	  for (int i= 0; i<daycount; i++)
+	 {
+		String date = driver.findElements(By.tagName("td")).get(i).getText();
+		if (date.contains(tomorrowsDate))
+		{
+			 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
+			 break;
+		}
+	 }
+	  for (int j= 0; j<ClassCount; j++)
+		 {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+							
+			if (className.contains("BARRE COMBAT FUSION"))
+			{
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on a class at the same time as the member enrolled in other class
+				 break;
+			}
+		 }
+		int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
+		for (int i = 0; i<memberCount; i++)
+		{
+			if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("hoh"))
+			{
+				Assert.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains(" Scheduling Conflict"));
+			}
+		}
+		
+		c.getPopupCancelButton().click();
+		reusableMethods.returnToDashboard();
+		reusableMethods.unenrollFromClass();
 		reusableMethods.memberLogout();
 
 }

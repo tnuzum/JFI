@@ -281,9 +281,9 @@ public class EnrollCourseByBuyingPackage extends base {
 			}
 		}
 
-		Thread.sleep(2000);
+		Thread.sleep(500);
 		c.getPopupSignupButtonCourse().click();
-		Thread.sleep(1000);
+		Thread.sleep(500);
 		
 		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
