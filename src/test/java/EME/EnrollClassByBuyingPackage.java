@@ -465,7 +465,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 2);
+		today1.add(Calendar.DAY_OF_YEAR, 1);
 		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
 		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
