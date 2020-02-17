@@ -48,11 +48,15 @@ public class ClassSignUpPO {
 	By courseFilter = By.xpath("//a[@class='add-filters']");
 	By courseKeyword = By.xpath("//h5[contains(text(),'Keyword')]");
 	By searchField = By.xpath("//input[@type = 'text']");
-	By applyFilters = By.xpath("//button[contains(text(),'Apply Filters')]");
+	By courseApplyFilters = By.xpath("//button[contains(text(),'Apply Filters')]");
 	By fmlyMemberSelections = By.xpath("//div[@class='modal-body'] //label");
 	By ratesOptions = By.xpath("//div[contains(@class, 'row-box')] //label");
 	By enrollingMemberNames = By.xpath("//div[@class = 'float-left']");
 	By detailsPopup = By.xpath("//div[@class='modal-body']");
+	By classTable = By.xpath("//div[@class='column2']");
+	By classTimeAndDuration = By.xpath("//div[@class='column2']/preceding-sibling::div[1]");
+	By classApplyFilters = By.xpath("//button[contains(text(), 'apply filters')]");
+	
 	
 // CONSTRUCTOR
 		
@@ -176,9 +180,9 @@ public class ClassSignUpPO {
 		return driver.findElement(searchField);
 	}
 	
-	public WebElement getApplyFilters()
+	public WebElement getCourseApplyFilters()
 	{
-		return driver.findElement(applyFilters);
+		return driver.findElement(courseApplyFilters);
 	}
 	
 	public WebElement getPopupCancelButtonCourse()
@@ -223,6 +227,21 @@ public class ClassSignUpPO {
 
 	{
 		return driver.findElement(detailsPopup);
+	}
+	public List<WebElement> getClassTable()
+
+	{
+		return driver.findElements(classTable);
+	}
+	public List<WebElement> getClassTimeAndDuration()
+
+	{
+		return driver.findElements(classTimeAndDuration);
+	}
+	public WebElement getClassApplyFilters()
+
+	{
+		return driver.findElement(classApplyFilters);
 	}
 /*	public WebElement getUnitsDropdown()
 	{
