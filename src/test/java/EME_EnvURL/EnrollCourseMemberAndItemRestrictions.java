@@ -1,4 +1,4 @@
-package EME;
+package EME_EnvURL;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.BreadcrumbTrailPO;
@@ -27,10 +28,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 	
 //	@BeforeTest
 	@BeforeClass
-	public void initialize() throws IOException, InterruptedException {
+	@Parameters({"EMELoginPage"})
+	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
-		driver.get(prop.getProperty("EMELoginPage"));
+		driver.get(EMELoginPage);
+
 	}
 
 	
@@ -331,7 +334,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 					}
 						
 				}
-			
+				Thread.sleep(2000);
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 				
 		for (int j= 0; j<CourseCount; j++)
@@ -402,7 +405,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(500);
 		c.getContinueButton().click();
-		Thread.sleep(500);
+		Thread.sleep(1000);
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		
