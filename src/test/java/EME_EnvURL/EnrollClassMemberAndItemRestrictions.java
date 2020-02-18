@@ -487,6 +487,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			 break;
 		}
 	 }
+	  Thread.sleep(500);
 	  for (int j= 0; j<ClassCount; j++)
 		 {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
