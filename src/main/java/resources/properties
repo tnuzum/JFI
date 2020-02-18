@@ -1,9 +1,11 @@
 test_environment = local
 browser = Firefox
 EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
+EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
 	**************************************************************************************
 	Web addresses for URL parameter
 	EMEFuture2AutoURL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
+	EMEFutureAutoURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
 	EMEFuture2URL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/101
 	EMEFutureURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101
 	EMECurrentURL = https://ourclublogin.test-jfisoftware.com:8909/account/login/101

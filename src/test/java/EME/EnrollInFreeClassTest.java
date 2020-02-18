@@ -106,7 +106,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 			System.out.println(c.getClassDate().getText());
 
-			Assert.assertEquals("Date:" +tomorrowsDayAndDate, c.getClassDate().getText());
+			Assert.assertEquals(c.getClassDate().getText(), "Date: " +tomorrowsDayAndDate );
 			
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
