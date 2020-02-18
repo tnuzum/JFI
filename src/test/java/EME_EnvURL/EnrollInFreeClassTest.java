@@ -202,7 +202,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 					Thread.sleep(2000);
 				u.getUnenrollConfirmYesButton().click();
 				Thread.sleep(1000);
-				AssertJUnit.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
 				
 				reusableMethods.returnToDashboard();

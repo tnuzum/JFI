@@ -71,7 +71,7 @@ public class MakePaymentTest extends base {
 				        break;
 					}
 		}
-		reusableWaits.waitForAcceptButton();
+		//reusableWaits.waitForAcceptButton();
 		p.getPopupConfirmationButton().click();
 		reusableWaits.waitForAcceptButton();
 		System.out.println(p.getPopupText().getText());
