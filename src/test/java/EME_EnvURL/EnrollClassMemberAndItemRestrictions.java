@@ -459,7 +459,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		c.getPopupSignUpButton().click();
 		Thread.sleep(500);
 		c.getContinueButton().click();
-		Thread.sleep(500);
+		Thread.sleep(2000);
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	
@@ -507,6 +507,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 		
 		c.getPopupCancelButton().click();
+		Thread.sleep(500);
 		reusableMethods.returnToDashboard();
 		reusableMethods.unenrollFromClass();
 		reusableMethods.memberLogout();

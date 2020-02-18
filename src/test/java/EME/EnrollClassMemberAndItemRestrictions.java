@@ -6,10 +6,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
@@ -22,10 +25,10 @@ import resources.reusableWaits;
 public class EnrollClassMemberAndItemRestrictions extends base {
 	private static String classStartMonth = "DEC";
 	private static String classStartDate = "22";
-	
+	public static SoftAssert softAssertion = new SoftAssert();
 //	@BeforeTest
 	@BeforeClass
-	public void initialize() throws IOException, InterruptedException {
+ 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
@@ -39,9 +42,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -65,8 +68,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -79,9 +82,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -105,8 +108,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -120,9 +123,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -156,8 +159,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -170,9 +173,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -206,8 +209,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Online enrollment for this class is not allowed.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Online enrollment for this class is not allowed.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -220,9 +223,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -262,23 +265,23 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Online enrollment for this class is currently closed.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Online enrollment for this class is currently closed.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
 
 }
-	@Test(priority = 6, description = "Validating that the class cannnot be enrolled as the class time is passed for the day", enabled = false)
+	@Test(priority = 6, description = "Validating that the class cannnot be enrolled as the class time is passed for the day")
 	public void ClassEnrollmentEnded() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("feemember", "Testing1!");
 		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -296,8 +299,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("The online enrollment window for this course has closed.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -310,9 +313,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -345,8 +348,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -360,9 +363,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -398,7 +401,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		{
 			if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Cadmember"))
 			{
-				Assert.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Membership restrictions have limited class enrollment at this club."));
+				softAssertion.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Membership restrictions have limited class enrollment at this club."));
 			}
 		}
 		
@@ -415,9 +418,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -456,8 +459,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		c.getPopupSignUpButton().click();
 		Thread.sleep(500);
 		c.getContinueButton().click();
-		Thread.sleep(500);
-	Assert.assertEquals("Success", c.getPopupMessage().getText());
+		Thread.sleep(2000);
+	softAssertion.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	
 	//Navigate to Classes
@@ -499,16 +502,19 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		{
 			if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("hoh"))
 			{
-				Assert.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains(" Scheduling Conflict"));
+				softAssertion.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains(" Scheduling Conflict"));
 			}
 		}
 		
 		c.getPopupCancelButton().click();
+			Thread.sleep(1000);
+		
 		reusableMethods.returnToDashboard();
 		reusableMethods.unenrollFromClass();
 		reusableMethods.memberLogout();
 
 }
+	
 	
 //	@AfterTest
 	@AfterClass
