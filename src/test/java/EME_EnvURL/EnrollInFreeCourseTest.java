@@ -79,6 +79,7 @@ private static String dsiredMonthYear = "December 2020";
 						}
 							
 					}
+					Thread.sleep(2000);
 			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 			for (int j= 0; j<CourseCount; j++)
 			 {

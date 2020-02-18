@@ -1,4 +1,4 @@
-package EME;
+package EME_EnvURL;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.BreadcrumbTrailPO;
@@ -25,10 +26,12 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	
 //	@BeforeTest
 	@BeforeClass
-	public void initialize() throws IOException, InterruptedException {
+	@Parameters({"EMELoginPage"})
+	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
-		driver.get(prop.getProperty("EMELoginPage"));
+		driver.get(EMELoginPage);
+
 	}
 
 	
@@ -269,7 +272,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		reusableMethods.memberLogout();
 
 }
-	@Test(priority = 6, description = "Validating that the class cannnot be enrolled as the class time is passed for the day", enabled = false)
+	@Test(priority = 6, description = "Validating that the class cannnot be enrolled as the class time is passed for the day")
 	public void ClassEnrollmentEnded() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("feemember", "Testing1!");
 		reusableWaits.waitForDashboardLoaded();
@@ -296,7 +299,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("The online enrollment window for this course has closed.", c.getPopUpErrorMessage().getText().trim());
+		Assert.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
 		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
@@ -331,7 +334,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
-							
+									
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -381,7 +384,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
-							
+									
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {

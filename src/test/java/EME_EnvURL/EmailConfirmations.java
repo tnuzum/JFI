@@ -87,7 +87,7 @@ public class EmailConfirmations  {
 	    
   }
 	  
-	  @Test(priority=4, description = "Verifies the Course Enrollment confirmation email", enabled = false)
+	  @Test(priority=4, description = "Verifies the Course Enrollment confirmation email")
 	  public void CourseEnrollmentConfirmation() {
 	    try{
 	    Message email3 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 4)[0];
@@ -107,7 +107,7 @@ public class EmailConfirmations  {
 	    
   }
 	  
-	  @Test(priority=5, description = "Verifies the Course Unenrollment confirmation email", enabled = false)
+	  @Test(priority=5, description = "Verifies the Course Unenrollment confirmation email")
 	  public void CourseUnenrollmentConfirmation() {
 	    try{
 	    Message email4 = emailUtils.getMessagesBySubject("Unenrollment Notification for Member Self-Service", true, 4)[0];
