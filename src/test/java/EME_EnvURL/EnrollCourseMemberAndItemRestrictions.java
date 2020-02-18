@@ -405,7 +405,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(500);
 		c.getContinueButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		
