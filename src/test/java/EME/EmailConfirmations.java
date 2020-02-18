@@ -68,7 +68,7 @@ public class EmailConfirmations  {
 	    System.out.println(emailUtils.getMessageContent(email2));
 	    String emailMessage2 = emailUtils.getMessageContent(email2);
 	    Assert.assertTrue(emailMessage2.contains("You have unenrolled from the following  class."));
-	    
+	                                              	    
 	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "You have unenrolled from the following  class."));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "Location: Jonas Sports-Plex"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "Class Name: Free Class Auto"));
