@@ -387,6 +387,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 					}
 						
 				}
+				 Thread.sleep(500);
 			
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 				
@@ -405,7 +406,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(500);
 		c.getContinueButton().click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		
@@ -434,6 +435,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			}
 				
 		}
+		 Thread.sleep(500);
 		for (int j= 0; j<CourseCount; j++)
 		 {
 			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
