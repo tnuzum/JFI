@@ -7,6 +7,8 @@ import java.util.Calendar;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -93,6 +95,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+		
 		d.getMyCoursesEventsScheduleButton().click();
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -172,8 +175,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
 		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		
 		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
@@ -189,7 +194,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 						
 				}
 					
-		Thread.sleep(2000);
+				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		
 		
@@ -234,7 +239,9 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			driver.findElement(By.xpath("//i[contains(@class, 'double-left')]")).click();
 			year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
 		}
-		Thread.sleep(1000);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+		
 		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
 		int monthCount = MonthNames.findElements(By.tagName("label")).size();
 				for (int i = 0; i < monthCount; i++)
@@ -248,7 +255,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 						
 				}
 					
-		Thread.sleep(2000);
+				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 				
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 				
@@ -318,7 +325,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+		
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		
@@ -334,7 +344,9 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 					}
 						
 				}
-				Thread.sleep(2000);
+				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+				
+				 
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 				
 		for (int j= 0; j<CourseCount; j++)
@@ -371,7 +383,9 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		
@@ -387,14 +401,15 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 					}
 						
 				}
-				 Thread.sleep(500);
+				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+				
 			
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 				
 		for (int j= 0; j<CourseCount; j++)
 		 {
 			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-										
+													
 			if (courseName.contains("FAMILYENROLLCOURSE"))
 			{
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
@@ -422,7 +437,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			}
 
 		}
-		Thread.sleep(1000);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));;
 		 MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
 		 monthCount = MonthNames.findElements(By.tagName("label")).size();
 		for (int i = 0; i < monthCount; i++)
@@ -435,7 +450,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			}
 				
 		}
-		 Thread.sleep(500);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		for (int j= 0; j<CourseCount; j++)
 		 {
 			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
@@ -447,6 +462,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			}
 			
 		 }
+		System.out.println("Element clicked");
 		int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
 		for (int i = 0; i<memberCount; i++)
 		{
