@@ -71,10 +71,9 @@ public class MakePaymentTest extends base {
 				        break;
 					}
 		}
-		//reusableWaits.waitForAcceptButton();
+		reusableWaits.waitForAcceptButton();
 		p.getPopupConfirmationButton().click();
-		//reusableWaits.waitForAcceptButton();
-		Thread.sleep(3000);
+		reusableWaits.waitForAcceptButton();
 		System.out.println(p.getPopupText().getText());
 		Assert.assertEquals("Payment Made!", p.getPopupText().getText());
 		p.getPopupConfirmationButton().click();
