@@ -109,15 +109,15 @@ public class reusableWaits extends base{
 		public static String waitForAcceptButton() throws InterruptedException
 	{
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
-//			System.out.println(DateTime+" INFO: Element is now present");
-			PaymentPO p = new PaymentPO(driver);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='swal2-actions']/button[1]")));
+			System.out.println(DateTime+" INFO: Element is now present");
+			/*PaymentPO p = new PaymentPO(driver);
 			WebElement n = p.getPopupConfirmationButton();
-			while (!n.isEnabled())//while button is NOT(!) enabled
+			while (!n.isDisplayed())//while button is NOT(!) enabled
 			{
 				Thread.sleep(500);
-//				System.out.println(DateTime+" INFO: waiting 500ms for Accept Button to be enabled");
-			}
+				System.out.println(DateTime+" INFO: waiting 500ms for Accept Button to be enabled");
+			}*/
 		return null;
 	}
 		public static boolean loadingAvailability()
