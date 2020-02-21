@@ -230,6 +230,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		String year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
 		while (!year.contains(CourseStartYear))
 		{
@@ -237,7 +239,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
 		}
 		
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));

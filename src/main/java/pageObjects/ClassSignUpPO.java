@@ -49,13 +49,16 @@ public class ClassSignUpPO {
 	By courseKeyword = By.xpath("//h5[contains(text(),'Keyword')]");
 	By searchField = By.xpath("//input[@type = 'text']");
 	By courseApplyFilters = By.xpath("//button[contains(text(),'Apply Filters')]");
-	By fmlyMemberSelections = By.xpath("//div[@class='modal-body'] //label");
+	By fmlyMemberLabel = By.xpath("//div[@class='modal-body'] //label");
+	By fmlyMemberCheckBox = By.xpath("//div[@class='modal-body'] //input");
 	By ratesOptions = By.xpath("//div[contains(@class, 'row-box')] //label");
 	By enrollingMemberNames = By.xpath("//div[@class = 'float-left']");
 	By detailsPopup = By.xpath("//div[@class='modal-body']");
 	By classTable = By.xpath("//div[@class='column2']");
 	By classTimeAndDuration = By.xpath("//div[@class='column2']/preceding-sibling::div[1]");
 	By classApplyFilters = By.xpath("//button[contains(text(), 'apply filters')]");
+	By memberSections = By.xpath("//div[contains(@class, 'row-box')]");
+	
 	
 	
 // CONSTRUCTOR
@@ -206,10 +209,16 @@ public class ClassSignUpPO {
 		return driver.findElement(classlabel);
 	}
 	
-	public List<WebElement> getFmlyMemberSelections()
+	public List<WebElement> getFmlyMemberLabel()
 
 	{
-		return driver.findElements(fmlyMemberSelections);
+		return driver.findElements(fmlyMemberLabel);
+	}
+	
+	public List<WebElement> getFmlyMemberCheckBox()
+
+	{
+		return driver.findElements(fmlyMemberCheckBox);
 	}
 	public List<WebElement> getRatesOptions()
 
@@ -243,6 +252,13 @@ public class ClassSignUpPO {
 	{
 		return driver.findElement(classApplyFilters);
 	}
+	public List<WebElement> getMemberSections()
+
+	{
+		return driver.findElements(memberSections);
+	}
+	
+	
 /*	public WebElement getUnitsDropdown()
 	{
 		return driver.findElement(unitsDropdown);
