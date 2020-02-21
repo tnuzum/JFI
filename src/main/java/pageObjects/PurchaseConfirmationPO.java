@@ -26,6 +26,7 @@ public class PurchaseConfirmationPO {
 	By unitsCount = By.xpath("//span[@class = 'pull-right text-muted']");
 	By shopPackageTotalAmount = By.xpath("//h2[contains(@class,'at-shoppackage-text-total')]");
 	By classesReviewtotalAmount = By.xpath("//span[contains(@class,'At-classes-review-text-total')]");
+	By memberFeesSection = By.xpath("//div[@class = 'text-right']");
 	
 	
 // CONSTRUCTOR
@@ -90,6 +91,11 @@ public class PurchaseConfirmationPO {
 	public WebElement getClassesReviewtotalAmount()
 	{
 		return driver.findElement(classesReviewtotalAmount);
+	}
+	public List<WebElement> getMemberfeesSection()
+
+	{
+		return driver.findElements(memberFeesSection);
 	}
 }
 

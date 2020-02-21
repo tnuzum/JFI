@@ -108,7 +108,7 @@ public class reusableWaits extends base{
 	}
 		public static String waitForAcceptButton() throws InterruptedException
 	{
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, 90);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='swal2-actions']/button[1]")));
 			System.out.println(DateTime+" INFO: Element is now present");
 			/*PaymentPO p = new PaymentPO(driver);
