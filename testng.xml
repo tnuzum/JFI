@@ -23,6 +23,8 @@
        <class name="EME.EnrollCourse_ClubSettings"/>
        <class name="EME.EnrollClassMemberAndItemRestrictions"/>
        <class name="EME.EnrollCourseMemberAndItemRestrictions"/>
+        <class name="EME.FamilyClassEnrollmentUIValidations"/>
+      <class name="EME.FamilyCourseEnrollmentUIValidations"/>
        <!--class name="EME.ScheduleCourseTest"/-->
        <!--class name="EME.MakeGroupApptTest"/-->
        <class name="EME.DashBoard_Layout"/>

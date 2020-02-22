@@ -24,11 +24,13 @@
       <class name="EME_EnvURL.EnrollCourse_ClubSettings"/>
       <class name="EME_EnvURL.EnrollClassMemberAndItemRestrictions"/>
       <class name="EME_EnvURL.EnrollCourseMemberAndItemRestrictions"/>
+      <class name="EME_EnvURL.FamilyClassEnrollmentUIValidations"/>
+      <class name="EME_EnvURL.FamilyCourseEnrollmentUIValidations"/>
       <!--class name="EME.ScheduleCourseTest"/-->
       <!--class name="EME.MakeGroupApptTest"/-->
       <class name="EME_EnvURL.DashBoard_Layout"/>
        <class name="EME_EnvURL.DashBoard_Menu"/>
-        <!--class name="EME_EnvURL.EmailConfirmations"/-->
+        <class name="EME_EnvURL.EmailConfirmations"/>
                    
     </classes>
   </test>
