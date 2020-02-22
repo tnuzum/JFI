@@ -1,4 +1,4 @@
-package EME;
+package EME_EnvURL;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.BreadcrumbTrailPO;
@@ -61,10 +62,11 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 
 //	@BeforeTest
 	@BeforeClass
-	public void initialize() throws IOException, InterruptedException {
+	@Parameters({"EMELoginPage"})
+	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
-		driver.get(prop.getProperty("EMELoginPage"));
+		driver.get(EMELoginPage);
 	}
 	
 	@Test(priority = 1, description = "Course Search Screen Ui validations")
