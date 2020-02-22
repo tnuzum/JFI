@@ -216,8 +216,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 				
 				WebElement fml =  c.getFmlyMemberLabel().get(i);
 				
-				System.out.println(i + " " + fml.getText());
-						
+									
 			if (fml.getText().contains(member2)) 
 				fml.click();   // Selects the member
 				
@@ -246,7 +245,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 
 		Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(courseInstructorDisplayed, c.getClassInstructor().getText());
+		Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
 
 				
 		for (int i = 0; i<c.getMemberSections().size(); i++)
@@ -280,7 +279,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 			if (c.getMemberSections().get(i).getText().contains(member5)) //This member has all the payment options
 			{
 				Assert.assertTrue(paymentOptions.contains("Use Existing Package"));
-				Assert.assertTrue(paymentOptions.contains("Pay Single Course Fee"));  
+				Assert.assertTrue(paymentOptions.contains("Pay Course Fee"));  
 				Assert.assertTrue(paymentOptions.contains(buyPackageName));
 				for (int j= 0; j<Labels.size(); j++)
 				{
@@ -297,7 +296,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 			if (c.getMemberSections().get(i).getText().contains(member6)) //This member has all the payment options
 			{
 				Assert.assertTrue(paymentOptions.contains("Use Existing Package"));
-				Assert.assertTrue(paymentOptions.contains("Pay Single Course Fee"));  
+				Assert.assertTrue(paymentOptions.contains("Pay Course Fee"));  
 				Assert.assertTrue(paymentOptions.contains(buyPackageName));
 				for (int j= 0; j<Labels.size(); j++)
 				{
@@ -355,6 +354,12 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	     
 	Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmount));   //Verifies the Pay button contains the total amount
 	
+	}
+//	@AfterTest
+    @AfterClass
+	public void teardown() throws InterruptedException {
+		driver.close();
+		driver = null;
 	}
 
 }
