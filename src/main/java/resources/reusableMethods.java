@@ -202,6 +202,7 @@ public class reusableMethods extends base {
 			Thread.sleep(2000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(1000);
 			}
 		else
 		{
@@ -238,11 +239,12 @@ public class reusableMethods extends base {
 		cp.getUnEnrollBtn().click();
 		UnenrollPO u = new UnenrollPO(driver);
 		u.getUnenrollButton().click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		u.getUnenrollConfirmYesButton().click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(1000);
 		reusableMethods.returnToDashboard();
 		
 		return null;
