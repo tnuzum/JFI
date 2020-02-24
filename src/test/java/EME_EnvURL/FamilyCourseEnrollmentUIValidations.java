@@ -260,7 +260,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 								
 				for (int j= 0; j<Labels.size(); j++)
 				{
-					if (Labels.get(j).getText().contains("Pay Single Course Fee"))
+					if (Labels.get(j).getText().contains("Pay Course Fee"))
 						Labels.get(j).click();
 								
 				}
