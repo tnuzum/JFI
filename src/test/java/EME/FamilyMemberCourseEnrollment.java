@@ -71,7 +71,7 @@ public class FamilyMemberCourseEnrollment extends base{
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 	
-	@Test(priority = 1, description = "Course Search Screen Ui validations")
+	@Test(priority = 1, description = "Family Member Enrollment")
 	public void FamilyMemberEnrollment() throws IOException, InterruptedException {
 	reusableMethods.activeMemberLogin("hoh", "Testing1!");
 	//reusableMethods.unenrollFromCourse();
@@ -393,7 +393,7 @@ public class FamilyMemberCourseEnrollment extends base{
 
 }
 	
-	@Test(dataProvider = "getData")
+	@Test(dataProvider = "getData", dependsOnMethods = {"FamilyMemberEnrollment"})
 	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin(username, password);
 		reusableMethods.unenrollFromCourse(dsiredMonthYear);
