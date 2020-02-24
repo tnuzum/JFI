@@ -157,6 +157,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 }
 	@Test(priority = 2, description = "Course Details Pop Up Screen Ui validations")
 	public void PopUpScreenUIValidations() throws IOException, InterruptedException {
+		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		Thread.sleep(2000);
 		
