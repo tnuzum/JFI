@@ -503,7 +503,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		PM.getNewCardButton().click();
 		Thread.sleep(1000);
 		CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
-		while (!CloseBtnPresent == true)
+		while (CloseBtnPresent == false)
 		{
 			PM.getNewCardButton().click();
 			 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));

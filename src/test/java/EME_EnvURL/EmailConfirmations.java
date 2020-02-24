@@ -50,7 +50,7 @@ public class EmailConfirmations  {
 		Calendar today11 = Calendar.getInstance();
 		 today11.add(Calendar.DAY_OF_YEAR, 1);
 		 String tomorrowsDate = dateFormat11.format(today11.getTime());
-		 String classdateAndTime = "Class T=ime:= " +tomorrowsDate+ " 10:00 AM";
+		 String classdateAndTime = "Class Time:= " +tomorrowsDate+ " 10:00 AM";
 		 System.out.println(classdateAndTime);
 	    Assert.assertTrue(emailUtils.isTextInMessage(email1, classdateAndTime));
 	   
