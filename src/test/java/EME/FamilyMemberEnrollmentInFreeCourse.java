@@ -293,7 +293,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 		reusableMethods.memberLogout();
 	}
 	
-	@Test(dataProvider = "getData", dependsOnMethods = {"FamilyEnrollInFreeClass"})
+	@Test(dataProvider = "getData", dependsOnMethods = {"FamilyEnrollInFreeCourse"})
 	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin(username, password);
 		reusableMethods.unenrollFromCourse(dsiredMonthYear);
