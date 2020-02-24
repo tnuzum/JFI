@@ -69,7 +69,7 @@ public class FamilyMemberClassEnrollment extends base{
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 	
-	@Test(priority = 1, description = "Class Search Screen Ui validations")
+	@Test(priority = 1, description = "Family Member Enrollment")
 	public void FamilyMemberEnrollment() throws IOException, InterruptedException {
 	reusableMethods.activeMemberLogin("hoh", "Testing1!");
 	//reusableMethods.unenrollFromClass();

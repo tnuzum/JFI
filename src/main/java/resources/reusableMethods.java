@@ -7,6 +7,8 @@ import java.util.Date;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import pageObjects.CalendarPO;
@@ -239,12 +241,13 @@ public class reusableMethods extends base {
 		cp.getUnEnrollBtn().click();
 		UnenrollPO u = new UnenrollPO(driver);
 		u.getUnenrollButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		u.getUnenrollConfirmYesButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
+			
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		reusableMethods.returnToDashboard();
 		
 		return null;

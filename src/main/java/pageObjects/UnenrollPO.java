@@ -13,7 +13,7 @@ public class UnenrollPO {
 	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By unenrollButton = By.xpath("//a[contains(@class,'unenroll')]");//button on Unenroll page
 	By unenrollConfirmMessage1 = By.xpath("//h2[@id='swal2-title']");//displays "Unenrolled"
-	By unenrollConfirmYesButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
+	By unenrollConfirmYesButton = By.xpath("//button[contains(@class, 'swal2-confirm')]");
 	By notEligibleMessage = By.xpath("//div[contains(@class,'alert-danger')]"); // returns "We apologize, this class is not eligible for unenrollment."
 	By cancelButton = By.xpath("//div[contains(@class,'alert-danger')]/div");
 

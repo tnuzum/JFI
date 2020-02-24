@@ -471,9 +471,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		PM.getNewCardButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
-		while (!CloseBtnPresent == true)
+		while (CloseBtnPresent == false)
 		{
 			PM.getNewCardButton().click();
 			 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));

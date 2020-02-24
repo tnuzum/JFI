@@ -67,8 +67,8 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 	
-	@Test(priority = 1, description = "Class Search Screen Ui validations")
-	public void FamilyEnrollInFreeClass() throws IOException, InterruptedException {
+	@Test(priority = 1, description = "Family Member Enrollment")
+	public void FamilyEnrollInFreeCourse() throws IOException, InterruptedException {
 	reusableMethods.activeMemberLogin("hoh", "Testing1!");
 	//reusableMethods.unenrollFromClass();
 	//Thread.sleep(2000);
@@ -293,7 +293,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 		reusableMethods.memberLogout();
 	}
 	
-	@Test(dataProvider = "getData", dependsOnMethods = {"FamilyEnrollInFreeClass"})
+	@Test(dataProvider = "getData", dependsOnMethods = {"FamilyEnrollInFreeCourse"})
 	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin(username, password);
 		reusableMethods.unenrollFromCourse(dsiredMonthYear);
