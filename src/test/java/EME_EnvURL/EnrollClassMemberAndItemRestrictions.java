@@ -6,11 +6,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
@@ -23,6 +26,7 @@ import resources.reusableWaits;
 public class EnrollClassMemberAndItemRestrictions extends base {
 	private static String classStartMonth = "DEC";
 	private static String classStartDate = "22";
+	public static SoftAssert softAssertion = new SoftAssert();
 	
 //	@BeforeTest
 	@BeforeClass
@@ -42,10 +46,12 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
@@ -64,12 +70,13 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -82,12 +89,14 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -104,12 +113,13 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -123,12 +133,14 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -145,6 +157,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -159,8 +172,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -173,12 +186,14 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -195,6 +210,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -209,8 +226,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Online enrollment for this class is not allowed.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Online enrollment for this class is not allowed.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -223,12 +240,14 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -241,7 +260,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 					monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
 				}
 					
-					
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));	
 					
 		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
 		for (int i = 0; i < daycount; i++) {
@@ -251,6 +270,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -265,8 +286,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Online enrollment for this class is currently closed.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Online enrollment for this class is currently closed.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -279,12 +300,14 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 							
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -297,10 +320,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				 break;
 			}
 		 }
-		Thread.sleep(1000);
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -313,12 +337,14 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
 		DateFormat dateFormat = new SimpleDateFormat("d");
@@ -334,7 +360,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
-									
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+							
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -348,8 +376,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
-		Assert.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
+		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 		reusableMethods.memberLogout();
@@ -363,12 +391,14 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
 		DateFormat dateFormat = new SimpleDateFormat("d");
@@ -384,7 +414,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
-									
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+							
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -401,7 +433,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		{
 			if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Cadmember"))
 			{
-				Assert.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Membership restrictions have limited class enrollment at this club."));
+				softAssertion.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Membership restrictions have limited class enrollment at this club."));
 			}
 		}
 		
@@ -418,12 +450,14 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -442,7 +476,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				 break;
 			}
 		 }
-							
+	
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));				
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -460,7 +495,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(500);
 		c.getContinueButton().click();
 		Thread.sleep(2000);
-	Assert.assertEquals("Success", c.getPopupMessage().getText());
+	softAssertion.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	
 	//Navigate to Classes
@@ -475,6 +510,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 	}
+
+	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 	c.getCalendarIcon().click();
 	Thread.sleep(500);
 	 
@@ -487,7 +524,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			 break;
 		}
 	 }
-	  Thread.sleep(500);
+	  
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 	  for (int j= 0; j<ClassCount; j++)
 		 {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
@@ -503,17 +541,19 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		{
 			if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("hoh"))
 			{
-				Assert.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains(" Scheduling Conflict"));
+				softAssertion.assertTrue(c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains(" Scheduling Conflict"));
 			}
 		}
 		
 		c.getPopupCancelButton().click();
-		Thread.sleep(500);
+			Thread.sleep(1000);
+		
 		reusableMethods.returnToDashboard();
 		reusableMethods.unenrollFromClass();
 		reusableMethods.memberLogout();
 
 }
+	
 	
 //	@AfterTest
 	@AfterClass
