@@ -45,7 +45,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";
-	private static String member2Rate = "$9.00";
+	private static String member2Rate = "$9.00 or use package";
 	private static String member3 = "Freemember";
 	private static String member3Rate = "Free";
 	private static String member4 = "Freeze";
@@ -257,13 +257,12 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 														
 			if (c.getMemberSections().get(i).getText().contains(member2))
 					{
-				Assert.assertTrue(!paymentOptions.contains("Use Existing Package")); // This member should not have options of existing package
-				Assert.assertTrue(!paymentOptions.contains("Free"));  // Course is not free for this member
-				
+								
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains("Pay Single Course Fee"))
-						Assert.assertTrue(Labels.get(j).isEnabled());
+						Labels.get(j).click();
+								
 				}
 					}
 			

@@ -16,20 +16,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import pageObjects.AcctHistoryPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
+import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyCourseEnrollmentUIValidations extends base{
+public class FamilyMemberCourseEnrollment extends base{
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String CourseStartMonth = "Dec";
+	private static String dsiredMonthYear = "December 2020";
 	private static String courseToEnroll = "FAMILYENROLLCOURSE";
 	private static String courseNameDisplayed = "FamilyEnrollCourse";
 	private static String courseTimeDisplayed = "Start Time: 5:00 PM";
@@ -68,7 +72,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	}
 	
 	@Test(priority = 1, description = "Course Search Screen Ui validations")
-	public void SearchScreenUIValidations() throws IOException, InterruptedException {
+	public void FamilyMemberEnrollment() throws IOException, InterruptedException {
 	reusableMethods.activeMemberLogin("hoh", "Testing1!");
 	//reusableMethods.unenrollFromCourse();
 	//Thread.sleep(2000);
@@ -153,14 +157,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 			break;
 		}
 	}
-
-}
-	@Test(priority = 2, description = "Course Details Pop Up Screen Ui validations")
-	public void PopUpScreenUIValidations() throws IOException, InterruptedException {
-		ClassSignUpPO c = new ClassSignUpPO(driver);
-		Thread.sleep(2000);
-		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+	
 	    wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
 		while (c.getClasslabel().getText().isBlank())
 		{
@@ -169,52 +166,13 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 		
 		Assert.assertEquals(c.getClasslabel().getText(), courseNameDisplayed); // Verifies the course name
 		int count = c.getFmlyMemberLabel().size();
-		for (int i =0; i<count; i++)
-		{
-			
-			WebElement fml =  c.getFmlyMemberLabel().get(i);
-			WebElement fmc =  c.getFmlyMemberCheckBox().get(i);
-			//System.out.println(fml.getText());
-			//System.out.print(fmc.getAttribute("ng-reflect-is-disabled"));
-			if (fml.getText().contains(member1))
-			Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true"); //verifies that the check box is disabled for this member
-			
-			if (fml.getText().contains(member2)) 
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false"); //verifies that the check box is enabled for this member
-			
-			if (fml.getText().contains(member3)) 
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
-			
-			if (fml.getText().contains(member4))
-			Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
-			
-			
-			if (fml.getText().contains(member5)) {
-			Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
-			Assert.assertEquals(fmc.getAttribute("ng-reflect-model"), "true");
-			Assert.assertTrue(fmc.isSelected());                                     // Verifies that the check box is selected by default for the logged in HOH
-			fml.click();                                                             // Unchecks the check box
-			Assert.assertFalse(c.getPopupSignupButtonCourse().isEnabled());                // Verifies that the Signup button now is disabled
-			fml.click();                                                             // checks the box again
-			Assert.assertTrue(c.getPopupSignupButtonCourse().isEnabled());                 // Verifies that the Signup button is enabled now
-						
-			}
-			
-			if (fml.getText().contains(member6)) 
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
-
-			if (fml.getText().contains(member7))
-			Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
-			
-			if (fml.getText().contains(member8))
-			Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
-		}
-			
+		
 		// Selects the other eligible members
 			for ( int i =0; i<count; i++)
 			{
 				
 				WebElement fml =  c.getFmlyMemberLabel().get(i);
+				WebElement fmc =  c.getFmlyMemberCheckBox().get(i);
 				
 									
 			if (fml.getText().contains(member2)) 
@@ -223,6 +181,9 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 			
 			if (fml.getText().contains(member3)) 
 			    fml.click();   // Selects the member
+			
+			if (fml.getText().contains(member5))
+				Assert.assertTrue(fmc.isSelected()); 
 				
 			
 			if (fml.getText().contains(member6)) 
@@ -231,13 +192,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 		}
 			c.getPopupSignupButtonCourse().click();
 				
-}
-	
-	@Test(priority = 3, description = "Rates Screen Ui validations")
-	public void RatesScreenUIValidations() throws IOException, InterruptedException {
-		
-		ClassSignUpPO c = new ClassSignUpPO(driver);
-		
+				
 		while (c.getClassName().getText().isBlank())
 		{
 			Thread.sleep(500);
@@ -307,15 +262,11 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 			
 	}
 		c.getContinueButton().click();
-				
-	}
-	@Test(priority = 4, description = "Review Screen Ui validations")
-	public void ReviewScreenUIValidations() throws IOException, InterruptedException {
-	
-
+		
 	PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
-	ClassSignUpPO c = new ClassSignUpPO(driver);
+	
 	PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+	PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 	
 	while (c.getClassName().getText().isBlank())
 	{
@@ -343,6 +294,17 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 					
 	}
 	
+	int count1 = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+	for (int i = 0; i < count1; i++) {
+		if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+				.contains("1111"))
+			{
+			
+				PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+	}
+	
 	while (pp.getClassesReviewtotalAmount().getText().isBlank())
 	{
 		Thread.sleep(500);
@@ -352,7 +314,106 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	     
 	Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmount));   //Verifies the Pay button contains the total amount
 	
+	while (!PM.getPaymentButton().isEnabled())
+	{
+		Thread.sleep(1000);
 	}
+	PM.getPaymentButton().click();
+
+	Thread.sleep(2000);
+	//Verifies the success message
+	Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+	PP.getPopupOKButton().click();
+	ThankYouPO TY = new ThankYouPO(driver);
+
+	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+	reusableMethods.ThankYouPageValidations();
+
+	//Note down the Receipt number
+	String receiptNumber2 = TY.getReceiptNumber().getText();
+	String receiptNumber3 = null;
+	
+	Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
+	TY.getPrintReceiptButton().click();
+	Thread.sleep(2000);
+	Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+	
+	//Verifies the buttons on Print Receipt Popup
+	reusableMethods.ReceiptPopupValidations();
+	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+	Thread.sleep(3000);
+
+	//Navigate to Select Classes
+	int count2 = driver.findElements(By.tagName("a")).size();
+	for (int i = 0; i < count2; i++) {
+		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
+
+		{
+			// reusableWaits.linksToBeClickable();
+			driver.findElements(By.tagName("a")).get(i).click();
+			break;
+		}
+
+	}
+	Thread.sleep(2000);
+	//Verifies the link navigates to the right page
+	Assert.assertEquals("Select Classes", driver.getTitle());
+	Thread.sleep(2000);
+	
+	DashboardPO dp = new DashboardPO(driver);
+	dp.getMenuMyAccount().click();
+	Thread.sleep(2000);
+	dp.getMenuAccountHistory().click();
+	
+	//Clicks on the Receiptnumber in Account History 
+	AcctHistoryPO ahp = new AcctHistoryPO(driver);
+	ahp.getSearchField().sendKeys(receiptNumber2);
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+	}
+	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
+		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
+
+		if (receiptNumber3.equals(receiptNumber2)) {
+			ahp.getReceiptNumbers().get(k).click();
+			break;
+		}
+	}
+	Thread.sleep(1000);
+	//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
+//	System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+			.contains(totalAmount));
+	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+	Thread.sleep(2000);
+	reusableMethods.returnToDashboard();
+	
+	reusableMethods.memberLogout();
+
+}
+	
+	@Test(dataProvider = "getData")
+	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
+		reusableMethods.activeMemberLogin(username, password);
+		reusableMethods.unenrollFromCourse(dsiredMonthYear);
+		reusableMethods.memberLogout();
+		}
+	@DataProvider
+	public Object [][] getData()
+
+		{
+			Object[][] data = new Object[4][2];
+			data[0][0] = "freemember";
+			data[0][1] = "Testing1!";
+			data[1][0] = "feemember";
+			data[1][1] = "Testing1!";
+			data[2][0] = "memberwithpunch";
+			data[2][1] = "Testing1!";
+			data[3][0] = "hoh";
+			data[3][1] = "Testing1!";
+			return data;
+		}
 //	@AfterTest
     @AfterClass
 	public void teardown() throws InterruptedException {

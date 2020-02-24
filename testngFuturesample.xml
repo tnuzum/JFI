@@ -9,8 +9,11 @@
   <parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224"/>
     <classes>
     
+      <class name="EME_EnvURL.EnrollInFreeClassTest"/>
+      <class name="EME_EnvURL.EnrollInFreeCourseTest"/>
+      <class name="EME_EnvURL.EmailConfirmations"/>
+       
       
-      <class name="EME_EnvURL.EnrollClassMemberAndItemRestrictions"/>
       
                    
     </classes>

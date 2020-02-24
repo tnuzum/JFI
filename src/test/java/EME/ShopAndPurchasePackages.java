@@ -125,6 +125,10 @@ public class ShopAndPurchasePackages extends base {
 
 		// Noting down the total amount
 //		System.out.println(PP.getTotalAmount().getText());
+		while (PP.getShopPackageTotalAmount().getText().isBlank())
+		{
+			Thread.sleep(500);
+		}
 		String[] totalAmt = PP.getShopPackageTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
 //		System.out.println(FormatTotalAmt);

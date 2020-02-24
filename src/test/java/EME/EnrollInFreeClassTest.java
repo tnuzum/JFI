@@ -42,8 +42,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@Test (priority = 1, description = "Enroll in free class")
 		public void EnrollInZeroDollarClass() throws IOException, InterruptedException
 		{	
-		reusableMethods.activeMemberLogin("MemberWithPunch", "Testing1!");
-		//reusableMethods.unenrollFromClass();
+		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
+		reusableMethods.unenrollFromClass();
 		Thread.sleep(1000);
 		reusableMethods.returnToDashboard();
 			DashboardPO d = new DashboardPO(driver);

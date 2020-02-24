@@ -42,7 +42,7 @@ private static String dsiredMonthYear = "December 2020";
 		
 	public void EnrollInZeroDollarCourse() throws IOException, InterruptedException
 		{	
-		reusableMethods.activeMemberLogin("MemberWithPunch", "Testing1!");
+		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
 		//reusableMethods.unenrollFromCourse(dsiredMonthYear);
 		//Thread.sleep(1000);
 		//reusableMethods.returnToDashboard();

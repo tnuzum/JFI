@@ -7,6 +7,8 @@ import java.util.Calendar;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -45,7 +47,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
@@ -64,6 +68,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
 		Thread.sleep(1000);
@@ -88,6 +93,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -104,6 +111,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
 		Thread.sleep(1000);
@@ -129,6 +137,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -145,6 +155,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -179,6 +190,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -195,6 +208,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -229,6 +244,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -241,7 +258,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 					monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
 				}
 					
-					
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));	
 					
 		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
 		for (int i = 0; i < daycount; i++) {
@@ -251,6 +268,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -285,6 +304,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 							
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -297,7 +318,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				 break;
 			}
 		 }
-		Thread.sleep(1000);
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
 		softAssertion.assertEquals("The online enrollment window for this class has closed.", c.getPopUpErrorMessage().getText().trim());
 		softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
@@ -319,6 +341,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
 		DateFormat dateFormat = new SimpleDateFormat("d");
@@ -334,6 +358,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 							
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -369,6 +395,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
 		DateFormat dateFormat = new SimpleDateFormat("d");
@@ -384,6 +412,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				break;
 			}
 		}
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 							
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -424,6 +454,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		Thread.sleep(2000);
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -442,7 +474,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				 break;
 			}
 		 }
-							
+	
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));				
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -475,6 +508,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 	}
+
+	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 	c.getCalendarIcon().click();
 	Thread.sleep(500);
 	 
@@ -487,6 +522,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			 break;
 		}
 	 }
+	  
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 	  for (int j= 0; j<ClassCount; j++)
 		 {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();

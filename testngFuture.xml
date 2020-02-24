@@ -26,8 +26,12 @@
       <class name="EME_EnvURL.EnrollCourseMemberAndItemRestrictions"/>
       <class name="EME_EnvURL.FamilyClassEnrollmentUIValidations"/>
       <class name="EME_EnvURL.FamilyCourseEnrollmentUIValidations"/>
-      <!--class name="EME.ScheduleCourseTest"/-->
-      <!--class name="EME.MakeGroupApptTest"/-->
+      <class name="EME_EnvURL.FamilyMemberEnrollmentInFreeClass"/>
+       <class name="EME_EnvURL.FamilyMemberEnrollmentInFreeCourse"/>
+       <class name="EME_EnvURL.FamilyMemberClassEnrollment"/>
+       <class name="EME_EnvURL.FamilyMemberCourseEnrollment"/>
+      <!--class name="EME_EnvURL.ScheduleCourseTest"/-->
+      <!--class name="EME_EnvURL.MakeGroupApptTest"/-->
       <class name="EME_EnvURL.DashBoard_Layout"/>
        <class name="EME_EnvURL.DashBoard_Menu"/>
         <class name="EME_EnvURL.EmailConfirmations"/>
