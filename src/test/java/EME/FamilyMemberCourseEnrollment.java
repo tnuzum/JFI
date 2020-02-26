@@ -42,6 +42,7 @@ public class FamilyMemberCourseEnrollment extends base{
 	private static String courseTimeDisplayedOnSearchScreen = "5:00 PM";
 	private static String courseDuration = "30 min";
 	private static String buyPackageName = "Buy Day Pass";
+	private static String packageName = "Day Pass";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $1.00/per";
 	private static String courseCostInUnits = "Course Cost: 2 unit(s)";
@@ -80,6 +81,13 @@ public class FamilyMemberCourseEnrollment extends base{
 	reusableWaits.waitForDashboardLoaded();
 	DashboardPO d = new DashboardPO(driver);
 	BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+	
+	int IntPackageCountBefore = 0;
+	int IntPackageCountAfter = 0;
+	
+	//Note the package units before enrolling the member with existing Package
+	IntPackageCountBefore = reusableMethods.getPackageUnitsForMember(packageName,member6);
+	System.out.println("Before "+IntPackageCountBefore);
 	
 	d.getMyCoursesEventsScheduleButton().click();
 	
@@ -346,7 +354,7 @@ public class FamilyMemberCourseEnrollment extends base{
 	//Navigate to Select Classes
 	int count2 = driver.findElements(By.tagName("a")).size();
 	for (int i = 0; i < count2; i++) {
-		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
+		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 		{
 			// reusableWaits.linksToBeClickable();
@@ -357,13 +365,13 @@ public class FamilyMemberCourseEnrollment extends base{
 	}
 	Thread.sleep(2000);
 	//Verifies the link navigates to the right page
-	Assert.assertEquals("Select Classes", driver.getTitle());
+	Assert.assertEquals("Dashboard", driver.getTitle());
 	Thread.sleep(2000);
 	
 	DashboardPO dp = new DashboardPO(driver);
-	dp.getMenuMyAccount().click();
+	dp.getMyAccountAccountHistory().click();
 	Thread.sleep(2000);
-	dp.getMenuAccountHistory().click();
+	
 	
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
@@ -388,6 +396,14 @@ public class FamilyMemberCourseEnrollment extends base{
 	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 	Thread.sleep(2000);
 	reusableMethods.returnToDashboard();
+	
+	//Note the package units after enrolling the member with existing package
+		IntPackageCountAfter = reusableMethods.getPackageUnitsForMember(packageName,member6);
+		System.out.println("After "+ IntPackageCountAfter);
+		
+		//Verifies the package units is now decremented by two units
+		IntPackageCountBefore  = IntPackageCountBefore-2;
+		Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter); 
 	
 	reusableMethods.memberLogout();
 

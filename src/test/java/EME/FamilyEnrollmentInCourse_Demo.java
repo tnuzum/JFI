@@ -1,4 +1,4 @@
-package EME_EnvURL;
+package EME;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -17,7 +17,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
@@ -31,19 +30,17 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyMemberCourseEnrollment extends base{
+public class FamilyEnrollmentInCourse_Demo extends base{
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Dec";
-	private static String dsiredMonthYear = "December 2020";
-	private static String courseToEnroll = "FAMILYENROLLCOURSE";
-	private static String courseNameDisplayed = "FamilyEnrollCourse";
+//	private static String dsiredMonthYear = "February 2020";
+	private static String courseToEnroll = "DEMO COURSE";
+	private static String courseNameDisplayed = "Demo Course";
 	private static String courseTimeDisplayed = "Start Time: 5:00 PM";
 	private static String courseInstructorDisplayed = "Course Instructor: Max Gibbs";
 	private static String courseInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
 	private static String courseTimeDisplayedOnSearchScreen = "5:00 PM";
 	private static String courseDuration = "30 min";
 	private static String buyPackageName = "Buy Day Pass";
-	private static String packageName = "Day Pass";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $1.00/per";
 	private static String courseCostInUnits = "Course Cost: 2 unit(s)";
@@ -67,11 +64,10 @@ public class FamilyMemberCourseEnrollment extends base{
 
 //	@BeforeTest
 	@BeforeClass
-	@Parameters({"EMELoginPage"})
-	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
+	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
-		driver.get(EMELoginPage);
+		driver.get(prop.getProperty("EMELoginPage"));
 	}
 	
 	@Test(priority = 1, description = "Family Member Enrollment")
@@ -84,13 +80,6 @@ public class FamilyMemberCourseEnrollment extends base{
 	DashboardPO d = new DashboardPO(driver);
 	BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 	
-	int IntPackageCountBefore = 0;
-	int IntPackageCountAfter = 0;
-	
-	//Note the package units before enrolling the member with existing Package
-	IntPackageCountBefore = reusableMethods.getPackageUnitsForMember(packageName,member6);
-	System.out.println("Before "+IntPackageCountBefore);
-	
 	d.getMyCoursesEventsScheduleButton().click();
 	
 	Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
@@ -102,23 +91,9 @@ public class FamilyMemberCourseEnrollment extends base{
 	WebDriverWait wait = new WebDriverWait(driver, 50);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 	
-	WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-	int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++)
-			{
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth))
-				{
-					 MonthNames.findElements(By.tagName("label")).get(i).click();
-					 break;
-				}
-					
-			}
-	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-	
 	c.getCourseFilter().click();
 	c.getCourseKeyword().click();
-	c.getSearchField().sendKeys("family");
+	c.getSearchField().sendKeys("demo");
 	c.getCourseApplyFilters().click();
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -220,8 +195,7 @@ public class FamilyMemberCourseEnrollment extends base{
 														
 			if (c.getMemberSections().get(i).getText().contains(member2))
 					{
-				
-				
+								
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains("Pay Course Fee"))
@@ -357,7 +331,7 @@ public class FamilyMemberCourseEnrollment extends base{
 	//Navigate to Select Classes
 	int count2 = driver.findElements(By.tagName("a")).size();
 	for (int i = 0; i < count2; i++) {
-		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
 
 		{
 			// reusableWaits.linksToBeClickable();
@@ -368,13 +342,14 @@ public class FamilyMemberCourseEnrollment extends base{
 	}
 	Thread.sleep(2000);
 	//Verifies the link navigates to the right page
-	Assert.assertEquals("Dashboard", driver.getTitle());
+	Assert.assertEquals("Select Classes", driver.getTitle());
 	Thread.sleep(2000);
 	
 	DashboardPO dp = new DashboardPO(driver);
-	dp.getMyAccountAccountHistory().click();
+	dp.getMenuMyAccount().click();
 	Thread.sleep(2000);
-		
+	dp.getMenuAccountHistory().click();
+	
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
 	ahp.getSearchField().sendKeys(receiptNumber2);
@@ -399,20 +374,12 @@ public class FamilyMemberCourseEnrollment extends base{
 	Thread.sleep(2000);
 	reusableMethods.returnToDashboard();
 	
-
-	//Note the package units after enrolling the member with existing package
-	IntPackageCountAfter = reusableMethods.getPackageUnitsForMember(packageName,member6);
-	System.out.println("After "+ IntPackageCountAfter);
 	
-	//Verifies the package units is now decremented by two units
-	IntPackageCountBefore  = IntPackageCountBefore-2;
-	Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter); 
-	
-	reusableMethods.memberLogout();
+	//reusableMethods.memberLogout();
 
 }
 	
-	@Test(dataProvider = "getData", dependsOnMethods = {"FamilyMemberEnrollment"})
+/*	@Test(dataProvider = "getData")
 	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin(username, password);
 		reusableMethods.unenrollFromCourse(dsiredMonthYear);
@@ -438,9 +405,6 @@ public class FamilyMemberCourseEnrollment extends base{
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;
-	}
+	}*/
 
 }
-	
-	
- 

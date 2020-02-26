@@ -58,7 +58,9 @@ public class ClassSignUpPO {
 	By classTimeAndDuration = By.xpath("//div[@class='column2']/preceding-sibling::div[1]");
 	By classApplyFilters = By.xpath("//button[contains(text(), 'apply filters')]");
 	By memberSections = By.xpath("//div[contains(@class, 'row-box')]");
-	
+	By standbyMessage = By.xpath("//span[@class='float-left']");
+	By standbySection = By.xpath("//div[contains(@class, 'row-box-red')]");
+	By restOnStandby = By.xpath("//input[@id='rest_on_standby']");
 	
 	
 // CONSTRUCTOR
@@ -258,6 +260,23 @@ public class ClassSignUpPO {
 		return driver.findElements(memberSections);
 	}
 	
+	public WebElement getstandbyMessage()
+
+	{
+		return driver.findElement(standbyMessage);
+	}
+	
+	public WebElement getstandbySection()
+
+	{
+		return driver.findElement(standbySection);
+	}
+	
+	public WebElement getRestOnStandby()
+
+	{
+		return driver.findElement(restOnStandby);
+	}
 	
 /*	public WebElement getUnitsDropdown()
 	{

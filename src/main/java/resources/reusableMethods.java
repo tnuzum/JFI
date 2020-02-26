@@ -4,9 +4,11 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -15,6 +17,7 @@ import pageObjects.CalendarPO;
 import pageObjects.DashboardPO;
 import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
+import pageObjects.PackagesPO;
 import pageObjects.PaymentPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
@@ -322,6 +325,45 @@ public class reusableMethods extends base {
 	}
 	return IntUnitCount;
 	}
+	
+	public static int getPackageUnitsForMember(String packageName, String memberName) throws InterruptedException{
+		
+		DashboardPO d = new DashboardPO(driver);
+		PackagesPO pp= new PackagesPO(driver);
+		
+		//Note the package units 
+		d.getMenuMyAccount().click();
+		d.getMenuPackages().click();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.className("ibox"))));
+		int IntUnitCount = 0;
+		for (int i = 0; i<pp.getMemberSections().size(); i++)
+		{
+			
+			if (pp.getMemberSections().get(i).getText().contains(memberName.toUpperCase()))
+			{
+				List<WebElement> Packages = pp.getMemberSections().get(i).findElements(By.className("ng-star-inserted"));
+				
+								
+			for (int k = 0; k<Packages.size(); k++)
+			{
+				if (Packages.get(k).getText().contains(packageName))
+				{
+					String[] text = Packages.get(k).getText().split("\n");
+					String unitCount = text[2];
+					IntUnitCount = Integer.parseInt(unitCount);
+					break;
+				}
+				
+			}
+			break;
+			}
+		}
+		d.getMenuMyAccount().click();
+		reusableMethods.returnToDashboard();
+		
+		return IntUnitCount;
+		}
 	
 	public static Object ThankYouPageValidations()
 	{
