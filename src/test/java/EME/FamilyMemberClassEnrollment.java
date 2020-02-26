@@ -40,6 +40,7 @@ public class FamilyMemberClassEnrollment extends base{
 	private static String classTimeDisplayedOnSearchScreen = "5:00 PM";
 	private static String classDuration = "30 min";
 	private static String buyPackageName = "Buy Day Pass";
+	private static String packageName = "Day Pass";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $1.00/per";
 	private static String classCostInUnits = "Class Cost: 2 unit(s)";
@@ -78,6 +79,13 @@ public class FamilyMemberClassEnrollment extends base{
 	reusableWaits.waitForDashboardLoaded();
 	DashboardPO d = new DashboardPO(driver);
 	BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+	
+	int IntPackageCountBefore = 0;
+	int IntPackageCountAfter = 0;
+	
+	//Note the package units before enrolling the member with existing Package
+	IntPackageCountBefore = reusableMethods.getPackageUnitsForMember(packageName,member6);
+	System.out.println("Before "+IntPackageCountBefore);
 	
 	d.getMyClassesScheduleButton().click();
 	
@@ -368,6 +376,14 @@ public class FamilyMemberClassEnrollment extends base{
 	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 	Thread.sleep(1000);
 	reusableMethods.returnToDashboard();
+	
+	//Note the package units after enrolling the member with existing package
+	IntPackageCountAfter = reusableMethods.getPackageUnitsForMember(packageName,member6);
+	System.out.println("After "+ IntPackageCountAfter);
+	
+	//Verifies the package units is now decremented by two units
+	IntPackageCountBefore  = IntPackageCountBefore-2;
+	Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter); 
 	reusableMethods.unenrollFromClass();
 	reusableMethods.memberLogout();
 }

@@ -1,4 +1,4 @@
-package EME_EnvURL;
+package EME;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -17,7 +18,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
@@ -31,22 +31,20 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyMemberCourseEnrollment extends base{
+public class FamilyStandbyInCourse_Demo extends base{
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Dec";
-	private static String dsiredMonthYear = "December 2020";
-	private static String courseToEnroll = "FAMILYENROLLCOURSE";
-	private static String courseNameDisplayed = "FamilyEnrollCourse";
-	private static String courseTimeDisplayed = "Start Time: 5:00 PM";
+//	private static String dsiredMonthYear = "February 2020";
+	private static String courseToEnroll = "DEMO STANDBY COURSE";
+	private static String courseNameDisplayed = "Demo Standby Course";
+	private static String courseTimeDisplayed = "Start Time: 4:30 PM";
 	private static String courseInstructorDisplayed = "Course Instructor: Max Gibbs";
 	private static String courseInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
-	private static String courseTimeDisplayedOnSearchScreen = "5:00 PM";
+	private static String courseTimeDisplayedOnSearchScreen = "4:30 PM";
 	private static String courseDuration = "30 min";
-	private static String buyPackageName = "Buy Day Pass";
-	private static String packageName = "Day Pass";
-	private static String defaultSelection = null;
-	private static String unitsToBeSelected = "2 - $1.00/per";
-	private static String courseCostInUnits = "Course Cost: 2 unit(s)";
+//	private static String buyPackageName = "Buy Day Pass";
+//	private static String defaultSelection = null;
+//	private static String unitsToBeSelected = "2 - $1.00/per";
+//	private static String courseCostInUnits = "Course Cost: 2 unit(s)";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";
@@ -67,11 +65,10 @@ public class FamilyMemberCourseEnrollment extends base{
 
 //	@BeforeTest
 	@BeforeClass
-	@Parameters({"EMELoginPage"})
-	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
+	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
-		driver.get(EMELoginPage);
+		driver.get(prop.getProperty("EMELoginPage"));
 	}
 	
 	@Test(priority = 1, description = "Family Member Enrollment")
@@ -84,13 +81,6 @@ public class FamilyMemberCourseEnrollment extends base{
 	DashboardPO d = new DashboardPO(driver);
 	BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 	
-	int IntPackageCountBefore = 0;
-	int IntPackageCountAfter = 0;
-	
-	//Note the package units before enrolling the member with existing Package
-	IntPackageCountBefore = reusableMethods.getPackageUnitsForMember(packageName,member6);
-	System.out.println("Before "+IntPackageCountBefore);
-	
 	d.getMyCoursesEventsScheduleButton().click();
 	
 	Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
@@ -102,23 +92,9 @@ public class FamilyMemberCourseEnrollment extends base{
 	WebDriverWait wait = new WebDriverWait(driver, 50);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 	
-	WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-	int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++)
-			{
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth))
-				{
-					 MonthNames.findElements(By.tagName("label")).get(i).click();
-					 break;
-				}
-					
-			}
-	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-	
 	c.getCourseFilter().click();
 	c.getCourseKeyword().click();
-	c.getSearchField().sendKeys("family");
+	c.getSearchField().sendKeys("demo");
 	c.getCourseApplyFilters().click();
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -211,67 +187,63 @@ public class FamilyMemberCourseEnrollment extends base{
 		Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
-
+		
+		Assert.assertTrue(c.getstandbyMessage().getText().contains("2 spot(s) left"));
+		Assert.assertTrue(c.getstandbyMessage().getText().contains("Who should get it?"));
+			
 				
-		for (int i = 0; i<c.getMemberSections().size(); i++)
+		for (int i = 0; i<c.getstandbySection().findElements(By.tagName("label")).size(); i++)
 		{
-			String paymentOptions = c.getMemberSections().get(i).getText();
-			List<WebElement> Labels = c.getMemberSections().get(i).findElements(By.tagName("label"));
+			
+			List<WebElement> Labels = c.getstandbySection().findElements(By.tagName("label"));
+			List<WebElement> Chkbxs = c.getstandbySection().findElements(By.tagName("input"));
 														
-			if (c.getMemberSections().get(i).getText().contains(member2))
+			if (Labels.get(i).getText().contains(member2))
+								
+				Chkbxs.get(i).click();
+		
+				
+			if (Labels.get(i).getText().contains(member3))
+										
+				Chkbxs.get(i).click();
+				
+		}
+			
+			c.getRestOnStandby().click();
+			
+			
+			for (int i = 0; i<c.getMemberSections().size(); i++)
+			{
+				String paymentOptions = c.getMemberSections().get(i).getText();
+				List<WebElement> Labels = c.getMemberSections().get(i).findElements(By.tagName("label"));
+															
+				if (c.getMemberSections().get(i).getText().contains(member2))
+						{
+									
+					for (int j= 0; j<Labels.size(); j++)
 					{
-				
-				
-				for (int j= 0; j<Labels.size(); j++)
-				{
-					if (Labels.get(j).getText().contains("Pay Course Fee"))
-						Labels.get(j).click();
-				}
+						if (Labels.get(j).getText().contains("Pay Course Fee"))
+							Labels.get(j).click();
 					}
-			
-			if (c.getMemberSections().get(i).getText().contains(member3))
-			{
+						}
 				
-				Assert.assertTrue(paymentOptions.contains("Free"));  // Course is free for this member
-				for (int j= 0; j<Labels.size(); j++)
+				if (c.getMemberSections().get(i).getText().contains(member3))
 				{
-					if (Labels.get(j).getText().contains("Free"))
-						Assert.assertTrue(Labels.get(j).isEnabled());
-				}
+					
+					Assert.assertTrue(paymentOptions.contains("Free"));  // Course is free for this member
+					for (int j= 0; j<Labels.size(); j++)
+					{
+						if (Labels.get(j).getText().contains("Free"))
+							Assert.assertTrue(Labels.get(j).isEnabled());
+					}
+				}	
+			
+				
 			}
-			
-			if (c.getMemberSections().get(i).getText().contains(member5)) //This member has all the payment options
-			{
-				Assert.assertTrue(paymentOptions.contains("Use Existing Package"));
-				Assert.assertTrue(paymentOptions.contains("Pay Course Fee"));  
-				Assert.assertTrue(paymentOptions.contains(buyPackageName));
-				for (int j= 0; j<Labels.size(); j++)
-				{
-					if (Labels.get(j).getText().contains(buyPackageName))
-						Labels.get(j).click();
-				}
-				Assert.assertTrue(c.getClassCostinPunches().getText().contains(courseCostInUnits));
-				WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
-				Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-				 defaultSelection = s.getFirstSelectedOption().getText().trim();
-				    Assert.assertEquals(defaultSelection, unitsToBeSelected);
-			}
-			
-			if (c.getMemberSections().get(i).getText().contains(member6)) //This member has all the payment options
-			{
-				Assert.assertTrue(paymentOptions.contains("Use Existing Package"));
-				Assert.assertTrue(paymentOptions.contains("Pay Course Fee"));  
-				Assert.assertTrue(paymentOptions.contains(buyPackageName));
-				for (int j= 0; j<Labels.size(); j++)
-				{
-					if (Labels.get(j).getText().contains("Use Existing Package"))
-						Assert.assertTrue(Labels.get(j).isEnabled());
-				}
-			}
-			
-						
-			
-	}
+		
+		
+		
+		
 		c.getContinueButton().click();
 		
 	PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
@@ -295,13 +267,11 @@ public class FamilyMemberCourseEnrollment extends base{
 		if (text.contains(member3))
 			Assert.assertTrue(text.contains("Single Course Fee Free"));
 		
-		if (text.contains(member5)) {
-			Assert.assertTrue(text.contains("Day Pass")); 
-			Assert.assertTrue(text.contains("Package Unit(s): 2 X $1.00"));}
-					
-		if (text.contains(member6)) {
-			Assert.assertTrue(text.contains("Day Pass")); 
-			Assert.assertTrue(text.contains("Unit(s) deducted for this course: 2")); }
+		if (text.contains(member5))
+			Assert.assertTrue(text.contains("Standby"));
+		if (text.contains(member6))
+			Assert.assertTrue(text.contains("Standby"));
+				
 					
 	}
 	
@@ -357,7 +327,7 @@ public class FamilyMemberCourseEnrollment extends base{
 	//Navigate to Select Classes
 	int count2 = driver.findElements(By.tagName("a")).size();
 	for (int i = 0; i < count2; i++) {
-		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
 
 		{
 			// reusableWaits.linksToBeClickable();
@@ -368,13 +338,14 @@ public class FamilyMemberCourseEnrollment extends base{
 	}
 	Thread.sleep(2000);
 	//Verifies the link navigates to the right page
-	Assert.assertEquals("Dashboard", driver.getTitle());
+	Assert.assertEquals("Select Classes", driver.getTitle());
 	Thread.sleep(2000);
 	
 	DashboardPO dp = new DashboardPO(driver);
-	dp.getMyAccountAccountHistory().click();
+	dp.getMenuMyAccount().click();
 	Thread.sleep(2000);
-		
+	dp.getMenuAccountHistory().click();
+	
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
 	ahp.getSearchField().sendKeys(receiptNumber2);
@@ -399,20 +370,12 @@ public class FamilyMemberCourseEnrollment extends base{
 	Thread.sleep(2000);
 	reusableMethods.returnToDashboard();
 	
-
-	//Note the package units after enrolling the member with existing package
-	IntPackageCountAfter = reusableMethods.getPackageUnitsForMember(packageName,member6);
-	System.out.println("After "+ IntPackageCountAfter);
 	
-	//Verifies the package units is now decremented by two units
-	IntPackageCountBefore  = IntPackageCountBefore-2;
-	Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter); 
-	
-	reusableMethods.memberLogout();
+	//reusableMethods.memberLogout();
 
 }
 	
-	@Test(dataProvider = "getData", dependsOnMethods = {"FamilyMemberEnrollment"})
+/*	@Test(dataProvider = "getData")
 	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin(username, password);
 		reusableMethods.unenrollFromCourse(dsiredMonthYear);
@@ -438,9 +401,6 @@ public class FamilyMemberCourseEnrollment extends base{
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;
-	}
+	}*/
 
 }
-	
-	
- 
