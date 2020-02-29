@@ -10,6 +10,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pageObjects.AcctHistoryPO;
@@ -56,9 +58,11 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 //		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
 //		driver.findElement(By.xpath("//label[@id='dec']")).click();
@@ -75,7 +79,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 						
 				}
 					
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		
 
@@ -198,9 +202,23 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		DashboardPO dp = new DashboardPO(driver);
 		dp.getMyAccountAccountHistory().click();
 		
-		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
+		
+		while(!ahp.getReceiptNumberTable().isDisplayed())
+		{
+			Thread.sleep(2000);	
+			System.out.println("waiting");
+		}
+		
+		//Clicks on the Receiptnumber in Account History 
+		
 		ahp.getSearchField().sendKeys(receiptNumber);
+				
+		while(!ahp.getReceiptNumberTable().isDisplayed())
+		{
+			Thread.sleep(2000);	
+			System.out.println("waiting");
+		}
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -238,9 +256,11 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 //		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
 //		driver.findElement(By.xpath("//label[@id='dec']")).click();
@@ -257,7 +277,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 						
 				}
 					
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 
 		
@@ -370,9 +390,18 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				Thread.sleep(2000);
 				dp.getMenuAccountHistory().click();
 				
-				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
+				
+				while(!ahp.getReceiptNumberTable().isDisplayed())
+				{
+					Thread.sleep(2000);	
+					System.out.println("waiting");
+				}
+				
+				//Clicks on the Receiptnumber in Account History 
+				
 				ahp.getSearchField().sendKeys(receiptNumber2);
+				
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -414,9 +443,11 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+	
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 //		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
 //		driver.findElement(By.xpath("//label[@id='dec']")).click();
@@ -433,7 +464,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 						
 				}
 					
-		Thread.sleep(2000);
+	    wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 
 		
@@ -475,10 +506,14 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		PM.getNewCardButton().click();
-		Thread.sleep(2000);
+		
+		WebDriverWait wait1 = new WebDriverWait(driver, 10);
+		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
+		
 		 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
 		while (CloseBtnPresent == false)
 		{
+			System.out.println("Close button not present");
 			PM.getNewCardButton().click();
 			 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
 		}
@@ -561,9 +596,18 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				Thread.sleep(2000);
 				dp.getMenuAccountHistory().click();
 				
-				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
+				
+				while(!ahp.getReceiptNumberTable().isDisplayed())
+				{
+					Thread.sleep(2000);	
+					System.out.println("waiting");
+				}
+				
+				//Clicks on the Receiptnumber in Account History 
+				
 				ahp.getSearchField().sendKeys(receiptNumber4);
+				
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	

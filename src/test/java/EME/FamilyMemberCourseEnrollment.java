@@ -94,8 +94,7 @@ public class FamilyMemberCourseEnrollment extends base{
 	Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 	Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 	Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-	Thread.sleep(2000);
-	
+		
 	ClassSignUpPO c = new ClassSignUpPO(driver);
 	WebDriverWait wait = new WebDriverWait(driver, 50);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -370,15 +369,23 @@ public class FamilyMemberCourseEnrollment extends base{
 	
 	DashboardPO dp = new DashboardPO(driver);
 	dp.getMyAccountAccountHistory().click();
-	Thread.sleep(2000);
-	
-	
-	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
-	ahp.getSearchField().sendKeys(receiptNumber2);
+	
 	while(!ahp.getReceiptNumberTable().isDisplayed())
 	{
 		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
+	
+	
+	//Clicks on the Receiptnumber in Account History 
+	
+	ahp.getSearchField().sendKeys(receiptNumber2);
+	
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
 	}
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();

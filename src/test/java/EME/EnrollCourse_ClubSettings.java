@@ -8,6 +8,8 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pageObjects.BreadcrumbTrailPO;
@@ -53,9 +55,11 @@ public class EnrollCourse_ClubSettings extends base {
 	Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 	Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 	Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-	Thread.sleep(2000);
-	
+		
 	ClassSignUpPO c = new ClassSignUpPO(driver);
+	
+	WebDriverWait wait = new WebDriverWait(driver, 30);
+	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 	
 	int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();

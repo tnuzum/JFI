@@ -92,8 +92,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -136,8 +135,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -189,8 +187,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -243,8 +240,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -303,8 +299,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -394,8 +389,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -453,8 +447,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));

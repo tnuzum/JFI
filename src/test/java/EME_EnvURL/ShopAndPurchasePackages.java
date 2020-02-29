@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
@@ -206,9 +208,23 @@ public class ShopAndPurchasePackages extends base {
 		DashboardPO dp = new DashboardPO(driver);
 		dp.getMyAccountAccountHistory().click();
 		
-		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
+		
+		while(!ahp.getReceiptNumberTable().isDisplayed())
+		{
+			Thread.sleep(2000);	
+			System.out.println("waiting");
+		}
+		
+		//Clicks on the Receiptnumber in Account History 
+		
 		ahp.getSearchField().sendKeys("ServiceOA");
+		
+		while(!ahp.getReceiptNumberTable().isDisplayed())
+		{
+			Thread.sleep(2000);	
+			System.out.println("waiting");
+		}
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -344,9 +360,18 @@ public class ShopAndPurchasePackages extends base {
 				Thread.sleep(1000);
 				dp.getMenuAccountHistory().click();
 				
-				//Clicks on the Receiptnumber in Account History 
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
+				
+				while(!ahp.getReceiptNumberTable().isDisplayed())
+				{
+					Thread.sleep(2000);	
+					System.out.println("waiting");
+				}
+				
+				//Clicks on the Receiptnumber in Account History 
+				
 				ahp.getSearchField().sendKeys("ServiceCC");
+				
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -401,10 +426,14 @@ public class ShopAndPurchasePackages extends base {
 	
 			
 				PM.getNewCardButton().click();
-				Thread.sleep(2000);
+				
+				WebDriverWait wait = new WebDriverWait(driver, 10);
+				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
+				
 				CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
 				while (CloseBtnPresent == false)
 				{
+					System.out.println("Close button not present");
 					PM.getNewCardButton().click();
 					 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
 				}
@@ -496,9 +525,18 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(1000);
 			dp.getMenuAccountHistory().click();
 			
-			//Clicks on the Receiptnumber in Account History 
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
+			
+			while(!ahp.getReceiptNumberTable().isDisplayed())
+			{
+				Thread.sleep(2000);	
+				System.out.println("waiting");
+			}
+			
+			//Clicks on the Receiptnumber in Account History 
+			
 			ahp.getSearchField().sendKeys("ServiceNC");
+			
 			while(!ahp.getReceiptNumberTable().isDisplayed())
 			{
 				Thread.sleep(2000);	
