@@ -13,6 +13,8 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pageObjects.AcctHistoryPO;
@@ -53,9 +55,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		 Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-			Thread.sleep(2000);
-			
+						
 			ClassSignUpPO c = new ClassSignUpPO(driver);
+			
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 	
 			c.getCalendarIcon().click();
 			Thread.sleep(2000);
@@ -74,6 +78,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 					 break;
 				}
 			 }
+			 
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 			 
 			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 			for (int j= 0; j<ClassCount; j++)
@@ -156,9 +162,23 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		DashboardPO dp = new DashboardPO(driver);
 		dp.getMyAccountAccountHistory().click();
 		
+        AcctHistoryPO ahp = new AcctHistoryPO(driver);
+		
+		while(!ahp.getReceiptNumberTable().isDisplayed())
+		{
+			Thread.sleep(2000);	
+			System.out.println("waiting");
+		}
+		
 		//Clicks on the Receiptnumber in Account History 
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
+		
 		ahp.getSearchField().sendKeys(receiptNumber);
+				
+		while(!ahp.getReceiptNumberTable().isDisplayed())
+		{
+			Thread.sleep(2000);	
+			System.out.println("waiting");
+		}
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -235,9 +255,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	 Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -256,6 +278,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				 break;
 			}
 		 }
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		 
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -348,10 +372,22 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	Thread.sleep(2000);
 	dp.getMenuAccountHistory().click();
 
-	
-	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
+	
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
+	//Clicks on the Receiptnumber in Account History 
+	
 	ahp.getSearchField().sendKeys(receiptNumber2);
+			
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -393,9 +429,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	 Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
 		Thread.sleep(2000);
@@ -414,6 +452,8 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 				 break;
 			}
 		 }
+		 
+		 wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		 
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
@@ -497,9 +537,23 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	Thread.sleep(2000);
 	dp.getMenuAccountHistory().click();
 	
-	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
+	
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
+	
+	//Clicks on the Receiptnumber in Account History 
+	
 	ahp.getSearchField().sendKeys(receiptNumber4);
+		
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 		receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
 

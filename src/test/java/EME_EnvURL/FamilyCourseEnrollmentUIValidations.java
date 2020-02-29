@@ -84,8 +84,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 	Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 	Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-	Thread.sleep(2000);
-	
+		
 	ClassSignUpPO c = new ClassSignUpPO(driver);
 	WebDriverWait wait = new WebDriverWait(driver, 50);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -159,6 +158,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 }
 	@Test(priority = 2, description = "Course Details Pop Up Screen Ui validations")
 	public void PopUpScreenUIValidations() throws IOException, InterruptedException {
+		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		Thread.sleep(2000);
 		
@@ -262,7 +262,6 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 				{
 					if (Labels.get(j).getText().contains("Pay Course Fee"))
 						Labels.get(j).click();
-								
 				}
 					}
 			
@@ -357,7 +356,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	
 	}
 //	@AfterTest
-    @AfterClass
+   @AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;

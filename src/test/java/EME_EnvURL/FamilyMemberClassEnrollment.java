@@ -72,8 +72,7 @@ public class FamilyMemberClassEnrollment extends base{
 		driver.get(EMELoginPage);
 	}
 	
-	@Test(priority = 1, description = "Family Member Enrollment")
-	public void FamilyMemberEnrollment() throws IOException, InterruptedException {
+public void FamilyMemberEnrollment() throws IOException, InterruptedException {
 	reusableMethods.activeMemberLogin("hoh", "Testing1!");
 	//reusableMethods.unenrollFromClass();
 	//Thread.sleep(2000);
@@ -94,8 +93,7 @@ public class FamilyMemberClassEnrollment extends base{
 	Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 	Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 	Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-	Thread.sleep(2000);
-	
+		
 	ClassSignUpPO c = new ClassSignUpPO(driver);
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -224,11 +222,11 @@ public class FamilyMemberClassEnrollment extends base{
 														
 			if (c.getMemberSections().get(i).getText().contains(member2))
 					{
-						
+							
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains("Pay Single Class Fee"))
-					Labels.get(j).click();
+						Labels.get(j).click();
 				}
 					}
 			
@@ -360,9 +358,23 @@ public class FamilyMemberClassEnrollment extends base{
 	DashboardPO dp = new DashboardPO(driver);
 	dp.getMyAccountAccountHistory().click();
 	
-	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
+	
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
+	
+	//Clicks on the Receiptnumber in Account History 
+	
 	ahp.getSearchField().sendKeys(receiptNumber);
+	
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 		receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -379,7 +391,6 @@ public class FamilyMemberClassEnrollment extends base{
 	Thread.sleep(1000);
 	reusableMethods.returnToDashboard();
 	
-
 	//Note the package units after enrolling the member with existing package
 	IntPackageCountAfter = reusableMethods.getPackageUnitsForMember(packageName,member6);
 	System.out.println("After "+ IntPackageCountAfter);
@@ -387,7 +398,6 @@ public class FamilyMemberClassEnrollment extends base{
 	//Verifies the package units is now decremented by two units
 	IntPackageCountBefore  = IntPackageCountBefore-2;
 	Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter); 
-	
 	reusableMethods.unenrollFromClass();
 	reusableMethods.memberLogout();
 }
