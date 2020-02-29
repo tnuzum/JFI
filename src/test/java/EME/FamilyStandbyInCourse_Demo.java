@@ -86,8 +86,7 @@ public class FamilyStandbyInCourse_Demo extends base{
 	Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 	Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 	Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-	Thread.sleep(2000);
-	
+		
 	ClassSignUpPO c = new ClassSignUpPO(driver);
 	WebDriverWait wait = new WebDriverWait(driver, 50);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));

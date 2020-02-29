@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import pageObjects.AcctHistoryPO;
@@ -54,9 +56,11 @@ private static String dsiredMonthYear = "December 2020";
 		 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-			Thread.sleep(2000);
-			
+						
 			ClassSignUpPO c = new ClassSignUpPO(driver);
+			
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 	
 /*			c.getCourseFilter().click();
 			c.getCourseKeyword().click();
@@ -77,7 +81,9 @@ private static String dsiredMonthYear = "December 2020";
 						}
 							
 					}
-					Thread.sleep(2000);
+			
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+			
 			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 			for (int j= 0; j<CourseCount; j++)
 			 {
@@ -152,9 +158,23 @@ private static String dsiredMonthYear = "December 2020";
 		DashboardPO dp = new DashboardPO(driver);
 		dp.getMyAccountAccountHistory().click();
 		
-		//Clicks on the Receiptnumber in Account History 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
+		
+		while(!ahp.getReceiptNumberTable().isDisplayed())
+		{
+			Thread.sleep(2000);	
+			System.out.println("waiting");
+		}
+		
+		//Clicks on the Receiptnumber in Account History 
+		
 		ahp.getSearchField().sendKeys(receiptNumber);
+		
+		while(!ahp.getReceiptNumberTable().isDisplayed())
+		{
+			Thread.sleep(2000);	
+			System.out.println("waiting");
+		}
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -234,11 +254,11 @@ private static String dsiredMonthYear = "December 2020";
 	 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		
-		
-		Thread.sleep(2000);
-		
+						
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 //		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
 //		driver.findElement(By.xpath("//label[@id='dec']")).click();
@@ -254,7 +274,8 @@ private static String dsiredMonthYear = "December 2020";
 					}
 						
 				}
-		Thread.sleep(2000);
+				
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 			 
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<CourseCount; j++)
@@ -340,10 +361,22 @@ private static String dsiredMonthYear = "December 2020";
 	Thread.sleep(2000);
 	dp.getMenuAccountHistory().click();
 
-	
-	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
+	
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
+	//Clicks on the Receiptnumber in Account History 
+	
 	ahp.getSearchField().sendKeys(receiptNumber2);
+		
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -388,9 +421,11 @@ private static String dsiredMonthYear = "December 2020";
 	 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Thread.sleep(2000);
-		
+				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 //		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
 //		driver.findElement(By.xpath("//label[@id='dec']")).click();
@@ -406,7 +441,8 @@ private static String dsiredMonthYear = "December 2020";
 					}
 						
 				}
-		Thread.sleep(2000);
+				
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 				 
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -484,9 +520,23 @@ private static String dsiredMonthYear = "December 2020";
 	Thread.sleep(2000);
 	dp.getMenuAccountHistory().click();
 	
-	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
+	
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
+	
+	//Clicks on the Receiptnumber in Account History 
+	
 	ahp.getSearchField().sendKeys(receiptNumber4);
+		
+	while(!ahp.getReceiptNumberTable().isDisplayed())
+	{
+		Thread.sleep(2000);	
+		System.out.println("waiting");
+	}
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 		receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
 

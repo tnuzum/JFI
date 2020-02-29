@@ -81,8 +81,7 @@ public class FamilyClassEnrollmentUIValidations extends base{
 	Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 	Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 	Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-	Thread.sleep(2000);
-	
+		
 	ClassSignUpPO c = new ClassSignUpPO(driver);
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
