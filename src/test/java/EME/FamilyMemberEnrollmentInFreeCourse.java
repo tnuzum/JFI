@@ -228,7 +228,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 							
 				}
 		c.getContinueButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		ThankYouPO TY = new ThankYouPO(driver);
@@ -288,6 +288,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 			System.out.println("waiting");
 		}
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
+			
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
 			if (receiptNumber1.equals(receiptNumber)) {
