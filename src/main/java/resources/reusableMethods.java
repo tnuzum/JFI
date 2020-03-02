@@ -3,6 +3,7 @@ package resources;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import pageObjects.CalendarPO;
+import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
@@ -135,7 +137,7 @@ public class reusableMethods extends base {
 				l.getuserName().sendKeys(username);
 				l.getuserPassword().sendKeys(password);
 				l.getLoginButton().click();
-				reusableWaits.waitForDashboardLoaded();
+				reusableWaits.waitForDashboardLoaded1();
 				return null;
 			}
 
@@ -145,7 +147,7 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("collectionsMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("collectionsMember1_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		reusableWaits.waitForDashboardLoaded1();
 		return null;
 	}
 
@@ -155,7 +157,7 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("prospectMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("prospectMember1_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		reusableWaits.waitForDashboardLoaded1();
 		return null;
 	}
 
@@ -168,6 +170,8 @@ public class reusableMethods extends base {
 
 	public static String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 		d.getDashboardButton().click();
 //		d.getBreadcrumbDashboard().click();
 		reusableWaits.waitForDashboardLoaded();
@@ -191,29 +195,39 @@ public class reusableMethods extends base {
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
 //		Thread.sleep(2000);
 		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
-		System.out.println(enrolled);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
+//		System.out.println(enrolled);
+		
 		if (enrolled == true)
 		{
-		
-			d.getMyClassesClass1GearButton().click();
-		Thread.sleep(2000);
-		d.getmyClassesUnenrollButton().click();
-		Thread.sleep(2000);
-		UnenrollPO u = new UnenrollPO(driver);
-			u.getUnenrollButton().click();
-				Thread.sleep(2000);
-			u.getUnenrollConfirmYesButton().click();
-			Thread.sleep(2000);
-			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
-			u.getUnenrollConfirmYesButton().click();
-			Thread.sleep(1000);
+			while (!d.getMyClassesClass1GearButton().isDisplayed()) 
+			{
+				Thread.sleep(1000);
+				System.out.println("Sleeping for 1 second");
 			}
+			
+	    WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));	
+		d.getMyClassesClass1GearButton().click();
+		
+		wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+		wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+		d.getmyClassesUnenrollButton().click();
+		UnenrollPO u = new UnenrollPO(driver);
+		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+		u.getUnenrollButton().click();
+		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+		u.getUnenrollConfirmYesButton().click();
+		wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+		u.getUnenrollConfirmYesButton().click();
+			
+		}
 		else
 		{
 			System.out.println("Not enrolled already");
 		}
-	 
+		reusableMethods.returnToDashboard();
 		return null;
 	
 }
@@ -243,14 +257,16 @@ public class reusableMethods extends base {
 		Thread.sleep(1000);
 		cp.getUnEnrollBtn().click();
 		UnenrollPO u = new UnenrollPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		u.getUnenrollConfirmYesButton().click();
-		Thread.sleep(2000);
-			
+		wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
-		Thread.sleep(2000);
+		
 		reusableMethods.returnToDashboard();
 		
 		return null;
@@ -418,6 +434,43 @@ public class reusableMethods extends base {
 		Assert.assertTrue(TotalLabelPresent);
 		return null;
 
+	}
+	
+	public static Object SelectTomorrowDate() throws InterruptedException{
+		
+	ClassSignUpPO c = new ClassSignUpPO(driver);
+	c.getCalendarIcon().click();
+	Thread.sleep(2000);
+	
+	SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d yyyy");
+	Calendar today = Calendar.getInstance();
+	 today.add(Calendar.DAY_OF_YEAR, 1);
+	 String tomorrowsMonthDateYear = dateFormat.format(today.getTime());
+	
+	 String[] monthDateYear = tomorrowsMonthDateYear.split(" ");
+	 String monthYear = monthDateYear[0].toUpperCase() + " " + monthDateYear[2];
+	 String tomorrowsDate = monthDateYear[1];
+	 
+	 String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
+	
+		while (!monthName.contains(monthYear))
+		{
+			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]")).click();
+			monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
+		}
+
+
+	int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
+	for (int i = 0; i < daycount; i++) {
+		String date = driver.findElements(By.tagName("td")).get(i).getText();
+		if (date.contains(tomorrowsDate)) {
+			driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
+			break;
+		}
+		
+	}
+	
+	return null;
 	}
 
 }

@@ -33,7 +33,7 @@ private static String dsiredMonthYear = "December 2020";
 
 //	@BeforeTest
 	@BeforeClass
-		public void initialize() throws IOException, InterruptedException
+	public void initialize() throws IOException, InterruptedException
 		{
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
@@ -115,7 +115,7 @@ private static String dsiredMonthYear = "December 2020";
 			
 			
 		c.getContinueButton().click();
-			Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		ThankYouPO TY = new ThankYouPO(driver);
@@ -200,6 +200,7 @@ private static String dsiredMonthYear = "December 2020";
 		CalendarPO cp = new CalendarPO(driver);
 		
 		Thread.sleep(2000);
+		reusableWaits.waitForDashboardLoaded();
 		d.getMenuMyActivies().click();
 		
 		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1"))
@@ -219,10 +220,13 @@ private static String dsiredMonthYear = "December 2020";
 		cp.getCalEventTitle().click();
 		cp.getUnEnrollBtn().click();
 		UnenrollPO u = new UnenrollPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		u.getUnenrollConfirmYesButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
 		
@@ -316,7 +320,7 @@ private static String dsiredMonthYear = "December 2020";
 		
 		
 	c.getContinueButton().click();
-		Thread.sleep(2000);
+	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	ThankYouPO TY = new ThankYouPO(driver);
@@ -475,7 +479,7 @@ private static String dsiredMonthYear = "December 2020";
 		
 		
 	c.getContinueButton().click();
-		Thread.sleep(2000);
+	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	ThankYouPO TY = new ThankYouPO(driver);

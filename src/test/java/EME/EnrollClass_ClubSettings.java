@@ -40,7 +40,7 @@ public class EnrollClass_ClubSettings extends base {
    	public void ViewClassesUncheckedForClub() throws InterruptedException {
        	
        	reusableMethods.activeMemberLogin("CantCclasses", "Testing1!");
-       	reusableWaits.waitForDashboardLoaded();
+       	reusableWaits.waitForDashboardLoaded1();
    		Thread.sleep(2000);
    		Assert.assertFalse(reusableMethods.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-classschedule')]")));
    		reusableMethods.memberLogout();
@@ -65,21 +65,8 @@ public class EnrollClass_ClubSettings extends base {
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-	c.getCalendarIcon().click();
-	Thread.sleep(2000);
-	DateFormat dateFormat = new SimpleDateFormat("d");
-	Calendar today = Calendar.getInstance();
-	today.add(Calendar.DAY_OF_YEAR, 1);
-	String tomorrowsDate = dateFormat.format(today.getTime());
-
-	int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-	for (int i = 0; i < daycount; i++) {
-		String date = driver.findElements(By.tagName("td")).get(i).getText();
-		if (date.contains(tomorrowsDate)) {
-			driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-			break;
-		}
-	}
+	reusableMethods.SelectTomorrowDate();
+	
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 	int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();

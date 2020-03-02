@@ -46,7 +46,7 @@ public class EmailConfirmations  {
 	    Assert.assertTrue(emailUtils.isTextInMessage(email1, "You have been successfully enrol=led in the following class."));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email1, "Location: =Jonas Sports-Plex"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email1, "Class Name: Free Class Auto"));
-	    SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/dd/yyyy");
+	    SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/d/yyyy");
 		Calendar today11 = Calendar.getInstance();
 		 today11.add(Calendar.DAY_OF_YEAR, 1);
 		 String tomorrowsDate = dateFormat11.format(today11.getTime());
@@ -72,7 +72,7 @@ public class EmailConfirmations  {
 	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "You have unenrolled from the following  class."));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "Location: Jonas Sports-Plex"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email2, "Class Name: Free Class Auto"));
-	    SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/dd/yyyy");
+	    SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/d/yyyy");
 		Calendar today11 = Calendar.getInstance();
 		 today11.add(Calendar.DAY_OF_YEAR, 1);
 		 String tomorrowsDate = dateFormat11.format(today11.getTime());
