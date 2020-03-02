@@ -44,7 +44,7 @@ public class ShopAndPurchasePackages extends base {
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 //		   System.out.println(sp.getPurchaseButtons().size());
 		for (int i = 0; i < sp.getPurchaseButtons().size(); i++) {
 			Assert.assertEquals("Purchase", sp.getPurchaseButtons().get(i).getText());
@@ -262,7 +262,7 @@ public class ShopAndPurchasePackages extends base {
 		d.getMenuShopPackages().click();
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("Service");
@@ -426,7 +426,7 @@ public class ShopAndPurchasePackages extends base {
 	d.getMenuShopPackages().click();
 	
 	WebDriverWait wait1 = new WebDriverWait(driver, 30);
-	wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
+	wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 	
 	ShopPackagesPO sp = new ShopPackagesPO(driver);
 	sp.getKeyWord().sendKeys("Service");
@@ -599,7 +599,7 @@ public class ShopAndPurchasePackages extends base {
 		d.getMenuShopPackages().click();
 		
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
+		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("Service");
 		
@@ -643,7 +643,7 @@ public class ShopAndPurchasePackages extends base {
 		d.getMenuShopPackages().click();
 		
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
+		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("Service");
 		
@@ -689,7 +689,7 @@ public class ShopAndPurchasePackages extends base {
 		d.getMenuShopPackages().click();
 		
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
+		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("Service");
 		
