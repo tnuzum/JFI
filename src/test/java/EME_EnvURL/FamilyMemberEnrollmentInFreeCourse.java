@@ -67,10 +67,11 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(EMELoginPage);
-	}
 
+	}
 	
-public void FamilyEnrollInFreeCourse() throws IOException, InterruptedException {
+	@Test(priority = 1, description = "Family Member Enrollment")
+	public void FamilyEnrollInFreeCourse() throws IOException, InterruptedException {
 	reusableMethods.activeMemberLogin("hoh", "Testing1!");
 	//reusableMethods.unenrollFromClass();
 	//Thread.sleep(2000);
@@ -230,7 +231,7 @@ public void FamilyEnrollInFreeCourse() throws IOException, InterruptedException 
 							
 				}
 		c.getContinueButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		ThankYouPO TY = new ThankYouPO(driver);
@@ -290,6 +291,7 @@ public void FamilyEnrollInFreeCourse() throws IOException, InterruptedException 
 			System.out.println("waiting");
 		}
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
+			
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
 			if (receiptNumber1.equals(receiptNumber)) {

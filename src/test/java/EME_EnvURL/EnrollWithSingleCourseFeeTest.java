@@ -31,9 +31,9 @@ import resources.reusableWaits;
 
 public class EnrollWithSingleCourseFeeTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String courseToEnroll = "FIT FOR LIFE";
-	private static String courseNameDisplayed = "Fit For Life";
-	private static String courseTimeDisplayed = "Start Time: 9:00 AM";
+	private static String courseToEnroll = "FEECOURSE";
+	private static String courseNameDisplayed = "FeeCourse";
+	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
@@ -46,6 +46,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(EMELoginPage);
+
 	}
 
 	@Test(priority = 1, description = "Ui validations")
@@ -160,7 +161,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		}
 		PM.getPaymentButton().click();
 
-		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 		//Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -348,7 +350,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				}
 				PM.getPaymentButton().click();
 
-				Thread.sleep(2000);
+				wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
@@ -509,6 +511,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		PM.getNewCardButton().click();
+		Thread.sleep(3000);
 		
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
 		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
@@ -553,7 +556,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				}
 				PM.getPaymentButton().click();
 
-				Thread.sleep(2000);
+				wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
@@ -639,6 +642,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		CalendarPO cp = new CalendarPO(driver);
 		
 		Thread.sleep(2000);
+		reusableWaits.waitForDashboardLoaded();
 		d.getMenuMyActivies().click();
 		
 		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1"))
@@ -658,10 +662,13 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		cp.getCalEventTitle().click();
 		cp.getUnEnrollBtn().click();
 		UnenrollPO u = new UnenrollPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		u.getUnenrollConfirmYesButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
 		

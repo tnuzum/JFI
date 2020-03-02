@@ -67,6 +67,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(EMELoginPage);
+
 	}
 	
 	@Test(priority = 1, description = "Course Search Screen Ui validations")

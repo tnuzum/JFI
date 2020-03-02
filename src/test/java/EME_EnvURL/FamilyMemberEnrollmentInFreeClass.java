@@ -65,8 +65,8 @@ public class FamilyMemberEnrollmentInFreeClass extends base{
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(EMELoginPage);
-	}
 
+	}
 	
 	@Test(priority = 1, description = "Family Member Enrollment")
 	public void FamilyEnrollInFreeClass() throws IOException, InterruptedException {
@@ -88,21 +88,8 @@ public class FamilyMemberEnrollmentInFreeClass extends base{
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-	c.getCalendarIcon().click();
-	Thread.sleep(2000);
-	DateFormat dateFormat = new SimpleDateFormat("d");
-	Calendar today = Calendar.getInstance();
-	today.add(Calendar.DAY_OF_YEAR, 1);
-	String tomorrowsDate = dateFormat.format(today.getTime());
-
-	int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-	for (int i = 0; i < daycount; i++) {
-		String date = driver.findElements(By.tagName("td")).get(i).getText();
-		if (date.contains(tomorrowsDate)) {
-			driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-			break;
-		}
-	}
+	reusableMethods.SelectTomorrowDate();
+	
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 	
 	c.getCourseFilter().click();
@@ -236,7 +223,7 @@ public class FamilyMemberEnrollmentInFreeClass extends base{
 							
 				}
 		c.getContinueButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		ThankYouPO TY = new ThankYouPO(driver);
@@ -280,23 +267,27 @@ public class FamilyMemberEnrollmentInFreeClass extends base{
 		dp.getMyAccountAccountHistory().click();
 		
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("accountHistory")));
 		
-		while(!ahp.getReceiptNumberTable().isDisplayed())
+/*		while(!ahp.getReceiptNumberTable().isDisplayed())
 		{
 			Thread.sleep(2000);	
 			System.out.println("waiting");
-		}
+		}*/
 		
 		//Clicks on the Receiptnumber in Account History 
 		
 		ahp.getSearchField().sendKeys(receiptNumber);
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("accountHistory"))));
 					
-		while(!ahp.getReceiptNumberTable().isDisplayed())
+/*		while(!ahp.getReceiptNumberTable().isDisplayed())
 		{
 			Thread.sleep(2000);	
 			System.out.println("waiting");
-		}
+		}*/
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
+			
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
 			if (receiptNumber1.equals(receiptNumber)) {

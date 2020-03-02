@@ -72,6 +72,7 @@ public class FamilyMemberCourseEnrollment extends base{
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(EMELoginPage);
+
 	}
 	
 	@Test(priority = 1, description = "Family Member Enrollment")
@@ -329,7 +330,7 @@ public class FamilyMemberCourseEnrollment extends base{
 	}
 	PM.getPaymentButton().click();
 
-	Thread.sleep(2000);
+	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	//Verifies the success message
 	Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 	PP.getPopupOKButton().click();
@@ -390,6 +391,7 @@ public class FamilyMemberCourseEnrollment extends base{
 		System.out.println("waiting");
 	}
 	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
+		
 		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
 
 		if (receiptNumber3.equals(receiptNumber2)) {

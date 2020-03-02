@@ -6,10 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
@@ -27,7 +29,6 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	private static String classStartMonth = "DEC";
 	private static String classStartDate = "22";
 	public static SoftAssert softAssertion = new SoftAssert();
-	
 //	@BeforeTest
 	@BeforeClass
 	@Parameters({"EMELoginPage"})
@@ -37,12 +38,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		driver.get(EMELoginPage);
 
 	}
-
 	
 	@Test(priority = 1, description = "Validating that Frozen member cannot enroll When the club settings won't allow")
 	public void FrozenMemberCannotEnroll() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("freeze", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		reusableWaits.waitForDashboardLoaded1();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
@@ -55,21 +55,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		reusableMethods.SelectTomorrowDate();
+		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
@@ -85,7 +72,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 2, description = "Validating that Terminated member cannot enroll When the club settings won't allow")
 	public void TerminatedMemberCannotEnroll() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("terminate", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		reusableWaits.waitForDashboardLoaded1();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
@@ -97,21 +84,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		reusableMethods.SelectTomorrowDate();
+		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
@@ -140,21 +114,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		reusableMethods.SelectTomorrowDate();
+		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -340,21 +301,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		
+		reusableMethods.SelectTomorrowDate();
 		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 							
@@ -452,23 +400,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		 today.add(Calendar.DAY_OF_YEAR, 1);
-		 String tomorrowsDate = dateFormat.format(today.getTime());
-		 
-		 int daycount = driver.findElements(By.tagName("td")).size(); //Get the daycount from the calendar
-		 for (int i= 0; i<daycount; i++)
-		 {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate))
-			{
-				 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				 break;
-			}
-		 }
+		reusableMethods.SelectTomorrowDate();
 	
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));				
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -487,7 +419,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		c.getPopupSignUpButton().click();
 		Thread.sleep(500);
 		c.getContinueButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	softAssertion.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	
@@ -505,20 +437,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	}
 
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-	c.getCalendarIcon().click();
-	Thread.sleep(500);
-	 
-	  for (int i= 0; i<daycount; i++)
-	 {
-		String date = driver.findElements(By.tagName("td")).get(i).getText();
-		if (date.contains(tomorrowsDate))
-		{
-			 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-			 break;
-		}
-	 }
-	  
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+	
+	reusableMethods.SelectTomorrowDate();
+	
+	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+	
 	  for (int j= 0; j<ClassCount; j++)
 		 {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
