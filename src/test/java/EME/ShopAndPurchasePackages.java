@@ -38,6 +38,9 @@ public class ShopAndPurchasePackages extends base {
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
 //		   System.out.println(sp.getPurchaseButtons().size());
 		for (int i = 0; i < sp.getPurchaseButtons().size(); i++) {
 			Assert.assertEquals("Purchase", sp.getPurchaseButtons().get(i).getText());
@@ -152,7 +155,8 @@ public class ShopAndPurchasePackages extends base {
 				}
 				PM.getPaymentButton().click();
 
-				Thread.sleep(2000);
+				WebDriverWait wait = new WebDriverWait(driver, 30);
+				wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 		//Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -233,7 +237,12 @@ public class ShopAndPurchasePackages extends base {
 		}
 
 		//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-//		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+		
+		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank())
+		{
+			Thread.sleep(500);
+		}
+		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 				.contains(FormatTotalAmt));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -247,6 +256,10 @@ public class ShopAndPurchasePackages extends base {
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
+		
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("Service");
 		
@@ -302,7 +315,8 @@ public class ShopAndPurchasePackages extends base {
 		}
 		PM.getPaymentButton().click();
 
-		Thread.sleep(2000);
+		
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -384,7 +398,12 @@ public class ShopAndPurchasePackages extends base {
 				}
 
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-//				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+				while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank())
+				{
+					Thread.sleep(500);
+				}
+				
+				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 						.contains(FormatTotalAmt1));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -401,6 +420,10 @@ public class ShopAndPurchasePackages extends base {
 	Thread.sleep(2000);
 	DashboardPO d = new DashboardPO(driver);
 	d.getMenuShopPackages().click();
+	
+	WebDriverWait wait1 = new WebDriverWait(driver, 30);
+	wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
+	
 	ShopPackagesPO sp = new ShopPackagesPO(driver);
 	sp.getKeyWord().sendKeys("Service");
 	
@@ -424,6 +447,7 @@ public class ShopAndPurchasePackages extends base {
 	
 			
 				PM.getNewCardButton().click();
+				Thread.sleep(2000);
 				
 				WebDriverWait wait = new WebDriverWait(driver, 10);
 				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
@@ -468,7 +492,7 @@ public class ShopAndPurchasePackages extends base {
 			//Clicks the Pay button
 			PM.getPaymentButton().click();
 
-			Thread.sleep(2000);
+			wait1.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			//Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -549,7 +573,11 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 			//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-//			System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank())
+			{
+				Thread.sleep(500);
+			}
+			System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
 			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 					.contains(FormatTotalAmt2));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
@@ -565,6 +593,9 @@ public class ShopAndPurchasePackages extends base {
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
+		
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("Service");
 		
@@ -606,6 +637,9 @@ public class ShopAndPurchasePackages extends base {
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
+		
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("Service");
 		
@@ -649,6 +683,9 @@ public class ShopAndPurchasePackages extends base {
 		Thread.sleep(2000);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
+		
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']"))));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("Service");
 		

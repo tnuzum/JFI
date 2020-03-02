@@ -16,6 +16,7 @@ public class UnenrollPO {
 	By unenrollConfirmYesButton = By.xpath("//button[contains(@class, 'swal2-confirm')]");
 	By notEligibleMessage = By.xpath("//div[contains(@class,'alert-danger')]"); // returns "We apologize, this class is not eligible for unenrollment."
 	By cancelButton = By.xpath("//div[contains(@class,'alert-danger')]/div");
+	By popupMessageBox = By.xpath("//div[contains(@class, 'swal2-popup')]");
 
 	
 // CONSTRUCTOR
@@ -49,5 +50,11 @@ public class UnenrollPO {
 	{
 		return driver.findElement(cancelButton);
 	}
+	
+	public WebElement getPopupMessageBox()
+	{
+		return driver.findElement(popupMessageBox);
+	}
+	
 	
 }

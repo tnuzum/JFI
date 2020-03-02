@@ -53,8 +53,7 @@ public class EnrollClassByBuyingPackage extends base {
 	public void UIValidations() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		reusableMethods.unenrollFromClass();
-		Thread.sleep(2000);
-		reusableMethods.returnToDashboard();
+		
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
@@ -66,21 +65,7 @@ public class EnrollClassByBuyingPackage extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		reusableMethods.SelectTomorrowDate();
 		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -169,7 +154,8 @@ public class EnrollClassByBuyingPackage extends base {
 		}
 		PM.getPaymentButton().click();
 
-		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 		//Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -258,8 +244,7 @@ public class EnrollClassByBuyingPackage extends base {
 	public void EnrollWithSavedCard() throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"), prop.getProperty("activeMember7_password"));
 		reusableMethods.unenrollFromClass();
-		Thread.sleep(2000);
-		reusableMethods.returnToDashboard();
+		
 		DashboardPO d = new DashboardPO(driver);
 		
 		d.getMyClassesScheduleButton().click();
@@ -269,21 +254,7 @@ public class EnrollClassByBuyingPackage extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCalendarIcon().click();
-		Thread.sleep(1000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		reusableMethods.SelectTomorrowDate();
 		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -364,7 +335,7 @@ public class EnrollClassByBuyingPackage extends base {
 				}
 				PM.getPaymentButton().click();
 
-				Thread.sleep(2000);
+				wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
@@ -450,8 +421,7 @@ public class EnrollClassByBuyingPackage extends base {
 		Boolean CloseBtnPresent;
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
 		reusableMethods.unenrollFromClass();
-		Thread.sleep(1000);
-		reusableMethods.returnToDashboard();
+		
 		DashboardPO d = new DashboardPO(driver);
 		
 		d.getMyClassesScheduleButton().click();
@@ -461,21 +431,7 @@ public class EnrollClassByBuyingPackage extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCalendarIcon().click();
-		Thread.sleep(1000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		reusableMethods.SelectTomorrowDate();
 		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -528,6 +484,7 @@ public class EnrollClassByBuyingPackage extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		PM.getNewCardButton().click();
+		Thread.sleep(2000);
 		
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
 		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
@@ -572,7 +529,7 @@ public class EnrollClassByBuyingPackage extends base {
 				}
 				PM.getPaymentButton().click();
 
-				Thread.sleep(2000);
+				wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
@@ -657,31 +614,40 @@ public class EnrollClassByBuyingPackage extends base {
 		DashboardPO d = new DashboardPO(driver);
 		
 		Thread.sleep(2000);
+		reusableWaits.waitForDashboardLoaded();
 		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 //		System.out.println(enrolled);
-//			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 		if (enrolled == true) {
 
-			while (!d.getMyClassesClass1GearButton().isDisplayed()) {
-				Thread.sleep(1000);
-//				System.out.println("Sleeping for 1 second");
+			while (!d.getMyClassesClass1GearButton().isDisplayed()) 
+			{
+			Thread.sleep(1000);
+			System.out.println("Sleeping for 1 second");
 			}
+		    WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));	
 			d.getMyClassesClass1GearButton().click();
-			Thread.sleep(2000);
+			
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
 			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(2000);
 			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 			u.getUnenrollButton().click();
-			Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 			u.getUnenrollConfirmYesButton().click();
-			Thread.sleep(2000);
-			AssertJUnit.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
+			
 		}
 
 		else {
 			System.out.println("enrollement not displayed");
 		}
+		reusableMethods.returnToDashboard();
+		reusableMethods.memberLogout();
 
 	}
 

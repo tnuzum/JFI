@@ -36,7 +36,7 @@ public class EnrollCourse_ClubSettings extends base {
    	public void ViewCoursesUncheckedForClub() throws InterruptedException {
        	
        	reusableMethods.activeMemberLogin("CantCcourses", "Testing1!");
-       	reusableWaits.waitForDashboardLoaded();
+       	reusableWaits.waitForDashboardLoaded1();
    		Thread.sleep(2000);
    		Assert.assertFalse(reusableMethods.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-courseschedule')]")));
    		reusableMethods.memberLogout();

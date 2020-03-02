@@ -39,7 +39,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 	@Test(priority = 1, description = "Validating that Frozen member cannot enroll When the club settings won't allow")
 	public void FrozenMemberCannotEnroll() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("freeze", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		reusableWaits.waitForDashboardLoaded1();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyCoursesEventsScheduleButton().click();
@@ -63,7 +63,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 	@Test(priority = 2, description = "Validating that Terminated member cannot enroll When the club settings won't allow")
 	public void TerminatedMemberCannotEnroll() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("terminate", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		reusableWaits.waitForDashboardLoaded1();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyCoursesEventsScheduleButton().click();
@@ -418,7 +418,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(500);
 		c.getContinueButton().click();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		
