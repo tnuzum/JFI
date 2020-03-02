@@ -35,45 +35,48 @@ public class EnrollClass_ClubSettings extends base {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(EMELoginPage);
+
 	}
 
-	
 @Test(priority = 1, description = "View Classes Unchecked For Club won't display the Class Schedule button")
 	
-   public void ViewCoursesUncheckedForClub() throws InterruptedException {
+   	public void ViewClassesUncheckedForClub() throws InterruptedException {
        	
-       	reusableMethods.activeMemberLogin("CantCcourses", "Testing1!");
-       	reusableWaits.waitForDashboardLoaded();
+       	reusableMethods.activeMemberLogin("CantCclasses", "Testing1!");
+       	reusableWaits.waitForDashboardLoaded1();
    		Thread.sleep(2000);
-   		Assert.assertFalse(reusableMethods.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-courseschedule')]")));
+   		Assert.assertFalse(reusableMethods.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-classschedule')]")));
    		reusableMethods.memberLogout();
 
    	}
 
 @Test(priority = 2, description = "Allow  Class Enrollment Unchecked For Club won't display the Class List")
 
-	public void AllowCourseEnrollmentUncheckedForClub() throws InterruptedException {
+	public void AllowClassEnrollmentUncheckedForClub() throws InterruptedException {
    	
-   	reusableMethods.activeMemberLogin("CantnrollCourse", "Testing1!");
+   	reusableMethods.activeMemberLogin("CantnrollClass", "Testing1!");
    	reusableWaits.waitForDashboardLoaded();
    	DashboardPO d = new DashboardPO(driver);
 	BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-	d.getMyCoursesEventsScheduleButton().click();
-	Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+	d.getMyClassesScheduleButton().click();
+	Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 	Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-	Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		
+	Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+	
 	ClassSignUpPO c = new ClassSignUpPO(driver);
 	
 	WebDriverWait wait = new WebDriverWait(driver, 30);
-	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
+	reusableMethods.SelectTomorrowDate();
 	
-	int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-	for (int j = 0; j < CourseCount; j++) {
-		String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		if (courseName.contains("CANNOTBEENROLLEDCOURSE")) {
+	int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+	for (int j = 0; j < ClassCount; j++) {
+		String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+		if (className.contains("CANNOTBEENROLLEDCLASS")) {
 			driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																								// specific class
 			break;
@@ -81,8 +84,8 @@ public class EnrollClass_ClubSettings extends base {
 	}
 
 	Thread.sleep(2000);
-	Assert.assertFalse(c.getPopupSignupButtonCourse().isEnabled());
-	c.getPopupCancelButtonCourse().click();
+	Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+	c.getPopupCancelButton().click();
 	Thread.sleep(2000);
 	reusableMethods.memberLogout();
 	}
@@ -94,4 +97,3 @@ public class EnrollClass_ClubSettings extends base {
 		driver = null;
 	}
 }
-

@@ -34,21 +34,22 @@ public class EnrollInFreeClassTest extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 
 
-//	@BeforeTest
-	@BeforeClass
-	@Parameters({"EMELoginPage"})
-	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
-		driver = initializeDriver();
-		log.info("Driver Initialized");
-		driver.get(EMELoginPage);
-		}
-		
-	public void EnrollInZeroDollarClass() throws IOException, InterruptedException
+//@BeforeTest
+@BeforeClass
+@Parameters({"EMELoginPage"})
+public void initialize(String EMELoginPage) throws InterruptedException, IOException {
+	driver = initializeDriver();
+	log.info("Driver Initialized");
+	driver.get(EMELoginPage);
+
+}
+
+@Test (priority = 1, description = "Enroll in free class")
+		public void EnrollInZeroDollarClass() throws IOException, InterruptedException
 		{	
 		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
 		reusableMethods.unenrollFromClass();
-		Thread.sleep(1000);
-		reusableMethods.returnToDashboard();
+		
 			DashboardPO d = new DashboardPO(driver);
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		
@@ -62,23 +63,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 	
-			c.getCalendarIcon().click();
-			Thread.sleep(2000);
-			DateFormat dateFormat = new SimpleDateFormat("d");
-			Calendar today = Calendar.getInstance();
-			 today.add(Calendar.DAY_OF_YEAR, 1);
-			 String tomorrowsDate = dateFormat.format(today.getTime());
-			 
-			 int daycount = driver.findElements(By.tagName("td")).size(); //Get the daycount from the calendar
-			 for (int i= 0; i<daycount; i++)
-			 {
-				String date = driver.findElements(By.tagName("td")).get(i).getText();
-				if (date.contains(tomorrowsDate))
-				{
-					 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-					 break;
-				}
-			 }
+			reusableMethods.SelectTomorrowDate();
 			 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 			 
@@ -120,7 +105,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			
 			
 		c.getContinueButton().click();
-			Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		ThankYouPO TY = new ThankYouPO(driver);
@@ -150,13 +135,14 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				 //reusableWaits.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
 		reusableWaits.waitForDashboardLoaded();
+		
 		//Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(1000);
@@ -198,41 +184,46 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		}
 
 	@Test (priority = 2, description = "Unenroll from the class")
-		public void unenrollFromClass() throws IOException, InterruptedException
+	public void unenrollFromClass() throws IOException, InterruptedException
 		{	
 		DashboardPO d = new DashboardPO(driver);
-
-//		
+		reusableWaits.waitForDashboardLoaded();
+	
 			boolean enrolled = reusableMethods.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 //			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 			if (enrolled == true)
 			{
 			
-			while (!d.getMyClassesClass1GearButton().isDisplayed())
-			{
+				while (!d.getMyClassesClass1GearButton().isDisplayed()) 
+				{
 				Thread.sleep(1000);
 				System.out.println("Sleeping for 1 second");
-			}
-		d.getMyClassesClass1GearButton().click();
-			Thread.sleep(2000);
-		d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
-			UnenrollPO u = new UnenrollPO(driver);
+				}
+			    WebDriverWait wait = new WebDriverWait(driver, 10);
+				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));	
+				d.getMyClassesClass1GearButton().click();
+				
+				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+				d.getmyClassesUnenrollButton().click();
+				UnenrollPO u = new UnenrollPO(driver);
+				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 				u.getUnenrollButton().click();
-					Thread.sleep(2000);
+				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 				u.getUnenrollConfirmYesButton().click();
-				Thread.sleep(1000);
+				wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
 				
-				reusableMethods.returnToDashboard();
-				reusableMethods.memberLogout();
-				}
-		 
-			else
-				{
-		System.out.println("enrollement not displayed");
-				}
+			}
+
+			else {
+				System.out.println("enrollement not displayed");
+			}
+			
+			reusableMethods.returnToDashboard();
+			reusableMethods.memberLogout();
 		
 	}
 	
@@ -241,8 +232,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	{	
 	reusableMethods.activeMember8Login();
 	reusableMethods.unenrollFromClass();
-	Thread.sleep(1000);
-	reusableMethods.returnToDashboard();
+	
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		
@@ -262,23 +252,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		 today.add(Calendar.DAY_OF_YEAR, 1);
-		 String tomorrowsDate = dateFormat.format(today.getTime());
-		 
-		 int daycount = driver.findElements(By.tagName("td")).size(); //Get the daycount from the calendar
-		 for (int i= 0; i<daycount; i++)
-		 {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate))
-			{
-				 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				 break;
-			}
-		 }
+		reusableMethods.SelectTomorrowDate();
 		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		 
@@ -328,7 +302,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		
 		
 	c.getContinueButton().click();
-		Thread.sleep(2000);
+	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	ThankYouPO TY = new ThankYouPO(driver);
@@ -421,8 +395,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	{	
 	reusableMethods.activeMember3Login();
 	reusableMethods.unenrollFromClass();
-	Thread.sleep(1000);
-	reusableMethods.returnToDashboard();
+	
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 	
@@ -436,23 +409,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		 today.add(Calendar.DAY_OF_YEAR, 1);
-		 String tomorrowsDate = dateFormat.format(today.getTime());
-		 
-		 int daycount = driver.findElements(By.tagName("td")).size(); //Get the daycount from the calendar
-		 for (int i= 0; i<daycount; i++)
-		 {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate))
-			{
-				 driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				 break;
-			}
-		 }
+		reusableMethods.SelectTomorrowDate();
 		 
 		 wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		 
@@ -493,7 +450,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		
 		
 	c.getContinueButton().click();
-		Thread.sleep(2000);
+	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	ThankYouPO TY = new ThankYouPO(driver);
