@@ -447,7 +447,7 @@ public class ShopAndPurchasePackages extends base {
 	
 			
 				PM.getNewCardButton().click();
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 				
 				WebDriverWait wait = new WebDriverWait(driver, 10);
 				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
