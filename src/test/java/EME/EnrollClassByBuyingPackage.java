@@ -38,8 +38,8 @@ public class EnrollClassByBuyingPackage extends base {
 	private static String classInstructorDisplayed = "Class Instructor: Max Gibbs";
 	private static String buyPackageName = "Buy Day Pass";
 	private static String defaultSelection = null;
-	private static String unitsToBeSelected = "2 - $1.00/per";
-	private static String classCostInUnits = "Class Cost: 2 unit(s)";
+	private static String unitsToBeSelected = "2 - $1.00/per"; 
+	private static String classCostInUnits = "Class Cost: 2 Unit(s)";
 
 //	@BeforeTest
 	@BeforeClass

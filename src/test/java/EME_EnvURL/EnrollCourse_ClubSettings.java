@@ -31,15 +31,15 @@ public class EnrollCourse_ClubSettings extends base {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(EMELoginPage);
-	}
 
+	}
 	
 @Test(priority = 1, description = "View Courses / Events Unchecked For Club won't display the Courses / Events Schedule button")
 	
-   		public void ViewCoursesUncheckedForClub() throws InterruptedException {
+   	public void ViewCoursesUncheckedForClub() throws InterruptedException {
        	
        	reusableMethods.activeMemberLogin("CantCcourses", "Testing1!");
-       	reusableWaits.waitForDashboardLoaded();
+       	reusableWaits.waitForDashboardLoaded1();
    		Thread.sleep(2000);
    		Assert.assertFalse(reusableMethods.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-courseschedule')]")));
    		reusableMethods.memberLogout();
