@@ -39,7 +39,7 @@ public class FamilyClassEnrollmentUIValidations extends base{
 	private static String buyPackageName = "Buy Day Pass";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $1.00/per";
-	private static String classCostInUnits = "Class Cost: 2 unit(s)";
+	private static String classCostInUnits = "Class Cost: 2 Unit(s)";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";
@@ -276,6 +276,7 @@ public class FamilyClassEnrollmentUIValidations extends base{
 					if (Labels.get(j).getText().contains(buyPackageName))
 						Labels.get(j).click();
 				}
+				System.out.println(c.getClassCostinPunches().getText());
 				Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
 				WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 				Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
