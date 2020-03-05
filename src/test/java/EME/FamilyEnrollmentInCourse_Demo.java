@@ -50,7 +50,7 @@ public class FamilyEnrollmentInCourse_Demo extends base{
 	private static String member2Rate = "$9.00 or use package";
 	private static String member3 = "Freemember";
 	private static String member3Rate = "Free";
-	private static String member4 = "Freeze";
+	private static String member4 = "FreezeMember";
 	private static String member4Rate = "Not Eligible";
 	private static String member5 = "Hoh";
 	private static String member5Rate = "$9.00 or use package";
@@ -198,7 +198,9 @@ public class FamilyEnrollmentInCourse_Demo extends base{
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains("Pay Course Fee"))
-						Labels.get(j).click();
+						{Labels.get(j).click();
+						break;
+						}
 				}
 					}
 			
@@ -221,7 +223,9 @@ public class FamilyEnrollmentInCourse_Demo extends base{
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains(buyPackageName))
-						Labels.get(j).click();
+						{Labels.get(j).click();
+						break;
+						}
 				}
 				Assert.assertTrue(c.getClassCostinPunches().getText().contains(courseCostInUnits));
 				WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));

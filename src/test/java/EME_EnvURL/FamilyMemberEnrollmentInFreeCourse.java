@@ -48,7 +48,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 	private static String member2Rate = "Free";
 	private static String member3 = "Freemember";
 	private static String member3Rate = "Free";
-	private static String member4 = "Freeze";
+	private static String member4 = "FreezeMember";
 	private static String member4Rate = "Not Eligible";
 	private static String member5 = "Hoh";
 	private static String member5Rate = "Free";

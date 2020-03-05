@@ -36,12 +36,14 @@ public class EnrollCourseByBuyingPackage extends base {
 	private static String CourseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String CourseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String buyPackageName = "Buy Day Pass";
+	private static String packageName = "Day Pass";
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $1.00/per";
-	private static String classCostInUnits = "Course Cost: 2 Unit(s)";
+	private static String classCostInUnits = "Course Cost: 2 Unit(s) - Your Current Unit Value Is ";
 	private static String CourseStartDate = "Date: 12/21/2020";
+	private static int unitCount = 0;
 
 //	@BeforeTest
 	@BeforeClass
@@ -123,7 +125,13 @@ public class EnrollCourseByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
+		
+		unitCount = reusableMethods.getPackageUnits(packageName);
+		System.out.println(classCostInUnits+unitCount);
+		System.out.println(c.getClassCostinPunches().getText());
+		
+		
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();
@@ -327,7 +335,10 @@ public class EnrollCourseByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
+		
+		unitCount = reusableMethods.getPackageUnits(packageName);
+		
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();
@@ -521,7 +532,10 @@ public class EnrollCourseByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
+		
+		unitCount = reusableMethods.getPackageUnits(packageName);
+		
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();

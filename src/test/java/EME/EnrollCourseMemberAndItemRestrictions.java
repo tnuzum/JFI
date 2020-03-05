@@ -38,7 +38,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 	
 	@Test(priority = 1, description = "Validating that Frozen member cannot enroll When the club settings won't allow")
 	public void FrozenMemberCannotEnroll() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("freeze", "Testing1!");
+		reusableMethods.activeMemberLogin("freezemember", "Testing1!");
 		reusableWaits.waitForDashboardLoaded1();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);

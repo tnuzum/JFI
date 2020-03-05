@@ -38,16 +38,17 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	private static String courseTimeDisplayedOnSearchScreen = "5:00 PM";
 	private static String courseDuration = "30 min";
 	private static String buyPackageName = "Buy Day Pass";
+	private static String packageName = "Day Pass";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $1.00/per";
-	private static String courseCostInUnits = "Course Cost: 2 Unit(s)";
+	private static String courseCostInUnits = "Course Cost: 2 Unit(s) - Your Current Unit Value Is ";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";
 	private static String member2Rate = "$9.00 or use package";
 	private static String member3 = "Freemember";
 	private static String member3Rate = "Free";
-	private static String member4 = "Freeze";
+	private static String member4 = "FreezeMember";
 	private static String member4Rate = "Not Eligible";
 	private static String member5 = "Hoh";
 	private static String member5Rate = "$9.00 or use package";
@@ -57,6 +58,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	private static String member7Rate = "Not Eligible";
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
+	private static int unitCount = 0;
 	
 
 //	@BeforeTest
@@ -76,6 +78,8 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	reusableWaits.waitForDashboardLoaded();
 	DashboardPO d = new DashboardPO(driver);
 	BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+	
+	unitCount = reusableMethods.getPackageUnitsForMember(packageName,member5);
 	
 	d.getMyCoursesEventsScheduleButton().click();
 	
@@ -259,7 +263,9 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains("Pay Course Fee"))
-						Labels.get(j).click();
+						{Labels.get(j).click();
+						break;
+						}
 				}
 					}
 			
@@ -282,9 +288,11 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains(buyPackageName))
-						Labels.get(j).click();
+					{Labels.get(j).click();
+					break;
+					}
 				}
-				Assert.assertTrue(c.getClassCostinPunches().getText().contains(courseCostInUnits));
+				Assert.assertTrue(c.getMemberSections().get(i).getText().contains(courseCostInUnits+unitCount));
 				WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 				Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 				 defaultSelection = s.getFirstSelectedOption().getText().trim();
