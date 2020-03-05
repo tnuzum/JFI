@@ -39,9 +39,13 @@ public class EnrollClassByBuyingPackage extends base {
 	private static String classTimeDisplayed = "Start Time: 10:00 AM";
 	private static String classInstructorDisplayed = "Class Instructor: Max Gibbs";
 	private static String buyPackageName = "Buy Day Pass";
+	private static String packageName = "Day Pass";
 	private static String defaultSelection = null;
-	private static String unitsToBeSelected = "2 - $1.00/per";
-	private static String classCostInUnits = "Class Cost: 2 Unit(s)";
+	private static String unitsToBeSelected = "2 - $1.00/per"; 
+	private static String classCostInUnits = "Class Cost: 2 Unit(s) - Your Current Unit Value Is ";
+	private static int unitCount = 0;
+	
+	
 
 //	@BeforeTest
 	@BeforeClass
@@ -52,7 +56,6 @@ public class EnrollClassByBuyingPackage extends base {
 		driver.get(EMELoginPage);
 
 	}
-
 
 	@Test(priority = 1, description = "Ui validations")
 	public void UIValidations() throws IOException, InterruptedException {
@@ -103,6 +106,8 @@ public class EnrollClassByBuyingPackage extends base {
 
 		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
 		
+		unitCount = reusableMethods.getPackageUnits(packageName);
+							
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
@@ -112,7 +117,8 @@ public class EnrollClassByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
+		System.out.println(classCostInUnits+unitCount);
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		 defaultSelection = s.getFirstSelectedOption().getText().trim();
@@ -201,7 +207,7 @@ public class EnrollClassByBuyingPackage extends base {
 		//Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(3000);
-		
+									
 		DashboardPO dp = new DashboardPO(driver);
 		dp.getMyAccountAccountHistory().click();
 		
@@ -252,6 +258,8 @@ public class EnrollClassByBuyingPackage extends base {
 		
 		DashboardPO d = new DashboardPO(driver);
 		
+		unitCount = reusableMethods.getPackageUnits(packageName);
+				
 		d.getMyClassesScheduleButton().click();
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -300,7 +308,9 @@ public class EnrollClassByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
+		
+		System.out.println(classCostInUnits+unitCount);
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();
@@ -466,6 +476,8 @@ public class EnrollClassByBuyingPackage extends base {
 
 		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
 		
+		unitCount = reusableMethods.getPackageUnits(packageName);
+		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
 		{
@@ -475,7 +487,9 @@ public class EnrollClassByBuyingPackage extends base {
 					break;
 					}
 		}
-		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits));
+		
+		System.out.println(classCostInUnits+unitCount);
+		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 		defaultSelection = s.getFirstSelectedOption().getText().trim();

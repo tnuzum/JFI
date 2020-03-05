@@ -45,14 +45,14 @@ public class FamilyMemberCourseEnrollment extends base{
 	private static String packageName = "Day Pass";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $1.00/per";
-	private static String courseCostInUnits = "Course Cost: 2 Unit(s)";
+	private static String courseCostInUnits = "Course Cost: 2 Unit(s) - Your Current Unit Value Is ";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";
 	private static String member2Rate = "$9.00 or use package";
 	private static String member3 = "Freemember";
 	private static String member3Rate = "Free";
-	private static String member4 = "Freeze";
+	private static String member4 = "FreezeMember";
 	private static String member4Rate = "Not Eligible";
 	private static String member5 = "Hoh";
 	private static String member5Rate = "$9.00 or use package";
@@ -88,6 +88,7 @@ public class FamilyMemberCourseEnrollment extends base{
 	//Note the package units before enrolling the member with existing Package
 	IntPackageCountBefore = reusableMethods.getPackageUnitsForMember(packageName,member6);
 	System.out.println("Before "+IntPackageCountBefore);
+	int unitCount = reusableMethods.getPackageUnitsForMember(packageName,member5);
 	
 	d.getMyCoursesEventsScheduleButton().click();
 	
@@ -221,7 +222,8 @@ public class FamilyMemberCourseEnrollment extends base{
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains("Pay Course Fee"))
-						Labels.get(j).click();
+						{Labels.get(j).click();
+					break;}
 				}
 					}
 			
@@ -244,9 +246,11 @@ public class FamilyMemberCourseEnrollment extends base{
 				for (int j= 0; j<Labels.size(); j++)
 				{
 					if (Labels.get(j).getText().contains(buyPackageName))
-						Labels.get(j).click();
+						{Labels.get(j).click();
+						break;
+						}
 				}
-				Assert.assertTrue(c.getClassCostinPunches().getText().contains(courseCostInUnits));
+				Assert.assertTrue(paymentOptions.contains(courseCostInUnits+unitCount));
 				WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 				Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
 				 defaultSelection = s.getFirstSelectedOption().getText().trim();
