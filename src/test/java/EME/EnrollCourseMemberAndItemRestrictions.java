@@ -49,8 +49,38 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+		
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+				for (int i = 0; i < monthCount; i++)
+				{
+					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+					if (monthName.equals(CourseStartMonth2))
+					{
+						 MonthNames.findElements(By.tagName("label")).get(i).click();
+						 break;
+					}
+						
+				}
 				
-		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
+			
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+				
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+				
+		for (int j= 0; j<CourseCount; j++)
+		 {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+										
+			if (courseName.contains("FAMILYENROLLCOURSE"))
+			{
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
+				 break;
+			}
+			
+		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
 		Assert.assertEquals("Membership restrictions have limited enrollment into this course.", c.getPopUpErrorMessage().getText().trim());
@@ -72,9 +102,39 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
-
+		
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+		
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+				for (int i = 0; i < monthCount; i++)
+				{
+					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+					if (monthName.equals(CourseStartMonth2))
+					{
+						 MonthNames.findElements(By.tagName("label")).get(i).click();
+						 break;
+					}
+						
+				}
 				
-		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
+			
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+				
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+				
+		for (int j= 0; j<CourseCount; j++)
+		 {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+										
+			if (courseName.contains("FAMILYENROLLCOURSE"))
+			{
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
+				 break;
+			}
+			
+		 }
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
 		Assert.assertEquals("Membership restrictions have limited enrollment into this course.", c.getPopUpErrorMessage().getText().trim());
@@ -135,7 +195,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -289,7 +349,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 			
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
