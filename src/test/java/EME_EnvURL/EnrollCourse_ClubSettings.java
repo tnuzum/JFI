@@ -61,7 +61,7 @@ public class EnrollCourse_ClubSettings extends base {
 		
 	ClassSignUpPO c = new ClassSignUpPO(driver);
 	
-	WebDriverWait wait = new WebDriverWait(driver, 30);
+	WebDriverWait wait = new WebDriverWait(driver, 50);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 	
