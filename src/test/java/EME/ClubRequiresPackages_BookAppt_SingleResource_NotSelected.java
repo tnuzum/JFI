@@ -1,6 +1,9 @@
 package EME;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -20,15 +23,25 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.AppointmentsPO;
+import pageObjects.BreadcrumbTrailPO;
 import pageObjects.CartPO;
 import pageObjects.DashboardPO;
+import pageObjects.PurchaseConfirmationPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-
+	private static String clubName = "Studio Jonas";
+	private static String productCategory = "Personal Training";
+	private static String appointmentToBook = "PT 60 Mins-SingleResourceNotSelect";
+	private static String resourceName = "Holmes, Jeff";
+	private static String clubNameDisplayed = "ClubName: Studio Jonas";
+	private static String startTime = "Start Time: 12:00 AM";
+	
+	private static String unitsToBeSelected = "1 - $90.00/per"; 
+	
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -42,6 +55,9 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		Select s = new Select(ap.getclubs());
@@ -52,34 +68,35 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		}
 
 		int count0 = Clubs.size();
-		System.out.println(count0);
+
+		System.out.println("1 "+count0);
 
 		for (int i = 0; i < count0; i++) {
 			String category = Clubs.get(i).getText();
 
-			if (category.equals("Studio Jonas")) {
+			if (category.equals(clubName)) {
+
 				s.selectByVisibleText(category);
 				break;
 			}
 		}
 
 		WebElement bic = ap.getBookableItemCategory();
-
-		// Thread.sleep(2000);
-		while (!bic.isEnabled()) {
-			System.out.println("Waiting for Bookable Item Category drop down to not be blank");
-		}
-
+				
+		 Thread.sleep(2000);
+		
 		Select s1 = new Select(bic);
 		List<WebElement> ProductCategories = s1.getOptions();
 
 		int count = ProductCategories.size();
-		System.out.println(count);
+
+		System.out.println("2 "+count);
 
 		for (int i = 0; i < count; i++) {
 			String category = ProductCategories.get(i).getText();
+			
+			if (category.equals(productCategory)) {
 
-			if (category.equals("Personal Training")) {
 				s1.selectByVisibleText(category);
 				break;
 			}
@@ -99,7 +116,9 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		for (int j = 0; j < count1; j++) {
 			String product = Products.get(j).getText();
 
-			if (product.equals("PT 60 Mins-SingleResourceNotSelect")) {
+
+			if (product.equals(appointmentToBook)) {
+
 				s2.selectByVisibleText(product);
 				break;
 			}
@@ -112,7 +131,9 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 			System.out.println("Waiting for Resource drop down to not be blank");
 		}
 		Select s3 = new Select(rt);
-		Thread.sleep(2000);
+
+//		Thread.sleep(2000);
+
 		List<WebElement> Resources = s3.getOptions();
 
 		int count2 = Resources.size();
@@ -121,7 +142,9 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		for (int k = 0; k < count2; k++) {
 			String resource = Resources.get(k).getText();
 
-			if (resource.equals("Holmes, Jeff")) {
+
+			if (resource.equals(resourceName)) {
+
 				s3.selectByVisibleText(resource);
 				break;
 			}
@@ -147,10 +170,11 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
 		
-		Assert.assertEquals(ap.getBooksNames().getText(), "Holmes, Jeff");
+
+		Assert.assertEquals(ap.getBooksNames().getText(), "HOLMES, JEFF");
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
 		wait.until(ExpectedConditions.elementToBeClickable(st1));
 		while (!st1.isEnabled())// while button is NOT(!) enabled
 		{
@@ -162,32 +186,71 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 //					{
 //					Thread.sleep(200);
 //					}
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.elementToBeClickable(st2));
+
+		
+		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		st2.click();
-		WebElement p1 = ap.getPopup1BookButton();
-		while (!p1.isEnabled())// while button is NOT(!) enabled
-		{
-//						Thread.sleep(200); 
-		}
-
+		Assert.assertEquals(ap.getPopup1Content().getText(), "This appointment requires a package purchase. Would you like to continue?");
+		
 		ap.getPopup1BookButton().click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
+		
+		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
+		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
+		Assert.assertEquals(ap.getAppointmentTime().getText(), startTime);
+		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+		
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
-//		ap.getPackageRequiredContinueButton().click();
-//		Thread.sleep(2000);
-//		CartPO co = new CartPO(driver);
-//		co.getCheckoutButton().click();
-//		reusableMethods.useNewCard();
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'swal2-success')]")));
+		Assert.assertEquals("Date: " + tomorrowsDayAndDate, ap.getAppointmentDate().getText());
+		Assert.assertTrue(ap.getReviewSection().getText().contains("REVIEW"));
+		Assert.assertTrue(ap.getReviewSection().getText().contains("PACKAGE REQUIRED"));
+		Assert.assertTrue(ap.getReviewSection().getText().contains("This appointment requires a package."));
+		Assert.assertTrue(ap.getReviewSection().getText().contains("We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
+		
+		while(ap.getRateBox().getText().isBlank())
+				{
+			System.out.println("Waiting");
+				}
+		Assert.assertTrue(ap.getRateBox().getText().contains(appointmentToBook.toUpperCase()));
+		
+		Select s4 = new Select(driver.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
+		List<WebElement> UnitRates = s4.getOptions();
+		
+		int count4 = UnitRates.size();
+		System.out.println("4 "+count4);
 
-		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked!");
-		ap.getPopup2OKButton().click();
-
+		for (int i = 0; i < count4; i++) {
+			String unitRate = UnitRates.get(i).getText();
+			System.out.println(unitRate);
+			
+			if (unitRate.contains(unitsToBeSelected)) {
+				s4.selectByVisibleText(unitRate);
+				break;
+			}
+		}
+		
+		
+		
+		// Noting down the total amount
+		while (ap.getTotalAmount().getText().isBlank())
+		{
+			Thread.sleep(500);
+		}
+		System.out.println(ap.getTotalAmount().getText());
+		
+		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
+		String FormatTotalAmt = totalAmt[1].trim();
+		System.out.println(FormatTotalAmt);
 	}
 
-	@Test(priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
 		// reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
@@ -242,4 +305,6 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		driver = null;
 	}
 
+
 }
+

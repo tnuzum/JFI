@@ -12,7 +12,7 @@
        <class name="EME.PageLaunchTest"/>
        <class name="EME.MakePaymentTest"/>
        <class name="EME.ShopAndPurchasePackages"/>
-       <class name="EME.MakeApptTest"/>
+       <!--class name="EME.MakeApptTest"/-->
        <class name="EME.EnrollWithSingleClassFeeTest"/>
        <class name="EME.EnrollInFreeClassTest"/>
        <class name="EME.EnrollClassByBuyingPackage"/>

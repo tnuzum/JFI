@@ -41,10 +41,19 @@ public class AppointmentsPO {
 	
 	//By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
-	By popup1Content = By.xpath("//h2[@id='swal2-content']");
+	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
+	By popup1Content = By.xpath("//div[@id='swal2-content']");
 	By popup2Title = By.xpath("//h2[@id='swal2-title']");
 	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
+	
+	By appointmentName = By.xpath("//div[contains(@class, 'widget')]/h2");
+	By clubName = By.xpath("//span[contains(@class, 'float')]/small[1]");
+	By appointmentTime = By.xpath("//span[contains(@class, 'float')]/small[2]");
+	By appointmentDate = By.xpath("//span[contains(@class, 'float')]/small[3]");
+	By rateBox = By.xpath("//div[@class='col-md-12'] //div[@class = 'rate-box']");
+	By reviewSection = By.xpath("//div[@class='col-md-12']");
+	By totalAmount = By.xpath("//h2[@class='text-uppercase text-danger']");
 	
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.cssSelector("#button-change");
@@ -172,6 +181,13 @@ public class AppointmentsPO {
 		return driver.findElement(popup1BookButton);
 	}
 	
+
+	public WebElement getPopup1CancelButton()
+	{
+		return driver.findElement(popup1CancelButton);
+	}
+	
+
 	public WebElement getPopup1Content()
 	{
 		return driver.findElement(popup1Content);
@@ -184,6 +200,42 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(popup2OKButton);
 	}
+	
+	public WebElement getAppointmentTime()
+	{
+		return driver.findElement(appointmentTime);
+	}
+	
+	public WebElement getAppointmentDate()
+	{
+		return driver.findElement(appointmentDate);
+	}
+	
+	public WebElement getAppointmentName()
+	{
+		return driver.findElement(appointmentName);
+	}
+	
+	public WebElement getClubName()
+	{
+		return driver.findElement(clubName);
+	}
+	
+	public WebElement getReviewSection()
+	{
+		return driver.findElement(reviewSection);
+	}
+	
+	public WebElement getRateBox()
+	{
+		return driver.findElement(rateBox);
+	}
+	
+	public WebElement getTotalAmount()
+	{
+		return driver.findElement(totalAmount);
+	}
+	
 	public WebElement getEditApptPageHeader()
 	{
 		return driver.findElement(editApptPageHeader);
