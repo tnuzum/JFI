@@ -13,7 +13,7 @@ public class AppointmentsPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By loadingAvailabilityMessage = By.xpath("//div[@class='swal2-container.swal2-center']");
-	By clubs = By.xpath("(//select[@name='clubs'])[1]");
+	By clubs = By.xpath("(//select[@name='clubs'])");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
 	By groupApptsHeader = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div/h2");
@@ -34,12 +34,14 @@ public class AppointmentsPO {
 	By selectTimeMorningLabel1 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTimeMorningLabel2 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTime1stAvailable = By.xpath("//div[contains(@class,'tag-wrap')]/button[1]");
+	By booksNames = By.xpath("//div[contains(@class,'widget-callout p-xs clearfix')]");
 	By addlResourcesCancelButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[1]"); //cancel button
 	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book button
 	By packageRequiredContinueButton = By.xpath("//*[text()='CONTINUE']"); // Continue button
 	
 	//By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
+	By popup1Content = By.xpath("//h2[@id='swal2-content']");
 	By popup2Title = By.xpath("//h2[@id='swal2-title']");
 	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
@@ -148,6 +150,10 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(selectTime1stAvailable);
 	}
+	public WebElement getBooksNames()
+	{
+		return driver.findElement(booksNames);
+	}
 	public WebElement getAddlResourcesCancelButton()
 	{
 		return driver.findElement(addlResourcesCancelButton);
@@ -164,6 +170,11 @@ public class AppointmentsPO {
 	public WebElement getPopup1BookButton()
 	{
 		return driver.findElement(popup1BookButton);
+	}
+	
+	public WebElement getPopup1Content()
+	{
+		return driver.findElement(popup1Content);
 	}
 	public WebElement getPopup2Title()
 	{
