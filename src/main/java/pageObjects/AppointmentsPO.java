@@ -43,6 +43,7 @@ public class AppointmentsPO {
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
 	By popup1Content = By.xpath("//div[@id='swal2-content']");
+	By paymentButton = By.xpath("//button[contains(text(), 'pay')]");
 	By popup2Title = By.xpath("//h2[@id='swal2-title']");
 	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
@@ -189,6 +190,11 @@ public class AppointmentsPO {
 	public WebElement getPopup1Content()
 	{
 		return driver.findElement(popup1Content);
+	}
+	
+	public WebElement getPaymentButton()
+	{
+		return driver.findElement(paymentButton);
 	}
 	public WebElement getPopup2Title()
 	{
