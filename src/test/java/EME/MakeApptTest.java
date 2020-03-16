@@ -122,7 +122,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 					if (TomorrowDatePresent == false)
 					{
 						
-						 driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();;
+						 driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
 					   result1 = reusableWaits.loadingAvailability();
 						if (result1 == true)
