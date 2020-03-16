@@ -332,7 +332,7 @@ public class EnrollCourseByBuyingPackage extends base {
 					}
 		}
 		
-		unitCount = reusableMethods.getPackageUnits(packageName);
+		unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ccmember");
 		
 		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
@@ -529,7 +529,7 @@ public class EnrollCourseByBuyingPackage extends base {
 					}
 		}
 		
-		unitCount = reusableMethods.getPackageUnits(packageName);
+		unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ccmember");
 		
 		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));

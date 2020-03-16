@@ -254,7 +254,7 @@ public class EnrollClassByBuyingPackage extends base {
 		
 		DashboardPO d = new DashboardPO(driver);
 		
-		unitCount = reusableMethods.getPackageUnits(packageName);
+		unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ccmember");
 				
 		d.getMyClassesScheduleButton().click();
 		
@@ -472,7 +472,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
 		
-		unitCount = reusableMethods.getPackageUnits(packageName);
+		unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ncmember");
 		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
