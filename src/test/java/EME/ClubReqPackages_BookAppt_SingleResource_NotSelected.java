@@ -22,24 +22,27 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.CartPO;
 import pageObjects.DashboardPO;
+import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
+import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends base {
+public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
-	private static String appointmentToBook = "PT 60 Mins-SingleResourceNotSelect";
-	private static String resourceName = "Holmes, Jeff";
+	private static String appointmentToBook = "PT 60 Mins-SingleResourceNotSelected";
+	private static String resourceName = "FitExpert1";
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
-	private static String startTime = "Start Time: 12:00 AM";
-	
+	private static String startTime;
+	private static String tomorrowsDayAndDate;
 	private static String unitsToBeSelected = "1 - $90.00/per"; 
 	
 //	@BeforeTest
@@ -52,7 +55,7 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
+		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 
@@ -171,7 +174,7 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		Thread.sleep(3000);
 		
 
-		Assert.assertEquals(ap.getBooksNames().getText(), "HOLMES, JEFF");
+		Assert.assertEquals(ap.getBooksNames().getText(), resourceName);
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
 		
@@ -180,6 +183,7 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		{
 			System.out.println("Waiting for available times");
 		}
+		
 		st1.click();
 		WebElement st2 = ap.getSelectTime1stAvailable();
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
@@ -189,6 +193,7 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 
 		
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
+		startTime = st2.getText();
 		st2.click();
 		Assert.assertEquals(ap.getPopup1Content().getText(), "This appointment requires a package purchase. Would you like to continue?");
 		
@@ -201,13 +206,13 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
-		Assert.assertEquals(ap.getAppointmentTime().getText(), startTime);
+		Assert.assertEquals(ap.getAppointmentTime().getText(),  "Start Time: "+startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 		
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
+		tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 
 		Assert.assertEquals("Date: " + tomorrowsDayAndDate, ap.getAppointmentDate().getText());
 		Assert.assertTrue(ap.getReviewSection().getText().contains("REVIEW"));
@@ -221,7 +226,7 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 				}
 		Assert.assertTrue(ap.getRateBox().getText().contains(appointmentToBook.toUpperCase()));
 		
-		Select s4 = new Select(driver.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
+		Select s4 = new Select(driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
 		List<WebElement> UnitRates = s4.getOptions();
 		
 		int count4 = UnitRates.size();
@@ -249,18 +254,138 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
 		System.out.println(FormatTotalAmt);
+		//Verifies the Pay button contains the total amount
+		
+		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
+		
+		//Click the Pay button
+		while (!ap.getPaymentButton().isEnabled())
+		{
+			Thread.sleep(1000);
+		}
+		ap.getPaymentButton().click();
+		
+		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+
+		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
+
+//Verifies the success message
+Assert.assertEquals(ap.getPopup2Title().getText(), "Success" );
+ap.getPopup2OKButton().click();
+ThankYouPO TY = new ThankYouPO(driver);
+
+//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+reusableMethods.ThankYouPageValidations();
+
+//Note down the Receipt number
+String receiptNumber = TY.getReceiptNumber().getText();
+String receiptNumber1 = null;
+
+Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
+TY.getPrintReceiptButton().click();
+Thread.sleep(2000);
+Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+
+//Verifies the buttons on Print Receipt Popup
+reusableMethods.ReceiptPopupValidations();
+
+TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+Thread.sleep(2000);
+
+
+//Navigate to Dashboard
+int linkcount = driver.findElements(By.tagName("a")).size();
+for (int i = 0; i < linkcount; i++) {
+	if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+	{
+		// reusableWaits.linksToBeClickable();
+		driver.findElements(By.tagName("a")).get(i).click();
+		break;
 	}
+
+
+}
+reusableWaits.waitForDashboardLoaded();
+//Verifies the link navigates to the right page
+Assert.assertEquals("Dashboard", driver.getTitle());
+Thread.sleep(2000);
+
+//Note the package units after purchase
+int IntUnitCountAfter = reusableMethods.getPackageUnits(appointmentToBook);
+//System.out.println(IntUnitCountAfter);
+	
+//Verifies the package units is now incremented by one unit
+
+Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
+
+DashboardPO dp = new DashboardPO(driver);
+dp.getMyAccountAccountHistory().click();
+
+AcctHistoryPO ahp = new AcctHistoryPO(driver);
+
+while(!ahp.getReceiptNumberTable().isDisplayed())
+{
+	Thread.sleep(2000);	
+	System.out.println("waiting");
+}
+
+//Clicks on the Receiptnumber in Account History 
+
+ahp.getSearchField().sendKeys(receiptNumber);
+
+while(!ahp.getReceiptNumberTable().isDisplayed())
+{
+	Thread.sleep(2000);	
+	System.out.println("waiting");
+}
+for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
+	receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
+
+	if (receiptNumber1.equals(receiptNumber)) {
+		ahp.getReceiptNumbers().get(k).click();
+		break;
+	}
+}
+
+//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
+
+while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank())
+{
+	Thread.sleep(500);
+}
+System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+		.contains(FormatTotalAmt));
+TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+Thread.sleep(2000);
+reusableMethods.returnToDashboard();
+	}
+
+	@Test (priority = 2)
 
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
 		// reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(
-				By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/a/div/div[2]/span/strong")));
-		Assert.assertFalse(d.getMyApptsAppt1Title().getText().isBlank());
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
+		int appointmentsCount = d.getMyAppts().size();
+
+		for (int i = 0; i < appointmentsCount; i++) {
+			if (d.getMyAppts().get(i).getText().contains(tomorrowsDayAndDate))
+
+			{
+
+				if (d.getMyAppts().get(i).getText().contains(startTime)) {
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook));
+				}
+			}
+		}
+
 	}
 
-	@Test(priority = 3)
+/*	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		d.getMyApptsAppt1GearButton().click();
@@ -296,7 +421,7 @@ public class ClubRequiresPackages_BookAppt_SingleResource_NotSelected extends ba
 		Thread.sleep(2000);
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		reusableMethods.memberLogout();
-	}
+	}*/
 
 //	@AfterTest
 	@AfterClass

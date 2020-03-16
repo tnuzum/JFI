@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -30,7 +32,7 @@ public class AppointmentsPO {
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
 	By calendarMonday1stFullWeek = By.xpath("//div[@class='cal-month-view']/div/div[2]/div/mwl-calendar-month-cell[2]");
 	//By selectTimeMorningButton = By.xpath("//strong[contains(text(),'MORNING')]");
-	By selectTimeMorningButton = By.xpath("//div[@class = 'tabs-container']/div/ul/li[1]/a[1]");
+	By selectTimeMorningButton = By.xpath("//div[contains(@class, 'tabs-container')]/ul/li[1]/a[1]");
 	By selectTimeMorningLabel1 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTimeMorningLabel2 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTime1stAvailable = By.xpath("//div[contains(@class,'tag-wrap')]/button[1]");
@@ -43,6 +45,7 @@ public class AppointmentsPO {
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
 	By popup1Content = By.xpath("//div[@id='swal2-content']");
+	By paymentButton = By.xpath("//button[contains(text(), 'pay')]");
 	By popup2Title = By.xpath("//h2[@id='swal2-title']");
 	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
@@ -54,6 +57,7 @@ public class AppointmentsPO {
 	By rateBox = By.xpath("//div[@class='col-md-12'] //div[@class = 'rate-box']");
 	By reviewSection = By.xpath("//div[@class='col-md-12']");
 	By totalAmount = By.xpath("//h2[@class='text-uppercase text-danger']");
+	By additionalResources = By.xpath("//div[@class = 'mat-radio-label-content']");
 	
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.cssSelector("#button-change");
@@ -63,6 +67,7 @@ public class AppointmentsPO {
 	By editApptCancelNoButton = By.cssSelector("button[class*='cancel']");
 	By editApptCanceledMessage = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/h2[1]");
 	By editApptCanceledOKButton = By.cssSelector("button[class*='confirm']");
+	By cancelFeeSection = By.xpath("//div[contains(@class,'alert-danger')]");
 
 	// CONSTRUCTOR
 		
@@ -192,6 +197,11 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(popup1Content);
 	}
+	
+	public WebElement getPaymentButton()
+	{
+		return driver.findElement(paymentButton);
+	}
 	public WebElement getPopup2Title()
 	{
 		return driver.findElement(popup2Title);
@@ -236,6 +246,10 @@ public class AppointmentsPO {
 		return driver.findElement(totalAmount);
 	}
 	
+	public List<WebElement> getAdditionalResources()
+	{
+		return driver.findElements(additionalResources);
+	}
 	public WebElement getEditApptPageHeader()
 	{
 		return driver.findElement(editApptPageHeader);
@@ -247,6 +261,11 @@ public class AppointmentsPO {
 	public WebElement getEditApptCancelButton()
 	{
 		return driver.findElement(editApptCancelButton);
+	}
+	
+	public WebElement getCancelFeeSection()
+	{
+		return driver.findElement(cancelFeeSection);
 	}
 	public WebElement getEditApptProceedButton()
 	{

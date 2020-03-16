@@ -1,5 +1,8 @@
 package pageObjects;
 
+
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -89,12 +92,14 @@ public class DashboardPO {
 	By myApptsAppt1Title = By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/a/div/div[2]/span/strong");
 	By myApptsAppt2Title = By.xpath("//appointmentswidget/div/div[2]/div[2]/div/div/a/div/div[2]/span/strong");
 	By myApptsAppt3Title = By.xpath("//appointmentswidget/div/div[2]/div[3]/div/div/a/div/div[2]/span/strong");
+	By myAppts = By.xpath("//appointmentswidget//div[@class = 'box-clickable']");
+	By editButton = By.xpath("//appointmentswidget//button[contains(text(), 'edit')]");
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classeswidget/div/div[1]");
 //	By myClassesScheduleButton = By.xpath("//button[contains(text(),'class schedule')]");	
 	By myClassesScheduleButton = By.xpath("//button[contains(@class, 'at-widget-classschedule')]");
 //	By myClassesClass1GearButton = By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]");
-	By myClassesClass1GearButton = By.xpath("//div[@class = 'class-table-container']/div[3]/i[1]");
+	By myClassesClass1GearButton = By.xpath("//classeswidget//div[@class = 'class-table-container']/div[3]/i[1]");
 	By myClassesUnenrollButton = By.xpath("//button[@title='UNENROLL']");//button on dashboard after clicking the gear button
 	
 	By myCoursesEventsSectionLabel = By.xpath("//div[@class='homeComponent']//courseswidget/div/div[1]");
@@ -316,6 +321,16 @@ public class DashboardPO {
 	public WebElement getMyApptsEditButton()
 	{
 		return driver.findElement(myApptsEditButton);
+	}
+	
+	public List<WebElement> getMyAppts()
+	{
+		return driver.findElements(myAppts);
+	}
+	
+	public List<WebElement> getEditButton()
+	{
+		return driver.findElements(editButton);
 	}
 	
 	//My Classes
