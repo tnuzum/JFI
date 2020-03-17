@@ -34,7 +34,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
-	private static String appointmentToBook = "PT 60 Mins-ResourcesSelected";
+	private static String appointmentToBook = "PT 60 Mins-MultiResourcesSelected";
 	private static String resourceName = "PT Smith, Andrew";
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
 	private static String startTime;
@@ -357,7 +357,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 			{
 
 				if (d.getMyAppts().get(i).getText().contains(startTime)) {
-					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook));
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
 				}
 			}
 		}

@@ -163,7 +163,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 			Thread.sleep(2000);	
 			System.out.println("waiting");
 		}
+		Thread.sleep(1000);
+		
+		System.out.println(ahp.getReceiptNumbers().size());
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
+			System.out.println(ahp.getReceiptNumbers().get(k).getText());
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 
 			if (receiptNumber1.equals(receiptNumber)) {
