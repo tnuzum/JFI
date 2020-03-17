@@ -41,6 +41,8 @@ public class ClubReqPackages_CancelApptWithFee_NewCard extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-CancelWithFee";
 	private static String resourceName = "FitExpert1";
+	private static String memberName = "CancelMember1 Auto";
+	private static String additionalResourceName = "Gym";
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDayAndDate;
@@ -57,7 +59,7 @@ public class ClubReqPackages_CancelApptWithFee_NewCard extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("ncmember", "Testing1!");
+		reusableMethods.activeMemberLogin("cancelmember1", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -142,17 +144,20 @@ public class ClubReqPackages_CancelApptWithFee_NewCard extends base {
 				break;
 			}
 		}
-
+		
+		
 		boolean result1 = reusableWaits.loadingAvailability();
 		while (result1 == true) {
 //						Thread.sleep(500);	
 		}
+		
 		Boolean TomorrowDatePresent = reusableMethods
 				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
 		if (TomorrowDatePresent == false) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
+					
+			
 			result1 = reusableWaits.loadingAvailability();
 			while (result1 == true) {
 //							Thread.sleep(500);	
@@ -162,7 +167,7 @@ public class ClubReqPackages_CancelApptWithFee_NewCard extends base {
 		ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
 
-		Assert.assertEquals(ap.getBooksNames().getText(), resourceName);
+		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
 
@@ -230,6 +235,15 @@ public class ClubReqPackages_CancelApptWithFee_NewCard extends base {
 				break;
 			}
 		}
+		
+int additionalResourcesCount = ap.getAdditionalResources().size();
+		
+		for (int n = 0; n<additionalResourcesCount; n++)
+		{
+			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
+				ap.getAdditionalResources().get(n).click();
+		}
+		Thread.sleep(2000);
 
 		// Noting down the total amount
 		while (ap.getTotalAmount().getText().isBlank()) {
@@ -262,9 +276,6 @@ public class ClubReqPackages_CancelApptWithFee_NewCard extends base {
 //Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 		reusableMethods.ThankYouPageValidations();
 
-//Note down the Receipt number
-		String receiptNumber = TY.getReceiptNumber().getText();
-		String receiptNumber1 = null;
 
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
@@ -382,7 +393,7 @@ public class ClubReqPackages_CancelApptWithFee_NewCard extends base {
 				Assert.assertTrue(PM.getCloseButton().isDisplayed());
 				Assert.assertFalse(PM.getPaymentButton().isEnabled());
 //				System.out.println(PM.getNameOnCardField().getAttribute("value"));
-	     		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));
+	     		Assert.assertEquals(memberName,PM.getNameOnCardField().getAttribute("value"));
 				PM.getCardNumberField().sendKeys("4111111111111111");
 				PM.getExpirationMonth().sendKeys("12");
 				PM.getExpirationYear().sendKeys("29");

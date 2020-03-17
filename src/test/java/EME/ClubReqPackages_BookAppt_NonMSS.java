@@ -35,12 +35,7 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-NonMSS";
-	private static String resourceName = "PT Smith, Andrew";
-	private static String clubNameDisplayed = "ClubName: Studio Jonas";
-	private static String startTime;
-	private static String tomorrowsDayAndDate;
-	private static String unitsToBeSelected = "1 - $90.00/per";
-
+	
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -50,11 +45,11 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 	}
 
 	@Test(priority = 1)
-	public void ScheduleAppointment() throws IOException, InterruptedException {
+	public void VerifyMessage() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		Select s = new Select(ap.getclubs());

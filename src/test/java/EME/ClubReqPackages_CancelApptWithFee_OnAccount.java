@@ -41,6 +41,7 @@ public class ClubReqPackages_CancelApptWithFee_OnAccount extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-CancelWithFee";
 	private static String resourceName = "FitExpert1";
+	private static String additionalResourceName = "Gym";
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDayAndDate;
@@ -143,15 +144,20 @@ public class ClubReqPackages_CancelApptWithFee_OnAccount extends base {
 			}
 		}
 
+		
+		
 		boolean result1 = reusableWaits.loadingAvailability();
 		while (result1 == true) {
 //						Thread.sleep(500);	
 		}
+		
+		
 		Boolean TomorrowDatePresent = reusableMethods
 				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
 		if (TomorrowDatePresent == false) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			
 
 			result1 = reusableWaits.loadingAvailability();
 			while (result1 == true) {
@@ -162,7 +168,7 @@ public class ClubReqPackages_CancelApptWithFee_OnAccount extends base {
 		ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
 
-		Assert.assertEquals(ap.getBooksNames().getText(), resourceName);
+		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
 
@@ -230,6 +236,15 @@ public class ClubReqPackages_CancelApptWithFee_OnAccount extends base {
 				break;
 			}
 		}
+		
+		int additionalResourcesCount = ap.getAdditionalResources().size();
+		
+		for (int n = 0; n<additionalResourcesCount; n++)
+		{
+			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
+				ap.getAdditionalResources().get(n).click();
+		}
+		Thread.sleep(2000);
 
 		// Noting down the total amount
 		while (ap.getTotalAmount().getText().isBlank()) {
