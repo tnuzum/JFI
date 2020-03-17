@@ -268,6 +268,7 @@ public class EnrollCourseByBuyingPackage extends base {
 //		Thread.sleep(2000);
 //		reusableMethods.returnToDashboard();
 		DashboardPO d = new DashboardPO(driver);
+		unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ccmember");
 		
 		d.getMyCoursesEventsScheduleButton().click();
 		
@@ -332,8 +333,7 @@ public class EnrollCourseByBuyingPackage extends base {
 					}
 		}
 		
-		unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ccmember");
-		
+				
 		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
@@ -463,6 +463,7 @@ public class EnrollCourseByBuyingPackage extends base {
 //		Thread.sleep(1000);
 //		reusableMethods.returnToDashboard();
 		DashboardPO d = new DashboardPO(driver);
+		unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ncmember");
 		
 		d.getMyCoursesEventsScheduleButton().click();
 		
@@ -528,9 +529,7 @@ public class EnrollCourseByBuyingPackage extends base {
 					break;
 					}
 		}
-		
-		unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ccmember");
-		
+					
 		Assert.assertTrue(c.getClassCostinPunches().getText().contains(classCostInUnits+unitCount));
 		WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
 		Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));

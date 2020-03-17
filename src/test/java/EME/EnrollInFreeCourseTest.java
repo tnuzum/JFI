@@ -175,6 +175,7 @@ private static String dsiredMonthYear = "December 2020";
 			Thread.sleep(2000);	
 			System.out.println("waiting");
 		}
+		Thread.sleep(1000);
 		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
 

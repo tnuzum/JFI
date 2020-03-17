@@ -364,7 +364,7 @@ reusableMethods.returnToDashboard();
 			{
 
 				if (d.getMyAppts().get(i).getText().contains(startTime)) {
-					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook));
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
 				}
 			}
 		}
