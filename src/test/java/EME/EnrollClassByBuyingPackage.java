@@ -500,7 +500,7 @@ public class EnrollClassByBuyingPackage extends base {
 		PM.getNewCardButton().click();
 		Thread.sleep(3000);
 		
-		WebDriverWait wait1 = new WebDriverWait(driver, 10);
+		WebDriverWait wait1 = new WebDriverWait(driver, 20);
 		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
 		
 		CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
@@ -605,6 +605,8 @@ public class EnrollClassByBuyingPackage extends base {
 				{
 					Thread.sleep(2000);	
 				}
+				
+				wait.until(ExpectedConditions.visibilityOfAllElements(ahp.getReceiptNumbers()));
 				for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 					receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
 

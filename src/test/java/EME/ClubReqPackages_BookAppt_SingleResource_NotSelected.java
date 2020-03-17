@@ -56,7 +56,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
+		reusableMethods.activeMemberLogin("apptmember4", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);

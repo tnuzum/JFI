@@ -41,6 +41,7 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-CancelWithFee";
 	private static String resourceName = "FitExpert1";
+	private static String additionalResourceName = "Gym";
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDayAndDate;
@@ -57,7 +58,7 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
+		reusableMethods.activeMemberLogin("cancelmember3", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -162,7 +163,7 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 		ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
 
-		Assert.assertEquals(ap.getBooksNames().getText(), resourceName);
+		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
 
@@ -230,7 +231,15 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 				break;
 			}
 		}
-
+		
+		int additionalResourcesCount = ap.getAdditionalResources().size();
+		
+		for (int n = 0; n<additionalResourcesCount; n++)
+		{
+			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
+				ap.getAdditionalResources().get(n).click();
+		}
+		Thread.sleep(2000);
 		// Noting down the total amount
 		while (ap.getTotalAmount().getText().isBlank()) {
 			Thread.sleep(500);
@@ -262,9 +271,6 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 //Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 		reusableMethods.ThankYouPageValidations();
 
-//Note down the Receipt number
-		String receiptNumber = TY.getReceiptNumber().getText();
-		String receiptNumber1 = null;
 
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
@@ -355,7 +361,7 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
 		
-					Thread.sleep(1000);
+					Thread.sleep(3000);
 				
 				System.out.println(ap.getTotalAmount().getText());
 

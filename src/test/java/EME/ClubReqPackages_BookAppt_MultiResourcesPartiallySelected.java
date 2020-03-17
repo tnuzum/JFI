@@ -50,7 +50,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
+		reusableMethods.activeMemberLogin("apptmember2", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
