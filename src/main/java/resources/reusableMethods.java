@@ -332,11 +332,13 @@ public class reusableMethods extends base {
 	Thread.sleep(3000);
 	int packagesCount = PP.getPackagesList().size();
 	for (int j = 0; j < packagesCount; j++) {
+		String text = PP.getPackagesList().get(j).getText();
 		if (PP.getPackagesList().get(j).getText().contains(packageName)) {
 			String[] unitCount = PP.getUnitsCount().get(j).getText().split(" ");
 			String formattedUnitCount = unitCount[0].trim();
 			IntUnitCount = Integer.parseInt(formattedUnitCount);
 			PP.getMyPackagesButton().click();
+			break;
 		}
 	}
 	return IntUnitCount;

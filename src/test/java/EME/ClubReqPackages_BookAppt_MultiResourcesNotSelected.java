@@ -33,7 +33,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
-	private static String appointmentToBook = "PT 60 Mins-ResourcesNotSelected";
+	private static String appointmentToBook = "PT 60 Mins-MultiResourcesNotSelected";
 	private static String resourceName = "FitExpert1";
 	private static String additionalResourceName = "Gym";
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
@@ -359,7 +359,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 			{
 
 				if (d.getMyAppts().get(i).getText().contains(startTime)) {
-					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook));
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
 				}
 			}
 		}

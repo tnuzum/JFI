@@ -344,7 +344,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 			{
 
 				if (d.getMyAppts().get(i).getText().contains(startTime)) {
-					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook));
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
 				}
 			}
 		}
