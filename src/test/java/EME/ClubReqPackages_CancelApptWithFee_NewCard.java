@@ -383,7 +383,7 @@ int additionalResourcesCount = ap.getAdditionalResources().size();
 				
 				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
 				
-				Boolean CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
+/*				Boolean CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
 				while (CloseBtnPresent == false)
 				{
 					System.out.println("Close button not present");
@@ -391,7 +391,7 @@ int additionalResourcesCount = ap.getAdditionalResources().size();
 					 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
 				}
 				Assert.assertTrue(PM.getCloseButton().isDisplayed());
-				Assert.assertFalse(PM.getPaymentButton().isEnabled());
+				Assert.assertFalse(PM.getPaymentButton().isEnabled());*/
 //				System.out.println(PM.getNameOnCardField().getAttribute("value"));
 	     		Assert.assertEquals(memberName,PM.getNameOnCardField().getAttribute("value"));
 				PM.getCardNumberField().sendKeys("4111111111111111");

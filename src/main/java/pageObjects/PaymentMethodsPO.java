@@ -23,6 +23,7 @@ public class PaymentMethodsPO {
 	By expirationYear = By.xpath("//input[@name='ExpireYear']");
 	By securityCode = By.xpath("//input[@id='securityCode']");
 	By saveCardNo = By.xpath("//label[@for = 'sc-no']");
+	By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
 		
 // CONSTRUCTOR
 		
@@ -73,4 +74,8 @@ public class PaymentMethodsPO {
 		return driver.findElement(saveCardNo);
 	}
 	
+	public WebElement getCancelButton()
+	{
+		return driver.findElement(cancelButton);
+	}
 }
