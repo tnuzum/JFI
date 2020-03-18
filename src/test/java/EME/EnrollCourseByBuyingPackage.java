@@ -549,7 +549,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		WebDriverWait wait1 = new WebDriverWait(driver, 10);
 		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
 				
-		CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
+/*		CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
 		while (CloseBtnPresent == false)
 		{
 			System.out.println("Close button not present");
@@ -558,7 +558,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		}
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
 		Assert.assertFalse(PM.getPaymentButton().isEnabled());
-       System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+       System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));*/
 		
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
  		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));

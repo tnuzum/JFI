@@ -58,7 +58,7 @@ public class ClubReqPackages_CancelApptWithFee_OnAccount extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("oamember", "Testing1!");
+		reusableMethods.activeMemberLogin("cancelmember2", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);

@@ -46,9 +46,11 @@ public class AppointmentsPO {
 	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
 	By popup1Content = By.xpath("//div[@id='swal2-content']");
 	By paymentButton = By.xpath("//button[contains(text(), 'pay')]");
+	By cancelButton = By.xpath("//button[contains(text(), 'cancel')]");
 	By popup2Title = By.xpath("//h2[@id='swal2-title']");
 	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
+	By apptCheckout = By.xpath("//div[@class='row ng-star-inserted']");
 	
 	By appointmentName = By.xpath("//div[contains(@class, 'widget')]/h2");
 	By clubName = By.xpath("//span[contains(@class, 'float')]/small[1]");
@@ -200,6 +202,18 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(paymentButton);
 	}
+	
+	public WebElement getCancelButton()
+	{
+		return driver.findElement(cancelButton);
+	}
+	
+	public WebElement getApptCheckout()
+	{
+		return driver.findElement(apptCheckout);
+	}
+	
+	
 	public WebElement getPopup2Title()
 	{
 		return driver.findElement(popup2Title);

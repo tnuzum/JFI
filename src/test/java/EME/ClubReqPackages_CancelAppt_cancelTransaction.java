@@ -35,7 +35,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
+public class ClubReqPackages_CancelAppt_cancelTransaction extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
@@ -58,7 +58,7 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("cancelmember3", "Testing1!");
+		reusableMethods.activeMemberLogin("cancelmember4", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -352,7 +352,7 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 				}
 			}
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -396,13 +396,9 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 						Assert.assertEquals("Dashboard", driver.getTitle());
 
 		
-			}
+			
 
-	@Test(priority = 4)
-	public void CancelAppointment() throws IOException, InterruptedException {
-		
-		DashboardPO d = new DashboardPO(driver);
-
+	
 		for (int k = 0; k < appointmentsCount; k++) {
 			if (d.getMyAppts().get(k).getText().contains(tomorrowsDayAndDate))
 
@@ -413,9 +409,7 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 					
 //					Thread.sleep(5000);
 					WebElement EditButton = d.getEditButton().get(k);		
-										
-				
-					WebDriverWait wait = new WebDriverWait(driver, 30);
+								
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 					
@@ -424,9 +418,9 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 				}
 			}
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
-		AppointmentsPO ap = new AppointmentsPO(driver);
+		
 		Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 		ap.getEditApptCancelButton().click();
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("There is a fee for cancelling this appointment."));
@@ -437,17 +431,16 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 				
 				System.out.println(ap.getTotalAmount().getText());
 
-				String[] totalAmt = ap.getTotalAmount().getText().split(": ");
-				String FormatTotalAmt = totalAmt[1].trim();
+				totalAmt = ap.getTotalAmount().getText().split(": ");
+				 FormatTotalAmt = totalAmt[1].trim();
 				System.out.println(FormatTotalAmt);
 				// Verifies the Pay button contains the total amount
 				
-				PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-
+				
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
 				
 				
-				int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+				paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 				for (int i = 0; i < paymentMethodscount; i++) {
 					if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 							.contains("5454"))
@@ -547,8 +540,8 @@ public class ClubReqPackages_CancelApptWithFee_SavedCard extends base {
 				Thread.sleep(2000);
 				reusableMethods.returnToDashboard();
 				reusableMethods.memberLogout();
-			}
-
+			
+}
 
 //	@AfterTest
 @AfterClass
