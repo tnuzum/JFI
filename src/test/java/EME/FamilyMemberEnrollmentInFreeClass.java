@@ -275,23 +275,8 @@ public class FamilyMemberEnrollmentInFreeClass extends base{
 		//Clicks on the Receiptnumber in Account History 
 		
 		ahp.getSearchField().sendKeys(receiptNumber);
-		
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("accountHistory"))));
-					
-/*		while(!ahp.getReceiptNumberTable().isDisplayed())
-		{
-			Thread.sleep(2000);	
-			System.out.println("waiting");
-		}*/
-		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-			
-			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-			if (receiptNumber1.equals(receiptNumber)) {
-				ahp.getReceiptNumbers().get(k).click();
-				break;
-			}
-		}
+		Thread.sleep(2000);
+		ahp.getReceiptNumber().click();
 		Thread.sleep(1000);
 		//Verifies the Invoice amount is $0.00
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()

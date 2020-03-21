@@ -64,10 +64,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 					}
 						
 				}
+	
 				
-			
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-				
+			
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 				
 		for (int j= 0; j<CourseCount; j++)
@@ -119,9 +119,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 						
 				}
 				
-			
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-				
+
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 				
 		for (int j= 0; j<CourseCount; j++)

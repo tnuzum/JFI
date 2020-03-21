@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -387,6 +388,9 @@ public class ShopAndPurchasePackages extends base {
 				{
 					Thread.sleep(2000);	
 				}
+				
+				wait.until(ExpectedConditions.visibilityOfAllElements(ahp.getReceiptNumbers()));
+				
 				for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 					receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
 
@@ -413,8 +417,7 @@ public class ShopAndPurchasePackages extends base {
 
 	@Test(priority = 8, description = "Payment Method is New Card")
 	public void PurchaseNewCard() throws InterruptedException {
-		Boolean CloseBtnPresent;
-		
+				
 	reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
 	Thread.sleep(2000);
 	DashboardPO d = new DashboardPO(driver);
@@ -447,21 +450,21 @@ public class ShopAndPurchasePackages extends base {
 			
 				PM.getNewCardButton().click();
 				Thread.sleep(3000);
-				
-				WebDriverWait wait = new WebDriverWait(driver, 10);
-				wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
-				
-	/*			CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
-				while (CloseBtnPresent == false)
-				{
-					System.out.println("Close button not present");
+						
+				String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+				while (opacity.contains("1")) {
 					PM.getNewCardButton().click();
-					 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
+					opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 				}
+
 				Assert.assertTrue(PM.getCloseButton().isDisplayed());
-				Assert.assertFalse(PM.getPaymentButton().isEnabled());*/
+				Assert.assertFalse(PM.getPaymentButton().isEnabled());
+				System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+
 //				System.out.println(PM.getNameOnCardField().getAttribute("value"));
 	     		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));
+	     		JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    		jse.executeScript("arguments[0].click();", PM.getCardNumberField()); 
 				PM.getCardNumberField().sendKeys("4111111111111111");
 				PM.getExpirationMonth().sendKeys("12");
 				PM.getExpirationYear().sendKeys("29");
@@ -562,6 +565,10 @@ public class ShopAndPurchasePackages extends base {
 			{
 				Thread.sleep(2000);	
 			}
+			
+			WebDriverWait wait = new WebDriverWait(driver, 20);
+			wait.until(ExpectedConditions.visibilityOfAllElements(ahp.getReceiptNumbers()));
+			
 			for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
 				receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
 

@@ -50,7 +50,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 	}
 
 	@Test(priority = 1)
-	public void ScheduleAppointment() throws IOException, InterruptedException {
+	public void CancelTransaction() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("apptmember3", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();

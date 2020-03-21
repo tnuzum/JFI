@@ -40,6 +40,7 @@ public class AppointmentsPO {
 	By addlResourcesCancelButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[1]"); //cancel button
 	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book button
 	By packageRequiredContinueButton = By.xpath("//*[text()='CONTINUE']"); // Continue button
+	By bookButton = By.xpath("//button[@type = 'submit']");
 	
 	//By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
@@ -262,6 +263,13 @@ public class AppointmentsPO {
 	{
 		return driver.findElements(additionalResources);
 	}
+	
+	public WebElement getbookButton()
+	{
+		return driver.findElement(bookButton);
+	}
+	
+
 	public WebElement getEditApptPageHeader()
 	{
 		return driver.findElement(editApptPageHeader);
