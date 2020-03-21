@@ -64,7 +64,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 					}
 						
 				}
-				
+	
 				
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 			
@@ -119,9 +119,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 						
 				}
 				
-				
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-			
+
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 				
 		for (int j= 0; j<CourseCount; j++)
@@ -195,7 +194,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -349,7 +348,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 			
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();

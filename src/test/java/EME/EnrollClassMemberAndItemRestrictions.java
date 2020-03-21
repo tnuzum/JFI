@@ -53,8 +53,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		reusableMethods.SelectTomorrowDate();
-		
+		reusableMethods.SelectTomorrowDate()
+      
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 						
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
@@ -69,6 +69,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			}
 		 }
 		
+
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
 		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
@@ -172,21 +173,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		reusableMethods.SelectTomorrowDate();
 		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
@@ -358,7 +345,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 				
 		ClassSignUpPO c = new ClassSignUpPO(driver);
+		
 		WebDriverWait wait = new WebDriverWait(driver, 50);
+		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		reusableMethods.SelectTomorrowDate();
