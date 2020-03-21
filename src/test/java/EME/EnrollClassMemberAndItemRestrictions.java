@@ -56,8 +56,19 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		reusableMethods.SelectTomorrowDate();
 		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+						
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j= 0; j<ClassCount; j++)
+		 {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+							
+			if (className.contains("FAMILYENROLLCLASS"))
+			{
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
+				 break;
+			}
+		 }
 		
-		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
 		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
@@ -84,9 +95,19 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		reusableMethods.SelectTomorrowDate();
 		
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));				
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j= 0; j<ClassCount; j++)
+		 {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+							
+			if (className.contains("FAMILYENROLLCLASS"))
+			{
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific class
+				 break;
+			}
+		 }
 		
-		driver.findElement(By.xpath("(//div[contains(@class, 'column2')])[1]")).click();
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
 		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
@@ -339,24 +360,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-		c.getCalendarIcon().click();
-		Thread.sleep(2000);
-		DateFormat dateFormat = new SimpleDateFormat("d");
-		Calendar today = Calendar.getInstance();
-		today.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDate = dateFormat.format(today.getTime());
-
-		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-		for (int i = 0; i < daycount; i++) {
-			String date = driver.findElements(By.tagName("td")).get(i).getText();
-			if (date.contains(tomorrowsDate)) {
-				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-				break;
-			}
-		}
+		
+		reusableMethods.SelectTomorrowDate();
 		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-							
+											
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -399,7 +407,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		reusableMethods.SelectTomorrowDate();
-	
+				
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));				
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)

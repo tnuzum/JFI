@@ -170,20 +170,8 @@ private static String dsiredMonthYear = "December 2020";
 		
 		ahp.getSearchField().sendKeys(receiptNumber);
 		
-		while(!ahp.getReceiptNumberTable().isDisplayed())
-		{
-			Thread.sleep(2000);	
-			System.out.println("waiting");
-		}
-		Thread.sleep(1000);
-		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-			if (receiptNumber1.equals(receiptNumber)) {
-				ahp.getReceiptNumbers().get(k).click();
-				break;
-			}
-		}
+		Thread.sleep(2000);
+		ahp.getReceiptNumber().click();
 		Thread.sleep(1000);
 		//Verifies the Invoice amount is $0.00
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
@@ -376,20 +364,8 @@ private static String dsiredMonthYear = "December 2020";
 	//Clicks on the Receiptnumber in Account History 
 	
 	ahp.getSearchField().sendKeys(receiptNumber2);
-		
-	while(!ahp.getReceiptNumberTable().isDisplayed())
-	{
-		Thread.sleep(2000);	
-		System.out.println("waiting");
-	}
-	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-		if (receiptNumber3.equals(receiptNumber2)) {
-			ahp.getReceiptNumbers().get(k).click();
-			break;
-		}
-	}
+	Thread.sleep(2000);
+	ahp.getReceiptNumber().click();
     Thread.sleep(1000);
 	//Verifies the Invoice amount is $0.00
 	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
@@ -537,19 +513,8 @@ private static String dsiredMonthYear = "December 2020";
 	
 	ahp.getSearchField().sendKeys(receiptNumber4);
 		
-	while(!ahp.getReceiptNumberTable().isDisplayed())
-	{
-		Thread.sleep(2000);	
-		System.out.println("waiting");
-	}
-	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-		receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-		if (receiptNumber5.equals(receiptNumber4)) {
-			ahp.getReceiptNumbers().get(k).click();
-			break;
-		}
-	}
+	Thread.sleep(2000);
+	ahp.getReceiptNumber().click();
     Thread.sleep(1000);
 	//Verifies the Invoice amount is $0.00
 	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()

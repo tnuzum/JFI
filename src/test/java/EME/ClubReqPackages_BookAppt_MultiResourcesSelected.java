@@ -39,7 +39,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDayAndDate;
-	private static String unitsToBeSelected = "1 - $90.00/per";
+	private static String unitsToBeSelected = "1 - $5.00/per";
 
 //	@BeforeTest
 	@BeforeClass
@@ -218,6 +218,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 				break;
 			}
 		}
+		Thread.sleep(1000);
 
 		// Noting down the total amount
 		while (ap.getTotalAmount().getText().isBlank()) {
@@ -255,7 +256,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
 //Verifies the success message
-		Assert.assertEquals(ap.getPopup2Title().getText(), "Success");
+		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
 		ThankYouPO TY = new ThankYouPO(driver);
 
@@ -315,8 +316,9 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 //Clicks on the Receiptnumber in Account History 
 
 		ahp.getSearchField().sendKeys(receiptNumber);
+		ahp.getReceiptNumber().click();
 
-		while (!ahp.getReceiptNumberTable().isDisplayed()) {
+/*		while (!ahp.getReceiptNumberTable().isDisplayed()) {
 			Thread.sleep(2000);
 			System.out.println("waiting");
 		}
@@ -327,7 +329,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 				ahp.getReceiptNumbers().get(k).click();
 				break;
 			}
-		}
+		}*/
 
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 
@@ -361,34 +363,53 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 				}
 			}
 		}
-
+		reusableMethods.memberLogout();
 	}
 
-	/*
-	 * @Test(priority = 3) public void CancelAppointment() throws IOException,
-	 * InterruptedException { DashboardPO d = new DashboardPO(driver);
-	 * d.getMyApptsAppt1GearButton().click(); WebElement wait1 =
-	 * d.getMyApptsEditButton(); while (!wait1.isEnabled())// while button is NOT(!)
-	 * enabled { // Thread.sleep(200); } d.getMyApptsEditButton().click();
-	 * WebDriverWait wait = new WebDriverWait(driver, 10);
-	 * wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
-	 * "//div[@class='col-sm-12']/h2"))); AppointmentsPO a = new
-	 * AppointmentsPO(driver);
-	 * Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
-	 * a.getEditApptCancelButton().click(); WebElement wait2 =
-	 * a.getEditApptProceedButton(); while (!wait2.isEnabled())// while button is
-	 * NOT(!) enabled { // Thread.sleep(200); }
-	 * a.getEditApptProceedButton().click(); boolean result1 =
-	 * reusableWaits.popupMessageYesButton(); if (result1 == true) { //
-	 * Thread.sleep(500); } a.getEditApptCancelYesButton().click(); // boolean
-	 * result2 = reusableWaits.popupMessageYesButton(); // if (result2 == true) // {
-	 * // Thread.sleep(500); // } // a.getEditApptCanceledOKButton().click(); //
-	 * reusableWaits.waitForDashboardLoaded(); Thread.sleep(2000);
-	 * Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
-	 * reusableMethods.memberLogout(); } */
 	
-	 // @AfterTest
-	 
+	@Test(priority = 3)
+	public void CancelAppointment() throws IOException, InterruptedException {
+
+		reusableMethods.ApptCheckinInCOG("Auto, apptmember3", appointmentToBook, "apptmember3" ); //Check In the Member to the appointment
+		
+		DashboardPO d = new DashboardPO(driver);
+		d.getMyApptsAppt1GearButton().click();
+			WebElement wait1 = d.getMyApptsEditButton();
+			while (!wait1.isEnabled())//while button is NOT(!) enabled
+			{
+//			Thread.sleep(200);
+			}
+		d.getMyApptsEditButton().click();
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+			AppointmentsPO a = new AppointmentsPO(driver);
+			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		a.getEditApptCancelButton().click();
+			WebElement wait2 = a.getEditApptProceedButton();
+			while (!wait2.isEnabled())//while button is NOT(!) enabled
+			{
+//			Thread.sleep(200);
+			}
+		a.getEditApptProceedButton().click();
+			boolean result1 = reusableWaits.popupMessageYesButton();
+			if (result1 == true)
+			{
+//				Thread.sleep(500);	
+			}
+		a.getEditApptCancelYesButton().click();
+//			boolean result2 = reusableWaits.popupMessageYesButton();
+//			if (result2 == true)
+//			{
+//				Thread.sleep(500);	
+//			}
+//		a.getEditApptCanceledOKButton().click();
+//		reusableWaits.waitForDashboardLoaded();
+		Thread.sleep(2000);
+		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+		reusableMethods.memberLogout();
+	}
+	
+	// @AfterTest	 
 	 @AfterClass 
 	 public void teardown() throws InterruptedException {
 	  driver.close(); driver = null; }

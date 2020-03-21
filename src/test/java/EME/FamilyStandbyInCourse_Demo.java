@@ -350,18 +350,8 @@ public class FamilyStandbyInCourse_Demo extends base{
 	//Clicks on the Receiptnumber in Account History 
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
 	ahp.getSearchField().sendKeys(receiptNumber2);
-	while(!ahp.getReceiptNumberTable().isDisplayed())
-	{
-		Thread.sleep(2000);	
-	}
-	for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-		receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-		if (receiptNumber3.equals(receiptNumber2)) {
-			ahp.getReceiptNumbers().get(k).click();
-			break;
-		}
-	}
+	Thread.sleep(2000);
+	ahp.getReceiptNumber().click();
 	Thread.sleep(1000);
 	//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //	System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());

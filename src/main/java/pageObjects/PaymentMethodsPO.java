@@ -18,7 +18,8 @@ public class PaymentMethodsPO {
 	By newCardButton = By.xpath("//span[contains( text(), 'Add New Card')]");
 	By closeButton = By.xpath("//button[@id='close-button']");
 	By nameOnCardField = By.xpath("//input[@id='nameOnCard']");
-	By cardNumberField = By.xpath("//input[@id='cardNumber']");
+	By cardNumberField = By.cssSelector("#cardNumber");
+			//.xpath("//input[contains(@class, 'at-paymethods-input-cardnumber')]");
 	By expirationMonth = By.xpath("//input[@name='ExpireMonth']");
 	By expirationYear = By.xpath("//input[@name='ExpireYear']");
 	By securityCode = By.xpath("//input[@id='securityCode']");
