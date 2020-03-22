@@ -31,7 +31,7 @@
 			<class name="EME.FamilyMemberClassEnrollment" />
 			<class name="EME.FamilyMemberCourseEnrollment" />
 			<class name="EME.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
-			<!--class name="EME.ClubNotReqPackages_BookAppt_ThreeResources"/-->
+			<class name="EME.ClubNotReqPackages_BookAppt_ThreeResources"/>
 			<class name="EME.ClubReqPackages_BookAppt_CancelTransaction" />
 			<class name="EME.ClubReqPackages_BookAppt_MultiResourcesNotSelected" />
 			<class name="EME.ClubReqPackages_BookAppt_MultiResourcesPartiallySelected" />
@@ -39,10 +39,10 @@
 			<class name="EME.ClubReqPackages_BookAppt_NonMSS" />
 			<class name="EME.ClubReqPackages_BookAppt_SingleResource_NotSelected" />
 			<class name="EME.ClubReqPackages_BookAppt_SingleResource_Selected" />
-			<!--class name="EME.ClubReqPackages_BookAppt_FreeAppointment" /-->
-			<!--class name="EME.CancelApptWithFee_NewCard" /-->
-			<!--class name="EME.CancelApptWithFee_OnAccount" /-->
-			<!--class name="EME.CancelApptWithFee_SavedCard" /-->
+			<class name="EME.ClubReqPackages_BookAppt_FreeAppointment" />
+			<class name="EME.CancelApptWithFee_NewCard" />
+			<class name="EME.CancelApptWithFee_OnAccount" />
+			<class name="EME.CancelApptWithFee_SavedCard" />
 			<class name="EME.CancelApptWithFee_cancelTransaction" />
 			<class name="EME.EmailConfirmations" />
 		</classes>

@@ -57,7 +57,7 @@ public class CancelApptWithFee_NewCard extends base {
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
 	public void ScheduleAppointmentWithExistingPackageWithThreeResources() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("cancelmember1", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
@@ -179,10 +179,6 @@ public class CancelApptWithFee_NewCard extends base {
 
 		st1.click();
 		WebElement st2 = ap.getSelectTime1stAvailable();
-//					while (!st2.isEnabled())//while button is NOT(!) enabled
-//					{
-//					Thread.sleep(200);
-//					}
 
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
@@ -196,27 +192,25 @@ public class CancelApptWithFee_NewCard extends base {
 				ap.getAdditionalResources().get(n).click();
 		}
 		
-		
-		ap.getbookButton().click();
-		
-		DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
+					
+		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
+		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
+		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
+		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		tomorrowsDate = dateFormat1.format(today1.getTime());
+
+		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 		
-		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: "+tomorrowsDate+", " +startTime);
-		System.out.println("Product: "+appointmentToBook );
-		System.out.println("Resource: "+ resourceName);
 		
-		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains( additionalResourceName));
-		
-		ap.getPopup1BookButton().click();
-		
+		ap.getbookButton().click();
 				
 		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
@@ -281,6 +275,7 @@ public class CancelApptWithFee_NewCard extends base {
 			{
 
 				if (d.getMyAppts().get(k).getText().contains(startTime)) {
+					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
 					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
 					
 //					Thread.sleep(5000);
@@ -393,7 +388,7 @@ public class CancelApptWithFee_NewCard extends base {
 
 
 //	@AfterTest
-@AfterClass
+	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;

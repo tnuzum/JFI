@@ -37,7 +37,8 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 	private static String resourceName = "PT Smith, Andrew";
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
 	private static String startTime;
-	private static String tomorrowsDayAndDate;
+	private static String tomorrowsDate;
+	private static int appointmentsCount;
 	private static String unitsToBeSelected = "1 - $5.00/per";
 
 //	@BeforeTest
@@ -192,9 +193,9 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
+		tomorrowsDate = dateFormat1.format(today1.getTime());
 
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, ap.getAppointmentDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 		Assert.assertTrue(ap.getReviewSection().getText().contains("REVIEW"));
 		Assert.assertTrue(ap.getReviewSection().getText().contains("PACKAGE REQUIRED"));
 		Assert.assertTrue(ap.getReviewSection().getText().contains("This appointment requires a package."));
@@ -345,7 +346,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 		int appointmentsCount = d.getMyAppts().size();
 
 		for (int i = 0; i < appointmentsCount; i++) {
-			if (d.getMyAppts().get(i).getText().contains(tomorrowsDayAndDate))
+			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
 
 			{
 
@@ -361,16 +362,34 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 	public void CancelAppointment() throws IOException, InterruptedException {
 
 		reusableMethods.ApptCheckinInCOG("Auto, apptmember2", appointmentToBook, "apptmember2" ); //Check In the Member to the appointment
-		
 		DashboardPO d = new DashboardPO(driver);
-		d.getMyApptsAppt1GearButton().click();
-			WebElement wait1 = d.getMyApptsEditButton();
-			while (!wait1.isEnabled())//while button is NOT(!) enabled
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		tomorrowsDate = dateFormat1.format(today1.getTime());
+		appointmentsCount = d.getMyAppts().size();
+
+		for (int k = 0; k < appointmentsCount; k++) {
+			if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))
+
 			{
-//			Thread.sleep(200);
+
+				if (d.getMyAppts().get(k).getText().contains(startTime)) {
+					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
+					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+				
+					WebElement EditButton = d.getEditButton().get(k);		
+					
+					wait.until(ExpectedConditions.visibilityOf(EditButton));
+					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
+					
+					EditButton.click();
+					break;
+				}
 			}
-		d.getMyApptsEditButton().click();
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+		}
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 			AppointmentsPO a = new AppointmentsPO(driver);
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");

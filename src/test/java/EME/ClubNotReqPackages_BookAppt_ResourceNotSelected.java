@@ -159,7 +159,10 @@ private static String appointmentToBook = "PT 60 Mins";
 					
 					
 			ap.getPopup1BookButton().click();
-			Thread.sleep(2000);
+			
+			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
+			
 			Assert.assertEquals(ap.getPopup2Title().getText(),"Booked");
 			ap.getPopup2OKButton().click();
 			
@@ -228,13 +231,11 @@ private static String appointmentToBook = "PT 60 Mins";
 		{
 
 			if (d.getMyAppts().get(k).getText().contains(startTime)) {
+				wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
 				d.getMyAppts().get(k).findElement(By.tagName("i")).click();
-				
-//				Thread.sleep(5000);
+			
 				WebElement EditButton = d.getEditButton().get(k);		
-						
-			
-			
+				
 				wait.until(ExpectedConditions.visibilityOf(EditButton));
 				wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 				
