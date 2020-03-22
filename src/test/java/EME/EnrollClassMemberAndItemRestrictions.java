@@ -53,7 +53,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		reusableMethods.SelectTomorrowDate()
+		reusableMethods.SelectTomorrowDate();
       
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 						
