@@ -239,6 +239,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 	public void CancelTransactionOfCancelling() throws IOException, InterruptedException {
 
 		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		for (int k = 0; k < appointmentsCount; k++) {
 			if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))
@@ -246,12 +247,12 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			{
 
 				if (d.getMyAppts().get(k).getText().contains(startTime)) {
+					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
 					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
 
 //					Thread.sleep(5000);
 					WebElement EditButton = d.getEditButton().get(k);
-
-					WebDriverWait wait = new WebDriverWait(driver, 30);
+					
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
@@ -260,7 +261,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 				}
 			}
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");

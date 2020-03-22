@@ -41,8 +41,7 @@ public class CancelApptWithFee_SavedCard extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-CancelWithFee";
 	private static String resourceName = "FitExpert1";
-	private static String additionalResourceName = "Gym";
-	private static String clubNameDisplayed = "ClubName: Studio Jonas";
+	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDate;
 	private static int appointmentsCount;
@@ -55,7 +54,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
 	public void ScheduleAppointmentWithExistingPackageWithTwoResources() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("cancelmember3", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
@@ -174,12 +173,9 @@ public class CancelApptWithFee_SavedCard extends base {
 
 		st1.click();
 		WebElement st2 = ap.getSelectTime1stAvailable();
-//					while (!st2.isEnabled())//while button is NOT(!) enabled
-//					{
-//					Thread.sleep(200);
-//					}
 
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
+		
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(3000);
@@ -330,6 +326,7 @@ public class CancelApptWithFee_SavedCard extends base {
 	public void CancelAppointmentWithFee() throws IOException, InterruptedException {
 		
 		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		for (int k = 0; k < appointmentsCount; k++) {
 			if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))
@@ -337,13 +334,14 @@ public class CancelApptWithFee_SavedCard extends base {
 			{
 
 				if (d.getMyAppts().get(k).getText().contains(startTime)) {
+					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
 					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
 					
 //					Thread.sleep(5000);
 					WebElement EditButton = d.getEditButton().get(k);		
 										
 				
-					WebDriverWait wait = new WebDriverWait(driver, 30);
+					
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 					
@@ -352,7 +350,7 @@ public class CancelApptWithFee_SavedCard extends base {
 				}
 			}
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -440,7 +438,7 @@ public class CancelApptWithFee_SavedCard extends base {
 
 
 //	@AfterTest
-@AfterClass
+	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;
