@@ -9,6 +9,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -215,21 +216,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		
 		ahp.getSearchField().sendKeys(receiptNumber);
 				
-		while(!ahp.getReceiptNumberTable().isDisplayed())
-		{
-			Thread.sleep(2000);	
-			System.out.println("waiting");
-		}
-		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-			if (receiptNumber1.equals(receiptNumber)) {
-				System.out.println(receiptNumber);
-				System.out.println(receiptNumber1);
-				ahp.getReceiptNumbers().get(k).click();
-				break;
-			}
-		}
+		Thread.sleep(2000);
+		ahp.getReceiptNumber().click();
 		Thread.sleep(1000);
 		//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
@@ -403,18 +391,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				
 				ahp.getSearchField().sendKeys(receiptNumber2);
 				
-				while(!ahp.getReceiptNumberTable().isDisplayed())
-				{
-					Thread.sleep(2000);	
-				}
-				for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-					receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-					if (receiptNumber3.equals(receiptNumber2)) {
-						ahp.getReceiptNumbers().get(k).click();
-						break;
-					}
-				}
+				Thread.sleep(2000);
+				ahp.getReceiptNumber().click();
 				Thread.sleep(1000);
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
@@ -430,7 +408,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	@Test(priority=5, description = "Enroll in Course with New Card")
 	
 	public void EnrollWithNewCard() throws InterruptedException, IOException {
-		Boolean CloseBtnPresent;
+	
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
 //		reusableMethods.unenrollFromCourse(dsiredMonthYear);
 		Thread.sleep(1000);
@@ -508,23 +486,22 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		
 		PM.getNewCardButton().click();
 		Thread.sleep(3000);
-		
-		WebDriverWait wait1 = new WebDriverWait(driver, 10);
-		wait1.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("show-newcard"))));
-		
-		 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
-		while (CloseBtnPresent == false)
-		{
-			System.out.println("Close button not present");
+			
+		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		while (opacity.contains("1")) {
 			PM.getNewCardButton().click();
-			 CloseBtnPresent = reusableMethods.isElementPresent(By.xpath("//button[@id='close-button']"));
+			
+			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		}
+
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
 		Assert.assertFalse(PM.getPaymentButton().isEnabled());
-        System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
-		
+		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
  		Assert.assertEquals(prop.getProperty("activeMember8_fullname"),PM.getNameOnCardField().getAttribute("value"));
+ 		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", PM.getCardNumberField()); 
 		PM.getCardNumberField().sendKeys("4111111111111111");
 		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 		PM.getExpirationMonth().sendKeys("12");
@@ -610,18 +587,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				
 				ahp.getSearchField().sendKeys(receiptNumber4);
 				
-				while(!ahp.getReceiptNumberTable().isDisplayed())
-				{
-					Thread.sleep(2000);	
-				}
-				for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-					receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-					if (receiptNumber5.equals(receiptNumber4)) {
-						ahp.getReceiptNumbers().get(k).click();
-						break;
-					}
-				}
+				Thread.sleep(2000);
+				ahp.getReceiptNumber().click();
 				Thread.sleep(1000);
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 //				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());

@@ -54,9 +54,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
 		reusableMethods.SelectTomorrowDate();
-		
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));	
-		
+      
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+						
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -68,6 +68,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				 break;
 			}
 		 }
+		
+
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
 		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
@@ -94,8 +96,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		reusableMethods.SelectTomorrowDate();
 		
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));		
-		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));				
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -107,6 +108,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				 break;
 			}
 		 }
+		
 		Thread.sleep(1000);
 		System.out.println(c.getPopUpErrorMessage().getText().trim());
 		softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.", c.getPopUpErrorMessage().getText().trim());
@@ -350,9 +352,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		
 		reusableMethods.SelectTomorrowDate();
 		
-		
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-							
+											
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
 		 {
@@ -395,7 +396,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		
 		reusableMethods.SelectTomorrowDate();
-	
+				
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));				
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)

@@ -11,9 +11,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import pageObjects.AppointmentsPO;
 import pageObjects.CalendarPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
@@ -113,7 +115,7 @@ public class reusableMethods extends base {
 		reusableWaits.waitForDashboardLoaded();
 		return null;
 	}
-		public static String activeMember10Login() throws InterruptedException {
+	public static String activeMember10Login() throws InterruptedException {
 			reusableWaits.waitForLoginLoginButton();
 			LoginPO l = new LoginPO(driver);
 			l.getuserName().sendKeys("NoCCMember");
@@ -122,7 +124,7 @@ public class reusableMethods extends base {
 			reusableWaits.waitForDashboardLoaded();
 			return null;
 		}
-			public static String activeMember11Login() throws InterruptedException {
+	public static String activeMember11Login() throws InterruptedException {
 				reusableWaits.waitForLoginLoginButton();
 				LoginPO l = new LoginPO(driver);
 				l.getuserName().sendKeys("NoOANoCCMember");
@@ -131,7 +133,7 @@ public class reusableMethods extends base {
 				reusableWaits.waitForDashboardLoaded();
 				return null;
 			}
-			public static String activeMemberLogin(String username, String password) throws InterruptedException {
+	public static String activeMemberLogin(String username, String password) throws InterruptedException {
 				reusableWaits.waitForLoginLoginButton();
 				LoginPO l = new LoginPO(driver);
 				l.getuserName().sendKeys(username);
@@ -170,7 +172,7 @@ public class reusableMethods extends base {
 
 	public static String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 		d.getDashboardButton().click();
 //		d.getBreadcrumbDashboard().click();
@@ -457,10 +459,10 @@ public class reusableMethods extends base {
 	
 		while (!monthName.contains(monthYear))
 		{
-			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]")).click();
+			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]//div[contains(@class, 'mat-button-ripple')]")).click();
 			monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
 		}
-
+		//button[@class='mat-calendar-next-button mat-icon-button']//div[contains(@class, 'mat-button-ripple')]
 
 	int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
 	for (int i = 0; i < daycount; i++) {
@@ -474,5 +476,105 @@ public class reusableMethods extends base {
 	
 	return null;
 	}
+	
+	public static Object ApptCheckinInCOG(String memberName, String appointmentName, String username) throws InterruptedException{
+		
+		driver.get("https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236");
+	
+	driver.findElement(By.id("UserName")).sendKeys("bhagya");
+	driver.findElement(By.id("Password")).sendKeys("111");
+	driver.findElement(By.id("submit")).click();
+	Thread.sleep(1000);
+	Select s= new Select(driver.findElement(By.id("ddl_clubSelection")));
+	s.selectByVisibleText("Studio Jonas");
+	driver.findElement(By.id("submit")).click();
+	Thread.sleep(3000);
+	WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
+	int count = FrontDeskTile.findElements(By.tagName("a")).size();
+	for (int i = 0; i<count; i++)
+	{System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+		if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("CheckIn"))
+			{
+			Thread.sleep(1000);
+			FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+			break;
+	}
+	}
+	
+	driver.findElement(By.id("txt_searchLastName")).sendKeys(memberName);
+	driver.findElement(By.id("btn_search")).click();
+	driver.findElement(By.xpath("//i[@class='fa fa-check']")).click();
+	driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
+	
+	List <WebElement> CheckInOptions = driver.findElements(By.tagName("tr"));
+	int checkboxCount = CheckInOptions.size();
+	for (int j= 0; j<checkboxCount; j++)
+	{
+		String Text = CheckInOptions.get(j).getText();
+		if (Text.contains(appointmentName))
+		{
+			CheckInOptions.get(j).findElement(By.className("checkbox")).click();
+			break;
+		}
+	}
+	driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
+	driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+	driver.get(prop.getProperty("EMELoginPage"));
+	reusableMethods.activeMemberLogin(username, "Testing1!");
+	return null;
+	}
 
+	public static Object  ConfirmAndCancelAppointmentNoFee(String tomorrowsDate, String startTime, String appointmentToBook) throws IOException, InterruptedException
+	{
+		reusableWaits.waitForDashboardLoaded();
+		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
+		int appointmentsCount = d.getMyAppts().size();
+
+		for (int i = 0; i < appointmentsCount; i++) {
+			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
+
+			{
+
+				if (d.getMyAppts().get(i).getText().contains(startTime)) {
+					
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
+					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
+					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+					
+					WebElement EditButton = d.getEditButton().get(i);		
+					
+					wait.until(ExpectedConditions.visibilityOf(EditButton));
+					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
+					
+					EditButton.click();
+					break;
+				}
+			}
+		}
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		AppointmentsPO a = new AppointmentsPO(driver);
+		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		a.getEditApptCancelButton().click();
+		WebElement wait2 = a.getEditApptProceedButton();
+		while (!wait2.isEnabled())// while button is NOT(!) enabled
+		{
+//			Thread.sleep(200);
+		}
+		a.getEditApptProceedButton().click();
+		boolean result1 = reusableWaits.popupMessageYesButton();
+		if (result1 == true) {
+//				Thread.sleep(500);	
+		}
+		a.getEditApptCancelYesButton().click();
+//		
+		Thread.sleep(2000);
+		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+		
+		return null;
+	}
+	
 }

@@ -93,7 +93,7 @@ public class DashboardPO {
 	By myApptsAppt2Title = By.xpath("//appointmentswidget/div/div[2]/div[2]/div/div/a/div/div[2]/span/strong");
 	By myApptsAppt3Title = By.xpath("//appointmentswidget/div/div[2]/div[3]/div/div/a/div/div[2]/span/strong");
 	By myAppts = By.xpath("//appointmentswidget//div[@class = 'box-clickable']");
-	By editButton = By.xpath("//appointmentswidget//button[contains(text(), 'edit')]");
+	By editButton = By.xpath("//appointmentswidget//div[@class = 'box-clickable']//button[contains(text(), 'edit')]");
 	
 	By myClassesSectionLabel = By.xpath("//div[@class='homeComponent']//classeswidget/div/div[1]");
 //	By myClassesScheduleButton = By.xpath("//button[contains(text(),'class schedule')]");	

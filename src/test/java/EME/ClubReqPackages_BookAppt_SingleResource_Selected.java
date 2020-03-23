@@ -37,8 +37,9 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 	private static String resourceName = "Holmes, Jeff";
 	private static String clubNameDisplayed = "ClubName: Studio Jonas";
 	private static String startTime;
-	private static String tomorrowsDayAndDate;
-	private static String unitsToBeSelected = "1 - $90.00/per";
+	private static String tomorrowsDate;
+	private static int appointmentsCount;
+	private static String unitsToBeSelected = "1 - $5.00/per";
 
 //	@BeforeTest
 	@BeforeClass
@@ -50,7 +51,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
+		reusableMethods.activeMemberLogin("apptmember5", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -114,23 +115,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 			}
 		}
 
-		/*
-		 * WebElement rt = ap.getResourceType();
-		 * 
-		 * while (!rt.isEnabled())// while button is NOT(!) enabled {
-		 * System.out.println("Waiting for Resource drop down to not be blank"); }
-		 * Select s3 = new Select(rt); // Thread.sleep(2000); List<WebElement> Resources
-		 * = s3.getOptions();
-		 * 
-		 * int count2 = Resources.size(); System.out.println(count2);
-		 * 
-		 * for (int k = 0; k < count2; k++) { String resource =
-		 * Resources.get(k).getText();
-		 * 
-		 * if (resource.equals(resourceName)) { s3.selectByVisibleText(resource); break;
-		 * } }
-		 */
-
+		
 		boolean result1 = reusableWaits.loadingAvailability();
 		while (result1 == true) {
 //						Thread.sleep(500);	
@@ -187,9 +172,9 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
+		tomorrowsDate = dateFormat1.format(today1.getTime());
 
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, ap.getAppointmentDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 		Assert.assertTrue(ap.getReviewSection().getText().contains("REVIEW"));
 		Assert.assertTrue(ap.getReviewSection().getText().contains("PACKAGE REQUIRED"));
 		Assert.assertTrue(ap.getReviewSection().getText().contains("This appointment requires a package."));
@@ -217,6 +202,8 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 				break;
 			}
 		}
+		
+		Thread.sleep(1000);
 
 		// Noting down the total amount
 		while (ap.getTotalAmount().getText().isBlank()) {
@@ -242,7 +229,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
 //Verifies the success message
-		Assert.assertEquals(ap.getPopup2Title().getText(), "Success");
+		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
 		ThankYouPO TY = new ThankYouPO(driver);
 
@@ -251,8 +238,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 
 //Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
-		String receiptNumber1 = null;
-
+		
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
@@ -302,19 +288,9 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 //Clicks on the Receiptnumber in Account History 
 
 		ahp.getSearchField().sendKeys(receiptNumber);
+		Thread.sleep(2000);
+		ahp.getReceiptNumber().click();
 
-		while (!ahp.getReceiptNumberTable().isDisplayed()) {
-			Thread.sleep(2000);
-			System.out.println("waiting");
-		}
-		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-			if (receiptNumber1.equals(receiptNumber)) {
-				ahp.getReceiptNumbers().get(k).click();
-				break;
-			}
-		}
 
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 
@@ -339,7 +315,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		int appointmentsCount = d.getMyAppts().size();
 
 		for (int i = 0; i < appointmentsCount; i++) {
-			if (d.getMyAppts().get(i).getText().contains(tomorrowsDayAndDate))
+			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
 
 			{
 
@@ -348,34 +324,72 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 				}
 			}
 		}
-
+		reusableMethods.memberLogout();
 	}
 
-	/*
-	 * @Test(priority = 3) public void CancelAppointment() throws IOException,
-	 * InterruptedException { DashboardPO d = new DashboardPO(driver);
-	 * d.getMyApptsAppt1GearButton().click(); WebElement wait1 =
-	 * d.getMyApptsEditButton(); while (!wait1.isEnabled())// while button is NOT(!)
-	 * enabled { // Thread.sleep(200); } d.getMyApptsEditButton().click();
-	 * WebDriverWait wait = new WebDriverWait(driver, 10);
-	 * wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
-	 * "//div[@class='col-sm-12']/h2"))); AppointmentsPO a = new
-	 * AppointmentsPO(driver);
-	 * Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
-	 * a.getEditApptCancelButton().click(); WebElement wait2 =
-	 * a.getEditApptProceedButton(); while (!wait2.isEnabled())// while button is
-	 * NOT(!) enabled { // Thread.sleep(200); }
-	 * a.getEditApptProceedButton().click(); boolean result1 =
-	 * reusableWaits.popupMessageYesButton(); if (result1 == true) { //
-	 * Thread.sleep(500); } a.getEditApptCancelYesButton().click(); // boolean
-	 * result2 = reusableWaits.popupMessageYesButton(); // if (result2 == true) // {
-	 * // Thread.sleep(500); // } // a.getEditApptCanceledOKButton().click(); //
-	 * reusableWaits.waitForDashboardLoaded(); Thread.sleep(2000);
-	 * Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
-	 * reusableMethods.memberLogout(); } */
+	@Test(priority = 3)
+	public void CancelAppointment() throws IOException, InterruptedException {
+
+		reusableMethods.ApptCheckinInCOG("Auto, apptmember5", appointmentToBook, "apptmember5" ); //Check In the Member to the appointment
+		
+		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		tomorrowsDate = dateFormat1.format(today1.getTime());
+		appointmentsCount = d.getMyAppts().size();
+
+		for (int k = 0; k < appointmentsCount; k++) {
+			if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))
+
+			{
+
+				if (d.getMyAppts().get(k).getText().contains(startTime)) {
+					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
+					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+				
+					WebElement EditButton = d.getEditButton().get(k);		
+					
+					wait.until(ExpectedConditions.visibilityOf(EditButton));
+					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
+					
+					EditButton.click();
+					break;
+				}
+			}
+		}
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+			AppointmentsPO a = new AppointmentsPO(driver);
+			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		a.getEditApptCancelButton().click();
+			WebElement wait2 = a.getEditApptProceedButton();
+			while (!wait2.isEnabled())//while button is NOT(!) enabled
+			{
+//			Thread.sleep(200);
+			}
+		a.getEditApptProceedButton().click();
+			boolean result1 = reusableWaits.popupMessageYesButton();
+			if (result1 == true)
+			{
+//				Thread.sleep(500);	
+			}
+		a.getEditApptCancelYesButton().click();
+//			boolean result2 = reusableWaits.popupMessageYesButton();
+//			if (result2 == true)
+//			{
+//				Thread.sleep(500);	
+//			}
+//		a.getEditApptCanceledOKButton().click();
+//		reusableWaits.waitForDashboardLoaded();
+		Thread.sleep(2000);
+		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+		reusableMethods.memberLogout();
+	}
 	
-	 // @AfterTest
-	 
+	// @AfterTest	 
 	 @AfterClass 
 	 public void teardown() throws InterruptedException {
 	  driver.close(); driver = null; }

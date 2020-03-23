@@ -1,39 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="EME - Automated Testing">
-    <listeners>
-		<listener class-name = "EME.listeners"/>
-	<!--listener class-name = "resources.ExtentReporterNG"/-->
-	</listeners> 
-  <test thread-count="5" name="EME - Smoke Testing">
-     <classes>
-       <class name="EME.loginPageTest"/>
-       <class name="EME.MemberLoginTest"/>
-       <class name="EME.PageLaunchTest"/>
-       <class name="EME.MakePaymentTest"/>
-       <class name="EME.ShopAndPurchasePackages"/>
-       <!--class name="EME.MakeApptTest"/-->
-       <class name="EME.EnrollWithSingleClassFeeTest"/>
-       <class name="EME.EnrollInFreeClassTest"/>
-       <class name="EME.EnrollClassByBuyingPackage"/>
-       <class name="EME.EnrollClass_ClubSettings"/>
-       <class name="EME.EnrollWithSingleCourseFeeTest"/>
-       <class name="EME.EnrollInFreeCourseTest"/>
-       <class name="EME.EnrollCourseByBuyingPackage"/>
-       <class name="EME.EnrollCourse_ClubSettings"/>
-       <class name="EME.EnrollClassMemberAndItemRestrictions"/>
-       <class name="EME.EnrollCourseMemberAndItemRestrictions"/>
-       <class name="EME.FamilyClassEnrollmentUIValidations"/>
-       <class name="EME.FamilyCourseEnrollmentUIValidations"/>
-       <class name="EME.FamilyMemberEnrollmentInFreeClass"/>
-       <class name="EME.FamilyMemberEnrollmentInFreeCourse"/>
-       <class name="EME.FamilyMemberClassEnrollment"/>
-       <class name="EME.FamilyMemberCourseEnrollment"/>
-       <!--class name="EME.ScheduleCourseTest"/-->
-       <!--class name="EME.MakeGroupApptTest"/-->
-       <class name="EME.DashBoard_Layout"/>
-       <class name="EME.DashBoard_Menu"/>
-       <class name="EME.EmailConfirmations"/>
-      </classes>
-  </test>
+	<listeners>
+		<listener class-name="EME.listeners" />
+		<!--listener class-name = "resources.ExtentReporterNG"/ -->
+	</listeners>
+	<test thread-count="5" name="EME - Smoke Testing">
+		<classes>
+			<class name="EME.loginPageTest" />
+			<class name="EME.MemberLoginTest" />
+			<class name="EME.PageLaunchTest" />
+			<class name="EME.DashBoard_Layout" />
+			<class name="EME.DashBoard_Menu" />
+			<class name="EME.MakePaymentTest" />
+			<class name="EME.ShopAndPurchasePackages" />
+			<class name="EME.EnrollWithSingleClassFeeTest" />
+			<class name="EME.EnrollInFreeClassTest" />
+			<class name="EME.EnrollClassByBuyingPackage" />
+			<class name="EME.EnrollClass_ClubSettings" />
+			<class name="EME.EnrollWithSingleCourseFeeTest" />
+			<class name="EME.EnrollInFreeCourseTest" />
+			<class name="EME.EnrollCourseByBuyingPackage" />
+			<class name="EME.EnrollCourse_ClubSettings" />
+			<class name="EME.EnrollClassMemberAndItemRestrictions" />
+			<class name="EME.EnrollCourseMemberAndItemRestrictions" />
+			<class name="EME.FamilyClassEnrollmentUIValidations" />
+			<class name="EME.FamilyCourseEnrollmentUIValidations" />
+			<class name="EME.FamilyMemberEnrollmentInFreeClass" />
+			<class name="EME.FamilyMemberEnrollmentInFreeCourse" />
+			<class name="EME.FamilyMemberClassEnrollment" />
+			<class name="EME.FamilyMemberCourseEnrollment" />
+			<class name="EME.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
+			<class name="EME.ClubNotReqPackages_BookAppt_ThreeResources"/>
+			<class name="EME.ClubReqPackages_BookAppt_CancelTransaction" />
+			<class name="EME.ClubReqPackages_BookAppt_MultiResourcesNotSelected" />
+			<class name="EME.ClubReqPackages_BookAppt_MultiResourcesPartiallySelected" />
+			<class name="EME.ClubReqPackages_BookAppt_MultiResourcesSelected" />
+			<class name="EME.ClubReqPackages_BookAppt_NonMSS" />
+			<class name="EME.ClubReqPackages_BookAppt_SingleResource_NotSelected" />
+			<class name="EME.ClubReqPackages_BookAppt_SingleResource_Selected" />
+			<class name="EME.ClubReqPackages_BookAppt_FreeAppointment" />
+			<class name="EME.CancelApptWithFee_NewCard" />
+			<class name="EME.CancelApptWithFee_OnAccount" />
+			<class name="EME.CancelApptWithFee_SavedCard" />
+			<class name="EME.CancelApptWithFee_cancelTransaction" />
+			<class name="EME.EmailConfirmations" />
+		</classes>
+	</test>
 </suite>

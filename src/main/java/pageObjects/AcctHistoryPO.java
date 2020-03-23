@@ -15,6 +15,7 @@ public class AcctHistoryPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By receiptNumbers = By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a");
+	By receiptNumber = By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a");
 	By receiptNumberTable = By.id("accountHistory");
 	By searchField = By.xpath("//input[@placeholder='Search in table']");
 // CONSTRUCTOR
@@ -42,5 +43,8 @@ public class AcctHistoryPO {
 	{
 		return driver.findElements(receiptNumbers);
 	}
-	
+	public WebElement getReceiptNumber()
+	{
+		return driver.findElement(receiptNumber);
+	}
 }

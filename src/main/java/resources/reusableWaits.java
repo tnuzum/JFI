@@ -29,8 +29,8 @@ public class reusableWaits extends base{
 	{
 	// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
-//		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[@class='no-margins']")));
+//		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
+		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//memberinfo//h3[@class = 'no-margins']")));
 //		System.out.println(DateTime+" INFO: MEMBER NAME Element is now present");
 	// Check 2: wait for MEMBER NAME element to not be blank	
 		DashboardPO d = new DashboardPO(driver);
@@ -42,8 +42,8 @@ public class reusableWaits extends base{
 			wait2.getText();
 		}
 	// Check 3: wait for TOTAL CHARGES element
-		WebDriverWait wait3 = new WebDriverWait(driver, 10);
-		wait3.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2")));
+		
+		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2")));
 //		System.out.println(DateTime+" INFO: TOTAL CHARGES Element is now present");
 	// Check 4: wait for TOTAL CHARGES element to not be blank
 		WebElement wait4 = d.getMyAccountBalance();
