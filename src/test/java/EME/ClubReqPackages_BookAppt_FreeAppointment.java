@@ -730,7 +730,8 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		st2.click();
 		
 		ap.getPopup1BookButton().click();
-		Thread.sleep(3000);
+//		Thread.sleep(3000);
+		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 	
 	
 //Verifies that the Total amount is zero dollars
@@ -875,7 +876,8 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		st2.click();
 		
 		ap.getPopup1BookButton().click();
-		Thread.sleep(3000);
+//		Thread.sleep(3000);
+		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 	
 	
 //Verifies that the Total amount is zero dollars

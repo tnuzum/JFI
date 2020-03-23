@@ -151,7 +151,7 @@ public class EmailConfirmations  {
 	    Assert.assertTrue(emailUtils.isTextInMessage(email5, "Books: PT.Shepard, Elli=ana; FitExpert2; |Gym"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email5, "Description: PTServiceWith3Resourc=es"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email5, "Date: " + tomorrowsDayAndDate ));
-	    Assert.assertTrue(emailUtils.isTextInMessage(email5, "Duratio=n: 0 Hour  15 Minute"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email5, "Durati=on: 0 Hour  15 Minute"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email5, "Time: 5:00 AM"));
 	    
 	   
@@ -180,7 +180,7 @@ public class EmailConfirmations  {
 	    Assert.assertTrue(emailUtils.isTextInMessage(email6, "Description: PTServiceWith3Resourc=es"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email6, "Club: Jonas Fitness"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email6, "Date: " + tomorrowsDayAndDate ));
-	    Assert.assertTrue(emailUtils.isTextInMessage(email6, "Ti=me: 5:00 AM"));
+	    Assert.assertTrue(emailUtils.isTextInMessage(email6, "T=ime: 5:00 AM"));
 	    Assert.assertTrue(emailUtils.isTextInMessage(email6, "Duration: 15 Minute"));
 	   
 	    } catch (Exception e) {
