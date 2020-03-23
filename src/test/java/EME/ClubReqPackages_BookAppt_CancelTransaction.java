@@ -36,7 +36,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-MultiResourcesSelected";
 	private static String resourceName = "PT Smith, Andrew";
-	private static String clubNameDisplayed = "ClubName: Studio Jonas";
+	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDayAndDate;
 	private static String unitsToBeSelected = "1 - $90.00/per";

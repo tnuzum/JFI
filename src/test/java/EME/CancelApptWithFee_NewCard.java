@@ -43,7 +43,7 @@ public class CancelApptWithFee_NewCard extends base {
 	private static String resourceName = "FitExpert1";
 	private static String memberName = "CancelMember1 Auto";
 	private static String additionalResourceName = "Gym";
-	private static String clubNameDisplayed = "ClubName: Studio Jonas";
+	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDate;
 	

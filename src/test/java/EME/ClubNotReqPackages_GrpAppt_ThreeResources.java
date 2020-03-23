@@ -29,11 +29,11 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
+public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
-	private static String productCategory = "Personal Training";
-	private static String appointmentToBook = "PTServiceWith3Resources";
+	private static String productCategory = "Personal Training 1";
+	private static String appointmentToBook = "PT Group Appt 3 Resources";
 	private static String resourceName = "FitExpert2";
 	private static String additionalResourceName = "Gym";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
@@ -51,7 +51,8 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointmentWithThreeResources() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
+		reusableMethods.activeMemberLogin("scottauto", "Testing1!");
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 
@@ -109,6 +110,28 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 				break;
 			}
 		}
+		
+
+		 Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchButton().click();
+			
+			Thread.sleep(2000);
+			
+			int memberCount = ap.getGroupPopupAddButtons().size();
+			for (int i = 0; i<memberCount; i++)
+				  
+			{
+				String text = ap.getGroupPopupMembers().get(i).getText();
+				System.out.println(text);
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
+					{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+					ap.getGroupPopupAddButtons().get(i).click();
+					break;
+					}
+			}
 
 		WebElement rt = ap.getResourceType();
 
@@ -149,7 +172,6 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		Thread.sleep(3000);
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(st1));
 		while (!st1.isEnabled())// while button is NOT(!) enabled
 		{
