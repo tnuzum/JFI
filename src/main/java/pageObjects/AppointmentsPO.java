@@ -21,10 +21,12 @@ public class AppointmentsPO {
 	By groupApptsHeader = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div/h2");
 	By groupMinPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[1]/div/small[1]"); //minimum persons count
 	By groupMaxPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[2]/div/small[1]"); //maximum persons count
-	By groupMemberSearchInput = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[4]/div/input");
-	By groupMemberSearchButton = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[4]/div/span/a");
+	By groupMemberSearchInput = By.xpath("//div[@id = 'group-activity'] //input[contains(@class, 'form-control')]");
+	By groupMemberSearchButton = By.xpath("//div[@id = 'group-activity'] //a[@class='btn btn-primary']");
 	By groupPopupAddButton1 = By.xpath("//appointmentmembersearch/div[2]/div[1]/a");// first add button
 	By groupPopupAddButton2 = By.xpath("//appointmentmembersearch/div[2]/div[2]/a");// second add button
+	By groupPopupMembers = By.xpath("//div[@class = 'modal-content'] //div[@class = 'ng-star-inserted']");
+	By groupPopupAddButtons = By.xpath("//div[@class = 'modal-content'] //div[@class = 'ng-star-inserted']/a");
 	
 	By resourceType= By.xpath("(//select[@name='primaryResourceType'])");
 	By monthSelectBackButton = By.xpath("//div[@class='btn-group']/div[1]/i");
@@ -129,6 +131,17 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(groupPopupAddButton2);
 	}
+	
+	
+	public List <WebElement> getGroupPopupMembers()
+	{
+		return driver.findElements(groupPopupMembers);
+	}
+	public List <WebElement> getGroupPopupAddButtons()
+	{
+		return driver.findElements(groupPopupAddButtons);
+	}
+	
 	
 	public WebElement getResourceType()
 	{

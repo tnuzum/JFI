@@ -36,7 +36,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 	private static String appointmentToBook = "PT 60 Mins-MultiResourcesNotSelected";
 	private static String resourceName = "FitExpert1";
 	private static String additionalResourceName = "Gym";
-	private static String clubNameDisplayed = "ClubName: Studio Jonas";
+	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDate;
 	private static int appointmentsCount;

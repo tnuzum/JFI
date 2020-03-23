@@ -44,6 +44,9 @@
 			<class name="EME.CancelApptWithFee_OnAccount" />
 			<class name="EME.CancelApptWithFee_SavedCard" />
 			<class name="EME.CancelApptWithFee_cancelTransaction" />
+			<class name="EME.ClubNotReqPackages_GrpAppt_ResourceNotSelected" />
+			<class name="EME.ClubNotReqPackages_GrpAppt_ThreeResources" />
+			<class name="EME.ClubReqPackages_GrpAppt_FreeAppointment" />
 			<class name="EME.EmailConfirmations" />
 		</classes>
 	</test>

@@ -35,7 +35,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-SingleResourcesSelected";
 	private static String resourceName = "Holmes, Jeff";
-	private static String clubNameDisplayed = "ClubName: Studio Jonas";
+	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDate;
 	private static int appointmentsCount;

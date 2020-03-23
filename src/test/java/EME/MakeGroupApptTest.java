@@ -40,6 +40,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		reusableMethods.activeMember1Login();
 				DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
+		Thread.sleep(5000);
 				AppointmentsPO ap = new AppointmentsPO(driver);
 				while (ap.getBookableItemCategory().getText().isEmpty())		
 				{

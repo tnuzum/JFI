@@ -49,7 +49,6 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	private static String resourceName2 = "PT Smith, Andrew";
 	private static String resourceName3 = "FitExpert2";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
-	private static String clubNameDisplayed1 = "ClubName: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDate;
 	
@@ -554,7 +553,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook5);
-		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed1);
+		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook5);
 
