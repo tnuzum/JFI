@@ -51,7 +51,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointmentWithThreeResources() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("scottauto", "Testing1!");
+		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 
