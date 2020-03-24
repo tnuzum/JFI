@@ -23,6 +23,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.AppointmentsPO;
+import pageObjects.BreadcrumbTrailPO;
 import pageObjects.CartPO;
 import pageObjects.DashboardPO;
 import resources.base;
@@ -174,6 +175,23 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
 				ap.getAdditionalResources().get(n).click();
 		}
+		
+
+		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
+		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+//		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
+		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
+		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		tomorrowsDate = dateFormat1.format(today1.getTime());
+
+		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 		
 		ap.getbookButton().click();
 		

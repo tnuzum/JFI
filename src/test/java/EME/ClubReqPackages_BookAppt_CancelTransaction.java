@@ -170,6 +170,10 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		
+		Assert.assertEquals(ap.getPopup1Title().getText(),
+				"Package Required");
+		
 		Assert.assertEquals(ap.getPopup1Content().getText(),
 				"This appointment requires a package purchase. Would you like to continue?");
 
@@ -181,7 +185,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
+//		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 
