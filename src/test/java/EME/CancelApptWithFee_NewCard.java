@@ -300,7 +300,8 @@ public class CancelApptWithFee_NewCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
 		
-					Thread.sleep(1000);
+				Thread.sleep(1000);
+				wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 				
 				System.out.println(ap.getTotalAmount().getText());
 

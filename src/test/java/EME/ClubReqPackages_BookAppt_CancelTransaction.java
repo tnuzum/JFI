@@ -223,10 +223,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 			}
 		}
 
-		// Noting down the total amount
-		while (ap.getTotalAmount().getText().isBlank()) {
-			Thread.sleep(500);
-		}
+		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		System.out.println(ap.getTotalAmount().getText());
 
 		String[] totalAmt = ap.getTotalAmount().getText().split(": ");

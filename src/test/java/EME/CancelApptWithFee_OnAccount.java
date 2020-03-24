@@ -275,6 +275,8 @@ public class CancelApptWithFee_OnAccount extends base {
 		
 		
 					Thread.sleep(1000);
+					
+				wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 				
 				System.out.println(ap.getTotalAmount().getText());
 
