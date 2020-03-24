@@ -285,7 +285,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
 		
-					Thread.sleep(5000);
+		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 				
 				System.out.println(ap.getTotalAmount().getText());
 
@@ -358,8 +358,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("There is a fee for cancelling this appointment."));
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
-		
-					Thread.sleep(3000);
+		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 				
 				System.out.println(ap.getTotalAmount().getText());
 

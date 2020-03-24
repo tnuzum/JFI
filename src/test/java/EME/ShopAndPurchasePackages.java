@@ -23,6 +23,7 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class ShopAndPurchasePackages extends base {
+	
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
@@ -128,13 +129,11 @@ public class ShopAndPurchasePackages extends base {
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 
 		// Noting down the total amount
 //		System.out.println(PP.getTotalAmount().getText());
-		while (PP.getShopPackageTotalAmount().getText().isBlank())
-		{
-			Thread.sleep(500);
-		}
+		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 		String[] totalAmt = PP.getShopPackageTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
 //		System.out.println(FormatTotalAmt);
@@ -156,7 +155,6 @@ public class ShopAndPurchasePackages extends base {
 				}
 				PM.getPaymentButton().click();
 
-				WebDriverWait wait = new WebDriverWait(driver, 30);
 				wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 		//Verifies the success message
@@ -293,6 +291,8 @@ public class ShopAndPurchasePackages extends base {
 	
 
 		// Noting down the total amount
+		
+		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 //		System.out.println(PP.getTotalAmount().getText());
 		String[] totalAmt1 = PP.getShopPackageTotalAmount().getText().split(": ");
 		String FormatTotalAmt1 = totalAmt1[1].trim();
@@ -474,6 +474,7 @@ public class ShopAndPurchasePackages extends base {
 				
 	
 	// Noting down the total amount
+	wait1.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 //	System.out.println(PP.getTotalAmount().getText());
 	String[] totalAmt2 = PP.getShopPackageTotalAmount().getText().split(": ");
 	String FormatTotalAmt2 = totalAmt2[1].trim();

@@ -171,8 +171,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				
 		//Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
-		String receiptNumber1 = null;
-		
+				
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
@@ -345,8 +344,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 				//Note down the Receipt number
 				String receiptNumber2 = TY.getReceiptNumber().getText();
-				String receiptNumber3 = null;
-				
+								
 				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);
@@ -540,8 +538,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 				//Note down the Receipt number
 				String receiptNumber4 = TY.getReceiptNumber().getText();
-				String receiptNumber5 = null;
-				
+								
 				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);
