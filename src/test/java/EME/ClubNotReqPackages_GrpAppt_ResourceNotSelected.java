@@ -34,6 +34,9 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 private static String startTime;
 private static String tomorrowsDate;
 private static int appointmentsCount;
+private static String clubName = "Jonas Fitness";
+private static String productCategory = "Personal Training 1";
+private static String resourceName = "PT.Smith, Andrew";
 private static String appointmentToBook = "PT Group Appt Two Resources";
 
 //	@BeforeTest
@@ -54,6 +57,26 @@ private static String appointmentToBook = "PT Group Appt Two Resources";
 				DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 				AppointmentsPO ap = new AppointmentsPO(driver);
+				
+				Select se = new Select(ap.getclubs());
+				List<WebElement> Clubs = se.getOptions();
+
+				while (!ap.getclubs().isEnabled()) {
+					System.out.println("Waiting for Clubs drop down to not be blank");
+				}
+
+				int count0 = Clubs.size();
+				System.out.println("1 " + count0);
+
+				for (int i = 0; i < count0; i++) {
+					String category = Clubs.get(i).getText();
+
+					if (category.equals(clubName)) {
+						se.selectByVisibleText(category);
+						break;
+					}
+				}
+				Thread.sleep(2000);
 				WebElement bic = ap.getBookableItemCategory();
 				
 		 Select s = new Select(bic);
@@ -66,7 +89,7 @@ private static String appointmentToBook = "PT Group Appt Two Resources";
 		 {
 			 String category = ProductCategories.get(i).getText();
 			 
-			 if (category.equals("Personal Training"))
+			 if (category.equals(productCategory))
 			 {
 				 s.selectByVisibleText(category);
 				 break;
@@ -127,7 +150,7 @@ private static String appointmentToBook = "PT Group Appt Two Resources";
 		 {
 			 String resource = Resources.get(k).getText();
 			 
-			 if (resource.equals("PT.Smith, Andrew"))
+			 if (resource.equals(resourceName))
 			 {
 				 s2.selectByVisibleText(resource);
 				 break;
