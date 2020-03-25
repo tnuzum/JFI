@@ -42,7 +42,8 @@ public class CancelApptWithFee_SavedCard extends base {
 	private static String appointmentToBook = "PT 60 Mins-CancelWithFee";
 	private static String resourceName = "FitExpert1";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
-	private static String startTime;
+	private static String clubSpecifiPrice = "$5.00";
+		private static String startTime;
 	private static String tomorrowsDate;
 	private static int appointmentsCount;
 
@@ -194,6 +195,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubSpecifiPrice));
 				
 		ap.getPopup1BookButton().click();
 

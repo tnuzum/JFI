@@ -38,6 +38,8 @@ private static String clubName = "Jonas Fitness";
 private static String productCategory = "Personal Training 1";
 private static String resourceName = "PT.Smith, Andrew";
 private static String appointmentToBook = "PT Group Appt Two Resources";
+private static String clubNameDisplayed = "Club: Jonas Fitness";
+private static String clubAndMemberSpecifiPrice = "$7.00";
 
 //	@BeforeTest
 	@BeforeClass
@@ -201,8 +203,17 @@ private static String appointmentToBook = "PT Group Appt Two Resources";
 						{
 //						Thread.sleep(200); 
 					}
-					
-					
+						DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
+						Calendar today1 = Calendar.getInstance();
+						today1.add(Calendar.DAY_OF_YEAR, 1);
+						tomorrowsDate = dateFormat1.format(today1.getTime());
+						
+						Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
+						Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
+						Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
+						Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
+						Assert.assertTrue(ap.getPopup1Content().getText().contains(clubAndMemberSpecifiPrice));
+									
 			ap.getPopup1BookButton().click();
 			
 			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
