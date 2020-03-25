@@ -46,7 +46,11 @@
 			<class name="EME.CancelApptWithFee_cancelTransaction" />
 			<class name="EME.ClubNotReqPackages_GrpAppt_ResourceNotSelected" />
 			<class name="EME.ClubNotReqPackages_GrpAppt_ThreeResources" />
+			<class name="EME.ClubReqPackages_GrpAppt_CancelTransaction" />
 			<class name="EME.ClubReqPackages_GrpAppt_FreeAppointment" />
+			<class name="EME.ClubReqPackages_GrpAppt_MultiResourcesNotSelected" />
+			<class name="EME.ClubReqPackages_GrpAppt_MultiResourcesSelected" />
+			<class name="EME.ClubReqPackages_GrpAppt_NonMSS" />
 			<class name="EME.EmailConfirmations" />
 		</classes>
 	</test>
