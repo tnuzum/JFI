@@ -35,11 +35,11 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class CancelApptWithFee_NewCard extends base {
+public class CancelGrpApptWithFee_NewCard extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
-	private static String productCategory = "Personal Training";
-	private static String appointmentToBook = "PTWithThreeResourceWithCancelFee";
+	private static String productCategory = "Personal Training 1";
+	private static String appointmentToBook = "PTGrpThreeResourceWithCancelFee";
 	private static String resourceName = "FitExpert1";
 	private static String memberName = "CancelMember1 Auto";
 	private static String additionalResourceName = "Gym";
@@ -58,7 +58,7 @@ public class CancelApptWithFee_NewCard extends base {
 	}
 
 	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
-	public void ScheduleAppointmentWithExistingPackageWithThreeResources() throws IOException, InterruptedException {
+	public void ScheduleGrpAppointmentWithExistingPackageWithThreeResources() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("cancelmember1", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
@@ -122,6 +122,28 @@ public class CancelApptWithFee_NewCard extends base {
 				break;
 			}
 		}
+
+				
+		 Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchButton().click();
+			
+			Thread.sleep(3000);
+			
+			int memberCount = ap.getGroupPopupAddButtons().size();
+			for (int i = 0; i<memberCount; i++)
+				  
+			{
+				String text = ap.getGroupPopupMembers().get(i).getText();
+				System.out.println(text);
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
+					{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+					ap.getGroupPopupAddButtons().get(i).click();
+					break;
+					}
+			}
 
 		WebElement rt = ap.getResourceType();
 
