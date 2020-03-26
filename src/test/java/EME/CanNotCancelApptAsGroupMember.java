@@ -35,18 +35,16 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class CancelApptWithFee_NewCard extends base {
+public class CanNotCancelApptAsGroupMember extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
-	private static String productCategory = "Personal Training";
-	private static String appointmentToBook = "PTWithThreeResourceWithCancelFee";
+	private static String productCategory = "Personal Training 1";
+	private static String appointmentToBook = "PTGrp-CancelWithFee";
 	private static String resourceName = "FitExpert1";
-	private static String memberName = "CancelMember1 Auto";
-	private static String additionalResourceName = "Gym";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
-	private static String startTime;
+	private static String clubSpecifiPrice = "$5.00";
+		private static String startTime;
 	private static String tomorrowsDate;
-	
 	private static int appointmentsCount;
 
 //	@BeforeTest
@@ -58,8 +56,9 @@ public class CancelApptWithFee_NewCard extends base {
 	}
 
 	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
-	public void ScheduleAppointmentWithExistingPackageWithThreeResources() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("cancelmember1", "Testing1!");
+	public void ScheduleAppointmentWithExistingPackageWithTwoResources() throws IOException, InterruptedException {
+		
+		reusableMethods.activeMemberLogin("cancelmember3", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -122,6 +121,29 @@ public class CancelApptWithFee_NewCard extends base {
 				break;
 			}
 		}
+		
+			
+		 Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchButton().click();
+			
+			Thread.sleep(3000);
+			
+			int memberCount = ap.getGroupPopupAddButtons().size();
+			for (int i = 0; i<memberCount; i++)
+				  
+			{
+				String text = ap.getGroupPopupMembers().get(i).getText();
+				System.out.println(text);
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
+					{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+					ap.getGroupPopupAddButtons().get(i).click();
+					break;
+					}
+			}
+
 
 		WebElement rt = ap.getResourceType();
 
@@ -144,20 +166,17 @@ public class CancelApptWithFee_NewCard extends base {
 				break;
 			}
 		}
-		
-		
+
 		boolean result1 = reusableWaits.loadingAvailability();
 		while (result1 == true) {
 //						Thread.sleep(500);	
 		}
-		
 		Boolean TomorrowDatePresent = reusableMethods
 				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
 		if (TomorrowDatePresent == false) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-					
-			
+
 			result1 = reusableWaits.loadingAvailability();
 			while (result1 == true) {
 //							Thread.sleep(500);	
@@ -181,37 +200,29 @@ public class CancelApptWithFee_NewCard extends base {
 		WebElement st2 = ap.getSelectTime1stAvailable();
 
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
+		
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(3000);
 		
-		int additionalResourcesCount = ap.getAdditionalResources().size();
-
-		for (int n = 0; n < additionalResourcesCount; n++) {
-			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
-				ap.getAdditionalResources().get(n).click();
-		}
-		
-					
-		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
-		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
-		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
-		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		tomorrowsDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 		
+		System.out.println(ap.getPopup1Content().getText());
+		System.out.println("Time: "+tomorrowsDate+", " +startTime);
+		System.out.println("Product: "+appointmentToBook );
+		System.out.println("Resource: "+ resourceName);
 		
-		ap.getbookButton().click();
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubSpecifiPrice));
 				
+		ap.getPopup1BookButton().click();
+
 		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
@@ -233,11 +244,13 @@ public class CancelApptWithFee_NewCard extends base {
 
 		}
 		reusableWaits.waitForDashboardLoaded();
+
+
 	}
 
 	@Test(priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
-	    reusableWaits.waitForDashboardLoaded();
+		// reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -260,12 +273,46 @@ public class CancelApptWithFee_NewCard extends base {
 				}
 			}
 		}
+		reusableMethods.memberLogout();
 
 	}
 
 	@Test(priority = 3)
+	public void FamilyMemberCanNotCancel() throws IOException, InterruptedException {
+		
+		reusableMethods.activeMemberLogin("bauto", "Testing1!");
+		
+		DashboardPO d = new DashboardPO(driver);
+
+		for (int k = 0; k < appointmentsCount; k++) {
+			if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))
+
+			{
+
+				if (d.getMyAppts().get(k).getText().contains(startTime)) {
+					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+					
+//					Thread.sleep(5000);
+					WebElement EditButton = d.getEditButton().get(k);		
+										
+				
+					WebDriverWait wait = new WebDriverWait(driver, 30);
+					wait.until(ExpectedConditions.visibilityOf(EditButton));
+					Assert.assertFalse(EditButton.isEnabled());
+					System.out.println("Family member cannot cancel the group appointment");
+					break;
+				}
+			}
+		}
+		
+		reusableMethods.memberLogout();
+					
+			}
+
+	@Test(priority = 4)
 	public void CancelAppointmentWithFee() throws IOException, InterruptedException {
 		
+		reusableMethods.activeMemberLogin("cancelmember3", "Testing1!");
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -299,9 +346,7 @@ public class CancelApptWithFee_NewCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("There is a fee for cancelling this appointment."));
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
-		
-				Thread.sleep(1000);
-				wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 				
 				System.out.println(ap.getTotalAmount().getText());
 
@@ -311,30 +356,21 @@ public class CancelApptWithFee_NewCard extends base {
 				// Verifies the Pay button contains the total amount
 				
 				PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-						
-				PM.getNewCardButton().click();
-				Thread.sleep(3000);
+
+				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
 				
-				String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
-				while (opacity.contains("1")) {
-					PM.getNewCardButton().click();
-					opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+				
+				int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+				for (int i = 0; i < paymentMethodscount; i++) {
+					if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+							.contains("5454"))
+						{
+						
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+							break;
+						}
 				}
 
-				Assert.assertTrue(PM.getCloseButton().isDisplayed());
-				Assert.assertFalse(PM.getPaymentButton().isEnabled());
-				System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
-
-//				System.out.println(PM.getNameOnCardField().getAttribute("value"));
-	     		Assert.assertEquals(memberName,PM.getNameOnCardField().getAttribute("value"));
-	     		
-				PM.getCardNumberField().sendKeys("4111111111111111");
-				PM.getExpirationMonth().sendKeys("12");
-				PM.getExpirationYear().sendKeys("29");
-				PM.getSecurityCode().sendKeys("123");
-				PM.getSaveCardNo().click();
-			
-				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
 				// Click the Pay button
 				while (!PM.getPaymentButton().isEnabled()) {
 					Thread.sleep(1000);
@@ -353,7 +389,7 @@ public class CancelApptWithFee_NewCard extends base {
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 				reusableMethods.ThankYouPageValidations();
 
-
+					
 				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);

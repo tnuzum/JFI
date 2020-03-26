@@ -29,7 +29,9 @@
 			<class name="EME.FamilyMemberEnrollmentInFreeClass" />
 			<class name="EME.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="EME.FamilyMemberClassEnrollment" />
+			<class name="EME.FamilyMemberClassEnrollment2" />
 			<class name="EME.FamilyMemberCourseEnrollment" />
+			<class name="EME.FamilyMemberCourseEnrollment2" />
 			<class name="EME.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
 			<class name="EME.ClubNotReqPackages_BookAppt_ThreeResources"/>
 			<class name="EME.ClubReqPackages_BookAppt_CancelTransaction" />
@@ -51,6 +53,11 @@
 			<class name="EME.ClubReqPackages_GrpAppt_MultiResourcesNotSelected" />
 			<class name="EME.ClubReqPackages_GrpAppt_MultiResourcesSelected" />
 			<class name="EME.ClubReqPackages_GrpAppt_NonMSS" />
+			<class name="EME.CancelGrpApptWithFee_NewCard" />
+			<class name="EME.CancelGrpApptWithFee_OnAccount" />
+			<class name="EME.CancelGrpApptWithFee_SavedCard" />
+			<class name="EME.CancelGrpApptWithFee_cancelTransaction" />
+			<class name="EME.CanNotCancelApptAsGroupMember" />
 			<class name="EME.EmailConfirmations" />
 		</classes>
 	</test>
