@@ -37,7 +37,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 	private static String appointmentToBook = "PT Group Appt 3 Resources";
 	private static String resourceName = "FitExpert2";
 	private static String additionalResourceName = "Gym";
-	private static String clubNameDisplayed = "Club: Studio Jonas";
+	private static String clubNameDisplayed = "Club: Jonas Fitness";
 	private static String startTime;
 	private static int appointmentsCount;
 	private static String tomorrowsDate;
@@ -189,7 +189,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 		startTime = st2.getText();
 		System.out.println(startTime);
 		st2.click();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
@@ -221,6 +221,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 		
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
 
 		// Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();

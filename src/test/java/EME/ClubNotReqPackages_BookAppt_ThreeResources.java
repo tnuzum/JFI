@@ -37,7 +37,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 	private static String appointmentToBook = "PTServiceWith3Resources";
 	private static String resourceName = "FitExpert2";
 	private static String additionalResourceName = "Gym";
-	private static String clubNameDisplayed = "Club: Studio Jonas";
+	private static String clubNameDisplayed = "Club: Jonas Fitness";
 	private static String startTime;
 	private static int appointmentsCount;
 	private static String tomorrowsDate;
@@ -167,7 +167,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		startTime = st2.getText();
 		System.out.println(startTime);
 		st2.click();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		int additionalResourcesCount = ap.getAdditionalResources().size();
 
@@ -200,6 +200,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
 
 		// Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();

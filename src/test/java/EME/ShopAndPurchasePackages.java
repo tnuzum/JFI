@@ -160,6 +160,7 @@ public class ShopAndPurchasePackages extends base {
 		//Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 		PP.getPopupOKButton().click();
+		Thread.sleep(1000);
 		ThankYouPO TY = new ThankYouPO(driver);
 		
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -207,6 +208,7 @@ public class ShopAndPurchasePackages extends base {
 		Assert.assertEquals(IntUnitCountBefore, IntUnitCountAfter); // verifies the unit count of the Package
 
 		DashboardPO dp = new DashboardPO(driver);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		dp.getMyAccountAccountHistory().click();
 		
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
@@ -321,6 +323,7 @@ public class ShopAndPurchasePackages extends base {
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
+				Thread.sleep(1000);
 				ThankYouPO TY = new ThankYouPO(driver);
 				
 				//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -500,6 +503,7 @@ public class ShopAndPurchasePackages extends base {
 			//Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
+			Thread.sleep(1000);
 			ThankYouPO TY = new ThankYouPO(driver);
 
 			//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed

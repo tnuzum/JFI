@@ -53,6 +53,8 @@ public class reusableWaits extends base{
 			Thread.sleep(500);
 			wait4.getText();
 		}
+//		wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id = 'swal2-content']")));
+//		wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyAccountAccountHistory()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyApptsScheduleButton()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyClassesScheduleButton()));

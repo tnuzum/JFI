@@ -417,6 +417,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	softAssertion.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
+	Thread.sleep(1000);
 	
 	//Navigate to Classes
 	int count = driver.findElements(By.tagName("a")).size();

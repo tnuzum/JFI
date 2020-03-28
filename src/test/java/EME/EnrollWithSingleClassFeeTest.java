@@ -151,6 +151,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		//Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 		PP.getPopupOKButton().click();
+		Thread.sleep(1000);
 		ThankYouPO TY = new ThankYouPO(driver);
 
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -189,6 +190,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		Thread.sleep(3000);
 		
 		DashboardPO dp = new DashboardPO(driver);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		wait.until(ExpectedConditions.elementToBeClickable(dp.getMyAccountAccountHistory()));
 		dp.getMyAccountAccountHistory().click();
 		
@@ -312,6 +314,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
+				Thread.sleep(1000);
 				ThankYouPO TY = new ThankYouPO(driver);
 
 				//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -491,6 +494,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				//Verifies the success message
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
+				Thread.sleep(1000);
 				ThankYouPO TY = new ThankYouPO(driver);
 
 				//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -587,6 +591,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
 			
 		}
 

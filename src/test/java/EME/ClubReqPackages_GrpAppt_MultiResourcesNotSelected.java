@@ -24,6 +24,7 @@ import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
+import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
@@ -41,7 +42,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 	private static String startTime;
 	private static String tomorrowsDate;
 	private static int appointmentsCount;
+	private static String participant2 = "Auto, Emailmember2";
 	private static String unitsToBeSelected = "1 - $5.00/per";
+	private static String membername = "ApptMember1 Auto";
 
 //	@BeforeTest
 	@BeforeClass
@@ -130,7 +133,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			{
 				String text = ap.getGroupPopupMembers().get(i).getText();
 				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Emailmember2"))
 					{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
 					ap.getGroupPopupAddButtons().get(i).click();
 					break;
@@ -158,6 +161,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 				break;
 			}
 		}
+		
 
 		boolean result1 = reusableWaits.loadingAvailability();
 		while (result1 == true) {
@@ -169,7 +173,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			result1 = reusableWaits.loadingAvailability();
+		result1 = reusableWaits.loadingAvailability();
 			while (result1 == true) {
 //							Thread.sleep(500);	
 			}
@@ -197,6 +201,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 		
 		Assert.assertEquals(ap.getPopup1Title().getText(),
 				"Package Required");
@@ -214,6 +219,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+		Assert.assertTrue(ap.getGroup().getText().contains(participant2));
 
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -266,6 +272,40 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		System.out.println(FormatTotalAmt);
 		
 		Assert.assertEquals(FormatTotalAmt, mssClubPricing);
+		
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
+		PM.getNewCardButton().click();
+		Thread.sleep(3000);
+		
+		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		while (opacity.contains("1")) {
+			PM.getNewCardButton().click();
+			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		}
+
+		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		Assert.assertFalse(ap.getPaymentButton().isEnabled());
+		System.out.println("Pay Button disabled:" + ap.getPaymentButton().getAttribute("disabled"));
+
+//		System.out.println(PM.getNameOnCardField().getAttribute("value"));
+ 		Assert.assertEquals(membername,PM.getNameOnCardField().getAttribute("value"));
+ 		
+		PM.getCardNumberField().sendKeys("4111111111111111");
+		PM.getExpirationMonth().sendKeys("12");
+		PM.getExpirationYear().sendKeys("29");
+		PM.getSecurityCode().sendKeys("123");
+		PM.getCheckBox().click();
+		while (!ap.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+		ap.getPaymentButton().click();
+		Thread.sleep(1000);
+		System.out.println(PM.getPopupContent().getText());
+		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+		PM.getPopupOk().click();
+		Thread.sleep(1000);
+		PM.getSaveCardNo().click();
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -283,6 +323,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 //Verifies the success message
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
 		ThankYouPO TY = new ThankYouPO(driver);
 
 //Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -328,6 +369,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
 
 		DashboardPO dp = new DashboardPO(driver);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		dp.getMyAccountAccountHistory().click();
 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
@@ -340,7 +382,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 //Clicks on the Receiptnumber in Account History 
 
 		ahp.getSearchField().sendKeys(receiptNumber);
+		Thread.sleep(1000);
 		ahp.getReceiptNumber().click();
+		Thread.sleep(1000);
 
 /*		while (!ahp.getReceiptNumberTable().isDisplayed()) {
 			Thread.sleep(2000);

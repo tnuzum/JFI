@@ -106,6 +106,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 	c.getCourseKeyword().click();
 	c.getSearchField().sendKeys("free");
 	c.getCourseApplyFilters().click();
+	Thread.sleep(2000);
 
 	int CourseCount = c.getClassTable().size();
 	for (int j = 0; j < CourseCount; j++) {
@@ -231,6 +232,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
+		Thread.sleep(1000);
 		ThankYouPO TY = new ThankYouPO(driver);
 
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -269,6 +271,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base{
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(1000);
 		DashboardPO dp = new DashboardPO(driver);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		dp.getMyAccountAccountHistory().click();
 		
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);

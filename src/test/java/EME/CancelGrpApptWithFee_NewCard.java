@@ -46,6 +46,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 	private static String tomorrowsDate;
+	private static String participant2 = "Auto, Daisy";
 	
 	private static int appointmentsCount;
 
@@ -223,6 +224,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+		Assert.assertTrue(ap.getGroup().getText().contains(participant2));
 
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -241,6 +243,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		//Verifies the success message
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
 	
 		//Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();
@@ -354,6 +357,17 @@ public class CancelGrpApptWithFee_NewCard extends base {
 				PM.getExpirationMonth().sendKeys("12");
 				PM.getExpirationYear().sendKeys("29");
 				PM.getSecurityCode().sendKeys("123");
+				PM.getCheckBox().click();
+				while (!PM.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				PM.getPaymentButton().click();
+				System.out.println(PM.getPopupContent().getText());
+				Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+				PM.getPopupOk().click();
+				Thread.sleep(1000);
+				PM.getSaveCardNo().click();
+			
 				PM.getSaveCardNo().click();
 			
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -369,7 +383,9 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 		//Verifies the success message
 				Assert.assertEquals(ap.getPopup2Title().getText(), "Success");
+				Assert.assertTrue(ap.getPopup2Content().getText().contains("Your appointment has been cancelled."));
 				ap.getPopup2OKButton().click();
+				Thread.sleep(1000);
 				ThankYouPO TY = new ThankYouPO(driver);
 
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed

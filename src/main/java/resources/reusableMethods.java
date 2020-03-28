@@ -172,7 +172,7 @@ public class reusableMethods extends base {
 
 	public static String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 		d.getDashboardButton().click();
 //		d.getBreadcrumbDashboard().click();
@@ -207,22 +207,26 @@ public class reusableMethods extends base {
 				System.out.println("Sleeping for 1 second");
 			}
 			
-	    WebDriverWait wait = new WebDriverWait(driver, 10);
+	    WebDriverWait wait = new WebDriverWait(driver, 30);
+	    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-header')]")));
 		wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));	
 		d.getMyClassesClass1GearButton().click();
 		
 		wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
 		wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
 		d.getmyClassesUnenrollButton().click();
+		Thread.sleep(1000);
 		UnenrollPO u = new UnenrollPO(driver);
 		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		u.getUnenrollConfirmYesButton().click();
 		wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(2000);
 			
 		}
 		else
@@ -258,8 +262,9 @@ public class reusableMethods extends base {
 		cp.getCalEventTitle().click();
 		Thread.sleep(1000);
 		cp.getUnEnrollBtn().click();
+		Thread.sleep(1000);
 		UnenrollPO u = new UnenrollPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
@@ -268,6 +273,7 @@ public class reusableMethods extends base {
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(2000);
 		
 		reusableMethods.returnToDashboard();
 		
@@ -353,6 +359,10 @@ public class reusableMethods extends base {
 		
 		//Note the package units 
 		d.getMenuMyAccount().click();
+		while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1"))
+		{
+			Thread.sleep(1000);
+		}
 		d.getMenuPackages().click();
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.className("ibox"))));

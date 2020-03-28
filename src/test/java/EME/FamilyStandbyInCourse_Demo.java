@@ -95,6 +95,7 @@ public class FamilyStandbyInCourse_Demo extends base{
 	c.getCourseKeyword().click();
 	c.getSearchField().sendKeys("demo");
 	c.getCourseApplyFilters().click();
+	Thread.sleep(2000);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 	int CourseCount = c.getClassTable().size();
@@ -306,6 +307,7 @@ public class FamilyStandbyInCourse_Demo extends base{
 	//Verifies the success message
 	Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 	PP.getPopupOKButton().click();
+	Thread.sleep(1000);
 	ThankYouPO TY = new ThankYouPO(driver);
 
 	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
