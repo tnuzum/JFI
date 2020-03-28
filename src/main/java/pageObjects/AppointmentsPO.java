@@ -54,12 +54,14 @@ public class AppointmentsPO {
 	By popup2Title = By.xpath("//h2[@id='swal2-title']");
 	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
+	By popup2Content = By.xpath("//div[@id='swal2-content']");
 	By apptCheckout = By.xpath("//div[@class='row ng-star-inserted']");
 	
 	By appointmentName = By.xpath("//div[contains(@class, 'widget')]/h2");
 	By clubName = By.xpath("//span[contains(@class, 'float')]/small[1]");
 	By appointmentTime = By.xpath("//span[contains(@class, 'float')]/small[2]");
 	By appointmentDate = By.xpath("//span[contains(@class, 'float')]/small[3]");
+	By group = By.xpath("//span[contains(@class, 'float')]/small[4]");
 	By rateBox = By.xpath("//div[@class='col-md-12'] //div[@class = 'rate-box']");
 	By reviewSection = By.xpath("//div[@class='col-md-12']");
 	By totalAmount = By.xpath("//h2[@class='text-uppercase text-danger']");
@@ -242,6 +244,10 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(popup2OKButton);
 	}
+	public WebElement getPopup2Content()
+	{
+		return driver.findElement(popup2Content);
+	}
 	
 	public WebElement getAppointmentTime()
 	{
@@ -251,6 +257,11 @@ public class AppointmentsPO {
 	public WebElement getAppointmentDate()
 	{
 		return driver.findElement(appointmentDate);
+	}
+	
+	public WebElement getGroup()
+	{
+		return driver.findElement(group);
 	}
 	
 	public WebElement getAppointmentName()

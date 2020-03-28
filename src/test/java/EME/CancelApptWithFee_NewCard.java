@@ -219,6 +219,7 @@ public class CancelApptWithFee_NewCard extends base {
 		//Verifies the success message
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
 	
 		//Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();
@@ -332,6 +333,15 @@ public class CancelApptWithFee_NewCard extends base {
 				PM.getExpirationMonth().sendKeys("12");
 				PM.getExpirationYear().sendKeys("29");
 				PM.getSecurityCode().sendKeys("123");
+				PM.getCheckBox().click();
+				while (!PM.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				PM.getPaymentButton().click();
+				System.out.println(PM.getPopupContent().getText());
+				Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+				PM.getPopupOk().click();
+				Thread.sleep(1000);
 				PM.getSaveCardNo().click();
 			
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -347,7 +357,10 @@ public class CancelApptWithFee_NewCard extends base {
 
 		//Verifies the success message
 				Assert.assertEquals(ap.getPopup2Title().getText(), "Success");
+				Assert.assertTrue(ap.getPopup2Content().getText().contains("Your appointment has been cancelled."));
+				
 				ap.getPopup2OKButton().click();
+				Thread.sleep(1000);
 				ThankYouPO TY = new ThankYouPO(driver);
 
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed

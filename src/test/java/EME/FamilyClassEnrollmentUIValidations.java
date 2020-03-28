@@ -98,6 +98,7 @@ public class FamilyClassEnrollmentUIValidations extends base{
 	c.getCourseKeyword().click();
 	c.getSearchField().sendKeys("family");
 	c.getClassApplyFilters().click();
+	Thread.sleep(2000);
 
 	int ClassCount = c.getClassTable().size();
 	for (int j = 0; j < ClassCount; j++) {

@@ -154,6 +154,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 		
 		Assert.assertEquals(ap.getPopup1Title().getText(),
 				"Package Required");
@@ -232,6 +233,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 //Verifies the success message
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
 		ThankYouPO TY = new ThankYouPO(driver);
 
 //Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -277,6 +279,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
 
 		DashboardPO dp = new DashboardPO(driver);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		dp.getMyAccountAccountHistory().click();
 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
@@ -291,6 +294,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		ahp.getSearchField().sendKeys(receiptNumber);
 		Thread.sleep(2000);
 		ahp.getReceiptNumber().click();
+		Thread.sleep(1000);
 
 
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page

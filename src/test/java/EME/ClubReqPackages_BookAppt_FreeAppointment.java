@@ -188,6 +188,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 		
 		DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -364,6 +365,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 		
 		DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -539,7 +541,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		int additionalResourcesCount = ap.getAdditionalResources().size();
 
 		for (int n = 0; n < additionalResourcesCount; n++) {
@@ -727,6 +729,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 		
 		ap.getPopup1BookButton().click();
 //		Thread.sleep(3000);
@@ -873,6 +876,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 		
 		ap.getPopup1BookButton().click();
 //		Thread.sleep(3000);
@@ -1017,6 +1021,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 		
 		DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();

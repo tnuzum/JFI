@@ -199,6 +199,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 		
 		Assert.assertEquals(ap.getPopup1Title().getText(),
 				"Package Required");

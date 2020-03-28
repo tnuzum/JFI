@@ -118,6 +118,7 @@ private static String dsiredMonthYear = "December 2020";
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
+		Thread.sleep(1000);
 		ThankYouPO TY = new ThankYouPO(driver);
 
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -156,6 +157,7 @@ private static String dsiredMonthYear = "December 2020";
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(1000);
 		DashboardPO dp = new DashboardPO(driver);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		dp.getMyAccountAccountHistory().click();
 		
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
@@ -218,6 +220,7 @@ private static String dsiredMonthYear = "December 2020";
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(2000);
 		
 		reusableMethods.returnToDashboard();
 		reusableMethods.memberLogout();
@@ -312,6 +315,7 @@ private static String dsiredMonthYear = "December 2020";
 	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
+	Thread.sleep(2000);
 	ThankYouPO TY = new ThankYouPO(driver);
 
 	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -459,6 +463,7 @@ private static String dsiredMonthYear = "December 2020";
 	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
+	Thread.sleep(1000);
 	ThankYouPO TY = new ThankYouPO(driver);
 
 	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed

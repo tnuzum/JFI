@@ -109,6 +109,7 @@ public class FamilyCourseEnrollmentUIValidations extends base{
 	c.getCourseKeyword().click();
 	c.getSearchField().sendKeys("family");
 	c.getCourseApplyFilters().click();
+	Thread.sleep(2000);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 	int CourseCount = c.getClassTable().size();

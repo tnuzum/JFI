@@ -480,6 +480,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
+		Thread.sleep(1000);
 		
 		//Navigate to Select Courses / Events
 		int count1 = driver.findElements(By.tagName("a")).size();

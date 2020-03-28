@@ -89,6 +89,7 @@ public class FamilyMemberCourseEnrollment2 extends base{
 	c.getCourseKeyword().click();
 	c.getSearchField().sendKeys("CourseFree");
 	c.getCourseApplyFilters().click();
+	Thread.sleep(2000);
 	wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 	int CourseCount = c.getClassTable().size();
@@ -119,7 +120,8 @@ public class FamilyMemberCourseEnrollment2 extends base{
 					Assert.assertTrue(getMemberRate.get(k).getText().contains(member2Rate));
 									
 			}
-				
+			
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'mat-drawer-backdrop')]")));
 			w.click(); // Click on the specific course
 			break;
 		}
@@ -250,6 +252,7 @@ public class FamilyMemberCourseEnrollment2 extends base{
 	//Verifies the success message
 	Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 	PP.getPopupOKButton().click();
+	Thread.sleep(1000);
 	ThankYouPO TY = new ThankYouPO(driver);
 
 	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
@@ -286,6 +289,7 @@ public class FamilyMemberCourseEnrollment2 extends base{
 	Thread.sleep(2000);
 	
 	DashboardPO dp = new DashboardPO(driver);
+	wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 	dp.getMyAccountAccountHistory().click();
 	AcctHistoryPO ahp = new AcctHistoryPO(driver);
 	

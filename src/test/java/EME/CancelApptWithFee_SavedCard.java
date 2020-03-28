@@ -206,6 +206,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		//Verifies the success message
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
 	
 		//Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();
@@ -397,7 +398,9 @@ public class CancelApptWithFee_SavedCard extends base {
 
 		//Verifies the success message
 				Assert.assertEquals(ap.getPopup2Title().getText(), "Success");
+				Assert.assertTrue(ap.getPopup2Content().getText().contains("Your appointment has been cancelled."));
 				ap.getPopup2OKButton().click();
+				Thread.sleep(1000);
 				ThankYouPO TY = new ThankYouPO(driver);
 
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed

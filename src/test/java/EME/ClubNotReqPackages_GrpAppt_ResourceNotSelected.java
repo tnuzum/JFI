@@ -198,6 +198,7 @@ private static String clubAndMemberSpecifiPrice = "$7.00";
 			startTime =st2 .getText();
 			System.out.println(startTime);
 			st2.click();
+			Thread.sleep(3000);
 						WebElement p1 = ap.getPopup1BookButton();
 						while (!p1.isEnabled())//while button is NOT(!) enabled
 						{
@@ -221,7 +222,7 @@ private static String clubAndMemberSpecifiPrice = "$7.00";
 			
 			Assert.assertEquals(ap.getPopup2Title().getText(),"Booked");
 			ap.getPopup2OKButton().click();
-			
+			Thread.sleep(1000);
 			//Navigate to Dashboard
 			int linkcount = driver.findElements(By.tagName("a")).size();
 			for (int i = 0; i < linkcount; i++) {

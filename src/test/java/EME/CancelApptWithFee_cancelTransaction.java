@@ -180,6 +180,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
+		Thread.sleep(3000);
 
 		ap.getPopup1BookButton().click();
 
@@ -190,6 +191,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 		// Verifies the success message
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
 
 		// Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();

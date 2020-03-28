@@ -24,7 +24,11 @@ public class PaymentMethodsPO {
 	By expirationYear = By.xpath("//input[@name='ExpireYear']");
 	By securityCode = By.xpath("//input[@id='securityCode']");
 	By saveCardNo = By.xpath("//label[@for = 'sc-no']");
+	By checkBox = By.id("checkTermsPaymentMethods");
 	By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
+	By popupContent = By.xpath("//div[@id = 'swal2-content']");
+	By popupOk = By.xpath("//button[contains(@class,  'swal2-confirm')]");
+	By popupElement = By.xpath("//div[contains(@class, 'swal2-popup')]");
 		
 // CONSTRUCTOR
 		
@@ -73,6 +77,26 @@ public class PaymentMethodsPO {
 	public WebElement getSaveCardNo()
 	{
 		return driver.findElement(saveCardNo);
+	}
+	
+	public WebElement getCheckBox()
+	{
+		return driver.findElement(checkBox);
+	}
+	
+	public WebElement getPopupContent()
+	{
+		return driver.findElement(popupContent);
+	}
+
+	
+	public WebElement getPopupElement()
+	{
+		return driver.findElement(popupElement);
+	}
+	public WebElement getPopupOk()
+	{
+		return driver.findElement(popupOk);
 	}
 	
 	public WebElement getCancelButton()
