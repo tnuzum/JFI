@@ -3,6 +3,7 @@ package resources;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -164,6 +165,7 @@ public class reusableWaits extends base{
 	}
 		public static boolean loadingAvailability()
 	{
+			 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			try {
 				AppointmentsPO a = new AppointmentsPO(driver);
 				a.getloadingAvailabilityMessage();

@@ -68,9 +68,10 @@ public class AppointmentsPO {
 	By additionalResources = By.xpath("//div[@class = 'mat-radio-label-content']");
 	
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
-	By editApptChangeButton = By.cssSelector("#button-change");
+	By editApptChangeButton = By.xpath("//button[contains(text(), 'change')]");
 	By editApptCancelButton = By.xpath("//*[text()='cancel']"); //By.cssSelector("#button-cancel"); stopped working in 7.28
 	By editApptProceedButton = By.xpath("//*[text()='proceed with cancel']"); //By.xpath("//div[@id='show-hide-cancel']/div/div/a"); stopped working in 7.28
+	By editApptProceedButton1 = By.xpath("//*[text()='proceed with change']");
 	By editApptCancelYesButton = By.cssSelector("button[class*='confirm']");
 	By editApptCancelNoButton = By.cssSelector("button[class*='cancel']");
 	By editApptCanceledMessage = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/h2[1]");
@@ -320,6 +321,10 @@ public class AppointmentsPO {
 	public WebElement getEditApptProceedButton()
 	{
 		return driver.findElement(editApptProceedButton);
+	}
+	public WebElement getEditApptProceedButton1()
+	{
+		return driver.findElement(editApptProceedButton1);
 	}
 	public WebElement getEditApptCancelYesButton()
 	{

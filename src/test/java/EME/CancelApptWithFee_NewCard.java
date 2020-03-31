@@ -314,7 +314,7 @@ public class CancelApptWithFee_NewCard extends base {
 				PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 						
 				PM.getNewCardButton().click();
-				Thread.sleep(3000);
+				Thread.sleep(1000);
 				
 				String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 				while (opacity.contains("1")) {
@@ -333,6 +333,7 @@ public class CancelApptWithFee_NewCard extends base {
 				PM.getExpirationMonth().sendKeys("12");
 				PM.getExpirationYear().sendKeys("29");
 				PM.getSecurityCode().sendKeys("123");
+				Thread.sleep(1000);
 				PM.getCheckBox().click();
 				while (!PM.getPaymentButton().isEnabled()) {
 					Thread.sleep(1000);

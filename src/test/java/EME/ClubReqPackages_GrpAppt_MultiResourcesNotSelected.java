@@ -161,6 +161,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 				break;
 			}
 		}
+		Thread.sleep(5000);
 		
 
 		boolean result1 = reusableWaits.loadingAvailability();
@@ -172,6 +173,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		if (TomorrowDatePresent == false) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			Thread.sleep(5000);
 
 		result1 = reusableWaits.loadingAvailability();
 			while (result1 == true) {
@@ -201,7 +203,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(3000);
+		Thread.sleep(2000);
 		
 		Assert.assertEquals(ap.getPopup1Title().getText(),
 				"Package Required");
@@ -276,7 +278,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		PM.getNewCardButton().click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		while (opacity.contains("1")) {
@@ -295,6 +297,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		PM.getExpirationMonth().sendKeys("12");
 		PM.getExpirationYear().sendKeys("29");
 		PM.getSecurityCode().sendKeys("123");
+		Thread.sleep(1000);
 		PM.getCheckBox().click();
 		while (!ap.getPaymentButton().isEnabled()) {
 			Thread.sleep(1000);
