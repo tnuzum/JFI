@@ -19,5 +19,6 @@
     <Root level="trace">
       <AppenderRef ref="File"/><!-- Console or File; points to section in appenders section -->
     </Root>
+    
   </Loggers>
 </Configuration>
