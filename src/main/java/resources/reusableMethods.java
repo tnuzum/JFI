@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -181,6 +182,7 @@ public class reusableMethods extends base {
 	}
 
 	public static boolean isElementPresent(By by) {
+		 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		try {
 			driver.findElement(by);
 			return true;
@@ -585,6 +587,175 @@ public class reusableMethods extends base {
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		
 		return null;
+	}
+	
+	public static String BookAppt(String clubName, String productCategory, String appointmentToBook, String resourceName) throws IOException, InterruptedException
+	{
+		DashboardPO p = new DashboardPO(driver);
+		p.getMyApptsScheduleButton().click();
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		Select se = new Select(ap.getclubs());
+		List<WebElement> Clubs = se.getOptions();
+
+		while (!ap.getclubs().isEnabled()) {
+			System.out.println("Waiting for Clubs drop down to not be blank");
+		}
+
+		int count0 = Clubs.size();
+		System.out.println("1 " + count0);
+
+		for (int i = 0; i < count0; i++) {
+			String category = Clubs.get(i).getText();
+
+			if (category.equals(clubName)) {
+				se.selectByVisibleText(category);
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		WebElement bic = ap.getBookableItemCategory();
+
+		Select s = new Select(bic);
+		List<WebElement> ProductCategories = s.getOptions();
+
+		int count = ProductCategories.size();
+		System.out.println(count);
+
+		for (int i = 0; i < count; i++) {
+			String category = ProductCategories.get(i).getText();
+
+			if (category.equals(productCategory)) {
+				s.selectByVisibleText(category);
+				break;
+			}
+		}
+
+		Select s1 = new Select(ap.getBookableItem());
+		Thread.sleep(2000);
+		List<WebElement> Products = s1.getOptions();
+
+		int count1 = Products.size();
+		System.out.println(count1);
+
+		for (int j = 0; j < count1; j++) {
+			String product = Products.get(j).getText();
+
+			if (product.equals(appointmentToBook)) {
+				s1.selectByVisibleText(product);
+				break;
+			}
+		}
+
+		WebElement rt = ap.getResourceType();
+
+		Select s2 = new Select(rt);
+		Thread.sleep(2000);
+		List<WebElement> Resources = s2.getOptions();
+
+		int count2 = Resources.size();
+		System.out.println(count2);
+
+		for (int k = 0; k < count2; k++) {
+			String resource = Resources.get(k).getText();
+
+			if (resource.equals(resourceName)) {
+				s2.selectByVisibleText(resource);
+				break;
+			}
+		}
+
+		boolean result1 = reusableWaits.loadingAvailability();
+		if (result1 == true) {
+//						Thread.sleep(500);	
+		}
+		Boolean TomorrowDatePresent = reusableMethods
+				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
+		if (TomorrowDatePresent == false) {
+
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			;
+
+			result1 = reusableWaits.loadingAvailability();
+			if (result1 == true) {
+//							Thread.sleep(500);	
+			}
+		}
+
+		ap.getCalendarTomorrow().click();
+		Thread.sleep(3000);
+
+		WebElement st1 = ap.getSelectTimeMorningButton();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(st1));
+		while (!st1.isEnabled())// while button is NOT(!) enabled
+		{
+			System.out.println("Waiting for available times");
+		}
+		ap.getSelectTimeMorningButton().click();
+		WebElement st2 = ap.getSelectTime1stAvailable();
+//					while (!st2.isEnabled())//while button is NOT(!) enabled
+//					{
+//					Thread.sleep(200);
+//					}
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		wait1.until(ExpectedConditions.elementToBeClickable(st2));
+		String startTime = st2.getText();
+		System.out.println(startTime);
+		st2.click();
+		Thread.sleep(3000);
+		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase. Would you like to continue?"))
+				{
+			ap.getPopup1BookButton().click();
+			Thread.sleep(1000);
+			Select s4 = new Select(
+					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
+			List<WebElement> UnitRates = s4.getOptions();
+
+			int count4 = UnitRates.size();
+			System.out.println("4 " + count4);
+
+			for (int i = 0; i < count4; i++) {
+				String unitRate = UnitRates.get(i).getText();
+				System.out.println(unitRate);
+
+				if (unitRate.contains("1 - $")) {
+					s4.selectByVisibleText(unitRate);
+					break;
+				}
+			}
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+			ap.getPaymentButton().click();
+				}
+		else
+			{
+			ap.getPopup1BookButton().click();
+			}
+		
+		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+		wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
+		
+		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
+		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
+
+		// Navigate to Dashboard
+		int linkcount = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < linkcount; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+			{
+				// reusableWaits.linksToBeClickable();
+				driver.findElements(By.tagName("a")).get(i).click();
+				break;
+			}
+
+		}
+		reusableWaits.waitForDashboardLoaded();
+		return startTime;
 	}
 	
 }

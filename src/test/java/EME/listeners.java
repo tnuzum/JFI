@@ -1,4 +1,4 @@
-package EME;
+ package EME;
 
 import java.io.IOException;
 import org.openqa.selenium.By;
@@ -23,7 +23,7 @@ public class listeners extends base implements ITestListener{
 		
 	}
 	
-	/*	@Override
+		@Override
 	public void onTestFailure(ITestResult result) {
 
 		result.getName();
@@ -61,15 +61,15 @@ public class listeners extends base implements ITestListener{
 	public void onFinish(ITestContext context) {
 		
 	}
-	@Override
+/* @Override
 	public void onTestFailure(ITestResult result) {
-	     /* if(ITestResult.FAILURE==result.getStatus()){
+	      if(ITestResult.FAILURE==result.getStatus()){
 	            WebElement username = driver.findElement(By.xpath("//a[@class='at-topnavbar-logout']")); // element which displays if user is logged in
 	            if(username.isDisplayed())
 	                // steps to logout will go here
 	            	driver.findElement(By.xpath("//a[@class='at-topnavbar-logout']")).click();
-	            }*/
-	       }
+	            }
+	       }*/
 	}
 
 
