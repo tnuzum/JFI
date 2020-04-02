@@ -471,7 +471,7 @@ public class reusableMethods extends base {
 	
 		while (!monthName.contains(monthYear))
 		{
-			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]//div[contains(@class, 'mat-button-ripple')]")).click();
+			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]")).click();
 			monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
 		}
 		//button[@class='mat-calendar-next-button mat-icon-button']//div[contains(@class, 'mat-button-ripple')]
@@ -488,6 +488,43 @@ public class reusableMethods extends base {
 	
 	return null;
 	}
+	
+	public static Object SelectYesterdayDate() throws InterruptedException{
+		
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		c.getCalendarIcon().click();
+		Thread.sleep(2000);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d yyyy");
+		Calendar today = Calendar.getInstance();
+		 today.add(Calendar.DAY_OF_YEAR, -1);
+		 String yesterdaysMonthDateYear = dateFormat.format(today.getTime());
+		
+		 String[] monthDateYear = yesterdaysMonthDateYear.split(" ");
+		 String monthYear = monthDateYear[0].toUpperCase() + " " + monthDateYear[2];
+		 String yesterdaysDate = monthDateYear[1];
+		 
+		 String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
+		
+			while (!monthName.contains(monthYear))
+			{
+				driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-previous-button')]")).click();
+				monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
+			}
+			//button[@class='mat-calendar-next-button mat-icon-button']//div[contains(@class, 'mat-button-ripple')]
+
+		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
+		for (int i = 0; i < daycount; i++) {
+			String date = driver.findElements(By.tagName("td")).get(i).getText();
+			if (date.contains(yesterdaysDate)) {
+				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
+				break;
+			}
+			
+		}
+		
+		return null;
+		}
 	
 	public static Object ApptCheckinInCOG(String memberName, String appointmentName, String username) throws InterruptedException{
 		
@@ -589,9 +626,11 @@ public class reusableMethods extends base {
 		return null;
 	}
 	
-	public static String BookAppt(String clubName, String productCategory, String appointmentToBook, String resourceName) throws IOException, InterruptedException
+	public static String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook, String resourceName1, String resourceName2) throws IOException, InterruptedException
 	{
 		DashboardPO p = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		String startTime = null;
 		p.getMyApptsScheduleButton().click();
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
@@ -661,51 +700,68 @@ public class reusableMethods extends base {
 		for (int k = 0; k < count2; k++) {
 			String resource = Resources.get(k).getText();
 
-			if (resource.equals(resourceName)) {
+			if (resource.equals(resourceName1)) {
 				s2.selectByVisibleText(resource);
 				break;
 			}
 		}
-
-		boolean result1 = reusableWaits.loadingAvailability();
-		if (result1 == true) {
-//						Thread.sleep(500);	
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting1");
+			Thread.sleep(1000);
 		}
-		Boolean TomorrowDatePresent = reusableMethods
-				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
-		if (TomorrowDatePresent == false) {
+		
+		System.out.println("came out of the loop");
+				
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
+		if (classtext.contains("cal-out-month"))
+		{
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-			;
-
-			result1 = reusableWaits.loadingAvailability();
-			if (result1 == true) {
-//							Thread.sleep(500);	
+			
+			while (ap.getloadingAvailabilityMessage().size()!=0)
+			{
+				System.out.println("waiting");
+				Thread.sleep(1000);
 			}
+			System.out.println("came out of the loop");
 		}
 
 		ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
-
-		WebElement st1 = ap.getSelectTimeMorningButton();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.elementToBeClickable(st1));
-		while (!st1.isEnabled())// while button is NOT(!) enabled
+		
+		for (int i = 0; i < ap.getApptBox().size(); i++)
 		{
-			System.out.println("Waiting for available times");
-		}
-		ap.getSelectTimeMorningButton().click();
-		WebElement st2 = ap.getSelectTime1stAvailable();
+		String bookName = ap.getApptBox().get(i).getText();
+		if (bookName.contains(resourceName2))
+		{
+			List <WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));		
+			WebElement MorningSlot = TimeSlots.get(0);
+			wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
+			while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
+			{
+				System.out.println("Waiting for available times");
+			}
+			
+			MorningSlot.click();
+	
+
+			WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+					List <WebElement> MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));	
+		WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
 //					Thread.sleep(200);
 //					}
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.elementToBeClickable(st2));
-		String startTime = st2.getText();
+		
+		wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
+		startTime = firstAvailableTimeMorning.getText();
 		System.out.println(startTime);
-		st2.click();
-		Thread.sleep(3000);
+		firstAvailableTimeMorning.click();
+		break;
+		}
+		}
+		Thread.sleep(1000);
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase. Would you like to continue?"))
 				{
 			ap.getPopup1BookButton().click();

@@ -141,25 +141,32 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 		}
 		
 
-		boolean result1 = reusableWaits.loadingAvailability();
-		while (result1 == true) {
-//						Thread.sleep(500);	
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting1");
+			Thread.sleep(1000);
 		}
-		Boolean TomorrowDatePresent = reusableMethods
-				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
-		if (TomorrowDatePresent == false) {
+		
+		System.out.println("came out of the loop");
+		
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month"))
+		{
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-			Thread.sleep(5000);
-
-		 result1 = reusableWaits.loadingAvailability();
-			while (result1 == true) {
-//							Thread.sleep(500);	
+			
+			while (ap.getloadingAvailabilityMessage().size()!=0)
+			{
+				System.out.println("waiting1");
+				Thread.sleep(1000);
 			}
+			
+			System.out.println("came out of the loop");
 		}
 
 		ap.getCalendarTomorrow().click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
@@ -180,7 +187,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		
 		Assert.assertEquals(ap.getPopup1Title().getText(),
 				"Package Required");
@@ -205,13 +212,20 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 		tomorrowsDate = dateFormat1.format(today1.getTime());
 
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
-		Assert.assertTrue(ap.getReviewSection().getText().contains("REVIEW"));
-		Assert.assertTrue(ap.getReviewSection().getText().contains("PACKAGE REQUIRED"));
-		Assert.assertTrue(ap.getReviewSection().getText().contains("This appointment requires a package."));
-		Assert.assertTrue(ap.getReviewSection().getText().contains(
+		
+		for (int i = 0; i< ap.getReviewSection().size(); i++)
+		{
+			if (ap.getReviewSection().get(i).getText().contains("REVIEW"))
+				
+			{
+				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("PACKAGE REQUIRED"));
+				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("This appointment requires a package."));
+				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains(
 				"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
-
-		while (ap.getRateBox().getText().isBlank()) {
+			}
+		}
+		while (ap.getRateBox().getText().isBlank())
+		{
 			System.out.println("Waiting");
 		}
 		Assert.assertTrue(ap.getRateBox().getText().contains(appointmentToBook.toUpperCase()));

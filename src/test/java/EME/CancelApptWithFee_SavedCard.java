@@ -143,24 +143,32 @@ public class CancelApptWithFee_SavedCard extends base {
 			}
 		}
 
-		boolean result1 = reusableWaits.loadingAvailability();
-		while (result1 == true) {
-//						Thread.sleep(500);	
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting1");
+			Thread.sleep(1000);
 		}
-		Boolean TomorrowDatePresent = reusableMethods
-				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
-		if (TomorrowDatePresent == false) {
+		
+		System.out.println("came out of the loop");
+		
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month"))
+		{
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			result1 = reusableWaits.loadingAvailability();
-			while (result1 == true) {
-//							Thread.sleep(500);	
+			while (ap.getloadingAvailabilityMessage().size()!=0)
+			{
+				System.out.println("waiting1");
+				Thread.sleep(1000);
 			}
+			
+			System.out.println("came out of the loop");
 		}
 
 		ap.getCalendarTomorrow().click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
@@ -179,9 +187,9 @@ public class CancelApptWithFee_SavedCard extends base {
 		
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		
-		DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("M/d/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		tomorrowsDate = dateFormat1.format(today1.getTime());

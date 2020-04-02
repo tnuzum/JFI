@@ -137,7 +137,7 @@ public class EmailConfirmations  {
 	    System.out.println(emailUtils.getMessageContent(email5));
 	    String emailMessage2 = emailUtils.getMessageContent(email5);
 	    
-	    SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM dd, yyyy");
+	    SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 		Calendar today11 = Calendar.getInstance();
 		 today11.add(Calendar.DAY_OF_YEAR, 1);
 		 String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
@@ -169,7 +169,7 @@ public class EmailConfirmations  {
 	    System.out.println(emailUtils.getMessageContent(email6));
 	    String emailMessage2 = emailUtils.getMessageContent(email6);
 	    
-	    SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM dd, yyyy");
+	    SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 		Calendar today11 = Calendar.getInstance();
 		 today11.add(Calendar.DAY_OF_YEAR, 1);
 		 String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
@@ -198,7 +198,7 @@ public class EmailConfirmations  {
 		    System.out.println(emailUtils.getMessageContent(email7));
 		    String emailMessage2 = emailUtils.getMessageContent(email7);
 		    
-		    SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM dd, yyyy");
+		    SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
 			 today11.add(Calendar.DAY_OF_YEAR, 1);
 			 String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
@@ -231,7 +231,7 @@ public class EmailConfirmations  {
 		    System.out.println(emailUtils.getMessageContent(email8));
 		    String emailMessage2 = emailUtils.getMessageContent(email8);
 		    
-		    SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM dd, yyyy");
+		    SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
 			 today11.add(Calendar.DAY_OF_YEAR, 1);
 			 String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());

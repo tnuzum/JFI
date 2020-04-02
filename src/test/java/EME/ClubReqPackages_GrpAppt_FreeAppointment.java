@@ -165,24 +165,32 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			}
 		}
 
-		boolean result1 = reusableWaits.loadingAvailability();
-		while (result1 == true) {
-//						Thread.sleep(500);	
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting1");
+			Thread.sleep(1000);
 		}
-		Boolean TomorrowDatePresent = reusableMethods
-				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
-		if (TomorrowDatePresent == false) {
+		
+		System.out.println("came out of the loop");
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month"))
+		{
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			result1 = reusableWaits.loadingAvailability();
-			while (result1 == true) {
-//							Thread.sleep(500);	
+
+			while (ap.getloadingAvailabilityMessage().size()!=0)
+			{
+				System.out.println("waiting1");
+				Thread.sleep(1000);
 			}
+			
+			System.out.println("came out of the loop");
 		}
 
 		ap.getCalendarTomorrow().click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		Assert.assertEquals(ap.getBooksNames().getText(), resourceName1);
 
@@ -204,7 +212,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		
 		DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
@@ -216,7 +224,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		System.out.println("Resource: "+ resourceName1);
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment is free!"));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
+	//	Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook1 ));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Resource: "+ resourceName1));
 		
@@ -365,24 +373,33 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			}
 		}
 
-		boolean result1 = reusableWaits.loadingAvailability();
-		while (result1 == true) {
-//						Thread.sleep(500);	
-		}
-		Boolean TomorrowDatePresent = reusableMethods
-				.isElementPresent(By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]"));
-		if (TomorrowDatePresent == false) {
 
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+		
+		System.out.println("came out of the loop");
+		
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month"))
+		{
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			result1 = reusableWaits.loadingAvailability();
-			while (result1 == true) {
-//							Thread.sleep(500);	
+
+			while (ap.getloadingAvailabilityMessage().size()!=0)
+			{
+				System.out.println("waiting1");
+				Thread.sleep(1000);
 			}
+			
+			System.out.println("came out of the loop");
 		}
 
 		ap.getCalendarTomorrow().click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName2));
 
@@ -404,7 +421,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(3000);
+		Thread.sleep(1000);
 		
 		int additionalResourcesCount = ap.getAdditionalResources().size();
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="EME - Automated Testing">
+	<listeners>
+		<listener class-name="EME.listeners" />
+		<!--listener class-name = "resources.ExtentReporterNG"/ -->
+	</listeners>
+	<test thread-count="5" name="EME - Smoke Testing">
+		<classes>
+			<class name="EME.ClubReqPackages_GrpAppt_NonMSS" />
+			<class name="EME.CancelGrpApptWithFee_NewCard" />
+			<class name="EME.CancelGrpApptWithFee_OnAccount" />
+			<class name="EME.CancelGrpApptWithFee_SavedCard" />
+			<class name="EME.CancelGrpApptWithFee_cancelTransaction" />
+			<class name="EME.CanNotCancelApptAsGroupMember" />
+			<class name="EME.EmailConfirmations" />
+		</classes>
+	</test>
+</suite>
