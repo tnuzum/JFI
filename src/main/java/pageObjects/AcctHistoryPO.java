@@ -16,7 +16,7 @@ public class AcctHistoryPO {
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By receiptNumbers = By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a");
 	By receiptNumber = By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a");
-	By receiptNumberTable = By.id("accountHistory");
+	By receiptNumberTable = By.xpath("//div[contains(@class,'col-md-12')]");
 	By searchField = By.xpath("//input[@placeholder='Search in table']");
 // CONSTRUCTOR
 		
