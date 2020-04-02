@@ -14,7 +14,7 @@ public class AppointmentsPO {
 		
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By loadingAvailabilityMessage = By.xpath("//div[@class='swal2-container.swal2-center']");
+	By loadingAvailabilityMessage = By.xpath("//div[contains(@class, 'swal2-container')]");
 	By clubs = By.xpath("(//select[@name='clubs'])");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
@@ -32,6 +32,7 @@ public class AppointmentsPO {
 	By monthSelectBackButton = By.xpath("//div[@class='btn-group']/div[1]/i");
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
+	By calendarDayAfterTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[2]");
 	By calendarMonday1stFullWeek = By.xpath("//div[@class='cal-month-view']/div/div[2]/div/mwl-calendar-month-cell[2]");
 	//By selectTimeMorningButton = By.xpath("//strong[contains(text(),'MORNING')]");
 	By selectTimeMorningButton = By.xpath("//div[contains(@class, 'tabs-container')]/ul/li[1]/a[1]");
@@ -43,7 +44,9 @@ public class AppointmentsPO {
 	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book button
 	By packageRequiredContinueButton = By.xpath("//*[text()='CONTINUE']"); // Continue button
 	By bookButton = By.xpath("//button[@type = 'submit']");
-	
+	By apptBox = By.xpath("//div[contains(@class, 'appt-box')]");
+	By timeSlotContainers = By.xpath("//div[contains(@class, 'tabs-container')]");
+		
 	//By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
@@ -90,9 +93,9 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(pageHeader);
 	}
-	public WebElement getloadingAvailabilityMessage()
+	public List<WebElement> getloadingAvailabilityMessage()
 	{
-		return driver.findElement(loadingAvailabilityMessage);
+		return driver.findElements(loadingAvailabilityMessage);
 	}
 	public WebElement getclubs()
 	{
@@ -164,6 +167,11 @@ public class AppointmentsPO {
 		return driver.findElement(calendarTomorrow);
 	}
 	
+	public WebElement getCalendarDayAfterTomorrow()
+	{
+		return driver.findElement(calendarDayAfterTomorrow);
+	}
+	
 	public WebElement getCalendarMonday1stFullWeek()
 	{
 		return driver.findElement(calendarMonday1stFullWeek);
@@ -196,6 +204,20 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(addlResourcesBookButton);
 	}
+	
+	public List<WebElement> getApptBox()
+	{
+		return driver.findElements(apptBox);
+		
+	}
+	
+	public List<WebElement> getTimeSlotContainers()
+	{
+		return driver.findElements(timeSlotContainers);
+		
+	}
+	
+	
 	public WebElement getPackageRequiredContinueButton()
 	{
 		return driver.findElement(packageRequiredContinueButton);
@@ -275,9 +297,9 @@ public class AppointmentsPO {
 		return driver.findElement(clubName);
 	}
 	
-	public WebElement getReviewSection()
+	public List<WebElement> getReviewSection()
 	{
-		return driver.findElement(reviewSection);
+		return driver.findElements(reviewSection);
 	}
 	
 	public WebElement getRateBox()
