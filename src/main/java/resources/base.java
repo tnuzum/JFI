@@ -112,7 +112,7 @@ public class base {
 		String DateTime= dateFormat.format(date);
 		System.out.println(DateTime+" INFO: WebDriver Initialized");
 		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		return driver;
 	}

@@ -110,10 +110,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 				break;
 			}
 		}
-		boolean result1 = reusableWaits.loadingAvailability();
-		while (result1 == true) {
-//						Thread.sleep(500);	
-		}
+		Thread.sleep(3000);
 		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
 		ap.getPopup2OKButton().click();
 
@@ -156,10 +153,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 		 * } }
 		 */
 
-		result1 = reusableWaits.loadingAvailability();
-		while (result1 == true) {
-//						Thread.sleep(500);	
-		}
+			Thread.sleep(3000);
 		
 		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
 		ap.getPopup2OKButton().click();

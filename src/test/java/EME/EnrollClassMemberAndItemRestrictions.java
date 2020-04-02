@@ -270,6 +270,10 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		
+		reusableMethods.SelectYesterdayDate();
+		
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 							
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j= 0; j<ClassCount; j++)
