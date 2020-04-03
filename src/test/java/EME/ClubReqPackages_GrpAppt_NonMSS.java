@@ -120,7 +120,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			ap.getGroupMemberSearchInput().sendKeys("auto");
 			ap.getGroupMemberSearchButton().click();
 			
-			Thread.sleep(3000);
+			Thread.sleep(4000);
 			
 			int memberCount = ap.getGroupPopupAddButtons().size();
 			for (int i = 0; i<memberCount; i++)
@@ -153,7 +153,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 		 * } }
 		 */
 
-			Thread.sleep(3000);
+			Thread.sleep(4000);
 		
 		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
 		ap.getPopup2OKButton().click();
