@@ -59,6 +59,16 @@
 			<class name="EME.CancelGrpApptWithFee_SavedCard" />
 			<class name="EME.CancelGrpApptWithFee_cancelTransaction" />
 			<class name="EME.CanNotCancelApptAsGroupMember" />
+			<class name="EME.ChangeApptWithFee_CancelTransaction.java" />
+			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_AdditionalResources.java" />
+			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_NewCard.java" />
+			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_OnAccount.java" />
+			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_SavedCard.java" />
+			<class name="EME.ChangeApptWithFee_MemberHasPackages_AdditionalResources.java" />
+			<class name="EME.ChangeApptWithFee_MemberHasPackages_NewCard.java" />
+			<class name="EME.ChangeApptWithFee_MemberHasPackages_OnAccount.java" />
+			<class name="EME.ChangeApptWithFee_MemberHasPackages_SavedCard.java" />
+			<class name="EME.ChangeApptWithOutFee_ClubNotReqPackages.java" />
 			<class name="EME.EmailConfirmations" />
 		</classes>
 	</test>
