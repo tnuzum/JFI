@@ -30,16 +30,16 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
+public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
-	private static String appointmentToBook1 = "PT 60 Mins-ChangeWithFee1";
-	private static String appointmentToBook2 = "PT 60 Mins-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1";
-	private static String resourceName2 = "PT.Shepard, Elliana";
+	private static String appointmentToBook1 = "PT 60 Mins";
+	private static String appointmentToBook2 = "PT 30 Mins";
+	private static String resourceName1 = "Holmes, Jeff";
+	private static String resourceName2 = "|Mind Body";
 	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "Holmes, Jeff";
+	private static String resourceName4 = "PT.Smith, Andrew";
 	private static String startTime1;
 	private static String startTime2;
 	private static String tomorrowsDate;
@@ -104,8 +104,8 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		ap.getEditApptChangeButton().click();
 		Thread.sleep(1000);
-		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("There is a fee for changing this appointment."));
-		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
+		Assert.assertTrue(ap.getNoFeeSection().getText().contains("There are no fees for changing this appointment."));
+		
 		ap.getEditApptProceedButton1().click();
 		
 		while (ap.getloadingAvailabilityMessage().size()!=0)
@@ -230,7 +230,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 			AftrnunSlot.click();
 		
 		
-			WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m).findElement(By.id("tab-2-1"));
+			WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m).findElement(By.id("tab-2-2"));
 					List <WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer.findElements(By.tagName("button"));	
 		WebElement secondAvailableTimeAfternoon = AftrenoonAvailableTimes.get(1);
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
@@ -245,71 +245,31 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		break;
 		}
 		}
+				
+		
+		System.out.println(ap.getPopup1Content().getText());
+		System.out.println("Time: "+dayAfter+", " +startTime2);
+		System.out.println("Product: "+appointmentToBook2 );
+		System.out.println("Resource: "+ resourceName3);
+		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
+		//Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+dayAfter+", " +startTime2));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook2 ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName3));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName4));
 		
 		ap.getPopup1BookButton().click();
-		Thread.sleep(1000);
-		
-		System.out.println(ap.getOldAppointmentBanner().getText());
-		System.out.println(ap.getNewAppointmentBanner().getText());
-		
-		Assert.assertTrue(ap.getOldAppointmentBanner().isDisplayed());
-		Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains(clubName));
-		Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains("Old Appointment"));
-		Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains(appointmentToBook1));
-		Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains(startTime1));
-		Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains(tomorrowsDate));
-		
-		Assert.assertTrue(ap.getNewAppointmentBanner().isDisplayed());
-		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(clubName));
-		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains("New Appointment"));
-		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(appointmentToBook2));
-		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(startTime2));
-		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
-		
-		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-		System.out.println(ap.getTotalAmount().getText());
-
-		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
-		String FormatTotalAmt = totalAmt[1].trim();
-		System.out.println(FormatTotalAmt);
-		// Verifies the Pay button contains the total amount
-
-		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
-
-		// Click the Pay button
-		while (!ap.getPaymentButton().isEnabled()) {
-			Thread.sleep(1000);
-		}
-		ap.getPaymentButton().click();
 
 		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
-//Verifies the success message
+		//Verifies the success message
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
 		Thread.sleep(1000);
-		ThankYouPO TY = new ThankYouPO(driver);
-
-//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
-
-//Note down the Receipt number
-		String receiptNumber = TY.getReceiptNumber().getText();
-		
-		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
-		TY.getPrintReceiptButton().click();
-		Thread.sleep(2000);
-		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-
-//Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
-
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(2000);
-
-//Navigate to Dashboard
+	
+		//Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();
 		for (int i = 0; i < linkcount; i++) {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
@@ -322,31 +282,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 
 		}
 		reusableWaits.waitForDashboardLoaded();
-		
-		d.getMyAccountAccountHistory().click();
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
 
-	Thread.sleep(1000);
-
-//Clicks on the Receiptnumber in Account History 
-
-		ahp.getSearchField().sendKeys(receiptNumber);
-		Thread.sleep(2000);
-		ahp.getReceiptNumber().click();
-		Thread.sleep(1000);
-
-
-//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-
-		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank()) {
-			Thread.sleep(500);
-		}
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(FormatTotalAmt));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(2000);
-		reusableMethods.returnToDashboard();
 	}
 		@Test (priority = 2)
 		public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
@@ -356,9 +292,9 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		}
 	 // @AfterTest
 	 
-/*	 @AfterClass 
+	 @AfterClass 
 	 public void teardown() throws InterruptedException {
-	  driver.close(); driver = null; }*/
+	  driver.close(); driver = null; }
 	
 
 }

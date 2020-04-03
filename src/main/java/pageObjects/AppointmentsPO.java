@@ -69,6 +69,8 @@ public class AppointmentsPO {
 	By reviewSection = By.xpath("//div[@class='col-md-12']");
 	By totalAmount = By.xpath("//h2[@class='text-uppercase text-danger']");
 	By additionalResources = By.xpath("//div[@class = 'mat-radio-label-content']");
+	By oldAppointmentBanner = By.xpath("//div[@class='widget widget-callout ng-star-inserted']");
+	By newAppointmentBanner = By.xpath("//div[@class='widget widget-callout']");
 	
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.xpath("//button[contains(text(), 'change')]");
@@ -80,6 +82,7 @@ public class AppointmentsPO {
 	By editApptCanceledMessage = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/h2[1]");
 	By editApptCanceledOKButton = By.cssSelector("button[class*='confirm']");
 	By cancelFeeSection = By.xpath("//div[contains(@class,'alert-danger')]");
+	By noFeeSection = By.xpath("//div[contains(@class,'alert-success')]");
 
 	// CONSTRUCTOR
 		
@@ -322,6 +325,17 @@ public class AppointmentsPO {
 		return driver.findElement(bookButton);
 	}
 	
+	public WebElement getOldAppointmentBanner()
+	{
+		return driver.findElement(oldAppointmentBanner);
+	}
+	
+	
+	public WebElement getNewAppointmentBanner()
+	{
+		return driver.findElement(newAppointmentBanner);
+	}
+	
 
 	public WebElement getEditApptPageHeader()
 	{
@@ -339,6 +353,12 @@ public class AppointmentsPO {
 	public WebElement getCancelFeeSection()
 	{
 		return driver.findElement(cancelFeeSection);
+	}
+	
+
+	public WebElement getNoFeeSection()
+	{
+		return driver.findElement(noFeeSection);
 	}
 	public WebElement getEditApptProceedButton()
 	{
