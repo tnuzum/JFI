@@ -168,8 +168,7 @@ public class ShopAndPurchasePackages extends base {
 
 		//Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
-		String receiptNumber1 = null;
-		
+				
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
@@ -221,21 +220,11 @@ public class ShopAndPurchasePackages extends base {
 		
 		//Clicks on the Receiptnumber in Account History 
 		
-		ahp.getSearchField().sendKeys("ServiceOA");
+		ahp.getSearchField().sendKeys(receiptNumber);
 		
-		while(!ahp.getReceiptNumberTable().isDisplayed())
-		{
-			Thread.sleep(2000);	
-			System.out.println("waiting");
-		}
-		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-			if (receiptNumber1.equals(receiptNumber)) {
-				ahp.getReceiptNumbers().get(k).click();
-				break;
-			}
-		}
+		Thread.sleep(2000);
+		ahp.getReceiptNumber().click();
+		Thread.sleep(1000);
 
 		//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 		
@@ -331,8 +320,7 @@ public class ShopAndPurchasePackages extends base {
 
 				//Note down the Receipt number
 				String receiptNumber2 = TY.getReceiptNumber().getText();
-				String receiptNumber3 = null;
-				
+								
 				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);
@@ -376,7 +364,6 @@ public class ShopAndPurchasePackages extends base {
 				dp.getMenuAccountHistory().click();
 				
 				AcctHistoryPO ahp = new AcctHistoryPO(driver);
-				
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
@@ -385,23 +372,11 @@ public class ShopAndPurchasePackages extends base {
 				
 				//Clicks on the Receiptnumber in Account History 
 				
-				ahp.getSearchField().sendKeys("ServiceCC");
+				ahp.getSearchField().sendKeys(receiptNumber2);
 				
-				while(!ahp.getReceiptNumberTable().isDisplayed())
-				{
-					Thread.sleep(2000);	
-				}
-				
-				wait.until(ExpectedConditions.visibilityOfAllElements(ahp.getReceiptNumbers()));
-				
-				for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-					receiptNumber3 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-					if (receiptNumber3.equals(receiptNumber2)) {
-						ahp.getReceiptNumbers().get(k).click();
-						break;
-					}
-				}
+				Thread.sleep(2000);
+				ahp.getReceiptNumber().click();
+				Thread.sleep(1000);
 
 				//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 				while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank())
@@ -511,8 +486,7 @@ public class ShopAndPurchasePackages extends base {
 			
 			//Note down the Receipt number
 			String receiptNumber4 = TY.getReceiptNumber().getText();
-			String receiptNumber5 = null;
-			
+						
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
@@ -564,25 +538,11 @@ public class ShopAndPurchasePackages extends base {
 			
 			//Clicks on the Receiptnumber in Account History 
 			
-			ahp.getSearchField().sendKeys("ServiceNC");
+			ahp.getSearchField().sendKeys(receiptNumber4);
 			
-			while(!ahp.getReceiptNumberTable().isDisplayed())
-			{
-				Thread.sleep(2000);	
-			}
-			
-			WebDriverWait wait = new WebDriverWait(driver, 20);
-			wait.until(ExpectedConditions.visibilityOfAllElements(ahp.getReceiptNumbers()));
-			
-			for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-				receiptNumber5 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-				if (receiptNumber5.equals(receiptNumber4)) {
-					ahp.getReceiptNumbers().get(k).click();
-					break;
-				}
-			}
-
+			Thread.sleep(2000);
+			ahp.getReceiptNumber().click();
+			Thread.sleep(1000);
 			//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank())
 			{
