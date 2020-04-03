@@ -30,7 +30,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
+public class ChangeApptWithFee_CancelTransaction extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
@@ -267,94 +267,44 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
 		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+		
 		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("DUE AT TIME OF SERVICE $90.00"));
 		Assert.assertTrue(ap.getFeeSections().get(1).getText().contains("CHANGE FEE $2.00"));
-				
-		System.out.println(ap.getTotalAmount().getText());
-
+		
 		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
 		System.out.println(FormatTotalAmt);
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
-
-		// Click the Pay button
-		while (!ap.getPaymentButton().isEnabled()) {
-			Thread.sleep(1000);
-		}
-		ap.getPaymentButton().click();
-
-		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
-
-		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
-
-//Verifies the success message
-		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
-		ap.getPopup2OKButton().click();
-		Thread.sleep(1000);
-		ThankYouPO TY = new ThankYouPO(driver);
-
-//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
-
-//Note down the Receipt number
-		String receiptNumber = TY.getReceiptNumber().getText();
 		
-		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
-		TY.getPrintReceiptButton().click();
-		Thread.sleep(2000);
-		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-
-//Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
-
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(2000);
-
-//Navigate to Dashboard
-		int linkcount = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < linkcount; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-			{
-				// reusableWaits.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
-				break;
-			}
-
-		}
-		reusableWaits.waitForDashboardLoaded();
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
-		d.getMyAccountAccountHistory().click();
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-
-	Thread.sleep(1000);
-
-//Clicks on the Receiptnumber in Account History 
-
-		ahp.getSearchField().sendKeys(receiptNumber);
-		Thread.sleep(2000);
-		ahp.getReceiptNumber().click();
-		Thread.sleep(1000);
-
-
-//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-
-		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank()) {
-			Thread.sleep(500);
+		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+		for (int i = 0; i < paymentMethodscount; i++) {
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+					.contains("5454"))
+				{
+				
+					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					break;
+				}
 		}
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(FormatTotalAmt));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+
+		// Click the Cancel button
+		ap.getCancelButton().click();
 		Thread.sleep(2000);
+		
+		Boolean ApptCheckout = reusableMethods.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
+		
+		Assert.assertTrue(ApptCheckout == false);
+		
 		reusableMethods.returnToDashboard();
 	}
 		@Test (priority = 2)
 		public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
 			
-			reusableMethods.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
+			reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime1, appointmentToBook1);
 
 		}
 	 // @AfterTest

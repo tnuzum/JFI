@@ -30,7 +30,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
+public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
@@ -38,8 +38,9 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 	private static String appointmentToBook2 = "PT 60 Mins-ChangeWithFee2";
 	private static String resourceName1 = "FitExpert1";
 	private static String resourceName2 = "PT.Shepard, Elliana";
-	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "Holmes, Jeff";
+	private static String resourceName3 = "All Resources";
+	private static String resourceName4 = "FitExpert2";
+	private static String resourceName5 = "Holmes, Jeff";
 	private static String startTime1;
 	private static String startTime2;
 	private static String tomorrowsDate;
@@ -246,7 +247,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		}
 		}
 		
-		ap.getPopup1BookButton().click();
+//		ap.getPopup1BookButton().click();
 		Thread.sleep(1000);
 		
 		System.out.println(ap.getOldAppointmentBanner().getText());
@@ -266,10 +267,17 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(startTime2));
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
 		
+		int additionalResourcesCount = ap.getAdditionalResources().size();
+
+		for (int n = 0; n < additionalResourcesCount; n++) {
+			if (ap.getAdditionalResources().get(n).getText().contains(resourceName5))
+				ap.getAdditionalResources().get(n).click();
+		}
+		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("DUE AT TIME OF SERVICE $90.00"));
 		Assert.assertTrue(ap.getFeeSections().get(1).getText().contains("CHANGE FEE $2.00"));
-				
+	
 		System.out.println(ap.getTotalAmount().getText());
 
 		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
@@ -278,6 +286,19 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
+		
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
+		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+		for (int i = 0; i < paymentMethodscount; i++) {
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+					.contains("5454"))
+				{
+				
+					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					break;
+				}
+		}
 
 		// Click the Pay button
 		while (!ap.getPaymentButton().isEnabled()) {

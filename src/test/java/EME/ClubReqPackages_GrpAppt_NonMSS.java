@@ -110,7 +110,14 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 				break;
 			}
 		}
-		Thread.sleep(3000);
+//		Thread.sleep(4000);
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+		
+		System.out.println("came out of the loop");
 		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
 		ap.getPopup2OKButton().click();
 
@@ -120,7 +127,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			ap.getGroupMemberSearchInput().sendKeys("auto");
 			ap.getGroupMemberSearchButton().click();
 			
-			Thread.sleep(4000);
+			Thread.sleep(3000);
 			
 			int memberCount = ap.getGroupPopupAddButtons().size();
 			for (int i = 0; i<memberCount; i++)
@@ -153,7 +160,14 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 		 * } }
 		 */
 
-			Thread.sleep(4000);
+//			Thread.sleep(4000);
+			while (ap.getloadingAvailabilityMessage().size()!=0)
+			{
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+			
+			System.out.println("came out of the loop");
 		
 		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
 		ap.getPopup2OKButton().click();

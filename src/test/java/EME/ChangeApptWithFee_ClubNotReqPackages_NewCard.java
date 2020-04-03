@@ -30,7 +30,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
+public class ChangeApptWithFee_ClubNotReqPackages_NewCard extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
@@ -40,6 +40,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 	private static String resourceName2 = "PT.Shepard, Elliana";
 	private static String resourceName3 = "FitExpert2";
 	private static String resourceName4 = "Holmes, Jeff";
+	private static String memberName = "ApptMember6 Auto";
 	private static String startTime1;
 	private static String startTime2;
 	private static String tomorrowsDate;
@@ -269,7 +270,8 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("DUE AT TIME OF SERVICE $90.00"));
 		Assert.assertTrue(ap.getFeeSections().get(1).getText().contains("CHANGE FEE $2.00"));
-				
+		
+		
 		System.out.println(ap.getTotalAmount().getText());
 
 		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
@@ -278,6 +280,43 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
+		
+		
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
+		PM.getNewCardButton().click();
+		Thread.sleep(1000);
+		
+		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		while (opacity.contains("1")) {
+			PM.getNewCardButton().click();
+			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		}
+
+		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		Assert.assertFalse(ap.getPaymentButton().isEnabled());
+		System.out.println("Pay Button disabled:" + ap.getPaymentButton().getAttribute("disabled"));
+
+//		System.out.println(PM.getNameOnCardField().getAttribute("value"));
+ 		Assert.assertEquals(memberName,PM.getNameOnCardField().getAttribute("value"));
+ 		
+		PM.getCardNumberField().sendKeys("4111111111111111");
+		PM.getExpirationMonth().sendKeys("12");
+		PM.getExpirationYear().sendKeys("29");
+		PM.getSecurityCode().sendKeys("123");
+		Thread.sleep(1000);
+		PM.getCheckBox().click();
+		while (!ap.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+		ap.getPaymentButton().click();
+		System.out.println(PM.getPopupContent().getText());
+		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+		PM.getPopupOk().click();
+		Thread.sleep(1000);
+		PM.getSaveCardNo().click();
+	
+		
 
 		// Click the Pay button
 		while (!ap.getPaymentButton().isEnabled()) {

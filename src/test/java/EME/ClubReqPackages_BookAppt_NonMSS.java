@@ -127,7 +127,16 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 		 * } }
 		 */
 
-		Thread.sleep(4000);
+//		Thread.sleep(4000);
+		
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+		
+		System.out.println("came out of the loop");
+	
 		
 		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
 		ap.getPopup2OKButton().click();
