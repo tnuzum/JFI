@@ -30,16 +30,16 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
+public class ChangeApptWithFee_MemberHasPackages_OnAccount extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String clubName = "Jonas Fitness";
+	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook1 = "PT 60 Mins-ChangeWithFee1";
 	private static String appointmentToBook2 = "PT 60 Mins-ChangeWithFee2";
 	private static String resourceName1 = "FitExpert1";
-	private static String resourceName2 = "PT.Shepard, Elliana";
+	private static String resourceName2 = "Holmes, Jeff";
 	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "Holmes, Jeff";
+	private static String resourceName4 = "PT Smith, Andrew";
 	private static String startTime1;
 	private static String startTime2;
 	private static String tomorrowsDate;
@@ -55,7 +55,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember6", "Testing1!");
+		reusableMethods.activeMemberLogin("apptmember7", "Testing1!");
 		
 		//Book an appointment and get the start time for the appointment
 		startTime1 = reusableMethods.BookApptWith2Resources(clubName, productCategory, appointmentToBook1, resourceName1, resourceName2);
@@ -267,7 +267,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
 		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("DUE AT TIME OF SERVICE $90.00"));
+		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("DUE AT TIME OF SERVICE $5.00"));
 		Assert.assertTrue(ap.getFeeSections().get(1).getText().contains("CHANGE FEE $2.00"));
 				
 		System.out.println(ap.getTotalAmount().getText());

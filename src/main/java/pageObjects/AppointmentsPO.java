@@ -14,7 +14,7 @@ public class AppointmentsPO {
 		
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By loadingAvailabilityMessage = By.xpath("//div[contains(@class, 'swal2-container')]");
+	By loadingAvailabilityMessage = By.xpath("//div[contains(@class, 'swal2-loading')]");
 	By clubs = By.xpath("(//select[@name='clubs'])");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
@@ -71,6 +71,7 @@ public class AppointmentsPO {
 	By additionalResources = By.xpath("//div[@class = 'mat-radio-label-content']");
 	By oldAppointmentBanner = By.xpath("//div[@class='widget widget-callout ng-star-inserted']");
 	By newAppointmentBanner = By.xpath("//div[@class='widget widget-callout']");
+	By feeSections = By.xpath("//div[@class = 'text-right']");
 	
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.xpath("//button[contains(text(), 'change')]");
@@ -336,6 +337,10 @@ public class AppointmentsPO {
 		return driver.findElement(newAppointmentBanner);
 	}
 	
+	public List<WebElement> getFeeSections()
+	{
+		return driver.findElements(feeSections);
+	}
 
 	public WebElement getEditApptPageHeader()
 	{
