@@ -189,18 +189,18 @@ public class CancelApptWithFee_SavedCard extends base {
 		st2.click();
 		Thread.sleep(1000);
 		
-		DateFormat dateFormat1 = new SimpleDateFormat("M/d/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		tomorrowsDate = dateFormat1.format(today1.getTime());
 		
 		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: "+tomorrowsDate+", " +startTime);
+		System.out.println("Time: "+tomorrowsDate+" " +startTime);
 		System.out.println("Product: "+appointmentToBook );
 		System.out.println("Resource: "+ resourceName);
 		
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubSpecifiPrice));

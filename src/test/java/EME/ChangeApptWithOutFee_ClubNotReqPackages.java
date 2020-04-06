@@ -40,6 +40,7 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 	private static String resourceName2 = "|Mind Body";
 	private static String resourceName3 = "FitExpert2";
 	private static String resourceName4 = "PT.Smith, Andrew";
+	private static String appointmentPrice = "$60.00";
 	private static String startTime1;
 	private static String startTime2;
 	private static String tomorrowsDate;
@@ -248,15 +249,16 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 				
 		
 		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: "+dayAfter+", " +startTime2);
+		System.out.println("Time: "+dayAfter+" " +startTime2);
 		System.out.println("Product: "+appointmentToBook2 );
 		System.out.println("Resource: "+ resourceName3);
 		
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
-		//Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+dayAfter+", " +startTime2));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+dayAfter+" " +startTime2));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook2 ));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName3));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName4));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(appointmentPrice));
 		
 		ap.getPopup1BookButton().click();
 

@@ -573,7 +573,7 @@ public class reusableMethods extends base {
 	return null;
 	}
 
-	public static Object  ConfirmAndCancelAppointmentNoFee(String tomorrowsDate, String startTime, String appointmentToBook) throws IOException, InterruptedException
+	public static Object  ConfirmAndCancelAppointmentNoFee(String Date, String startTime, String appointmentToBook) throws IOException, InterruptedException
 	{
 		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
@@ -583,7 +583,7 @@ public class reusableMethods extends base {
 		int appointmentsCount = d.getMyAppts().size();
 
 		for (int i = 0; i < appointmentsCount; i++) {
-			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
+			if (d.getMyAppts().get(i).getText().contains(Date))
 
 			{
 
@@ -762,7 +762,7 @@ public class reusableMethods extends base {
 		}
 		}
 		Thread.sleep(1000);
-		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase. Would you like to continue?"))
+		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase."))
 				{
 			ap.getPopup1BookButton().click();
 			Thread.sleep(1000);

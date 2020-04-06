@@ -188,10 +188,21 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		st2.click();
 		Thread.sleep(1000);
 		
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		tomorrowsDate = dateFormat1.format(today1.getTime());
+		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
+		
 		Assert.assertEquals(ap.getPopup1Title().getText(),
 				"Package Required");
-		Assert.assertEquals(ap.getPopup1Content().getText(),
-				"This appointment requires a package purchase. Would you like to continue?");
+		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment requires a package purchase."));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Would you like to continue?"));
 
 		ap.getPopup1BookButton().click();
 		Thread.sleep(3000);
@@ -204,12 +215,6 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 		
 		for (int i = 0; i< ap.getReviewSection().size(); i++)

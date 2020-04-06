@@ -38,6 +38,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 	private static String resourceName = "FitExpert2";
 	private static String additionalResourceName = "Gym";
 	private static String clubNameDisplayed = "Club: Jonas Fitness";
+	private static String appointmentPrice = "$10.00";
 	private static String startTime;
 	private static int appointmentsCount;
 	private static String tomorrowsDate;
@@ -198,6 +199,19 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 		st2.click();
 		Thread.sleep(1000);
 		
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		tomorrowsDate = dateFormat1.format(today1.getTime());
+		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+ tomorrowsDate+" "+startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(appointmentPrice));
+		
+		ap.getPopup1BookButton().click();
+		
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -206,12 +220,6 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 
 		int additionalResourcesCount = ap.getAdditionalResources().size();
