@@ -44,6 +44,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 	private static String memberName = "CancelMember1 Auto";
 	private static String additionalResourceName = "Gym";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
+	private static String appointmentPrice = "$90.00";
 	private static String startTime;
 	private static String tomorrowsDate;
 	private static String participant2 = "Auto, Daisy";
@@ -214,6 +215,19 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		st2.click();
 		Thread.sleep(1000);
 		
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		tomorrowsDate = dateFormat1.format(today1.getTime());
+		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+ tomorrowsDate+" "+startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(appointmentPrice));
+		
+		ap.getPopup1BookButton().click();
+		
 		int additionalResourcesCount = ap.getAdditionalResources().size();
 
 		for (int n = 0; n < additionalResourcesCount; n++) {
@@ -231,12 +245,6 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 		Assert.assertTrue(ap.getGroup().getText().contains(participant2));
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 		
 		

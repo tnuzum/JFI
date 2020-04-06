@@ -61,6 +61,7 @@ public class ClassSignUpPO {
 	By standbyMessage = By.xpath("//span[@class='float-left']");
 	By standbySection = By.xpath("//div[contains(@class, 'row-box-red')]");
 	By restOnStandby = By.xpath("//input[@id='rest_on_standby']");
+	By cancelLink = By.xpath("//a[@class='btn btn-sm btn-primary btn-outline ng-star-inserted']");
 	
 	
 // CONSTRUCTOR
@@ -278,6 +279,12 @@ public class ClassSignUpPO {
 		return driver.findElement(restOnStandby);
 	}
 	
+	
+	public WebElement getCancelLink()
+
+	{
+		return driver.findElement(cancelLink);
+	}
 /*	public WebElement getUnitsDropdown()
 	{
 		return driver.findElement(unitsDropdown);

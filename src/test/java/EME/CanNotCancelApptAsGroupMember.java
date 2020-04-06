@@ -43,7 +43,7 @@ public class CanNotCancelApptAsGroupMember extends base {
 	private static String resourceName = "FitExpert1";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String clubSpecifiPrice = "$5.00";
-		private static String startTime;
+	private static String startTime;
 	private static String tomorrowsDate;
 	private static int appointmentsCount;
 
@@ -82,11 +82,10 @@ public class CanNotCancelApptAsGroupMember extends base {
 				break;
 			}
 		}
-
-		WebElement bic = ap.getBookableItemCategory();
-
 		Thread.sleep(2000);
-
+		
+		WebElement bic = ap.getBookableItemCategory();
+	
 		Select s1 = new Select(bic);
 		List<WebElement> ProductCategories = s1.getOptions();
 
@@ -122,6 +121,7 @@ public class CanNotCancelApptAsGroupMember extends base {
 			}
 		}
 		
+		Thread.sleep(2000);
 			
 		 Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
@@ -212,21 +212,23 @@ public class CanNotCancelApptAsGroupMember extends base {
 		st2.click();
 		Thread.sleep(1000);
 		
-		DateFormat dateFormat1 = new SimpleDateFormat("M/d/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		tomorrowsDate = dateFormat1.format(today1.getTime());
 		
 		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: "+tomorrowsDate+", " +startTime);
+		System.out.println("Time: "+tomorrowsDate+" " +startTime);
 		System.out.println("Product: "+appointmentToBook );
 		System.out.println("Resource: "+ resourceName);
 		
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubSpecifiPrice));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains( clubSpecifiPrice));
+//		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment requires a package purchase."));
+//		Assert.assertTrue(ap.getPopup1Content().getText().contains("Would you like to continue?"));
 				
 		ap.getPopup1BookButton().click();
 

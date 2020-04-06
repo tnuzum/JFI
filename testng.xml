@@ -17,10 +17,12 @@
 			<class name="EME.EnrollWithSingleClassFeeTest" />
 			<class name="EME.EnrollInFreeClassTest" />
 			<class name="EME.EnrollClassByBuyingPackage" />
+			<class name="EME.EnrollInClass_CancelTransaction" />
 			<class name="EME.EnrollClass_ClubSettings" />
 			<class name="EME.EnrollWithSingleCourseFeeTest" />
 			<class name="EME.EnrollInFreeCourseTest" />
 			<class name="EME.EnrollCourseByBuyingPackage" />
+			<class name="EME.EnrollInCourse_CancelTransaction" />
 			<class name="EME.EnrollCourse_ClubSettings" />
 			<class name="EME.EnrollClassMemberAndItemRestrictions" />
 			<class name="EME.EnrollCourseMemberAndItemRestrictions" />
@@ -59,16 +61,20 @@
 			<class name="EME.CancelGrpApptWithFee_SavedCard" />
 			<class name="EME.CancelGrpApptWithFee_cancelTransaction" />
 			<class name="EME.CanNotCancelApptAsGroupMember" />
-			<class name="EME.ChangeApptWithFee_CancelTransaction.java" />
-			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_AdditionalResources.java" />
-			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_NewCard.java" />
-			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_OnAccount.java" />
-			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_SavedCard.java" />
-			<class name="EME.ChangeApptWithFee_MemberHasPackages_AdditionalResources.java" />
-			<class name="EME.ChangeApptWithFee_MemberHasPackages_NewCard.java" />
-			<class name="EME.ChangeApptWithFee_MemberHasPackages_OnAccount.java" />
-			<class name="EME.ChangeApptWithFee_MemberHasPackages_SavedCard.java" />
-			<class name="EME.ChangeApptWithOutFee_ClubNotReqPackages.java" />
+			<class name="EME.ChangeApptWithFee_CancelTransaction" />
+			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_AdditionalResources" />
+			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_NewCard" />
+			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_OnAccount" />
+			<class name="EME.ChangeApptWithFee_ClubNotReqPackages_SavedCard" />
+			<!--class name="EME.ChangeApptWithFee_ClubReqPackages_AdditionalResources"/-->
+			<!--class name="EME.ChangeApptWithFee_ClubReqPackages_NewCard" /-->
+			<!--class name="EME.ChangeApptWithFee_ClubReqPackages_OnAccount" /-->
+			<!--class name="EME.ChangeApptWithFee_ClubReqPackages_SavedCard" /-->
+			<class name="EME.ChangeApptWithFee_MemberHasPackages_AdditionalResources" />
+			<class name="EME.ChangeApptWithFee_MemberHasPackages_NewCard" />
+			<class name="EME.ChangeApptWithFee_MemberHasPackages_OnAccount" />
+			<class name="EME.ChangeApptWithFee_MemberHasPackages_SavedCard" />
+			<class name="EME.ChangeApptWithOutFee_ClubNotReqPackages" />
 			<class name="EME.EmailConfirmations" />
 		</classes>
 	</test>

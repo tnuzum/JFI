@@ -214,7 +214,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		st2.click();
 		Thread.sleep(1000);
 		
-		DateFormat dateFormat1 = new SimpleDateFormat("M/dd/yyyy");
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		tomorrowsDate = dateFormat1.format(today1.getTime());
@@ -224,7 +224,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		System.out.println("Resource: "+ resourceName1);
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment is free!"));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-	//	Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+", " +startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook1 ));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Resource: "+ resourceName1));
 		
@@ -423,6 +423,18 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		st2.click();
 		Thread.sleep(1000);
 		
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		tomorrowsDate = dateFormat1.format(today1.getTime());
+		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+ tomorrowsDate+" "+startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook2 ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName2));
+				
+		ap.getPopup1BookButton().click();
+		
 		int additionalResourcesCount = ap.getAdditionalResources().size();
 
 		for (int n = 0; n < additionalResourcesCount; n++) {
@@ -438,13 +450,6 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook2);
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
-		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook2);
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 		
 		ap.getbookButton().click();

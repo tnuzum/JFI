@@ -222,7 +222,7 @@ public class ShopAndPurchasePackages extends base {
 		
 		ahp.getSearchField().sendKeys(receiptNumber);
 		
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		ahp.getReceiptNumber().click();
 		Thread.sleep(1000);
 
@@ -374,7 +374,7 @@ public class ShopAndPurchasePackages extends base {
 				
 				ahp.getSearchField().sendKeys(receiptNumber2);
 				
-				Thread.sleep(2000);
+				Thread.sleep(3000);
 				ahp.getReceiptNumber().click();
 				Thread.sleep(1000);
 
@@ -540,7 +540,7 @@ public class ShopAndPurchasePackages extends base {
 			
 			ahp.getSearchField().sendKeys(receiptNumber4);
 			
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 			ahp.getReceiptNumber().click();
 			Thread.sleep(1000);
 			//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page

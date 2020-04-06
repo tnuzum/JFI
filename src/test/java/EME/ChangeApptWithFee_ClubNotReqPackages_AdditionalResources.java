@@ -41,6 +41,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 	private static String resourceName3 = "All Resources";
 	private static String resourceName4 = "FitExpert2";
 	private static String resourceName5 = "Holmes, Jeff";
+	private static String appointmentPrice = "$90.00";
 	private static String startTime1;
 	private static String startTime2;
 	private static String tomorrowsDate;
@@ -246,8 +247,21 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 		break;
 		}
 		}
+		Thread.sleep(1000);
 		
-//		ap.getPopup1BookButton().click();
+		
+		System.out.println(ap.getPopup1Content().getText());
+		System.out.println("Time: "+dayAfter+ " " +startTime2);
+		System.out.println("Product: "+appointmentToBook2 );
+		System.out.println("Resource: "+ resourceName2);
+		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+dayAfter+" "+startTime2));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook2 ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName4));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(appointmentPrice));
+		
+		ap.getPopup1BookButton().click();
 		Thread.sleep(1000);
 		
 		System.out.println(ap.getOldAppointmentBanner().getText());
@@ -380,9 +394,9 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 		}
 	 // @AfterTest
 	 
-/*	 @AfterClass 
+	 @AfterClass 
 	 public void teardown() throws InterruptedException {
-	  driver.close(); driver = null; }*/
+	  driver.close(); driver = null; }
 	
 
 }
