@@ -590,6 +590,10 @@ public class reusableMethods extends base {
 				if (d.getMyAppts().get(i).getText().contains(startTime)) {
 					
 					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
+				
+			
+		
+					
 					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
 					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
 					
@@ -622,6 +626,63 @@ public class reusableMethods extends base {
 //		
 		Thread.sleep(2000);
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+		
+		return null;
+	}
+	
+	public static Object  ConfirmAndCancelAppointmentNoFee1(String Date, String startTime, String appointmentToBook) throws IOException, InterruptedException
+	{
+		reusableWaits.waitForDashboardLoaded();
+		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
+		int appointmentsCount = d.getMyAppts().size();
+
+		for (int i = 0; i < appointmentsCount; i++) {
+			if (d.getMyAppts().get(i).getText().contains(Date))
+
+			{
+
+				if (d.getMyAppts().get(i).getText().contains(startTime)) {
+					
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
+				}
+			}
+		}
+					
+/*					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
+					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+					
+					WebElement EditButton = d.getEditButton().get(i);		
+					
+					wait.until(ExpectedConditions.visibilityOf(EditButton));
+					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
+					
+					EditButton.click();
+					break;
+				}
+			}
+		}
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		AppointmentsPO a = new AppointmentsPO(driver);
+		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		a.getEditApptCancelButton().click();
+		WebElement wait2 = a.getEditApptProceedButton();
+		while (!wait2.isEnabled())// while button is NOT(!) enabled
+		{
+//			Thread.sleep(200);
+		}
+		a.getEditApptProceedButton().click();
+		boolean result1 = reusableWaits.popupMessageYesButton();
+		if (result1 == true) {
+//				Thread.sleep(500);	
+		}
+		a.getEditApptCancelYesButton().click();
+//		
+		Thread.sleep(2000);
+		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");*/
 		
 		return null;
 	}
