@@ -66,10 +66,10 @@
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_NewCard" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_OnAccount" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_SavedCard" />
-			<!--class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_AdditionalResources"/-->
-			<!--class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_NewCard" /-->
-			<!--class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_OnAccount" /-->
-			<!--class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_SavedCard" /-->
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_AdditionalResources"/>
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_NewCard" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_OnAccount" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_SavedCard" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_AdditionalResources" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_NewCard" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_OnAccount" />

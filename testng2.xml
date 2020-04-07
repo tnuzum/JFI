@@ -7,13 +7,10 @@
 	</listeners>
 	<test thread-count="5" name="EME - Smoke Testing">
 		<classes>
-			<class name="EME.ClubReqPackages_GrpAppt_NonMSS" />
-			<class name="EME.CancelGrpApptWithFee_NewCard" />
-			<class name="EME.CancelGrpApptWithFee_OnAccount" />
-			<class name="EME.CancelGrpApptWithFee_SavedCard" />
-			<class name="EME.CancelGrpApptWithFee_cancelTransaction" />
-			<class name="EME.CanNotCancelApptAsGroupMember" />
-			<class name="EME.EmailConfirmations" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_AdditionalResources"/>
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_NewCard" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_OnAccount" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_SavedCard" />
 		</classes>
 	</test>
 </suite>
