@@ -662,7 +662,8 @@ public class EnrollCourseByBuyingPackage extends base {
 		cp.getCalEventTitle().click();
 		cp.getUnEnrollBtn().click();
 		UnenrollPO u = new UnenrollPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
