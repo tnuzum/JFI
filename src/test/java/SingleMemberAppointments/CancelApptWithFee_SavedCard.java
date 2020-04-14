@@ -382,6 +382,12 @@ public class CancelApptWithFee_SavedCard extends base {
 
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
 				
+				while(!PM.getOnAccountAndSavedCards().isDisplayed())
+				
+				{
+					Thread.sleep(1000);;
+				}
+				
 				
 				int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 				for (int i = 0; i < paymentMethodscount; i++) {

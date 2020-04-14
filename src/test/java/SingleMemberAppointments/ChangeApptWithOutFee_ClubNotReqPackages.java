@@ -55,7 +55,7 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 	}
 
 	@Test(priority = 1)
-	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
+	public void ChangeAppointmentWitouthFee() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("apptmember6", "Testing1!");
 		
 		//Book an appointment and get the start time for the appointment

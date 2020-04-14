@@ -324,6 +324,12 @@ public class CancelGrpApptWithFee_OnAccount extends base {
 
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
 				
+				while(!PM.getOnAccountAndSavedCards().isDisplayed())
+				
+				{
+					Thread.sleep(1000);;
+				}
+				
 				// Click the Pay button
 				while (!PM.getPaymentButton().isEnabled()) {
 					Thread.sleep(1000);

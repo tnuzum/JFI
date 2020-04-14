@@ -24,6 +24,7 @@ import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
+import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
@@ -237,6 +238,13 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
+		
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		while(!PM.getOnAccountAndSavedCards().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
 
 		// Click the Pay button
 		while (!ap.getPaymentButton().isEnabled()) {

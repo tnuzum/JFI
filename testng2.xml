@@ -1,16 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="EME - Automated Testing">
+<suite name="EME - Automated Testing" >
 	<listeners>
 		<listener class-name="EME.listeners" />
 		<!--listener class-name = "resources.ExtentReporterNG"/ -->
 	</listeners>
-	<test thread-count="5" name="EME - Smoke Testing">
+	<test thread-count="5" name="Single member Appointments">
 		<classes>
+		<class name="SingleMemberAppointments.ChangeApptWithFee_CancelTransaction" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_AdditionalResources" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_NewCard" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_OnAccount" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_SavedCard" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_AdditionalResources"/>
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_NewCard" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_OnAccount" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_SavedCard" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_AdditionalResources" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_NewCard" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_OnAccount" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_SavedCard" />
+			<class name="SingleMemberAppointments.ChangeApptWithOutFee_ClubNotReqPackages" />
+			<class name="SingleMemberAppointments.ChangeApptWithOutFee_ClubReqPackages" />
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt"/>
+			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_ToGrpAppt"/>
+			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_ToGrpAppt"/>
+			</classes>
+						
+	</test>
+	
+	<test thread-count="5" name="Group Appointments">
+		<classes>
+	
+			<class name="GroupAppointments.ChangeGrpApptWithFee_CancelTransaction"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources" />
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_NewCard" />
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_OnAccount" />
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_SavedCard" />
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_ToSingleMbrAppt"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_NewCard"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_OnAccount"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_SavedCard"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_AdditionalResources"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_NewCard"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_OnAccount"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_SavedCard"/>
+			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt"/>
+			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages"/>
+			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages"/>
 		</classes>
+	
 	</test>
 </suite>

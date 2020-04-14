@@ -351,6 +351,12 @@ public class CancelGrpApptWithFee_NewCard extends base {
 				
 				PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 						
+				while(!PM.getNewCardButton().isDisplayed())
+				
+				{
+					Thread.sleep(1000);;
+				}
+						
 				PM.getNewCardButton().click();
 				Thread.sleep(3000);
 				

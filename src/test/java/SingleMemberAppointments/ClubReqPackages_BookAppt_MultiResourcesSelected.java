@@ -255,6 +255,12 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
 		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
+		while(!PM.getOnAccountAndSavedCards().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
 		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < paymentMethodscount; i++) {
 			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()

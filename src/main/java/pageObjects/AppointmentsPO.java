@@ -71,7 +71,8 @@ public class AppointmentsPO {
 	By additionalResources = By.xpath("//div[@class = 'mat-radio-label-content']");
 	By oldAppointmentBanner = By.xpath("//div[@class='widget widget-callout ng-star-inserted']");
 	By newAppointmentBanner = By.xpath("//div[@class='widget widget-callout']");
-	By feeSections = By.xpath("//div[@class = 'text-right']");
+	By dueAtTimeOfService = By.xpath("//div[contains(@class, 'appointment-secondaryaction-dueattimeofservice')]");
+	By changeFee = By.xpath("//div[contains(@class, 'appointment-secondaryaction-changefee')]");
 	
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.xpath("//button[contains(text(), 'change')]");
@@ -337,9 +338,14 @@ public class AppointmentsPO {
 		return driver.findElement(newAppointmentBanner);
 	}
 	
-	public List<WebElement> getFeeSections()
+	public WebElement getDueAtTimeOfService()
 	{
-		return driver.findElements(feeSections);
+		return driver.findElement(dueAtTimeOfService);
+	}
+	
+	public WebElement getChangeFee()
+	{
+		return driver.findElement(changeFee);
 	}
 
 	public WebElement getEditApptPageHeader()
