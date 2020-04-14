@@ -351,6 +351,12 @@ public class CancelApptWithFee_cancelTransaction extends base {
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
+		
+		while(!PM.getOnAccountAndSavedCards().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
 
 		paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < paymentMethodscount; i++) {

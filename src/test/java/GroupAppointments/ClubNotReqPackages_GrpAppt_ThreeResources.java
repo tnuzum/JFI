@@ -112,8 +112,8 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 				break;
 			}
 		}
-		
 
+		Thread.sleep(1000);
 		 Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");

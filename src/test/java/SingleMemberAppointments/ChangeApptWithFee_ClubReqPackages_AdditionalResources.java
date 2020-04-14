@@ -303,7 +303,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		
-		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
 						
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook2.toUpperCase()));
 		System.out.println(ap.getRateBox().getText());
@@ -315,7 +315,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 			if (ap.getAdditionalResources().get(n).getText().contains(resourceName5))
 				ap.getAdditionalResources().get(n).click();
 		}
-		
+		Thread.sleep(1000);
 
 		Select s4 = new Select(
 				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
@@ -334,7 +334,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 			}
 		}
 
-		
+		Thread.sleep(1000);
 		
 				
 		System.out.println(ap.getTotalAmount().getText());
@@ -345,6 +345,13 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
+		
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		while(!PM.getOnAccountAndSavedCards().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
 
 		// Click the Pay button
 		while (!ap.getPaymentButton().isEnabled()) {

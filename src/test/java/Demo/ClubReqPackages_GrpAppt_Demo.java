@@ -42,7 +42,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 	private static String startTime;
 	private static String tomorrowsDate;
 	private static int appointmentsCount;
-	private static String participant2 = "Auto, Emailmember2";
+	private static String participant2 = "Auto, Daisy";
 	private static String unitsToBeSelected = "1 - $5.00/per";
 	private static String membername = "Demomember Auto";
 
@@ -133,7 +133,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 			{
 				String text = ap.getGroupPopupMembers().get(i).getText();
 				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Emailmember2"))
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
 					{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
 					ap.getGroupPopupAddButtons().get(i).click();
 					break;
@@ -161,6 +161,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 				break;
 			}
 		}
+		
 
 		while (ap.getloadingAvailabilityMessage().size()!=0)
 		{
@@ -252,7 +253,15 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains(
 				"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
 			}
-		}		
+		}	
+		
+		int additionalResourcesCount = ap.getAdditionalResources().size();
+
+		for (int n = 0; n < additionalResourcesCount; n++) {
+			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
+				ap.getAdditionalResources().get(n).click();
+		}
+		Thread.sleep(1000);
 		
 		while (ap.getRateBox().getText().isBlank())
 		{
@@ -278,12 +287,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		}
 		Thread.sleep(1000);
 
-		int additionalResourcesCount = ap.getAdditionalResources().size();
-
-		for (int n = 0; n < additionalResourcesCount; n++) {
-			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
-				ap.getAdditionalResources().get(n).click();
-		}
+		
 
 		// Noting down the total amount
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
@@ -295,7 +299,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		
 		Assert.assertEquals(FormatTotalAmt, mssClubPricing);
 		
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		/*	PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		PM.getNewCardButton().click();
 		Thread.sleep(1000);
@@ -328,7 +332,8 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
-		PM.getSaveCardNo().click();
+		PM.getSaveCardNo().click();*/
+		
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -391,51 +396,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 
 		Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
 
-		DashboardPO dp = new DashboardPO(driver);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-		dp.getMyAccountAccountHistory().click();
-
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-
-		while (!ahp.getReceiptNumberTable().isDisplayed()) {
-			Thread.sleep(2000);
-			System.out.println("waiting");
-		}
-
-//Clicks on the Receiptnumber in Account History 
-
-		ahp.getSearchField().sendKeys(receiptNumber);
-		Thread.sleep(2000);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a")));
-		ahp.getReceiptNumber().click();
-		Thread.sleep(1000);
-
-/*		while (!ahp.getReceiptNumberTable().isDisplayed()) {
-			Thread.sleep(2000);
-			System.out.println("waiting");
-		}
-		
-		Thread.sleep(2000);
-		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-			if (receiptNumber1.equals(receiptNumber)) {
-				ahp.getReceiptNumbers().get(k).click();
-				break;
-			}
-		}*/
-
-//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-
-		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank()) {
-			Thread.sleep(500);
-		}
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(FormatTotalAmt));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(2000);
-		reusableMethods.returnToDashboard();
+	
 	}
 
 	

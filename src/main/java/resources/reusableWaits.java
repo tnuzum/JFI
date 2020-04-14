@@ -28,7 +28,16 @@ public class reusableWaits extends base{
 	
 		public static String waitForDashboardLoaded() throws InterruptedException
 	{
-	// Check 1: wait for MEMBER NAME element
+			
+			boolean error = reusableMethods.isElementPresent(By.xpath("//div[(contains@class, 'swal2-center')]"));
+			
+			if (error == true)
+			{
+			driver.findElement(By.xpath("//button[contains(@class , 'swal2-confirm')]")).click();
+			System.out.println("Error was present");
+			}
+						
+		// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
 		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//memberinfo//h3[@class = 'no-margins']")));
@@ -62,6 +71,13 @@ public class reusableWaits extends base{
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyCoursesEventsScheduleButton()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyAccountPayNow()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyInfoEditButton()));
+		error = reusableMethods.isElementPresent(By.xpath("//div[(contains@class, 'swal2-center')]"));
+		
+		if (error == true)
+		{
+		driver.findElement(By.xpath("//button[contains(@class , 'swal2-confirm')]")).click();
+		System.out.println("Error was present");
+		}
 					
 		return null;
 		

@@ -162,6 +162,12 @@ public class EnrollCourseByBuyingPackage extends base {
 
 		// Verifies the Pay button contains the total amount
 		Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmt));
+		
+		while(!PM.getOnAccountAndSavedCards().isDisplayed())
+			
+		{
+			Thread.sleep(1000);;
+		}
 
 		// Click the Pay button
 		while (!PM.getPaymentButton().isEnabled()) {
@@ -326,6 +332,11 @@ public class EnrollCourseByBuyingPackage extends base {
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		while(!PM.getOnAccountAndSavedCards().isDisplayed())
+			
+		{
+			Thread.sleep(1000);;
+		}
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < count; i++) {
 			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
@@ -505,6 +516,12 @@ public class EnrollCourseByBuyingPackage extends base {
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
+		while(!PM.getNewCardButton().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
 
 		PM.getNewCardButton().click();
 		Thread.sleep(3000);

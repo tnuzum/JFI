@@ -242,6 +242,12 @@ public class FamilyMemberCourseEnrollment2 extends base{
 	     
 	Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmount));   //Verifies the Pay button contains the total amount
 	
+	while(!PM.getOnAccountAndSavedCards().isDisplayed())
+		
+	{
+		Thread.sleep(1000);;
+	}
+	
 	while (!PM.getPaymentButton().isEnabled())
 	{
 		Thread.sleep(1000);

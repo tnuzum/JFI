@@ -303,7 +303,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		
-		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
 						
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook2.toUpperCase()));
 		System.out.println(ap.getRateBox().getText());
@@ -324,10 +324,9 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 				break;
 			}
 		}
-
-		
-		
-				
+		Thread.sleep(1000);
+	
+			
 		System.out.println(ap.getTotalAmount().getText());
 
 		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
@@ -338,6 +337,12 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
 		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
+		while(!PM.getNewCardButton().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
 		
 		PM.getNewCardButton().click();
 		Thread.sleep(1000);

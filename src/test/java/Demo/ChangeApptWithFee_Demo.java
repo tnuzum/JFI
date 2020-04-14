@@ -118,7 +118,6 @@ public class ChangeApptWithFee_Demo extends base {
 		
 		System.out.println("came out of the loop");
 						
-
 		Select s1 = new Select(ap.getBookableItem());
 		Thread.sleep(2000);
 		List<WebElement> Products = s1.getOptions();
@@ -159,7 +158,7 @@ public class ChangeApptWithFee_Demo extends base {
 		}
 		
 		System.out.println("came out of the loop");
-	
+		
 		
 		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
 
@@ -253,8 +252,8 @@ public class ChangeApptWithFee_Demo extends base {
 		}
 		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("DUE AT TIME OF SERVICE $90.00"));
-		Assert.assertTrue(ap.getFeeSections().get(1).getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $90.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
 	
 		System.out.println(ap.getTotalAmount().getText());
 

@@ -55,7 +55,7 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 	}
 
 	@Test(priority = 1)
-	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
+	public void ChangeAppointmentCancelTransaction() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("apptmember6", "Testing1!");
 		
 		//Book an appointment and get the start time for the appointment
@@ -283,8 +283,8 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		
-		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("DUE AT TIME OF SERVICE $90.00"));
-		Assert.assertTrue(ap.getFeeSections().get(1).getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $90.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
 		
 		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
@@ -317,7 +317,7 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 		reusableMethods.returnToDashboard();
 	}
 		@Test (priority = 2)
-		public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
+		public void CancelOldAppointment() throws IOException, InterruptedException {
 			
 			reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime1, appointmentToBook1);
 

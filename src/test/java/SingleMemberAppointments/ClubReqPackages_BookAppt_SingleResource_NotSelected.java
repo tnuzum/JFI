@@ -263,6 +263,13 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
+		
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		while(!PM.getOnAccountAndSavedCards().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
 
 		// Click the Pay button
 		while (!ap.getPaymentButton().isEnabled()) {

@@ -282,8 +282,8 @@ public class ChangeApptWithFee_MemberHasPackages_SavedCard extends base {
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
 		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-		Assert.assertTrue(ap.getFeeSections().get(0).getText().contains("DUE AT TIME OF SERVICE $5.00"));
-		Assert.assertTrue(ap.getFeeSections().get(1).getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $5.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
 	
 		System.out.println(ap.getTotalAmount().getText());
 
@@ -295,6 +295,12 @@ public class ChangeApptWithFee_MemberHasPackages_SavedCard extends base {
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
 		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
+		while(!PM.getOnAccountAndSavedCards().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
 		
 		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < paymentMethodscount; i++) {

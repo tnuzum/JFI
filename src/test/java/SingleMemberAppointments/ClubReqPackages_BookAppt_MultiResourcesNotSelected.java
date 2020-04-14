@@ -270,6 +270,12 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
+		while(!PM.getNewCardButton().isDisplayed())
+		
+		{
+			Thread.sleep(1000);;
+		}
+		
 		PM.getNewCardButton().click();
 		Thread.sleep(1000);
 		

@@ -44,7 +44,7 @@ public class ExampleTest2 extends base{
 		driver.findElement(By.id("Username")).sendKeys("rauto");
 		driver.findElement(By.id("Password")).sendKeys("Testing1!");
 		driver.findElement(By.cssSelector("button[type='submit']")).click();
-		driver.findElement(By.linkText("Logout"));
+		driver.findElement(By.xpath("//a[@class='at-topnavbar-logout']"));
 		
 //		LoginPO l=new LoginPO(driver);
 //		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
