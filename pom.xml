@@ -35,6 +35,7 @@
 						<suiteXmlFile>testngSmoke.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<forkMode>never</forkMode>
+					 <printSummary>true</printSummary>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -69,6 +70,7 @@
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<forkMode>never</forkMode>
+					 <printSummary>true</printSummary>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -103,6 +105,7 @@
 						<suiteXmlFile>testngFuture.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<forkMode>never</forkMode>
+					 <printSummary>true</printSummary>
 				</configuration>
 			</plugin>
 			<plugin>

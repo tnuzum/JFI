@@ -41,8 +41,14 @@ public class ShopAndPurchasePackages extends base {
 		d.getMenuShopPackages().click();
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
+		while (!sp.getPackagesList().isDisplayed())
+		{
+			Thread.sleep(1000);
+			System.out.println("Waiting for the packages to be displayed");
+		}
+		
+//		WebDriverWait wait = new WebDriverWait(driver, 30);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 //		   System.out.println(sp.getPurchaseButtons().size());
 		for (int i = 0; i < sp.getPurchaseButtons().size(); i++) {
 			Assert.assertEquals("Purchase", sp.getPurchaseButtons().get(i).getText());
@@ -251,12 +257,19 @@ public class ShopAndPurchasePackages extends base {
 	public void PurchaseStoredCard() throws InterruptedException {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"), prop.getProperty("activeMember7_password"));
 		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
+		ShopPackagesPO sp= new ShopPackagesPO(driver);
+		while (!sp.getPackagesList().isDisplayed())
+		{
+			Thread.sleep(1000);
+			System.out.println("Waiting for the packages to be displayed");
+		}
 		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
-		ShopPackagesPO sp = new ShopPackagesPO(driver);
+
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
+		
 		sp.getKeyWord().sendKeys("Service");
 		
 				
@@ -416,9 +429,15 @@ public class ShopAndPurchasePackages extends base {
 	d.getMenuShopPackages().click();
 	
 	WebDriverWait wait1 = new WebDriverWait(driver, 30);
-	wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
+//	wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 	
 	ShopPackagesPO sp = new ShopPackagesPO(driver);
+	
+	while (!sp.getPackagesList().isDisplayed())
+	{
+		Thread.sleep(1000);
+		System.out.println("Waiting for the packages to be displayed");
+	}
 	sp.getKeyWord().sendKeys("Service");
 	
 			
@@ -586,9 +605,15 @@ public class ShopAndPurchasePackages extends base {
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
 		
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
+//		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+//		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
+		
+		while (!sp.getPackagesList().isDisplayed())
+		{
+			Thread.sleep(1000);
+			System.out.println("Waiting for the packages to be displayed");
+		}
 		sp.getKeyWord().sendKeys("Service");
 		
 				
@@ -630,9 +655,15 @@ public class ShopAndPurchasePackages extends base {
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
 		
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
+//		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+//		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
+		
+		while (!sp.getPackagesList().isDisplayed())
+		{
+			Thread.sleep(1000);
+			System.out.println("Waiting for the packages to be displayed");
+		}
 		sp.getKeyWord().sendKeys("Service");
 		
 				
@@ -676,9 +707,15 @@ public class ShopAndPurchasePackages extends base {
 		DashboardPO d = new DashboardPO(driver);
 		d.getMenuShopPackages().click();
 		
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
-		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
+//		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+//		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
+		
+		while (!sp.getPackagesList().isDisplayed())
+		{
+			Thread.sleep(1000);
+			System.out.println("Waiting for the packages to be displayed");
+		}
 		sp.getKeyWord().sendKeys("Service");
 		
 				

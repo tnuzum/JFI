@@ -209,7 +209,7 @@ public  class reusableMethods extends base {
 				System.out.println("Sleeping for 1 second");
 			}
 			
-	    WebDriverWait wait = new WebDriverWait(driver, 30);
+	    WebDriverWait wait = new WebDriverWait(driver, 60);
 	    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-header')]")));
 		wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));	
 		d.getMyClassesClass1GearButton().click();
@@ -219,6 +219,7 @@ public  class reusableMethods extends base {
 		d.getmyClassesUnenrollButton().click();
 		Thread.sleep(1000);
 		UnenrollPO u = new UnenrollPO(driver);
+		wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
 		Thread.sleep(1000);
@@ -266,7 +267,8 @@ public  class reusableMethods extends base {
 		cp.getUnEnrollBtn().click();
 		Thread.sleep(1000);
 		UnenrollPO u = new UnenrollPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));

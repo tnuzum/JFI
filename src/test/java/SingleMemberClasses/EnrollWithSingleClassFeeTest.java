@@ -592,7 +592,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Thread.sleep(1000);
 			System.out.println("Sleeping for 1 second");
 			}
-		    WebDriverWait wait = new WebDriverWait(driver, 10);
+		    WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));	
 			d.getMyClassesClass1GearButton().click();
 			
@@ -600,6 +600,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
 			d.getmyClassesUnenrollButton().click();
 			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 			u.getUnenrollButton().click();
 			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
