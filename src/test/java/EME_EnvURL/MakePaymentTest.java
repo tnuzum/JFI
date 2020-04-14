@@ -63,14 +63,9 @@ public class MakePaymentTest extends base {
 					}
 		p.getCustomAmountInput().sendKeys("1.00");
 		Thread.sleep(300);
-		for (int i = 0; i<p.getStoredCards().size(); i++)
-		{
-			if (p.getStoredCards().get(i).getText().contains("5454"))
-					{
-				        p.getPayWithThisMethodButton1().get(i).click();
-				        break;
-					}
-		}
+		
+		p.getPayWithThisMethodButton1().click();
+				      
 		reusableWaits.waitForAcceptButton();
 		p.getPopupConfirmationButton().click();
 		reusableWaits.waitForAcceptButton();
