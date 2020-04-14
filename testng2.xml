@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="EME - Automated Testing" >
+<suite name="EME - Automated Testing">
 	<listeners>
 		<listener class-name="EME.listeners" />
 		<!--listener class-name = "resources.ExtentReporterNG"/ -->
