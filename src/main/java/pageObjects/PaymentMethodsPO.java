@@ -16,6 +16,7 @@ public class PaymentMethodsPO {
 //	By paymentButton = By.xpath("//button[@type = 'submit']");
 	By paymentButton = By.xpath("//button[contains(text(), 'Pay')]");
 	By newCardButton = By.xpath("//span[contains( text(), 'Add New Card')]");
+//	By newCardButton = By.xpath("//a[@class = 'at-paymethods-link-addnewcard']");
 	By closeButton = By.xpath("//button[@id='close-button']");
 	By nameOnCardField = By.xpath("//input[@id='nameOnCard']");
 	By cardNumberField = By.cssSelector("#cardNumber");
