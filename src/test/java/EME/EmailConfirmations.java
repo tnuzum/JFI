@@ -213,7 +213,7 @@ public class EmailConfirmations  {
 		    Assert.assertTrue(emailUtils.isTextInMessage(email7, "Description: PT Group=-ThreeResources"));
 		    Assert.assertTrue(emailUtils.isTextInMessage(email7, "Date: " + tomorrowsDayAndDate ));
 		    Assert.assertTrue(emailUtils.isTextInMessage(email7,  "1 Hour 0 Minute"));
-		    Assert.assertTrue(emailUtils.isTextInMessage(email7, "5:00"));
+		    //Assert.assertTrue(emailUtils.isTextInMessage(email7, "5:00"));
 		    	                                                        
 		    
 		   
