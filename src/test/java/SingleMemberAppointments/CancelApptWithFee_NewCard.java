@@ -315,7 +315,7 @@ public class CancelApptWithFee_NewCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
 		
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 				wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 				
 				System.out.println(ap.getTotalAmount().getText());
@@ -330,11 +330,11 @@ public class CancelApptWithFee_NewCard extends base {
 				while(!PM.getNewCardButton().isDisplayed())
 				
 				{
-					Thread.sleep(1000);;
+					Thread.sleep(1000);
 				}
 						
 				PM.getNewCardButton().click();
-				Thread.sleep(1000);
+				Thread.sleep(5000);
 				
 				String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 				while (opacity.contains("1")) {
@@ -343,8 +343,9 @@ public class CancelApptWithFee_NewCard extends base {
 				}
 
 				Assert.assertTrue(PM.getCloseButton().isDisplayed());
-				Assert.assertFalse(PM.getPaymentButton().isEnabled());
 				System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+				Assert.assertFalse(PM.getPaymentButton().isEnabled());
+				
 
 //				System.out.println(PM.getNameOnCardField().getAttribute("value"));
 	     		Assert.assertEquals(memberName,PM.getNameOnCardField().getAttribute("value"));
