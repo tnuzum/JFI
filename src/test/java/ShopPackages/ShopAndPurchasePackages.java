@@ -63,7 +63,7 @@ public class ShopAndPurchasePackages extends base {
 	public void KeywordFilterCheck() throws IOException, InterruptedException {
 
 		ShopPackagesPO sp = new ShopPackagesPO(driver);
-		sp.getKeyWord().sendKeys("Service");
+		sp.getKeyWord().sendKeys("ServiceOA");
 		/*
 		 * System.out.println(sp.getPackageNames().size());
 		 * System.out.println(sp.getPackagesections().size());
@@ -272,7 +272,7 @@ public class ShopAndPurchasePackages extends base {
 
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		
-		sp.getKeyWord().sendKeys("Service");
+		sp.getKeyWord().sendKeys("ServiceCC");
 		
 				
 		for (int i = 0; i < sp.getPackageNames().size(); i++)
@@ -442,7 +442,7 @@ public class ShopAndPurchasePackages extends base {
 		Thread.sleep(1000);
 		System.out.println("Waiting for the packages to be displayed");
 	}
-	sp.getKeyWord().sendKeys("Service");
+	sp.getKeyWord().sendKeys("ServiceNC");
 	
 			
 	for (int i = 0; i < sp.getPackageNames().size(); i++)
