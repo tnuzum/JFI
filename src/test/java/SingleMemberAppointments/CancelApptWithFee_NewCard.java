@@ -315,7 +315,6 @@ public class CancelApptWithFee_NewCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
 		
-				Thread.sleep(3000);
 				wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 				
 				System.out.println(ap.getTotalAmount().getText());
@@ -324,6 +323,7 @@ public class CancelApptWithFee_NewCard extends base {
 				String FormatTotalAmt = totalAmt[1].trim();
 				System.out.println(FormatTotalAmt);
 				// Verifies the Pay button contains the total amount
+				Thread.sleep(3000);
 				
 				PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 						

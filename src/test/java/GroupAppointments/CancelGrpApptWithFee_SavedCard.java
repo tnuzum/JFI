@@ -392,6 +392,7 @@ public class CancelGrpApptWithFee_SavedCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+		Thread.sleep(1000);
 				
 				System.out.println(ap.getTotalAmount().getText());
 

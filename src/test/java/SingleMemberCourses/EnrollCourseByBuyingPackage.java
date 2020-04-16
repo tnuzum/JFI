@@ -511,10 +511,12 @@ public class EnrollCourseByBuyingPackage extends base {
 		Assert.assertEquals(defaultSelection, unitsToBeSelected);
 
 		c.getContinueButton().click();
+		
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
 
 		Thread.sleep(3000);
-		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
-
+		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		
 		while(!PM.getNewCardButton().isDisplayed())
@@ -548,6 +550,17 @@ public class EnrollCourseByBuyingPackage extends base {
 		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 		PM.getSecurityCode().sendKeys("123");
 		Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
+		
+		PM.getCheckBox().click();
+		while (!PM.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+		//Clicks on the Pay button without signature
+		PM.getPaymentButton().click();
+		System.out.println(PM.getPopupContent().getText());
+		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+		PM.getPopupOk().click();
+		Thread.sleep(1000);
 		PM.getSaveCardNo().click();
 		wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
 		Assert.assertTrue(PM.getPaymentButton().isEnabled());

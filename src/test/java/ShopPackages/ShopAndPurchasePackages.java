@@ -90,9 +90,11 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 		}
-		Thread.sleep(5000);
-		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
-		Assert.assertEquals("ServiceOA", pp.getPackageName().getText());
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
+		Thread.sleep(3000);
+		Assert.assertEquals("ServiceOA", PP.getPackageName().getText());
 	}
 
 	@Test(priority = 4, description = "Page Layout Validation")
@@ -284,8 +286,10 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 		}
-		Thread.sleep(3000);
+		
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
+		Thread.sleep(3000);
 		Assert.assertEquals("ServiceCC", PP.getPackageName().getText());
 		
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -452,8 +456,9 @@ public class ShopAndPurchasePackages extends base {
 		}
 
 	}
-	Thread.sleep(3000);
 	PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+	wait1.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
+	Thread.sleep(3000);
 	Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 	
 	PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -486,6 +491,17 @@ public class ShopAndPurchasePackages extends base {
 				PM.getExpirationMonth().sendKeys("12");
 				PM.getExpirationYear().sendKeys("29");
 				PM.getSecurityCode().sendKeys("123");
+				PM.getCheckBox().click();
+				while (!PM.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				
+				//Clicks on the Pay button without signature
+				PM.getPaymentButton().click();
+				System.out.println(PM.getPopupContent().getText());
+				Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+				PM.getPopupOk().click();
+				Thread.sleep(1000);
 				PM.getSaveCardNo().click();
 			
 				
