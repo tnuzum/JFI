@@ -28,13 +28,49 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M3</version>
+				<version>3.0.0-M4</version>
+				<!-- version>2.20</version-->
+				<configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>testngSmoke.xml</suiteXmlFile>
+					</suiteXmlFiles>
+					<forkMode>never</forkMode>
+					 <printSummary>true</printSummary>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+				<configuration>
+					<source>11</source>
+					<target>11</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	</profile>
+	
+	<profile>
+	 <id>EMEFuture2E2E</id>
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
 				<!-- version>2.20</version-->
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<forkMode>never</forkMode>
+					 <printSummary>true</printSummary>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -62,13 +98,14 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>3.0.0-M3</version>
+				<version>3.0.0-M4</version>
 				<!-- version>2.20</version-->
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>testngFuture.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<forkMode>never</forkMode>
+					 <printSummary>true</printSummary>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -124,7 +161,7 @@
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<!-- version>3.0.6</version -->
-			<version>4.0.9</version>
+			<version>4.1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>com.relevantcodes</groupId>
@@ -134,12 +171,12 @@
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-			<version>2.12.0</version>
+			<version>2.13.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-			<version>2.12.0</version>
+			<version>2.13.1</version>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -149,26 +186,33 @@
 		<dependency>
 			<groupId>org.apache.maven.surefire</groupId>
 			<artifactId>maven-surefire-common</artifactId>
-			<version>3.0.0-M3</version>
+			<version>3.0.0-M4</version>
 			<!-- version>2.20</version-->
 		</dependency>
 		
 		<dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>javax.mail-api</artifactId>
-			<version>1.5.5</version>
+			<version>1.6.2</version>
 		</dependency>
  
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>smtp</artifactId>
-			<version>1.6.0</version>
+			<version>1.6.5</version>
 		</dependency>
  
 		<dependency>
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
-			<version>1.6.0</version>
+			<version>1.6.2</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.paulhammant/ngwebdriver -->
+<dependency>
+    <groupId>com.paulhammant</groupId>
+    <artifactId>ngwebdriver</artifactId>
+    <version>1.1.5</version>
+</dependency>
+		
 	</dependencies>
 </project>

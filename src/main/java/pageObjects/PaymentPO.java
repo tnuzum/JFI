@@ -92,9 +92,9 @@ public class PaymentPO {
 	{
 		return driver.findElement(amountLabel3);
 	}
-	public List<WebElement> getPayWithThisMethodButton1()
+	public WebElement getPayWithThisMethodButton1()
 	{
-		return driver.findElements(payWithThisMethodButton1);
+		return driver.findElement(payWithThisMethodButton1);
 	}
 	public List<WebElement> getStoredCards()
 	{

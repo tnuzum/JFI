@@ -14,22 +14,25 @@ public class AppointmentsPO {
 		
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By loadingAvailabilityMessage = By.xpath("//div[@class='swal2-container.swal2-center']");
+	By loadingAvailabilityMessage = By.xpath("//div[contains(@class, 'swal2-loading')]");
 	By clubs = By.xpath("(//select[@name='clubs'])");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
 	By groupApptsHeader = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div/h2");
 	By groupMinPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[1]/div/small[1]"); //minimum persons count
 	By groupMaxPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[2]/div/small[1]"); //maximum persons count
-	By groupMemberSearchInput = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[4]/div/input");
-	By groupMemberSearchButton = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[4]/div/span/a");
+	By groupMemberSearchInput = By.xpath("//div[@id = 'group-activity'] //input[contains(@class, 'form-control')]");
+	By groupMemberSearchButton = By.xpath("//div[@id = 'group-activity'] //a[@class='btn btn-primary']");
 	By groupPopupAddButton1 = By.xpath("//appointmentmembersearch/div[2]/div[1]/a");// first add button
 	By groupPopupAddButton2 = By.xpath("//appointmentmembersearch/div[2]/div[2]/a");// second add button
+	By groupPopupMembers = By.xpath("//div[@class = 'modal-content'] //div[@class = 'ng-star-inserted']");
+	By groupPopupAddButtons = By.xpath("//div[@class = 'modal-content'] //div[@class = 'ng-star-inserted']/a");
 	
 	By resourceType= By.xpath("(//select[@name='primaryResourceType'])");
 	By monthSelectBackButton = By.xpath("//div[@class='btn-group']/div[1]/i");
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
+	By calendarDayAfterTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[2]");
 	By calendarMonday1stFullWeek = By.xpath("//div[@class='cal-month-view']/div/div[2]/div/mwl-calendar-month-cell[2]");
 	//By selectTimeMorningButton = By.xpath("//strong[contains(text(),'MORNING')]");
 	By selectTimeMorningButton = By.xpath("//div[contains(@class, 'tabs-container')]/ul/li[1]/a[1]");
@@ -41,36 +44,47 @@ public class AppointmentsPO {
 	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book button
 	By packageRequiredContinueButton = By.xpath("//*[text()='CONTINUE']"); // Continue button
 	By bookButton = By.xpath("//button[@type = 'submit']");
-	
+	By apptBox = By.xpath("//div[contains(@class, 'appt-box')]");
+	By timeSlotContainers = By.xpath("//div[contains(@class, 'tabs-container')]");
+		
 	//By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
 	By popup1Content = By.xpath("//div[@id='swal2-content']");
+	By popup1Title = By.xpath("//h2[@id='swal2-title']");
 	By paymentButton = By.xpath("//button[contains(text(), 'pay')]");
 	By cancelButton = By.xpath("//button[contains(text(), 'cancel')]");
 	By popup2Title = By.xpath("//h2[@id='swal2-title']");
 	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
+	By popup2Content = By.xpath("//div[@id='swal2-content']");
 	By apptCheckout = By.xpath("//div[@class='row ng-star-inserted']");
 	
 	By appointmentName = By.xpath("//div[contains(@class, 'widget')]/h2");
 	By clubName = By.xpath("//span[contains(@class, 'float')]/small[1]");
 	By appointmentTime = By.xpath("//span[contains(@class, 'float')]/small[2]");
 	By appointmentDate = By.xpath("//span[contains(@class, 'float')]/small[3]");
+	By group = By.xpath("//span[contains(@class, 'float')]/small[4]");
 	By rateBox = By.xpath("//div[@class='col-md-12'] //div[@class = 'rate-box']");
 	By reviewSection = By.xpath("//div[@class='col-md-12']");
 	By totalAmount = By.xpath("//h2[@class='text-uppercase text-danger']");
 	By additionalResources = By.xpath("//div[@class = 'mat-radio-label-content']");
+	By oldAppointmentBanner = By.xpath("//div[@class='widget widget-callout ng-star-inserted']");
+	By newAppointmentBanner = By.xpath("//div[@class='widget widget-callout']");
+	By dueAtTimeOfService = By.xpath("//div[contains(@class, 'appointment-secondaryaction-dueattimeofservice')]");
+	By changeFee = By.xpath("//div[contains(@class, 'appointment-secondaryaction-changefee')]");
 	
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
-	By editApptChangeButton = By.cssSelector("#button-change");
+	By editApptChangeButton = By.xpath("//button[contains(text(), 'change')]");
 	By editApptCancelButton = By.xpath("//*[text()='cancel']"); //By.cssSelector("#button-cancel"); stopped working in 7.28
 	By editApptProceedButton = By.xpath("//*[text()='proceed with cancel']"); //By.xpath("//div[@id='show-hide-cancel']/div/div/a"); stopped working in 7.28
+	By editApptProceedButton1 = By.xpath("//*[text()='proceed with change']");
 	By editApptCancelYesButton = By.cssSelector("button[class*='confirm']");
 	By editApptCancelNoButton = By.cssSelector("button[class*='cancel']");
 	By editApptCanceledMessage = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/h2[1]");
 	By editApptCanceledOKButton = By.cssSelector("button[class*='confirm']");
 	By cancelFeeSection = By.xpath("//div[contains(@class,'alert-danger')]");
+	By noFeeSection = By.xpath("//div[contains(@class,'alert-success')]");
 
 	// CONSTRUCTOR
 		
@@ -84,9 +98,9 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(pageHeader);
 	}
-	public WebElement getloadingAvailabilityMessage()
+	public List<WebElement> getloadingAvailabilityMessage()
 	{
-		return driver.findElement(loadingAvailabilityMessage);
+		return driver.findElements(loadingAvailabilityMessage);
 	}
 	public WebElement getclubs()
 	{
@@ -130,6 +144,17 @@ public class AppointmentsPO {
 		return driver.findElement(groupPopupAddButton2);
 	}
 	
+	
+	public List <WebElement> getGroupPopupMembers()
+	{
+		return driver.findElements(groupPopupMembers);
+	}
+	public List <WebElement> getGroupPopupAddButtons()
+	{
+		return driver.findElements(groupPopupAddButtons);
+	}
+	
+	
 	public WebElement getResourceType()
 	{
 		return driver.findElement(resourceType);
@@ -145,6 +170,11 @@ public class AppointmentsPO {
 	public WebElement getCalendarTomorrow()
 	{
 		return driver.findElement(calendarTomorrow);
+	}
+	
+	public WebElement getCalendarDayAfterTomorrow()
+	{
+		return driver.findElement(calendarDayAfterTomorrow);
 	}
 	
 	public WebElement getCalendarMonday1stFullWeek()
@@ -179,6 +209,20 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(addlResourcesBookButton);
 	}
+	
+	public List<WebElement> getApptBox()
+	{
+		return driver.findElements(apptBox);
+		
+	}
+	
+	public List<WebElement> getTimeSlotContainers()
+	{
+		return driver.findElements(timeSlotContainers);
+		
+	}
+	
+	
 	public WebElement getPackageRequiredContinueButton()
 	{
 		return driver.findElement(packageRequiredContinueButton);
@@ -199,6 +243,11 @@ public class AppointmentsPO {
 	public WebElement getPopup1Content()
 	{
 		return driver.findElement(popup1Content);
+	}
+	
+	public WebElement getPopup1Title()
+	{
+		return driver.findElement(popup1Title);
 	}
 	
 	public WebElement getPaymentButton()
@@ -225,6 +274,10 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(popup2OKButton);
 	}
+	public WebElement getPopup2Content()
+	{
+		return driver.findElement(popup2Content);
+	}
 	
 	public WebElement getAppointmentTime()
 	{
@@ -234,6 +287,11 @@ public class AppointmentsPO {
 	public WebElement getAppointmentDate()
 	{
 		return driver.findElement(appointmentDate);
+	}
+	
+	public WebElement getGroup()
+	{
+		return driver.findElement(group);
 	}
 	
 	public WebElement getAppointmentName()
@@ -246,9 +304,9 @@ public class AppointmentsPO {
 		return driver.findElement(clubName);
 	}
 	
-	public WebElement getReviewSection()
+	public List<WebElement> getReviewSection()
 	{
-		return driver.findElement(reviewSection);
+		return driver.findElements(reviewSection);
 	}
 	
 	public WebElement getRateBox()
@@ -271,6 +329,26 @@ public class AppointmentsPO {
 		return driver.findElement(bookButton);
 	}
 	
+	public WebElement getOldAppointmentBanner()
+	{
+		return driver.findElement(oldAppointmentBanner);
+	}
+	
+	
+	public WebElement getNewAppointmentBanner()
+	{
+		return driver.findElement(newAppointmentBanner);
+	}
+	
+	public WebElement getDueAtTimeOfService()
+	{
+		return driver.findElement(dueAtTimeOfService);
+	}
+	
+	public WebElement getChangeFee()
+	{
+		return driver.findElement(changeFee);
+	}
 
 	public WebElement getEditApptPageHeader()
 	{
@@ -289,9 +367,19 @@ public class AppointmentsPO {
 	{
 		return driver.findElement(cancelFeeSection);
 	}
+	
+
+	public WebElement getNoFeeSection()
+	{
+		return driver.findElement(noFeeSection);
+	}
 	public WebElement getEditApptProceedButton()
 	{
 		return driver.findElement(editApptProceedButton);
+	}
+	public WebElement getEditApptProceedButton1()
+	{
+		return driver.findElement(editApptProceedButton1);
 	}
 	public WebElement getEditApptCancelYesButton()
 	{

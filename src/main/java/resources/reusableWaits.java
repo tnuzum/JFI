@@ -3,6 +3,7 @@ package resources;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -27,7 +28,16 @@ public class reusableWaits extends base{
 	
 		public static String waitForDashboardLoaded() throws InterruptedException
 	{
-	// Check 1: wait for MEMBER NAME element
+			
+			boolean error = reusableMethods.isElementPresent(By.xpath("//div[(contains@class, 'swal2-center')]"));
+			
+			if (error == true)
+			{
+			driver.findElement(By.xpath("//button[contains(@class , 'swal2-confirm')]")).click();
+			System.out.println("Error was present");
+			}
+						
+		// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
 		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//memberinfo//h3[@class = 'no-margins']")));
@@ -53,12 +63,21 @@ public class reusableWaits extends base{
 			Thread.sleep(500);
 			wait4.getText();
 		}
+//		wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[@id = 'swal2-content']")));
+//		wait1.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyAccountAccountHistory()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyApptsScheduleButton()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyClassesScheduleButton()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyCoursesEventsScheduleButton()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyAccountPayNow()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyInfoEditButton()));
+		error = reusableMethods.isElementPresent(By.xpath("//div[(contains@class, 'swal2-center')]"));
+		
+		if (error == true)
+		{
+		driver.findElement(By.xpath("//button[contains(@class , 'swal2-confirm')]")).click();
+		System.out.println("Error was present");
+		}
 					
 		return null;
 		
@@ -162,6 +181,7 @@ public class reusableWaits extends base{
 	}
 		public static boolean loadingAvailability()
 	{
+			 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 			try {
 				AppointmentsPO a = new AppointmentsPO(driver);
 				a.getloadingAvailabilityMessage();

@@ -41,7 +41,7 @@ public class MakePaymentTest extends base {
 
 	@Test(priority = 1, description = "Adding $1.00 to member's account")
 	public void MakePayment() throws InterruptedException {
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
+		reusableMethods.activeMemberLogin("hoh", "Testing1!");
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		d.getMyAccountPayNow().click();
@@ -62,14 +62,9 @@ public class MakePaymentTest extends base {
 					}
 		p.getCustomAmountInput().sendKeys("1.00");
 		Thread.sleep(300);
-		for (int i = 0; i<p.getStoredCards().size(); i++)
-		{
-			if (p.getStoredCards().get(i).getText().contains("5454"))
-					{
-				        p.getPayWithThisMethodButton1().get(i).click();
-				        break;
-					}
-		}
+		
+		p.getPayWithThisMethodButton1().click();
+				      
 		reusableWaits.waitForAcceptButton();
 		p.getPopupConfirmationButton().click();
 		reusableWaits.waitForAcceptButton();

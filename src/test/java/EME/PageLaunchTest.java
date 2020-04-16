@@ -1,5 +1,7 @@
 package EME;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -140,7 +142,28 @@ public class PageLaunchTest extends base{
 		reusableMethods.returnToDashboard();
 		reusableWaits.waitForDashboardLoaded();
 	}
-		@Test (priority = 60)
+	
+	@Test (priority = 60)
+	public void PrivacyPolicyLinkTest() throws InterruptedException
+	{
+		reusableWaits.waitForDashboardLoaded();
+		d.getPrivacyPolicyLink().click();
+		Thread.sleep(3000);
+		Assert.assertEquals(driver.getWindowHandles().size(), 2);
+		Set<String>ids = driver.getWindowHandles();
+		Iterator<String> it = ids.iterator();
+		String parentid = it.next();
+		String childid = it.next();
+		driver.switchTo().window(childid); // Switch to Privacy Policy window
+		Thread.sleep(1000);
+		Assert.assertEquals(driver.getTitle(), "Privacy Policy – Privacy & Terms – Google");
+		driver.switchTo().window(parentid); // Switch back to EME window
+		Thread.sleep(1000);
+		Assert.assertEquals(driver.getTitle(), "Dashboard");
+		
+		
+	}
+		@Test (priority = 65)
 	public void ForgotUsernameButtonTest() throws InterruptedException
 	{
 		d.getLogoutButton().click();
@@ -158,7 +181,7 @@ public class PageLaunchTest extends base{
 		log.info("Forgot Username Page Header Verified");
 		fu.getCancelButton().click();
 	}
-	@Test (priority = 65)
+	@Test (priority = 70)
 	public void ForgotPasswordButtonTest() throws InterruptedException
 	{
 		LoginPO l = new LoginPO(driver);
@@ -177,7 +200,7 @@ public class PageLaunchTest extends base{
 	@AfterClass
 		public void teardown() throws InterruptedException
 		{
-		driver.close();
+		driver.quit();
 		driver=null;
 		}
 

@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -28,9 +29,9 @@ import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 
-public class reusableMethods extends base {
+public  class reusableMethods extends base {
 
-	public static String activeMember1Login() throws InterruptedException {
+	public static  String activeMember1Login() throws InterruptedException {
 		reusableWaits.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
@@ -172,7 +173,7 @@ public class reusableMethods extends base {
 
 	public static String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 20);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 		d.getDashboardButton().click();
 //		d.getBreadcrumbDashboard().click();
@@ -181,6 +182,7 @@ public class reusableMethods extends base {
 	}
 
 	public static boolean isElementPresent(By by) {
+		 driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		try {
 			driver.findElement(by);
 			return true;
@@ -207,22 +209,27 @@ public class reusableMethods extends base {
 				System.out.println("Sleeping for 1 second");
 			}
 			
-	    WebDriverWait wait = new WebDriverWait(driver, 10);
+	    WebDriverWait wait = new WebDriverWait(driver, 60);
+	    wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-header')]")));
 		wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));	
 		d.getMyClassesClass1GearButton().click();
 		
 		wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
 		wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
 		d.getmyClassesUnenrollButton().click();
+		Thread.sleep(1000);
 		UnenrollPO u = new UnenrollPO(driver);
+		wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
+		Thread.sleep(1000);
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		u.getUnenrollConfirmYesButton().click();
 		wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(2000);
 			
 		}
 		else
@@ -234,7 +241,7 @@ public class reusableMethods extends base {
 	
 }
 	
-	public static  Object unenrollFromCourse(String dsiredMonthYear) throws IOException, InterruptedException {
+	public static Object unenrollFromCourse(String dsiredMonthYear) throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
 		
@@ -258,8 +265,10 @@ public class reusableMethods extends base {
 		cp.getCalEventTitle().click();
 		Thread.sleep(1000);
 		cp.getUnEnrollBtn().click();
+		Thread.sleep(1000);
 		UnenrollPO u = new UnenrollPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 		u.getUnenrollButton().click();
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
@@ -268,6 +277,7 @@ public class reusableMethods extends base {
 		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
+		Thread.sleep(2000);
 		
 		reusableMethods.returnToDashboard();
 		
@@ -335,7 +345,7 @@ public class reusableMethods extends base {
 	int packagesCount = PP.getPackagesList().size();
 	for (int j = 0; j < packagesCount; j++) {
 		String text = PP.getPackagesList().get(j).getText();
-		if (PP.getPackagesList().get(j).getText().contains(packageName)) {
+		if (text.contains(packageName)) {
 			String[] unitCount = PP.getUnitsCount().get(j).getText().split(" ");
 			String formattedUnitCount = unitCount[0].trim();
 			IntUnitCount = Integer.parseInt(formattedUnitCount);
@@ -353,6 +363,10 @@ public class reusableMethods extends base {
 		
 		//Note the package units 
 		d.getMenuMyAccount().click();
+		while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1"))
+		{
+			Thread.sleep(1000);
+		}
 		d.getMenuPackages().click();
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.className("ibox"))));
@@ -459,7 +473,7 @@ public class reusableMethods extends base {
 	
 		while (!monthName.contains(monthYear))
 		{
-			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]//div[contains(@class, 'mat-button-ripple')]")).click();
+			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]")).click();
 			monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
 		}
 		//button[@class='mat-calendar-next-button mat-icon-button']//div[contains(@class, 'mat-button-ripple')]
@@ -476,6 +490,43 @@ public class reusableMethods extends base {
 	
 	return null;
 	}
+	
+	public static Object SelectYesterdayDate() throws InterruptedException{
+		
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		c.getCalendarIcon().click();
+		Thread.sleep(2000);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d yyyy");
+		Calendar today = Calendar.getInstance();
+		 today.add(Calendar.DAY_OF_YEAR, -1);
+		 String yesterdaysMonthDateYear = dateFormat.format(today.getTime());
+		
+		 String[] monthDateYear = yesterdaysMonthDateYear.split(" ");
+		 String monthYear = monthDateYear[0].toUpperCase() + " " + monthDateYear[2];
+		 String yesterdaysDate = monthDateYear[1];
+		 
+		 String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
+		
+			while (!monthName.contains(monthYear))
+			{
+				driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-previous-button')]")).click();
+				monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]")).getText();
+			}
+			//button[@class='mat-calendar-next-button mat-icon-button']//div[contains(@class, 'mat-button-ripple')]
+
+		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
+		for (int i = 0; i < daycount; i++) {
+			String date = driver.findElements(By.tagName("td")).get(i).getText();
+			if (date.contains(yesterdaysDate)) {
+				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
+				break;
+			}
+			
+		}
+		
+		return null;
+		}
 	
 	public static Object ApptCheckinInCOG(String memberName, String appointmentName, String username) throws InterruptedException{
 		
@@ -524,7 +575,7 @@ public class reusableMethods extends base {
 	return null;
 	}
 
-	public static Object  ConfirmAndCancelAppointmentNoFee(String tomorrowsDate, String startTime, String appointmentToBook) throws IOException, InterruptedException
+	public static Object  ConfirmAndCancelAppointmentNoFee(String Date, String startTime, String appointmentToBook) throws IOException, InterruptedException
 	{
 		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
@@ -534,13 +585,17 @@ public class reusableMethods extends base {
 		int appointmentsCount = d.getMyAppts().size();
 
 		for (int i = 0; i < appointmentsCount; i++) {
-			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
+			if (d.getMyAppts().get(i).getText().contains(Date))
 
 			{
 
 				if (d.getMyAppts().get(i).getText().contains(startTime)) {
 					
 					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
+				
+			
+		
+					
 					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
 					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
 					
@@ -577,4 +632,466 @@ public class reusableMethods extends base {
 		return null;
 	}
 	
+	public static Object  ConfirmAndCancelAppointmentNoFee1(String Date, String startTime, String appointmentToBook) throws IOException, InterruptedException
+	{
+		reusableWaits.waitForDashboardLoaded();
+		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
+				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
+		int appointmentsCount = d.getMyAppts().size();
+
+		for (int i = 0; i < appointmentsCount; i++) {
+			if (d.getMyAppts().get(i).getText().contains(Date))
+
+			{
+
+				if (d.getMyAppts().get(i).getText().contains(startTime)) {
+					
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
+				}
+			}
+		}
+					
+/*					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
+					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+					
+					WebElement EditButton = d.getEditButton().get(i);		
+					
+					wait.until(ExpectedConditions.visibilityOf(EditButton));
+					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
+					
+					EditButton.click();
+					break;
+				}
+			}
+		}
+		
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		AppointmentsPO a = new AppointmentsPO(driver);
+		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		a.getEditApptCancelButton().click();
+		WebElement wait2 = a.getEditApptProceedButton();
+		while (!wait2.isEnabled())// while button is NOT(!) enabled
+		{
+//			Thread.sleep(200);
+		}
+		a.getEditApptProceedButton().click();
+		boolean result1 = reusableWaits.popupMessageYesButton();
+		if (result1 == true) {
+//				Thread.sleep(500);	
+		}
+		a.getEditApptCancelYesButton().click();
+//		
+		Thread.sleep(2000);
+		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");*/
+		
+		return null;
+	}
+	
+	public static String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook, String resourceName1, String resourceName2) throws IOException, InterruptedException
+	{
+		DashboardPO p = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		String startTime = null;
+		p.getMyApptsScheduleButton().click();
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		Select se = new Select(ap.getclubs());
+		List<WebElement> Clubs = se.getOptions();
+
+		while (!ap.getclubs().isEnabled()) {
+			System.out.println("Waiting for Clubs drop down to not be blank");
+		}
+
+		int count0 = Clubs.size();
+		System.out.println("1 " + count0);
+
+		for (int i = 0; i < count0; i++) {
+			String category = Clubs.get(i).getText();
+
+			if (category.equals(clubName)) {
+				se.selectByVisibleText(category);
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		WebElement bic = ap.getBookableItemCategory();
+
+		Select s = new Select(bic);
+		List<WebElement> ProductCategories = s.getOptions();
+
+		int count = ProductCategories.size();
+		System.out.println(count);
+
+		for (int i = 0; i < count; i++) {
+			String category = ProductCategories.get(i).getText();
+
+			if (category.equals(productCategory)) {
+				s.selectByVisibleText(category);
+				break;
+			}
+		}
+
+		Select s1 = new Select(ap.getBookableItem());
+		Thread.sleep(2000);
+		List<WebElement> Products = s1.getOptions();
+
+		int count1 = Products.size();
+		System.out.println(count1);
+
+		for (int j = 0; j < count1; j++) {
+			String product = Products.get(j).getText();
+
+			if (product.equals(appointmentToBook)) {
+				s1.selectByVisibleText(product);
+				break;
+			}
+		}
+
+		WebElement rt = ap.getResourceType();
+
+		Select s2 = new Select(rt);
+		Thread.sleep(2000);
+		List<WebElement> Resources = s2.getOptions();
+
+		int count2 = Resources.size();
+		System.out.println(count2);
+
+		for (int k = 0; k < count2; k++) {
+			String resource = Resources.get(k).getText();
+
+			if (resource.equals(resourceName1)) {
+				s2.selectByVisibleText(resource);
+				break;
+			}
+		}
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+		
+		System.out.println("came out of the loop");
+		
+				
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month"))
+		{
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			
+			while (ap.getloadingAvailabilityMessage().size()!=0)
+			{
+				System.out.println("waiting");
+				Thread.sleep(1000);
+			}
+			System.out.println("came out of the loop");
+		}
+
+		ap.getCalendarTomorrow().click();
+		Thread.sleep(3000);
+		
+		for (int i = 0; i < ap.getApptBox().size(); i++)
+		{
+		String bookName = ap.getApptBox().get(i).getText();
+		if (bookName.contains(resourceName2))
+		{
+			List <WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));		
+			WebElement MorningSlot = TimeSlots.get(0);
+			wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
+			while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
+			{
+				System.out.println("Waiting for available times");
+			}
+			
+			MorningSlot.click();
+	
+
+			WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+					List <WebElement> MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));	
+		WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+//					while (!st2.isEnabled())//while button is NOT(!) enabled
+//					{
+//					Thread.sleep(200);
+//					}
+		
+		wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
+		startTime = firstAvailableTimeMorning.getText();
+		System.out.println(startTime);
+		firstAvailableTimeMorning.click();
+		break;
+		}
+		}
+		Thread.sleep(1000);
+		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase."))
+				{
+			ap.getPopup1BookButton().click();
+			Thread.sleep(1000);
+			Select s4 = new Select(
+					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
+			List<WebElement> UnitRates = s4.getOptions();
+
+			int count4 = UnitRates.size();
+			System.out.println("4 " + count4);
+
+			for (int i = 0; i < count4; i++) {
+				String unitRate = UnitRates.get(i).getText();
+				System.out.println(unitRate);
+
+				if (unitRate.contains("1 - $")) {
+					s4.selectByVisibleText(unitRate);
+					break;
+				}
+			}
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+			ap.getPaymentButton().click();
+				}
+		else
+			{
+			ap.getPopup1BookButton().click();
+			}
+		
+		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+		wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
+		
+		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
+		ap.getPopup2OKButton().click();
+		Thread.sleep(1000);
+
+		// Navigate to Dashboard
+		int linkcount = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < linkcount; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+			{
+				// reusableWaits.linksToBeClickable();
+				driver.findElements(By.tagName("a")).get(i).click();
+				break;
+			}
+
+		}
+		reusableWaits.waitForDashboardLoaded();
+		return startTime;
+	}
+	
+
+
+public static String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook, String resourceName1, String resourceName2) throws IOException, InterruptedException
+{
+	DashboardPO p = new DashboardPO(driver);
+	WebDriverWait wait = new WebDriverWait(driver, 30);
+	String startTime = null;
+	p.getMyApptsScheduleButton().click();
+
+	AppointmentsPO ap = new AppointmentsPO(driver);
+
+	Select se = new Select(ap.getclubs());
+	List<WebElement> Clubs = se.getOptions();
+
+	while (!ap.getclubs().isEnabled()) {
+		System.out.println("Waiting for Clubs drop down to not be blank");
+	}
+
+	int count0 = Clubs.size();
+	System.out.println("1 " + count0);
+
+	for (int i = 0; i < count0; i++) {
+		String category = Clubs.get(i).getText();
+
+		if (category.equals(clubName)) {
+			se.selectByVisibleText(category);
+			break;
+		}
+	}
+	Thread.sleep(2000);
+
+	WebElement bic = ap.getBookableItemCategory();
+
+	Select s = new Select(bic);
+	List<WebElement> ProductCategories = s.getOptions();
+
+	int count = ProductCategories.size();
+	System.out.println(count);
+
+	for (int i = 0; i < count; i++) {
+		String category = ProductCategories.get(i).getText();
+
+		if (category.equals(productCategory)) {
+			s.selectByVisibleText(category);
+			break;
+		}
+	}
+
+	Select s1 = new Select(ap.getBookableItem());
+	Thread.sleep(2000);
+	List<WebElement> Products = s1.getOptions();
+
+	int count1 = Products.size();
+	System.out.println(count1);
+
+	for (int j = 0; j < count1; j++) {
+		String product = Products.get(j).getText();
+
+		if (product.equals(appointmentToBook)) {
+			s1.selectByVisibleText(product);
+			break;
+		}
+	}
+	
+	Thread.sleep(1000);
+	 Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+		ap.getGroupMemberSearchInput().sendKeys("auto");
+		ap.getGroupMemberSearchButton().click();
+		
+		Thread.sleep(2000);
+		
+		int memberCount = ap.getGroupPopupAddButtons().size();
+		for (int i = 0; i<memberCount; i++)
+			  
+		{
+			String text = ap.getGroupPopupMembers().get(i).getText();
+			System.out.println(text);
+			if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
+				{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+				ap.getGroupPopupAddButtons().get(i).click();
+				break;
+				}
+		}
+
+
+	WebElement rt = ap.getResourceType();
+
+	Select s2 = new Select(rt);
+	Thread.sleep(2000);
+	List<WebElement> Resources = s2.getOptions();
+
+	int count2 = Resources.size();
+	System.out.println(count2);
+
+	for (int k = 0; k < count2; k++) {
+		String resource = Resources.get(k).getText();
+
+		if (resource.equals(resourceName1)) {
+			s2.selectByVisibleText(resource);
+			break;
+		}
+	}
+	while (ap.getloadingAvailabilityMessage().size()!=0)
+	{
+		System.out.println("waiting1");
+		Thread.sleep(1000);
+	}
+	
+	System.out.println("came out of the loop");
+	
+			
+	String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+	if (classtext.contains("cal-out-month"))
+	{
+		driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+		
+		while (ap.getloadingAvailabilityMessage().size()!=0)
+		{
+			System.out.println("waiting");
+			Thread.sleep(1000);
+		}
+		System.out.println("came out of the loop");
+	}
+
+	ap.getCalendarTomorrow().click();
+	Thread.sleep(3000);
+	
+	for (int i = 0; i < ap.getApptBox().size(); i++)
+	{
+	String bookName = ap.getApptBox().get(i).getText();
+	if (bookName.contains(resourceName2))
+	{
+		List <WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));		
+		WebElement MorningSlot = TimeSlots.get(0);
+		wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
+		while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
+		{
+			System.out.println("Waiting for available times");
+		}
+		
+		MorningSlot.click();
+
+
+		WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+				List <WebElement> MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));	
+	WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+//				while (!st2.isEnabled())//while button is NOT(!) enabled
+//				{
+//				Thread.sleep(200);
+//				}
+	
+	wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
+	startTime = firstAvailableTimeMorning.getText();
+	System.out.println(startTime);
+	firstAvailableTimeMorning.click();
+	break;
+	}
+	}
+	Thread.sleep(1000);
+	if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase."))
+			{
+		
+		System.out.println("Went into the loop of Package required");
+		
+		ap.getPopup1BookButton().click();
+		Thread.sleep(1000);
+		Select s4 = new Select(
+				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
+		List<WebElement> UnitRates = s4.getOptions();
+
+		int count4 = UnitRates.size();
+		System.out.println("4 " + count4);
+
+		for (int i = 0; i < count4; i++) {
+			String unitRate = UnitRates.get(i).getText();
+			System.out.println(unitRate);
+
+			if (unitRate.contains("1 - $")) {
+				s4.selectByVisibleText(unitRate);
+				break;
+			}
+		}
+		Thread.sleep(1000);
+		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+		ap.getPaymentButton().click();
+			}
+	else
+		{
+		ap.getPopup1BookButton().click();
+		}
+	
+	wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+	wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
+	
+	Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
+	ap.getPopup2OKButton().click();
+	Thread.sleep(1000);
+
+	// Navigate to Dashboard
+	int linkcount = driver.findElements(By.tagName("a")).size();
+	for (int i = 0; i < linkcount; i++) {
+		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+		{
+			// reusableWaits.linksToBeClickable();
+			driver.findElements(By.tagName("a")).get(i).click();
+			break;
+		}
+
+	}
+	reusableWaits.waitForDashboardLoaded();
+	return startTime;
+}
 }

@@ -44,7 +44,8 @@ public class base {
 		dcch.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		
 		prop = new Properties();
-		FileInputStream fis=new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
+//		FileInputStream fis=new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
+		FileInputStream fis=new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
 
 		prop.load(fis);
 		String browserName = prop.getProperty("browser");
@@ -83,11 +84,15 @@ public class base {
 		}
 		else {
 		if (testEnvironment.equals("local")){
-				if (browserName.equals("Chrome")) {
+				if (browserName.contains("Chrome")) {
 					log.info("Chrome Browser: Running Tests on local machine");
 					ChromeOptions co = new ChromeOptions();
 					co.merge(dcch);
 					System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
+					if (browserName.contains("headless"))
+					{
+						co.addArguments("--headless");
+					}
 					driver = new ChromeDriver(co);}
 				if (browserName.equals("Firefox")) {
 					log.info("Firefox Browser: Running Tests on local machine");
@@ -112,7 +117,7 @@ public class base {
 		String DateTime= dateFormat.format(date);
 		System.out.println(DateTime+" INFO: WebDriver Initialized");
 		
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		return driver;
 	}

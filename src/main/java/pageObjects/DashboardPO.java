@@ -7,6 +7,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import com.paulhammant.ngwebdriver.ByAngular;
+
 public class DashboardPO {
 
 	public static WebDriver driver;
@@ -118,6 +120,9 @@ public class DashboardPO {
 	By AdditionalLinksSectionLabel = By.xpath("//div[@class='homeComponent']//externallinks/div/div[1]/div[1]");
 //	By BreadcrumbDashboard = By.xpath("//a[@class='ng-star-inserted']");
 	By BreadcrumbDashboard = By.xpath("//ol[@class = 'breadcrumb']/lib-breadcrumbs/ol/li/a");
+	
+	By privacyPolicyLink = By.linkText("Privacy Policy");
+	By privacyAndSecurityLabel = By.xpath("//h4[contains(text(),'Privacy & Security')]");
 // CONSTRUCTOR
 	public DashboardPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
@@ -394,6 +399,16 @@ public class DashboardPO {
 	public WebElement getBreadcrumbDashboard()
 	{
 		return driver.findElement(BreadcrumbDashboard);
+	}
+	
+	public WebElement getPrivacyPolicyLink()
+	{
+		return driver.findElement(privacyPolicyLink);
+	}
+	
+	public WebElement getPrivacyAndSecurityLabel()
+	{
+		return driver.findElement(privacyAndSecurityLabel);
 	}
 	
 }
