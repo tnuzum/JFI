@@ -17,17 +17,18 @@ public class DashBoard_Layout extends base{
 	
 //	@BeforeTest
 	@BeforeClass
-	public void initialize() throws InterruptedException, IOException {
+			public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get( prop.getProperty("EMELoginPage"));
+		 reusableMethods.activeMember1Login();      //Login to EME 
 
 	}
 	
 	@Test (priority = 1)
-	public void VerifyHeaderSectionPresent() throws IOException, InterruptedException {
+			public void VerifyHeaderSectionPresent() throws IOException, InterruptedException {
 
-		   reusableMethods.activeMember1Login();      //Login to EME 
+		  
 	
 			DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
 			
@@ -145,6 +146,18 @@ public class DashBoard_Layout extends base{
 			Assert.assertTrue(d.getAdditionalLinksSectionLabel().isDisplayed());
 			String additionalLinksSectionLabel = d.getAdditionalLinksSectionLabel().getText();
 			Assert.assertEquals(additionalLinksSectionLabel, "Additional Links");
+			}
+			
+			@Test (priority = 10)
+			public void VerifyPrinacyPolicyLinkPresent()  {
+				
+				DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
+			
+//			Privacy Policy Label and Link Present
+				
+				Assert.assertTrue(d.getPrivacyAndSecurityLabel().isDisplayed());
+			Assert.assertTrue(d.getPrivacyPolicyLink().isDisplayed());
+			
 			}
 			
 //			@AfterTest
