@@ -308,10 +308,9 @@ public class CancelGrpApptWithFee_OnAccount extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("There is a fee for cancelling this appointment."));
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
-		
-					Thread.sleep(1000);
-					
+											
 				wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+				Thread.sleep(1000);
 				
 				System.out.println(ap.getTotalAmount().getText());
 

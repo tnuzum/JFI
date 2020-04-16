@@ -339,24 +339,17 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
 		
 		
-				Thread.sleep(3000);
 				wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-				
 				System.out.println(ap.getTotalAmount().getText());
-
 				String[] totalAmt = ap.getTotalAmount().getText().split(": ");
 				String FormatTotalAmt = totalAmt[1].trim();
 				System.out.println(FormatTotalAmt);
-				// Verifies the Pay button contains the total amount
 				
+				Thread.sleep(3000);
+								
 				PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 				
-				while(!PM.getOnAccountAndSavedCards().isDisplayed())
-					
-				{
-					Thread.sleep(1000);;
-				}
-						
+								
 				while(!PM.getNewCardButton().isDisplayed())
 				
 				{
@@ -388,6 +381,8 @@ public class CancelGrpApptWithFee_NewCard extends base {
 				while (!PM.getPaymentButton().isEnabled()) {
 					Thread.sleep(1000);
 				}
+				
+				//Clicks on the Pay button without signature
 				PM.getPaymentButton().click();
 				System.out.println(PM.getPopupContent().getText());
 				Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
@@ -395,7 +390,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 				Thread.sleep(1000);
 				PM.getSaveCardNo().click();
 			
-			
+				// Verifies the Pay button contains the total amount
 				Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
 				// Click the Pay button
 				while (!PM.getPaymentButton().isEnabled()) {
