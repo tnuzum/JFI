@@ -32,6 +32,7 @@ public class base {
 	public static WebDriver driver;
 	public static Properties prop; //or, public static Properties prop = new Properties(); this was recommended to resolve an NPE, but I didn't need it
 	public static Logger log =LogManager.getLogger(base.class.getName());
+	public static String DateTime = null;
 
 
 	String projectPath = System.getenv("EME_HOME");
@@ -114,7 +115,7 @@ public class base {
 		
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");//or, DateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
 		Date date = new Date();
-		String DateTime= dateFormat.format(date);
+		DateTime= dateFormat.format(date);
 		System.out.println(DateTime+" INFO: WebDriver Initialized");
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -124,7 +125,7 @@ public class base {
 
 	public void getScreenshot(String result) throws IOException {
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(src,new File(projectPath + "\\JonasFitness\\screenshots\\" + result + "screenshot.png"));
+		FileUtils.copyFile(src,new File(projectPath + "\\JonasFitness\\screenshots\\"+ DateTime + result + "screenshot.png"));
 	}
 
 }
