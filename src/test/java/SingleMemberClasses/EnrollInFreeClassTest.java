@@ -303,8 +303,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 
 			//Note down the Receipt number
 			String receiptNumber2 = TY.getReceiptNumber().getText();
-			String receiptNumber3 = null;
-			
+						
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);

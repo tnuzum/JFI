@@ -263,7 +263,7 @@ public class ChangeApptWithFee_MemberHasPackages_NewCard extends base {
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(appointmentPrice));
 		
 		ap.getPopup1BookButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		
 		System.out.println(ap.getOldAppointmentBanner().getText());
 		System.out.println(ap.getNewAppointmentBanner().getText());
