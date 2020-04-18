@@ -292,7 +292,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Would you like to continue?"));
 		
 		ap.getPopup1BookButton().click();
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		
 		System.out.println(ap.getOldAppointmentBanner().getText());
 		System.out.println(ap.getNewAppointmentBanner().getText());
