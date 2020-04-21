@@ -195,14 +195,13 @@ public  class reusableMethods extends base {
 	{	
 	DashboardPO d = new DashboardPO(driver);
 
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//classescourses/div[1]/div[2]/div[1]/div[1]/a[1]/div[1]/div[3]/i[1]")));
-//		Thread.sleep(2000);
+	
 		boolean enrolled = reusableMethods.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 //		System.out.println(enrolled);
 		
 		if (enrolled == true)
 		{
+			try {
 			while (!d.getMyClassesClass1GearButton().isDisplayed()) 
 			{
 				Thread.sleep(1000);
@@ -231,19 +230,46 @@ public  class reusableMethods extends base {
 		u.getUnenrollConfirmYesButton().click();
 		Thread.sleep(2000);
 			
+	}
+	
+	 catch (java.lang.AssertionError ae) {
+		System.out.println("assertion error");
+		ae.printStackTrace();
+		log.error(ae.getMessage(), ae);
+		UnenrollPO u = new UnenrollPO(driver);
+		u.getUnenrollConfirmYesButton().click();
+		Assert.fail(ae.getMessage());
+	}
+
+	catch (org.openqa.selenium.NoSuchElementException ne) {
+		System.out.println("No element present");
+		ne.printStackTrace();
+		log.error(ne.getMessage(), ne);
+		Assert.fail(ne.getMessage());
+	}
+	
+	catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+		System.out.println("Element Click Intercepted");
+		eci.printStackTrace();
+		log.error(eci.getMessage(), eci);
+		reusableMethods.catchErrorMessage();
+		Assert.fail(eci.getMessage());
+	}
+		finally{
+			reusableMethods.returnToDashboard();
+				}
 		}
 		else
-		{
-			System.out.println("Not enrolled already");
-		}
-		reusableMethods.returnToDashboard();
-		return null;
+			System.out.println("Not enrolled");
+		
+	return null;
 	
 }
 	
 	public static Object unenrollFromCourse(String dsiredMonthYear) throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
+		try {
 		
 		Thread.sleep(2000);
 		d.getMenuMyActivies().click();
@@ -279,7 +305,35 @@ public  class reusableMethods extends base {
 		u.getUnenrollConfirmYesButton().click();
 		Thread.sleep(2000);
 		
+		}
+		
+		 catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			log.error(ae.getMessage(), ae);
+			UnenrollPO u = new UnenrollPO(driver);
+			u.getUnenrollConfirmYesButton().click();
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+		
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+			finally{
+		
 		reusableMethods.returnToDashboard();
+			}
 		
 		return null;
 	}
@@ -697,6 +751,7 @@ public  class reusableMethods extends base {
 		p.getMyApptsScheduleButton().click();
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
+		Thread.sleep(2000);
 
 		Select se = new Select(ap.getclubs());
 		List<WebElement> Clubs = se.getOptions();
@@ -709,10 +764,10 @@ public  class reusableMethods extends base {
 		System.out.println("1 " + count0);
 
 		for (int i = 0; i < count0; i++) {
-			String category = Clubs.get(i).getText();
+			String club = Clubs.get(i).getText();
 
-			if (category.equals(clubName)) {
-				se.selectByVisibleText(category);
+			if (club.equals(clubName)) {
+				se.selectByVisibleText(club);
 				break;
 			}
 		}
@@ -829,7 +884,7 @@ public  class reusableMethods extends base {
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase."))
 				{
 			ap.getPopup1BookButton().click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			Select s4 = new Select(
 					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
 			List<WebElement> UnitRates = s4.getOptions();
@@ -846,7 +901,7 @@ public  class reusableMethods extends base {
 					break;
 				}
 			}
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 			ap.getPaymentButton().click();
 				}
@@ -886,6 +941,7 @@ public static String BookGrpApptWith2Resources(String clubName, String productCa
 	WebDriverWait wait = new WebDriverWait(driver, 30);
 	String startTime = null;
 	p.getMyApptsScheduleButton().click();
+	Thread.sleep(2000);
 
 	AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -900,10 +956,10 @@ public static String BookGrpApptWith2Resources(String clubName, String productCa
 	System.out.println("1 " + count0);
 
 	for (int i = 0; i < count0; i++) {
-		String category = Clubs.get(i).getText();
+		String club = Clubs.get(i).getText();
 
-		if (category.equals(clubName)) {
-			se.selectByVisibleText(category);
+		if (club.equals(clubName)) {
+			se.selectByVisibleText(club);
 			break;
 		}
 	}
@@ -1046,7 +1102,7 @@ public static String BookGrpApptWith2Resources(String clubName, String productCa
 		System.out.println("Went into the loop of Package required");
 		
 		ap.getPopup1BookButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		Select s4 = new Select(
 				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
 		List<WebElement> UnitRates = s4.getOptions();
@@ -1063,7 +1119,7 @@ public static String BookGrpApptWith2Resources(String clubName, String productCa
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		ap.getPaymentButton().click();
 			}
