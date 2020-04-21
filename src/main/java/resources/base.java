@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
@@ -33,6 +34,8 @@ public class base {
 	public static Properties prop; //or, public static Properties prop = new Properties(); this was recommended to resolve an NPE, but I didn't need it
 	public static Logger log =LogManager.getLogger(base.class.getName());
 	public static String DateTime = null;
+	public static String tomorrowsDate = null;
+	public static String ssTime = null;
 
 
 	String projectPath = System.getenv("EME_HOME");
@@ -111,12 +114,20 @@ public class base {
 					}	
 			}
 		}
-		
+		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
+		Calendar today1 = Calendar.getInstance();
+		today1.add(Calendar.DAY_OF_YEAR, 1);
+		 tomorrowsDate = dateFormat1.format(today1.getTime());
 		
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");//or, DateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
 		Date date = new Date();
 		DateTime= dateFormat.format(date);
 		System.out.println(DateTime+" INFO: WebDriver Initialized");
+		
+		DateFormat dateFormat2 = new SimpleDateFormat("MMddyyyyHHmmss");
+		Date date2 = new Date();
+		ssTime= dateFormat2.format(date2);
+		
 		
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
@@ -125,7 +136,7 @@ public class base {
 
 	public void getScreenshot(String result) throws IOException {
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(src,new File(projectPath + "\\JonasFitness\\screenshots\\" + result + "screenshot.png"));
+		FileUtils.copyFile(src,new File(projectPath + "\\JonasFitness\\screenshots\\" + result + ssTime + "screenshot.png"));
 	}
 
 }

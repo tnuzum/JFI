@@ -63,10 +63,10 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 		System.out.println("1 " + count0);
 
 		for (int i = 0; i < count0; i++) {
-			String category = Clubs.get(i).getText();
+			String club = Clubs.get(i).getText();
 
-			if (category.equals(clubName)) {
-				s.selectByVisibleText(category);
+			if (club.equals(clubName)) {
+				s.selectByVisibleText(club);
 				break;
 			}
 		}
