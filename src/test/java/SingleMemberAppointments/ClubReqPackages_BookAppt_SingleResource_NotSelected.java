@@ -59,6 +59,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		reusableMethods.activeMemberLogin("apptmember4", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
+		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 

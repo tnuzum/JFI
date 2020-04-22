@@ -56,6 +56,8 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
+		
+		Thread.sleep(2000);
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -70,10 +72,10 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		System.out.println("1 " + count0);
 
 		for (int i = 0; i < count0; i++) {
-			String category = Clubs.get(i).getText();
+			String club = Clubs.get(i).getText();
 
-			if (category.equals(clubName)) {
-				se.selectByVisibleText(category);
+			if (club.equals(clubName)) {
+				se.selectByVisibleText(club);
 				break;
 			}
 		}

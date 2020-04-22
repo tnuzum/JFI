@@ -51,6 +51,7 @@ private static String appointmentToBook = "PT 60 Mins";
 		reusableMethods.activeMemberLogin("scottauto", "Testing1!");
 				DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
+		Thread.sleep(2000);
 				AppointmentsPO ap = new AppointmentsPO(driver);
 				WebElement bic = ap.getBookableItemCategory();
 				

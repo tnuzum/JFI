@@ -49,6 +49,7 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
+		Thread.sleep(2000);
 		
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
