@@ -1,6 +1,8 @@
 package EME;
 
 import java.io.IOException;
+
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
@@ -19,13 +21,14 @@ public class DashBoard_Menu extends base{
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
+		 reusableMethods.activeMember1Login();      //Login to EME 
 
 	}
 	
 	@Test (priority = 1)
 	public void VerifyMenuDashboardButton() throws IOException, InterruptedException {
 
-		   reusableMethods.activeMember1Login();      //Login to EME 
+		  
 	
 			DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
 			d.getDashboardButton().click();
@@ -98,14 +101,11 @@ public class DashBoard_Menu extends base{
 			
 			
 			@Test (priority = 5)
-			public void VerifyMenuCart() {
+			public void VerifyMenuCartIsNotPresent() {
 				
-				DashboardPO d = new DashboardPO(driver);  // Define the driver for Dash Board page Objects
-			
-			Assert.assertTrue(d.getMenuCart().isDisplayed());
-			String menuCartLabel = d.getMenuCart().getText();
-			Assert.assertEquals(menuCartLabel, "  Cart");
-			
+				boolean menuCartPresent = reusableMethods.isElementPresent(By.xpath("//a[contains(@class, 'at-mainnav-cart')]"));
+				Assert.assertEquals(menuCartPresent, false);
+								
 			}
 				
 			
@@ -123,7 +123,7 @@ public class DashBoard_Menu extends base{
 			
 			
 //			@AfterTest
-			@AfterClass
+		@AfterClass
 		public void teardown() throws InterruptedException
 		{
 		driver.close();
