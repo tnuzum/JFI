@@ -60,6 +60,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		reusableMethods.activeMemberLogin("cancelmember3", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
+		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -74,10 +75,10 @@ public class CancelApptWithFee_SavedCard extends base {
 		System.out.println("1 " + count0);
 
 		for (int i = 0; i < count0; i++) {
-			String category = Clubs.get(i).getText();
+			String club = Clubs.get(i).getText();
 
-			if (category.equals(clubName)) {
-				s.selectByVisibleText(category);
+			if (club.equals(clubName)) {
+				s.selectByVisibleText(club);
 				break;
 			}
 		}

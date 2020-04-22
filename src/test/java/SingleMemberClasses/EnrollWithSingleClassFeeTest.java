@@ -5,6 +5,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
 
+import static org.testng.Assert.assertTrue;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 
@@ -62,7 +64,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 	}
 	 @BeforeMethod
-	    public void handleTestMethodName(Method method)
+	public void GetTestMethodName(Method method)
 	    {
 	         testName = method.getName(); 
 	        
@@ -70,7 +72,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 	@Test(priority = 1, description = "Ui validations")
 	public void UIValidations() throws IOException, InterruptedException {
-		System.out.println(testName);
+		
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
 				prop.getProperty("activeMember6_password"));
 		
@@ -185,8 +187,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 	@Test(priority = 3, description = "Enroll with Payment Method OnAccount", dependsOnMethods = { "UIValidations" })
 	public void EnrollOnAccount() throws InterruptedException, IOException {
 		
-		System.out.println(testName);
-
+		
 		try {
 
 			// Noting down the total amount
@@ -231,6 +232,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 			// Verifies the buttons on Print Receipt Popup
 			reusableMethods.ReceiptPopupValidations();
@@ -254,30 +256,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
 			Thread.sleep(3000);
-
-			wait.until(ExpectedConditions
-					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getMyAccountAccountHistory()));
-			d.getMyAccountAccountHistory().click();
-
-			while (!ahp.getReceiptNumberTable().isDisplayed()) {
-				Thread.sleep(2000);
-				System.out.println("waiting");
-			}
-
-			// Clicks on the Receiptnumber in Account History
-
-			ahp.getSearchField().sendKeys(receiptNumber);
-
-			Thread.sleep(2000);
-			ahp.getReceiptNumber().click();
-			Thread.sleep(1000);
-			// Verifies the amount in the receipt is the same as it was displayed on the
-			// Purchase Packages page
-//		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
-					.getText().contains(totalAmt));
-
+		
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -304,10 +283,11 @@ public class EnrollWithSingleClassFeeTest extends base {
 		}
 		
 		finally {
-			boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+		/*	boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
 			
 			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();}
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+				reusableMethods.returnToDashboard();}*/
 								
 			Thread.sleep(2000);
 			reusableMethods.returnToDashboard();
@@ -421,6 +401,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber2));
 
 			// Verifies the buttons on Print Receipt Popup
 			reusableMethods.ReceiptPopupValidations();
@@ -443,28 +424,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Classes", driver.getTitle());
 			Thread.sleep(2000);
-
-			d.getMenuMyAccount().click();
-			Thread.sleep(2000);
-			d.getMenuAccountHistory().click();
-
-			while (!ahp.getReceiptNumberTable().isDisplayed()) {
-				Thread.sleep(2000);
-				System.out.println("waiting");
-			}
-
-			// Clicks on the Receiptnumber in Account History
-
-			ahp.getSearchField().sendKeys(receiptNumber2);
-			Thread.sleep(2000);
-			ahp.getReceiptNumber().click();
-			Thread.sleep(1000);
-			// Verifies the amount in the receipt is the same as it was displayed on the
-			// Purchase Packages page
-//				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
-					.getText().contains(totalAmt1));
-
+		
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -491,11 +451,11 @@ public class EnrollWithSingleClassFeeTest extends base {
 		}
 
 		finally {
-			boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+			/*boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
 			if (receiptpopuppresent == true) {
 				System.out.println("closing the receipt");
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-			}
+			}*/
 
 			Thread.sleep(2000);
 			reusableMethods.returnToDashboard();
@@ -632,6 +592,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber4));
 
 			// Verifies the buttons on Print Receipt Popup
 			reusableMethods.ReceiptPopupValidations();
@@ -655,28 +616,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Courses / Events", driver.getTitle());
 			Thread.sleep(2000);
-
-			d.getMenuMyAccount().click();
-			Thread.sleep(2000);
-			d.getMenuAccountHistory().click();
-
-			while (!ahp.getReceiptNumberTable().isDisplayed()) {
-				Thread.sleep(2000);
-				System.out.println("waiting");
-			}
-
-			// Clicks on the Receiptnumber in Account History
-
-			ahp.getSearchField().sendKeys(receiptNumber4);
-			Thread.sleep(2000);
-			ahp.getReceiptNumber().click();
-			Thread.sleep(1000);
-			// Verifies the amount in the receipt is the same as it was displayed on the
-			// Purchase Packages page
-//				System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
-					.getText().contains(totalAmt2));
-
+		
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -704,9 +644,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 		}
 		
 		finally {
-			boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+/*			boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
 			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();}
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();}*/
 								
 			Thread.sleep(2000);
 			reusableMethods.returnToDashboard();
@@ -722,8 +662,6 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Thread.sleep(2000);
 			boolean enrolled = reusableMethods
 					.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
-//		System.out.println(enrolled);
-//			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='class-table-container']")));
 			
 				if (enrolled == true) {
 					try {

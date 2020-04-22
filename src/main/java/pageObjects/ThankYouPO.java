@@ -25,6 +25,7 @@ public class ThankYouPO {
 	By viewCoursesEventsLink =By.xpath("//a[@href = '#/CourseList']");
 	By bookAppointmentsLink = By.xpath("//a[@href = '#/Appointments']");
 	By receiptNumber = By.tagName("strong");
+	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/h2");
 // CONSTRUCTOR
 		
 	public ThankYouPO(WebDriver driver) {
@@ -96,6 +97,11 @@ public class ThankYouPO {
 	public WebElement getReceiptNumber()
 	{
 		return driver.findElement(receiptNumber);
+	}
+	
+	public WebElement getReceiptHeader()
+	{
+		return driver.findElement(receiptHeader);
 	}
 	
 }

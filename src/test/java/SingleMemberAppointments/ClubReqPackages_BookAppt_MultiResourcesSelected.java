@@ -55,6 +55,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 		reusableMethods.activeMemberLogin("apptmember3", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
+		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
