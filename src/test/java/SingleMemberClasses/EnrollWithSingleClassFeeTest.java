@@ -42,7 +42,6 @@ public class EnrollWithSingleClassFeeTest extends base {
 	private static ClassSignUpPO c;
 	private static PaymentMethodsPO PM;
 	private static PurchaseConfirmationPO PP;
-	private static AcctHistoryPO ahp;
 	private static ThankYouPO TY;
 	private static String testName = null;
 
@@ -59,9 +58,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PM = new PaymentMethodsPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
-		ahp = new AcctHistoryPO(driver);
 		
-
 	}
 	 @BeforeMethod
 	public void GetTestMethodName(Method method)

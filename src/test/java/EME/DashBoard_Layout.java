@@ -2,6 +2,7 @@ package EME;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
@@ -42,10 +43,10 @@ public class DashBoard_Layout extends base{
 			String myPackages = d.getMyPackagesButton().getText();
 			Assert.assertEquals(myPackages, "My Packages");
 			
-			//Verify Cart button
-			Assert.assertTrue(d.getCartButton().isDisplayed());
-			String cartButtonLabel = d.getCartButton().getText();
-			Assert.assertEquals(cartButtonLabel, "Cart");
+			//Verify Cart button is not present
+			boolean cartPresent = reusableMethods.isElementPresent(By.xpath("//a[contains(text(),'Cart')]"));
+			Assert.assertEquals(cartPresent, false);
+			
 			
 			//Verify Logout button
 			Assert.assertTrue(d.getLogoutButton().isDisplayed());

@@ -54,7 +54,7 @@ public class PageLaunchTest extends base{
 		log.info("Shop Packages Page Header Verified");
 		reusableMethods.returnToDashboard();
 	}
-	@Test (priority = 25, enabled = false)
+	@Test (priority = 25,description = "This test is no longer valid as Cart is removed from EME",  enabled = false)
 	public void CartButtonTest() throws InterruptedException
 	{
 		d.getCartButton().click();
