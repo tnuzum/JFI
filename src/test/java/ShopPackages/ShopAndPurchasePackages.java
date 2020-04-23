@@ -4,9 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-
-import org.junit.Assert;
+import org.testng.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,8 +15,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
-import pageObjects.BreadcrumbTrailPO;
-import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
@@ -51,7 +47,7 @@ public class ShopAndPurchasePackages extends base {
 		ahp = new AcctHistoryPO(driver);
 
 	}
-	 @BeforeMethod
+	@BeforeMethod
 	public void GetTestMethodName(Method method)
 		    {
 		         testName = method.getName(); 
