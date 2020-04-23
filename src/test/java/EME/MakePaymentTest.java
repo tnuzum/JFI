@@ -47,7 +47,7 @@ public class MakePaymentTest extends base {
 		        
 		    }
 
-	@Test(priority = 1, description = "Adding $1.00 to member's account")
+	@Test(priority = 1, description = "Adding $0.05 to member's account")
 	public void MakePayment() throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin("hoh", "Testing1!");
 		DashboardPO d = new DashboardPO(driver);
@@ -70,7 +70,7 @@ public class MakePaymentTest extends base {
 			p.getCustomAmountInput().sendKeys(Keys.BACK_SPACE);
 			variable++;
 					}
-		p.getCustomAmountInput().sendKeys("1.00");
+		p.getCustomAmountInput().sendKeys("0.05");
 		Thread.sleep(300);
 		
 		p.getPayWithThisMethodButton1().click();
@@ -110,13 +110,22 @@ public class MakePaymentTest extends base {
 		}
 		
 		finally {
+			boolean popup = reusableMethods.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+			
+			if (popup == true)
+			{
+				p.getPopupConfirmationButton().click();
+			System.out.println("popup was present");
+			}
+					
 		d.getBreadcrumbDashboard().click();
 		}
 		
 	}
 
 	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {"MakePayment"} )
-	public void ConfirmPaymentApplied() throws InterruptedException {
+	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
+		try {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(
@@ -129,6 +138,35 @@ public class MakePaymentTest extends base {
 		Date date = new Date();
 		String DateTime = dateFormat.format(date);
 		Assert.assertEquals("Last Payment: " + DateTime, d.getMyAccountLastPaymentDate().getText());
+		
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			//Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			//Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			//Assert.fail(eci.getMessage());
+		}
+		
+		finally {
+			reusableMethods.memberLogout();
+		}
 	}
 
 //	@AfterTest
