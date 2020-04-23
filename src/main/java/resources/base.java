@@ -124,7 +124,7 @@ public class base {
 		DateTime= dateFormat.format(date);
 		System.out.println(DateTime+" INFO: WebDriver Initialized");
 		
-		DateFormat dateFormat2 = new SimpleDateFormat("MMddyyyyHHmmss");
+		DateFormat dateFormat2 = new SimpleDateFormat("MMddyyyy-HHmmss");
 		Date date2 = new Date();
 		ssTime= dateFormat2.format(date2);
 		
