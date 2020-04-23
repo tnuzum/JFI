@@ -1,11 +1,10 @@
 package EME;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -16,18 +15,20 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import junit.framework.Assert;
+import org.testng.Assert;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
+
 public class MakePaymentTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
+	private static String testName = null;
 	
 
 //	@BeforeTest
@@ -38,13 +39,22 @@ public class MakePaymentTest extends base {
 		driver.get(prop.getProperty("EMELoginPage"));
 //		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
+	
+	@BeforeMethod
+	public void GetTestMethodName(Method method)
+		    {
+		         testName = method.getName(); 
+		        
+		    }
 
 	@Test(priority = 1, description = "Adding $1.00 to member's account")
-	public void MakePayment() throws InterruptedException {
+	public void MakePayment() throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin("hoh", "Testing1!");
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		d.getMyAccountPayNow().click();
+		
+		try {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(
 			ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
@@ -73,7 +83,35 @@ public class MakePaymentTest extends base {
 		p.getPopupConfirmationButton().click();
 //		reusableMethods.returnToDashboard();
 		Thread.sleep(3000);
+		
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			//Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			//Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			//Assert.fail(eci.getMessage());
+		}
+		
+		finally {
 		d.getBreadcrumbDashboard().click();
+		}
 		
 	}
 
