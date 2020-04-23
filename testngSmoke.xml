@@ -13,7 +13,7 @@
 			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
 			<class name="EME.MakePaymentTest" />
-			<class name="EME.ShopAndPurchasePackages" />
+			<class name="ShopPackages.ShopAndPurchasePackages" />
 		</classes>
 	</test>
 </suite>
