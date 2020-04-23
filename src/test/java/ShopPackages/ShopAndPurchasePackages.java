@@ -790,7 +790,7 @@ public class ShopAndPurchasePackages extends base {
 	
 		d.getMenuShopPackages().click();
 		
-//		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 				
 		while (!sp.getPackagesList().isDisplayed())
@@ -798,7 +798,12 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(1000);
 			System.out.println("Waiting for the packages to be displayed");
 		}
-		sp.getKeyWord().sendKeys("Service");
+		
+		wait1.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+		wait1.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
+		
+		sp.getKeyWord().sendKeys("ServiceNC");
+		Thread.sleep(1000);
 		
 				
 		for (int i = 0; i < sp.getPackageNames().size(); i++)
@@ -868,7 +873,7 @@ public class ShopAndPurchasePackages extends base {
 		
 		d.getMenuShopPackages().click();
 		
-//		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 				
 		while (!sp.getPackagesList().isDisplayed())
@@ -876,7 +881,12 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(1000);
 			System.out.println("Waiting for the packages to be displayed");
 		}
-		sp.getKeyWord().sendKeys("Service");
+		
+		wait1.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+		wait1.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
+		
+		sp.getKeyWord().sendKeys("ServiceNC");
+		Thread.sleep(1000);
 		
 				
 		for (int i = 0; i < sp.getPackageNames().size(); i++)
@@ -948,7 +958,7 @@ public class ShopAndPurchasePackages extends base {
 	
 		d.getMenuShopPackages().click();
 		
-//		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 				
 		while (!sp.getPackagesList().isDisplayed())
@@ -956,7 +966,12 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(1000);
 			System.out.println("Waiting for the packages to be displayed");
 		}
-		sp.getKeyWord().sendKeys("Service");
+		
+		wait1.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+		wait1.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
+		
+		sp.getKeyWord().sendKeys("ServiceNC");
+		Thread.sleep(1000);
 		
 				
 		for (int i = 0; i < sp.getPackageNames().size(); i++)
