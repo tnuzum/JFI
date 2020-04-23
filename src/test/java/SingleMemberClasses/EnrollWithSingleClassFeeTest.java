@@ -60,7 +60,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		TY = new ThankYouPO(driver);
 		
 	}
-	 @BeforeMethod
+	@BeforeMethod
 	public void GetTestMethodName(Method method)
 	    {
 	         testName = method.getName(); 
@@ -69,21 +69,23 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 	@Test(priority = 1, description = "Ui validations")
 	public void UIValidations() throws IOException, InterruptedException {
+		try {
 		
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
 				prop.getProperty("activeMember6_password"));
 		
-		try {
+		
 			reusableMethods.unenrollFromClass();
 
 			d.getMyClassesScheduleButton().click();
-			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-
+			
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
+			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+			
 			reusableMethods.SelectTomorrowDate();
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -102,6 +104,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			}
 
 			Thread.sleep(2000);
+			
 			if (c.getPopupSignUpButton().isEnabled()) {
 				c.getPopupSignUpButton().click();
 
@@ -120,15 +123,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 			Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 			Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
-
-			int radioButtonCount = driver.findElements(By.tagName("label")).size();
-			for (int i = 0; i < radioButtonCount; i++) {
-				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-			}
-
+			
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -158,6 +153,13 @@ public class EnrollWithSingleClassFeeTest extends base {
 			if (c.getContinueButton().isEnabled())
 
 			{
+				int radioButtonCount = driver.findElements(By.tagName("label")).size();
+				for (int i = 0; i < radioButtonCount; i++) {
+					if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
+						driver.findElements(By.tagName("label")).get(i).click();
+						break;
+					}
+				}
 				c.getContinueButton().click();
 
 				Thread.sleep(2000);
@@ -284,7 +286,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			
 			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-				reusableMethods.returnToDashboard();}*/
+				}*/
 								
 			Thread.sleep(2000);
 			reusableMethods.returnToDashboard();
@@ -296,9 +298,10 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 	@Test(priority = 4, description = "Enroll With Saved Card")
 	public void EnrollWithSavedCard() throws InterruptedException, IOException {
+		try {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"),
 				prop.getProperty("activeMember7_password"));
-		try {
+		
 			reusableMethods.unenrollFromClass();
 
 			d.getMyClassesScheduleButton().click();
@@ -465,10 +468,11 @@ public class EnrollWithSingleClassFeeTest extends base {
 	@Test(priority = 5, description = "Enroll in class with New Card")
 
 	public void EnrollWithNewCard() throws InterruptedException, IOException {
+		try {
 
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"),
 				prop.getProperty("activeMember8_password"));
-		try {
+		
 			reusableMethods.unenrollFromClass();
 
 			d.getMyClassesScheduleButton().click();
@@ -493,11 +497,12 @@ public class EnrollWithSingleClassFeeTest extends base {
 			}
 
 			Thread.sleep(1000);
-			if (c.getPopupSignUpButton().isDisplayed()) {
+
+			if (c.getPopupSignUpButton().isEnabled()) {
 				c.getPopupSignUpButton().click();
 
 			} else {
-				reusableMethods.memberLogout();
+				c.getPopupCancelButton().click();
 				Assert.fail("SignUp button not available");
 
 			}
@@ -692,8 +697,6 @@ public class EnrollWithSingleClassFeeTest extends base {
 						System.out.println("assertion error");
 						ae.printStackTrace();
 						log.error(ae.getMessage(), ae);
-						UnenrollPO u = new UnenrollPO(driver);
-						u.getUnenrollConfirmYesButton().click();
 						Assert.fail(ae.getMessage());
 					}
 

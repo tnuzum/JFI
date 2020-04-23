@@ -236,8 +236,6 @@ public  class reusableMethods extends base {
 		System.out.println("assertion error");
 		ae.printStackTrace();
 		log.error(ae.getMessage(), ae);
-		UnenrollPO u = new UnenrollPO(driver);
-		u.getUnenrollConfirmYesButton().click();
 		Assert.fail(ae.getMessage());
 	}
 
@@ -311,8 +309,6 @@ public  class reusableMethods extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			log.error(ae.getMessage(), ae);
-			UnenrollPO u = new UnenrollPO(driver);
-			u.getUnenrollConfirmYesButton().click();
 			Assert.fail(ae.getMessage());
 		}
 

@@ -21,6 +21,7 @@ public class ShopPackagesPO {
 	By breadcrumbDashboard = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][1]");
 	By breadcrumbShop = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][2]");
 	By packagesList = By.xpath("//div[@class = 'row m-t-md']");
+	By warningMsg = By.xpath("//div[contains(@class, 'alert-warning')]");
 // CONSTRUCTOR
 		
 	public ShopPackagesPO(WebDriver driver) {
@@ -63,5 +64,10 @@ public class ShopPackagesPO {
 	public WebElement getPackagesList()
 	{
 		return driver.findElement(packagesList);
+	}
+	
+	public WebElement getWarningMsg()
+	{
+		return driver.findElement(warningMsg);
 	}
 }

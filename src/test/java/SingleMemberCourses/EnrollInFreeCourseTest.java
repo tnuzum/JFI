@@ -2,8 +2,11 @@ package SingleMemberCourses;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.Assert;
 import java.io.IOException;
+import java.lang.reflect.Method;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -29,6 +32,11 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 
 private static String CourseStartMonth = "Dec";
 private static String dsiredMonthYear = "December 2020";
+private static DashboardPO d;
+private static BreadcrumbTrailPO BT;
+private static ClassSignUpPO c;
+private static ThankYouPO TY;
+private static String testName = null;
 
 
 //	@BeforeTest
@@ -38,27 +46,36 @@ private static String dsiredMonthYear = "December 2020";
 			 driver = initializeDriver();
 			 log.info("Driver Initialized");
 			 driver.get(prop.getProperty("EMELoginPage"));
+			 
+			 d = new DashboardPO(driver);
+				BT = new BreadcrumbTrailPO(driver);
+				c = new ClassSignUpPO(driver);
+				TY = new ThankYouPO(driver);
 		}
+	
+	@BeforeMethod
+	public void GetTestMethodName(Method method)
+	    {
+	         testName = method.getName(); 
+	        
+	    }
 		
 	@Test (priority = 1, description = "Enroll in free course")
 		
 	public void EnrollInZeroDollarCourse() throws IOException, InterruptedException
 		{	
+		try {
 		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
 		//reusableMethods.unenrollFromCourse(dsiredMonthYear);
 		//Thread.sleep(1000);
 		//reusableMethods.returnToDashboard();
 		reusableWaits.waitForDashboardLoaded();
-			DashboardPO d = new DashboardPO(driver);
-			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-		
+			
 		 d.getMyCoursesEventsScheduleButton().click();
 		 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-						
-			ClassSignUpPO c = new ClassSignUpPO(driver);
-			
+		
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 	
@@ -99,7 +116,15 @@ private static String dsiredMonthYear = "December 2020";
 
 			
 			Thread.sleep(2000);
-		c.getPopupSignupButtonCourse().click();
+		
+		if (c.getPopupSignupButtonCourse().isEnabled()) {
+			c.getPopupSignupButtonCourse().click();
+
+		} else {
+			c.getPopupCancelButtonCourse().click();
+			Assert.fail("SignUp button not available");
+
+		}
 			Thread.sleep(2000);
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -119,19 +144,18 @@ private static String dsiredMonthYear = "December 2020";
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
 		Thread.sleep(1000);
-		ThankYouPO TY = new ThankYouPO(driver);
-
+		
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 				reusableMethods.ThankYouPageValidations();
 
 				//Note down the Receipt number
 				String receiptNumber = TY.getReceiptNumber().getText();
-				String receiptNumber1 = null;
-				
+			
 				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);
 				Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+				Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 				
 				//Verifies the buttons on Print Receipt Popup
 				reusableMethods.ReceiptPopupValidations();
@@ -156,38 +180,49 @@ private static String dsiredMonthYear = "December 2020";
 		//Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(1000);
-		DashboardPO dp = new DashboardPO(driver);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-		dp.getMyAccountAccountHistory().click();
 		
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		
-		while(!ahp.getReceiptNumberTable().isDisplayed())
-		{
-			Thread.sleep(2000);	
-			System.out.println("waiting");
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
 		}
 		
-		//Clicks on the Receiptnumber in Account History 
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
 		
-		ahp.getSearchField().sendKeys(receiptNumber);
-		
-		Thread.sleep(2000);
-		ahp.getReceiptNumber().click();
-		Thread.sleep(1000);
-		//Verifies the Invoice amount is $0.00
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains("$0.00"));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(1000);
-		reusableMethods.returnToDashboard();
-//		reusableMethods.memberLogout();
+		finally {
+		/*	boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+			
+			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+				reusableMethods.returnToDashboard();}*/
+			
+			reusableMethods.returnToDashboard();
+			
+		}
 		}
 
 	@Test (priority = 2, description = "Unenroll from the course")
 		
 	public void unenrollFromCourse() throws IOException, InterruptedException {
-		DashboardPO d = new DashboardPO(driver);
+		try {
+		
 		CalendarPO cp = new CalendarPO(driver);
 		
 		Thread.sleep(2000);
@@ -222,25 +257,49 @@ private static String dsiredMonthYear = "December 2020";
 		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 		u.getUnenrollConfirmYesButton().click();
 		Thread.sleep(2000);
+		}
 		
-		reusableMethods.returnToDashboard();
-		reusableMethods.memberLogout();
-		
+		 catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
 
-	}
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+		
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+			finally{
+				reusableMethods.returnToDashboard();
+				reusableMethods.memberLogout();
+					}
+		
+		}
+		
+	
 	
 	@Test (priority = 3, description = "Enroll In course Free Due to Existing Punches") //Bug 155892 has been created
 	
 	public void EnrollInCourseFreeWithExistingPunches() throws IOException, InterruptedException
 	{	
+		try {
 	reusableMethods.activeMember6Login();
 //	reusableMethods.unenrollFromCourse(dsiredMonthYear);
 //	Thread.sleep(1000);
 //	reusableMethods.returnToDashboard();
 	reusableWaits.waitForDashboardLoaded();
-		DashboardPO d = new DashboardPO(driver);
-		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-		
+			
 		//Noting down the Package Units before enrolling in Course
 				int IntPackageCountBefore = 0;
 				int IntPackageCountAfter = 0;
@@ -251,8 +310,7 @@ private static String dsiredMonthYear = "December 2020";
 	 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-						
-		ClassSignUpPO c = new ClassSignUpPO(driver);
+			
 		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -289,7 +347,15 @@ private static String dsiredMonthYear = "December 2020";
 
 		
 		Thread.sleep(2000);
-	c.getPopupSignupButtonCourse().click();
+		
+		if (c.getPopupSignupButtonCourse().isEnabled()) {
+			c.getPopupSignupButtonCourse().click();
+
+		} else {
+			c.getPopupCancelButtonCourse().click();
+			Assert.fail("SignUp button not available");
+
+		}
 		Thread.sleep(2000);
 		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -317,19 +383,19 @@ private static String dsiredMonthYear = "December 2020";
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	Thread.sleep(2000);
-	ThankYouPO TY = new ThankYouPO(driver);
 
 	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 			reusableMethods.ThankYouPageValidations();
 
 			//Note down the Receipt number
 			String receiptNumber2 = TY.getReceiptNumber().getText();
-			String receiptNumber3 = null;
+			
 			
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber2));
 			
 			//Verifies the buttons on Print Receipt Popup
 			reusableMethods.ReceiptPopupValidations();
@@ -354,30 +420,6 @@ private static String dsiredMonthYear = "December 2020";
 	//Verifies the link navigates to the right page
 	Assert.assertEquals("Appointments", driver.getTitle());
 	Thread.sleep(1000);
-	DashboardPO dp = new DashboardPO(driver);
-	dp.getMenuMyAccount().click();
-	Thread.sleep(2000);
-	dp.getMenuAccountHistory().click();
-
-	AcctHistoryPO ahp = new AcctHistoryPO(driver);
-	
-	while(!ahp.getReceiptNumberTable().isDisplayed())
-	{
-		Thread.sleep(2000);	
-		System.out.println("waiting");
-	}
-	//Clicks on the Receiptnumber in Account History 
-	
-	ahp.getSearchField().sendKeys(receiptNumber2);
-	Thread.sleep(2000);
-	ahp.getReceiptNumber().click();
-    Thread.sleep(1000);
-	//Verifies the Invoice amount is $0.00
-	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-			.contains("$0.00"));
-	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-	Thread.sleep(1000);
-	reusableMethods.returnToDashboard();
 	
 	//Note the package units after enrolling
 			IntPackageCountAfter = reusableMethods.getPackageUnits("ServiceOA");
@@ -386,30 +428,63 @@ private static String dsiredMonthYear = "December 2020";
 			//Verifies the package units is now decremented by one unit
 			IntPackageCountBefore--;
 			Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter); 
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+		
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+		
+		finally {
+		/*	boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
 			
-	reusableMethods.unenrollFromCourse(dsiredMonthYear);
-	reusableMethods.memberLogout();
+			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+				reusableMethods.returnToDashboard();}*/
+			
+			reusableMethods.returnToDashboard();		
+			reusableMethods.unenrollFromCourse(dsiredMonthYear);
+			reusableMethods.memberLogout();
+		}	
+	
 	}
 	
 	@Test (priority = 4, description = "Enroll In Course Free Due to Service D") 
 	
 	public void EnrollInCourseFreeWithServiceD() throws IOException, InterruptedException
 	{	
+		try {
+	
+	
 	reusableMethods.activeMember3Login();
 //	reusableMethods.unenrollFromCourse(dsiredMonthYear);
 //	Thread.sleep(1000);
 //	reusableMethods.returnToDashboard();
 	reusableWaits.waitForDashboardLoaded();
-		DashboardPO d = new DashboardPO(driver);
-		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-	
+		
 	 d.getMyCoursesEventsScheduleButton().click();
 	 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-				
-		ClassSignUpPO c = new ClassSignUpPO(driver);
-		
+			
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		
@@ -446,7 +521,15 @@ private static String dsiredMonthYear = "December 2020";
 
 		
 		Thread.sleep(2000);
-	c.getPopupSignupButtonCourse().click();
+
+		if (c.getPopupSignupButtonCourse().isEnabled()) {
+			c.getPopupSignupButtonCourse().click();
+
+		} else {
+			c.getPopupCancelButtonCourse().click();
+			Assert.fail("SignUp button not available");
+
+		}
 		Thread.sleep(2000);
 		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -465,19 +548,18 @@ private static String dsiredMonthYear = "December 2020";
 	Assert.assertEquals("Success", c.getPopupMessage().getText());
 	c.getPopupClose().click();
 	Thread.sleep(1000);
-	ThankYouPO TY = new ThankYouPO(driver);
-
+	
 	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 			reusableMethods.ThankYouPageValidations();
 
 			//Note down the Receipt number
 			String receiptNumber4 = TY.getReceiptNumber().getText();
-			String receiptNumber5 = null;
-			
+						
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber4));
 			
 			//Verifies the buttons on Print Receipt Popup
 			reusableMethods.ReceiptPopupValidations();
@@ -502,34 +584,43 @@ private static String dsiredMonthYear = "December 2020";
 	//Verifies the link navigates to the right page
 	Assert.assertEquals("Appointments", driver.getTitle());
 	Thread.sleep(1000);
-	DashboardPO dp = new DashboardPO(driver);
-	dp.getMenuMyAccount().click();
-	Thread.sleep(2000);
-	dp.getMenuAccountHistory().click();
-	
-	AcctHistoryPO ahp = new AcctHistoryPO(driver);
-	
-	while(!ahp.getReceiptNumberTable().isDisplayed())
-	{
-		Thread.sleep(2000);	
-		System.out.println("waiting");
-	}
-	
-	//Clicks on the Receiptnumber in Account History 
-	
-	ahp.getSearchField().sendKeys(receiptNumber4);
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+			
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
 		
-	Thread.sleep(2000);
-	ahp.getReceiptNumber().click();
-    Thread.sleep(1000);
-	//Verifies the Invoice amount is $0.00
-	Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-			.contains("$0.00"));
-	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-	Thread.sleep(1000);
-	reusableMethods.returnToDashboard();
-	reusableMethods.unenrollFromCourse(dsiredMonthYear);
-	reusableMethods.memberLogout();
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+		
+		finally {
+/*			boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();}*/
+			
+			reusableMethods.returnToDashboard();
+			reusableMethods.unenrollFromCourse(dsiredMonthYear);
+			reusableMethods.memberLogout();
+		}
+	
+	
 	}
 
 //	@AfterTest

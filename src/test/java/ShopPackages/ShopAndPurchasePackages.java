@@ -1,8 +1,11 @@
 package ShopPackages;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -10,9 +13,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
+import pageObjects.BreadcrumbTrailPO;
+import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
@@ -24,31 +30,53 @@ import resources.reusableWaits;
 
 public class ShopAndPurchasePackages extends base {
 	
+	private static DashboardPO d;
+	private static ShopPackagesPO sp;
+	private static PaymentMethodsPO PM;
+	private static PurchaseConfirmationPO PP;
+	private static ThankYouPO TY;
+	private static AcctHistoryPO ahp;
+	private static String testName = null;
+	
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
+		d = new DashboardPO(driver);
+		sp = new ShopPackagesPO(driver);
+		PM = new PaymentMethodsPO(driver);
+		PP = new PurchaseConfirmationPO(driver);
+		TY = new ThankYouPO(driver);
+		ahp = new AcctHistoryPO(driver);
 
 	}
+	 @BeforeMethod
+	public void GetTestMethodName(Method method)
+		    {
+		         testName = method.getName(); 
+		        
+		    }
 
 	@Test(priority = 1, description = "Confirming Add To Cart button text changed to Purchase and Page Header name Validation")
 	public void PurchaseBtnNameCheck() throws IOException, InterruptedException {
+		try {
 
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		Thread.sleep(2000);
-		DashboardPO d = new DashboardPO(driver);
-		d.getMenuShopPackages().click();
-		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		
+		d.getMenuShopPackages().click();
+				
 		while (!sp.getPackagesList().isDisplayed())
 		{
 			Thread.sleep(1000);
 			System.out.println("Waiting for the packages to be displayed");
 		}
 		
-//		WebDriverWait wait = new WebDriverWait(driver, 30);
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+		wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
+		
 //		   System.out.println(sp.getPurchaseButtons().size());
 		for (int i = 0; i < sp.getPurchaseButtons().size(); i++) {
 			Assert.assertEquals("Purchase", sp.getPurchaseButtons().get(i).getText());
@@ -57,12 +85,36 @@ public class ShopAndPurchasePackages extends base {
 		Assert.assertEquals("Dashboard", sp.getBreadcrumbDashboard().getText());
 		Assert.assertEquals("Shop", sp.getBreadcrumbShop().getText());
 
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 2, description = "Confirming Filter works")
 	public void KeywordFilterCheck() throws IOException, InterruptedException {
 
-		ShopPackagesPO sp = new ShopPackagesPO(driver);
 		sp.getKeyWord().sendKeys("ServiceOA");
 		/*
 		 * System.out.println(sp.getPackageNames().size());
@@ -77,8 +129,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 3, description = "Confirming correct package is selected")
 	public void SelectPackage() throws InterruptedException {
 
-		ShopPackagesPO sp = new ShopPackagesPO(driver);
-
+		
 		for (int i = 0; i < sp.getPackageNames().size(); i++)
 
 		{
@@ -90,7 +141,7 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 		}
-		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 		Thread.sleep(3000);
@@ -99,15 +150,16 @@ public class ShopAndPurchasePackages extends base {
 
 	@Test(priority = 4, description = "Page Layout Validation")
 
-	public void PageLayoutValidation() {
+	public void PageLayoutValidation() throws IOException, InterruptedException {
 
-		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
-		Assert.assertEquals("Dashboard", pp.getBreadcrumbDashboard().getText());
-		Assert.assertEquals("Shop", pp.getBreadcrumbShop().getText());
-		Assert.assertEquals("Confirm", pp.getBreadcrumbConfirm().getText());
+		
+		try {
+		Assert.assertEquals("Dashboard", PP.getBreadcrumbDashboard().getText());
+		Assert.assertEquals("Shop", PP.getBreadcrumbShop().getText());
+		Assert.assertEquals("Confirm", PP.getBreadcrumbConfirm().getText());
 		Boolean ReviewLabelPresent = reusableMethods.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
 		Assert.assertTrue(ReviewLabelPresent);
-		Assert.assertEquals("Review", pp.getReviewLabel().getText());
+		Assert.assertEquals("Review", PP.getReviewLabel().getText());
 		Boolean FeesLabelPresent = reusableMethods.isElementPresent(By.xpath("//small[contains(text(),'Fee(s)')]"));
 		Assert.assertTrue(FeesLabelPresent);
 		Boolean SubTotalLabelPresent = reusableMethods
@@ -117,13 +169,39 @@ public class ShopAndPurchasePackages extends base {
 		Assert.assertTrue(TaxLabelPresent);
 		Boolean TotalLabelPresent = reusableMethods.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
 		Assert.assertTrue(TotalLabelPresent);
+		
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
 
 	}
 
 	@Test(priority = 5, description = "Payment Method OnAccount is selected by default")
 
 	public void OnAccountIsSelectedByDefault() {
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < count; i++) {
 			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
@@ -133,11 +211,11 @@ public class ShopAndPurchasePackages extends base {
 	}
 
 	@Test(priority = 6, description = "Payment Method is OnAccount")
-	public void PurchaseOnAccount() throws InterruptedException {
+	public void PurchaseOnAccount() throws InterruptedException, IOException {
 
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		
+		try {
 
 		// Noting down the total amount
 //		System.out.println(PP.getTotalAmount().getText());
@@ -175,8 +253,7 @@ public class ShopAndPurchasePackages extends base {
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 		PP.getPopupOKButton().click();
 		Thread.sleep(1000);
-		ThankYouPO TY = new ThankYouPO(driver);
-		
+				
 		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 		reusableMethods.ThankYouPageValidations();
 
@@ -187,6 +264,7 @@ public class ShopAndPurchasePackages extends base {
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+		Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 		
 		//Verifies the buttons on Print Receipt Popup
 		reusableMethods.ReceiptPopupValidations();
@@ -220,17 +298,17 @@ public class ShopAndPurchasePackages extends base {
 		IntUnitCountBefore++;
 		Assert.assertEquals(IntUnitCountBefore, IntUnitCountAfter); // verifies the unit count of the Package
 
-		DashboardPO dp = new DashboardPO(driver);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-		dp.getMyAccountAccountHistory().click();
-		
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-		
+		d.getMyAccountAccountHistory().click();
+		Thread.sleep(3000);
+			
 		while(!ahp.getReceiptNumberTable().isDisplayed())
 		{
 			Thread.sleep(2000);	
 			System.out.println("waiting");
 		}
+		
+		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 		
 		//Clicks on the Receiptnumber in Account History 
 		
@@ -252,23 +330,54 @@ public class ShopAndPurchasePackages extends base {
 				.contains(FormatTotalAmt));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(2000);
+		
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+		
+		finally {
 		reusableMethods.memberLogout();
+		}
 	}
 
 	@Test(priority = 7, description = "Payment Method is Stored Card")
-	public void PurchaseStoredCard() throws InterruptedException {
+	public void PurchaseStoredCard() throws InterruptedException, IOException {
+		try {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"), prop.getProperty("activeMember7_password"));
 		Thread.sleep(2000);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		DashboardPO d = new DashboardPO(driver);
+				
+		
 		d.getMenuShopPackages().click();
-		ShopPackagesPO sp= new ShopPackagesPO(driver);
+		
 		while (!sp.getPackagesList().isDisplayed())
 		{
 			Thread.sleep(1000);
 			System.out.println("Waiting for the packages to be displayed");
 		}
-		
+		wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+		wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
 
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 		
@@ -287,12 +396,11 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		
-		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		
 		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 		Thread.sleep(3000);
 		Assert.assertEquals("ServiceCC", PP.getPackageName().getText());
 		
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		while(!PM.getOnAccountAndSavedCards().isDisplayed())
 			
 		{
@@ -343,8 +451,7 @@ public class ShopAndPurchasePackages extends base {
 				Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 				PP.getPopupOKButton().click();
 				Thread.sleep(1000);
-				ThankYouPO TY = new ThankYouPO(driver);
-				
+								
 				//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 				reusableMethods.ThankYouPageValidations();
 
@@ -355,6 +462,7 @@ public class ShopAndPurchasePackages extends base {
 				TY.getPrintReceiptButton().click();
 				Thread.sleep(2000);
 				Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+				Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber2));
 				
 				//Verifies the buttons on Print Receipt Popup
 				reusableMethods.ReceiptPopupValidations();
@@ -388,19 +496,19 @@ public class ShopAndPurchasePackages extends base {
 				IntUnitCountBefore1++;
 				Assert.assertEquals(IntUnitCountBefore1, IntUnitCountAfter1); // verifies the unit count of the Package
 
-				DashboardPO dp = new DashboardPO(driver);
-				dp.getMenuMyAccount().click();
-				Thread.sleep(1000);
-				dp.getMenuAccountHistory().click();
 				
-				AcctHistoryPO ahp = new AcctHistoryPO(driver);
+				d.getMenuMyAccount().click();
+				Thread.sleep(1000);
+				d.getMenuAccountHistory().click();
+				Thread.sleep(3000);
+								
 				while(!ahp.getReceiptNumberTable().isDisplayed())
 				{
 					Thread.sleep(2000);	
 					System.out.println("waiting");
 				}
-				
-				//Clicks on the Receiptnumber in Account History 
+				wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
+				//Clicks on the receiptnumber in Account History 
 				
 				ahp.getSearchField().sendKeys(receiptNumber2);
 				
@@ -420,28 +528,59 @@ public class ShopAndPurchasePackages extends base {
 						.contains(FormatTotalAmt1));
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 				Thread.sleep(2000);
+				
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+		finally {
 				reusableMethods.memberLogout();
+		}
 
 	}
 
 	@Test(priority = 8, description = "Payment Method is New Card")
-	public void PurchaseNewCard() throws InterruptedException {
+	public void PurchaseNewCard() throws InterruptedException, IOException {
+		try {
 				
 	reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"), prop.getProperty("activeMember8_password"));
 	Thread.sleep(2000);
-	DashboardPO d = new DashboardPO(driver);
+		
+	
 	d.getMenuShopPackages().click();
 	
 	WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //	wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 	
-	ShopPackagesPO sp = new ShopPackagesPO(driver);
-	
+		
 	while (!sp.getPackagesList().isDisplayed())
 	{
 		Thread.sleep(1000);
 		System.out.println("Waiting for the packages to be displayed");
 	}
+	
+	wait1.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+	wait1.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
 	sp.getKeyWord().sendKeys("ServiceNC");
 	
 			
@@ -456,13 +595,12 @@ public class ShopAndPurchasePackages extends base {
 		}
 
 	}
-	PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+	
 	wait1.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 	Thread.sleep(3000);
 	Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 	
-	PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-	
+		
 	while(!PM.getNewCardButton().isDisplayed())
 		
 	{
@@ -534,8 +672,7 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
 			Thread.sleep(1000);
-			ThankYouPO TY = new ThankYouPO(driver);
-
+			
 			//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
 			reusableMethods.ThankYouPageValidations();
 			
@@ -546,6 +683,7 @@ public class ShopAndPurchasePackages extends base {
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber4));
 			
 			//Verifies the buttons on Print Receipt Popup
 			reusableMethods.ReceiptPopupValidations();
@@ -578,18 +716,20 @@ public class ShopAndPurchasePackages extends base {
 			IntUnitCountBefore2++;
 			Assert.assertEquals(IntUnitCountBefore2, IntUnitCountAfter2); // verifies the unit count of the Package
 
-			DashboardPO dp = new DashboardPO(driver);
-			dp.getMenuMyAccount().click();
+			
+			d.getMenuMyAccount().click();
 			Thread.sleep(1000);
-			dp.getMenuAccountHistory().click();
+			d.getMenuAccountHistory().click();
+			Thread.sleep(3000);
 			
-			AcctHistoryPO ahp = new AcctHistoryPO(driver);
-			
+						
 			while(!ahp.getReceiptNumberTable().isDisplayed())
 			{
 				Thread.sleep(2000);	
 				System.out.println("waiting");
 			}
+			
+			wait1.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 			
 			//Clicks on the Receiptnumber in Account History 
 			
@@ -609,22 +749,50 @@ public class ShopAndPurchasePackages extends base {
 					.contains(FormatTotalAmt2));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(2000);
+			
+	} catch (java.lang.AssertionError ae) {
+		System.out.println("assertion error");
+		ae.printStackTrace();
+		getScreenshot(testName);
+		log.error(ae.getMessage(), ae);
+		Assert.fail(ae.getMessage());
+	}
+
+	catch (org.openqa.selenium.NoSuchElementException ne) {
+		System.out.println("No element present");
+		ne.printStackTrace();
+		getScreenshot(testName);
+		log.error(ne.getMessage(), ne);
+		Assert.fail(ne.getMessage());
+	}
+
+	catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+		System.out.println("Element Click Intercepted");
+		eci.printStackTrace();
+		getScreenshot(testName);
+		log.error(eci.getMessage(), eci);
+		reusableMethods.catchErrorMessage();
+		Assert.fail(eci.getMessage());
+	}
+		finally {
 			reusableMethods.memberLogout();
+		}
 
 	}
 
 	@Test(priority = 9, description = "OnAccount Payment Method is not available for this Member")
 	
-	public void OnAccountNotAvailable() throws InterruptedException {
+	public void OnAccountNotAvailable() throws InterruptedException, IOException {
+		try {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember9_username"), prop.getProperty("activeMember9_password"));
 		Thread.sleep(2000);
-		DashboardPO d = new DashboardPO(driver);
+		
+	
 		d.getMenuShopPackages().click();
 		
 //		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
-		ShopPackagesPO sp = new ShopPackagesPO(driver);
-		
+				
 		while (!sp.getPackagesList().isDisplayed())
 		{
 			Thread.sleep(1000);
@@ -645,11 +813,10 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		Thread.sleep(5000);
-		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		
 		Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 		
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-		
+				
 		List<String> Labels = new ArrayList<String>();
 		
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -659,22 +826,51 @@ public class ShopAndPurchasePackages extends base {
 		}
 		Assert.assertFalse(Labels.contains(" On Account"));
 		Thread.sleep(2000);
+		
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+		
+		finally {
 		reusableMethods.memberLogout();
+		}
 
 	}
 
 	@Test(priority = 10, description = "Stored Card does not exist for this Member")
 	
-	public void StoredCardNotAvailable() throws InterruptedException {
+	public void StoredCardNotAvailable() throws InterruptedException, IOException {
+		
+		try {
 		reusableMethods.activeMemberLogin(prop.getProperty("activeMember10_username"), prop.getProperty("activeMember10_password"));
 		Thread.sleep(2000);
-		DashboardPO d = new DashboardPO(driver);
+		
 		d.getMenuShopPackages().click();
 		
 //		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
-		ShopPackagesPO sp = new ShopPackagesPO(driver);
-		
+				
 		while (!sp.getPackagesList().isDisplayed())
 		{
 			Thread.sleep(1000);
@@ -695,11 +891,10 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		Thread.sleep(5000);
-		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		
 		Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 		
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-		
+			
 		List<String> Labels = new ArrayList<String>();
 		
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -709,24 +904,53 @@ public class ShopAndPurchasePackages extends base {
 		}
 		Assert.assertFalse(Labels.contains("card"));
 		Thread.sleep(2000);
-		reusableMethods.memberLogout();
+		
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+		
+		finally{
+			reusableMethods.memberLogout();
+		}
 
 
 	}
 
     @Test(priority = 11, description = "Stored Card does not exist for this Member and On Account is not available")
 	
-	public void NoOANoStoredCardAvailable() throws InterruptedException {
+	public void NoOANoStoredCardAvailable() throws InterruptedException, IOException {
+    	try {
     	
     	reusableMethods.activeMemberLogin(prop.getProperty("activeMember11_username"), prop.getProperty("activeMember11_password"));
 		Thread.sleep(2000);
-		DashboardPO d = new DashboardPO(driver);
+				
+	
 		d.getMenuShopPackages().click();
 		
 //		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
-		ShopPackagesPO sp = new ShopPackagesPO(driver);
-		
+				
 		while (!sp.getPackagesList().isDisplayed())
 		{
 			Thread.sleep(1000);
@@ -747,13 +971,41 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 		Thread.sleep(5000);
-		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		
 		Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		Assert.assertEquals(0, count);
 		Thread.sleep(2000);
-		reusableMethods.memberLogout();
+		
+    	} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName);
+			log.error(eci.getMessage(), eci);
+			reusableMethods.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		}
+		
+		finally{
+			reusableMethods.memberLogout();
+		}
 
 
 	}
