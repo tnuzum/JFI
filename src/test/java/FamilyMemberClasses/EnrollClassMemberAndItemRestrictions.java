@@ -50,35 +50,36 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 	@Test(priority = 1, description = "Validating that Frozen member cannot enroll When the club settings won't allow")
 	public void FrozenMemberCannotEnroll() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("freezemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded1();
 
-			d.getMyClassesScheduleButton().click();
-			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("freezemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded1();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		d.getMyClassesScheduleButton().click();
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-			reusableMethods.SelectTomorrowDate();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		reusableMethods.SelectTomorrowDate();
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-				if (className.contains("FAMILYENROLLCLASS")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassCount; j++) {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (className.contains("FAMILYENROLLCLASS")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
+		}
 
-			Thread.sleep(1000);
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -111,9 +112,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButton().isDisplayed()) {
-				c.getPopupCancelButton().click();
-			}
+			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -122,34 +121,35 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 	@Test(priority = 2, description = "Validating that Terminated member cannot enroll When the club settings won't allow")
 	public void TerminatedMemberCannotEnroll() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("terminate", "Testing1!");
-			reusableWaits.waitForDashboardLoaded1();
 
-			d.getMyClassesScheduleButton().click();
-			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("terminate", "Testing1!");
+		reusableWaits.waitForDashboardLoaded1();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		d.getMyClassesScheduleButton().click();
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-			reusableMethods.SelectTomorrowDate();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		reusableMethods.SelectTomorrowDate();
 
-				if (className.contains("FAMILYENROLLCLASS")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassCount; j++) {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (className.contains("FAMILYENROLLCLASS")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
+		}
 
-			Thread.sleep(1000);
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -181,10 +181,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButton().isDisplayed()) {
-				c.getPopupCancelButton().click();
-			}
-
+			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
 		}
@@ -193,34 +190,35 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 	@Test(priority = 3, description = "Validating that the class cannnot be enrolled due to the enrollment window has closed")
 	public void ClassEnrollmentWindowClosed() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("feemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyClassesScheduleButton().click();
-			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("feemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		d.getMyClassesScheduleButton().click();
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-			reusableMethods.SelectTomorrowDate();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		reusableMethods.SelectTomorrowDate();
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-				if (className.contains("CLASSENROLLMENTCLOSED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassCount; j++) {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (className.contains("CLASSENROLLMENTCLOSED")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
-			Thread.sleep(1000);
+		}
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertEquals("The online enrollment window for this class has closed.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -252,9 +250,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButton().isDisplayed()) {
-				c.getPopupCancelButton().click();
-			}
+			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -264,34 +260,35 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 	@Test(priority = 4, description = "Validating that the class cannnot be enrolled due to Item Restrictions")
 	public void ClassCannotBEnrolled() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("feemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyClassesScheduleButton().click();
-			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("feemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		d.getMyClassesScheduleButton().click();
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-			reusableMethods.SelectTomorrowDate();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		reusableMethods.SelectTomorrowDate();
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-				if (className.contains("CLASSCANNOTBENROLLED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassCount; j++) {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (className.contains("CLASSCANNOTBENROLLED")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
-			Thread.sleep(1000);
+		}
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertEquals("Online enrollment for this class is not allowed.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -323,10 +320,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButton().isDisplayed()) {
-				c.getPopupCancelButton().click();
-			}
-
+			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
 		}
@@ -335,56 +329,57 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 	@Test(priority = 5, description = "Validating that the class cannnot be enrolled due to  the enrollment window is not open yet")
 	public void ClassEnrollmentNotOpened() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("feemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyClassesScheduleButton().click();
-			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("feemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		d.getMyClassesScheduleButton().click();
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-			c.getCalendarIcon().click();
-			Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
+		c.getCalendarIcon().click();
+		Thread.sleep(2000);
+
+		String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
+				.getText();
+
+		while (!monthName.contains(classStartMonth)) {
+			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]")).click();
+			;
+			monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
 					.getText();
+		}
 
-			while (!monthName.contains(classStartMonth)) {
-				driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]")).click();
-				;
-				monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
-						.getText();
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
+		for (int i = 0; i < daycount; i++) {
+			String date = driver.findElements(By.tagName("td")).get(i).getText();
+			if (date.contains(classStartDate)) {
+				driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
+				break;
 			}
+		}
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			int daycount = driver.findElements(By.tagName("td")).size(); // Get the daycount from the calendar
-			for (int i = 0; i < daycount; i++) {
-				String date = driver.findElements(By.tagName("td")).get(i).getText();
-				if (date.contains(classStartDate)) {
-					driver.findElements(By.tagName("td")).get(i).click(); // click on the next day
-					break;
-				}
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassCount; j++) {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (className.contains("CLASSENROLLMENTNOTOPENED")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-				if (className.contains("CLASSENROLLMENTNOTOPENED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-			}
-			Thread.sleep(1000);
+		}
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertEquals("Online enrollment for this class is currently closed.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -416,9 +411,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButton().isDisplayed()) {
-				c.getPopupCancelButton().click();
-			}
+			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -428,35 +421,36 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 	@Test(priority = 6, description = "Validating that the class cannnot be enrolled as the class time is passed for the day")
 	public void ClassEnrollmentEnded() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("feemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyClassesScheduleButton().click();
-			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("feemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		d.getMyClassesScheduleButton().click();
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-			reusableMethods.SelectYesterdayDate();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		reusableMethods.SelectYesterdayDate();
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-				if (className.contains("CLASSENROLLMENTENDED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassCount; j++) {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (className.contains("CLASSENROLLMENTENDED")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
+		}
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		// wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertEquals("The online enrollment window for this class has closed.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -488,10 +482,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButton().isDisplayed()) {
-				c.getPopupCancelButton().click();
-			}
-
+			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
 		}
@@ -500,35 +491,36 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 	@Test(priority = 7, description = "Validating that the class cannnot be enrolled due to Membership Type Time Restrictions")
 	public void ClassOutsidePermittedHours() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("outpermtdhrs", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyClassesScheduleButton().click();
-			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-			Thread.sleep(2000);
+		reusableMethods.activeMemberLogin("outpermtdhrs", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		d.getMyClassesScheduleButton().click();
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		Thread.sleep(2000);
 
-			reusableMethods.SelectTomorrowDate();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		reusableMethods.SelectTomorrowDate();
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-				if (className.contains("CLASSWITHINELIGIBLETIME")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassCount; j++) {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (className.contains("CLASSWITHINELIGIBLETIME")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
-			Thread.sleep(1000);
+		}
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -560,9 +552,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButton().isDisplayed()) {
-				c.getPopupCancelButton().click();
-			}
+			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -572,34 +562,35 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 	@Test(priority = 8, description = "Validating that the class cannnot be enrolled due to Membership Type Restrictions at the club")
 	public void ClubAccessDenied() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("hoh", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyClassesScheduleButton().click();
-			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("hoh", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+		d.getMyClassesScheduleButton().click();
+		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 
-			reusableMethods.SelectTomorrowDate();
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		reusableMethods.SelectTomorrowDate();
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-				if (className.contains("FAMILYENROLLCLASS")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassCount; j++) {
+			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (className.contains("FAMILYENROLLCLASS")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
+		}
+		try {
 			int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
 			for (int i = 0; i < memberCount; i++) {
 				if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Cadmember")) {
@@ -635,9 +626,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButton().isDisplayed()) {
-				c.getPopupCancelButton().click();
-			}
+			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();

@@ -51,46 +51,46 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 1, description = "Validating that Frozen member cannot enroll When the club settings won't allow")
 	public void FrozenMemberCannotEnroll() throws IOException, InterruptedException {
+
+		reusableMethods.activeMemberLogin("freezemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded1();
+
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+		for (int i = 0; i < monthCount; i++) {
+			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+			if (monthName.equals(CourseStartMonth2)) {
+				MonthNames.findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+
+		}
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+
+		for (int j = 0; j < CourseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (courseName.contains("FAMILYENROLLCOURSE")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
+			}
+
+		}
+		Thread.sleep(1000);
 		try {
-			reusableMethods.activeMemberLogin("freezemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded1();
-
-			d.getMyCoursesEventsScheduleButton().click();
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++) {
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth2)) {
-					MonthNames.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-
-			}
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-
-			for (int j = 0; j < CourseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
-
-				if (courseName.contains("FAMILYENROLLCOURSE")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-
-			}
-			Thread.sleep(1000);
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			Assert.assertEquals("Membership restrictions have limited enrollment into this course.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -123,9 +123,9 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButtonCourse().isDisplayed()) {
-				c.getPopupCancelButtonCourse().click();
-			}
+			c.getPopupCancelButtonCourse().click();
+			Thread.sleep(1000);
+
 			reusableMethods.memberLogout();
 		}
 
@@ -133,46 +133,46 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 2, description = "Validating that Terminated member cannot enroll When the club settings won't allow")
 	public void TerminatedMemberCannotEnroll() throws IOException, InterruptedException {
+
+		reusableMethods.activeMemberLogin("terminate", "Testing1!");
+		reusableWaits.waitForDashboardLoaded1();
+
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+		for (int i = 0; i < monthCount; i++) {
+			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+			if (monthName.equals(CourseStartMonth2)) {
+				MonthNames.findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+
+		}
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+
+		for (int j = 0; j < CourseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (courseName.contains("FAMILYENROLLCOURSE")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
+			}
+
+		}
+		Thread.sleep(1000);
 		try {
-			reusableMethods.activeMemberLogin("terminate", "Testing1!");
-			reusableWaits.waitForDashboardLoaded1();
-
-			d.getMyCoursesEventsScheduleButton().click();
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++) {
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth2)) {
-					MonthNames.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-
-			}
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-
-			for (int j = 0; j < CourseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
-
-				if (courseName.contains("FAMILYENROLLCOURSE")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-
-			}
-			Thread.sleep(1000);
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			Assert.assertEquals("Membership restrictions have limited enrollment into this course.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -205,9 +205,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButtonCourse().isDisplayed()) {
-				c.getPopupCancelButtonCourse().click();
-			}
+			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -217,33 +215,33 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 3, description = "Validating that the course cannnot be enrolled in when the enrollment window has closed")
 	public void CourseEnrollmentWindowClosed() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("feemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyCoursesEventsScheduleButton().click();
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("feemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			for (int j = 0; j < CourseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 
-				if (courseName.contains("COURSEENROLLMENTCLOSED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		for (int j = 0; j < CourseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
+			if (courseName.contains("COURSEENROLLMENTCLOSED")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
-			Thread.sleep(1000);
+
+		}
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			Assert.assertEquals("The online enrollment window for this course has closed.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -276,10 +274,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButtonCourse().isDisplayed()) {
-				c.getPopupCancelButtonCourse().click();
-			}
-
+			c.getPopupCancelButtonCourse().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
 		}
@@ -288,33 +283,33 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 4, description = "Validating that the course cannnot be enrolled due to Item Restrictions")
 	public void CourseCannotBEnrolled() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("feemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyCoursesEventsScheduleButton().click();
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("feemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			for (int j = 0; j < CourseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 
-				if (courseName.contains("COURSECANNOTBENROLLED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		for (int j = 0; j < CourseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
+			if (courseName.contains("COURSECANNOTBENROLLED")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
-			Thread.sleep(1000);
+
+		}
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			Assert.assertEquals("Online enrollment for this course is not allowed.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -347,10 +342,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButtonCourse().isDisplayed()) {
-				c.getPopupCancelButtonCourse().click();
-			}
-
+			c.getPopupCancelButtonCourse().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
 		}
@@ -359,47 +351,47 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 5, description = "Validating that the course cannnot be enrolled due to the enrollment window is not open yet")
 	public void CourseEnrollmentNotOpened() throws IOException, InterruptedException {
+
+		reusableMethods.activeMemberLogin("feemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
+
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+		for (int i = 0; i < monthCount; i++) {
+			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+			if (monthName.equals(CourseStartMonth2)) {
+				MonthNames.findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+
+		}
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+
+		for (int j = 0; j < CourseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (courseName.contains("COURSEENROLLMENTNOTOPENED")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
+			}
+
+		}
+		Thread.sleep(1000);
 		try {
-			reusableMethods.activeMemberLogin("feemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
-
-			d.getMyCoursesEventsScheduleButton().click();
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++) {
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth2)) {
-					MonthNames.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-
-			}
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-
-			for (int j = 0; j < CourseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
-
-				if (courseName.contains("COURSEENROLLMENTNOTOPENED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-
-			}
-			Thread.sleep(1000);
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			Assert.assertEquals("Online enrollment for this course is currently closed.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -432,9 +424,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButtonCourse().isDisplayed()) {
-				c.getPopupCancelButtonCourse().click();
-			}
+			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -444,53 +434,53 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 6, description = "Validating that the course cannnot be enrolled as the course time is passed")
 	public void CourseEnrollmentEnded() throws IOException, InterruptedException {
+
+		reusableMethods.activeMemberLogin("feemember", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
+
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+		String year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
+		while (!year.contains(CourseStartYear)) {
+			driver.findElement(By.xpath("//i[contains(@class, 'double-left')]")).click();
+			year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
+		}
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+		for (int i = 0; i < monthCount; i++) {
+			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+			if (monthName.equals(CourseStartMonth1)) {
+				MonthNames.findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+
+		}
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+
+		for (int j = 0; j < CourseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (courseName.contains("COURSEENROLLMENTENDED")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
+			}
+
+		}
+		Thread.sleep(1000);
 		try {
-			reusableMethods.activeMemberLogin("feemember", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
-
-			d.getMyCoursesEventsScheduleButton().click();
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-			String year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
-			while (!year.contains(CourseStartYear)) {
-				driver.findElement(By.xpath("//i[contains(@class, 'double-left')]")).click();
-				year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
-			}
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++) {
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth1)) {
-					MonthNames.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-
-			}
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-
-			for (int j = 0; j < CourseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
-
-				if (courseName.contains("COURSEENROLLMENTENDED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-
-			}
-			Thread.sleep(1000);
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			Assert.assertEquals("The online enrollment window for this course has closed.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -523,9 +513,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButtonCourse().isDisplayed()) {
-				c.getPopupCancelButtonCourse().click();
-			}
+			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -535,33 +523,33 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 7, description = "Validating that the course cannnot be enrolled due to Membership Type Time Restrictions")
 	public void CourseOutsidePermittedHours() throws IOException, InterruptedException {
-		try {
-			reusableMethods.activeMemberLogin("outpermtdhrs", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
 
-			d.getMyCoursesEventsScheduleButton().click();
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+		reusableMethods.activeMemberLogin("outpermtdhrs", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			for (int j = 0; j < CourseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 
-				if (courseName.contains("COURSEWITHINELIGIBLETIME")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
+		for (int j = 0; j < CourseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
+			if (courseName.contains("COURSEWITHINELIGIBLETIME")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
 			}
-			Thread.sleep(1000);
+
+		}
+		Thread.sleep(1000);
+		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			Assert.assertEquals("Membership restrictions have limited enrollment into this course.",
 					c.getPopUpErrorMessage().getText().trim());
@@ -594,9 +582,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButtonCourse().isDisplayed()) {
-				c.getPopupCancelButtonCourse().click();
-			}
+			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -606,45 +592,46 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 8, description = "Validating that the course cannnot be enrolled due to Membership Type Restrictions at the club")
 	public void ClubAccessDenied() throws IOException, InterruptedException {
+
+		reusableMethods.activeMemberLogin("hoh", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
+
+		d.getMyCoursesEventsScheduleButton().click();
+		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+
+		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+		for (int i = 0; i < monthCount; i++) {
+			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+			if (monthName.equals(CourseStartMonth2)) {
+				MonthNames.findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+
+		}
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+
+		for (int j = 0; j < CourseCount; j++) {
+			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+
+			if (courseName.contains("FAMILYENROLLCOURSE")) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// class
+				break;
+			}
+
+		}
+		Thread.sleep(1000);
 		try {
-			reusableMethods.activeMemberLogin("hoh", "Testing1!");
-			reusableWaits.waitForDashboardLoaded();
-
-			d.getMyCoursesEventsScheduleButton().click();
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-
-			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++) {
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth2)) {
-					MonthNames.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-
-			}
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-
-			for (int j = 0; j < CourseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
-
-				if (courseName.contains("FAMILYENROLLCOURSE")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-
-			}
 			int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
 			for (int i = 0; i < memberCount; i++) {
 				if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("Cadmember")) {
@@ -680,9 +667,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 
-			if (c.getPopupCancelButtonCourse().isDisplayed()) {
-				c.getPopupCancelButtonCourse().click();
-			}
+			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
