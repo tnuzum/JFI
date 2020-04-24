@@ -1,15 +1,10 @@
 package SingleMemberAppointments;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -20,9 +15,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
 import pageObjects.AppointmentsPO;
-import pageObjects.CartPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
@@ -32,7 +25,6 @@ import resources.reusableWaits;
 public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base{
 private static Logger log =LogManager.getLogger(base.class.getName());
 private static String startTime;
-private static String tomorrowsDate;
 private static int appointmentsCount;
 private static String appointmentToBook = "PT 60 Mins";
 
@@ -202,11 +194,7 @@ private static String appointmentToBook = "PT 60 Mins";
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
 		
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-
+		
 		for (int i = 0; i < appointmentsCount; i++) {
 			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
 
@@ -225,11 +213,7 @@ private static String appointmentToBook = "PT 60 Mins";
 	{	
 		DashboardPO d = new DashboardPO(driver);
 	WebDriverWait wait = new WebDriverWait(driver, 30);
-	
-	DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-	Calendar today1 = Calendar.getInstance();
-	today1.add(Calendar.DAY_OF_YEAR, 1);
-	tomorrowsDate = dateFormat1.format(today1.getTime());
+		
 	appointmentsCount = d.getMyAppts().size();
 
 	for (int k = 0; k < appointmentsCount; k++) {

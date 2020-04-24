@@ -1,11 +1,7 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -19,16 +15,12 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
-import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
-import resources.reusableWaits;
 
 public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
@@ -38,7 +30,6 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 	private static String resourceName = "PT Smith, Andrew";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
-	private static String tomorrowsDate;
 	private static String unitsToBeSelected = "1 - $90.00/per";
 
 //	@BeforeTest
@@ -177,12 +168,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
-		
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-		
+				
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));

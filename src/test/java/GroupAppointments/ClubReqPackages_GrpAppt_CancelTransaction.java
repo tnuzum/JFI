@@ -1,9 +1,6 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,20 +12,15 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
-import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
-import resources.reusableWaits;
 
 public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
@@ -39,9 +31,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String mbrDiscntPricing = "$4.63";
 	private static String startTime;
-	private static String tomorrowsDate;
 	private static String unitsToBeSelected = "1 - $4.50/per";
-
 
 //	@BeforeTest
 	@BeforeClass
@@ -117,35 +107,33 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 				break;
 			}
 		}
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
-		System.out.println("came out of the loop");
-		
-		 Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
-			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
-			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-			ap.getGroupMemberSearchInput().sendKeys("auto");
-			ap.getGroupMemberSearchButton().click();
-			
-			Thread.sleep(3000);
-			
-			int memberCount = ap.getGroupPopupAddButtons().size();
-			for (int i = 0; i<memberCount; i++)
-				  
-			{
-				String text = ap.getGroupPopupMembers().get(i).getText();
-				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
-					{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-					ap.getGroupPopupAddButtons().get(i).click();
-					break;
-					}
-			}
 
+		System.out.println("came out of the loop");
+
+		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+		ap.getGroupMemberSearchInput().sendKeys("auto");
+		ap.getGroupMemberSearchButton().click();
+
+		Thread.sleep(3000);
+
+		int memberCount = ap.getGroupPopupAddButtons().size();
+		for (int i = 0; i < memberCount; i++)
+
+		{
+			String text = ap.getGroupPopupMembers().get(i).getText();
+			System.out.println(text);
+			if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy")) {
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+				ap.getGroupPopupAddButtons().get(i).click();
+				break;
+			}
+		}
 
 		/*
 		 * WebElement rt = ap.getResourceType();
@@ -163,32 +151,28 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 		 * if (resource.equals(resourceName)) { s3.selectByVisibleText(resource); break;
 		 * } }
 		 */
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-			
-			System.out.println("came out of the loop");
-			
-			String classtext = ap.getCalendarTomorrow().getAttribute("class");
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
 
-			if (classtext.contains("cal-out-month"))
-			{
+		System.out.println("came out of the loop");
+
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 //		Thread.sleep(3000);
 		wait.until(ExpectedConditions.elementToBeClickable(ap.getCalendarTomorrow()));
 		ap.getCalendarTomorrow().click();
-		
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
@@ -210,23 +194,17 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
-		
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-		
+
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
-		
-		Assert.assertEquals(ap.getPopup1Title().getText(),
-				"Package Required");
-		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
+
+		Assert.assertEquals(ap.getPopup1Title().getText(), "Package Required");
+
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment requires a package purchase."));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Would you like to continue?"));
-		
+
 		ap.getPopup1BookButton().click();
 		Thread.sleep(3000);
 
@@ -238,17 +216,16 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-		
-		for (int i = 0; i< ap.getReviewSection().size(); i++)
-		{
+
+		for (int i = 0; i < ap.getReviewSection().size(); i++) {
 			if (ap.getReviewSection().get(i).getText().contains("REVIEW"))
-				
+
 			{
 				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("PACKAGE REQUIRED"));
-				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("This appointment requires a package."));
+				Assert.assertTrue(
+						ap.getReviewSection().get(i).getText().contains("This appointment requires a package."));
 				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains(
-				"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
+						"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
 			}
 		}
 		while (ap.getRateBox().getText().isBlank()) {
@@ -281,42 +258,38 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
 		String FormatTotalAmt = totalAmt[1].trim();
 		System.out.println(FormatTotalAmt);
-		
+
 		Assert.assertEquals(FormatTotalAmt, mbrDiscntPricing);
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
-		
+
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < paymentMethodscount; i++) {
-			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-					.contains("5454"))
-				{
-				
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-					break;
-				}
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
+
+				PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+				break;
+			}
 		}
 
-
 		// Click the Cancel button
-		
+
 		ap.getCancelButton().click();
 		Thread.sleep(2000);
 		Boolean ApptCheckout = reusableMethods.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
-		
+
 		Assert.assertTrue(ApptCheckout == false);
 		reusableMethods.returnToDashboard();
 	}
 
-	
-	
-	 // @AfterTest
-	 
-	 @AfterClass 
-	 public void teardown() throws InterruptedException {
-	  driver.close(); driver = null; }
-	
+	// @AfterTest
+
+	@AfterClass
+	public void teardown() throws InterruptedException {
+		driver.close();
+		driver = null;
+	}
 
 }

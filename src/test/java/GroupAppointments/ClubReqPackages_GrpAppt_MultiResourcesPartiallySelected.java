@@ -1,9 +1,6 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,9 +12,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
@@ -38,7 +33,6 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 	private static String resourceName = "PT Smith, Andrew";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
-	private static String tomorrowsDate;
 	private static int appointmentsCount;
 	private static String participant2 = "Auto, Daisy";
 	private static String unitsToBeSelected = "1 - $5.00/per";
@@ -117,26 +111,26 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 				break;
 			}
 		}
-		
+
 		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
 		ap.getGroupMemberSearchInput().sendKeys("auto");
 		ap.getGroupMemberSearchButton().click();
-		
+
 		Thread.sleep(2000);
-		
+
 		int memberCount = ap.getGroupPopupAddButtons().size();
-		for (int i = 0; i<memberCount; i++)
-			  
+		for (int i = 0; i < memberCount; i++)
+
 		{
 			String text = ap.getGroupPopupMembers().get(i).getText();
 			System.out.println(text);
-			if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
-				{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+			if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy")) {
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
 				ap.getGroupPopupAddButtons().get(i).click();
 				break;
-				}
+			}
 		}
 
 		WebElement rt = ap.getResourceType();
@@ -161,27 +155,24 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 			}
 		}
 
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -208,24 +199,16 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
-		
 
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-		
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
-		
-		Assert.assertEquals(ap.getPopup1Title().getText(),
-				"Package Required");
-		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
+
+		Assert.assertEquals(ap.getPopup1Title().getText(), "Package Required");
+
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment requires a package purchase."));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Would you like to continue?"));
-		
 
 		ap.getPopup1BookButton().click();
 		Thread.sleep(3000);
@@ -240,16 +223,16 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 		Assert.assertTrue(ap.getGroup().getText().contains(participant2));
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
-		
-		for (int i = 0; i< ap.getReviewSection().size(); i++)
-		{
+
+		for (int i = 0; i < ap.getReviewSection().size(); i++) {
 			if (ap.getReviewSection().get(i).getText().contains("REVIEW"))
-				
+
 			{
 				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("PACKAGE REQUIRED"));
-				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("This appointment requires a package."));
+				Assert.assertTrue(
+						ap.getReviewSection().get(i).getText().contains("This appointment requires a package."));
 				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains(
-				"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
+						"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
 			}
 		}
 		while (ap.getRateBox().getText().isBlank()) {
@@ -284,12 +267,13 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
-		
+
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-		while(!PM.getOnAccountAndSavedCards().isDisplayed())
-		
+		while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
 		{
-			Thread.sleep(1000);;
+			Thread.sleep(1000);
+			;
 		}
 
 		// Click the Pay button
@@ -313,12 +297,12 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 
 //Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
-		String receiptNumber1 = null;
 
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+		Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 //Verifies the buttons on Print Receipt Popup
 		reusableMethods.ReceiptPopupValidations();
@@ -352,7 +336,8 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
 
 		DashboardPO dp = new DashboardPO(driver);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
+		wait.until(
+				ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 		dp.getMyAccountAccountHistory().click();
 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
@@ -369,18 +354,15 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		ahp.getReceiptNumber().click();
 		Thread.sleep(1000);
 
-/*		while (!ahp.getReceiptNumberTable().isDisplayed()) {
-			Thread.sleep(2000);
-			System.out.println("waiting");
-		}
-		for (int k = 0; k < ahp.getReceiptNumbers().size(); k++) {
-			receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-
-			if (receiptNumber1.equals(receiptNumber)) {
-				ahp.getReceiptNumbers().get(k).click();
-				break;
-			}
-		}*/
+		/*
+		 * while (!ahp.getReceiptNumberTable().isDisplayed()) { Thread.sleep(2000);
+		 * System.out.println("waiting"); } for (int k = 0; k <
+		 * ahp.getReceiptNumbers().size(); k++) { receiptNumber1 =
+		 * ahp.getReceiptNumbers().get(k).getText().trim();
+		 * 
+		 * if (receiptNumber1.equals(receiptNumber)) {
+		 * ahp.getReceiptNumbers().get(k).click(); break; } }
+		 */
 
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 
@@ -395,7 +377,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		reusableMethods.returnToDashboard();
 	}
 
-	@Test (priority = 2)
+	@Test(priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
 		// reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
@@ -417,17 +399,16 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		reusableMethods.memberLogout();
 
 	}
-	@Test (priority = 3)
+
+	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		reusableMethods.ApptCheckinInCOG("Auto, apptmember2", appointmentToBook, "apptmember2" ); //Check In the Member to the appointment
+		reusableMethods.ApptCheckinInCOG("Auto, apptmember2", appointmentToBook, "apptmember2"); // Check In the Member
+																									// to the
+																									// appointment
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
+
 		appointmentsCount = d.getMyAppts().size();
 
 		for (int k = 0; k < appointmentsCount; k++) {
@@ -436,34 +417,34 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 			{
 
 				if (d.getMyAppts().get(k).getText().contains(startTime)) {
-					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
+					wait.until(ExpectedConditions
+							.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
 					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
-				
-					WebElement EditButton = d.getEditButton().get(k);		
-					
+
+					WebElement EditButton = d.getEditButton().get(k);
+
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
-					
+
 					EditButton.click();
 					break;
 				}
 			}
 		}
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
-			AppointmentsPO a = new AppointmentsPO(driver);
-			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		AppointmentsPO a = new AppointmentsPO(driver);
+		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 		a.getEditApptCancelButton().click();
-			WebElement wait2 = a.getEditApptProceedButton();
-			while (!wait2.isEnabled())//while button is NOT(!) enabled
-			{
+		WebElement wait2 = a.getEditApptProceedButton();
+		while (!wait2.isEnabled())// while button is NOT(!) enabled
+		{
 //			Thread.sleep(200);
-			}
+		}
 		a.getEditApptProceedButton().click();
-			boolean result1 = reusableWaits.popupMessageYesButton();
-			if (result1 == true)
-			{
+		boolean result1 = reusableWaits.popupMessageYesButton();
+		if (result1 == true) {
 //				Thread.sleep(500);	
-			}
+		}
 		a.getEditApptCancelYesButton().click();
 //			boolean result2 = reusableWaits.popupMessageYesButton();
 //			if (result2 == true)
@@ -476,15 +457,12 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		reusableMethods.memberLogout();
 	}
-	
-	// @AfterTest	 
-	 @AfterClass 
-	 public void teardown() throws InterruptedException {
-	  driver.close();
-	  driver = null; }
-	
 
-
-	
+	// @AfterTest
+	@AfterClass
+	public void teardown() throws InterruptedException {
+		driver.close();
+		driver = null;
+	}
 
 }

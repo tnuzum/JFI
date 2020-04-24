@@ -1,41 +1,30 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
-import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
-import pageObjects.PaymentMethodsPO;
-import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
-import resources.reusableWaits;
 
 public class ClubReqPackages_GrpAppt_NonMSS extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-NonMSSGrp";
-	
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -51,7 +40,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
-		
+
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		Select s = new Select(ap.getclubs());
@@ -112,37 +101,36 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			}
 		}
 //		Thread.sleep(4000);
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
+		Assert.assertEquals(ap.getPopup1Content().getText(),
+				"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package.");
 		ap.getPopup2OKButton().click();
 
-		 Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
-			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
-			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-			ap.getGroupMemberSearchInput().sendKeys("auto");
-			ap.getGroupMemberSearchButton().click();
-			
-			Thread.sleep(3000);
-			
-			int memberCount = ap.getGroupPopupAddButtons().size();
-			for (int i = 0; i<memberCount; i++)
-				  
-			{
-				String text = ap.getGroupPopupMembers().get(i).getText();
-				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy"))
-					{wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-					ap.getGroupPopupAddButtons().get(i).click();
-					break;
-					}
-			}
+		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+		ap.getGroupMemberSearchInput().sendKeys("auto");
+		ap.getGroupMemberSearchButton().click();
 
+		Thread.sleep(3000);
+
+		int memberCount = ap.getGroupPopupAddButtons().size();
+		for (int i = 0; i < memberCount; i++)
+
+		{
+			String text = ap.getGroupPopupMembers().get(i).getText();
+			System.out.println(text);
+			if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy")) {
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+				ap.getGroupPopupAddButtons().get(i).click();
+				break;
+			}
+		}
 
 		/*
 		 * WebElement rt = ap.getResourceType();
@@ -162,24 +150,25 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 		 */
 
 //			Thread.sleep(4000);
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-			
-			System.out.println("came out of the loop");
-		
-		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
+
+		Assert.assertEquals(ap.getPopup1Content().getText(),
+				"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package.");
 		ap.getPopup2OKButton().click();
 		reusableMethods.returnToDashboard();
 		reusableMethods.memberLogout();
 	}
-	 // @AfterTest
-	 
-	 @AfterClass 
-	 public void teardown() throws InterruptedException {
-	  driver.close(); driver = null; }
-	
+	// @AfterTest
+
+	@AfterClass
+	public void teardown() throws InterruptedException {
+		driver.close();
+		driver = null;
+	}
 
 }

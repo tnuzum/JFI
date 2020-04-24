@@ -1,11 +1,7 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -19,8 +15,6 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
@@ -38,7 +32,6 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 	private static String resourceName = "Holmes, Jeff";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
-	private static String tomorrowsDate;
 	private static int appointmentsCount;
 	private static String unitsToBeSelected = "1 - $5.00/per";
 
@@ -163,12 +156,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
-		
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-		
+			
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
@@ -191,8 +179,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-		
+				
 		for (int i = 0; i< ap.getReviewSection().size(); i++)
 		{
 			if (ap.getReviewSection().get(i).getText().contains("REVIEW"))
@@ -273,6 +260,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+		Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 //Verifies the buttons on Print Receipt Popup
 		reusableMethods.ReceiptPopupValidations();
@@ -305,36 +293,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 
 		Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
 
-		DashboardPO dp = new DashboardPO(driver);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-		dp.getMyAccountAccountHistory().click();
-
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-
-		while (!ahp.getReceiptNumberTable().isDisplayed()) {
-			Thread.sleep(2000);
-			System.out.println("waiting");
-		}
-
-//Clicks on the Receiptnumber in Account History 
-
-		ahp.getSearchField().sendKeys(receiptNumber);
-		Thread.sleep(2000);
-		ahp.getReceiptNumber().click();
-		Thread.sleep(1000);
-
-
-//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-
-		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank()) {
-			Thread.sleep(500);
-		}
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(FormatTotalAmt));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(2000);
-		reusableMethods.returnToDashboard();
+		
 	}
 
 	@Test (priority = 2)
@@ -366,11 +325,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
+				
 		appointmentsCount = d.getMyAppts().size();
 
 		for (int k = 0; k < appointmentsCount; k++) {

@@ -1,35 +1,23 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
-import pageObjects.BreadcrumbTrailPO;
-import pageObjects.CartPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
-import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
@@ -42,7 +30,6 @@ public class CancelApptWithFee_cancelTransaction extends base {
 	private static String appointmentToBook = "PT 60 Mins-CancelWithFee";
 	private static String resourceName = "FitExpert1";
 	private static String startTime;
-	private static String tomorrowsDate;
 	private static int appointmentsCount;
 
 //	@BeforeTest
@@ -142,26 +129,23 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			}
 		}
 
-/*		boolean result1 = reusableWaits.loadingAvailability();
-		while (result1 == true) {
-//						Thread.sleep(500);	
-		}*/
-		
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		/*
+		 * boolean result1 = reusableWaits.loadingAvailability(); while (result1 ==
+		 * true) { // Thread.sleep(500); }
+		 */
+
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
@@ -229,11 +213,6 @@ public class CancelApptWithFee_cancelTransaction extends base {
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		appointmentsCount = d.getMyAppts().size();
 
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-
 		for (int i = 0; i < appointmentsCount; i++) {
 			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
 
@@ -260,12 +239,13 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			{
 
 				if (d.getMyAppts().get(k).getText().contains(startTime)) {
-					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
+					wait.until(ExpectedConditions
+							.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
 					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
 
 //					Thread.sleep(5000);
 					WebElement EditButton = d.getEditButton().get(k);
-					
+
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
@@ -274,8 +254,9 @@ public class CancelApptWithFee_cancelTransaction extends base {
 				}
 			}
 		}
-		
+
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 		ap.getEditApptCancelButton().click();
@@ -335,6 +316,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 		}
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
 
 		Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 		ap.getEditApptCancelButton().click();
@@ -352,11 +334,12 @@ public class CancelApptWithFee_cancelTransaction extends base {
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
-		
-		while(!PM.getOnAccountAndSavedCards().isDisplayed())
-		
+
+		while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
 		{
-			Thread.sleep(1000);;
+			Thread.sleep(1000);
+			;
 		}
 
 		paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();

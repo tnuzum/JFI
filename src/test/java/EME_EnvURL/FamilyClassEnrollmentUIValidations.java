@@ -240,12 +240,7 @@ public class FamilyClassEnrollmentUIValidations extends base{
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
 
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
 		
 		for (int i = 0; i<c.getMemberSections().size(); i++)
 		{
