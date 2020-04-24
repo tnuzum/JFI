@@ -91,14 +91,9 @@ public void initialize(String EMELoginPage) throws InterruptedException, IOExcep
 			Assert.assertEquals("Free Class Auto", c.getClassName().getText());
 			Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
 			Assert.assertEquals("Class Instructor: ", c.getClassInstructor().getText());
-
-			DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-			Calendar today1 = Calendar.getInstance();
-			today1.add(Calendar.DAY_OF_YEAR, 1);
-			String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
 			System.out.println(c.getClassDate().getText());
 
-			Assert.assertEquals(c.getClassDate().getText(), "Date: " +tomorrowsDayAndDate );
+			Assert.assertEquals(c.getClassDate().getText(), "Date: " +tomorrowsDate );
 			
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
@@ -281,13 +276,7 @@ public void initialize(String EMELoginPage) throws InterruptedException, IOExcep
 
 		Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
 		Assert.assertEquals("Class Instructor: Max Gibbs", c.getClassInstructor().getText());
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
 		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
@@ -437,13 +426,7 @@ public void initialize(String EMELoginPage) throws InterruptedException, IOExcep
 		Assert.assertEquals("ClassFreeWithServiceD", c.getClassName().getText());
 		Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
 		Assert.assertEquals("Class Instructor: Max Gibbs", c.getClassInstructor().getText());
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
 		
 		Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 		Assert.assertTrue(c.getHowYouWishToPay().isEnabled());

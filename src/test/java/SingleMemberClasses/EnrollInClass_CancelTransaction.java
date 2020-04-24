@@ -1,33 +1,24 @@
 package SingleMemberClasses;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-import org.testng.Assert;
-import org.testng.AssertJUnit;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import pageObjects.AcctHistoryPO;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
-import pageObjects.ThankYouPO;
-import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
-import resources.reusableWaits;
 
 public class EnrollInClass_CancelTransaction extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
@@ -86,13 +77,7 @@ public class EnrollInClass_CancelTransaction extends base {
 		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
 		
 		c.getCancelLink().click();
 		
@@ -135,13 +120,7 @@ public class EnrollInClass_CancelTransaction extends base {
 		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
 		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
@@ -191,7 +170,7 @@ public class EnrollInClass_CancelTransaction extends base {
 
    	
 //	@AfterTest
-    @AfterClass
+   @AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;

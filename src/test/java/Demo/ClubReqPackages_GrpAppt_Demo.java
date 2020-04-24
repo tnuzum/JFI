@@ -40,7 +40,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String mssClubPricing = "$5.15";
 	private static String startTime;
-	private static String tomorrowsDate;
+	;
 	private static int appointmentsCount;
 	private static String participant2 = "Auto, Daisy";
 	private static String unitsToBeSelected = "1 - $5.00/per";
@@ -212,10 +212,10 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		Thread.sleep(1000);
 		
 
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
+		
+		
+		
+		
 		
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));

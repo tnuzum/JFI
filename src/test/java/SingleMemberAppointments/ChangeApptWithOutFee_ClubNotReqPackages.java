@@ -1,11 +1,7 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -19,13 +15,8 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
-import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
-import pageObjects.PaymentMethodsPO;
-import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -43,9 +34,7 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 	private static String appointmentPrice = "$60.00";
 	private static String startTime1;
 	private static String startTime2;
-	private static String tomorrowsDate;
-	private static String dayAfter;
-	
+		
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -67,17 +56,6 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
 		
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-		
-		Calendar today2 = Calendar.getInstance();
-		today2.add(Calendar.DAY_OF_YEAR, 2);
-		dayAfter = dateFormat1.format(today2.getTime());
-
-
-
 		for (int i = 0; i < appointmentsCount; i++) {
 			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
 

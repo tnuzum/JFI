@@ -98,13 +98,7 @@ public class EnrollClassByBuyingPackage extends base {
 		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
 		
 		unitCount = reusableMethods.getPackageUnits(packageName);
 							
@@ -289,15 +283,7 @@ public class EnrollClassByBuyingPackage extends base {
 		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
 		
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i=0; i<radioButtonCount; i++)
@@ -468,13 +454,7 @@ public class EnrollClassByBuyingPackage extends base {
 		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
 		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
-
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		String tomorrowsDayAndDate = dateFormat1.format(today1.getTime());
-
-		Assert.assertEquals("Date: " + tomorrowsDayAndDate, c.getClassDate().getText());
+		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
 		
 		unitCount = reusableMethods.getPackageUnits(packageName);
 		

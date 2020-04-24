@@ -35,6 +35,7 @@ public class base {
 	public static Logger log =LogManager.getLogger(base.class.getName());
 	public static String DateTime = null;
 	public static String tomorrowsDate = null;
+	public static String dayAfter = null;
 	public static String ssTime = null;
 
 
@@ -118,6 +119,10 @@ public class base {
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
 		 tomorrowsDate = dateFormat1.format(today1.getTime());
+		 
+		 Calendar today2 = Calendar.getInstance();
+			today2.add(Calendar.DAY_OF_YEAR, 2);
+			 dayAfter = dateFormat1.format(today2.getTime());
 		
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");//or, DateFormat dateFormat = new SimpleDateFormat(" HH:mm:ss");
 		Date date = new Date();

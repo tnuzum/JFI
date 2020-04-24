@@ -2,8 +2,6 @@ package SingleMemberAppointments;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,14 +13,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
-import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
@@ -44,8 +38,6 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 	private static String appointmentPrice = "$90.00";
 	private static String startTime1;
 	private static String startTime2;
-	private static String tomorrowsDate;
-	private static String dayAfter;
 	
 //	@BeforeTest
 	@BeforeClass
@@ -67,18 +59,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
-		
-		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
-		Calendar today1 = Calendar.getInstance();
-		today1.add(Calendar.DAY_OF_YEAR, 1);
-		tomorrowsDate = dateFormat1.format(today1.getTime());
-		
-		Calendar today2 = Calendar.getInstance();
-		today2.add(Calendar.DAY_OF_YEAR, 2);
-		dayAfter = dateFormat1.format(today2.getTime());
-
-
-
+			
 		for (int i = 0; i < appointmentsCount; i++) {
 			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
 
@@ -346,6 +327,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 		TY.getPrintReceiptButton().click();
 		Thread.sleep(2000);
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+		Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 //Verifies the buttons on Print Receipt Popup
 		reusableMethods.ReceiptPopupValidations();
@@ -366,31 +348,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 
 		}
 		reusableWaits.waitForDashboardLoaded();
-		
-		d.getMyAccountAccountHistory().click();
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-
-	Thread.sleep(1000);
-
-//Clicks on the Receiptnumber in Account History 
-
-		ahp.getSearchField().sendKeys(receiptNumber);
-		Thread.sleep(2000);
-		ahp.getReceiptNumber().click();
-		Thread.sleep(1000);
-
-
-//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-
-		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank()) {
-			Thread.sleep(500);
-		}
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(FormatTotalAmt));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(2000);
-		reusableMethods.returnToDashboard();
+			
 	}
 		@Test (priority = 2)
 		public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
