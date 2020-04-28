@@ -11,7 +11,7 @@ public class PurchaseConfirmationPO {
 	public static WebDriver driver;
 
 // OBJECTS
-		
+
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By packageName = By.xpath("//div[@class='widget widget-callout']/h1");
@@ -27,75 +27,71 @@ public class PurchaseConfirmationPO {
 	By shopPackageTotalAmount = By.xpath("//h2[contains(@class,'at-shoppackage-text-total')]");
 	By classesReviewtotalAmount = By.xpath("//span[contains(@class,'At-classes-review-text-total')]");
 	By memberFeesSection = By.xpath("//div[@class = 'text-right']");
-	
-	
+
 // CONSTRUCTOR
-		
+
 	public PurchaseConfirmationPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
 		PurchaseConfirmationPO.driver = driver;
 	}
 // METHODS
 
-	public WebElement getPageHeader()
-	{
+	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);
 	}
-	
-	public WebElement getPackageName()
-	{
+
+	public WebElement getPackageName() {
 		return driver.findElement(packageName);
 	}
-	public WebElement getBreadcrumbDashboard()
-	{
+
+	public WebElement getBreadcrumbDashboard() {
 		return driver.findElement(breadcrumbDashboard);
 	}
-	public WebElement getBreadcrumbShop()
-	{
+
+	public WebElement getBreadcrumbShop() {
 		return driver.findElement(breadcrumbShop);
 	}
-	public WebElement getBreadcrumbConfirm()
-	{
+
+	public WebElement getBreadcrumbConfirm() {
 		return driver.findElement(breadcrumbConfirm);
 	}
-	public WebElement getReviewLabel()
-	{
+
+	public WebElement getReviewLabel() {
 		return driver.findElement(reviewLabel);
 	}
-	public WebElement getPopupSuccessMessage()
-	{
+
+	public WebElement getPopupSuccessMessage() {
 		return driver.findElement(popupSuccessMessage);
 	}
-	public WebElement getPopupOKButton()
-	{
+
+	public WebElement getPopupOKButton() {
 		return driver.findElement(popupOKButton);
 	}
-	public WebElement getMyPackagesButton()
-	{
+
+	public WebElement getMyPackagesButton() {
 		return driver.findElement(myPackagesButton);
 	}
-	public List<WebElement> getPackagesList()
-	{
+
+	public List<WebElement> getPackagesList() {
 		return driver.findElements(packagesList);
 	}
-	public List<WebElement> getUnitsCount()
-	{
+
+	public List<WebElement> getUnitsCount() {
 		return driver.findElements(unitsCount);
-		
+
 	}
-	
-	public WebElement getShopPackageTotalAmount()
-	{
+
+	public WebElement getShopPackageTotalAmount() {
 		return driver.findElement(shopPackageTotalAmount);
 	}
-	public WebElement getClassesReviewtotalAmount()
-	{
+
+	public WebElement getClassesReviewtotalAmount() {
 		return driver.findElement(classesReviewtotalAmount);
 	}
+
 	public List<WebElement> getMemberfeesSection()
 
 	{
 		return driver.findElements(memberFeesSection);
 	}
 }
-
