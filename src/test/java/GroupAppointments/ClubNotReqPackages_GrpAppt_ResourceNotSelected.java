@@ -183,7 +183,7 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 		startTime = st2.getText();
 		System.out.println(startTime);
 		st2.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		WebElement p1 = ap.getPopup1BookButton();
 		while (!p1.isEnabled())// while button is NOT(!) enabled
 		{

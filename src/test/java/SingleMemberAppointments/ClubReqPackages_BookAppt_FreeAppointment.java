@@ -2,6 +2,7 @@ package SingleMemberAppointments;
 
 import java.io.IOException;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,10 +12,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
@@ -38,7 +38,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	private static String resourceName3 = "FitExpert2";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
-	
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -135,27 +135,24 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 				break;
 			}
 		}
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -182,18 +179,18 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(1000);
-				
+		Thread.sleep(2000);
+
 		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: "+tomorrowsDate+" " +startTime);
-		System.out.println("Product: "+appointmentToBook1 );
-		System.out.println("Resource: "+ resourceName1);
+		System.out.println("Time: " + tomorrowsDate + " " + startTime);
+		System.out.println("Product: " + appointmentToBook1);
+		System.out.println("Resource: " + resourceName1);
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment is free!"));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook1 ));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Resource: "+ resourceName1));
-		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook1));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Resource: " + resourceName1));
+
 		ap.getPopup1BookButton().click();
 
 		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
@@ -204,7 +201,6 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
 		Thread.sleep(2000);
-		
 
 //Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();
@@ -223,11 +219,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
 		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
-		
+
 		reusableMethods.memberLogout();
 
 	}
-		
+
 	@Test(priority = 2)
 	public void ScheduleFreeServiceV() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("bauto", "Testing1!");
@@ -316,26 +312,23 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 				break;
 			}
 		}
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -363,17 +356,17 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
-			
+
 		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: "+tomorrowsDate+" " +startTime);
-		System.out.println("Product: "+appointmentToBook2 );
-		System.out.println("Resource: "+ resourceName2);
+		System.out.println("Time: " + tomorrowsDate + " " + startTime);
+		System.out.println("Product: " + appointmentToBook2);
+		System.out.println("Resource: " + resourceName2);
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment is free!"));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook2 ));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Resource: "+ resourceName2));
-		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook2));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Resource: " + resourceName2));
+
 		ap.getPopup1BookButton().click();
 
 		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
@@ -384,7 +377,6 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
 		Thread.sleep(2000);
-		
 
 //Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();
@@ -403,11 +395,12 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
 		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
-		
+
 		reusableMethods.memberLogout();
 
 	}
-	@Test (priority = 3)
+
+	@Test(priority = 3)
 	public void ScheduleFreeTrainingWithThreeResources() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("bauto", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
@@ -495,27 +488,24 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 				break;
 			}
 		}
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -542,24 +532,22 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(1000);
-			
-		
+		Thread.sleep(2000);
+
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+ tomorrowsDate+" "+startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook5 ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook5));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName3));
-				
+
 		ap.getPopup1BookButton().click();
-		
+
 		int additionalResourcesCount = ap.getAdditionalResources().size();
 
 		for (int n = 0; n < additionalResourcesCount; n++) {
 			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
 				ap.getAdditionalResources().get(n).click();
 		}
-		
-		
+
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -568,9 +556,9 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
-		
+
 		ap.getbookButton().click();
-		
+
 		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
@@ -579,7 +567,6 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
 		Thread.sleep(2000);
-		
 
 //Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();
@@ -597,15 +584,14 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 //Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
-		
+
 		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook5);
-		
+
 		reusableMethods.memberLogout();
 
 	}
 
-
-	@Test (priority = 4, description = "Package price is 0 dollars due to MSS club pricing discount 100% to the membership type")
+	@Test(priority = 4, description = "Package price is 0 dollars due to MSS club pricing discount 100% to the membership type")
 	public void CannotScheduleZeroDollarMSSTraining() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("bauto", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
@@ -694,26 +680,23 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			}
 		}
 
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -741,25 +724,23 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
-		
+
 		ap.getPopup1BookButton().click();
 //		Thread.sleep(3000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-	
-	
+
 //Verifies that the Total amount is zero dollars
 		System.out.println(ap.getTotalAmount().getText());
 
 		Assert.assertTrue(ap.getTotalAmount().getText().contains("$0.00"));
-		
+
 //Verifies that the Pay button is disabled	
 		Assert.assertFalse(ap.getPaymentButton().isEnabled());
-		
+
 		reusableMethods.memberLogout();
 
 	}
 
-		
 	@Test(priority = 5, description = "Package price is 0 dollars due to MSS club pricing discount 100% to the membership type")
 	public void CannotScheduleFreeDiscountMSSServiceV() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("bauto", "Testing1!");
@@ -848,26 +829,23 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 				break;
 			}
 		}
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -895,20 +873,19 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
-		
+
 		ap.getPopup1BookButton().click();
 //		Thread.sleep(3000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-	
-	
+
 //Verifies that the Total amount is zero dollars
 		System.out.println(ap.getTotalAmount().getText());
 
 		Assert.assertTrue(ap.getTotalAmount().getText().contains("$0.00"));
-		
+
 //Verifies that the Pay button is disabled	
 		Assert.assertFalse(ap.getPaymentButton().isEnabled());
-		
+
 		reusableMethods.memberLogout();
 	}
 
@@ -1001,26 +978,23 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			}
 		}
 
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -1048,17 +1022,17 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
-				
+
 		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: "+tomorrowsDate+" " +startTime);
-		System.out.println("Product: "+appointmentToBook1 );
-		System.out.println("Resource: "+ resourceName3);
+		System.out.println("Time: " + tomorrowsDate + " " + startTime);
+		System.out.println("Product: " + appointmentToBook1);
+		System.out.println("Resource: " + resourceName3);
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment is free!"));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook6 ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook6));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName3));
-		
+
 		ap.getPopup1BookButton().click();
 
 		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
@@ -1069,7 +1043,6 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
 		Thread.sleep(2000);
-		
 
 //Navigate to Dashboard
 		int linkcount = driver.findElements(By.tagName("a")).size();
@@ -1088,14 +1061,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
 		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook6);
-		
+
 		reusableMethods.memberLogout();
 
-		
 	}
-	
-
-	
 
 	// @AfterTest
 	@AfterClass

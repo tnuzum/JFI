@@ -245,6 +245,7 @@ public class ChangeGrpApptWithOutFee_ClubReqPackages extends base {
 				break;
 			}
 		}
+		Thread.sleep(2000);
 
 		System.out.println(ap.getPopup1Content().getText());
 		System.out.println("Time: " + dayAfter + " " + startTime2);

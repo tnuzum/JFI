@@ -213,7 +213,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_NewCard extends base {
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		System.out.println(ap.getPopup1Content().getText());
 		System.out.println("Time: " + dayAfter + " " + startTime2);

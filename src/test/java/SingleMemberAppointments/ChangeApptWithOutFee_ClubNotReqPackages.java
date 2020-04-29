@@ -210,7 +210,7 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 				break;
 			}
 		}
-
+		Thread.sleep(2000);
 		System.out.println(ap.getPopup1Content().getText());
 		System.out.println("Time: " + dayAfter + " " + startTime2);
 		System.out.println("Product: " + appointmentToBook2);

@@ -249,7 +249,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		System.out.println(ap.getPopup1Content().getText());
 		System.out.println("Time: " + dayAfter + " " + startTime2);

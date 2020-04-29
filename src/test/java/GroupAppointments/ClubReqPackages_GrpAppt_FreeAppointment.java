@@ -195,7 +195,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		System.out.println(ap.getPopup1Content().getText());
 		System.out.println("Time: " + tomorrowsDate + ", " + startTime);
@@ -393,7 +393,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));

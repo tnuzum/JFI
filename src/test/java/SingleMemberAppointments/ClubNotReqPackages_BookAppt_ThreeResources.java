@@ -166,7 +166,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		startTime = st2.getText();
 		System.out.println(startTime);
 		st2.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
