@@ -1,9 +1,5 @@
 package SingleMemberCourses;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.Test;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.Assert;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 
@@ -13,9 +9,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import pageObjects.AcctHistoryPO;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.CalendarPO;
 import pageObjects.ClassSignUpPO;
@@ -26,105 +25,96 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
+public class EnrollInFreeCourseTest extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 
-public class EnrollInFreeCourseTest extends base{
-private static Logger log =LogManager.getLogger(base.class.getName());
-
-private static String CourseStartMonth = "Dec";
-private static String dsiredMonthYear = "December 2020";
-private static DashboardPO d;
-private static BreadcrumbTrailPO BT;
-private static ClassSignUpPO c;
-private static ThankYouPO TY;
-private static String testName = null;
-
+	private static String CourseStartMonth = "Dec";
+	private static String dsiredMonthYear = "December 2020";
+	private static DashboardPO d;
+	private static BreadcrumbTrailPO BT;
+	private static ClassSignUpPO c;
+	private static ThankYouPO TY;
+	private static String testName = null;
 
 //	@BeforeTest
 	@BeforeClass
-	public void initialize() throws IOException, InterruptedException
-		{
-			 driver = initializeDriver();
-			 log.info("Driver Initialized");
-			 driver.get(prop.getProperty("EMELoginPage"));
-			 
-			 d = new DashboardPO(driver);
-				BT = new BreadcrumbTrailPO(driver);
-				c = new ClassSignUpPO(driver);
-				TY = new ThankYouPO(driver);
-		}
-	
+	public void initialize() throws IOException, InterruptedException {
+		driver = initializeDriver();
+		log.info("Driver Initialized");
+		driver.get(prop.getProperty("EMELoginPage"));
+
+		d = new DashboardPO(driver);
+		BT = new BreadcrumbTrailPO(driver);
+		c = new ClassSignUpPO(driver);
+		TY = new ThankYouPO(driver);
+	}
+
 	@BeforeMethod
-	public void GetTestMethodName(Method method)
-	    {
-	         testName = method.getName(); 
-	        
-	    }
-		
-	@Test (priority = 1, description = "Enroll in free course")
-		
-	public void EnrollInZeroDollarCourse() throws IOException, InterruptedException
-		{	
+	public void GetTestMethodName(Method method) {
+		testName = method.getName();
+
+	}
+
+	@Test(priority = 1, description = "Enroll in free course")
+
+	public void EnrollInZeroDollarCourse() throws IOException, InterruptedException {
 		try {
-		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
-		//reusableMethods.unenrollFromCourse(dsiredMonthYear);
-		//Thread.sleep(1000);
-		//reusableMethods.returnToDashboard();
-		reusableWaits.waitForDashboardLoaded();
-			
-		 d.getMyCoursesEventsScheduleButton().click();
-		 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+			reusableMethods.activeMemberLogin("emailmember", "Testing1!");
+			// reusableMethods.unenrollFromCourse(dsiredMonthYear);
+			// Thread.sleep(1000);
+			// reusableMethods.returnToDashboard();
+			reusableWaits.waitForDashboardLoaded();
+
+			d.getMyCoursesEventsScheduleButton().click();
+			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		
+
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-	
-/*			c.getCourseFilter().click();
-			c.getCourseKeyword().click();
-			c.getSearchField().sendKeys("FREE COURSE AUTO");
-			c.getApplyFilters().click();
-*/			
+
+			/*
+			 * c.getCourseFilter().click(); c.getCourseKeyword().click();
+			 * c.getSearchField().sendKeys("FREE COURSE AUTO"); c.getApplyFilters().click();
+			 */
 //			System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
 //			driver.findElement(By.xpath("//label[@id='dec']")).click();
 			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
 			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-					for (int i = 0; i < monthCount; i++)
-					{
-						String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-						if (monthName.equals(CourseStartMonth))
-						{
-							 MonthNames.findElements(By.tagName("label")).get(i).click();
-							 break;
-						}
-							
-					}
-			
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-			
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j= 0; j<CourseCount; j++)
-			 {
-				String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-								
-				if (CourseName.contains("FREE COURSE AUTO"))
-				{
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific Course
-					 break;
+			for (int i = 0; i < monthCount; i++) {
+				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+				if (monthName.equals(CourseStartMonth)) {
+					MonthNames.findElements(By.tagName("label")).get(i).click();
+					break;
 				}
-			 }
-			
 
-			
+			}
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+			for (int j = 0; j < CourseCount; j++) {
+				String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
+						.getText();
+
+				if (CourseName.contains("FREE COURSE AUTO")) {
+					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																										// specific
+																										// Course
+					break;
+				}
+			}
+
 			Thread.sleep(2000);
-		
-		if (c.getPopupSignupButtonCourse().isEnabled()) {
-			c.getPopupSignupButtonCourse().click();
 
-		} else {
-			c.getPopupCancelButtonCourse().click();
-			Assert.fail("SignUp button not available");
+			if (c.getPopupSignupButtonCourse().isEnabled()) {
+				c.getPopupSignupButtonCourse().click();
 
-		}
+			} else {
+				c.getPopupCancelButtonCourse().click();
+				Assert.fail("SignUp button not available");
+
+			}
 			Thread.sleep(2000);
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -134,53 +124,51 @@ private static String testName = null;
 			Assert.assertEquals("Start Time: 4:30 PM", c.getClassStartTime().getText());
 			Assert.assertEquals("Course Instructor: Jillian S", c.getCourseInstructor().getText());
 
-					
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
-			
-			
-		c.getContinueButton().click();
-		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
-		Assert.assertEquals("Success", c.getPopupMessage().getText());
-		c.getPopupClose().click();
-		Thread.sleep(1000);
-		
-		//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
-				reusableMethods.ThankYouPageValidations();
 
-				//Note down the Receipt number
-				String receiptNumber = TY.getReceiptNumber().getText();
-			
-				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
-				TY.getPrintReceiptButton().click();
-				Thread.sleep(2000);
-				Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-				Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
-				
-				//Verifies the buttons on Print Receipt Popup
-				reusableMethods.ReceiptPopupValidations();
-				
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(1000);
+			c.getContinueButton().click();
+			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
+			Assert.assertEquals("Success", c.getPopupMessage().getText());
+			c.getPopupClose().click();
+			Thread.sleep(1000);
 
-		
-		//Navigate to Dashboard
-		int count = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < count; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+			// Verifies the text on Thank You page and the links to navigate to Dashboard
+			// and other pages are displayed
+			reusableMethods.ThankYouPageValidations();
 
-			{
-				// reusableWaits.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
-				break;
+			// Note down the Receipt number
+			String receiptNumber = TY.getReceiptNumber().getText();
+
+			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
+			TY.getPrintReceiptButton().click();
+			Thread.sleep(2000);
+			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
+
+			// Verifies the buttons on Print Receipt Popup
+			reusableMethods.ReceiptPopupValidations();
+
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			Thread.sleep(1000);
+
+			// Navigate to Dashboard
+			int count = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+				{
+					// reusableWaits.linksToBeClickable();
+					driver.findElements(By.tagName("a")).get(i).click();
+					break;
+				}
+
 			}
+			reusableWaits.waitForDashboardLoaded();
+			// Verifies the link navigates to the right page
+			Assert.assertEquals("Dashboard", driver.getTitle());
+			Thread.sleep(1000);
 
-		}
-		reusableWaits.waitForDashboardLoaded();
-		//Verifies the link navigates to the right page
-		Assert.assertEquals("Dashboard", driver.getTitle());
-		Thread.sleep(1000);
-		
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -196,7 +184,7 @@ private static String testName = null;
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
-		
+
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
@@ -205,61 +193,65 @@ private static String testName = null;
 			reusableMethods.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
-		
-		finally {
-		/*	boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
-			
-			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-				reusableMethods.returnToDashboard();}*/
-			
-			reusableMethods.returnToDashboard();
-			
-		}
-		}
 
-	@Test (priority = 2, description = "Unenroll from the course")
-		
+		finally {
+			/*
+			 * boolean receiptpopuppresent =
+			 * reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+			 * 
+			 * if (receiptpopuppresent == true) {System.out.println("closing the receipt");
+			 * TY.getReceiptPopup().findElement(By.
+			 * xpath("//button[contains(text(), 'Close')]")).click();
+			 * reusableMethods.returnToDashboard();}
+			 */
+
+			reusableMethods.returnToDashboard();
+
+		}
+	}
+
+	@Test(priority = 2, description = "Unenroll from the course")
+
 	public void unenrollFromCourse() throws IOException, InterruptedException {
 		try {
-		
-		CalendarPO cp = new CalendarPO(driver);
-		
-		Thread.sleep(2000);
-		reusableWaits.waitForDashboardLoaded();
-		d.getMenuMyActivies().click();
-		
-		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1"))
-		{
-			Thread.sleep(500);
+
+			CalendarPO cp = new CalendarPO(driver);
+
+			Thread.sleep(2000);
+			reusableWaits.waitForDashboardLoaded();
+			d.getMenuMyActivies().click();
+
+			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+				Thread.sleep(500);
+			}
+
+			d.getMenuMyCalendar().click();
+			String monthYear = cp.getMonthYear().getText();
+			while (!monthYear.equals(dsiredMonthYear)) {
+				cp.getRightArrow().click();
+				monthYear = cp.getMonthYear().getText();
+			}
+			Thread.sleep(1000);
+			cp.getCalDayBadge().click();
+			Thread.sleep(1000);
+			cp.getCalEventTitle().click();
+			Thread.sleep(1000);
+			cp.getUnEnrollBtn().click();
+			UnenrollPO u = new UnenrollPO(driver);
+			WebDriverWait wait = new WebDriverWait(driver, 60);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+			u.getUnenrollButton().click();
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
 		}
-		
-		d.getMenuMyCalendar().click();
-		String monthYear = cp.getMonthYear().getText();
-		while(!monthYear.equals(dsiredMonthYear))
-		{
-			cp.getRightArrow().click();
-			monthYear = cp.getMonthYear().getText();
-		}
-		
-		cp.getCalDayBadge().click();
-		cp.getCalEventTitle().click();
-		cp.getUnEnrollBtn().click();
-		UnenrollPO u = new UnenrollPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
-		wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
-		u.getUnenrollButton().click();
-		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
-		u.getUnenrollConfirmYesButton().click();
-		wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-		wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
-		Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
-		u.getUnenrollConfirmYesButton().click();
-		Thread.sleep(2000);
-		}
-		
-		 catch (java.lang.AssertionError ae) {
+
+		catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			log.error(ae.getMessage(), ae);
@@ -272,162 +264,149 @@ private static String testName = null;
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
-		
+
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
 			log.error(eci.getMessage(), eci);
 			reusableMethods.catchErrorMessage();
 			Assert.fail(eci.getMessage());
+		} finally {
+			reusableMethods.returnToDashboard();
+			reusableMethods.memberLogout();
 		}
-			finally{
-				reusableMethods.returnToDashboard();
-				reusableMethods.memberLogout();
-					}
-		
-		}
-		
-	
-	
-	@Test (priority = 3, description = "Enroll In course Free Due to Existing Punches") //Bug 155892 has been created
-	
-	public void EnrollInCourseFreeWithExistingPunches() throws IOException, InterruptedException
-	{	
+
+	}
+
+	@Test(priority = 3, description = "Enroll In course Free Due to Existing Punches") // Bug 155892 has been created
+
+	public void EnrollInCourseFreeWithExistingPunches() throws IOException, InterruptedException {
 		try {
-	reusableMethods.activeMember6Login();
+			reusableMethods.activeMember6Login();
 //	reusableMethods.unenrollFromCourse(dsiredMonthYear);
 //	Thread.sleep(1000);
 //	reusableMethods.returnToDashboard();
-	reusableWaits.waitForDashboardLoaded();
-			
-		//Noting down the Package Units before enrolling in Course
-				int IntPackageCountBefore = 0;
-				int IntPackageCountAfter = 0;
+			reusableWaits.waitForDashboardLoaded();
 
-				IntPackageCountBefore = reusableMethods.getPackageUnits("ServiceOA");
-	
-	 d.getMyCoursesEventsScheduleButton().click();
-	 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-			
-		
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-		
+			// Noting down the Package Units before enrolling in Course
+			int IntPackageCountBefore = 0;
+			int IntPackageCountAfter = 0;
+
+			IntPackageCountBefore = reusableMethods.getPackageUnits("ServiceOA");
+
+			d.getMyCoursesEventsScheduleButton().click();
+			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 //		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
 //		driver.findElement(By.xpath("//label[@id='dec']")).click();
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-				for (int i = 0; i < monthCount; i++)
-				{
-					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-					if (monthName.equals(CourseStartMonth))
-					{
-						 MonthNames.findElements(By.tagName("label")).get(i).click();
-						 break;
-					}
-						
+			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+			int monthCount = MonthNames.findElements(By.tagName("label")).size();
+			for (int i = 0; i < monthCount; i++) {
+				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+				if (monthName.equals(CourseStartMonth)) {
+					MonthNames.findElements(By.tagName("label")).get(i).click();
+					break;
 				}
-				
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-			 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j= 0; j<CourseCount; j++)
-		 {
-			String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-							
-			if (CourseName.contains("COURSEFREEWITHEXISTINGPUNCHES"))
-			{
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific Course
-				 break;
+
 			}
-		 }
-		
 
-		
-		Thread.sleep(2000);
-		
-		if (c.getPopupSignupButtonCourse().isEnabled()) {
-			c.getPopupSignupButtonCourse().click();
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		} else {
-			c.getPopupCancelButtonCourse().click();
-			Assert.fail("SignUp button not available");
+			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+			for (int j = 0; j < CourseCount; j++) {
+				String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
+						.getText();
 
-		}
-		Thread.sleep(2000);
-		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
-		Assert.assertEquals("CourseFreeWithExistingPunches", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 8:00 PM", c.getClassStartTime().getText());
-		Assert.assertEquals("Course Instructor: Andrea", c.getCourseInstructor().getText());
+				if (CourseName.contains("COURSEFREEWITHEXISTINGPUNCHES")) {
+					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																										// specific
+																										// Course
+					break;
+				}
+			}
 
-				
-		int radioButtonCount = driver.findElements(By.tagName("label")).size();
-		for (int i=0; i<radioButtonCount; i++)
-		{
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Use Existing Package"))
-					{
+			Thread.sleep(2000);
+
+			if (c.getPopupSignupButtonCourse().isEnabled()) {
+				c.getPopupSignupButtonCourse().click();
+
+			} else {
+				c.getPopupCancelButtonCourse().click();
+				Assert.fail("SignUp button not available");
+
+			}
+			Thread.sleep(2000);
+			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+			Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
+			Assert.assertEquals("CourseFreeWithExistingPunches", c.getClassName().getText());
+			Assert.assertEquals("Start Time: 8:00 PM", c.getClassStartTime().getText());
+			Assert.assertEquals("Course Instructor: Andrea", c.getCourseInstructor().getText());
+
+			int radioButtonCount = driver.findElements(By.tagName("label")).size();
+			for (int i = 0; i < radioButtonCount; i++) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Use Existing Package")) {
 					Assert.assertTrue(driver.findElements(By.tagName("label")).get(i).isEnabled());
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
-					}
-		}
-		
-		
-	c.getContinueButton().click();
-	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
-	Assert.assertEquals("Success", c.getPopupMessage().getText());
-	c.getPopupClose().click();
-	Thread.sleep(2000);
+				}
+			}
 
-	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+			c.getContinueButton().click();
+			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
+			Assert.assertEquals("Success", c.getPopupMessage().getText());
+			c.getPopupClose().click();
+			Thread.sleep(2000);
+
+			// Verifies the text on Thank You page and the links to navigate to Dashboard
+			// and other pages are displayed
 			reusableMethods.ThankYouPageValidations();
 
-			//Note down the Receipt number
+			// Note down the Receipt number
 			String receiptNumber2 = TY.getReceiptNumber().getText();
-			
-			
+
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber2));
-			
-			//Verifies the buttons on Print Receipt Popup
+
+			// Verifies the buttons on Print Receipt Popup
 			reusableMethods.ReceiptPopupValidations();
-			
-	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-	Thread.sleep(1000);
 
-	
-	//Navigate to Appointments Page
-	int count = driver.findElements(By.tagName("a")).size();
-	for (int i = 0; i < count; i++) {
-		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Appointments"))
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			Thread.sleep(1000);
 
-		{
-			// reusableWaits.linksToBeClickable();
-			driver.findElements(By.tagName("a")).get(i).click();
-			break;
-		}
+			// Navigate to Appointments Page
+			int count = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Appointments"))
 
-	}
-	
-	//Verifies the link navigates to the right page
-	Assert.assertEquals("Appointments", driver.getTitle());
-	Thread.sleep(1000);
-	
-	//Note the package units after enrolling
+				{
+					// reusableWaits.linksToBeClickable();
+					driver.findElements(By.tagName("a")).get(i).click();
+					break;
+				}
+
+			}
+
+			// Verifies the link navigates to the right page
+			Assert.assertEquals("Appointments", driver.getTitle());
+			Thread.sleep(1000);
+
+			// Note the package units after enrolling
 			IntPackageCountAfter = reusableMethods.getPackageUnits("ServiceOA");
 //			System.out.println(IntUnitCountAfter);
-				
-			//Verifies the package units is now decremented by one unit
+
+			// Verifies the package units is now decremented by one unit
 			IntPackageCountBefore--;
-			Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter); 
+			Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter);
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -443,7 +422,7 @@ private static String testName = null;
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
-		
+
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
@@ -452,145 +431,142 @@ private static String testName = null;
 			reusableMethods.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
-		
+
 		finally {
-		/*	boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
-			
-			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-				reusableMethods.returnToDashboard();}*/
-			
-			reusableMethods.returnToDashboard();		
+			/*
+			 * boolean receiptpopuppresent =
+			 * reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+			 * 
+			 * if (receiptpopuppresent == true) {System.out.println("closing the receipt");
+			 * TY.getReceiptPopup().findElement(By.
+			 * xpath("//button[contains(text(), 'Close')]")).click();
+			 * reusableMethods.returnToDashboard();}
+			 */
+
+			reusableMethods.returnToDashboard();
 			reusableMethods.unenrollFromCourse(dsiredMonthYear);
 			reusableMethods.memberLogout();
-		}	
-	
+		}
+
 	}
-	
-	@Test (priority = 4, description = "Enroll In Course Free Due to Service D") 
-	
-	public void EnrollInCourseFreeWithServiceD() throws IOException, InterruptedException
-	{	
+
+	@Test(priority = 4, description = "Enroll In Course Free Due to Service D")
+
+	public void EnrollInCourseFreeWithServiceD() throws IOException, InterruptedException {
 		try {
-	
-	
-	reusableMethods.activeMember3Login();
+
+			reusableMethods.activeMember3Login();
 //	reusableMethods.unenrollFromCourse(dsiredMonthYear);
 //	Thread.sleep(1000);
 //	reusableMethods.returnToDashboard();
-	reusableWaits.waitForDashboardLoaded();
-		
-	 d.getMyCoursesEventsScheduleButton().click();
-	 Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-			
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-		
+			reusableWaits.waitForDashboardLoaded();
+
+			d.getMyCoursesEventsScheduleButton().click();
+			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 //		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
 //		driver.findElement(By.xpath("//label[@id='dec']")).click();
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-				for (int i = 0; i < monthCount; i++)
-				{
-					String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-					if (monthName.equals(CourseStartMonth))
-					{
-						 MonthNames.findElements(By.tagName("label")).get(i).click();
-						 break;
-					}
-						
+			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+			int monthCount = MonthNames.findElements(By.tagName("label")).size();
+			for (int i = 0; i < monthCount; i++) {
+				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+				if (monthName.equals(CourseStartMonth)) {
+					MonthNames.findElements(By.tagName("label")).get(i).click();
+					break;
 				}
-				
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-				 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j= 0; j<CourseCount; j++)
-		 {
-			String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-							
-			if (CourseName.contains("COURSEFREEWITHSERVICED"))
-			{
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); //Click on the specific Course
-				 break;
 			}
-		 }
-		
 
-		
-		Thread.sleep(2000);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		if (c.getPopupSignupButtonCourse().isEnabled()) {
-			c.getPopupSignupButtonCourse().click();
+			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+			for (int j = 0; j < CourseCount; j++) {
+				String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
+						.getText();
 
-		} else {
-			c.getPopupCancelButtonCourse().click();
-			Assert.fail("SignUp button not available");
+				if (CourseName.contains("COURSEFREEWITHSERVICED")) {
+					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																										// specific
+																										// Course
+					break;
+				}
+			}
 
-		}
-		Thread.sleep(2000);
-		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-		Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
-		Assert.assertEquals("CourseFreeWithServiceD", c.getClassName().getText());
-		Assert.assertEquals("Start Time: 6:30 PM", c.getClassStartTime().getText());
-		Assert.assertEquals("Course Instructor: Andrea", c.getCourseInstructor().getText());
-		
-		Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
-		Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
-		
-		
-	c.getContinueButton().click();
-	wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
-	Assert.assertEquals("Success", c.getPopupMessage().getText());
-	c.getPopupClose().click();
-	Thread.sleep(1000);
-	
-	//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
+			Thread.sleep(2000);
+
+			if (c.getPopupSignupButtonCourse().isEnabled()) {
+				c.getPopupSignupButtonCourse().click();
+
+			} else {
+				c.getPopupCancelButtonCourse().click();
+				Assert.fail("SignUp button not available");
+
+			}
+			Thread.sleep(2000);
+			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+			Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
+			Assert.assertEquals("CourseFreeWithServiceD", c.getClassName().getText());
+			Assert.assertEquals("Start Time: 6:30 PM", c.getClassStartTime().getText());
+			Assert.assertEquals("Course Instructor: Andrea", c.getCourseInstructor().getText());
+
+			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
+			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
+
+			c.getContinueButton().click();
+			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
+			Assert.assertEquals("Success", c.getPopupMessage().getText());
+			c.getPopupClose().click();
+			Thread.sleep(1000);
+
+			// Verifies the text on Thank You page and the links to navigate to Dashboard
+			// and other pages are displayed
 			reusableMethods.ThankYouPageValidations();
 
-			//Note down the Receipt number
+			// Note down the Receipt number
 			String receiptNumber4 = TY.getReceiptNumber().getText();
-						
+
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber4));
-			
-			//Verifies the buttons on Print Receipt Popup
+
+			// Verifies the buttons on Print Receipt Popup
 			reusableMethods.ReceiptPopupValidations();
-			
-	TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-	Thread.sleep(1000);
 
-	
-	//Navigate to Appointments Page
-	int count = driver.findElements(By.tagName("a")).size();
-	for (int i = 0; i < count; i++) {
-		if (driver.findElements(By.tagName("a")).get(i).getText().equals("Appointments"))
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			Thread.sleep(1000);
 
-		{
-			// reusableWaits.linksToBeClickable();
-			driver.findElements(By.tagName("a")).get(i).click();
-			break;
-		}
+			// Navigate to Appointments Page
+			int count = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Appointments"))
 
-	}
-	
-	//Verifies the link navigates to the right page
-	Assert.assertEquals("Appointments", driver.getTitle());
-	Thread.sleep(1000);
+				{
+					// reusableWaits.linksToBeClickable();
+					driver.findElements(By.tagName("a")).get(i).click();
+					break;
+				}
+
+			}
+
+			// Verifies the link navigates to the right page
+			Assert.assertEquals("Appointments", driver.getTitle());
+			Thread.sleep(1000);
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
-			
+
 		}
 
 		catch (org.openqa.selenium.NoSuchElementException ne) {
@@ -600,7 +576,7 @@ private static String testName = null;
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
-		
+
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
@@ -609,25 +585,27 @@ private static String testName = null;
 			reusableMethods.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
-		
+
 		finally {
-/*			boolean receiptpopuppresent = reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
-			if (receiptpopuppresent == true) {System.out.println("closing the receipt");
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();}*/
-			
+			/*
+			 * boolean receiptpopuppresent =
+			 * reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+			 * if (receiptpopuppresent == true) {System.out.println("closing the receipt");
+			 * TY.getReceiptPopup().findElement(By.
+			 * xpath("//button[contains(text(), 'Close')]")).click();}
+			 */
+
 			reusableMethods.returnToDashboard();
 			reusableMethods.unenrollFromCourse(dsiredMonthYear);
 			reusableMethods.memberLogout();
 		}
-	
-	
+
 	}
 
 //	@AfterTest
 	@AfterClass
-		public void teardown() throws InterruptedException
-		{
-			driver.close();
-			driver=null;
-		}
+	public void teardown() throws InterruptedException {
+		driver.close();
+		driver = null;
+	}
 }

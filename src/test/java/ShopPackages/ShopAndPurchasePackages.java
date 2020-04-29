@@ -64,11 +64,7 @@ public class ShopAndPurchasePackages extends base {
 			reusableWaits.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			while (leftMenuOpen.equals("false")) {
-				d.getMenuButton().click();
-				leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			}
+			reusableMethods.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -374,11 +370,7 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(2000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			while (leftMenuOpen.equals("false")) {
-				d.getMenuButton().click();
-				leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			}
+			reusableMethods.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -572,11 +564,7 @@ public class ShopAndPurchasePackages extends base {
 			reusableWaits.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			while (leftMenuOpen.equals("false")) {
-				d.getMenuButton().click();
-				leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			}
+			reusableMethods.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -795,11 +783,7 @@ public class ShopAndPurchasePackages extends base {
 
 			Thread.sleep(2000);
 
-			String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			while (leftMenuOpen.equals("false")) {
-				d.getMenuButton().click();
-				leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			}
+			reusableMethods.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -883,11 +867,7 @@ public class ShopAndPurchasePackages extends base {
 			reusableWaits.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			while (leftMenuOpen.equals("false")) {
-				d.getMenuButton().click();
-				leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			}
+			reusableMethods.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -971,11 +951,7 @@ public class ShopAndPurchasePackages extends base {
 			reusableWaits.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			while (leftMenuOpen.equals("false")) {
-				d.getMenuButton().click();
-				leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-			}
+			reusableMethods.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 

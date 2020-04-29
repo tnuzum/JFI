@@ -31,11 +31,7 @@ public class DashBoard_Menu extends base {
 		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 //			d.getDashboardButton().click();
 
-		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-		while (!leftMenuOpen.equals("true")) {
-			d.getMenuButton().click();
-			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-		}
+		reusableMethods.openSideMenuIfNotOpenedAlready();
 		// Verify the menuDashboardButton text value
 		Assert.assertTrue(d.getDashboardButton().isDisplayed());
 		String dashboardButtonText = d.getDashboardButton().getText();
