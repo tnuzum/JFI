@@ -111,7 +111,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -180,7 +180,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -249,7 +249,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -319,7 +319,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -410,7 +410,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -481,7 +481,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -551,7 +551,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -625,7 +625,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -708,7 +708,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 						.contains(" Scheduling Conflict"));
 			}
 		}
-
+		Thread.sleep(1000);
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 

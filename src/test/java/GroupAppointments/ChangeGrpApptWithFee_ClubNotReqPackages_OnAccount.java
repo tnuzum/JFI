@@ -84,8 +84,9 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_OnAccount extends base {
 		}
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
-
+		Thread.sleep(2000);
 		AppointmentsPO ap = new AppointmentsPO(driver);
+		Thread.sleep(1000);
 		ap.getEditApptChangeButton().click();
 		Thread.sleep(1000);
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("There is a fee for changing this appointment."));

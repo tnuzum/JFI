@@ -2,6 +2,7 @@ package SingleMemberAppointments;
 
 import java.io.IOException;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -32,7 +33,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 	private static String appointmentPrice = "$10.00";
 	private static String startTime;
 	private static int appointmentsCount;
-	
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -46,7 +47,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		reusableMethods.activeMemberLogin("emailmember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
-		
+
 		Thread.sleep(2000);
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
@@ -122,28 +123,25 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 			}
 		}
 
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 			;
 
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -171,20 +169,19 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		Thread.sleep(1000);
 
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+ tomorrowsDate+" "+startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(appointmentPrice));
-		
+
 		ap.getPopup1BookButton().click();
-		
+
 		int additionalResourcesCount = ap.getAdditionalResources().size();
 
 		for (int n = 0; n < additionalResourcesCount; n++) {
 			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
 				ap.getAdditionalResources().get(n).click();
 		}
-		
 
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
@@ -195,12 +192,12 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
-		
+
 		ap.getbookButton().click();
-		
+
 		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 		wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
-		
+
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 		ap.getPopup2OKButton().click();
 		Thread.sleep(1000);
@@ -233,7 +230,6 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
 
-		
 		for (int i = 0; i < appointmentsCount; i++) {
 			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
 
@@ -251,7 +247,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 	public void CancelAppointment() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		
+
 		appointmentsCount = d.getMyAppts().size();
 
 		for (int k = 0; k < appointmentsCount; k++) {
@@ -260,7 +256,8 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 			{
 
 				if (d.getMyAppts().get(k).getText().contains(startTime)) {
-					wait.until(ExpectedConditions.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
+					wait.until(ExpectedConditions
+							.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
 					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
 
 //				Thread.sleep(5000);
@@ -275,6 +272,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 			}
 		}
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 		a.getEditApptCancelButton().click();
