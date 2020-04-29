@@ -85,7 +85,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_NewCard extends base {
 		}
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
-
+		Thread.sleep(2000);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		ap.getEditApptChangeButton().click();
 		Thread.sleep(1000);
@@ -236,7 +236,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_NewCard extends base {
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		System.out.println(ap.getPopup1Content().getText());
 		System.out.println("Time: " + dayAfter + " " + startTime2);
@@ -325,6 +325,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_NewCard extends base {
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
 		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
 
 		// Click the Pay button
 		while (!ap.getPaymentButton().isEnabled()) {

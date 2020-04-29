@@ -122,7 +122,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButtonCourse().click();
 			Thread.sleep(1000);
 
@@ -204,7 +204,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -273,7 +273,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButtonCourse().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -341,7 +341,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButtonCourse().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -423,7 +423,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -512,7 +512,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -581,7 +581,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -666,7 +666,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-
+			Thread.sleep(1000);
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -771,6 +771,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 						.contains("Scheduling Conflict"));
 			}
 		}
+		Thread.sleep(1000);
 		c.getPopupCancelButtonCourse().click();
 		Thread.sleep(500);
 		reusableMethods.returnToDashboard();

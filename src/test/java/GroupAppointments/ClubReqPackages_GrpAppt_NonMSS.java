@@ -110,7 +110,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 		Assert.assertEquals(ap.getPopup1Content().getText(),
 				"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package.");
 		ap.getPopup2OKButton().click();
-
+		Thread.sleep(1000);
 		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");

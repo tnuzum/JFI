@@ -93,6 +93,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 		c.getCourseFilter().click();
 		c.getCourseKeyword().click();
 		c.getSearchField().sendKeys("family");
+		Thread.sleep(1000);
 		c.getClassApplyFilters().click();
 		Thread.sleep(2000);
 
@@ -217,7 +218,9 @@ public class FamilyClassEnrollmentUIValidations extends base {
 				fml.click(); // Selects the member
 
 		}
+		Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
+		Thread.sleep(2000);
 
 	}
 
@@ -290,6 +293,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 
 		}
 		c.getContinueButton().click();
+		Thread.sleep(2000);
 
 	}
 
@@ -299,6 +303,10 @@ public class FamilyClassEnrollmentUIValidations extends base {
 		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+		while (!c.getClassName().isDisplayed()) {
+			Thread.sleep(500);
+		}
 
 		while (c.getClassName().getText().isBlank()) {
 			Thread.sleep(500);

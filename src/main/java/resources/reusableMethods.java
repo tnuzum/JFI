@@ -278,6 +278,7 @@ public class reusableMethods extends base {
 		try {
 
 			Thread.sleep(2000);
+			reusableMethods.openSideMenuIfNotOpenedAlready();
 			d.getMenuMyActivies().click();
 
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
@@ -664,6 +665,7 @@ public class reusableMethods extends base {
 		}
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 		a.getEditApptCancelButton().click();
@@ -821,6 +823,7 @@ public class reusableMethods extends base {
 		}
 
 		System.out.println("came out of the loop");
+		Thread.sleep(2000);
 
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
@@ -867,7 +870,7 @@ public class reusableMethods extends base {
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
 			ap.getPopup1BookButton().click();
 			Thread.sleep(2000);
@@ -1025,6 +1028,7 @@ public class reusableMethods extends base {
 		}
 
 		System.out.println("came out of the loop");
+		Thread.sleep(2000);
 
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
@@ -1071,7 +1075,7 @@ public class reusableMethods extends base {
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
 
 			System.out.println("Went into the loop of Package required");

@@ -81,6 +81,7 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 		}
 
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		ap.getEditApptChangeButton().click();
@@ -210,7 +211,7 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		System.out.println(ap.getPopup1Content().getText());
 		System.out.println("Time: " + dayAfter + " " + startTime2);

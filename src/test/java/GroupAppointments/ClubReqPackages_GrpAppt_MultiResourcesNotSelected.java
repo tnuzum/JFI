@@ -114,6 +114,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 				break;
 			}
 		}
+		Thread.sleep(1000);
 		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
@@ -319,6 +320,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
 		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -480,6 +482,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			}
 		}
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 		a.getEditApptCancelButton().click();
