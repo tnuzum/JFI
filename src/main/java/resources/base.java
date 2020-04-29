@@ -108,12 +108,14 @@ public class base {
 				}
 				if (browserName.equals("Edge")) {
 					log.info("Edge Browser: Running Tests on local machine");
+					System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\webdrivers\\msedgedriver.exe");
 					driver = new EdgeDriver();
 				}
 				if (browserName.equals("IE")) {
 					log.info("IE Browser: Running Tests on local machine");
 					InternetExplorerOptions options = new InternetExplorerOptions();
-					System.setProperty("webdriver.ie.driver", "C:\\Automation\\libs\\webdrivers\\MicrosoftWebDriver.exe");
+					System.setProperty("webdriver.ie.driver",
+							"C:\\Automation\\libs\\webdrivers\\MicrosoftWebDriver.exe");
 					options.setCapability("ignoreZoomSetting", true);
 					driver = new InternetExplorerDriver(options);
 				}
