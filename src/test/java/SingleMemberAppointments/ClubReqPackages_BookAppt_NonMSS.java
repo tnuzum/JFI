@@ -2,16 +2,16 @@ package SingleMemberAppointments;
 
 import java.io.IOException;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import resources.base;
@@ -22,7 +22,7 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-NonMSS";
-	
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -37,7 +37,7 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
-		
+
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		Select s = new Select(ap.getclubs());
@@ -116,26 +116,27 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 		 */
 
 //		Thread.sleep(4000);
-		
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-	
-		
-		Assert.assertEquals(ap.getPopup1Content().getText(),"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package." );
+		Thread.sleep(2000);
+
+		Assert.assertEquals(ap.getPopup1Content().getText(),
+				"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package.");
 		ap.getPopup2OKButton().click();
 		reusableMethods.returnToDashboard();
 		reusableMethods.memberLogout();
 	}
-	 // @AfterTest
-	 
-	 @AfterClass 
-	 public void teardown() throws InterruptedException {
-	  driver.close(); driver = null; }
-	
+	// @AfterTest
+
+	@AfterClass
+	public void teardown() throws InterruptedException {
+		driver.close();
+		driver = null;
+	}
 
 }

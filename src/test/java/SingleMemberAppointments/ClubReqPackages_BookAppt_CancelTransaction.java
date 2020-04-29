@@ -2,6 +2,7 @@ package SingleMemberAppointments;
 
 import java.io.IOException;
 import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -11,10 +12,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
@@ -123,25 +123,22 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 		 * if (resource.equals(resourceName)) { s3.selectByVisibleText(resource); break;
 		 * } }
 		 */
-		while (ap.getloadingAvailabilityMessage().size()!=0)
-		{
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
 			Thread.sleep(1000);
 		}
-		
+
 		System.out.println("came out of the loop");
-		
+
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		if (classtext.contains("cal-out-month"))
-		{
+		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-			while (ap.getloadingAvailabilityMessage().size()!=0)
-			{
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
 			}
-			
+
 			System.out.println("came out of the loop");
 		}
 
@@ -167,19 +164,18 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(1000);
-				
+		Thread.sleep(2000);
+
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: "+tomorrowsDate+" " +startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: "+appointmentToBook ));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains( resourceName));
-		
-		Assert.assertEquals(ap.getPopup1Title().getText(),
-				"Package Required");
-		
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
+
+		Assert.assertEquals(ap.getPopup1Title().getText(), "Package Required");
+
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment requires a package purchase."));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Would you like to continue?"));
-		
+
 		ap.getPopup1BookButton().click();
 		Thread.sleep(3000);
 
@@ -192,16 +188,16 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
-		
-		for (int i = 0; i< ap.getReviewSection().size(); i++)
-		{
+
+		for (int i = 0; i < ap.getReviewSection().size(); i++) {
 			if (ap.getReviewSection().get(i).getText().contains("REVIEW"))
-				
+
 			{
 				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("PACKAGE REQUIRED"));
-				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("This appointment requires a package."));
+				Assert.assertTrue(
+						ap.getReviewSection().get(i).getText().contains("This appointment requires a package."));
 				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains(
-				"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
+						"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
 			}
 		}
 		while (ap.getRateBox().getText().isBlank()) {
@@ -235,36 +231,33 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 		// Verifies the Pay button contains the total amount
 
 		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
-		
+
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < paymentMethodscount; i++) {
-			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-					.contains("5454"))
-				{
-				
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-					break;
-				}
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
+
+				PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+				break;
+			}
 		}
 
 		// Click the Cancel button
-		
+
 		ap.getCancelButton().click();
 		Thread.sleep(2000);
 		Boolean ApptCheckout = reusableMethods.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
-		
+
 		Assert.assertTrue(ApptCheckout == false);
 		reusableMethods.returnToDashboard();
 	}
 
-	
-	
-	 // @AfterTest
-	 
-	 @AfterClass 
-	 public void teardown() throws InterruptedException {
-	  driver.close(); driver = null; }
-	
+	// @AfterTest
+
+	@AfterClass
+	public void teardown() throws InterruptedException {
+		driver.close();
+		driver = null;
+	}
 
 }

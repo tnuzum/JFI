@@ -177,7 +177,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		st2.click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
