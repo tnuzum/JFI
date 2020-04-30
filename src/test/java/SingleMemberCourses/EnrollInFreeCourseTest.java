@@ -237,6 +237,7 @@ public class EnrollInFreeCourseTest extends base {
 			cp.getCalEventTitle().click();
 			Thread.sleep(1000);
 			cp.getUnEnrollBtn().click();
+			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));

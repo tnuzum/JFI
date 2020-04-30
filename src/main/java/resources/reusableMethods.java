@@ -234,8 +234,10 @@ public class reusableMethods extends base {
 				Thread.sleep(1000);
 				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 				u.getUnenrollConfirmYesButton().click();
+
 				wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
 				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+				Thread.sleep(1000);
 				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
 				Thread.sleep(2000);
@@ -309,6 +311,7 @@ public class reusableMethods extends base {
 			u.getUnenrollConfirmYesButton().click();
 			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
 			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
