@@ -111,7 +111,7 @@ public class FamilyMemberCourseEnrollment extends base {
 		c.getCourseFilter().click();
 		c.getCourseKeyword().click();
 		c.getSearchField().sendKeys("family");
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		c.getCourseApplyFilters().click();
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -190,6 +190,7 @@ public class FamilyMemberCourseEnrollment extends base {
 		}
 		Thread.sleep(2000);
 		c.getPopupSignupButtonCourse().click();
+		Thread.sleep(2000);
 
 		while (c.getClassName().getText().isBlank()) {
 			Thread.sleep(500);

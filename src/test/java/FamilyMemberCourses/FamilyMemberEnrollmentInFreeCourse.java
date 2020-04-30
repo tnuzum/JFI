@@ -170,8 +170,9 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 				fml.click(); // Selects the member
 
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		c.getPopupSignupButtonCourse().click();
+		Thread.sleep(2000);
 
 		while (c.getClassName().getText().isBlank()) {
 			Thread.sleep(500);

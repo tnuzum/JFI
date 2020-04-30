@@ -729,14 +729,17 @@ public class EnrollClassByBuyingPackage extends base {
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
 				d.getmyClassesUnenrollButton().click();
+				Thread.sleep(1000);
 				UnenrollPO u = new UnenrollPO(driver);
 				wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 				u.getUnenrollButton().click();
+				Thread.sleep(1000);
 				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 				u.getUnenrollConfirmYesButton().click();
 				wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
 				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+				Thread.sleep(1000);
 				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
 				Thread.sleep(2000);

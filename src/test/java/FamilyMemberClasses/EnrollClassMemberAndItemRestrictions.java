@@ -661,9 +661,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			}
 		}
 
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
-		Thread.sleep(500);
+		Thread.sleep(2000);
 		c.getContinueButton().click();
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		softAssertion.assertEquals("Success", c.getPopupMessage().getText());
