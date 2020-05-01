@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -180,6 +181,8 @@ public class FamilyMemberClassEnrollment extends base {
 
 		}
 		Thread.sleep(2000);
+		((JavascriptExecutor) driver)
+				.executeScript("window.scrollTo(0," + c.getPopupSignUpButton().getLocation().x + ")");
 		c.getPopupSignUpButton().click();
 
 		while (c.getClassName().getText().isBlank()) {

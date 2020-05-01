@@ -34,7 +34,7 @@
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
-			<class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
+			<!--class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
 			<class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ThreeResources"/>
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_CancelTransaction" />
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_MultiResourcesNotSelected" />
@@ -96,7 +96,7 @@
 			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_SavedCard"/>
 			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt"/>
 			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages"/>
-			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages"/>
+			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages"/-->
 			<class name="EME.EmailConfirmations" />
 		</classes>
 	</test>
