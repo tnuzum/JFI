@@ -96,8 +96,8 @@
 			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_SavedCard"/>
 			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt"/>
 			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages"/>
-			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages"/-->
-			<class name="EME.EmailConfirmations" />
+			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages"/>
+			<class name="EME.EmailConfirmations"-- />
 		</classes>
 	</test>
 </suite>
