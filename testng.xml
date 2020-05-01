@@ -5,7 +5,7 @@
 		<listener class-name="EME.listeners" />
 		<!--listener class-name = "resources.ExtentReporterNG"/ -->
 	</listeners>
-	<test thread-count="5" name="EME - Smoke Testing">
+	<test thread-count="5" name="EME - E2E Testing">
 		<classes>
 			<!--class name="EME.loginPageTest" />
 			<class name="EME.MemberLoginTest" />
@@ -23,12 +23,12 @@
 			<class name="SingleMemberCourses.EnrollInFreeCourseTest" />
 			<class name="SingleMemberCourses.EnrollCourseByBuyingPackage" />
 			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" />
-			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
+			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" /-->
 			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
-			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" /-->
-			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
+			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
+			<!--class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
 			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
-			<!--class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
+			<class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
 			<class name="FamilyMemberCourses.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
