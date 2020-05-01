@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -641,9 +642,13 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
-			c.getPopupCancelButton().click();
+			// ((JavascriptExecutor) driver)
+			// .executeScript("window.scrollTo(0," +
+			// c.getPopupCancelButton().getLocation().x + ")");
+
+			Actions actions = new Actions(driver);
+			actions.moveToElement(c.getPopupCancelButton()).click().perform();
+			// c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -679,8 +684,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver)
-				.executeScript("window.scrollTo(0," + c.getPopupSignUpButton().getLocation().x + ")");
+		// ((JavascriptExecutor) driver)
+		// .executeScript("window.scrollTo(0," +
+		// c.getPopupSignUpButton().getLocation().x + ")");
+		Actions actions = new Actions(driver);
+		actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 		c.getPopupSignUpButton().click();
 		Thread.sleep(2000);
 		c.getContinueButton().click();
@@ -728,8 +736,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			}
 		}
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver)
-				.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
+		// ((JavascriptExecutor) driver)
+		// .executeScript("window.scrollTo(0," +
+		// c.getPopupCancelButton().getLocation().x + ")");
+
+		actions.moveToElement(c.getPopupCancelButton()).click().perform();
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 

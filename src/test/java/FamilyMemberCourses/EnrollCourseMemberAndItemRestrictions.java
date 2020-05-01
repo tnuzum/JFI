@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -279,9 +280,11 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			c.getPopupCancelButtonCourse().click();
 			((JavascriptExecutor) driver)
 					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+
+			c.getPopupCancelButtonCourse().click();
+
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
 		}
@@ -682,8 +685,11 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+			// ((JavascriptExecutor) driver)
+			// .executeScript("window.scrollTo(0," +
+			// c.getPopupCancelButtonCourse().getLocation().x + ")");
+			Actions actions = new Actions(driver);
+			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -731,8 +737,11 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		}
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver)
-				.executeScript("window.scrollTo(0," + c.getPopupSignupButtonCourse().getLocation().x + ")");
+		// ((JavascriptExecutor) driver)
+		// .executeScript("window.scrollTo(0," +
+		// c.getPopupSignupButtonCourse().getLocation().x + ")");
+		Actions actions = new Actions(driver);
+		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
 		c.getContinueButton().click();
@@ -791,8 +800,11 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			}
 		}
 		Thread.sleep(1000);
-		((JavascriptExecutor) driver)
-				.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+		// ((JavascriptExecutor) driver)
+		// .executeScript("window.scrollTo(0," +
+		// c.getPopupCancelButtonCourse().getLocation().x + ")");
+
+		actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 		c.getPopupCancelButtonCourse().click();
 		Thread.sleep(500);
 		reusableMethods.returnToDashboard();

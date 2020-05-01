@@ -7,7 +7,7 @@
 	</listeners>
 	<test thread-count="5" name="EME - Smoke Testing">
 		<classes>
-			<class name="EME.loginPageTest" />
+			<!--class name="EME.loginPageTest" />
 			<class name="EME.MemberLoginTest" />
 			<class name="EME.PageLaunchTest" />
 			<class name="EME.DashBoard_Layout" /> 
@@ -25,16 +25,16 @@
 			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" />
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
 			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
-			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
+			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" /-->
 			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
 			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
-			<class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
+			<!--class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
 			<class name="FamilyMemberCourses.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
-			<!--class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
+			<class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
 			<class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ThreeResources"/>
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_CancelTransaction" />
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_MultiResourcesNotSelected" />
