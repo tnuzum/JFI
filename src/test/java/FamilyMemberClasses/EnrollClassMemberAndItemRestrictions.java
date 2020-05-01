@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -112,6 +113,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -181,6 +184,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -250,6 +255,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -320,6 +327,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -411,6 +420,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -482,6 +493,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -552,6 +565,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -626,6 +641,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
@@ -662,6 +679,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		Thread.sleep(2000);
+		((JavascriptExecutor) driver)
+				.executeScript("window.scrollTo(0," + c.getPopupSignUpButton().getLocation().x + ")");
 		c.getPopupSignUpButton().click();
 		Thread.sleep(2000);
 		c.getContinueButton().click();
@@ -709,6 +728,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			}
 		}
 		Thread.sleep(1000);
+		((JavascriptExecutor) driver)
+				.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 

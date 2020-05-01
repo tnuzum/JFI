@@ -361,6 +361,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
 		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
 
 		// Verifies the Pay button contains the total amount
 		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
