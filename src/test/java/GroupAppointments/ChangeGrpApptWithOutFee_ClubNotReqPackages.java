@@ -214,7 +214,7 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 				}
 
 				AftrnunSlot.click();
-
+				Thread.sleep(1000);
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
 						.findElement(By.id("tab-2-2"));
 				List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer

@@ -200,7 +200,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_ToSingleMbrAppt extends bas
 				}
 
 				AftrnunSlot.click();
-
+				Thread.sleep(1000);
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
 						.findElement(By.id("tab-2-1"));
 				List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer

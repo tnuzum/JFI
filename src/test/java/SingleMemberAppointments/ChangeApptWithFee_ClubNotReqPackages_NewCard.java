@@ -195,6 +195,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_NewCard extends base {
 				}
 
 				AftrnunSlot.click();
+				Thread.sleep(1000);
 
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
 						.findElement(By.id("tab-2-1"));
@@ -282,7 +283,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_NewCard extends base {
 		Assert.assertFalse(ap.getPaymentButton().isEnabled());
 		System.out.println("Pay Button disabled:" + ap.getPaymentButton().getAttribute("disabled"));
 
-//		System.out.println(PM.getNameOnCardField().getAttribute("value"));
+		System.out.println(PM.getNameOnCardField().getAttribute("value"));
 		Assert.assertEquals(memberName, PM.getNameOnCardField().getAttribute("value"));
 
 		PM.getCardNumberField().sendKeys("4111111111111111");
@@ -300,6 +301,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_NewCard extends base {
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
 		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
 
 		// Click the Pay button
 		while (!ap.getPaymentButton().isEnabled()) {
