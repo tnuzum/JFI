@@ -35,7 +35,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 	private static String resourceName3 = "FitExpert2";
 	private static String resourceName4 = "PT Smith, Andrew";
 	private static String unitsToBeSelected = "1 - $5.00/per";
-	private static String memberName = "ApptMember6 Auto";
+	private static String memberName = "ApptMember11 Auto";
 	private static String startTime1;
 	private static String startTime2;
 
@@ -49,7 +49,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember6", "Testing1!");
+		reusableMethods.activeMemberLogin("apptmember11", "Testing1!");
 
 		// Book an appointment and get the start time for the appointment
 		startTime1 = reusableMethods.BookApptWith2Resources(clubName1, productCategory, appointmentToBook1,
@@ -206,7 +206,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 				}
 
 				AftrnunSlot.click();
-
+				Thread.sleep(1000);
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
 						.findElement(By.id("tab-2-1"));
 				List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
@@ -330,7 +330,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 		Assert.assertFalse(ap.getPaymentButton().isEnabled());
 		System.out.println("Pay Button disabled:" + ap.getPaymentButton().getAttribute("disabled"));
 
-//		System.out.println(PM.getNameOnCardField().getAttribute("value"));
+		System.out.println(PM.getNameOnCardField().getAttribute("value"));
 		Assert.assertEquals(memberName, PM.getNameOnCardField().getAttribute("value"));
 
 		PM.getCardNumberField().sendKeys("4111111111111111");
@@ -348,6 +348,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
 		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
 
 		// Click the Pay button
 		while (!ap.getPaymentButton().isEnabled()) {
@@ -403,7 +404,8 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 	@Test(priority = 2)
 	public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
 
-		reusableMethods.ApptCheckinInCOG("Auto, apptmember6", appointmentToBook2, "apptmember6"); // Check In the Member
+		reusableMethods.ApptCheckinInCOG("Auto, apptmember11", appointmentToBook2, "apptmember11"); // Check In the
+																									// Member
 																									// to the
 																									// appointment
 

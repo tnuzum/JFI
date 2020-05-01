@@ -49,7 +49,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_SavedCard extends base {
 
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember8", "Testing1!");
+		reusableMethods.activeMemberLogin("apptmember12", "Testing1!");
 
 		// Book an appointment and get the start time for the appointment
 		startTime1 = reusableMethods.BookGrpApptWith2Resources(clubName1, productCategory, appointmentToBook1,
@@ -228,7 +228,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_SavedCard extends base {
 				}
 
 				AftrnunSlot.click();
-
+				Thread.sleep(1000);
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
 						.findElement(By.id("tab-2-1"));
 				List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
@@ -405,7 +405,8 @@ public class ChangeGrpApptWithFee_ClubReqPackages_SavedCard extends base {
 	@Test(priority = 2)
 	public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
 
-		reusableMethods.ApptCheckinInCOG("Auto, apptmember8", appointmentToBook2, "apptmember8"); // Check In the Member
+		reusableMethods.ApptCheckinInCOG("Auto, apptmember12", appointmentToBook2, "apptmember12"); // Check In the
+																									// Member
 																									// to the
 																									// appointment
 

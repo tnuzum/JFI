@@ -194,6 +194,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_SavedCard extends base {
 				}
 
 				AftrnunSlot.click();
+				Thread.sleep(1000);
 
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
 						.findElement(By.id("tab-2-1"));

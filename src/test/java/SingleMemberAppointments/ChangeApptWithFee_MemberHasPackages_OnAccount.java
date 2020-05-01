@@ -194,7 +194,7 @@ public class ChangeApptWithFee_MemberHasPackages_OnAccount extends base {
 				}
 
 				AftrnunSlot.click();
-
+				Thread.sleep(1000);
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
 						.findElement(By.id("tab-2-1"));
 				List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
