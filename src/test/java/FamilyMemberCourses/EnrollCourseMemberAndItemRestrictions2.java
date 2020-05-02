@@ -644,7 +644,7 @@ public class EnrollCourseMemberAndItemRestrictions2 extends base {
 
 				System.out.println("ELEMENT HAS TO BE CLICKED");
 
-				WebElement element = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j);
+				WebElement element = driver.findElements(By.xpath("//div[contains(@class, 'column3')]/i[1]")).get(j);
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 //				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 				// specific

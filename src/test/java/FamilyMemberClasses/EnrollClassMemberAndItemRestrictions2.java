@@ -676,7 +676,7 @@ public class EnrollClassMemberAndItemRestrictions2 extends base {
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-			System.out.println(className);
+
 			if (className.contains("SCHEDULINGCONFLICTCLASS")) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
@@ -722,7 +722,7 @@ public class EnrollClassMemberAndItemRestrictions2 extends base {
 
 			if (className.contains("BARRE COMBAT FUSION")) {
 
-				WebElement element = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j);
+				WebElement element = driver.findElements(By.xpath("//div[contains(@class, 'column3')]/i[1]")).get(j);
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 
 				// driver.findElements(By.xpath("//div[contains(@class,
