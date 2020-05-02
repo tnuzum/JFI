@@ -642,6 +642,8 @@ public class EnrollCourseMemberAndItemRestrictions2 extends base {
 			System.out.println(courseName);
 			if (courseName.contains("FAMILYENROLLCOURSE")) {
 
+				System.out.println("ELEMENT HAS TO BE CLICKED");
+
 				WebElement element = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j);
 				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
 //				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
