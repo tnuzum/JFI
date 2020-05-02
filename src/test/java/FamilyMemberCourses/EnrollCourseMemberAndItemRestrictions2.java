@@ -636,10 +636,10 @@ public class EnrollCourseMemberAndItemRestrictions2 extends base {
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-
+		System.out.println(CourseCount);
 		for (int j = 0; j < CourseCount; j++) {
 			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
+			System.out.println(courseName);
 			if (courseName.contains("FAMILYENROLLCOURSE")) {
 
 				WebElement element = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j);

@@ -676,7 +676,7 @@ public class EnrollClassMemberAndItemRestrictions2 extends base {
 		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j = 0; j < ClassCount; j++) {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
+			System.out.println(className);
 			if (className.contains("SCHEDULINGCONFLICTCLASS")) {
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific class
