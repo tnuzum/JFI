@@ -180,7 +180,7 @@ public class reusableMethods extends base {
 	public static String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-
+		Thread.sleep(1000);
 		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
 		while (leftMenuOpen.equals("false")) {
 			d.getMenuButton().click();
