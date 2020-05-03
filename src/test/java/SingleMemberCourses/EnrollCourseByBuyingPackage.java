@@ -793,6 +793,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 			u.getUnenrollButton().click();
+			Thread.sleep(1000);
 			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 			u.getUnenrollConfirmYesButton().click();
 			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));

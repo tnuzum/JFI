@@ -299,7 +299,6 @@ public class reusableMethods extends base {
 			Thread.sleep(1000);
 			cp.getCalEventTitle().click();
 			Thread.sleep(1000);
-			Thread.sleep(1000);
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
@@ -307,6 +306,7 @@ public class reusableMethods extends base {
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 			u.getUnenrollButton().click();
+			Thread.sleep(1000);
 			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 			u.getUnenrollConfirmYesButton().click();
 			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
