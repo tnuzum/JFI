@@ -565,7 +565,10 @@ public class EnrollCourseMemberAndItemRestrictions2 extends base {
 				System.out.println("ELEMENT HAS TO BE CLICKED");
 
 				WebElement element = driver.findElements(By.xpath("//div[contains(@class, 'column3')]/i[1]")).get(j);
-				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+				Actions actions = new Actions(driver);
+				actions.moveToElement(element).click().perform();
+				// ((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+				// element);
 //				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 				// specific
 				// class
@@ -614,8 +617,9 @@ public class EnrollCourseMemberAndItemRestrictions2 extends base {
 			// .executeScript("window.scrollTo(0," +
 			// c.getPopupCancelButtonCourse().getLocation().x + ")");
 			Actions actions = new Actions(driver);
+
 			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
-			c.getPopupCancelButtonCourse().click();
+			// c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -667,7 +671,7 @@ public class EnrollCourseMemberAndItemRestrictions2 extends base {
 		// c.getPopupSignupButtonCourse().getLocation().x + ")");
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
-		c.getPopupSignupButtonCourse().click();
+//		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
 		c.getContinueButton().click();
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
@@ -739,7 +743,7 @@ public class EnrollCourseMemberAndItemRestrictions2 extends base {
 		// c.getPopupCancelButtonCourse().getLocation().x + ")");
 
 		actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
-		c.getPopupCancelButtonCourse().click();
+//		c.getPopupCancelButtonCourse().click();
 		Thread.sleep(500);
 		reusableMethods.returnToDashboard();
 		reusableMethods.unenrollFromCourse(dsiredMonthYear);
