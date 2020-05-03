@@ -24,8 +24,8 @@
 			<class name="SingleMemberCourses.EnrollCourseByBuyingPackage" />
 			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" />
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" /-->
-			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions2" />
-			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions2" />
+			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
+			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
 			<!--class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
 			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
 			<class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
