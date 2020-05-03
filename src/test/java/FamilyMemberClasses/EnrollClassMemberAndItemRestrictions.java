@@ -689,7 +689,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		// c.getPopupSignUpButton().getLocation().x + ")");
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignUpButton()).click().perform();
-		c.getPopupSignUpButton().click();
+//		c.getPopupSignUpButton().click();
 		Thread.sleep(2000);
 		c.getContinueButton().click();
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
@@ -741,7 +741,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		// c.getPopupCancelButton().getLocation().x + ")");
 
 		actions.moveToElement(c.getPopupCancelButton()).click().perform();
-		c.getPopupCancelButton().click();
+//		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 
 		reusableMethods.returnToDashboard();

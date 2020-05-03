@@ -690,7 +690,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			// c.getPopupCancelButtonCourse().getLocation().x + ")");
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
-			c.getPopupCancelButtonCourse().click();
+//			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
 			reusableMethods.memberLogout();
@@ -805,7 +805,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		// c.getPopupCancelButtonCourse().getLocation().x + ")");
 
 		actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
-		c.getPopupCancelButtonCourse().click();
+//		c.getPopupCancelButtonCourse().click();
 		Thread.sleep(500);
 		reusableMethods.returnToDashboard();
 		reusableMethods.unenrollFromCourse(dsiredMonthYear);
