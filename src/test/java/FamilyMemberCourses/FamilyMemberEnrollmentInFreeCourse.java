@@ -6,8 +6,8 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -97,7 +97,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 		c.getCourseFilter().click();
 		c.getCourseKeyword().click();
 		c.getSearchField().sendKeys("free");
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		c.getCourseApplyFilters().click();
 		Thread.sleep(2000);
 
@@ -172,9 +172,8 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 
 		}
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver)
-				.executeScript("window.scrollTo(0," + c.getPopupSignupButtonCourse().getLocation().x + ")");
-		c.getPopupSignupButtonCourse().click();
+		Actions actions = new Actions(driver);
+		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 		Thread.sleep(2000);
 
 		while (c.getClassName().getText().isBlank()) {
