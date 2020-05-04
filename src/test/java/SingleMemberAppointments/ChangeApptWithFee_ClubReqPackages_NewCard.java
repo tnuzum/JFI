@@ -297,7 +297,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		System.out.println(ap.getTotalAmount().getText());
 
