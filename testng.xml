@@ -7,33 +7,37 @@
 	</listeners>
 	<test thread-count="5" name="EME - E2E Testing">
 		<classes>
-			<!--class name="EME.loginPageTest" />
+			<class name="EME.loginPageTest" />
 			<class name="EME.MemberLoginTest" />
 			<class name="EME.PageLaunchTest" />
 			<class name="EME.DashBoard_Layout" /> 
 			<class name="EME.DashBoard_Menu" />
 			<class name="EME.MakePaymentTest" />
 			<class name="ShopPackages.ShopAndPurchasePackages" />
+			
 			<class name="SingleMemberClasses.EnrollWithSingleClassFeeTest" />
 			<class name="SingleMemberClasses.EnrollInFreeClassTest" />
 			<class name="SingleMemberClasses.EnrollClassByBuyingPackage" />
 			<class name="SingleMemberClasses.EnrollInClass_CancelTransaction" />
 			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
+			
 			<class name="SingleMemberCourses.EnrollWithSingleCourseFeeTest" />
 			<class name="SingleMemberCourses.EnrollInFreeCourseTest" />
 			<class name="SingleMemberCourses.EnrollCourseByBuyingPackage" />
 			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" />
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
+			
 			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
-			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
 			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
-			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
 			<class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
-			<class name="FamilyMemberCourses.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
+			
+			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
+			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
+			<class name="FamilyMemberCourses.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment" />
-			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" /-->
+			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
 			
 			<class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
 			<class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ThreeResources"/>
@@ -45,10 +49,12 @@
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_SingleResource_NotSelected" />
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_SingleResource_Selected" />
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_FreeAppointment" />
+			
 			<class name="SingleMemberAppointments.CancelApptWithFee_NewCard" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_OnAccount" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_SavedCard" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_cancelTransaction" />
+			
 			<class name="SingleMemberAppointments.ChangeApptWithFee_CancelTransaction" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_AdditionalResources" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_NewCard" />
@@ -76,11 +82,13 @@
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesSelected" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_NonMSS" />
+			
 			<class name="GroupAppointments.CancelGrpApptWithFee_NewCard" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_OnAccount" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_SavedCard" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_cancelTransaction" />
 			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" />
+			
 			<class name="GroupAppointments.ChangeGrpApptWithFee_CancelTransaction"/>
 			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources" />
 			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_NewCard" />
