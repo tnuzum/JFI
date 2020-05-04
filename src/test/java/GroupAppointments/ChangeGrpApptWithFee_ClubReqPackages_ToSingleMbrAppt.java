@@ -300,7 +300,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 			}
 		}
 
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		System.out.println(ap.getTotalAmount().getText());
 
