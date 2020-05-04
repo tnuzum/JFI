@@ -23,7 +23,7 @@
 			<class name="SingleMemberCourses.EnrollInFreeCourseTest" />
 			<class name="SingleMemberCourses.EnrollCourseByBuyingPackage" />
 			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" />
-			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" /-->
+			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
 			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
 			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
 			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
@@ -33,8 +33,8 @@
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment" />
-			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
-			<!--class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
+			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" /-->
+			<class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ResourceNotSelected"/>
 			<class name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ThreeResources"/>
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_CancelTransaction" />
 			<class name="SingleMemberAppointments.ClubReqPackages_BookAppt_MultiResourcesNotSelected" />
@@ -48,7 +48,7 @@
 			<class name="SingleMemberAppointments.CancelApptWithFee_OnAccount" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_SavedCard" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_cancelTransaction" />
-			<class name="GroupAppointments.ClubNotReqPackages_GrpAppt_ResourceNotSelected" />
+			<!--class name="GroupAppointments.ClubNotReqPackages_GrpAppt_ResourceNotSelected" />
 			<class name="GroupAppointments.ClubNotReqPackages_GrpAppt_ThreeResources" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_CancelTransaction" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_FreeAppointment" />
@@ -60,7 +60,7 @@
 			<class name="GroupAppointments.CancelGrpApptWithFee_OnAccount" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_SavedCard" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_cancelTransaction" />
-			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" />
+			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" /-->
 			<class name="SingleMemberAppointments.ChangeApptWithFee_CancelTransaction" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_AdditionalResources" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_NewCard" />
@@ -79,7 +79,7 @@
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt"/>
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_ToGrpAppt"/>
 			<class name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_ToGrpAppt"/>
-			<class name="GroupAppointments.ChangeGrpApptWithFee_CancelTransaction"/>
+			<!--class name="GroupAppointments.ChangeGrpApptWithFee_CancelTransaction"/>
 			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources" />
 			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_NewCard" />
 			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_OnAccount" />
