@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -86,20 +87,19 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 
 			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
 			Assert.assertTrue(p.getLabelText().isDisplayed());
+			Assert.assertTrue(p.getLabelText1().isDisplayed());
 
-			int checkBoxCount = p.getMembershipCheckboxes().size();
-			for (int i = 0; i < checkBoxCount; i++) {
-				System.out.println(p.getMembershipCheckboxes().get(i).getText());
-				if (p.getMembershipCheckboxes().get(i).getText().contains("Balance Weight Loss 12 Week")) {
-					p.getMembershipCheckboxes().get(i).click();
-					break;
-				}
-			}
+			WebElement FirstAgreement = driver.findElement(
+					By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input"));
+
+			FirstAgreement.click();
 
 			Thread.sleep(1000);
 			p.getIAgreeCheckbox().click();
-			p.getSubmitButton().click();
-			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
+			Thread.sleep(1000);
+			// p.getSubmitButton().click();
+			// Assert.assertTrue(p.getPopupContent().getText().contains("A signature is
+			// required to continue."));
 
 			Actions a = new Actions(driver);
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()

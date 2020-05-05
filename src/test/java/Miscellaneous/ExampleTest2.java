@@ -79,7 +79,6 @@ public class ExampleTest2 extends base {
 		System.out.println("Bhagya - testing the merge conflicts");
 
 		System.out.println("todd - testing the merge conflicts");
-
 	}
 
 	@AfterClass

@@ -39,7 +39,7 @@ public class PaymentPO {
 	By houseAcctYesRadio = By.xpath("//input[@id='ac-yes']");
 	By inClubPurchaseNoRadio = By.xpath("//input[@id='ic-no']");
 	By inClubPurchaseYesRadio = By.xpath("//input[@id='ic-yes']");
-	By iAgreeCheckbox = By.xpath("//div[contains(@class, 'at-paybalance-checkbox-tandc')]");
+	By iAgreeCheckbox = By.xpath("//div[contains(@class, 'at-paybalance-checkbox-tandc')]/input");
 	By submitButton = By.xpath("//button[contains(@class, 'at-paybalance-button-newcard-submit')]");
 	By popupPayButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 	By popupConfirmation1 = By.xpath("//div[@class='swal2-header']/h2");// displays Payment Made! message
@@ -55,9 +55,10 @@ public class PaymentPO {
 	By storedCards = By.xpath("//div[@class = 'payment-card']");
 	By signaturePad = By.xpath("//div[@class='m-signature-pad--body']");
 	By popupContent = By.xpath("//div[@id = 'swal2-content']");
-	By membershipCheckboxes = By.xpath("//input[contains(@class, 'at-managepayments-addcc-checkbox-memberships')]");
+	By checkboxes = By.xpath("//input[contains(@class, 'checkbox')]");
 	By linkAgreementsHeader = By.xpath("//span[contains(text(),'Link Agreements')]");
 	By labelText = By.xpath("//label[contains(text(),'Would you like to link this card to existing Membe')]");
+	By labelText1 = By.xpath("//div[contains(text(),'A selection is required')]");
 
 // CONSTRUCTOR
 
@@ -214,8 +215,8 @@ public class PaymentPO {
 		return driver.findElement(popupContent);
 	}
 
-	public List<WebElement> getMembershipCheckboxes() {
-		return driver.findElements(membershipCheckboxes);
+	public List<WebElement> getCheckboxes() {
+		return driver.findElements(checkboxes);
 	}
 
 	public WebElement getLinkAgreementsHeader() {
@@ -226,4 +227,7 @@ public class PaymentPO {
 		return driver.findElement(labelText);
 	}
 
+	public WebElement getLabelText1() {
+		return driver.findElement(labelText1);
+	}
 }
