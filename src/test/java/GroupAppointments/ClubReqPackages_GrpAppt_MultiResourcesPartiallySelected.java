@@ -442,6 +442,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 //			Thread.sleep(200);
 		}
 		a.getEditApptProceedButton().click();
+		Thread.sleep(1000);
 		boolean result1 = reusableWaits.popupMessageYesButton();
 		if (result1 == true) {
 //				Thread.sleep(500);	
