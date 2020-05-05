@@ -671,6 +671,7 @@ public class reusableMethods extends base {
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
 		a.getEditApptCancelButton().click();
 		WebElement wait2 = a.getEditApptProceedButton();
 		while (!wait2.isEnabled())// while button is NOT(!) enabled
@@ -728,6 +729,7 @@ public class reusableMethods extends base {
 		 * "//div[@class='col-sm-12']/h2"))); AppointmentsPO a = new
 		 * AppointmentsPO(driver);
 		 * Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		 * wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
 		 * a.getEditApptCancelButton().click(); WebElement wait2 =
 		 * a.getEditApptProceedButton(); while (!wait2.isEnabled())// while button is
 		 * NOT(!) enabled { // Thread.sleep(200); }

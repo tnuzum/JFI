@@ -259,6 +259,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 		Thread.sleep(2000);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
+		wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
 		ap.getEditApptCancelButton().click();
 		Assert.assertTrue(
 				ap.getCancelFeeSection().getText().contains("There is a fee for cancelling this appointment."));

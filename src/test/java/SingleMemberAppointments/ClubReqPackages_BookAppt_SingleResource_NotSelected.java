@@ -371,6 +371,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
 		a.getEditApptCancelButton().click();
 		WebElement wait2 = a.getEditApptProceedButton();
 		while (!wait2.isEnabled())// while button is NOT(!) enabled
