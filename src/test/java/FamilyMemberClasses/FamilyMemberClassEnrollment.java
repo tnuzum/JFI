@@ -82,6 +82,7 @@ public class FamilyMemberClassEnrollment extends base {
 
 		// Note the package units before enrolling the member with existing Package
 		IntPackageCountBefore = reusableMethods.getPackageUnitsForMember(packageName, member6);
+
 		int unitCount = reusableMethods.getPackageUnitsForMember(packageName, member5);
 		System.out.println("Before " + IntPackageCountBefore);
 
@@ -309,7 +310,6 @@ public class FamilyMemberClassEnrollment extends base {
 
 		// Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
-		String receiptNumber1 = null;
 
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
