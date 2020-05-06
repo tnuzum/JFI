@@ -16,8 +16,18 @@ public class ClassSignUpPO {
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By selectDateThisWeekButton = By.xpath("//label[@id='date-week']");
 	By calendarIcon = By.cssSelector(".mat-datepicker-toggle");
-	By selectCategory = By.xpath(
-			"//classcourse[1]/mat-sidenav-container[1]/mat-sidenav-content[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[3]/div[1]/select[1]");
+	By calendarDates = By.tagName("td");
+	By classClubDropdown = By.xpath("//div[contains(@class, 'row-box')]/div[2]/div[2]/div/select");
+	By courseClubDropdown = By.xpath("//div[contains(@class, 'row-box')]/div[3]/div[1]/div[1]/select");
+	By selectClassCategory = By.xpath("//div[contains(@class, 'row-box')]/div[2]/div[3]/select");
+	By selectCourseCategory = By.xpath("//div[contains(@class, 'row-box')]/div[3]/div[2]/select");
+	By dateSelection = By.xpath("//div[@class= 'col-md-4'][1]");
+	By dayOfButton = By.id("date-day");
+	By weekOfButton = By.id("date-week");
+	By monthHeader = By.xpath("//div[@class='panel-heading font-bold']");
+	By dayHeader = By.xpath("//div[@class='col-xs-6']");
+	By dateHeader = By.xpath("//div[@class='col-xs-6 text-right']");
+	By year = By.xpath("//span[contains(@class, 'btn-white')]");
 	By selectCoursesButton = By.xpath("//input[@id='rbcourses']");
 	By firstAvailClassButton = By.xpath("//div[@id='classes']/div/div[2]/div[1]/div/div");
 	By firstAvailClassNextDayButton = By.xpath("//div[@id='classes']/div[2]/div[2]/div[1]/div/div/div");
@@ -84,8 +94,52 @@ public class ClassSignUpPO {
 		return driver.findElement(calendarIcon);
 	}
 
-	public WebElement getSelectCategory() {
-		return driver.findElement(selectCategory);
+	public List<WebElement> getCalendarDates() {
+		return driver.findElements(calendarDates);
+	}
+
+	public WebElement getDateSelection() {
+		return driver.findElement(dateSelection);
+	}
+
+	public WebElement getDayOfButton() {
+		return driver.findElement(dayOfButton);
+	}
+
+	public WebElement getweekOfButton() {
+		return driver.findElement(weekOfButton);
+	}
+
+	public WebElement getmonthHeader() {
+		return driver.findElement(monthHeader);
+	}
+
+	public List<WebElement> getDayHeader() {
+		return driver.findElements(dayHeader);
+	}
+
+	public List<WebElement> getDateHeader() {
+		return driver.findElements(dateHeader);
+	}
+
+	public WebElement getYear() {
+		return driver.findElement(year);
+	}
+
+	public WebElement getClassClubDropdown() {
+		return driver.findElement(classClubDropdown);
+	}
+
+	public WebElement getCourseClubDropdown() {
+		return driver.findElement(courseClubDropdown);
+	}
+
+	public WebElement getSelectClassCategory() {
+		return driver.findElement(selectClassCategory);
+	}
+
+	public WebElement getSelectCourseCategory() {
+		return driver.findElement(selectCourseCategory);
 	}
 
 	public WebElement getSelectCoursesButton() {

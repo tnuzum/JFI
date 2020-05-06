@@ -15,12 +15,14 @@
 			<class name="PayBalance.MakePaymentTest_StoredCard" />
 			<class name="ShopPackages.ShopAndPurchasePackages" />
 			
+			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberClasses.EnrollWithSingleClassFeeTest" />
 			<class name="SingleMemberClasses.EnrollInFreeClassTest" />
 			<class name="SingleMemberClasses.EnrollClassByBuyingPackage" />
 			<class name="SingleMemberClasses.EnrollInClass_CancelTransaction" />
 			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
 			
+			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberCourses.EnrollWithSingleCourseFeeTest" />
 			<class name="SingleMemberCourses.EnrollInFreeCourseTest" />
 			<class name="SingleMemberCourses.EnrollCourseByBuyingPackage" />
