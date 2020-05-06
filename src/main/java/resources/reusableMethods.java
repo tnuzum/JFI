@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -172,7 +173,8 @@ public class reusableMethods extends base {
 
 	public static String memberLogout() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-		d.getLogoutButton().click();
+		Actions a = new Actions(driver);
+		a.moveToElement(d.getLogoutButton()).click().build().perform();
 		reusableWaits.waitForLoginLoginButton();
 		return null;
 	}

@@ -459,7 +459,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-		String year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
+		String year = c.getYear().getText();
 		while (!year.contains(CourseStartYear)) {
 			driver.findElement(By.xpath("//i[contains(@class, 'double-left')]")).click();
 			year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
