@@ -70,17 +70,7 @@ public class EnrollInFreeClassTest extends base {
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-				if (className.contains("FREE CLASS AUTO")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-			}
+			reusableMethods.SelectClassOrCourseToEnroll("FREE CLASS AUTO");
 
 			Thread.sleep(2000);
 
@@ -284,17 +274,7 @@ public class EnrollInFreeClassTest extends base {
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-				if (className.contains("CLASSFREEWITHEXISTINGPUNCHES")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-			}
+			reusableMethods.SelectClassOrCourseToEnroll("CLASSFREEWITHEXISTINGPUNCHES");
 
 			Thread.sleep(2000);
 
@@ -437,17 +417,7 @@ public class EnrollInFreeClassTest extends base {
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-				if (className.contains("CLASSFREEWITHSERVICED")) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-			}
+			reusableMethods.SelectClassOrCourseToEnroll("CLASSFREEWITHSERVICED");
 
 			Thread.sleep(2000);
 

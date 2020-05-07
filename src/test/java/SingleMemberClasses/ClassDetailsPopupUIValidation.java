@@ -12,15 +12,17 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
-import resources.reusableWaits;
 
-public class EnrollClass_ClubSettings extends base {
+public class ClassDetailsPopupUIValidation extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
+	private static String classToEnroll = "CLASSNEEDSPUNCHES";
+	private static String classNameDisplayed = "ClassNeedsPunches";
+	private static DashboardPO d;
+	private static ClassSignUpPO c;
 
 //	@BeforeTest
 	@BeforeClass
@@ -28,35 +30,18 @@ public class EnrollClass_ClubSettings extends base {
 		driver = initializeDriver();
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
+
+		d = new DashboardPO(driver);
+		c = new ClassSignUpPO(driver);
 	}
 
-	@Test(priority = 1, description = "View Classes Unchecked For Club won't display the Class Schedule button")
+	@Test(priority = 1, description = "Ui validations")
+	public void PopupUIValidations() throws IOException, InterruptedException {
 
-	public void ViewClassesUncheckedForClub() throws InterruptedException {
+		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
+				prop.getProperty("activeMember6_password"));
 
-		reusableMethods.activeMemberLogin("CantCclasses", "Testing1!");
-		reusableWaits.waitForDashboardLoaded1();
-		Thread.sleep(2000);
-		Assert.assertFalse(
-				reusableMethods.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-classschedule')]")));
-		reusableMethods.memberLogout();
-
-	}
-
-	@Test(priority = 2, description = "Allow  Class Enrollment Unchecked For Club won't display the Class List")
-
-	public void AllowClassEnrollmentUncheckedForClub() throws InterruptedException {
-
-		reusableMethods.activeMemberLogin("CantnrollClass", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
-		DashboardPO d = new DashboardPO(driver);
-		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-
-		ClassSignUpPO c = new ClassSignUpPO(driver);
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -65,19 +50,28 @@ public class EnrollClass_ClubSettings extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("CANNOTBEENROLLEDCLASS");
+		reusableMethods.SelectClassOrCourseToEnroll(classToEnroll);
 
 		Thread.sleep(2000);
-		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
+
+		Assert.assertEquals(c.getClasslabel().getText(), classNameDisplayed);
+		Assert.assertTrue(c.getDetailsPopup().getText().contains("Class Instructor: Max Gibbs"));
+		Assert.assertTrue(c.getDetailsPopup().getText().contains("Class Length: 45 min"));
+		Assert.assertTrue(c.getDetailsPopup().getText().contains("Date: 05/07/2020"));
+		Assert.assertTrue(c.getDetailsPopup().getText().contains("Time: 10:00 AM"));
+		Assert.assertTrue(c.getDetailsPopup().getText().contains("- CLASS DESCRIPTION -"));
+
 		c.getPopupCancelButton().click();
-		Thread.sleep(2000);
 		reusableMethods.memberLogout();
+
 	}
 
 //	@AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;
 	}
+
 }

@@ -9,20 +9,24 @@ public class ManagePayMethodsPO {
 	public static WebDriver driver;
 
 // OBJECTS
-		
+
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	
+	By noSavedCardMessage = By.xpath("//h1[@class='text-capitalize']");
+
 // CONSTRUCTOR
-		
+
 	public ManagePayMethodsPO(WebDriver driver) {
 		ManagePayMethodsPO.driver = driver;
 	}
 // METHODS
 
-	public WebElement getPageHeader()
-	{
+	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);
 	}
-	
+
+	public WebElement getNoSavedCardMessage() {
+		return driver.findElement(noSavedCardMessage);
+	}
+
 }

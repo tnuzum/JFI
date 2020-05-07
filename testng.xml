@@ -12,8 +12,12 @@
 			<class name="EME.PageLaunchTest" />
 			<class name="EME.DashBoard_Layout" /> 
 			<class name="EME.DashBoard_Menu" />
+			
 			<class name="PayBalance.MakePaymentTest_StoredCard" />
+			
 			<class name="ShopPackages.ShopAndPurchasePackages" />
+			
+			<class name="ManagePaymentMethods.VerifyMessageTest" />
 			
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberClasses.EnrollWithSingleClassFeeTest" />
@@ -21,6 +25,7 @@
 			<class name="SingleMemberClasses.EnrollClassByBuyingPackage" />
 			<class name="SingleMemberClasses.EnrollInClass_CancelTransaction" />
 			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
+			<class name="SingleMemberClasses.ClassDetailsPopupUIValidation" />
 			
 			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberCourses.EnrollWithSingleCourseFeeTest" />
@@ -28,6 +33,7 @@
 			<class name="SingleMemberCourses.EnrollCourseByBuyingPackage" />
 			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" />
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
+			<class name="SingleMemberCourses.CourseDetailsPopupUIValidation" />
 			
 			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
 			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />

@@ -71,16 +71,8 @@ public class FamilyMemberCourseEnrollment2 extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
-				break;
-			}
+		reusableMethods.SelectCourseStartMonth(CourseStartMonth);
 
-		}
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		c.getCourseFilter().click();

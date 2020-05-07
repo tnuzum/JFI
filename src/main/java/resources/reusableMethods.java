@@ -552,6 +552,37 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public static Object SelectCourseStartMonth(String CourseStartMonth) throws InterruptedException {
+
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		int monthCount = MonthNames.findElements(By.tagName("label")).size();
+		for (int i = 0; i < monthCount; i++) {
+			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
+			if (monthName.equals(CourseStartMonth)) {
+				MonthNames.findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+
+		}
+		return null;
+	}
+
+	public static Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) {
+		int ClassOrCourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		for (int j = 0; j < ClassOrCourseCount; j++) {
+			String ClassOrCourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
+					.getText();
+
+			if (ClassOrCourseName.contains(ClassOrCourseToEnroll)) {
+				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
+																									// specific
+																									// Course
+				break;
+			}
+		}
+		return null;
+	}
+
 	public static Object SelectYesterdayDate() throws InterruptedException {
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);

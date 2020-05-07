@@ -5,7 +5,6 @@ import java.lang.reflect.Method;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -65,32 +64,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth2)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
-				break;
-			}
-
-		}
+		reusableMethods.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCOURSE");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("FAMILYENROLLCOURSE")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -149,32 +128,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth2)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
-				break;
-			}
-
-		}
+		reusableMethods.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCOURSE");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("FAMILYENROLLCOURSE")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -233,19 +192,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("COURSEENROLLMENTCLOSED");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("COURSEENROLLMENTCLOSED")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -305,19 +253,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("COURSECANNOTBENROLLED");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("COURSECANNOTBENROLLED")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -376,32 +313,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth2)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
-				break;
-			}
-
-		}
+		reusableMethods.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("COURSEENROLLMENTNOTOPENED");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("COURSEENROLLMENTNOTOPENED")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -467,32 +384,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth1)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
-				break;
-			}
-
-		}
+		reusableMethods.SelectCourseStartMonth(CourseStartMonth1);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("COURSEENROLLMENTENDED");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("COURSEENROLLMENTENDED")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -551,19 +448,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("COURSEWITHINELIGIBLETIME");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("COURSEWITHINELIGIBLETIME")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -622,32 +508,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth2)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
-				break;
-			}
-
-		}
+		reusableMethods.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCOURSE");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("FAMILYENROLLCOURSE")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-
-		}
 		Thread.sleep(1000);
 		try {
 			int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
@@ -711,31 +577,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth2)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
-				break;
-			}
-
-		}
+		reusableMethods.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+		reusableMethods.SelectClassOrCourseToEnroll("SCHEDULINGCONFLICTCOURSE");
 
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (courseName.contains("SCHEDULINGCONFLICTCOURSE")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific class
-				break;
-			}
-
-		}
 		Thread.sleep(2000);
 		// ((JavascriptExecutor) driver)
 		// .executeScript("window.scrollTo(0," +
@@ -765,33 +612,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth2)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click(); // Click on Decedmber month again
-				break;
-			}
-
-		}
+		reusableMethods.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < CourseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		reusableMethods.SelectClassOrCourseToEnroll("CONFLICTCOURSE");
 
-			if (courseName.contains("CONFLICTCOURSE")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on a class
-																									// at the same time
-																									// as the member
-																									// enrolled in other
-																									// course
-				break;
-			}
-
-		}
 		int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
 		for (int i = 0; i < memberCount; i++) {
 			if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("hoh")) {
