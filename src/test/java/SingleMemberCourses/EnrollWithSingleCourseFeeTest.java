@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -82,33 +81,11 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
-//		driver.findElement(By.xpath("//label[@id='dec']")).click();
-			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++) {
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth)) {
-					MonthNames.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-
-			}
+			reusableMethods.SelectCourseStartMonth(CourseStartMonth);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			int courseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < courseCount; j++) {
-				String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
-
-				if (courseName.contains(courseToEnroll)) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// course
-					break;
-				}
-			}
+			reusableMethods.SelectClassOrCourseToEnroll(courseToEnroll);
 
 			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
@@ -318,33 +295,11 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
-//		driver.findElement(By.xpath("//label[@id='dec']")).click();
-			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++) {
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth)) {
-					MonthNames.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-
-			}
+			reusableMethods.SelectCourseStartMonth(CourseStartMonth);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < CourseCount; j++) {
-				String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
-
-				if (CourseName.contains(courseToEnroll)) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// Course
-					break;
-				}
-			}
+			reusableMethods.SelectClassOrCourseToEnroll(courseToEnroll);
 
 			Thread.sleep(1000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
@@ -506,33 +461,11 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
-//		driver.findElement(By.xpath("//label[@id='dec']")).click();
-			WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-			int monthCount = MonthNames.findElements(By.tagName("label")).size();
-			for (int i = 0; i < monthCount; i++) {
-				String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-				if (monthName.equals(CourseStartMonth)) {
-					MonthNames.findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-
-			}
+			reusableMethods.SelectCourseStartMonth(CourseStartMonth);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			int CourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < CourseCount; j++) {
-				String CourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
-						.getText();
-
-				if (CourseName.contains(courseToEnroll)) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// Course
-					break;
-				}
-			}
+			reusableMethods.SelectClassOrCourseToEnroll(courseToEnroll);
 
 			Thread.sleep(1000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {

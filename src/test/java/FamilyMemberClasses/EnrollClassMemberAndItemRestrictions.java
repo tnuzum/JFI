@@ -68,17 +68,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (className.contains("FAMILYENROLLCLASS")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-		}
+		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
 
 		Thread.sleep(1000);
 		try {
@@ -140,17 +130,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		reusableMethods.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("FAMILYENROLLCLASS")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-		}
+		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
 
 		Thread.sleep(1000);
 		try {
@@ -212,17 +193,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		reusableMethods.SelectClassOrCourseToEnroll("CLASSENROLLMENTCLOSED");
 
-			if (className.contains("CLASSENROLLMENTCLOSED")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -284,17 +256,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		reusableMethods.SelectClassOrCourseToEnroll("CLASSCANNOTBENROLLED");
 
-			if (className.contains("CLASSCANNOTBENROLLED")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -377,17 +340,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		reusableMethods.SelectClassOrCourseToEnroll("CLASSENROLLMENTNOTOPENED");
 
-			if (className.contains("CLASSENROLLMENTNOTOPENED")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -449,17 +403,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-			if (className.contains("CLASSENROLLMENTENDED")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-		}
+		reusableMethods.SelectClassOrCourseToEnroll("CLASSENROLLMENTENDED");
 
 		// wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		try {
@@ -522,17 +466,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		reusableMethods.SelectClassOrCourseToEnroll("CLASSWITHINELIGIBLETIME");
 
-			if (className.contains("CLASSWITHINELIGIBLETIME")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-		}
 		Thread.sleep(1000);
 		try {
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
@@ -595,17 +530,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
 
-			if (className.contains("FAMILYENROLLCLASS")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// class
-				break;
-			}
-		}
 		try {
 			int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
 			for (int i = 0; i < memberCount; i++) {
@@ -672,16 +598,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		reusableMethods.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-		int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
-			if (className.contains("SCHEDULINGCONFLICTCLASS")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific class
-				break;
-			}
-		}
+		reusableMethods.SelectClassOrCourseToEnroll("SCHEDULINGCONFLICTCLASS");
 
 		Thread.sleep(2000);
 		// ((JavascriptExecutor) driver)
@@ -716,18 +634,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		for (int j = 0; j < ClassCount; j++) {
-			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		reusableMethods.SelectClassOrCourseToEnroll("BARRE COMBAT FUSION");
 
-			if (className.contains("BARRE COMBAT FUSION")) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on a class
-																									// at the same time
-																									// as the member
-																									// enrolled in other
-																									// class
-				break;
-			}
-		}
 		int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
 		for (int i = 0; i < memberCount; i++) {
 			if (c.getDetailsPopup().findElements(By.tagName("label")).get(i).getText().contains("hoh")) {

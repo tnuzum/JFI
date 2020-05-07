@@ -91,17 +91,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
-
-				if (className.contains(classToEnroll)) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-			}
+			reusableMethods.SelectClassOrCourseToEnroll(classToEnroll);
 
 			Thread.sleep(2000);
 
