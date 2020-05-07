@@ -18,13 +18,17 @@ public class AppointmentsPO {
 	By clubs = By.xpath("(//select[@name='clubSelect'])");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
-	By groupApptsHeader = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div/h2");
-	By groupMinPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[1]/div/small[1]"); // minimum
-																														// persons
-																														// count
-	By groupMaxPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[2]/div/small[1]"); // maximum
-																														// persons
-																														// count
+//	By groupApptsHeader = By.xpath("//appointmentresourceselection/div/div[5]/div[2]/div/div/h2");
+	By groupApptsHeader = By.xpath("//div[@id='group-activity'] //h2");
+
+	By groupMinMaxPersons = By.xpath("//small[contains(@class, 'class-list-subheader')]"); // minimum maximum persons
+																							// count
+	// By groupMinPersons =
+	// By.xpath("//appointmentresourceselection/div/div[5]/div[2]/div/div[3]/div[1]/div/small[1]");//
+	// minimum persons count
+	// By groupMaxPersons =
+	// By.xpath("//appointmentresourceselection/div/div[5]/div[2]/div/div[3]/div[2]/div/small[1]");
+	// // maximum persons count
 	By groupMemberSearchInput = By.xpath("//div[@id = 'group-activity'] //input[contains(@class, 'form-control')]");
 	By groupMemberSearchButton = By.xpath("//div[@id = 'group-activity'] //a[@class='btn btn-primary']");
 	By groupPopupAddButton1 = By.xpath("//appointmentmembersearch/div[2]/div[1]/a");// first add button
@@ -128,11 +132,11 @@ public class AppointmentsPO {
 	}
 
 	public WebElement getGroupMinPersons() {
-		return driver.findElement(groupMinPersons);
+		return driver.findElements(groupMinMaxPersons).get(0);
 	}
 
 	public WebElement getGroupMaxPersons() {
-		return driver.findElement(groupMaxPersons);
+		return driver.findElements(groupMinMaxPersons).get(1);
 	}
 
 	public WebElement getGroupMemberSearchInput() {
