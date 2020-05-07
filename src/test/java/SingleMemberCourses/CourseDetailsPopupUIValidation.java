@@ -64,6 +64,7 @@ public class CourseDetailsPopupUIValidation extends base {
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("- COURSE DESCRIPTION -"));
 
 		c.getPopupCancelButtonCourse().click();
+		Thread.sleep(1000);
 		reusableMethods.memberLogout();
 
 	}
