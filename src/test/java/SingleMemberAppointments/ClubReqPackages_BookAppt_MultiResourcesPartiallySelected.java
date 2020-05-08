@@ -396,6 +396,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 	}
 
 	// @AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
