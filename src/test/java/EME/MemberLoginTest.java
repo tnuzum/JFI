@@ -97,7 +97,7 @@ public class MemberLoginTest extends base {
 		reusableMethods.memberLogout();
 	}
 
-	@Test(priority = 45, description = "Login Prospect Member")
+	@Test(priority = 45, description = "Login Freeze Member")
 	public void freezeMember1Login() throws InterruptedException {
 		reusableMethods.activeMemberLogin("freezemember", "Testing1!");
 		DashboardPO d = new DashboardPO(driver);

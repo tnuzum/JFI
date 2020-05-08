@@ -15,6 +15,7 @@ public class AppointmentsPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By loadingAvailabilityMessage = By.xpath("//div[contains(@class, 'swal2-loading')]");
+	By selectMember = By.xpath("//select[@name='familySelect']");
 	By clubs = By.xpath("(//select[@name='clubSelect'])");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
@@ -23,12 +24,10 @@ public class AppointmentsPO {
 
 	By groupMinMaxPersons = By.xpath("//small[contains(@class, 'class-list-subheader')]"); // minimum maximum persons
 																							// count
-	// By groupMinPersons =
-	// By.xpath("//appointmentresourceselection/div/div[5]/div[2]/div/div[3]/div[1]/div/small[1]");//
-	// minimum persons count
-	// By groupMaxPersons =
-	// By.xpath("//appointmentresourceselection/div/div[5]/div[2]/div/div[3]/div[2]/div/small[1]");
-	// // maximum persons count
+	By groupMinPersons = By.xpath("//small[contains(@class, 'at-bookappointment-group-product-min')]"); // minimum
+																										// persons count
+	By groupMaxPersons = By.xpath("//small[contains(@class, 'at-bookappointment-group-product-max')]");// maximum
+																										// persons count
 	By groupMemberSearchInput = By.xpath("//div[@id = 'group-activity'] //input[contains(@class, 'form-control')]");
 	By groupMemberSearchButton = By.xpath("//div[@id = 'group-activity'] //a[@class='btn btn-primary']");
 	By groupPopupAddButton1 = By.xpath("//appointmentmembersearch/div[2]/div[1]/a");// first add button
@@ -115,6 +114,10 @@ public class AppointmentsPO {
 		return driver.findElements(loadingAvailabilityMessage);
 	}
 
+	public WebElement getSelectMember() {
+		return driver.findElement(selectMember);
+	}
+
 	public WebElement getclubs() {
 		return driver.findElement(clubs);
 	}
@@ -132,11 +135,11 @@ public class AppointmentsPO {
 	}
 
 	public WebElement getGroupMinPersons() {
-		return driver.findElements(groupMinMaxPersons).get(0);
+		return driver.findElement(groupMinPersons);
 	}
 
 	public WebElement getGroupMaxPersons() {
-		return driver.findElements(groupMinMaxPersons).get(1);
+		return driver.findElement(groupMaxPersons);
 	}
 
 	public WebElement getGroupMemberSearchInput() {
