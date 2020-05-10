@@ -32,6 +32,7 @@ import pageObjects.UnenrollPO;
 public class reusableMethods extends base {
 
 	public static String activeMember1Login() throws InterruptedException {
+
 		reusableWaits.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
@@ -368,7 +369,7 @@ public class reusableMethods extends base {
 	}
 
 	private static boolean catchErrorMessagePrivate()// only used by catchErrorMessage method below; not available from
-														// other classes
+	// other classes
 	{
 		try {
 			driver.findElement(By.xpath("//*[text()='An Error Has Occurred']"));
@@ -778,10 +779,10 @@ public class reusableMethods extends base {
 
 	public static String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2) throws IOException, InterruptedException {
-		DashboardPO p = new DashboardPO(driver);
+		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
-		p.getMyApptsScheduleButton().click();
+		// p.getMyApptsScheduleButton().click();
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Thread.sleep(2000);
@@ -961,10 +962,10 @@ public class reusableMethods extends base {
 
 	public static String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2) throws IOException, InterruptedException {
-		DashboardPO p = new DashboardPO(driver);
+		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
-		p.getMyApptsScheduleButton().click();
+		// p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
