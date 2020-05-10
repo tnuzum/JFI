@@ -8,6 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -34,6 +35,10 @@ public class NonHOH_BookAppointmentForSelf extends base {
 
 		reusableMethods.activeMemberLogin("fmlyapptmbr", "Testing1!");
 		reusableWaits.waitForDashboardLoaded();
+		DashboardPO d = new DashboardPO(driver);
+		d.getMyApptsScheduleButton().click();
+		Thread.sleep(2000);
+
 		startTime = reusableMethods.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 				resourceName2);
 

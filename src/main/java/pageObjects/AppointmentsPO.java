@@ -83,6 +83,7 @@ public class AppointmentsPO {
 	By newAppointmentBanner = By.xpath("//div[@class='widget widget-callout']");
 	By dueAtTimeOfService = By.xpath("//div[contains(@class, 'appointment-secondaryaction-dueattimeofservice')]");
 	By changeFee = By.xpath("//div[contains(@class, 'appointment-secondaryaction-changefee')]");
+	By forMember = By.xpath("//div[@class = 'text-right ']/span[2]");
 
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.xpath("//button[contains(text(), 'change')]");
@@ -326,6 +327,10 @@ public class AppointmentsPO {
 
 	public WebElement getChangeFee() {
 		return driver.findElement(changeFee);
+	}
+
+	public WebElement getForMember() {
+		return driver.findElement(forMember);
 	}
 
 	public WebElement getEditApptPageHeader() {

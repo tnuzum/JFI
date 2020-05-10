@@ -59,6 +59,8 @@ public class PaymentPO {
 	By linkAgreementsHeader = By.xpath("//span[contains(text(),'Link Agreements')]");
 	By labelText = By.xpath("//label[contains(text(),'Would you like to link this card to existing Membe')]");
 	By labelText1 = By.xpath("//div[contains(text(),'A selection is required')]");
+	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input");
+	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/preceding-sibling::input");
 
 // CONSTRUCTOR
 
@@ -229,5 +231,13 @@ public class PaymentPO {
 
 	public WebElement getLabelText1() {
 		return driver.findElement(labelText1);
+	}
+
+	public WebElement getFirstAgreement() {
+		return driver.findElement(firstAgreement);
+	}
+
+	public WebElement getNoThanks() {
+		return driver.findElement(noThanks);
 	}
 }

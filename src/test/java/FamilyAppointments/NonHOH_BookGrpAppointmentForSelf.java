@@ -8,6 +8,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -30,10 +31,15 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 	}
 
 	@Test
-	public void VerifyNonHohBookAppointment() throws InterruptedException, IOException {
+	public void VerifyNonHohBookGrpAppointment() throws InterruptedException, IOException {
 
 		reusableMethods.activeMemberLogin("kidapptmbr", "Testing1!");
+
 		reusableWaits.waitForDashboardLoaded();
+		DashboardPO d = new DashboardPO(driver);
+		d.getMyApptsScheduleButton().click();
+		Thread.sleep(2000);
+
 		startTime = reusableMethods.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook,
 				resourceName1, resourceName2);
 
