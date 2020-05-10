@@ -11,7 +11,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -60,8 +59,6 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
-//  	Thread.sleep(5000);
-//  	p.getAmountRadioButton3().click();
 
 			Thread.sleep(500);
 			int variable = 1;
@@ -70,7 +67,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 				variable++;
 			}
 			p.getCustomAmountInput().sendKeys("0.05");
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			p.getSelectPaymentNewCardButton().click();
 			Thread.sleep(1000);
@@ -89,14 +86,19 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 			Assert.assertTrue(p.getLabelText().isDisplayed());
 			Assert.assertTrue(p.getLabelText1().isDisplayed());
 
-			WebElement FirstAgreement = driver.findElement(
-					By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input"));
+			Assert.assertTrue(!p.getSubmitButton().isEnabled());
 
-			FirstAgreement.click();
+			p.getFirstAgreement().click();
+			Assert.assertEquals(
+					reusableMethods.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+					false);
 
 			Thread.sleep(1000);
 			p.getIAgreeCheckbox().click();
 			Thread.sleep(1000);
+
+			Assert.assertTrue(p.getSubmitButton().isEnabled());
+
 			// p.getSubmitButton().click();
 			// Assert.assertTrue(p.getPopupContent().getText().contains("A signature is
 			// required to continue."));
@@ -105,8 +107,12 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
+			p.getNoThanks().click();
+			Thread.sleep(1000);
+
 			p.getSaveCardNoRadio().click();
 			Thread.sleep(1000);
+
 			p.getSubmitButton().click();
 			reusableWaits.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
@@ -114,7 +120,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 			System.out.println(p.getPopupText().getText());
 			Assert.assertEquals("Payment Made!", p.getPopupText().getText());
 			p.getPopupConfirmationButton().click();
-//		reusableMethods.returnToDashboard();
+
 			Thread.sleep(3000);
 
 		} catch (java.lang.AssertionError ae) {

@@ -47,11 +47,15 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 	public void ChangeAppointmentWitouthFee() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("apptmember8", "Testing1!");
 
+		reusableWaits.waitForDashboardLoaded();
+		DashboardPO d = new DashboardPO(driver);
+		d.getMyApptsScheduleButton().click();
+		Thread.sleep(2000);
+
 		// Book an appointment and get the start time for the appointment
 		startTime1 = reusableMethods.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook1,
 				resourceName1, resourceName2);
 
-		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));

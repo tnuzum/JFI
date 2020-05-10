@@ -83,8 +83,9 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 			p.getCVC().sendKeys("123");
 			// p.getSaveCardYesRadio().click();
 			p.getIAgreeCheckbox().click();
-			p.getSubmitButton().click();
-			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
+			// p.getSubmitButton().click();
+			// Assert.assertTrue(p.getPopupContent().getText().contains("A signature is
+			// required to continue."));
 
 			Actions a = new Actions(driver);
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
@@ -99,7 +100,6 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 			System.out.println(p.getPopupText().getText());
 			Assert.assertEquals("Payment Made!", p.getPopupText().getText());
 			p.getPopupConfirmationButton().click();
-//		reusableMethods.returnToDashboard();
 			Thread.sleep(3000);
 
 		} catch (java.lang.AssertionError ae) {
