@@ -275,7 +275,7 @@ public class SelectMemberDropdownValidations extends base {
 				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
 		List<WebElement> UnitRates = s5.getOptions();
 		String unitRate = UnitRates.get(0).getText();
-		Assert.assertEquals(unitRate, "1 - $6.30/per");
+		Assert.assertEquals(unitRate, "1 - $1.75/per");
 
 		Assert.assertTrue(ap.getForMember().getText().contains(familyMbrName));
 

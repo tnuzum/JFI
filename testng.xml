@@ -14,10 +14,13 @@
 			<class name="EME.DashBoard_Menu" />
 			
 			<class name="PayBalance.MakePaymentTest_StoredCard" />
+			<class name="PayBalance.MakePaymentTest_NewCard_NoAgreement" />
+			<class name="PayBalance.MakePaymentTest_NewCard_HasAgreement" />
 			
 			<class name="ShopPackages.ShopAndPurchasePackages" />
 			
 			<class name="ManagePaymentMethods.VerifyMessageTest" />
+			
 			
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberClasses.EnrollWithSingleClassFeeTest" />
@@ -115,6 +118,18 @@
 			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt"/>
 			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages"/>
 			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages"/>
+			
+			<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_NoPackage"/>
+			<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage"/>
+			<class name="FamilyAppointments.HOH_BookAppointmentForSelf_NoFamilyMember"/>
+			<class name="FamilyAppointments.HOH_BookAppointmentForSelf"/>
+			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_NoPackage"/>
+			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_PurchasePackage"/>
+			<class name="FamilyAppointments.NonHOH_BookAppointmentForSelf"/>
+			<class name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf"/>
+			<class name="FamilyAppointments.SelectMemberDropdownValidations"/>
+			
+			
 			<class name="EME.EmailConfirmations"/>
 		</classes>
 	</test>
