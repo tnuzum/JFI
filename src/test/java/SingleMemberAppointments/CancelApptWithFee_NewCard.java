@@ -339,6 +339,7 @@ public class CancelApptWithFee_NewCard extends base {
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
 		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
 
 		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
 		// Click the Pay button
@@ -397,6 +398,7 @@ public class CancelApptWithFee_NewCard extends base {
 	}
 
 //	@AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
