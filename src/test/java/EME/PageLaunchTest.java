@@ -7,6 +7,7 @@ import java.util.Set;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -142,7 +143,9 @@ public class PageLaunchTest extends base {
 	@Test(priority = 60)
 	public void PrivacyPolicyLinkTest() throws InterruptedException {
 		reusableWaits.waitForDashboardLoaded();
-		d.getPrivacyPolicyLink().click();
+
+		Actions a = new Actions(driver);
+		a.moveToElement(d.getPrivacyPolicyLink()).click().build().perform();
 		Thread.sleep(3000);
 		Assert.assertEquals(driver.getWindowHandles().size(), 2);
 		Set<String> ids = driver.getWindowHandles();
