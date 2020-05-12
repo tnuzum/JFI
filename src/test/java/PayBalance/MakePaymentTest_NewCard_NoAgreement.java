@@ -81,11 +81,19 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 			p.getExpireMonth().sendKeys("12");
 			p.getExpireYear().sendKeys("29");
 			p.getCVC().sendKeys("123");
-			// p.getSaveCardYesRadio().click();
+			p.getSaveCardYesRadio().click();
 			p.getIAgreeCheckbox().click();
-			// p.getSubmitButton().click();
-			// Assert.assertTrue(p.getPopupContent().getText().contains("A signature is
-			// required to continue."));
+			Thread.sleep(2000);
+
+			Assert.assertTrue(p.getSubmitButton().isEnabled());
+
+			p.getSubmitButton().click();
+
+			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
+
+			Thread.sleep(1000);
+			p.getPopupConfirmationButton().click();
+			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
