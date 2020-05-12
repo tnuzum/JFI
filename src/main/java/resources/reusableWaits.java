@@ -143,10 +143,13 @@ public class reusableWaits extends base {
 	}
 
 	public static String waitForLoginLoginButton() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
-//			System.out.println(DateTime+" INFO: Element is now present");
 		LoginPO l = new LoginPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+
+		wait.until(ExpectedConditions.visibilityOf(l.getLoginButton()));
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
+//			System.out.println(DateTime+" INFO: Element is now present");
+
 		WebElement n = l.getLoginButton();
 		while (!n.isEnabled())// while button is NOT(!) enabled
 		{

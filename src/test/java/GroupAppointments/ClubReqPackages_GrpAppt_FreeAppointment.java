@@ -240,7 +240,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 	}
 
-	@Test(priority = 6, description = "Schedule a free appointment due to membership type discount")
+	@Test(priority = 2, description = "Schedule a free appointment due to membership type discount")
 	public void ScheduleFreeTrainingDueToDiscount() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("freemember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
