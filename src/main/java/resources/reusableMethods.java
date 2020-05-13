@@ -145,6 +145,8 @@ public class reusableMethods extends base {
 	public static String activeMemberLogin(String username, String password) throws InterruptedException {
 		reusableWaits.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
+		l.getuserName().click();
+		l.getuserName().clear();
 		l.getuserName().sendKeys(username);
 		l.getuserPassword().sendKeys(password);
 		l.getLoginButton().click();
@@ -1141,6 +1143,7 @@ public class reusableMethods extends base {
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 			ap.getPaymentButton().click();
+			System.out.println("clicked");
 		} else {
 			ap.getPopup1BookButton().click();
 		}
