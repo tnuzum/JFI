@@ -146,8 +146,11 @@ public class reusableMethods extends base {
 		reusableWaits.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().click();
+		log.info("User name element clicked");
 		l.getuserName().clear();
+		log.info("User name element cleared");
 		l.getuserName().sendKeys(username);
+		log.info("User name entered");
 		l.getuserPassword().sendKeys(password);
 		l.getLoginButton().click();
 		reusableWaits.waitForDashboardLoaded1();
