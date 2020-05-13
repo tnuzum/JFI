@@ -100,6 +100,7 @@ public class MemberLoginTest extends base {
 	@Test(priority = 45, description = "Login Freeze Member")
 	public void freezeMember1Login() throws InterruptedException {
 		reusableMethods.activeMemberLogin("freezemember", "Testing1!");
+		log.info("Freeze member logged in");
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), "FreezeMember Auto");
 		// confirm My Family section is not shown
@@ -111,6 +112,7 @@ public class MemberLoginTest extends base {
 	@Test(priority = 50, description = "Login Terminate Member")
 	public void terminatedMember1Login() throws InterruptedException {
 		reusableMethods.activeMemberLogin("terminate", "Testing1!");
+		log.info("Terminated member logged in");
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), "Terminate Auto");
 		// confirm My Family section is not shown

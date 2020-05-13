@@ -147,6 +147,7 @@ public class reusableWaits extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 
 		wait.until(ExpectedConditions.visibilityOf(l.getLoginButton()));
+		log.info("Login button visible");
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
 //			System.out.println(DateTime+" INFO: Element is now present");
 
