@@ -10,7 +10,7 @@
 			<class name="EME.loginPageTest" />
 			<class name="EME.MemberLoginTest" />
 			<class name="EME.PageLaunchTest" />
-			<!--class name="EME.DashBoard_Layout" />
+			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
 			<class name="PayBalance.MakePaymentTest_StoredCard" />
 			<class name="ShopPackages.ShopAndPurchasePackages" />
@@ -20,7 +20,7 @@
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
 			<class name="SingleMemberClasses.ClassDetailsPopupUIValidation" />
 			<class name="SingleMemberCourses.CourseDetailsPopupUIValidation" />
-			<class name="ManagePaymentMethods.VerifyMessageTest" /-->
+			<class name="ManagePaymentMethods.VerifyMessageTest" />
 		</classes>
 	</test>
 </suite>
