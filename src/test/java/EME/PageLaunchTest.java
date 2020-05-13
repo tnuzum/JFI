@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -143,9 +145,14 @@ public class PageLaunchTest extends base {
 	@Test(priority = 60)
 	public void PrivacyPolicyLinkTest() throws InterruptedException {
 		reusableWaits.waitForDashboardLoaded();
-
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
+		log.info("element is clickable");
+		System.out.println("element is clickable");
 		Actions a = new Actions(driver);
 		a.moveToElement(d.getPrivacyPolicyLink()).click().build().perform();
+		log.info("element is clicked");
+		System.out.println("element is clicked");
 		Thread.sleep(3000);
 		Assert.assertEquals(driver.getWindowHandles().size(), 2);
 		Set<String> ids = driver.getWindowHandles();
