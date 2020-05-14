@@ -336,7 +336,9 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		while (opacity.contains("1")) {
 			PM.getNewCardButton().click();
+			Thread.sleep(3000);
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+
 		}
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
