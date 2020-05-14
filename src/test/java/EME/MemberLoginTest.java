@@ -114,7 +114,7 @@ public class MemberLoginTest extends base {
 	public void terminatedMember1Login() throws InterruptedException {
 		reusableMethods.activeMemberLogin("terminate", "Testing1!");
 		log.info("Terminated member logged in");
-		System.out.println("Freeze member logged in");
+		System.out.println("Terminated member logged in");
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), "Terminate Auto");
 		// confirm My Family section is not shown
