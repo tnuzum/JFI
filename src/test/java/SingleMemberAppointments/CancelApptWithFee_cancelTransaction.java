@@ -43,6 +43,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("cancelmember4", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);

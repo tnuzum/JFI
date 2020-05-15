@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -45,6 +46,8 @@ public class base {
 		DesiredCapabilities dcch = DesiredCapabilities.chrome();
 		dcch.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 		dcch.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+		dcch.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
 		prop = new Properties();
 //		FileInputStream fis=new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
@@ -94,6 +97,7 @@ public class base {
 				if (browserName.contains("Chrome")) {
 					log.info("Chrome Browser: Running Tests on local machine");
 					ChromeOptions co = new ChromeOptions();
+					co.addArguments("--start-maximized");
 					co.merge(dcch);
 					System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
 					if (browserName.contains("headless")) {
@@ -142,6 +146,12 @@ public class base {
 
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+
+		/*
+		 * Dimension dimension = new Dimension(1920, 1080);
+		 * driver.manage().window().setSize(dimension);
+		 */
 		return driver;
 	}
 
