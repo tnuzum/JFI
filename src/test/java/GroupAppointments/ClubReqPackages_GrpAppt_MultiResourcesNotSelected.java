@@ -289,11 +289,12 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		}
 
 		PM.getNewCardButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		while (opacity.contains("1")) {
 			PM.getNewCardButton().click();
+			Thread.sleep(2000);
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		}
 

@@ -49,6 +49,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
 		reusableMethods.activeMemberLogin("apptmember3", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);

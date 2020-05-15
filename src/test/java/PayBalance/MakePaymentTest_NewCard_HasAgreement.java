@@ -49,6 +49,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 	@Test(priority = 1, description = "Adding $0.05 to member's account")
 	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
 		reusableMethods.activeMemberLogin("dauto", "Testing1!");
+		reusableWaits.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		d.getMyAccountPayNow().click();
