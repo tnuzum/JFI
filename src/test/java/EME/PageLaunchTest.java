@@ -6,8 +6,8 @@ import java.util.Set;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -149,8 +149,13 @@ public class PageLaunchTest extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
 		log.info("element is clickable");
 		System.out.println("element is clickable");
-		Actions a = new Actions(driver);
-		a.moveToElement(d.getPrivacyPolicyLink()).click().build().perform();
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", d.getPrivacyPolicyLink());
+		/*
+		 * Actions a = new Actions(driver);
+		 * a.moveToElement(d.getPrivacyPolicyLink()).click().build().perform();
+		 */
 		log.info("element is clicked");
 		System.out.println("element is clicked");
 		Thread.sleep(3000);
