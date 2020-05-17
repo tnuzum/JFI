@@ -10,10 +10,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 
-public class DashBoard_Menu extends base{
+public class DashBoard_Menu extends Base{
 //	@BeforeTest
 	@BeforeClass
 	@Parameters({"EMELoginPage"})

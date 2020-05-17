@@ -20,12 +20,12 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollInFreeCourseTest extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class EnrollInFreeCourseTest extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
@@ -201,6 +201,9 @@ public class EnrollInFreeCourseTest extends base {
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 				Thread.sleep(500);
 			}
+
+			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
 			String monthYear = cp.getMonthYear().getText();

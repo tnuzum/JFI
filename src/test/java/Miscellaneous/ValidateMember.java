@@ -12,12 +12,12 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 
 
-public class ValidateMember extends base{
-private static Logger log =LogManager.getLogger(base.class.getName());
+public class ValidateMember extends Base{
+private static Logger log =LogManager.getLogger(Base.class.getName());
 
 // This class is used as a template for making new test case classes.
 // Copy this class and paste into src/test/java/EME to create new test.

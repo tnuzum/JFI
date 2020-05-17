@@ -19,11 +19,11 @@ import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 
-public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class ClubReqPackages_GrpAppt_CancelTransaction extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT Group-SelectedMultiResources";

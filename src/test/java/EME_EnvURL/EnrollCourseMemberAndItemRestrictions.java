@@ -18,11 +18,11 @@ import org.testng.annotations.Test;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollCourseMemberAndItemRestrictions extends base {
+public class EnrollCourseMemberAndItemRestrictions extends Base {
 	private static String CourseStartYear = "2019";
 	private static String CourseStartMonth1 = "Jan";
 	private static String CourseStartMonth2 = "Dec";

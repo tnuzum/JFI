@@ -23,12 +23,12 @@ import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollWithSingleCourseFeeTest extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class EnrollWithSingleCourseFeeTest extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String courseToEnroll = "FEECOURSE";
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
@@ -642,6 +642,9 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 				Thread.sleep(500);
 			}
+
+			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
 			String monthYear = cp.getMonthYear().getText();

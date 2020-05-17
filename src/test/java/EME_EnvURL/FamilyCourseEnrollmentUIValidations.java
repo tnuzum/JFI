@@ -24,12 +24,12 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyCourseEnrollmentUIValidations extends base{
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class FamilyCourseEnrollmentUIValidations extends Base{
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String CourseStartMonth = "Dec";
 	private static String courseToEnroll = "FAMILYENROLLCOURSE";
 	private static String courseNameDisplayed = "FamilyEnrollCourse";

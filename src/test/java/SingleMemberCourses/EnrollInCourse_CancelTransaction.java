@@ -18,12 +18,12 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollInCourse_CancelTransaction extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class EnrollInCourse_CancelTransaction extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String courseToEnroll = "FEECOURSE";
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";

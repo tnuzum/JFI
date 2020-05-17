@@ -17,11 +17,11 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 
-public class EnrollInClass_CancelTransaction extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class EnrollInClass_CancelTransaction extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String classToEnroll = "BARRE COMBAT FUSION";
 	private static String classNameDisplayed = "Barre Combat Fusion";
 	private static String classTimeDisplayed = "Start Time: 5:00 PM";

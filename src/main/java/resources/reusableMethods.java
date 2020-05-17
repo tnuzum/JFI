@@ -29,7 +29,7 @@ import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
 
-public class reusableMethods extends base {
+public class reusableMethods extends Base {
 
 	public static String activeMember1Login() throws InterruptedException {
 
@@ -294,7 +294,8 @@ public class reusableMethods extends base {
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 				Thread.sleep(500);
 			}
-
+			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 			d.getMenuMyCalendar().click();
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {

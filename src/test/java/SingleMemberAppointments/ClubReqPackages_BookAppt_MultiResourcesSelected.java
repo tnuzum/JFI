@@ -20,12 +20,12 @@ import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class ClubReqPackages_BookAppt_MultiResourcesSelected extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-MultiResourcesSelected";

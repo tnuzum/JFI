@@ -13,12 +13,12 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MemberLoginTest extends base{
-private static Logger log =LogManager.getLogger(base.class.getName());
+public class MemberLoginTest extends Base{
+private static Logger log =LogManager.getLogger(Base.class.getName());
 	
 //	@BeforeTest
 	@BeforeClass

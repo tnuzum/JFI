@@ -11,10 +11,10 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 
-public class SwitchBetweenEMENCOG extends base {
+public class SwitchBetweenEMENCOG extends Base {
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();

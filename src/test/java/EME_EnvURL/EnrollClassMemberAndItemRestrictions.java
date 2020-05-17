@@ -21,11 +21,11 @@ import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.ThankYouPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollClassMemberAndItemRestrictions extends base {
+public class EnrollClassMemberAndItemRestrictions extends Base {
 	private static String classStartMonth = "DEC";
 	private static String classStartDate = "22";
 	public static SoftAssert softAssertion = new SoftAssert();

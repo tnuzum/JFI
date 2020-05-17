@@ -21,11 +21,11 @@ import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ShopPackagesPO;
 import pageObjects.ThankYouPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ShopAndPurchasePackages extends base {
+public class ShopAndPurchasePackages extends Base {
 
 	private static DashboardPO d;
 	private static ShopPackagesPO sp;

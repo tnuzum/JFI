@@ -23,12 +23,12 @@ import org.testng.annotations.Test;
 import junit.framework.Assert;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MakePaymentTest extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class MakePaymentTest extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	
 
 //	@BeforeTest

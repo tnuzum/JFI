@@ -14,11 +14,11 @@ import org.testng.annotations.Test;
 
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 
-public class ClassDetailsPopupUIValidation extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class ClassDetailsPopupUIValidation extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String classToEnroll = "CLASSNEEDSPUNCHES";
 	private static String classNameDisplayed = "ClassNeedsPunches";
 	private static DashboardPO d;

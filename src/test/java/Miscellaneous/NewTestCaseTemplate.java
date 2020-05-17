@@ -7,11 +7,11 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import resources.base;
+import resources.Base;
 
 
-public class NewTestCaseTemplate extends base{
-private static Logger log =LogManager.getLogger(base.class.getName());
+public class NewTestCaseTemplate extends Base{
+private static Logger log =LogManager.getLogger(Base.class.getName());
 
 // This class is used as a template for making new test case classes.
 // Copy this class and paste into src/test/java/EME to create new test.

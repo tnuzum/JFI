@@ -11,11 +11,11 @@ import org.testng.annotations.Test;
 
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends base {
+public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends Base {
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-FamilyGrpAppointment";
