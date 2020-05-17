@@ -654,17 +654,41 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.id("txt_searchLastName")).sendKeys(memberName);
 		driver.findElement(By.id("btn_search")).click();
-		driver.findElement(By.xpath("//i[@class='fa fa-check']")).click();
-		driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
+		boolean memberListPresent = reusableMethods.isElementPresent(By.xpath("//div[@id='memberList']"));
+		if (memberListPresent == true) {
+			log.info("Member List preesent");
+			System.out.println("Member List present");
+			int memberCount = driver.findElements(By.tagName("tr")).size();
 
+			for (int i = 1; i < memberCount; i++) {
+				WebElement MemberRow = driver.findElements(By.tagName("tr")).get(i);
+				List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
+
+				if (MemberRowSections.get(1).getText().equals(memberName)) {
+					driver.findElements(By.xpath("//i[@class='fa fa-check']")).get(i - 1).click();
+					break;
+				}
+			}
+		} else {
+			log.info("Member List Not present");
+			System.out.println("Member List Not present");
+		}
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
+		Thread.sleep(1000);
 		List<WebElement> CheckInOptions = driver.findElements(By.tagName("tr"));
 		int checkboxCount = CheckInOptions.size();
+		System.out.println(checkboxCount);
 		for (int j = 0; j < checkboxCount; j++) {
 			String Text = CheckInOptions.get(j).getText();
+
 			if (Text.contains(appointmentName)) {
+				System.out.println("appointment name present");
 				CheckInOptions.get(j).findElement(By.className("checkbox")).click();
+				System.out.println("clicked");
 				break;
 			}
+
 		}
 		driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();

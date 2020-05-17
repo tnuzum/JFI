@@ -15,7 +15,6 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
@@ -99,7 +98,7 @@ public class base {
 					log.info("Chrome Browser: Running Tests on local machine");
 					ChromeOptions co = new ChromeOptions();
 					co.addArguments("--start-maximized");
-					co.addArguments("--window-size=1920, 1080");
+					// co.addArguments("--window-size=1920, 1080");
 					co.merge(dcch);
 					System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
 					if (browserName.contains("headless")) {
@@ -150,8 +149,8 @@ public class base {
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 
-		Dimension dimension = new Dimension(1920, 1080);
-		driver.manage().window().setSize(dimension);
+		// Dimension dimension = new Dimension(1920, 1080);
+		// driver.manage().window().setSize(dimension);
 
 		return driver;
 	}
