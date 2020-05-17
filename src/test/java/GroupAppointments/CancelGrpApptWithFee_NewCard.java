@@ -20,12 +20,12 @@ import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class CancelGrpApptWithFee_NewCard extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class CancelGrpApptWithFee_NewCard extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PTGrpThreeResourceWithCancelFee";

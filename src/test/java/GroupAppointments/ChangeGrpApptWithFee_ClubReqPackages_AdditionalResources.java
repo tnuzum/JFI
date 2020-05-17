@@ -19,13 +19,13 @@ import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends base {
+public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends Base {
 
-	private static Logger log = LogManager.getLogger(base.class.getName());
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String clubName1 = "Jonas Fitness";
 	private static String clubName2 = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";

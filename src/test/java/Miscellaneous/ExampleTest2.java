@@ -8,9 +8,9 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 
-public class ExampleTest2 extends base {
+public class ExampleTest2 extends Base {
 
 	// testing repository
 	// more changes

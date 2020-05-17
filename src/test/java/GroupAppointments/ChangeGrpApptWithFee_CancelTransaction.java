@@ -18,12 +18,12 @@ import org.testng.annotations.Test;
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ChangeGrpApptWithFee_CancelTransaction extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class ChangeGrpApptWithFee_CancelTransaction extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";

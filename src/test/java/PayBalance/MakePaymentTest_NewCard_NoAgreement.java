@@ -22,12 +22,12 @@ import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
 import pageObjects.PaymentPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MakePaymentTest_NewCard_NoAgreement extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class MakePaymentTest_NewCard_NoAgreement extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String testName = null;
 	private static String memberName = "HOH Auto";
 

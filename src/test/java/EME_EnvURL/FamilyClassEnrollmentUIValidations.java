@@ -24,12 +24,12 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyClassEnrollmentUIValidations extends base{
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class FamilyClassEnrollmentUIValidations extends Base{
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String classToEnroll = "FAMILYENROLLCLASS";
 	private static String classNameDisplayed = "FamilyEnrollClass";
 	private static String classTimeDisplayed = "Start Time: 5:00 PM";

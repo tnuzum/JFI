@@ -16,7 +16,7 @@ import pageObjects.DashboardPO;
 import pageObjects.LoginPO;
 import pageObjects.PaymentPO;
 
-public class reusableWaits extends base {
+public class reusableWaits extends Base {
 
 	static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 	static Date date = new Date();

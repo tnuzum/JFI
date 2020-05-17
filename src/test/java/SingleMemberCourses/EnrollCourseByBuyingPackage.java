@@ -25,12 +25,12 @@ import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollCourseByBuyingPackage extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class EnrollCourseByBuyingPackage extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String CourseToEnroll = "COURSENEEDSPUNCHES";
 	private static String CourseNameDisplayed = "CourseNeedsPunches";
 	private static String CourseTimeDisplayed = "Start Time: 11:00 AM";
@@ -706,6 +706,9 @@ public class EnrollCourseByBuyingPackage extends base {
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 				Thread.sleep(500);
 			}
+
+			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
 			String monthYear = cp.getMonthYear().getText();

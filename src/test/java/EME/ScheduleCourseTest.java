@@ -17,12 +17,12 @@ import junit.framework.Assert;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.UnenrollPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 
 
-public class ScheduleCourseTest extends base{
-private static Logger log =LogManager.getLogger(base.class.getName());
+public class ScheduleCourseTest extends Base{
+private static Logger log =LogManager.getLogger(Base.class.getName());
 
 //	@BeforeTest
 	@BeforeClass

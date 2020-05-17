@@ -17,12 +17,12 @@ import org.testng.annotations.Test;
 
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends Base {
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String startTime;
 	private static int appointmentsCount;
 	private static String appointmentToBook = "PT 60 Mins";

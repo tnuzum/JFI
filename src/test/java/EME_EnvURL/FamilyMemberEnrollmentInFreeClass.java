@@ -27,12 +27,12 @@ import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
-import resources.base;
+import resources.Base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyMemberEnrollmentInFreeClass extends base{
-	private static Logger log = LogManager.getLogger(base.class.getName());
+public class FamilyMemberEnrollmentInFreeClass extends Base{
+	private static Logger log = LogManager.getLogger(Base.class.getName());
 	private static String classToEnroll = "FREE CLASS AUTO";
 	private static String classNameDisplayed = "Free Class Auto";
 	private static String classTimeDisplayed = "Start Time: 10:00 AM";
