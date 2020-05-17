@@ -340,7 +340,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		reusableMethods.ApptCheckinInCOG("Auto, apptmember4", appointmentToBook, "apptmember4"); // Check In the Member
+		reusableMethods.ApptCheckinInCOG("Auto, Apptmember4", appointmentToBook, "apptmember4"); // Check In the Member
 																									// to the
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -392,6 +392,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 	}
 
 	// @AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();

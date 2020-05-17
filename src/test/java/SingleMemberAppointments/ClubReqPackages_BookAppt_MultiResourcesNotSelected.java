@@ -386,7 +386,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		reusableMethods.ApptCheckinInCOG("Auto, apptmember1", appointmentToBook, "apptmember1"); // Check In the Member
+		reusableMethods.ApptCheckinInCOG("Auto, Apptmember1", appointmentToBook, "apptmember1"); // Check In the Member
 																									// to the
 																									// appointment
 		DashboardPO d = new DashboardPO(driver);
