@@ -242,7 +242,8 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends Base {
 		while (ap.getRateBox().getText().isBlank()) {
 			System.out.println("Waiting");
 		}
-		Assert.assertTrue(ap.getRateBox().getText().contains(appointmentToBook.toUpperCase()));
+		Assert.assertTrue(
+				ap.getRateBox().findElement(By.tagName("span")).getText().contains(appointmentToBook.toUpperCase()));
 
 		Select s4 = new Select(
 				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
@@ -454,7 +455,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends Base {
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		reusableMethods.ApptCheckinInCOG("Auto, apptmember1", appointmentToBook, "apptmember1"); // Check In the Member
+		reusableMethods.ApptCheckinInCOG("Auto, Apptmember1", appointmentToBook, "apptmember1"); // Check In the Member
 																									// to the
 																									// appointment
 		DashboardPO d = new DashboardPO(driver);
