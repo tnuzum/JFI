@@ -7,9 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
-import resources.Base;
+import resources.base;
 
-public class ExampleTest extends Base{
+public class ExampleTest extends base{
 
 //	public static void main(String[] args) throws InterruptedException
 	@Test

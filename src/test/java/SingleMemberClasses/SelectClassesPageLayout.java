@@ -20,12 +20,12 @@ import org.testng.annotations.Test;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class SelectClassesPageLayout extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class SelectClassesPageLayout extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;

@@ -17,13 +17,13 @@ import org.testng.annotations.Test;
 
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class SelectMemberDropdownValidations extends Base {
+public class SelectMemberDropdownValidations extends base {
 
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName1 = "Jonas Sports-Plex";
 	private static String clubName2 = "Studio Jonas";
 	private static String productCategory1 = "Spa";

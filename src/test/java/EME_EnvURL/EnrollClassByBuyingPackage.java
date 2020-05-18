@@ -28,12 +28,12 @@ import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollClassByBuyingPackage extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class EnrollClassByBuyingPackage extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll = "CLASSNEEDSPUNCHES";
 	private static String classNameDisplayed = "ClassNeedsPunches";
 	private static String classTimeDisplayed = "Start Time: 10:00 AM";

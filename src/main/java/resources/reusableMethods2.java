@@ -29,7 +29,7 @@ import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
 
-public class reusableMethods2 extends Base {
+public class reusableMethods2 extends base {
 
 	public static String activeMember1Login() throws InterruptedException {
 

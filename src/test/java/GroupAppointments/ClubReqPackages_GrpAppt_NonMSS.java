@@ -16,11 +16,11 @@ import org.testng.annotations.Test;
 
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 
-public class ClubReqPackages_GrpAppt_NonMSS extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class ClubReqPackages_GrpAppt_NonMSS extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-NonMSSGrp";

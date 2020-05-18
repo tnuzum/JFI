@@ -6,11 +6,11 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import resources.Base;
+import resources.base;
 
-public class listeners extends Base implements ITestListener {
+public class listeners extends base implements ITestListener {
 
-	resources.Base b = new resources.Base();
+	resources.base b = new resources.base();
 
 	@Override
 	public void onTestStart(ITestResult result) {

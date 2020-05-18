@@ -18,11 +18,11 @@ import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ShopPackagesPO;
 import pageObjects.ThankYouPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ShopAndPurchasePackages extends Base {
+public class ShopAndPurchasePackages extends base {
 	
 //	@BeforeTest
 	@BeforeClass

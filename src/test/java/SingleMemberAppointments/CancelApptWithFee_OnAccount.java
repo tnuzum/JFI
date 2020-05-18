@@ -19,12 +19,12 @@ import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class CancelApptWithFee_OnAccount extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class CancelApptWithFee_OnAccount extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PTServiceWith2ResourcesCancelFee";

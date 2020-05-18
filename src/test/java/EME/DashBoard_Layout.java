@@ -11,10 +11,10 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 
-public class DashBoard_Layout extends Base{
+public class DashBoard_Layout extends base{
 	
 //	@BeforeTest
 	@BeforeClass

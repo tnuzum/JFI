@@ -9,13 +9,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class NonHOH_BookAppointmentForSelf extends Base {
+public class NonHOH_BookAppointmentForSelf extends base {
 
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-FamilyAppointment";

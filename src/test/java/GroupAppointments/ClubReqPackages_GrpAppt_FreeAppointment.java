@@ -18,12 +18,12 @@ import org.testng.annotations.Test;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ClubReqPackages_GrpAppt_FreeAppointment extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook1 = "Free GrpServiceV Auto";

@@ -9,11 +9,11 @@ import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
 import pageObjects.ManagePayMethodsPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class VerifyMessageTest extends Base {
+public class VerifyMessageTest extends base {
 
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {

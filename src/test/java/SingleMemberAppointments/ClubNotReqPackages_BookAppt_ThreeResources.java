@@ -18,12 +18,12 @@ import org.testng.annotations.Test;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ClubNotReqPackages_BookAppt_ThreeResources extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PTServiceWith3Resources";
