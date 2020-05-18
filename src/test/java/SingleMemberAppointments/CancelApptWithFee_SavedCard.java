@@ -426,7 +426,8 @@ public class CancelApptWithFee_SavedCard extends Base {
 		reusableMethods.memberLogout();
 	}
 
-//	@AfterTest
+	// @AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();

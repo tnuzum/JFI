@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -296,7 +297,11 @@ public class reusableMethods extends Base {
 			}
 			WebDriverWait wait1 = new WebDriverWait(driver, 30);
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
-			d.getMenuMyCalendar().click();
+
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", d.getMenuMyCalendar());
+			// d.getMenuMyCalendar().click();
+
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
 				cp.getRightArrow().click();
