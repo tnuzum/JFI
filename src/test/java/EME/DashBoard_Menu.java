@@ -9,11 +9,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class DashBoard_Menu extends Base {
+public class DashBoard_Menu extends base {
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {

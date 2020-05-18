@@ -14,11 +14,11 @@ import org.testng.annotations.Test;
 
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 
-public class CourseDetailsPopupUIValidation extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class CourseDetailsPopupUIValidation extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String CourseToEnroll = "COURSENEEDSPUNCHES";
 	private static String CourseNameDisplayed = "CourseNeedsPunches";
 	private static String CourseStartMonth = "Dec";

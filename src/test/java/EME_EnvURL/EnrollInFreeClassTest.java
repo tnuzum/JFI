@@ -25,13 +25,13 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
 
-public class EnrollInFreeClassTest extends Base{
-private static Logger log =LogManager.getLogger(Base.class.getName());
+public class EnrollInFreeClassTest extends base{
+private static Logger log =LogManager.getLogger(base.class.getName());
 
 
 //@BeforeTest

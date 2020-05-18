@@ -23,12 +23,12 @@ import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EnrollWithSingleCourseFeeTest extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class EnrollWithSingleCourseFeeTest extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String courseToEnroll = "FEECOURSE";
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";

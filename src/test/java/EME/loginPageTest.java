@@ -15,11 +15,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import pageObjects.LoginPO;
-import resources.Base;
+import resources.base;
 
 
-public class loginPageTest extends Base{
-private static Logger log =LogManager.getLogger(Base.class.getName());
+public class loginPageTest extends base{
+private static Logger log =LogManager.getLogger(base.class.getName());
 
 //	@BeforeTest
     @BeforeClass

@@ -13,11 +13,11 @@ import org.testng.annotations.Test;
 import pageObjects.AppointmentsPO;
 import pageObjects.CartPO;
 import pageObjects.DashboardPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 
-public class LocatorTestingOnlyCopy extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class LocatorTestingOnlyCopy extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 
 // This class is used to test locators only.
 // Only used to output the object to the console, or send click/sendkeys commands.

@@ -24,12 +24,12 @@ import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyMemberCourseEnrollment extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class FamilyMemberCourseEnrollment extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
 	private static String courseToEnroll = "FAMILYENROLLCOURSE";

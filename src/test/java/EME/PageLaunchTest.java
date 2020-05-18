@@ -27,12 +27,12 @@ import pageObjects.ManageFamilyPO;
 import pageObjects.ManageProfilePO;
 import pageObjects.PaymentPO;
 import pageObjects.ShopPackagesPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class PageLaunchTest extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class PageLaunchTest extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	DashboardPO d = new DashboardPO(driver);
 
 //	@BeforeTest

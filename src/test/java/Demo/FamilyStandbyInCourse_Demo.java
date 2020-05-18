@@ -27,12 +27,12 @@ import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyStandbyInCourse_Demo extends Base{
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class FamilyStandbyInCourse_Demo extends base{
+	private static Logger log = LogManager.getLogger(base.class.getName());
 //	private static String dsiredMonthYear = "February 2020";
 	private static String courseToEnroll = "DEMO STANDBY COURSE";
 	private static String courseNameDisplayed = "Demo Standby Course";

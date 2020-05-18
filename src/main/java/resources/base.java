@@ -29,11 +29,11 @@ import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class Base {
+public class base {
 	public static WebDriver driver;
 	public static Properties prop; // or, public static Properties prop = new Properties(); this was recommended to
 									// resolve an NPE, but I didn't need it
-	public static Logger log = LogManager.getLogger(Base.class.getName());
+	public static Logger log = LogManager.getLogger(base.class.getName());
 	public static String DateTime = null;
 	public static String tomorrowsDate = null;
 	public static String dayAfter = null;
@@ -156,6 +156,7 @@ public class Base {
 	}
 
 	public void getScreenshot(String result) throws IOException {
+
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(src,
 				new File(projectPath + "\\JonasFitness\\screenshots\\" + result + ssTime + "screenshot.png"));

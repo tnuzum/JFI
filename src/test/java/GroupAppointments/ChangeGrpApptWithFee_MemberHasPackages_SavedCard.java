@@ -19,12 +19,12 @@ import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
-import resources.Base;
+import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ChangeGrpApptWithFee_MemberHasPackages_SavedCard extends Base {
-	private static Logger log = LogManager.getLogger(Base.class.getName());
+public class ChangeGrpApptWithFee_MemberHasPackages_SavedCard extends base {
+	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
