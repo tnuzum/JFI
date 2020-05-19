@@ -35,6 +35,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
+	private static String courseDate = "Date: 12/21/2020";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
@@ -104,6 +105,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 			Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
 			Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
+			Assert.assertEquals(courseDate, c.getClassDate().getText());
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -315,6 +317,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 			Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
 			Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
+			Assert.assertEquals(courseDate, c.getClassDate().getText());
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
@@ -327,6 +330,11 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			c.getContinueButton().click();
 
 			Thread.sleep(3000);
+
+			Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
+			Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
+			Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
+			Assert.assertEquals(courseDate, c.getClassDate().getText());
 
 			while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
