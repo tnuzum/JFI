@@ -352,6 +352,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 
 		ahp.getSearchField().sendKeys(receiptNumber);
 		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumber()));
 		ahp.getReceiptNumber().click();
 		Thread.sleep(1000);
 

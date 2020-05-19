@@ -365,7 +365,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 
 		ahp.getSearchField().sendKeys(receiptNumber);
 		Thread.sleep(1000);
+		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumber()));
 		ahp.getReceiptNumber().click();
+		Thread.sleep(1000);
 
 		/*
 		 * while (!ahp.getReceiptNumberTable().isDisplayed()) { Thread.sleep(2000);
