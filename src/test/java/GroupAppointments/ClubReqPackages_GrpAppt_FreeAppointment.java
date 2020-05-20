@@ -28,9 +28,9 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook1 = "Free GrpServiceV Auto";
 	private static String appointmentToBook2 = "Free GrpTraining Due 2 Discount";
-	private static String additionalResourceName = "Gym";
-	private static String resourceName1 = "PT Smith, Andrew";
-	private static String resourceName2 = "FitExpert2";
+	private static String additionalResourceName = "Gym-Grp";
+	private static String resourceName1 = "PT Smith, Andrew-Grp";
+	private static String resourceName2 = "FitExpert2-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 

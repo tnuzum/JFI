@@ -27,10 +27,10 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook1 = "PT Group 60 Mins1";
 	private static String appointmentToBook2 = "PT Group 30 Mins";
-	private static String resourceName1 = "Holmes, Jeff";
-	private static String resourceName2 = "|Mind Body";
-	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "PT.Smith, Andrew";
+	private static String resourceName1 = "Holmes, Jeff-Grp";
+	private static String resourceName2 = "|Gym-Grp";
+	private static String resourceName3 = "FitExpert2-Grp";
+	private static String resourceName4 = "PT.Smith, Andrew-Grp";
 	private static String appointmentPrice = "$60.00";
 	private static String startTime1;
 	private static String startTime2;

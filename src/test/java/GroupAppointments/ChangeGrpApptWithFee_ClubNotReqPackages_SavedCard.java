@@ -29,10 +29,10 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_SavedCard extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
 	private static String appointmentToBook2 = "PT Grp-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1";
-	private static String resourceName2 = "PT.Shepard, Elliana";
-	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "Holmes, Jeff";
+	private static String resourceName1 = "FitExpert1-Grp";
+	private static String resourceName4 = "PT.Shepard, Elliana-Grp";
+	private static String resourceName3 = "FitExpert2-Grp";
+	private static String resourceName2 = "Holmes, Jeff-Grp";
 	private static String appointmentPrice = "$90.00";
 	private static String participant2 = "Auto, Daisy";
 	private static String startTime1;

@@ -30,10 +30,10 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_ToSingleMbrAppt extends bas
 	private static String productCategory2 = "Personal Training";
 	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
 	private static String appointmentToBook2 = "PT 60 Mins-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1";
-	private static String resourceName2 = "PT.Shepard, Elliana";
+	private static String resourceName1 = "FitExpert1-Grp";
+	private static String resourceName4 = "PT.Shepard, Elliana";
 	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "Holmes, Jeff";
+	private static String resourceName2 = "Holmes, Jeff-Grp";
 	private static String appointmentPrice = "$90.00";
 	private static String participant2 = "Auto, Daisy";
 	private static String startTime1;
@@ -206,7 +206,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_ToSingleMbrAppt extends bas
 				AftrnunSlot.click();
 				Thread.sleep(1000);
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
-						.findElement(By.id("tab-2-1"));
+						.findElement(By.id("tab-2-0"));
 				List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
 						.findElements(By.tagName("button"));
 				WebElement secondAvailableTimeAfternoon = AftrenoonAvailableTimes.get(1);
