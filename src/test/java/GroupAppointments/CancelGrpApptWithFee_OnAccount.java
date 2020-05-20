@@ -28,8 +28,8 @@ public class CancelGrpApptWithFee_OnAccount extends base {
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PTGrpWith2ResourcesCancelFee";
-	private static String resourceName = "FitExpert2";
-	private static String resourceName1 = "PT Smith, Andrew";
+	private static String resourceName = "FitExpert2-Grp";
+	private static String resourceName1 = "PT Smith, Andrew-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String mbrshpDiscntPrice = "$9.00";
 	private static String startTime;

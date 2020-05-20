@@ -27,8 +27,8 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT Group Appt 3 Resources";
-	private static String resourceName = "FitExpert2";
-	private static String additionalResourceName = "Gym";
+	private static String resourceName = "FitExpert2-Grp";
+	private static String additionalResourceName = "Gym-Grp";
 	private static String clubNameDisplayed = "Club: Jonas Fitness";
 	private static String appointmentPrice = "$10.00";
 	private static String startTime;

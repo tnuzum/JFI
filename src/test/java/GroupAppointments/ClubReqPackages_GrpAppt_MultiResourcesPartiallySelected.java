@@ -30,7 +30,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT Group-MultiResourcPartially";
-	private static String resourceName = "PT Smith, Andrew";
+	private static String resourceName = "PT Smith, Andrew-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 	private static int appointmentsCount;

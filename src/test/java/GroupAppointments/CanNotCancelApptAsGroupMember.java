@@ -28,7 +28,7 @@ public class CanNotCancelApptAsGroupMember extends base {
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PTGrp-CancelWithFee";
-	private static String resourceName = "FitExpert1";
+	private static String resourceName = "FitExpert1-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String clubSpecifiPrice = "$5.00";
 	private static String startTime;

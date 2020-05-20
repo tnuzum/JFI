@@ -19,8 +19,8 @@ public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends base 
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-FamilyGrpAppointment";
-	private static String resourceName1 = "PT Smith, Andrew";
-	private static String resourceName2 = "FitExpert1";
+	private static String resourceName1 = "PT Smith, Andrew-Grp";
+	private static String resourceName2 = "FitExpert1-Grp";
 	private static String startTime;
 	private static AppointmentsPO ap;
 

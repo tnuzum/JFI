@@ -27,7 +27,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT Group-SelectedMultiResources";
-	private static String resourceName = "PT Smith, Andrew";
+	private static String resourceName = "PT Smith, Andrew-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String mbrDiscntPricing = "$4.63";
 	private static String startTime;

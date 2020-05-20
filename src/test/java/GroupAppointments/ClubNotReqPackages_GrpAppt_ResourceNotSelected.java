@@ -27,7 +27,7 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 	private static int appointmentsCount;
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training 1";
-	private static String resourceName = "PT.Smith, Andrew";
+	private static String resourceName = "PT.Smith, Andrew-Grp";
 	private static String appointmentToBook = "PT Group Appt Two Resources";
 	private static String clubNameDisplayed = "Club: Jonas Fitness";
 	private static String clubAndMemberSpecifiPrice = "$7.00";

@@ -30,8 +30,8 @@ public class ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt extends base
 	private static String productCategory2 = "Personal Training";
 	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
 	private static String appointmentToBook2 = "PT 60 Mins-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1";
-	private static String resourceName2 = "Holmes, Jeff";
+	private static String resourceName1 = "FitExpert1-Grp";
+	private static String resourceName2 = "Holmes, Jeff-Grp";
 	private static String resourceName3 = "FitExpert2";
 	private static String resourceName4 = "PT Smith, Andrew";
 	private static String appointmentPrice = "$5.00";
