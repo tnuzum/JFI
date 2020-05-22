@@ -32,33 +32,44 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 	private static String appointmentToBook2 = "PT Grp-ChangeWithFee2";
 	private static String resourceName1 = "FitExpert1";
 	private static String resourceName2 = "PT.Shepard, Elliana";
-	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "Holmes, Jeff";
+	private static String resourceName3 = "FitExpert2-Grp";
+	private static String resourceName4 = "Holmes, Jeff-Grp";
 	private static String appointmentPrice = "$90.00";
 	private static String participant2 = "Auto, Daisy";
 	private static String startTime1;
 	private static String startTime2;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember6", "Testing1!");
+		rm.activeMemberLogin("apptmember6", "Testing1!");
 
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
 		// Book an appointment and get the start time for the appointment
-		startTime1 = reusableMethods.BookApptWith2Resources(clubName, productCategory1, appointmentToBook1,
-				resourceName1, resourceName2);
+		startTime1 = rm.BookApptWith2Resources(clubName, productCategory1, appointmentToBook1, resourceName1,
+				resourceName2);
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -228,7 +239,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 				AftrnunSlot.click();
 				Thread.sleep(1000);
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
-						.findElement(By.id("tab-2-1"));
+						.findElement(By.id("tab-2-0"));
 				List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
 						.findElements(By.tagName("button"));
 				WebElement secondAvailableTimeAfternoon = AftrenoonAvailableTimes.get(1);
@@ -317,7 +328,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 		ThankYouPO TY = new ThankYouPO(driver);
 
 //Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
+		rm.ThankYouPageValidations();
 
 //Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
@@ -329,7 +340,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 		Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 //Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
+		rm.ReceiptPopupValidations();
 
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(2000);
@@ -340,20 +351,20 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 
 	}
 
 	@Test(priority = 2)
 	public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
 
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
+		rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 
 	}
 	// @AfterTest

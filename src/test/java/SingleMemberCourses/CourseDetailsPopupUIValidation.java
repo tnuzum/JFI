@@ -16,6 +16,7 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 public class CourseDetailsPopupUIValidation extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
@@ -25,10 +26,21 @@ public class CourseDetailsPopupUIValidation extends base {
 	private static DashboardPO d;
 	private static ClassSignUpPO c;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public CourseDetailsPopupUIValidation() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 
@@ -39,19 +51,18 @@ public class CourseDetailsPopupUIValidation extends base {
 	@Test(priority = 1, description = "Ui validations")
 	public void PopupUIValidations() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
-				prop.getProperty("activeMember6_password"));
+		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 
 		d.getMyCoursesEventsScheduleButton().click();
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		reusableMethods.SelectCourseStartMonth(CourseStartMonth);
+		rm.SelectCourseStartMonth(CourseStartMonth);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll(CourseToEnroll);
+		rm.SelectClassOrCourseToEnroll(CourseToEnroll);
 
 		Thread.sleep(2000);
 
@@ -65,7 +76,7 @@ public class CourseDetailsPopupUIValidation extends base {
 
 		c.getPopupCancelButtonCourse().click();
 		Thread.sleep(1000);
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 

@@ -15,13 +15,24 @@ import resources.reusableWaits;
 
 public class VerifyMessageTest extends base {
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public VerifyMessageTest() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
-		reusableMethods.activeMemberLogin("noccmember", "Testing1!"); // Login to EME
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("noccmember", "Testing1!"); // Login to EME
+		rw.waitForDashboardLoaded();
 
 	}
 
@@ -30,7 +41,7 @@ public class VerifyMessageTest extends base {
 
 		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 		ManagePayMethodsPO mp = new ManagePayMethodsPO(driver);
-		reusableMethods.openSideMenuIfNotOpenedAlready();
+		rm.openSideMenuIfNotOpenedAlready();
 
 		d.getMenuMyAccount().click();
 		while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {

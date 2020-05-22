@@ -35,9 +35,20 @@ public class ShopAndPurchasePackages extends base {
 	private static AcctHistoryPO ahp;
 	private static String testName = null;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public ShopAndPurchasePackages() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 		d = new DashboardPO(driver);
@@ -59,12 +70,12 @@ public class ShopAndPurchasePackages extends base {
 	public void PurchaseBtnNameCheck() throws IOException, InterruptedException {
 		try {
 
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember6_username"),
 					prop.getProperty("activeMember6_password"));
-			reusableWaits.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			reusableMethods.openSideMenuIfNotOpenedAlready();
+			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -88,7 +99,7 @@ public class ShopAndPurchasePackages extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -96,7 +107,7 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -104,9 +115,9 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -155,23 +166,22 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertEquals("Dashboard", PP.getBreadcrumbDashboard().getText());
 			Assert.assertEquals("Shop", PP.getBreadcrumbShop().getText());
 			Assert.assertEquals("Confirm", PP.getBreadcrumbConfirm().getText());
-			Boolean ReviewLabelPresent = reusableMethods.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
+			Boolean ReviewLabelPresent = rm.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
 			Assert.assertTrue(ReviewLabelPresent);
 			Assert.assertEquals("Review", PP.getReviewLabel().getText());
-			Boolean FeesLabelPresent = reusableMethods.isElementPresent(By.xpath("//small[contains(text(),'Fee(s)')]"));
+			Boolean FeesLabelPresent = rm.isElementPresent(By.xpath("//small[contains(text(),'Fee(s)')]"));
 			Assert.assertTrue(FeesLabelPresent);
-			Boolean SubTotalLabelPresent = reusableMethods
-					.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
 			Assert.assertTrue(SubTotalLabelPresent);
-			Boolean TaxLabelPresent = reusableMethods.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
 			Assert.assertTrue(TaxLabelPresent);
-			Boolean TotalLabelPresent = reusableMethods.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
 			Assert.assertTrue(TotalLabelPresent);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -179,7 +189,7 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -187,9 +197,9 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -225,7 +235,7 @@ public class ShopAndPurchasePackages extends base {
 			int IntUnitCountBefore = 0;
 			int IntUnitCountAfter = 0;
 
-			IntUnitCountBefore = reusableMethods.getPackageUnits("ServiceOA");
+			IntUnitCountBefore = rm.getPackageUnits("ServiceOA");
 //		System.out.println(IntUnitCountBefore);
 
 			// Verifies the Pay button contains the total amount
@@ -253,7 +263,7 @@ public class ShopAndPurchasePackages extends base {
 
 			// Verifies the text on Thank You page and the links to navigate to Dashboard
 			// and other pages are displayed
-			reusableMethods.ThankYouPageValidations();
+			rm.ThankYouPageValidations();
 
 			// Note down the Receipt number
 			String receiptNumber = TY.getReceiptNumber().getText();
@@ -265,7 +275,7 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 			// Verifies the buttons on Print Receipt Popup
-			reusableMethods.ReceiptPopupValidations();
+			rm.ReceiptPopupValidations();
 
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(2000);
@@ -276,19 +286,19 @@ public class ShopAndPurchasePackages extends base {
 				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 				{
-					// reusableWaits.linksToBeClickable();
+					// rw.linksToBeClickable();
 					driver.findElements(By.tagName("a")).get(i).click();
 					break;
 				}
 
 			}
-			reusableWaits.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
 			Thread.sleep(2000);
 
 			// Note the package units after purchase
-			IntUnitCountAfter = reusableMethods.getPackageUnits("ServiceOA");
+			IntUnitCountAfter = rm.getPackageUnits("ServiceOA");
 //		System.out.println(IntUnitCountAfter);
 
 			// Verifies the package units is now incremented by one unit
@@ -334,7 +344,7 @@ public class ShopAndPurchasePackages extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -342,7 +352,7 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -350,27 +360,27 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
 		finally {
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 	}
 
 	@Test(priority = 7, description = "Payment Method is Stored Card")
 	public void PurchaseStoredCard() throws InterruptedException, IOException {
 		try {
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember7_username"),
 					prop.getProperty("activeMember7_password"));
-			reusableWaits.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			reusableMethods.openSideMenuIfNotOpenedAlready();
+			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -430,7 +440,7 @@ public class ShopAndPurchasePackages extends base {
 			int IntUnitCountBefore1 = 0;
 			int IntUnitCountAfter1 = 0;
 
-			IntUnitCountBefore1 = reusableMethods.getPackageUnits("ServiceCC");
+			IntUnitCountBefore1 = rm.getPackageUnits("ServiceCC");
 //		System.out.println(IntUnitCountBefore1);
 
 			// Verifies the Pay button contains the total amount
@@ -451,7 +461,7 @@ public class ShopAndPurchasePackages extends base {
 
 			// Verifies the text on Thank You page and the links to navigate to Dashboard
 			// and other pages are displayed
-			reusableMethods.ThankYouPageValidations();
+			rm.ThankYouPageValidations();
 
 			// Note down the Receipt number
 			String receiptNumber2 = TY.getReceiptNumber().getText();
@@ -463,7 +473,7 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber2));
 
 			// Verifies the buttons on Print Receipt Popup
-			reusableMethods.ReceiptPopupValidations();
+			rm.ReceiptPopupValidations();
 
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(2000);
@@ -474,7 +484,7 @@ public class ShopAndPurchasePackages extends base {
 				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
 
 				{
-					// reusableWaits.linksToBeClickable();
+					// rw.linksToBeClickable();
 					driver.findElements(By.tagName("a")).get(i).click();
 					break;
 				}
@@ -485,7 +495,7 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertEquals("Select Classes", driver.getTitle());
 
 			// Note the package units after purchase
-			IntUnitCountAfter1 = reusableMethods.getPackageUnits("ServiceCC");
+			IntUnitCountAfter1 = rm.getPackageUnits("ServiceCC");
 //				System.out.println(IntUnitCountAfter1);
 
 			// Verifies the package units is now incremented by one unit
@@ -529,7 +539,7 @@ public class ShopAndPurchasePackages extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -537,7 +547,7 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -545,12 +555,12 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		} finally {
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -559,12 +569,12 @@ public class ShopAndPurchasePackages extends base {
 	public void PurchaseNewCard() throws InterruptedException, IOException {
 		try {
 
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember8_username"),
 					prop.getProperty("activeMember8_password"));
-			reusableWaits.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			reusableMethods.openSideMenuIfNotOpenedAlready();
+			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -649,7 +659,7 @@ public class ShopAndPurchasePackages extends base {
 			int IntUnitCountBefore2 = 0;
 			int IntUnitCountAfter2 = 0;
 
-			IntUnitCountBefore2 = reusableMethods.getPackageUnits("ServiceNC");
+			IntUnitCountBefore2 = rm.getPackageUnits("ServiceNC");
 			// Click the Pay button
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
@@ -669,7 +679,7 @@ public class ShopAndPurchasePackages extends base {
 
 			// Verifies the text on Thank You page and the links to navigate to Dashboard
 			// and other pages are displayed
-			reusableMethods.ThankYouPageValidations();
+			rm.ThankYouPageValidations();
 
 			// Note down the Receipt number
 			String receiptNumber4 = TY.getReceiptNumber().getText();
@@ -681,7 +691,7 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber4));
 
 			// Verifies the buttons on Print Receipt Popup
-			reusableMethods.ReceiptPopupValidations();
+			rm.ReceiptPopupValidations();
 
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(3000);
@@ -693,7 +703,7 @@ public class ShopAndPurchasePackages extends base {
 				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Courses / Events"))
 
 				{
-					// reusableWaits.linksToBeClickable();
+					// rw.linksToBeClickable();
 					driver.findElements(By.tagName("a")).get(i).click();
 					break;
 				}
@@ -705,7 +715,7 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(3000);
 
 			// Note the package units after purchase
-			IntUnitCountAfter2 = reusableMethods.getPackageUnits("ServiceNC");
+			IntUnitCountAfter2 = rm.getPackageUnits("ServiceNC");
 
 			// Verifies the package units is now incremented by one unit
 			IntUnitCountBefore2++;
@@ -748,7 +758,7 @@ public class ShopAndPurchasePackages extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -756,7 +766,7 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -764,12 +774,12 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		} finally {
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -778,12 +788,12 @@ public class ShopAndPurchasePackages extends base {
 
 	public void OnAccountNotAvailable() throws InterruptedException, IOException {
 		try {
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember9_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember9_username"),
 					prop.getProperty("activeMember9_password"));
 
 			Thread.sleep(2000);
 
-			reusableMethods.openSideMenuIfNotOpenedAlready();
+			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -829,7 +839,7 @@ public class ShopAndPurchasePackages extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -837,7 +847,7 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -845,14 +855,14 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
 		finally {
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -862,12 +872,12 @@ public class ShopAndPurchasePackages extends base {
 	public void StoredCardNotAvailable() throws InterruptedException, IOException {
 
 		try {
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember10_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember10_username"),
 					prop.getProperty("activeMember10_password"));
-			reusableWaits.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			reusableMethods.openSideMenuIfNotOpenedAlready();
+			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -913,7 +923,7 @@ public class ShopAndPurchasePackages extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -921,7 +931,7 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -929,14 +939,14 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
 		finally {
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -946,12 +956,12 @@ public class ShopAndPurchasePackages extends base {
 	public void NoOANoStoredCardAvailable() throws InterruptedException, IOException {
 		try {
 
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember11_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember11_username"),
 					prop.getProperty("activeMember11_password"));
-			reusableWaits.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			reusableMethods.openSideMenuIfNotOpenedAlready();
+			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
 
@@ -991,7 +1001,7 @@ public class ShopAndPurchasePackages extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -999,7 +1009,7 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -1007,14 +1017,14 @@ public class ShopAndPurchasePackages extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
 		finally {
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}

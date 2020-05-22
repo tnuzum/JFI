@@ -18,6 +18,7 @@ import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 public class ClubReqPackages_GrpAppt_NonMSS extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
@@ -25,17 +26,29 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-NonMSSGrp";
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public ClubReqPackages_GrpAppt_NonMSS() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void VerifyMessage() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
+		rm.activeMemberLogin("ccmember", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		p.getMyApptsScheduleButton().click();
@@ -162,8 +175,8 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 		Assert.assertEquals(ap.getPopup1Content().getText(),
 				"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package.");
 		ap.getPopup2OKButton().click();
-		reusableMethods.returnToDashboard();
-		reusableMethods.memberLogout();
+		rm.returnToDashboard();
+		rm.memberLogout();
 	}
 	// @AfterTest
 

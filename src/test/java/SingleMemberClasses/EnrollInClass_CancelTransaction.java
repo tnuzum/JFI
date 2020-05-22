@@ -27,19 +27,26 @@ public class EnrollInClass_CancelTransaction extends base {
 	private static String classTimeDisplayed = "Start Time: 5:00 PM";
 	private static String classInstructorDisplayed = "Class Instructor: Andrea";
 
+	public reusableMethods rm;
+
+	public EnrollInClass_CancelTransaction() {
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1, description = "Cancelling from the Rate Select Rates page")
 	public void CancelFromSelectRatesPage() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
-				prop.getProperty("activeMember6_password"));
-		reusableMethods.unenrollFromClass();
+		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
+		rm.unenrollFromClass();
 
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
@@ -53,11 +60,11 @@ public class EnrollInClass_CancelTransaction extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll(classToEnroll);
+		rm.SelectClassOrCourseToEnroll(classToEnroll);
 
 		Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
@@ -86,7 +93,7 @@ public class EnrollInClass_CancelTransaction extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -123,7 +130,7 @@ public class EnrollInClass_CancelTransaction extends base {
 
 		c.getContinueButton().click();
 		Thread.sleep(2000);
-		reusableMethods.ReviewSectionValidation("Fee(s)");
+		rm.ReviewSectionValidation("Fee(s)");
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
@@ -152,7 +159,7 @@ public class EnrollInClass_CancelTransaction extends base {
 
 		Assert.assertEquals(c.getPageHeader().getText(), "Select Classes");
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 //	@AfterTest

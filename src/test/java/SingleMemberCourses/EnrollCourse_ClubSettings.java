@@ -22,10 +22,21 @@ import resources.reusableWaits;
 public class EnrollCourse_ClubSettings extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public EnrollCourse_ClubSettings() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
@@ -34,12 +45,11 @@ public class EnrollCourse_ClubSettings extends base {
 
 	public void ViewCoursesUncheckedForClub() throws InterruptedException {
 
-		reusableMethods.activeMemberLogin("CantCcourses", "Testing1!");
-		reusableWaits.waitForDashboardLoaded1();
+		rm.activeMemberLogin("CantCcourses", "Testing1!");
+		rw.waitForDashboardLoaded1();
 		Thread.sleep(2000);
-		Assert.assertFalse(
-				reusableMethods.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-courseschedule')]")));
-		reusableMethods.memberLogout();
+		Assert.assertFalse(rm.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-courseschedule')]")));
+		rm.memberLogout();
 
 	}
 
@@ -47,8 +57,8 @@ public class EnrollCourse_ClubSettings extends base {
 
 	public void AllowCourseEnrollmentUncheckedForClub() throws InterruptedException {
 
-		reusableMethods.activeMemberLogin("CantnrollCourse", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("CantnrollCourse", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyCoursesEventsScheduleButton().click();
@@ -61,13 +71,13 @@ public class EnrollCourse_ClubSettings extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("CANNOTBEENROLLEDCOURSE");
+		rm.SelectClassOrCourseToEnroll("CANNOTBEENROLLEDCOURSE");
 
 		Thread.sleep(2000);
 		Assert.assertFalse(c.getPopupSignupButtonCourse().isEnabled());
 		c.getPopupCancelButtonCourse().click();
 		Thread.sleep(2000);
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 //	@AfterTest

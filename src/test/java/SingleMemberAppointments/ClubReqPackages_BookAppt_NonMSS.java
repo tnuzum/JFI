@@ -23,17 +23,26 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-NonMSS";
 
+	public reusableMethods rm;
+
+	public ClubReqPackages_BookAppt_NonMSS() {
+
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void VerifyMessage() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("ccmember", "Testing1!");
+		rm.activeMemberLogin("ccmember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -128,8 +137,8 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 		Assert.assertEquals(ap.getPopup1Content().getText(),
 				"This appointment requires the purchase of a package, but this package cannot be purchased online. Please call the club to purchase the package.");
 		ap.getPopup2OKButton().click();
-		reusableMethods.returnToDashboard();
-		reusableMethods.memberLogout();
+		rm.returnToDashboard();
+		rm.memberLogout();
 	}
 	// @AfterTest
 

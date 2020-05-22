@@ -36,26 +36,37 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 	private static String startTime1;
 	private static String startTime2;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public ChangeApptWithFee_CancelTransaction() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void ChangeAppointmentCancelTransaction() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember6", "Testing1!");
+		rm.activeMemberLogin("apptmember6", "Testing1!");
 
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
 		// Book an appointment and get the start time for the appointment
-		startTime1 = reusableMethods.BookApptWith2Resources(clubName, productCategory, appointmentToBook1,
-				resourceName1, resourceName2);
+		startTime1 = rm.BookApptWith2Resources(clubName, productCategory, appointmentToBook1, resourceName1,
+				resourceName2);
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -278,17 +289,17 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 		ap.getCancelButton().click();
 		Thread.sleep(2000);
 
-		Boolean ApptCheckout = reusableMethods.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
+		Boolean ApptCheckout = rm.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
 
 		Assert.assertTrue(ApptCheckout == false);
 
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 	}
 
 	@Test(priority = 2)
 	public void CancelOldAppointment() throws IOException, InterruptedException {
 
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime1, appointmentToBook1);
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime1, appointmentToBook1);
 
 	}
 

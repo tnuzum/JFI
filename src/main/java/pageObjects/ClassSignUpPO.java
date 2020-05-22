@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class ClassSignUpPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
 
@@ -78,7 +78,7 @@ public class ClassSignUpPO {
 
 	public ClassSignUpPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		ClassSignUpPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 

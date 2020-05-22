@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class DashboardPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
@@ -127,7 +127,7 @@ public class DashboardPO {
 // CONSTRUCTOR
 	public DashboardPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		DashboardPO.driver = driver;
+		this.driver = driver;
 	}
 
 // METHODS

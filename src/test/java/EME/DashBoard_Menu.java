@@ -14,14 +14,26 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class DashBoard_Menu extends base {
+
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public DashBoard_Menu() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
-		reusableMethods.activeMember1Login(); // Login to EME
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMember1Login(); // Login to EME
+		rw.waitForDashboardLoaded();
 
 	}
 
@@ -31,7 +43,7 @@ public class DashBoard_Menu extends base {
 		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 //			d.getDashboardButton().click();
 
-		reusableMethods.openSideMenuIfNotOpenedAlready();
+		rm.openSideMenuIfNotOpenedAlready();
 		// Verify the menuDashboardButton text value
 		Assert.assertTrue(d.getDashboardButton().isDisplayed());
 		String dashboardButtonText = d.getDashboardButton().getText();
@@ -96,8 +108,7 @@ public class DashBoard_Menu extends base {
 	@Test(priority = 5)
 	public void VerifyMenuCartIsNotPresent() {
 
-		boolean menuCartPresent = reusableMethods
-				.isElementPresent(By.xpath("//a[contains(@class, 'at-mainnav-cart')]"));
+		boolean menuCartPresent = rm.isElementPresent(By.xpath("//a[contains(@class, 'at-mainnav-cart')]"));
 		Assert.assertEquals(menuCartPresent, false);
 
 	}

@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
 
@@ -27,7 +27,7 @@ public class LoginPO {
 
 	public LoginPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		LoginPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 

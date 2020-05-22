@@ -22,10 +22,21 @@ import resources.reusableWaits;
 public class EnrollClass_ClubSettings extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public EnrollClass_ClubSettings() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
@@ -34,12 +45,11 @@ public class EnrollClass_ClubSettings extends base {
 
 	public void ViewClassesUncheckedForClub() throws InterruptedException {
 
-		reusableMethods.activeMemberLogin("CantCclasses", "Testing1!");
-		reusableWaits.waitForDashboardLoaded1();
+		rm.activeMemberLogin("CantCclasses", "Testing1!");
+		rw.waitForDashboardLoaded1();
 		Thread.sleep(2000);
-		Assert.assertFalse(
-				reusableMethods.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-classschedule')]")));
-		reusableMethods.memberLogout();
+		Assert.assertFalse(rm.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-classschedule')]")));
+		rm.memberLogout();
 
 	}
 
@@ -47,8 +57,8 @@ public class EnrollClass_ClubSettings extends base {
 
 	public void AllowClassEnrollmentUncheckedForClub() throws InterruptedException {
 
-		reusableMethods.activeMemberLogin("CantnrollClass", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("CantnrollClass", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 		d.getMyClassesScheduleButton().click();
@@ -61,17 +71,17 @@ public class EnrollClass_ClubSettings extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("CANNOTBEENROLLEDCLASS");
+		rm.SelectClassOrCourseToEnroll("CANNOTBEENROLLEDCLASS");
 
 		Thread.sleep(2000);
 		Assert.assertFalse(c.getPopupSignUpButton().isEnabled());
 		c.getPopupCancelButton().click();
 		Thread.sleep(2000);
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 //	@AfterTest

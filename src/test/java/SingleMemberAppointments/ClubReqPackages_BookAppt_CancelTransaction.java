@@ -21,6 +21,7 @@ import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
@@ -32,6 +33,16 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 	private static String startTime;
 	private static String unitsToBeSelected = "1 - $90.00/per";
 
+	public reusableWaits rw;
+
+	public reusableMethods rm;
+
+	public ClubReqPackages_BookAppt_CancelTransaction() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
@@ -42,7 +53,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 
 	@Test(priority = 1)
 	public void CancelTransaction() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember3", "Testing1!");
+		rm.activeMemberLogin("apptmember3", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -247,10 +258,10 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 
 		ap.getCancelButton().click();
 		Thread.sleep(2000);
-		Boolean ApptCheckout = reusableMethods.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
+		Boolean ApptCheckout = rm.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
 
 		Assert.assertTrue(ApptCheckout == false);
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 	}
 
 	// @AfterTest

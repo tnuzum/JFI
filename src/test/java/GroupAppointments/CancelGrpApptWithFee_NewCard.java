@@ -36,20 +36,30 @@ public class CancelGrpApptWithFee_NewCard extends base {
 	private static String appointmentPrice = "$90.00";
 	private static String startTime;
 	private static String participant2 = "Auto, Daisy";
-
 	private static int appointmentsCount;
+
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public CancelGrpApptWithFee_NewCard() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
 
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
 	public void ScheduleGrpAppointmentWithExistingPackageWithThreeResources() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("cancelmember1", "Testing1!");
+		rm.activeMemberLogin("cancelmember1", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -242,18 +252,18 @@ public class CancelGrpApptWithFee_NewCard extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 	}
 
 	@Test(priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -387,7 +397,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 		// Verifies the text on Thank You page and the links to navigate to Dashboard
 		// and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
+		rm.ThankYouPageValidations();
 
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
@@ -395,7 +405,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
 
 		// Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
+		rm.ReceiptPopupValidations();
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 				.contains(FormatTotalAmt));
 
@@ -408,18 +418,18 @@ public class CancelGrpApptWithFee_NewCard extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		// Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 //	@AfterTest

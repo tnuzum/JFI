@@ -16,111 +16,123 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class MemberLoginTest extends base {
+
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public MemberLoginTest() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	private static Logger log = LogManager.getLogger(base.class.getName());
 
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 10, description = "Login Active Adult HOH Member")
 	public void activeMember1Login() throws InterruptedException {
-		reusableMethods.activeMember1Login();
-		reusableWaits.waitForFamilyCount();
+		rm.activeMember1Login();
+		rw.waitForFamilyCount();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember1_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "5");
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	@Test(priority = 15, description = "Login Active Adult non-HOH Member")
 	public void activeMember2Login() throws InterruptedException {
-		reusableMethods.activeMember2Login();
+		rm.activeMember2Login();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember2_fullname"));
 		// confirm My Family section is not shown
-		Assert.assertFalse(reusableMethods
-				.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
-		reusableMethods.memberLogout();
+		Assert.assertFalse(
+				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
+		rm.memberLogout();
 	}
 
 	@Test(priority = 20, description = "Login Active Minor Member")
 	public void activeMember3Login() throws InterruptedException {
-		reusableMethods.activeMember3Login();
+		rm.activeMember3Login();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember3_fullname"));
 		// confirm My Family section is not shown
-		Assert.assertEquals(false, reusableMethods
-				.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
-		reusableMethods.memberLogout();
+		Assert.assertEquals(false,
+				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
+		rm.memberLogout();
 	}
 
 	@Test(priority = 25, description = "Login Active Adult No Family Member")
 	public void activeMember4Login() throws InterruptedException {
-		reusableMethods.activeMember4Login();
-		reusableWaits.waitForFamilyCount();
+		rm.activeMember4Login();
+		rw.waitForFamilyCount();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember4_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "0");
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	@Test(priority = 35, description = "Login Active Adult one Family Member")
 	public void activeMember5Login() throws InterruptedException {
-		reusableMethods.activeMember5Login();
-		reusableWaits.waitForFamilyCount();
+		rm.activeMember5Login();
+		rw.waitForFamilyCount();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember5_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "3");
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	@Test(priority = 30, description = "Login Member in Collections")
 	public void collectionsMember1Login() throws InterruptedException {
-		reusableMethods.collectionsMember1Login();
+		rm.collectionsMember1Login();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("collectionsMember1_fullname"));
-//		Assert.assertEquals(false, reusableMethods.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
-		reusableMethods.memberLogout();
+//		Assert.assertEquals(false, rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
+		rm.memberLogout();
 	}
 
 	@Test(priority = 40, description = "Login Prospect Member")
 	public void prospectMember1Login() throws InterruptedException {
-		reusableMethods.prospectMember1Login();
+		rm.prospectMember1Login();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("prospectMember1_fullname"));
 //      This assert was checking for no My Family section, but since 7.28 that section is showing for prospects too
-//		Assert.assertEquals(false, reusableMethods.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
-		reusableMethods.memberLogout();
+//		Assert.assertEquals(false, rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
+		rm.memberLogout();
 	}
 
 	@Test(priority = 45, description = "Login Freeze Member")
 	public void freezeMember1Login() throws InterruptedException {
-		reusableMethods.activeMemberLogin("freezemember", "Testing1!");
+		rm.activeMemberLogin("freezemember", "Testing1!");
 		log.info("Freeze member logged in");
 		System.out.println("Freeze member logged in");
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), "FreezeMember Auto");
 		// confirm My Family section is not shown
-		Assert.assertEquals(false, reusableMethods
-				.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
-		reusableMethods.memberLogout();
+		Assert.assertEquals(false,
+				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
+		rm.memberLogout();
 	}
 
 	@Test(priority = 50, description = "Login Terminate Member")
 	public void terminatedMember1Login() throws InterruptedException {
-		reusableMethods.activeMemberLogin("terminate", "Testing1!");
+		rm.activeMemberLogin("terminate", "Testing1!");
 		log.info("Terminated member logged in");
 		System.out.println("Terminated member logged in");
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), "Terminate Auto");
 		// confirm My Family section is not shown
-		Assert.assertEquals(false, reusableMethods
-				.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
-		reusableMethods.memberLogout();
+		Assert.assertEquals(false,
+				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
+		rm.memberLogout();
 	}
 
 //	@AfterTest

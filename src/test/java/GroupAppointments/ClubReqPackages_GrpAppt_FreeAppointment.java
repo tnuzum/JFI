@@ -34,17 +34,28 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String startTime;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public ClubReqPackages_GrpAppt_FreeAppointment() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void ScheduleFreeServiceV() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("bauto", "Testing1!");
+		rm.activeMemberLogin("bauto", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -224,25 +235,25 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
 	@Test(priority = 2, description = "Schedule a free appointment due to membership type discount")
 	public void ScheduleFreeTrainingDueToDiscount() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("freemember", "Testing1!");
+		rm.activeMemberLogin("freemember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -434,19 +445,19 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 

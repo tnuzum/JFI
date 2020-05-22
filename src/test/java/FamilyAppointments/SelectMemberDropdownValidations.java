@@ -38,9 +38,20 @@ public class SelectMemberDropdownValidations extends base {
 	private static List<WebElement> ProductCategories;
 	private static AppointmentsPO ap;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public SelectMemberDropdownValidations() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	@BeforeClass
 	public void initialize() throws IOException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 
@@ -51,15 +62,15 @@ public class SelectMemberDropdownValidations extends base {
 
 	public void VerifySelectMemberOptionIsPresentForHOH() throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("appthoh", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("appthoh", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
 		Assert.assertTrue(ap.getSelectMember().isDisplayed());
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	@Test(priority = 2)
@@ -67,16 +78,15 @@ public class SelectMemberDropdownValidations extends base {
 	public void VerifySelectMemberOptionIsNotPresentForHOHWithNoFamilyMember()
 			throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("apptmember10", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("apptmember10", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
-		boolean SelectMemberDropdownPresent = reusableMethods
-				.isElementPresent(By.xpath("//select[@name='familySelect']"));
+		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
 		Assert.assertEquals(SelectMemberDropdownPresent, false);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
@@ -84,16 +94,15 @@ public class SelectMemberDropdownValidations extends base {
 
 	public void VerifySelectMemberOptionIsNotPresentForNonHOH() throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("fmlyapptmbr", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("fmlyapptmbr", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
-		boolean SelectMemberDropdownPresent = reusableMethods
-				.isElementPresent(By.xpath("//select[@name='familySelect']"));
+		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
 		Assert.assertEquals(SelectMemberDropdownPresent, false);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
@@ -102,16 +111,15 @@ public class SelectMemberDropdownValidations extends base {
 	public void VerifySelectMemberOptionIsNotPresentForHOHWhenClubDoesntAllow()
 			throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("noccmember", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("noccmember", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
-		boolean SelectMemberDropdownPresent = reusableMethods
-				.isElementPresent(By.xpath("//select[@name='familySelect']"));
+		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
 		Assert.assertEquals(SelectMemberDropdownPresent, false);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
@@ -120,8 +128,8 @@ public class SelectMemberDropdownValidations extends base {
 
 	public void VerifyOnlyAllowedClubsDisplayedForFamilyMember() throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("appthoh", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("appthoh", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -146,7 +154,7 @@ public class SelectMemberDropdownValidations extends base {
 		Assert.assertFalse(Clubs.contains(clubName1));
 		Assert.assertEquals(se.getFirstSelectedOption().getText(), clubName2);
 
-//		reusableMethods.memberLogout();
+//		rm.memberLogout();
 
 	}
 

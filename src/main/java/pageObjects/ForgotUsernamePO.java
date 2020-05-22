@@ -6,101 +6,97 @@ import org.openqa.selenium.WebElement;
 
 public class ForgotUsernamePO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
-		
-	By pageHeader 				= By.xpath("//div[@id='loginForm']/form/h2");// displays "Forgot your Username?"
-	By pageDescription 			= By.xpath("//div[@id='loginForm']/form/p");
-	By cancelButton 			= By.xpath("//div[@id='loginForm']/form/div/div/div/a");
-	By recoverUsernameButton 	= By.xpath("//input[@type='submit']");//use .getAttribute("value") to get text
-	By firstNameLabel			= By.xpath("//div[@id='loginForm']/form/div/div/label[1]");
-	By firstNameInputbox		= By.xpath("//div[@id='loginForm']/form/div/div/div[1]/input");
-	By firstNameRequiredMessage	= By.xpath("//div[@id='loginForm']/form/div/div/div[1]/span/span");
-	By passwordLabel			= By.xpath("//div[@id='loginForm']/form/div/div/label[2]");
-	By passwordInputbox			= By.xpath("//div[@id='loginForm']/form/div/div/div[2]/input");
-	By passwordRequiredMessage	= By.xpath("//div[@id='loginForm']/form/div/div/div[2]/span/span");
-	By phoneNumberLabel			= By.xpath("//div[@id='loginForm']/form/div/div/label[3]");
-	By phoneNumberInputbox		= By.xpath("//div[@id='loginForm']/form/div/div/div[3]/input");
+
+	By pageHeader = By.xpath("//div[@id='loginForm']/form/h2");// displays "Forgot your Username?"
+	By pageDescription = By.xpath("//div[@id='loginForm']/form/p");
+	By cancelButton = By.xpath("//div[@id='loginForm']/form/div/div/div/a");
+	By recoverUsernameButton = By.xpath("//input[@type='submit']");// use .getAttribute("value") to get text
+	By firstNameLabel = By.xpath("//div[@id='loginForm']/form/div/div/label[1]");
+	By firstNameInputbox = By.xpath("//div[@id='loginForm']/form/div/div/div[1]/input");
+	By firstNameRequiredMessage = By.xpath("//div[@id='loginForm']/form/div/div/div[1]/span/span");
+	By passwordLabel = By.xpath("//div[@id='loginForm']/form/div/div/label[2]");
+	By passwordInputbox = By.xpath("//div[@id='loginForm']/form/div/div/div[2]/input");
+	By passwordRequiredMessage = By.xpath("//div[@id='loginForm']/form/div/div/div[2]/span/span");
+	By phoneNumberLabel = By.xpath("//div[@id='loginForm']/form/div/div/label[3]");
+	By phoneNumberInputbox = By.xpath("//div[@id='loginForm']/form/div/div/div[3]/input");
 	By phoneNumberRequiredMessage = By.xpath("//div[@id='loginForm']/form/div/div/div[3]/span/span");
-	By emailLabel				= By.xpath("//div[@id='loginForm']/form/div/div/label[4]");
-	By emailInputbox			= By.xpath("//div[@id='loginForm']/form/div/div/div[4]/input");
-	By emailRequiredMessage		= By.xpath("//div[@id='loginForm']/form/div/div/div[4]/span/span");
-	
-	
+	By emailLabel = By.xpath("//div[@id='loginForm']/form/div/div/label[4]");
+	By emailInputbox = By.xpath("//div[@id='loginForm']/form/div/div/div[4]/input");
+	By emailRequiredMessage = By.xpath("//div[@id='loginForm']/form/div/div/div[4]/span/span");
+
 // CONSTRUCTOR
-		
+
 	public ForgotUsernamePO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		ForgotUsernamePO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 
-	public WebElement getPageHeader()
-	{
+	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);
 	}
-	public WebElement getPageDescription()
-	{
+
+	public WebElement getPageDescription() {
 		return driver.findElement(pageDescription);
 	}
-	public WebElement getCancelButton()
-	{
+
+	public WebElement getCancelButton() {
 		return driver.findElement(cancelButton);
 	}
-	public WebElement getRecoverUsernameButton()
-	{
+
+	public WebElement getRecoverUsernameButton() {
 		return driver.findElement(recoverUsernameButton);
 	}
-	
-	public WebElement getFirstNameLabel()
-	{
+
+	public WebElement getFirstNameLabel() {
 		return driver.findElement(firstNameLabel);
 	}
-	public WebElement getFirstNameInputbox()
-	{
+
+	public WebElement getFirstNameInputbox() {
 		return driver.findElement(firstNameInputbox);
 	}
-	public WebElement getFirstNameRequiredMessage()
-	{
+
+	public WebElement getFirstNameRequiredMessage() {
 		return driver.findElement(firstNameRequiredMessage);
 	}
-	public WebElement getPasswordLabel()
-	{
+
+	public WebElement getPasswordLabel() {
 		return driver.findElement(passwordLabel);
 	}
-	public WebElement getPasswordInputbox()
-	{
+
+	public WebElement getPasswordInputbox() {
 		return driver.findElement(passwordInputbox);
 	}
-	public WebElement getPasswordRequiredMessage()
-	{
+
+	public WebElement getPasswordRequiredMessage() {
 		return driver.findElement(passwordRequiredMessage);
 	}
-	public WebElement getPhoneNumberLabel()
-	{
+
+	public WebElement getPhoneNumberLabel() {
 		return driver.findElement(phoneNumberLabel);
 	}
-	public WebElement getPhoneNumberInputbox()
-	{
+
+	public WebElement getPhoneNumberInputbox() {
 		return driver.findElement(phoneNumberInputbox);
 	}
-	public WebElement getPhoneNumberRequiredMessage()
-	{
+
+	public WebElement getPhoneNumberRequiredMessage() {
 		return driver.findElement(phoneNumberRequiredMessage);
 	}
-	public WebElement getEmailLabel()
-	{
+
+	public WebElement getEmailLabel() {
 		return driver.findElement(emailLabel);
 	}
-	public WebElement getEmailInputbox()
-	{
+
+	public WebElement getEmailInputbox() {
 		return driver.findElement(emailInputbox);
 	}
-	public WebElement getEmailRequiredMessage()
-	{
+
+	public WebElement getEmailRequiredMessage() {
 		return driver.findElement(emailRequiredMessage);
 	}
 
-	
 }

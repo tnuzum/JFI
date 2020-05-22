@@ -59,21 +59,32 @@ public class FamilyMemberClassEnrollment extends base {
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public FamilyMemberClassEnrollment() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1, description = "Family Member Enrollment")
 	public void FamilyMemberEnrollment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("hoh", "Testing1!");
-		// reusableMethods.unenrollFromClass();
+		rm.activeMemberLogin("hoh", "Testing1!");
+		// rm.unenrollFromClass();
 		// Thread.sleep(2000);
-		// reusableMethods.returnToDashboard();
-		reusableWaits.waitForDashboardLoaded();
+		// rm.returnToDashboard();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
@@ -81,9 +92,9 @@ public class FamilyMemberClassEnrollment extends base {
 		int IntPackageCountAfter = 0;
 
 		// Note the package units before enrolling the member with existing Package
-		IntPackageCountBefore = reusableMethods.getPackageUnitsForMember(packageName, member6);
+		IntPackageCountBefore = rm.getPackageUnitsForMember(packageName, member6);
 
-		int unitCount = reusableMethods.getPackageUnitsForMember(packageName, member5);
+		int unitCount = rm.getPackageUnitsForMember(packageName, member5);
 		System.out.println("Before " + IntPackageCountBefore);
 
 		d.getMyClassesScheduleButton().click();
@@ -96,7 +107,7 @@ public class FamilyMemberClassEnrollment extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -306,7 +317,7 @@ public class FamilyMemberClassEnrollment extends base {
 
 		// Verifies the text on Thank You page and the links to navigate to Dashboard
 		// and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
+		rm.ThankYouPageValidations();
 
 		// Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
@@ -317,7 +328,7 @@ public class FamilyMemberClassEnrollment extends base {
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
 
 		// Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
+		rm.ReceiptPopupValidations();
 
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(1000);
@@ -328,13 +339,13 @@ public class FamilyMemberClassEnrollment extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		// Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(1000);
@@ -362,24 +373,24 @@ public class FamilyMemberClassEnrollment extends base {
 				.contains(totalAmount));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(1000);
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 
 		// Note the package units after enrolling the member with existing package
-		IntPackageCountAfter = reusableMethods.getPackageUnitsForMember(packageName, member6);
+		IntPackageCountAfter = rm.getPackageUnitsForMember(packageName, member6);
 		System.out.println("After " + IntPackageCountAfter);
 
 		// Verifies the package units is now decremented by two units
 		IntPackageCountBefore = IntPackageCountBefore - 2;
 		Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter);
-		reusableMethods.unenrollFromClass();
-		reusableMethods.memberLogout();
+		rm.unenrollFromClass();
+		rm.memberLogout();
 	}
 
 	@Test(dataProvider = "getData", dependsOnMethods = { "FamilyMemberEnrollment" })
 	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
-		reusableMethods.activeMemberLogin(username, password);
-		reusableMethods.unenrollFromClass();
-		reusableMethods.memberLogout();
+		rm.activeMemberLogin(username, password);
+		rm.unenrollFromClass();
+		rm.memberLogout();
 	}
 
 	@DataProvider

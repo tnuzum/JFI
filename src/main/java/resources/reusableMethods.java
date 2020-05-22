@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,120 +32,132 @@ import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
 
 public class reusableMethods extends base {
+	public reusableWaits rw;
 
-	public static String activeMember1Login() throws InterruptedException {
+	public reusableMethods() {
 
-		reusableWaits.waitForLoginLoginButton();
+		rw = new reusableWaits();
+
+	}
+
+	public void setDriver(WebDriver wd) {
+		driver = wd;
+		rw.setDriver(wd);
+	}
+
+	public String activeMember1Login() throws InterruptedException {
+
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember1_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember2Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember2Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember2_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember2_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember3Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember3Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember3_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember3_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember4Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember4Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember4_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember4_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember5Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember5Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember5_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember5_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember6Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember6Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember6_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember6_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember7Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember7Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember7_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember7_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember8Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember8Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("activeMember8_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember8_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember9Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember9Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys("NoOAMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember10Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember10Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys("NoCCMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMember11Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMember11Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys("NoOANoCCMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static String activeMemberLogin(String username, String password) throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String activeMemberLogin(String username, String password) throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().click();
 		log.info("User name element clicked");
@@ -154,39 +167,39 @@ public class reusableMethods extends base {
 		log.info("User name entered");
 		l.getuserPassword().sendKeys(password);
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded1();
+		rw.waitForDashboardLoaded1();
 		return null;
 	}
 
-	public static String collectionsMember1Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String collectionsMember1Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("collectionsMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("collectionsMember1_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded1();
+		rw.waitForDashboardLoaded1();
 		return null;
 	}
 
-	public static String prospectMember1Login() throws InterruptedException {
-		reusableWaits.waitForLoginLoginButton();
+	public String prospectMember1Login() throws InterruptedException {
+		rw.waitForLoginLoginButton();
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("prospectMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("prospectMember1_password"));
 		l.getLoginButton().click();
-		reusableWaits.waitForDashboardLoaded1();
+		rw.waitForDashboardLoaded1();
 		return null;
 	}
 
-	public static String memberLogout() throws InterruptedException {
+	public String memberLogout() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		Actions a = new Actions(driver);
 		a.moveToElement(d.getLogoutButton()).click().build().perform();
-		reusableWaits.waitForLoginLoginButton();
+		rw.waitForLoginLoginButton();
 		return null;
 	}
 
-	public static String returnToDashboard() throws InterruptedException {
+	public String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		Thread.sleep(1000);
@@ -198,11 +211,11 @@ public class reusableMethods extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 		d.getDashboardButton().click();
 //		d.getBreadcrumbDashboard().click();
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return null;
 	}
 
-	public static boolean isElementPresent(By by) {
+	public boolean isElementPresent(By by) {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		try {
 			driver.findElement(by);
@@ -212,11 +225,10 @@ public class reusableMethods extends base {
 		}
 	}
 
-	public static String unenrollFromClass() throws IOException, InterruptedException {
+	public String unenrollFromClass() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 
-		boolean enrolled = reusableMethods
-				.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
+		boolean enrolled = this.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 //		System.out.println(enrolled);
 
 		if (enrolled == true) {
@@ -271,10 +283,10 @@ public class reusableMethods extends base {
 				System.out.println("Element Click Intercepted");
 				eci.printStackTrace();
 				log.error(eci.getMessage(), eci);
-				reusableMethods.catchErrorMessage();
+				this.catchErrorMessage();
 				Assert.fail(eci.getMessage());
 			} finally {
-				reusableMethods.returnToDashboard();
+				this.returnToDashboard();
 			}
 		} else
 			System.out.println("Not enrolled");
@@ -283,13 +295,13 @@ public class reusableMethods extends base {
 
 	}
 
-	public static String unenrollFromCourse(String dsiredMonthYear) throws IOException, InterruptedException {
+	public String unenrollFromCourse(String dsiredMonthYear) throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
 		try {
 
 			Thread.sleep(2000);
-			reusableMethods.openSideMenuIfNotOpenedAlready();
+			this.openSideMenuIfNotOpenedAlready();
 			d.getMenuMyActivies().click();
 
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
@@ -350,17 +362,17 @@ public class reusableMethods extends base {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			this.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		} finally {
 
-			reusableMethods.returnToDashboard();
+			this.returnToDashboard();
 		}
 
 		return null;
 	}
 
-	public static String useNewCard() throws InterruptedException {
+	public String useNewCard() throws InterruptedException {
 		PaymentPO p = new PaymentPO(driver);
 		p.getSelectPaymentNewCardButton().click();
 		Thread.sleep(2000);
@@ -379,7 +391,7 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	private static boolean catchErrorMessagePrivate()// only used by catchErrorMessage method below; not available from
+	private boolean catchErrorMessagePrivate()// only used by catchErrorMessage method below; not available from
 	// other classes
 	{
 		try {
@@ -390,26 +402,26 @@ public class reusableMethods extends base {
 		}
 	}
 
-	public static String catchErrorMessage() throws InterruptedException {
-		boolean e = reusableMethods.catchErrorMessagePrivate();
+	public String catchErrorMessage() throws InterruptedException {
+		boolean e = this.catchErrorMessagePrivate();
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
-			reusableMethods.returnToDashboard();
+			this.returnToDashboard();
 			Assert.assertFalse(e);
 		}
 		return null;
 	}
 
-	public static String getDateFormater() {
+	public String getDateFormater() {
 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 		Date date = new Date();
 		String DateTime = dateFormat.format(date);
 		return DateTime;
 	}
 
-	public static int getPackageUnits(String packageName) throws InterruptedException {
+	public int getPackageUnits(String packageName) throws InterruptedException {
 
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
@@ -431,12 +443,12 @@ public class reusableMethods extends base {
 		return IntUnitCount;
 	}
 
-	public static int getPackageUnitsForMember(String packageName, String memberName) throws InterruptedException {
+	public int getPackageUnitsForMember(String packageName, String memberName) throws InterruptedException {
 
 		DashboardPO d = new DashboardPO(driver);
 		PackagesPO pp = new PackagesPO(driver);
 
-		reusableMethods.openSideMenuIfNotOpenedAlready();
+		this.openSideMenuIfNotOpenedAlready();
 
 		// Note the package units
 		d.getMenuMyAccount().click();
@@ -466,12 +478,12 @@ public class reusableMethods extends base {
 			}
 		}
 		d.getMenuMyAccount().click();
-		reusableMethods.returnToDashboard();
+		this.returnToDashboard();
 
 		return IntUnitCount;
 	}
 
-	public static Object ThankYouPageValidations() {
+	public Object ThankYouPageValidations() {
 		ThankYouPO TY = new ThankYouPO(driver);
 
 		// Verifies the text on Thank You page and Print Receipt Popup
@@ -484,14 +496,14 @@ public class reusableMethods extends base {
 				"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
 
 		// Verifies the links to navigate to Dashboard and other pages are displayed
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-		Assert.assertTrue(reusableMethods.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/Home']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
 		return null;
 	}
 
-	public static Object ReceiptPopupValidations() {
+	public Object ReceiptPopupValidations() {
 		ThankYouPO TY = new ThankYouPO(driver);
 
 		Assert.assertTrue(
@@ -505,27 +517,25 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public static Object ReviewSectionValidation(String feesOrPackages) {
+	public Object ReviewSectionValidation(String feesOrPackages) {
 
 		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
-		Boolean ReviewLabelPresent = reusableMethods.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
+		Boolean ReviewLabelPresent = this.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
 		Assert.assertTrue(ReviewLabelPresent);
 		Assert.assertEquals("Review", pp.getReviewLabel().getText());
-		Boolean FeesPackagesLabelPresent = reusableMethods
-				.isElementPresent(By.xpath("//small[contains(text(),feesOrPackages)]"));
+		Boolean FeesPackagesLabelPresent = this.isElementPresent(By.xpath("//small[contains(text(),feesOrPackages)]"));
 		Assert.assertTrue(FeesPackagesLabelPresent);
-		Boolean SubTotalLabelPresent = reusableMethods
-				.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+		Boolean SubTotalLabelPresent = this.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
 		Assert.assertTrue(SubTotalLabelPresent);
-		Boolean TaxLabelPresent = reusableMethods.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+		Boolean TaxLabelPresent = this.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
 		Assert.assertTrue(TaxLabelPresent);
-		Boolean TotalLabelPresent = reusableMethods.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+		Boolean TotalLabelPresent = this.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
 		Assert.assertTrue(TotalLabelPresent);
 		return null;
 
 	}
 
-	public static Object SelectTomorrowDate() throws InterruptedException {
+	public Object SelectTomorrowDate() throws InterruptedException {
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		c.getCalendarIcon().click();
@@ -564,7 +574,7 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public static Object SelectCourseStartMonth(String CourseStartMonth) throws InterruptedException {
+	public Object SelectCourseStartMonth(String CourseStartMonth) throws InterruptedException {
 
 		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
 		int monthCount = MonthNames.findElements(By.tagName("label")).size();
@@ -579,7 +589,7 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public static Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) {
+	public Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) {
 		int ClassOrCourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j = 0; j < ClassOrCourseCount; j++) {
 			String ClassOrCourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
@@ -595,7 +605,7 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public static Object SelectYesterdayDate() throws InterruptedException {
+	public Object SelectYesterdayDate() throws InterruptedException {
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		c.getCalendarIcon().click();
@@ -634,10 +644,10 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public static Object ApptCheckinInCOG(String memberName, String appointmentName, String username)
+	public Object ApptCheckinInCOG(String memberName, String appointmentName, String username)
 			throws InterruptedException {
 
-		driver.get("https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236");
+		driver.get(prop.getProperty("COGLoginPage"));
 
 		driver.findElement(By.id("UserName")).sendKeys("bhagya");
 		driver.findElement(By.id("Password")).sendKeys("111");
@@ -660,7 +670,7 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.id("txt_searchLastName")).sendKeys(memberName);
 		driver.findElement(By.id("btn_search")).click();
-		boolean memberListPresent = reusableMethods.isElementPresent(By.xpath("//div[@id='memberList']"));
+		boolean memberListPresent = this.isElementPresent(By.xpath("//div[@id='memberList']"));
 		if (memberListPresent == true) {
 			log.info("Member List preesent");
 			System.out.println("Member List present");
@@ -699,13 +709,13 @@ public class reusableMethods extends base {
 		driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
 		driver.get(prop.getProperty("EMELoginPage"));
-		reusableMethods.activeMemberLogin(username, "Testing1!");
+		this.activeMemberLogin(username, "Testing1!");
 		return null;
 	}
 
-	public static Object ConfirmAndCancelAppointmentNoFee(String Date, String startTime, String appointmentToBook)
+	public Object ConfirmAndCancelAppointmentNoFee(String Date, String startTime, String appointmentToBook)
 			throws IOException, InterruptedException {
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -749,7 +759,7 @@ public class reusableMethods extends base {
 		}
 		a.getEditApptProceedButton().click();
 		Thread.sleep(1000);
-		boolean result1 = reusableWaits.popupMessageYesButton();
+		boolean result1 = rw.popupMessageYesButton();
 		if (result1 == true) {
 //				Thread.sleep(500);	
 		}
@@ -761,9 +771,9 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public static Object ConfirmAndCancelAppointmentNoFee1(String Date, String startTime, String appointmentToBook)
+	public Object ConfirmAndCancelAppointmentNoFee1(String Date, String startTime, String appointmentToBook)
 			throws IOException, InterruptedException {
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -803,16 +813,15 @@ public class reusableMethods extends base {
 		 * a.getEditApptProceedButton(); while (!wait2.isEnabled())// while button is
 		 * NOT(!) enabled { // Thread.sleep(200); }
 		 * a.getEditApptProceedButton().click(); boolean result1 =
-		 * reusableWaits.popupMessageYesButton(); if (result1 == true) { //
-		 * Thread.sleep(500); } a.getEditApptCancelYesButton().click(); //
-		 * Thread.sleep(2000); Assert.assertEquals(d.getPageHeader().getText(),
-		 * "Dashboard");
+		 * rw.popupMessageYesButton(); if (result1 == true) { // Thread.sleep(500); }
+		 * a.getEditApptCancelYesButton().click(); // Thread.sleep(2000);
+		 * Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 		 */
 
 		return null;
 	}
 
-	public static String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
+	public String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2) throws IOException, InterruptedException {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -985,17 +994,17 @@ public class reusableMethods extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return startTime;
 	}
 
-	public static String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
+	public String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2) throws IOException, InterruptedException {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -1194,17 +1203,17 @@ public class reusableMethods extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		return startTime;
 	}
 
-	public static String openSideMenuIfNotOpenedAlready() {
+	public String openSideMenuIfNotOpenedAlready() {
 
 		DashboardPO d = new DashboardPO(driver);
 

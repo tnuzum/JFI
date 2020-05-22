@@ -38,26 +38,37 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 	private static String startTime1;
 	private static String startTime2;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public ChangeApptWithOutFee_ClubReqPackages() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void ChangeAppointmentWithoutFee() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember6", "Testing1!");
+		rm.activeMemberLogin("apptmember6", "Testing1!");
 
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
 		// Book an appointment and get the start time for the appointment
-		startTime1 = reusableMethods.BookApptWith2Resources(clubName1, productCategory, appointmentToBook1,
-				resourceName1, resourceName2);
+		startTime1 = rm.BookApptWith2Resources(clubName1, productCategory, appointmentToBook1, resourceName1,
+				resourceName2);
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -296,7 +307,7 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 
 		Thread.sleep(1000);
 
-		boolean changeFee = reusableMethods
+		boolean changeFee = rm
 				.isElementPresent(By.xpath("//div[contains(@class, 'appointment-secondaryaction-changefee')]"));
 		Assert.assertFalse(changeFee);
 
@@ -334,7 +345,7 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 		ThankYouPO TY = new ThankYouPO(driver);
 
 //Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
+		rm.ThankYouPageValidations();
 
 //Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
@@ -346,7 +357,7 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 		Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 //Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
+		rm.ReceiptPopupValidations();
 
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(2000);
@@ -357,25 +368,25 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	@Test(priority = 2)
 	public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
 
-		reusableMethods.ApptCheckinInCOG("Auto, apptmember6", appointmentToBook2, "apptmember6"); // Check In the Member
-																									// to the
-																									// appointment
+		rm.ApptCheckinInCOG("Auto, apptmember6", appointmentToBook2, "apptmember6"); // Check In the Member
+																						// to the
+																						// appointment
 
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
+		rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 
 	}
 	// @AfterTest

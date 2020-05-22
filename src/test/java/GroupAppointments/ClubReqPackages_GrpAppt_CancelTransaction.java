@@ -33,17 +33,26 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	private static String startTime;
 	private static String unitsToBeSelected = "1 - $4.50/per";
 
+	public reusableMethods rm;
+
+	public ClubReqPackages_GrpAppt_CancelTransaction() {
+
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void CancelTransaction() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember3", "Testing1!");
+		rm.activeMemberLogin("apptmember3", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -279,10 +288,10 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 
 		ap.getCancelButton().click();
 		Thread.sleep(2000);
-		Boolean ApptCheckout = reusableMethods.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
+		Boolean ApptCheckout = rm.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
 
 		Assert.assertTrue(ApptCheckout == false);
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 	}
 
 	// @AfterTest

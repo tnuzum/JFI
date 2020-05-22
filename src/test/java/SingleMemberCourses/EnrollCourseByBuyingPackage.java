@@ -52,10 +52,21 @@ public class EnrollCourseByBuyingPackage extends base {
 	private static ThankYouPO TY;
 	private static String testName = null;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public EnrollCourseByBuyingPackage() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 
@@ -76,11 +87,11 @@ public class EnrollCourseByBuyingPackage extends base {
 	@Test(priority = 1, description = "Ui validations")
 	public void UIValidations() throws IOException, InterruptedException {
 		try {
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember6_username"),
 					prop.getProperty("activeMember6_password"));
-//		reusableMethods.unenrollFromCourse();
+//		rm.unenrollFromCourse();
 //		Thread.sleep(2000);
-//		reusableMethods.returnToDashboard();
+//		rm.returnToDashboard();
 
 			d.getMyCoursesEventsScheduleButton().click();
 
@@ -91,11 +102,11 @@ public class EnrollCourseByBuyingPackage extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			reusableMethods.SelectCourseStartMonth(CourseStartMonth);
+			rm.SelectCourseStartMonth(CourseStartMonth);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			reusableMethods.SelectClassOrCourseToEnroll(CourseToEnroll);
+			rm.SelectClassOrCourseToEnroll(CourseToEnroll);
 
 			Thread.sleep(2000);
 
@@ -120,7 +131,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -128,7 +139,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -136,9 +147,9 @@ public class EnrollCourseByBuyingPackage extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -146,7 +157,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			if (c.getContinueButton().isEnabled())
 
 			{
-				unitCount = reusableMethods.getPackageUnits(packageName);
+				unitCount = rm.getPackageUnits(packageName);
 				System.out.println(classCostInUnits + unitCount);
 				System.out.println(c.getClassCostinPunches().getText());
 
@@ -166,10 +177,10 @@ public class EnrollCourseByBuyingPackage extends base {
 
 				c.getContinueButton().click();
 				Thread.sleep(2000);
-				reusableMethods.ReviewSectionValidation("Package(s)");
+				rm.ReviewSectionValidation("Package(s)");
 
 			} else
-				reusableMethods.memberLogout();
+				rm.memberLogout();
 		}
 
 	}
@@ -224,7 +235,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			// Verifies the text on Thank You page and the links to navigate to Dashboard
 			// and other pages are displayed
-			reusableMethods.ThankYouPageValidations();
+			rm.ThankYouPageValidations();
 
 			// Note down the Receipt number
 			String receiptNumber = TY.getReceiptNumber().getText();
@@ -236,7 +247,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 			// Verifies the buttons on Print Receipt Popup
-			reusableMethods.ReceiptPopupValidations();
+			rm.ReceiptPopupValidations();
 
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(3000);
@@ -247,13 +258,13 @@ public class EnrollCourseByBuyingPackage extends base {
 				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 				{
-					// reusableWaits.linksToBeClickable();
+					// rw.linksToBeClickable();
 					driver.findElements(By.tagName("a")).get(i).click();
 					break;
 				}
 
 			}
-			reusableWaits.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
 			Thread.sleep(3000);
@@ -261,7 +272,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -269,7 +280,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -277,25 +288,25 @@ public class EnrollCourseByBuyingPackage extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
 		finally {
 			/*
 			 * boolean receiptpopuppresent =
-			 * reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
+			 * rm.isElementPresent(By.xpath("//div[@class='modal-content']"));
 			 * 
 			 * if (receiptpopuppresent == true) {System.out.println("closing the receipt");
 			 * TY.getReceiptPopup().findElement(By.
 			 * xpath("//button[contains(text(), 'Close')]")).click();
-			 * reusableMethods.returnToDashboard();}
+			 * rm.returnToDashboard();}
 			 */
-			reusableMethods.returnToDashboard();
-			reusableMethods.unenrollFromCourse(dsiredMonthYear);
-			reusableMethods.memberLogout();
+			rm.returnToDashboard();
+			rm.unenrollFromCourse(dsiredMonthYear);
+			rm.memberLogout();
 		}
 
 	}
@@ -304,13 +315,13 @@ public class EnrollCourseByBuyingPackage extends base {
 
 	public void EnrollWithSavedCard() throws InterruptedException, IOException {
 		try {
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember7_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember7_username"),
 					prop.getProperty("activeMember7_password"));
-//		reusableMethods.unenrollFromCourse(dsiredMonthYear);
+//		rm.unenrollFromCourse(dsiredMonthYear);
 //		Thread.sleep(2000);
-//		reusableMethods.returnToDashboard();
+//		rm.returnToDashboard();
 
-			unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ccmember");
+			unitCount = rm.getPackageUnitsForMember(packageName, "ccmember");
 
 			d.getMyCoursesEventsScheduleButton().click();
 
@@ -321,11 +332,11 @@ public class EnrollCourseByBuyingPackage extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			reusableMethods.SelectCourseStartMonth(CourseStartMonth);
+			rm.SelectCourseStartMonth(CourseStartMonth);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			reusableMethods.SelectClassOrCourseToEnroll(CourseToEnroll);
+			rm.SelectClassOrCourseToEnroll(CourseToEnroll);
 
 			Thread.sleep(500);
 
@@ -404,7 +415,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			// Verifies the text on Thank You page and the links to navigate to Dashboard
 			// and other pages are displayed
-			reusableMethods.ThankYouPageValidations();
+			rm.ThankYouPageValidations();
 
 			// Note down the Receipt number
 			String receiptNumber2 = TY.getReceiptNumber().getText();
@@ -416,7 +427,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber2));
 
 			// Verifies the buttons on Print Receipt Popup
-			reusableMethods.ReceiptPopupValidations();
+			rm.ReceiptPopupValidations();
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(3000);
 
@@ -426,7 +437,7 @@ public class EnrollCourseByBuyingPackage extends base {
 				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
 
 				{
-					// reusableWaits.linksToBeClickable();
+					// rw.linksToBeClickable();
 					driver.findElements(By.tagName("a")).get(i).click();
 					break;
 				}
@@ -440,7 +451,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -448,7 +459,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -456,24 +467,24 @@ public class EnrollCourseByBuyingPackage extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
 		finally {
 			/*
 			 * boolean receiptpopuppresent =
-			 * reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
-			 * if (receiptpopuppresent == true) { System.out.println("closing the receipt");
+			 * rm.isElementPresent(By.xpath("//div[@class='modal-content']")); if
+			 * (receiptpopuppresent == true) { System.out.println("closing the receipt");
 			 * TY.getReceiptPopup().findElement(By.
 			 * xpath("//button[contains(text(), 'Close')]")).click(); }
 			 */
 
-			reusableMethods.returnToDashboard();
-			reusableMethods.unenrollFromCourse(dsiredMonthYear);
-			reusableMethods.memberLogout();
+			rm.returnToDashboard();
+			rm.unenrollFromCourse(dsiredMonthYear);
+			rm.memberLogout();
 
 		}
 
@@ -484,13 +495,13 @@ public class EnrollCourseByBuyingPackage extends base {
 	public void EnrollWithNewCard() throws InterruptedException, IOException {
 		try {
 
-			reusableMethods.activeMemberLogin(prop.getProperty("activeMember8_username"),
+			rm.activeMemberLogin(prop.getProperty("activeMember8_username"),
 					prop.getProperty("activeMember8_password"));
-//		reusableMethods.unenrollFromCourse();
+//		rm.unenrollFromCourse();
 //		Thread.sleep(1000);
-//		reusableMethods.returnToDashboard();
+//		rm.returnToDashboard();
 
-			unitCount = reusableMethods.getPackageUnitsForMember(packageName, "ncmember");
+			unitCount = rm.getPackageUnitsForMember(packageName, "ncmember");
 
 			d.getMyCoursesEventsScheduleButton().click();
 
@@ -501,11 +512,11 @@ public class EnrollCourseByBuyingPackage extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			reusableMethods.SelectCourseStartMonth(CourseStartMonth);
+			rm.SelectCourseStartMonth(CourseStartMonth);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			reusableMethods.SelectClassOrCourseToEnroll(CourseToEnroll);
+			rm.SelectClassOrCourseToEnroll(CourseToEnroll);
 			Thread.sleep(2000);
 
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
@@ -617,7 +628,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			// Verifies the text on Thank You page and the links to navigate to Dashboard
 			// and other pages are displayed
-			reusableMethods.ThankYouPageValidations();
+			rm.ThankYouPageValidations();
 
 			// Note down the Receipt number
 			String receiptNumber4 = TY.getReceiptNumber().getText();
@@ -629,7 +640,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber4));
 
 			// Verifies the buttons on Print Receipt Popup
-			reusableMethods.ReceiptPopupValidations();
+			rm.ReceiptPopupValidations();
 
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(3000);
@@ -640,7 +651,7 @@ public class EnrollCourseByBuyingPackage extends base {
 				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Courses / Events"))
 
 				{
-					// reusableWaits.linksToBeClickable();
+					// rw.linksToBeClickable();
 					driver.findElements(By.tagName("a")).get(i).click();
 					break;
 				}
@@ -654,7 +665,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 
@@ -663,7 +674,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -671,23 +682,23 @@ public class EnrollCourseByBuyingPackage extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
 		finally {
 			/*
 			 * boolean receiptpopuppresent =
-			 * reusableMethods.isElementPresent(By.xpath("//div[@class='modal-content']"));
-			 * if (receiptpopuppresent == true) {System.out.println("closing the receipt");
+			 * rm.isElementPresent(By.xpath("//div[@class='modal-content']")); if
+			 * (receiptpopuppresent == true) {System.out.println("closing the receipt");
 			 * TY.getReceiptPopup().findElement(By.
 			 * xpath("//button[contains(text(), 'Close')]")).click();}
 			 */
 
 			Thread.sleep(2000);
-			reusableMethods.returnToDashboard();
+			rm.returnToDashboard();
 
 		}
 
@@ -700,7 +711,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			CalendarPO cp = new CalendarPO(driver);
 
 			Thread.sleep(2000);
-			reusableWaits.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 			d.getMenuMyActivies().click();
 
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
@@ -757,11 +768,11 @@ public class EnrollCourseByBuyingPackage extends base {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		} finally {
-			reusableMethods.returnToDashboard();
-			reusableMethods.memberLogout();
+			rm.returnToDashboard();
+			rm.memberLogout();
 		}
 
 	}

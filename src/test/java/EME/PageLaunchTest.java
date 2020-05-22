@@ -35,14 +35,25 @@ public class PageLaunchTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	DashboardPO d = new DashboardPO(driver);
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public PageLaunchTest() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
-		reusableMethods.activeMember1Login();
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMember1Login();
+		rw.waitForDashboardLoaded();
 	}
 
 	@Test(priority = 20)
@@ -52,7 +63,7 @@ public class PageLaunchTest extends base {
 		ShopPackagesPO p = new ShopPackagesPO(driver);
 		Assert.assertEquals(p.getPageHeader().getText(), "Shop Packages");
 		log.info("Shop Packages Page Header Verified");
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 	}
 
 	@Test(priority = 25, description = "This test is no longer valid as Cart is removed from EME", enabled = false)
@@ -61,7 +72,7 @@ public class PageLaunchTest extends base {
 		CartPO c = new CartPO(driver);
 		Assert.assertEquals(c.getPageHeader().getText(), "Shopping Cart");
 		log.info("Shopping Cart Page Header Verified");
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 	}
 
 	@Test(priority = 30)
@@ -70,7 +81,7 @@ public class PageLaunchTest extends base {
 		AcctHistoryPO a = new AcctHistoryPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(), "Account History");
 		log.info("Account History Page Header Verified");
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 	}
 
 	@Test(priority = 35)
@@ -79,7 +90,7 @@ public class PageLaunchTest extends base {
 		PaymentPO pb = new PaymentPO(driver);
 		Assert.assertEquals(pb.getPageHeader().getText(), "Pay Balance");
 		log.info("Pay Balance Page Header Verified");
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 	}
 
 	@Test(priority = 40)
@@ -89,19 +100,19 @@ public class PageLaunchTest extends base {
 		Assert.assertEquals(cs.getPageHeader().getText(), "Select Classes");
 		log.info("Select Classes Page Header Verified");
 //		d.getDashboardButton().click();
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 		d.getMenuMyActivies().click();// Accessing from left pane menu
 		d.getMenuClassSchedule().click();
 
 		Assert.assertEquals(cs.getPageHeader().getText(), "Select Classes");
 		log.info("Manage Profile Page Header Verified");
-		reusableMethods.returnToDashboard();
+		rm.returnToDashboard();
 	}
 
 	@Test(priority = 45)
 	public void ScheduleApptsButtonTest() throws InterruptedException {
 //		d.getMyApptsScheduleButton().click();//Accessing from Dashboard
-//			reusableMethods.catchErrorMessage();
+//			rm.catchErrorMessage();
 		AppointmentsPO a = new AppointmentsPO(driver);
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 //		log.info("Appointments Page Header Verified");
@@ -113,13 +124,13 @@ public class PageLaunchTest extends base {
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		Assert.assertEquals(a.getPageHeader().getText(), "Appointments");
 		log.info("Appointments Page Header Verified");
-		reusableMethods.returnToDashboard();
-		reusableWaits.waitForDashboardLoaded();
+		rm.returnToDashboard();
+		rw.waitForDashboardLoaded();
 	}
 
 	@Test(priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException {
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		WebElement w = a.getPageHeader();
@@ -128,8 +139,8 @@ public class PageLaunchTest extends base {
 		}
 		Assert.assertEquals(a.getPageHeader().getText(), "Manage Family");
 		log.info("Manage Family Page Header Verified");
-		reusableMethods.returnToDashboard();
-		reusableWaits.waitForDashboardLoaded();
+		rm.returnToDashboard();
+		rw.waitForDashboardLoaded();
 	}
 
 	@Test(priority = 55)
@@ -138,13 +149,13 @@ public class PageLaunchTest extends base {
 		ManageProfilePO a = new ManageProfilePO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(), "Manage Profile");
 		log.info("Manage Profile Page Header Verified");
-		reusableMethods.returnToDashboard();
-		reusableWaits.waitForDashboardLoaded();
+		rm.returnToDashboard();
+		rw.waitForDashboardLoaded();
 	}
 
 	@Test(priority = 60)
 	public void PrivacyPolicyLinkTest() throws InterruptedException {
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
 		log.info("element is clickable");

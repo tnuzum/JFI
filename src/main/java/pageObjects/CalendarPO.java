@@ -6,10 +6,10 @@ import org.openqa.selenium.WebElement;
 
 public class CalendarPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
-		
+
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By monthYear = By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]");
@@ -18,48 +18,40 @@ public class CalendarPO {
 	By calDayBadge = By.xpath("//span[contains(@class, 'cal-day-badge')]");
 	By calEventTitle = By.xpath("//span[contains(@class, 'cal-event-title')]");
 	By unEnrollBtn = By.xpath("//div[contains(text(), 'unenroll')]");
-	
-	
+
 // CONSTRUCTOR
-		
+
 	public CalendarPO(WebDriver driver) {
-		CalendarPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
-	
-	public WebElement getPageHeader()
-	{
+
+	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);
 	}
 
-	public WebElement getMonthYear()
-	{
+	public WebElement getMonthYear() {
 		return driver.findElement(monthYear);
 	}
-			
-	public WebElement getLeftArrow()
-	{
+
+	public WebElement getLeftArrow() {
 		return driver.findElement(leftArrow);
 	}
-	
-	public WebElement getRightArrow()
-	{
+
+	public WebElement getRightArrow() {
 		return driver.findElement(rightArrow);
 	}
-	
-	public WebElement getCalDayBadge()
-	{
+
+	public WebElement getCalDayBadge() {
 		return driver.findElement(calDayBadge);
 	}
-	
-	public WebElement getCalEventTitle()
-	{
+
+	public WebElement getCalEventTitle() {
 		return driver.findElement(calEventTitle);
 	}
-	
-	public WebElement getUnEnrollBtn()
-	{
+
+	public WebElement getUnEnrollBtn() {
 		return driver.findElement(unEnrollBtn);
 	}
-	
+
 }

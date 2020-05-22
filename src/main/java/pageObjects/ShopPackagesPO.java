@@ -8,10 +8,10 @@ import org.openqa.selenium.WebElement;
 
 public class ShopPackagesPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
-		
+
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By keyWord = By.xpath("//input[@type = 'text']");
@@ -23,51 +23,46 @@ public class ShopPackagesPO {
 	By packagesList = By.xpath("//div[@class = 'row m-t-md']");
 	By warningMsg = By.xpath("//div[contains(@class, 'alert-warning')]");
 // CONSTRUCTOR
-		
+
 	public ShopPackagesPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		ShopPackagesPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 
-	public WebElement getPageHeader()
-	{
+	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);
 	}
-	
-	public WebElement getKeyWord()
-	{
+
+	public WebElement getKeyWord() {
 		return driver.findElement(keyWord);
 	}
-	
-	public List<WebElement> getPackageNames()
-	{
+
+	public List<WebElement> getPackageNames() {
 		return driver.findElements(packageName);
 	}
-	public List<WebElement> getPackagesections()
-	{
+
+	public List<WebElement> getPackagesections() {
 		return driver.findElements(packagesection);
 	}
-	public List<WebElement> getPurchaseButtons()
-	{
+
+	public List<WebElement> getPurchaseButtons() {
 		return driver.findElements(purchaseButton);
 	}
-	public WebElement getBreadcrumbDashboard()
-	{
+
+	public WebElement getBreadcrumbDashboard() {
 		return driver.findElement(breadcrumbDashboard);
 	}
-	public WebElement getBreadcrumbShop()
-	{
+
+	public WebElement getBreadcrumbShop() {
 		return driver.findElement(breadcrumbShop);
 	}
-	
-	public WebElement getPackagesList()
-	{
+
+	public WebElement getPackagesList() {
 		return driver.findElement(packagesList);
 	}
-	
-	public WebElement getWarningMsg()
-	{
+
+	public WebElement getWarningMsg() {
 		return driver.findElement(warningMsg);
 	}
 }

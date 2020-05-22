@@ -39,10 +39,21 @@ public class SelectClassesPageLayout extends base {
 	private static String date;
 	private static WebDriverWait wait;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public SelectClassesPageLayout() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 
 		BT = new BreadcrumbTrailPO(driver);
@@ -50,9 +61,8 @@ public class SelectClassesPageLayout extends base {
 		c = new ClassSignUpPO(driver);
 
 		driver.get(prop.getProperty("EMELoginPage"));
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
-				prop.getProperty("activeMember6_password"));
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
+		rw.waitForDashboardLoaded();
 		d.getMyClassesScheduleButton().click();
 
 		wait = new WebDriverWait(driver, 30);
@@ -146,7 +156,7 @@ public class SelectClassesPageLayout extends base {
 		WebElement Category = c.getSelectClassCategory();
 		Select s1 = new Select(Category);
 		Assert.assertEquals(s1.getFirstSelectedOption().getText(), defaultCategorySelection);
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 //	@AfterTest
 

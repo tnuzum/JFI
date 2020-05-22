@@ -57,25 +57,36 @@ public class FamilyClassEnrollmentUIValidations extends base {
 	private static String member8Rate = "Not Eligible";
 	private static int unitCount = 0;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public FamilyClassEnrollmentUIValidations() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1, description = "Class Search Screen Ui validations")
 	public void SearchScreenUIValidations() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("hoh", "Testing1!");
-		// reusableMethods.unenrollFromClass();
+		rm.activeMemberLogin("hoh", "Testing1!");
+		// rm.unenrollFromClass();
 		// Thread.sleep(2000);
-		// reusableMethods.returnToDashboard();
-		reusableWaits.waitForDashboardLoaded();
+		// rm.returnToDashboard();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-		unitCount = reusableMethods.getPackageUnitsForMember(packageName, member5);
+		unitCount = rm.getPackageUnitsForMember(packageName, member5);
 
 		d.getMyClassesScheduleButton().click();
 
@@ -87,7 +98,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
