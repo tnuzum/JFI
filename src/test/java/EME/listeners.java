@@ -2,6 +2,7 @@ package EME;
 
 import java.io.IOException;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -24,10 +25,18 @@ public class listeners extends base implements ITestListener {
 
 	@Override
 	public void onTestFailure(ITestResult result) {
-
+		WebDriver driver = null;
 		result.getName();
+
 		try {
-			b.getScreenshot(result.getName());
+			driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		try {
+
+			b.getScreenshot(result.getName(), driver);
 		} catch (IOException e) {
 
 			e.printStackTrace();

@@ -24,7 +24,7 @@ public class reusableWaits2 extends base {
 
 	public static String waitForDashboardLoaded() throws InterruptedException {
 
-		boolean error = reusableMethods.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+		boolean error = reusableMethods2.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
 		if (error == true) {
 			driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
@@ -65,7 +65,7 @@ public class reusableWaits2 extends base {
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyAccountPayNow()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyInfoEditButton()));
 
-		error = reusableMethods.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+		error = reusableMethods2.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
 		if (error == true) {
 			driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();

@@ -37,6 +37,17 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	private static String resourceName2 = "PT Smith, Andrew";
 	private static String resourceName3 = "FitExpert2";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
+
+	public reusableWaits rw;
+
+	public reusableMethods rm;
+
+	public ClubReqPackages_BookAppt_FreeAppointment() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	private static String startTime;
 
 //	@BeforeTest
@@ -49,7 +60,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 
 	@Test(priority = 1)
 	public void ScheduleFreeTraining() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("bauto", "Testing1!");
+		rm.activeMemberLogin("bauto", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -208,25 +219,25 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
 	@Test(priority = 2)
 	public void ScheduleFreeServiceV() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("bauto", "Testing1!");
+		rm.activeMemberLogin("bauto", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -384,25 +395,25 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
 	@Test(priority = 3)
 	public void ScheduleFreeTrainingWithThreeResources() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("bauto", "Testing1!");
+		rm.activeMemberLogin("bauto", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -574,26 +585,26 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
 
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook5);
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook5);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
 	@Test(priority = 4, description = "Package price is 0 dollars due to MSS club pricing discount 100% to the membership type")
 	public void CannotScheduleZeroDollarMSSTraining() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("bauto", "Testing1!");
+		rm.activeMemberLogin("bauto", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -737,13 +748,13 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 //Verifies that the Pay button is disabled	
 		Assert.assertFalse(ap.getPaymentButton().isEnabled());
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
 	@Test(priority = 5, description = "Package price is 0 dollars due to MSS club pricing discount 100% to the membership type")
 	public void CannotScheduleFreeDiscountMSSServiceV() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("bauto", "Testing1!");
+		rm.activeMemberLogin("bauto", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -886,12 +897,12 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 //Verifies that the Pay button is disabled	
 		Assert.assertFalse(ap.getPaymentButton().isEnabled());
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	@Test(priority = 6, description = "Schedule a free appointment due to membership type discount")
 	public void ScheduleFreeTrainingDueToDiscount() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("freemember", "Testing1!");
+		rm.activeMemberLogin("freemember", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -1050,19 +1061,19 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook6);
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook6);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 

@@ -32,18 +32,29 @@ public class CancelApptWithFee_cancelTransaction extends base {
 	private static String startTime;
 	private static int appointmentsCount;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public CancelApptWithFee_cancelTransaction() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("cancelmember4", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("cancelmember4", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -131,8 +142,8 @@ public class CancelApptWithFee_cancelTransaction extends base {
 		}
 
 		/*
-		 * boolean result1 = reusableWaits.loadingAvailability(); while (result1 ==
-		 * true) { // Thread.sleep(500); }
+		 * boolean result1 = rw.loadingAvailability(); while (result1 == true) { //
+		 * Thread.sleep(500); }
 		 */
 
 		while (ap.getloadingAvailabilityMessage().size() != 0) {
@@ -195,19 +206,19 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 
 	}
 
 	@Test(priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
-		// reusableWaits.waitForDashboardLoaded();
+		// rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -292,7 +303,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 
 		PM.getCancelButton().click();
 		Thread.sleep(2000);
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 
 		// Verifies the user is navigated to Dashboard
 		Assert.assertEquals("Dashboard", driver.getTitle());
@@ -370,7 +381,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 
 		// Verifies the text on Thank You page and the links to navigate to Dashboard
 		// and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
+		rm.ThankYouPageValidations();
 
 		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 		TY.getPrintReceiptButton().click();
@@ -378,7 +389,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
 
 		// Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
+		rm.ReceiptPopupValidations();
 
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 				.contains(FormatTotalAmt));
@@ -392,18 +403,18 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		// Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 

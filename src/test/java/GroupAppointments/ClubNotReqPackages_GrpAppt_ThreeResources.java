@@ -32,19 +32,30 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 	private static String clubNameDisplayed = "Club: Jonas Fitness";
 	private static String appointmentPrice = "$10.00";
 	private static String startTime;
-	private static int appointmentsCount;;
+	private static int appointmentsCount;
+
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public ClubNotReqPackages_GrpAppt_ThreeResources() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
 
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void ScheduleAppointmentWithThreeResources() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("scottauto", "Testing1!");
+		rm.activeMemberLogin("scottauto", "Testing1!");
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
@@ -156,7 +167,6 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 		if (classtext.contains("cal-out-month")) {
 
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-			;
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -228,13 +238,13 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		// Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
@@ -243,7 +253,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 
 	@Test(priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 20);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -304,7 +314,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 		}
 		a.getEditApptProceedButton().click();
 		Thread.sleep(1000);
-		boolean result1 = reusableWaits.popupMessageYesButton();
+		boolean result1 = rw.popupMessageYesButton();
 		if (result1 == true) {
 //				Thread.sleep(500);	
 		}
@@ -312,7 +322,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 //			
 		Thread.sleep(2000);
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 //	@AfterTest

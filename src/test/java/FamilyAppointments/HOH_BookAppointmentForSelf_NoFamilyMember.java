@@ -22,9 +22,20 @@ public class HOH_BookAppointmentForSelf_NoFamilyMember extends base {
 	private static String resourceName2 = "FitExpert1";
 	private static String startTime;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public HOH_BookAppointmentForSelf_NoFamilyMember() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	@BeforeClass
 	public void initialize() throws IOException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 
@@ -33,21 +44,20 @@ public class HOH_BookAppointmentForSelf_NoFamilyMember extends base {
 	@Test
 	public void BookAppointmentForself_HohWithMoFamily() throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("apptmember10", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("apptmember10", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
-		boolean SelectMemberDropdownPresent = reusableMethods
-				.isElementPresent(By.xpath("//select[@name='familySelect']"));
+		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
 		Assert.assertEquals(SelectMemberDropdownPresent, false);
 
-		startTime = reusableMethods.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
+		startTime = rm.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 				resourceName2);
 
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
-		reusableMethods.memberLogout();
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
+		rm.memberLogout();
 
 	}
 

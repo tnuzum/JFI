@@ -35,17 +35,28 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 	private static int appointmentsCount;
 	private static String unitsToBeSelected = "1 - $5.00/per";
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public ClubReqPackages_BookAppt_SingleResource_NotSelected() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("apptmember4", "Testing1!");
+		rm.activeMemberLogin("apptmember4", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -271,7 +282,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		ThankYouPO TY = new ThankYouPO(driver);
 
 //Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
+		rm.ThankYouPageValidations();
 
 //Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
@@ -283,7 +294,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 //Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
+		rm.ReceiptPopupValidations();
 
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(2000);
@@ -294,19 +305,19 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(2000);
 
 //Note the package units after purchase
-		int IntUnitCountAfter = reusableMethods.getPackageUnits(appointmentToBook);
+		int IntUnitCountAfter = rm.getPackageUnits(appointmentToBook);
 //System.out.println(IntUnitCountAfter);
 
 //Verifies the package units is now incremented by one unit
@@ -317,7 +328,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 
 	@Test(priority = 2)
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
-		// reusableWaits.waitForDashboardLoaded();
+		// rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -334,15 +345,15 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 				}
 			}
 		}
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		reusableMethods.ApptCheckinInCOG("Auto, Apptmember4", appointmentToBook, "apptmember4"); // Check In the Member
-																									// to the
+		rm.ApptCheckinInCOG("Auto, Apptmember4", appointmentToBook, "apptmember4"); // Check In the Member
+																					// to the
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -381,7 +392,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		}
 		a.getEditApptProceedButton().click();
 		Thread.sleep(1000);
-		boolean result1 = reusableWaits.popupMessageYesButton();
+		boolean result1 = rw.popupMessageYesButton();
 		if (result1 == true) {
 //				Thread.sleep(500);	
 		}
@@ -389,7 +400,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 
 		Thread.sleep(2000);
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	// @AfterTest

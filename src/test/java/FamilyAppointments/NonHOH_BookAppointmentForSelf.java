@@ -23,9 +23,20 @@ public class NonHOH_BookAppointmentForSelf extends base {
 	private static String resourceName2 = "FitExpert1";
 	private static String startTime;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public NonHOH_BookAppointmentForSelf() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	@BeforeClass
 	public void initialize() throws IOException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
@@ -33,18 +44,18 @@ public class NonHOH_BookAppointmentForSelf extends base {
 	@Test
 	public void VerifyNonHohBookAppointment() throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("fmlyapptmbr", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("fmlyapptmbr", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
-		startTime = reusableMethods.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
+		startTime = rm.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 				resourceName2);
 
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	@AfterClass

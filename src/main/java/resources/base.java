@@ -155,7 +155,7 @@ public class base {
 		return driver;
 	}
 
-	public void getScreenshot(String result) throws IOException {
+	public void getScreenshot(String result, WebDriver driver) throws IOException {
 
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(src,

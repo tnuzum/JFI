@@ -23,9 +23,20 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 	private static String resourceName2 = "FitExpert1-Grp";
 	private static String startTime;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public NonHOH_BookGrpAppointmentForSelf() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	@BeforeClass
 	public void initialize() throws IOException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
@@ -33,20 +44,20 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 	@Test
 	public void VerifyNonHohBookGrpAppointment() throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("kidapptmbr", "Testing1!");
+		rm.activeMemberLogin("kidapptmbr", "Testing1!");
 
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
-		startTime = reusableMethods.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook,
-				resourceName1, resourceName2);
+		startTime = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
+				resourceName2);
 
-		reusableMethods.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "kidapptmbr");
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
+		rm.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "kidapptmbr");
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 	}
 
 	@AfterClass

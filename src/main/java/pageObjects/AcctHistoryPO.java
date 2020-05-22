@@ -8,10 +8,10 @@ import org.openqa.selenium.WebElement;
 
 public class AcctHistoryPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
-		
+
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By receiptNumbers = By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a");
@@ -19,32 +19,30 @@ public class AcctHistoryPO {
 	By receiptNumberTable = By.xpath("//div[contains(@class,'col-md-12')]");
 	By searchField = By.xpath("//input[@placeholder='Search in table']");
 // CONSTRUCTOR
-		
+
 	public AcctHistoryPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		AcctHistoryPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 
-	public WebElement getPageHeader()
-	{
+	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);
 	}
-	public WebElement getReceiptNumberTable()
-	{
+
+	public WebElement getReceiptNumberTable() {
 		return driver.findElement(receiptNumberTable);
 	}
-	public WebElement getSearchField()
-	{
+
+	public WebElement getSearchField() {
 		return driver.findElement(searchField);
 	}
-	
-	public List<WebElement> getReceiptNumbers()
-	{
+
+	public List<WebElement> getReceiptNumbers() {
 		return driver.findElements(receiptNumbers);
 	}
-	public WebElement getReceiptNumber()
-	{
+
+	public WebElement getReceiptNumber() {
 		return driver.findElement(receiptNumber);
 	}
 }

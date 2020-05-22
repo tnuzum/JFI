@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class AppointmentsPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
 
@@ -103,7 +103,7 @@ public class AppointmentsPO {
 
 	public AppointmentsPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		AppointmentsPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 

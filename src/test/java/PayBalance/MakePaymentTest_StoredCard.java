@@ -29,10 +29,21 @@ public class MakePaymentTest_StoredCard extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public MakePaymentTest_StoredCard() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 //		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -46,8 +57,8 @@ public class MakePaymentTest_StoredCard extends base {
 
 	@Test(priority = 1, description = "Adding $0.05 to member's account")
 	public void MakePaymentWithStoredCard() throws InterruptedException, IOException {
-		reusableMethods.activeMemberLogin("hoh", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("hoh", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		d.getMyAccountPayNow().click();
@@ -72,19 +83,19 @@ public class MakePaymentTest_StoredCard extends base {
 
 			p.getPayWithThisMethodButton1().click();
 
-			reusableWaits.waitForAcceptButton();
+			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
-			reusableWaits.waitForAcceptButton();
+			rw.waitForAcceptButton();
 			System.out.println(p.getPopupText().getText());
 			Assert.assertEquals("Payment Made!", p.getPopupText().getText());
 			p.getPopupConfirmationButton().click();
-//		reusableMethods.returnToDashboard();
+//		rm.returnToDashboard();
 			Thread.sleep(3000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			// Assert.fail(ae.getMessage());
 		}
@@ -92,7 +103,7 @@ public class MakePaymentTest_StoredCard extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			// Assert.fail(ne.getMessage());
 		}
@@ -100,14 +111,14 @@ public class MakePaymentTest_StoredCard extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		}
 
 		finally {
-			boolean popup = reusableMethods.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
 			if (popup == true) {
 				p.getPopupConfirmationButton().click();
@@ -139,7 +150,7 @@ public class MakePaymentTest_StoredCard extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			// Assert.fail(ae.getMessage());
 		}
@@ -147,7 +158,7 @@ public class MakePaymentTest_StoredCard extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			// Assert.fail(ne.getMessage());
 		}
@@ -155,14 +166,14 @@ public class MakePaymentTest_StoredCard extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		}
 
 		finally {
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 	}
 

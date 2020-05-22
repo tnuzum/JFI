@@ -6,12 +6,12 @@ import org.openqa.selenium.WebElement;
 
 public class ThankYouPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // This is the page for the link in the left pane under My Account labels Pay Balance
-	
+
 // OBJECTS
-		
+
 	By thankYouText = By.xpath("//h1[@class='text-uppercase']");
 	By smallText = By.xpath("//div[@class='col-sm-12 p-lg']");
 	By printReceiptButton = By.xpath("//button[contains(text(), 'Print Receipt')]");
@@ -22,86 +22,72 @@ public class ThankYouPO {
 	By receiptPopupClose = By.xpath("//button[contains(text(), 'Close')]");
 	By dashBoardLink = By.xpath("//a[@href = '#/Home']");
 	By viewClassesLink = By.xpath("//a[@href = '#/ClassList']");
-	By viewCoursesEventsLink =By.xpath("//a[@href = '#/CourseList']");
+	By viewCoursesEventsLink = By.xpath("//a[@href = '#/CourseList']");
 	By bookAppointmentsLink = By.xpath("//a[@href = '#/Appointments']");
 	By receiptNumber = By.tagName("strong");
 	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/h2");
 // CONSTRUCTOR
-		
+
 	public ThankYouPO(WebDriver driver) {
-		ThankYouPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 
-	public WebElement getThankYouText()
-	{
+	public WebElement getThankYouText() {
 		return driver.findElement(thankYouText);
 	}
 
-	public WebElement getsmallText()
-	{
+	public WebElement getsmallText() {
 		return driver.findElement(smallText);
 	}
-	public WebElement getPrintReceiptButton()
-	{
+
+	public WebElement getPrintReceiptButton() {
 		return driver.findElement(printReceiptButton);
 	}
-	
-	public WebElement getReceiptPopup()
-	{
+
+	public WebElement getReceiptPopup() {
 		return driver.findElement(receiptPopup);
 	}
-	
-	public WebElement getLinksSection()
-	{
+
+	public WebElement getLinksSection() {
 		return driver.findElement(linksSection);
 	}
 
-	public WebElement getWhatNextText()
-	{
+	public WebElement getWhatNextText() {
 		return driver.findElement(whatNextText);
 	}
-	
-	public WebElement getReceiptPopupPrint()
-	{
+
+	public WebElement getReceiptPopupPrint() {
 		return driver.findElement(receiptPopupPrint);
-		
+
 	}
-	public WebElement getReceiptPopupClose()
-	{
+
+	public WebElement getReceiptPopupClose() {
 		return driver.findElement(receiptPopupClose);
 	}
-	
-	public WebElement getDashBoardLink()
-	{
+
+	public WebElement getDashBoardLink() {
 		return driver.findElement(dashBoardLink);
 	}
-	
-	public WebElement getViewClassesLink()
-	{
+
+	public WebElement getViewClassesLink() {
 		return driver.findElement(viewClassesLink);
 	}
-	
-	
-	public WebElement getViewCoursesEventsLink()
-	{
+
+	public WebElement getViewCoursesEventsLink() {
 		return driver.findElement(viewCoursesEventsLink);
 	}
-	
-	
-	public WebElement getBookAppointmentsLink()
-	{
+
+	public WebElement getBookAppointmentsLink() {
 		return driver.findElement(bookAppointmentsLink);
 	}
-	
-	public WebElement getReceiptNumber()
-	{
+
+	public WebElement getReceiptNumber() {
 		return driver.findElement(receiptNumber);
 	}
-	
-	public WebElement getReceiptHeader()
-	{
+
+	public WebElement getReceiptHeader() {
 		return driver.findElement(receiptHeader);
 	}
-	
+
 }

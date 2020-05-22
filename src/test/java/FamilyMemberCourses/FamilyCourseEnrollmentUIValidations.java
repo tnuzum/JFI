@@ -58,25 +58,36 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 	private static String member8Rate = "Not Eligible";
 	private static int unitCount = 0;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public FamilyCourseEnrollmentUIValidations() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1, description = "Course Search Screen Ui validations")
 	public void SearchScreenUIValidations() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("hoh", "Testing1!");
-		// reusableMethods.unenrollFromCourse();
+		rm.activeMemberLogin("hoh", "Testing1!");
+		// rm.unenrollFromCourse();
 		// Thread.sleep(2000);
-		// reusableMethods.returnToDashboard();
-		reusableWaits.waitForDashboardLoaded();
+		// rm.returnToDashboard();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-		unitCount = reusableMethods.getPackageUnitsForMember(packageName, member5);
+		unitCount = rm.getPackageUnitsForMember(packageName, member5);
 
 		d.getMyCoursesEventsScheduleButton().click();
 
@@ -88,7 +99,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		reusableMethods.SelectCourseStartMonth(CourseStartMonth);
+		rm.SelectCourseStartMonth(CourseStartMonth);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 

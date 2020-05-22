@@ -31,10 +31,21 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	private static ClassSignUpPO c;
 	private static String testName = null;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public EnrollClassMemberAndItemRestrictions() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 
@@ -53,8 +64,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 1, description = "Validating that Frozen member cannot enroll When the club settings won't allow")
 	public void FrozenMemberCannotEnroll() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin("freezemember", "Testing1!");
-		reusableWaits.waitForDashboardLoaded1();
+		rm.activeMemberLogin("freezemember", "Testing1!");
+		rw.waitForDashboardLoaded1();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -64,11 +75,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
+		rm.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
 
 		Thread.sleep(1000);
 		try {
@@ -80,7 +91,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -88,7 +99,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -96,9 +107,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -109,15 +120,15 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 	}
 
 	@Test(priority = 2, description = "Validating that Terminated member cannot enroll When the club settings won't allow")
 	public void TerminatedMemberCannotEnroll() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin("terminate", "Testing1!");
-		reusableWaits.waitForDashboardLoaded1();
+		rm.activeMemberLogin("terminate", "Testing1!");
+		rw.waitForDashboardLoaded1();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -127,11 +138,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
+		rm.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
 
 		Thread.sleep(1000);
 		try {
@@ -142,7 +153,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -150,7 +161,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -158,9 +169,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -170,7 +181,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -178,8 +189,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 3, description = "Validating that the class cannnot be enrolled due to the enrollment window has closed")
 	public void ClassEnrollmentWindowClosed() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin("feemember", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("feemember", "Testing1!");
+		rw.waitForDashboardLoaded();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -189,11 +200,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("CLASSENROLLMENTCLOSED");
+		rm.SelectClassOrCourseToEnroll("CLASSENROLLMENTCLOSED");
 
 		Thread.sleep(1000);
 		try {
@@ -204,7 +215,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -212,7 +223,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -220,9 +231,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -233,7 +244,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -241,8 +252,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 4, description = "Validating that the class cannnot be enrolled due to Item Restrictions")
 	public void ClassCannotBEnrolled() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin("feemember", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("feemember", "Testing1!");
+		rw.waitForDashboardLoaded();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -252,11 +263,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("CLASSCANNOTBENROLLED");
+		rm.SelectClassOrCourseToEnroll("CLASSCANNOTBENROLLED");
 
 		Thread.sleep(1000);
 		try {
@@ -267,7 +278,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -275,7 +286,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -283,9 +294,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -295,7 +306,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -303,8 +314,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 5, description = "Validating that the class cannnot be enrolled due to  the enrollment window is not open yet")
 	public void ClassEnrollmentNotOpened() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin("feemember", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("feemember", "Testing1!");
+		rw.waitForDashboardLoaded();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -340,7 +351,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("CLASSENROLLMENTNOTOPENED");
+		rm.SelectClassOrCourseToEnroll("CLASSENROLLMENTNOTOPENED");
 
 		Thread.sleep(1000);
 		try {
@@ -351,7 +362,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -359,7 +370,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -367,9 +378,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -380,7 +391,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -388,8 +399,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 6, description = "Validating that the class cannnot be enrolled as the class time is passed for the day")
 	public void ClassEnrollmentEnded() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin("feemember", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("feemember", "Testing1!");
+		rw.waitForDashboardLoaded();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -399,11 +410,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectYesterdayDate();
+		rm.SelectYesterdayDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("CLASSENROLLMENTENDED");
+		rm.SelectClassOrCourseToEnroll("CLASSENROLLMENTENDED");
 
 		// wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 		try {
@@ -414,7 +425,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -422,7 +433,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -430,9 +441,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -442,7 +453,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
 			c.getPopupCancelButton().click();
 			Thread.sleep(1000);
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -450,8 +461,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 7, description = "Validating that the class cannnot be enrolled due to Membership Type Time Restrictions")
 	public void ClassOutsidePermittedHours() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin("outpermtdhrs", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("outpermtdhrs", "Testing1!");
+		rw.waitForDashboardLoaded();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -462,11 +473,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("CLASSWITHINELIGIBLETIME");
+		rm.SelectClassOrCourseToEnroll("CLASSWITHINELIGIBLETIME");
 
 		Thread.sleep(1000);
 		try {
@@ -477,7 +488,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -485,7 +496,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -493,9 +504,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -506,7 +517,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
@@ -514,8 +525,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 8, description = "Validating that the class cannnot be enrolled due to Membership Type Restrictions at the club")
 	public void ClubAccessDenied() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin("hoh", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("hoh", "Testing1!");
+		rw.waitForDashboardLoaded();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -526,11 +537,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
+		rm.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
 
 		try {
 			int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
@@ -544,7 +555,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			Assert.fail(ae.getMessage());
 		}
@@ -552,7 +563,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(ne.getMessage(), ne);
 			Assert.fail(ne.getMessage());
 		}
@@ -560,9 +571,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
 			System.out.println("Element Click Intercepted");
 			eci.printStackTrace();
-			getScreenshot(testName);
+			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
-			reusableMethods.catchErrorMessage();
+			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
 		}
 
@@ -577,15 +588,15 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			// c.getPopupCancelButton().click();
 
 			Thread.sleep(1000);
-			reusableMethods.memberLogout();
+			rm.memberLogout();
 		}
 
 	}
 
 	@Test(priority = 9, description = "Validating that the class cannnot be enrolled due to Scheduling Conflict")
 	public void ClassSchedulingConflict() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("hoh", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("hoh", "Testing1!");
+		rw.waitForDashboardLoaded();
 
 		d.getMyClassesScheduleButton().click();
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -595,11 +606,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("SCHEDULINGCONFLICTCLASS");
+		rm.SelectClassOrCourseToEnroll("SCHEDULINGCONFLICTCLASS");
 
 		Thread.sleep(2000);
 		// ((JavascriptExecutor) driver)
@@ -621,7 +632,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
@@ -630,11 +641,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll("BARRE COMBAT FUSION");
+		rm.SelectClassOrCourseToEnroll("BARRE COMBAT FUSION");
 
 		int memberCount = c.getDetailsPopup().findElements(By.tagName("label")).size();
 		for (int i = 0; i < memberCount; i++) {
@@ -652,9 +663,9 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 //		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
 
-		reusableMethods.returnToDashboard();
-		reusableMethods.unenrollFromClass();
-		reusableMethods.memberLogout();
+		rm.returnToDashboard();
+		rm.unenrollFromClass();
+		rm.memberLogout();
 
 	}
 

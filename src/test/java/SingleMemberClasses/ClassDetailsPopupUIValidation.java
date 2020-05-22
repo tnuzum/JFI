@@ -24,10 +24,20 @@ public class ClassDetailsPopupUIValidation extends base {
 	private static DashboardPO d;
 	private static ClassSignUpPO c;
 
+	public reusableMethods rm;
+
+	public ClassDetailsPopupUIValidation() {
+
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 
@@ -38,19 +48,18 @@ public class ClassDetailsPopupUIValidation extends base {
 	@Test(priority = 1, description = "Ui validations")
 	public void PopupUIValidations() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
-				prop.getProperty("activeMember6_password"));
+		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 
 		d.getMyClassesScheduleButton().click();
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectTomorrowDate();
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll(classToEnroll);
+		rm.SelectClassOrCourseToEnroll(classToEnroll);
 
 		Thread.sleep(2000);
 
@@ -63,7 +72,7 @@ public class ClassDetailsPopupUIValidation extends base {
 
 		c.getPopupCancelButton().click();
 		Thread.sleep(1000);
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 

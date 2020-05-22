@@ -31,10 +31,21 @@ public class EnrollInCourse_CancelTransaction extends base {
 	private static String CourseStartMonth = "Dec";
 	private static String dsiredMonthYear = "December 2020";
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public EnrollInCourse_CancelTransaction() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
@@ -42,9 +53,8 @@ public class EnrollInCourse_CancelTransaction extends base {
 	@Test(priority = 1, description = "Cancelling from the Rate Select Rates page")
 	public void CancelFromSelectRatesPage() throws IOException, InterruptedException {
 
-		reusableMethods.activeMemberLogin(prop.getProperty("activeMember6_username"),
-				prop.getProperty("activeMember6_password"));
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
+		rw.waitForDashboardLoaded();
 
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
@@ -60,11 +70,11 @@ public class EnrollInCourse_CancelTransaction extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		reusableMethods.SelectCourseStartMonth(CourseStartMonth);
+		rm.SelectCourseStartMonth(CourseStartMonth);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		reusableMethods.SelectClassOrCourseToEnroll(courseToEnroll);
+		rm.SelectClassOrCourseToEnroll(courseToEnroll);
 
 		Thread.sleep(2000);
 		c.getPopupSignupButtonCourse().click();
@@ -138,7 +148,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 
 		c.getContinueButton().click();
 		Thread.sleep(2000);
-		reusableMethods.ReviewSectionValidation("Fee(s)");
+		rm.ReviewSectionValidation("Fee(s)");
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -166,7 +176,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 
 		Assert.assertEquals(c.getPageHeader().getText(), "Select Courses / Events");
 
-		reusableMethods.memberLogout();
+		rm.memberLogout();
 
 	}
 

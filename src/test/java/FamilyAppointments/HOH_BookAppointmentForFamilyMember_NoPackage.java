@@ -25,9 +25,20 @@ public class HOH_BookAppointmentForFamilyMember_NoPackage extends base {
 	private static String startTime;
 	private static AppointmentsPO ap;
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public HOH_BookAppointmentForFamilyMember_NoPackage() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 	@BeforeClass
 	public void initialize() throws IOException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 
@@ -37,8 +48,8 @@ public class HOH_BookAppointmentForFamilyMember_NoPackage extends base {
 	@Test
 	public void BookAppointmentForFamilyMember() throws InterruptedException, IOException {
 
-		reusableMethods.activeMemberLogin("appthoh", "Testing1!");
-		reusableWaits.waitForDashboardLoaded();
+		rm.activeMemberLogin("appthoh", "Testing1!");
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		d.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -55,12 +66,12 @@ public class HOH_BookAppointmentForFamilyMember_NoPackage extends base {
 			}
 		}
 
-		startTime = reusableMethods.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
+		startTime = rm.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 				resourceName2);
-		reusableMethods.memberLogout();
-		reusableMethods.activeMemberLogin("kidapptmbr", "Testing1!");
-		reusableMethods.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
-		reusableMethods.memberLogout();
+		rm.memberLogout();
+		rm.activeMemberLogin("kidapptmbr", "Testing1!");
+		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
+		rm.memberLogout();
 
 	}
 

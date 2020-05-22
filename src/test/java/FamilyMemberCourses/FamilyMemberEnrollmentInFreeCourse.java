@@ -53,21 +53,32 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
 
+	public reusableWaits rw;
+	public reusableMethods rm;
+
+	public FamilyMemberEnrollmentInFreeCourse() {
+		rw = new reusableWaits();
+		rm = new reusableMethods();
+
+	}
+
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
+		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
 	@Test(priority = 1, description = "Family Member Enrollment")
 	public void FamilyEnrollInFreeCourse() throws IOException, InterruptedException {
-		reusableMethods.activeMemberLogin("hoh", "Testing1!");
-		// reusableMethods.unenrollFromClass();
+		rm.activeMemberLogin("hoh", "Testing1!");
+		// rm.unenrollFromClass();
 		// Thread.sleep(2000);
-		// reusableMethods.returnToDashboard();
-		reusableWaits.waitForDashboardLoaded();
+		// rm.returnToDashboard();
+		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
@@ -81,7 +92,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		reusableMethods.SelectCourseStartMonth(CourseStartMonth);
+		rm.SelectCourseStartMonth(CourseStartMonth);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -211,7 +222,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 
 		// Verifies the text on Thank You page and the links to navigate to Dashboard
 		// and other pages are displayed
-		reusableMethods.ThankYouPageValidations();
+		rm.ThankYouPageValidations();
 
 		// Note down the Receipt number
 		String receiptNumber = TY.getReceiptNumber().getText();
@@ -222,7 +233,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
 
 		// Verifies the buttons on Print Receipt Popup
-		reusableMethods.ReceiptPopupValidations();
+		rm.ReceiptPopupValidations();
 
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(1000);
@@ -233,13 +244,13 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
 			{
-				// reusableWaits.linksToBeClickable();
+				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
 				break;
 			}
 
 		}
-		reusableWaits.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded();
 		// Verifies the link navigates to the right page
 		Assert.assertEquals("Dashboard", driver.getTitle());
 		Thread.sleep(1000);
@@ -266,16 +277,16 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 				.contains("$0.00"));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 		Thread.sleep(1000);
-		reusableMethods.returnToDashboard();
-		reusableMethods.memberLogout();
+		rm.returnToDashboard();
+		rm.memberLogout();
 	}
 
 	@Test(dataProvider = "getData", dependsOnMethods = { "FamilyEnrollInFreeCourse" })
 	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
-		reusableMethods.activeMemberLogin(username, password);
-		reusableWaits.waitForDashboardLoaded();
-		reusableMethods.unenrollFromCourse(dsiredMonthYear);
-		reusableMethods.memberLogout();
+		rm.activeMemberLogin(username, password);
+		rw.waitForDashboardLoaded();
+		rm.unenrollFromCourse(dsiredMonthYear);
+		rm.memberLogout();
 	}
 
 	@DataProvider

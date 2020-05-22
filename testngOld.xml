@@ -1,11 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="EME - Smoke Testing">
+<suite name="EME - Smoke Testing" parallel = "tests" thread-count = "2">
     <listeners>
 		<listener class-name = "EME.listeners"/>
 	<!--listener class-name = "resources.ExtentReporterNG"/-->
 	</listeners> 
-  <test thread-count="5" name="Login Page Test">
+	
+	 <test  name="Test1">
+    <classes>
+      <class name="EME.DashBoard_Layout2"/>
+      <class name="EME.DashBoard_Menu2"/>
+    </classes>
+  </test>
+  <test  name="Test2">
+    <classes>
+      <class name="SingleMemberClasses.EnrollClassByBuyingPackage2"/>
+       <class name="SingleMemberClasses.ClassDetailsPopupUIValidation2"/>
+    </classes>
+  </test>
+    <!--test  name="Test3">
+    <classes>
+     
+    </classes>
+  </test--> 
+  
+  <!--test thread-count="5" name="Login Page Test">
     <classes>
       <class name="EME.loginPageTest"/>
     </classes>
@@ -35,21 +54,21 @@
       <class name="EME.MakeApptTest"/>
     </classes>
   </test> 
-    <!-- test thread-count="5" name="Schedule Class">
+    <test thread-count="5" name="Schedule Class">
     <classes>
       <class name="EME.ScheduleClassTest"/>
     </classes>
-  </test--> 
-      <!-- test thread-count="5" name="Schedule Course">
+  </test> 
+      <test thread-count="5" name="Schedule Course">
     <classes>
       <class name="EME.ScheduleCourseTest"/>
     </classes>
-  </test-->
-        <!-- test thread-count="5" name="Make Group Appointment">
+  </test>
+        <test thread-count="5" name="Make Group Appointment">
     <classes>
       <class name="EME.MakeGroupApptTest"/>
     </classes>
-  </test-->
+  </test>
    <test thread-count="5" name="Dashboard layout">
     <classes>
       <class name="EME.DashBoard_Layout"/>
@@ -60,7 +79,7 @@
       <class name="EME.DashBoard_Menu"/>
     </classes>
   </test>
-    <!-- test thread-count="5" name="JOL - Landing Page Test">
+    <test thread-count="5" name="JOL - Landing Page Test">
     <classes>
       <class name="JOL.LandingPageTest"/>
     </classes>

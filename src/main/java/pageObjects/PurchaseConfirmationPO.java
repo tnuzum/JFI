@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 public class PurchaseConfirmationPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
 
@@ -32,7 +32,7 @@ public class PurchaseConfirmationPO {
 
 	public PurchaseConfirmationPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		PurchaseConfirmationPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 
