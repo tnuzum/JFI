@@ -1,7 +1,11 @@
 test_environment = local
 browser = Chrome
 EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
+COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
+
 EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
+COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
+
 	**************************************************************************************
 	Web addresses for URL parameter
 	EMEFuture2AutoURL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
@@ -12,10 +16,6 @@ EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/l
 	**************************************************************************************
 JOLLoginPage = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236
 JOLSearchPromo = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236/1/searchpromo
-
-COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
-COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
-
 
 MastercardNumber = 5454545454545454
 MastercardExpireMonth = 01
