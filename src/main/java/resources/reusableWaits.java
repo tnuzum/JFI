@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
+import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
 import pageObjects.PaymentPO;
 
@@ -29,14 +30,7 @@ public class reusableWaits extends base {
 
 	public String waitForDashboardLoaded() throws InterruptedException {
 
-		/*
-		 * boolean error = reusableMethods.isElementPresent(By.xpath(
-		 * "//div[@class='swal2-actions']/button[1]"));
-		 * 
-		 * if (error == true) {
-		 * driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click
-		 * (); System.out.println("Error was present"); }
-		 */
+		this.catchErrorMessage();
 
 		// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
@@ -71,20 +65,14 @@ public class reusableWaits extends base {
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyCoursesEventsScheduleButton()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyAccountPayNow()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyInfoEditButton()));
-		/*
-		 * error = reusableMethods.isElementPresent(By.xpath(
-		 * "//div[@class='swal2-actions']/button[1]"));
-		 * 
-		 * if (error == true) {
-		 * driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click
-		 * (); System.out.println("Error was present"); }
-		 */
+		this.catchErrorMessage();
 
 		return null;
 
 	}
 
 	public String waitForDashboardLoaded1() throws InterruptedException {
+		this.catchErrorMessage();
 		// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
@@ -111,6 +99,7 @@ public class reusableWaits extends base {
 			Thread.sleep(500);
 			wait4.getText();
 		}
+		this.catchErrorMessage();
 
 		return null;
 
@@ -229,6 +218,28 @@ public class reusableWaits extends base {
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyInfoEditButton()));
 		return null;
 
+	}
+
+	private boolean catchErrorMessagePrivate()// only used by catchErrorMessage method below; not available from
+	// other classes
+	{
+		try {
+			driver.findElement(By.xpath("//*[text()='An Error Has Occurred']"));
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	public String catchErrorMessage() throws InterruptedException {
+		boolean e = this.catchErrorMessagePrivate();
+		if (e == true) {
+			System.out.println("ERROR: An Error Has Occurred");
+			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			er.getOKButton().click();
+
+		}
+		return null;
 	}
 
 }

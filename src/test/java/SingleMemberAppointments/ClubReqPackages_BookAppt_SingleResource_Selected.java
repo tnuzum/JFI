@@ -58,9 +58,13 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 	public void ScheduleAppointment() throws IOException, InterruptedException {
 		rm.activeMemberLogin("apptmember5", "Testing1!");
 		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 

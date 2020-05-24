@@ -55,9 +55,13 @@ public class CancelApptWithFee_cancelTransaction extends base {
 	public void ScheduleAppointment() throws IOException, InterruptedException {
 		rm.activeMemberLogin("cancelmember4", "Testing1!");
 		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 

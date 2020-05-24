@@ -61,9 +61,14 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	@Test(priority = 1)
 	public void ScheduleFreeTraining() throws IOException, InterruptedException {
 		rm.activeMemberLogin("bauto", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -238,9 +243,14 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	@Test(priority = 2)
 	public void ScheduleFreeServiceV() throws IOException, InterruptedException {
 		rm.activeMemberLogin("bauto", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -414,9 +424,14 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	@Test(priority = 3)
 	public void ScheduleFreeTrainingWithThreeResources() throws IOException, InterruptedException {
 		rm.activeMemberLogin("bauto", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -605,9 +620,14 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	@Test(priority = 4, description = "Package price is 0 dollars due to MSS club pricing discount 100% to the membership type")
 	public void CannotScheduleZeroDollarMSSTraining() throws IOException, InterruptedException {
 		rm.activeMemberLogin("bauto", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -755,9 +775,14 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	@Test(priority = 5, description = "Package price is 0 dollars due to MSS club pricing discount 100% to the membership type")
 	public void CannotScheduleFreeDiscountMSSServiceV() throws IOException, InterruptedException {
 		rm.activeMemberLogin("bauto", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -903,9 +928,14 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	@Test(priority = 6, description = "Schedule a free appointment due to membership type discount")
 	public void ScheduleFreeTrainingDueToDiscount() throws IOException, InterruptedException {
 		rm.activeMemberLogin("freemember", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 

@@ -831,6 +831,8 @@ public class reusableMethods extends base {
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Thread.sleep(2000);
 
+		this.catchErrorMessage();
+
 		Select se = new Select(ap.getclubs());
 		List<WebElement> Clubs = se.getOptions();
 
@@ -1000,6 +1002,7 @@ public class reusableMethods extends base {
 			}
 
 		}
+		this.catchErrorMessage();
 		rw.waitForDashboardLoaded();
 		return startTime;
 	}
@@ -1011,6 +1014,8 @@ public class reusableMethods extends base {
 		String startTime = null;
 		// p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		this.catchErrorMessage();
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -1209,6 +1214,8 @@ public class reusableMethods extends base {
 			}
 
 		}
+
+		this.catchErrorMessage();
 		rw.waitForDashboardLoaded();
 		return startTime;
 	}
