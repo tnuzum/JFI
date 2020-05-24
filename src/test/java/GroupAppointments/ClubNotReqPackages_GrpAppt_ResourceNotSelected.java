@@ -54,11 +54,15 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
 		rm.activeMemberLogin("scottauto", "Testing1!");
+		rw.waitForDashboardLoaded();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		Select se = new Select(ap.getclubs());

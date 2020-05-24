@@ -56,11 +56,16 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 	@Test(priority = 1)
 	public void ScheduleAppointmentWithThreeResources() throws IOException, InterruptedException {
 		rm.activeMemberLogin("scottauto", "Testing1!");
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
 
+		rm.catchErrorMessage();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		Select se = new Select(ap.getclubs());

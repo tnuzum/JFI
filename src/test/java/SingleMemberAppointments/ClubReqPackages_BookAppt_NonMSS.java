@@ -16,6 +16,7 @@ import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 public class ClubReqPackages_BookAppt_NonMSS extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
@@ -24,10 +25,12 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 	private static String appointmentToBook = "PT 60 Mins-NonMSS";
 
 	public reusableMethods rm;
+	public reusableWaits rw;
 
 	public ClubReqPackages_BookAppt_NonMSS() {
 
 		rm = new reusableMethods();
+		rw = new reusableWaits();
 
 	}
 
@@ -36,6 +39,7 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
 		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
@@ -43,9 +47,13 @@ public class ClubReqPackages_BookAppt_NonMSS extends base {
 	@Test(priority = 1)
 	public void VerifyMessage() throws IOException, InterruptedException {
 		rm.activeMemberLogin("ccmember", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 

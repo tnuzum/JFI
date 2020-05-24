@@ -21,6 +21,7 @@ import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import resources.base;
 import resources.reusableMethods;
+import resources.reusableWaits;
 
 public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
@@ -34,10 +35,12 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	private static String unitsToBeSelected = "1 - $4.50/per";
 
 	public reusableMethods rm;
+	public reusableWaits rw;
 
 	public ClubReqPackages_GrpAppt_CancelTransaction() {
 
 		rm = new reusableMethods();
+		rw = new reusableWaits();
 
 	}
 
@@ -46,6 +49,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
 		rm.setDriver(driver);
+		rw.setDriver(driver);
 		log.info("Driver Initialized");
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
@@ -53,9 +57,14 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	@Test(priority = 1)
 	public void CancelTransaction() throws IOException, InterruptedException {
 		rm.activeMemberLogin("apptmember3", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
+
+		rm.catchErrorMessage();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
