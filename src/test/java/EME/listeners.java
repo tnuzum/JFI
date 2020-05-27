@@ -7,24 +7,37 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+
+import resources.ExtentReporterNG;
 import resources.base;
 
 public class listeners extends base implements ITestListener {
 
 	resources.base b = new resources.base();
+	ExtentTest test;
+	ExtentReports extent = ExtentReporterNG.getReportObject();
+	ThreadLocal<ExtentTest> extentTest = new ThreadLocal<ExtentTest>();
 
 	@Override
 	public void onTestStart(ITestResult result) {
+
+		test = extent.createTest(result.getMethod().getMethodName());
+		extentTest.set(test);
 
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-
+		extentTest.get().log(Status.PASS, "Test Passed");
 	}
 
 	@Override
 	public void onTestFailure(ITestResult result) {
+
+		extentTest.get().fail(result.getThrowable());
 		WebDriver driver = null;
 		result.getName();
 
@@ -35,6 +48,10 @@ public class listeners extends base implements ITestListener {
 		}
 
 		try {
+
+			extentTest.get().addScreenCaptureFromPath(b.getScreenshot(result.getName(), driver), result.getName());
+			// result.getMethod().getMethodName() can also be used in place of
+			// result.getName()
 
 			b.getScreenshot(result.getName(), driver);
 		} catch (IOException e) {
@@ -48,14 +65,17 @@ public class listeners extends base implements ITestListener {
 		}
 	}
 
-	/*
-	 * @Override public void onTestSkipped(ITestResult result) {
-	 * 
-	 * result.getName(); try { b.getScreenshot(result.getName()); } catch
-	 * (IOException e) {
-	 * 
-	 * e.printStackTrace(); } }
-	 */
+	@Override
+	public void onTestSkipped(ITestResult result) {
+
+		/*
+		 * result.getName(); try { b.getScreenshot(result.getName()); } catch
+		 * (IOException e) {
+		 * 
+		 * e.printStackTrace(); }
+		 */
+	}
+
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 
@@ -68,6 +88,7 @@ public class listeners extends base implements ITestListener {
 
 	@Override
 	public void onFinish(ITestContext context) {
+		extent.flush();
 
 	}
 	/*
