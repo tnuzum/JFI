@@ -34,7 +34,7 @@ public class ChangeGrpApptWithOutFee_ClubReqPackages extends base {
 	private static String resourceName2 = "|Gym-Grp";
 	private static String resourceName3 = "FitExpert2-Grp";
 	private static String resourceName4 = "PT Smith, Andrew-Grp";
-	private static String unitsToBeSelected = "1 - $60.00/per";
+	private static String unitsToBeSelected = "1 - $10.00/per";
 	private static String participant2 = "Auto, Daisy";
 	private static String startTime1;
 	private static String startTime2;

@@ -34,7 +34,7 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 	private static String resourceName2 = "|Mind Body";
 	private static String resourceName3 = "FitExpert2";
 	private static String resourceName4 = "PT Smith, Andrew";
-	private static String unitsToBeSelected = "1 - $60.00/per";
+	private static String unitsToBeSelected = "1 - $10.00/per";
 	private static String startTime1;
 	private static String startTime2;
 

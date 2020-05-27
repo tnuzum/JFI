@@ -3,7 +3,7 @@
 <suite name="EME - Automated Testing">
 	<listeners>
 		<listener class-name="EME.listeners" />
-		<!--listener class-name = "resources.ExtentReporterNG"/ -->
+		<!--listener class-name = "resources.ExtentReporterNG"/-->
 	</listeners>
 	<test thread-count="5" name="EME - E2E Testing">
 		<classes>
