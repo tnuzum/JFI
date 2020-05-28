@@ -266,7 +266,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 		}
 		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < paymentMethodscount; i++) {
-			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("1111")) {
 
 				PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 				break;

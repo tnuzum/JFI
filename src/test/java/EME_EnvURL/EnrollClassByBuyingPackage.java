@@ -37,7 +37,7 @@ public class EnrollClassByBuyingPackage extends base {
 	private static String buyPackageName = "Buy Day Pass";
 	private static String packageName = "Day Pass";
 	private static String defaultSelection = null;
-	private static String unitsToBeSelected = "2 - $1.00/per";
+	private static String unitsToBeSelected = "2 - $10.00/per";
 	private static String classCostInUnits = "Class Cost: 2 Unit(s) - Your Current Unit Value Is ";
 	private static int unitCount = 0;
 	private static DashboardPO d;
@@ -390,7 +390,7 @@ public class EnrollClassByBuyingPackage extends base {
 			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < count; i++) {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-						.contains("5454")) {
+						.contains("1111")) {
 
 					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 					break;

@@ -32,10 +32,10 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 	private static String appointmentToBook = "PT Group-SelectedMultiResources";
 	private static String resourceName = "PT Smith, Andrew-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
-	private static String mbrDiscntPricing = "$4.63";
+	private static String mbrDiscntPricing = "$5.56";
 	private static String startTime;
 	private static int appointmentsCount;
-	private static String unitsToBeSelected = "1 - $4.50/per";
+	private static String unitsToBeSelected = "1 - $5.40/per";
 	private static String participant2 = "Auto, Daisy";
 
 	public reusableWaits rw;
@@ -298,7 +298,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 		}
 		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < paymentMethodscount; i++) {
-			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("1111")) {
 
 				PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 				break;

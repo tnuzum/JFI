@@ -119,9 +119,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 
 		Select se = new Select(ap.getclubs());
 		List<WebElement> Clubs = se.getOptions();
-
-		while (!ap.getclubs().isEnabled()) {
+		int x = 0;
+		while (!ap.getclubs().isEnabled() && x < 100) {
 			System.out.println("Waiting for Clubs drop down to not be blank");
+			x++;
 		}
 
 		int count0 = Clubs.size();
@@ -316,7 +317,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 
-		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $6.00"));
 
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook2.toUpperCase()));
 		System.out.println(ap.getRateBox().getText());

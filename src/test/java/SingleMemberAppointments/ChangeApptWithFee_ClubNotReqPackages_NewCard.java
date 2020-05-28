@@ -265,7 +265,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_NewCard extends base {
 
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $90.00"));
-		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $6.00"));
 
 		System.out.println(ap.getTotalAmount().getText());
 

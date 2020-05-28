@@ -242,7 +242,7 @@ public class ChangeApptWithFee_Demo extends base {
 
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $90.00"));
-		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $6.00"));
 
 		System.out.println(ap.getTotalAmount().getText());
 
@@ -257,7 +257,7 @@ public class ChangeApptWithFee_Demo extends base {
 
 		int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < paymentMethodscount; i++) {
-			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("1111")) {
 
 				PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 				break;
