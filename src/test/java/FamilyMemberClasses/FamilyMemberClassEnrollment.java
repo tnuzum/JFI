@@ -40,7 +40,7 @@ public class FamilyMemberClassEnrollment extends base {
 	private static String buyPackageName = "Buy Day Pass";
 	private static String packageName = "Day Pass";
 	private static String defaultSelection = null;
-	private static String unitsToBeSelected = "2 - $1.00/per";
+	private static String unitsToBeSelected = "2 - $10.00/per";
 	private static String classCostInUnits = "Class Cost: 2 Unit(s) - Your Current Unit Value Is ";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";

@@ -263,7 +263,7 @@ public class ChangeApptWithFee_MemberHasPackages_OnAccount extends base {
 
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 		Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $5.00"));
-		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $6.00"));
 
 		System.out.println(ap.getTotalAmount().getText());
 

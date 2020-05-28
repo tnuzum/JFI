@@ -291,7 +291,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 
-		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $2.00"));
+		Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $6.00"));
 
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook2.toUpperCase()));
 		System.out.println(ap.getRateBox().getText());

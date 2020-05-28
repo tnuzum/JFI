@@ -39,7 +39,7 @@ public class FamilyMemberClassEnrollment2 extends base {
 	private static String member1 = "FreeServiceDMbr";
 	private static String member1Rate = "Free";
 	private static String member2 = "HOH2";
-	private static String member2Rate = "$2.50";
+	private static String member2Rate = "$5.00";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -200,7 +200,7 @@ public class FamilyMemberClassEnrollment2 extends base {
 			String text = pp.getMemberfeesSection().get(i).getText();
 
 			if (text.contains(member2))
-				Assert.assertTrue(text.contains("Single Class Fee $2.50"));
+				Assert.assertTrue(text.contains("Single Class Fee $5.00"));
 
 			if (text.contains(member1))
 				Assert.assertTrue(text.contains("Single Class Fee Free"));
