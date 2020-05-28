@@ -57,7 +57,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding $0.05 to member's account")
+	@Test(priority = 1, description = "Adding $5.00 to member's account")
 	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
 		rm.activeMemberLogin("dauto", "Testing1!");
 		rw.waitForDashboardLoaded();
@@ -78,7 +78,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 				p.getCustomAmountInput().sendKeys(Keys.BACK_SPACE);
 				variable++;
 			}
-			p.getCustomAmountInput().sendKeys("0.05");
+			p.getCustomAmountInput().sendKeys("5.00");
 			Thread.sleep(2000);
 
 			p.getSelectPaymentNewCardButton().click();
