@@ -282,7 +282,7 @@ public class FamilyMemberClassEnrollment extends base {
 
 			if (text.contains(member5)) {
 				Assert.assertTrue(text.contains("Day Pass"));
-				Assert.assertTrue(text.contains("Package Unit(s): 2 X $1.00"));
+				Assert.assertTrue(text.contains("Package Unit(s): 2 X $10.00"));
 			}
 
 			if (text.contains(member6)) {
