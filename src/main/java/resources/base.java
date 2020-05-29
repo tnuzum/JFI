@@ -158,7 +158,8 @@ public class base {
 	public String getScreenshot(String result, WebDriver driver) throws IOException {
 
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String destinationFile = projectPath + "\\screenshots\\" + result + ssTime + "screenshot.png";
+		String destinationFile = System.getProperty("user.dir") + "\\screenshots\\" + result + ssTime
+				+ "screenshot.png";
 		FileUtils.copyFile(src, new File(destinationFile));
 		return destinationFile;
 	}
