@@ -28,6 +28,7 @@ public class DashBoard_Layout extends base {
 		rm.setDriver(driver);
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
+		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 		rm.activeMember1Login(); // Login to EME
 

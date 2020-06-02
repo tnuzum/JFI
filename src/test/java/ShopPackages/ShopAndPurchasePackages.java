@@ -50,6 +50,7 @@ public class ShopAndPurchasePackages extends base {
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
+		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 		d = new DashboardPO(driver);
 		sp = new ShopPackagesPO(driver);

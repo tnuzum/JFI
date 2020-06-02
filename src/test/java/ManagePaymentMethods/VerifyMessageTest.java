@@ -30,6 +30,7 @@ public class VerifyMessageTest extends base {
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
+		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 		rm.activeMemberLogin("noccmember", "Testing1!"); // Login to EME
 		rw.waitForDashboardLoaded();

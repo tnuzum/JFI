@@ -55,6 +55,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
+		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
@@ -222,6 +223,8 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 		}
 
 		ap.getCalendarDayAfterTomorrow().click();
+		log.info("Calendar Date Clicked");
+		System.out.println("Calendar Date Clicked");
 
 		for (int m = 0; m < ap.getApptBox().size(); m++) {
 			String bookName = ap.getApptBox().get(m).getText();
