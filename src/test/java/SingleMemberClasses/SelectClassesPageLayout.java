@@ -54,7 +54,7 @@ public class SelectClassesPageLayout extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
-		log.info("Driver Initialized");
+		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 
 		BT = new BreadcrumbTrailPO(driver);
 		d = new DashboardPO(driver);

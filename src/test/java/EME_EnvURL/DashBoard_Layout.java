@@ -29,7 +29,7 @@ public class DashBoard_Layout extends base {
 //		public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
 		rm.setDriver(driver);
-		log.info("Driver Initialized");
+		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		// String EMELoginPage = prop.getProperty("EMELoginPage");
 		driver.get(EMELoginPage);
 		rm.activeMember1Login(); // Login to EME

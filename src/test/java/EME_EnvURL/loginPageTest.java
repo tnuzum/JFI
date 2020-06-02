@@ -26,7 +26,7 @@ public class loginPageTest extends base {
 	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
 //	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
-		log.info("Driver Initialized");
+		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		// String EMELoginPage = prop.getProperty("EMELoginPage");
 		driver.get(EMELoginPage);
 	}

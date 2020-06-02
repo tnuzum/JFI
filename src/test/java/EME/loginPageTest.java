@@ -26,7 +26,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	public void initialize() throws IOException, InterruptedException
 	{
 		 driver = initializeDriver();
-		 log.info("Driver Initialized");
+		 log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		 driver.get(prop.getProperty("EMELoginPage"));
 	}
 	

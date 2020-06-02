@@ -51,7 +51,7 @@ public class PageLaunchTest extends base {
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		d = new DashboardPO(driver);
-		log.info("Driver Initialized");
+		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 		rm.activeMember1Login();
 		rw.waitForDashboardLoaded();
