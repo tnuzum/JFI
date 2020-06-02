@@ -54,7 +54,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
-		log.info("Driver Initialized");
+		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 

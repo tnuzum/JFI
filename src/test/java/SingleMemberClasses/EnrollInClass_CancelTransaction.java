@@ -39,7 +39,7 @@ public class EnrollInClass_CancelTransaction extends base {
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
 		rm.setDriver(driver);
-		log.info("Driver Initialized");
+		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 
