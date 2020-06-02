@@ -24,7 +24,8 @@ public class listeners extends base implements ITestListener {
 	@Override
 	public void onTestStart(ITestResult result) {
 
-		test = extent.createTest(result.getMethod().getMethodName());
+		test = extent.createTest(
+				result.getTestClass().getRealClass().getSimpleName() + "." + result.getMethod().getMethodName());
 		extentTest.set(test);
 
 	}
@@ -49,11 +50,14 @@ public class listeners extends base implements ITestListener {
 
 		try {
 
-			extentTest.get().addScreenCaptureFromPath(b.getScreenshot(result.getName(), driver), result.getName());
+			extentTest.get()
+					.addScreenCaptureFromPath(b.getScreenshot(
+							result.getTestClass().getRealClass().getSimpleName() + "." + result.getName(), driver),
+							result.getName());
 			// result.getMethod().getMethodName() can also be used in place of
 			// result.getName()
 
-			b.getScreenshot(result.getName(), driver);
+			b.getScreenshot(result.getTestClass().getRealClass().getSimpleName() + "." + result.getName(), driver);
 		} catch (IOException e) {
 
 			e.printStackTrace();
