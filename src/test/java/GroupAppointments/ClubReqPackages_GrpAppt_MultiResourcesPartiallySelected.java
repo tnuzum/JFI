@@ -53,6 +53,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
+		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 	}
 

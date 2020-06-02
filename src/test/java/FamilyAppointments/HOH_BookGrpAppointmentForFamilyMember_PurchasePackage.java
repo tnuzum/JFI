@@ -39,6 +39,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends base 
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
+		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 
 		ap = new AppointmentsPO(driver);
