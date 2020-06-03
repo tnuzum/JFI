@@ -313,7 +313,7 @@ public class reusableMethods extends base {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", d.getMenuMyCalendar());
 			// d.getMenuMyCalendar().click();
-
+			wait1.until(ExpectedConditions.visibilityOf(cp.getMonthYear()));
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
 				cp.getRightArrow().click();
