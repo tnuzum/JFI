@@ -33,7 +33,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 	private static String appointmentToBook2 = "PT Grp-ChangeWithFee2";
 	private static String resourceName1 = "FitExpert1";
 	private static String resourceName2 = "PT.Shepard, Elliana";
-	private static String resourceName3 = "FitExpert2-Grp";
+	private static String resourceName3 = "FitExpert1-Grp";
 	private static String resourceName4 = "Holmes, Jeff-Grp";
 	private static String appointmentPrice = "$90.00";
 	private static String participant2 = "Auto, Daisy";

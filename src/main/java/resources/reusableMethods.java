@@ -13,7 +13,6 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -193,8 +192,9 @@ public class reusableMethods extends base {
 
 	public String memberLogout() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-		Actions a = new Actions(driver);
-		a.moveToElement(d.getLogoutButton()).click().build().perform();
+		// Actions a = new Actions(driver);
+		d.getLogoutButton().click();
+		// a.moveToElement(d.getLogoutButton()).click().build().perform();
 		rw.waitForLoginLoginButton();
 		return null;
 	}
