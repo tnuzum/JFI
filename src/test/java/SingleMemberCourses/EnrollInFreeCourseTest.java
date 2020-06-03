@@ -218,6 +218,7 @@ public class EnrollInFreeCourseTest extends base {
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
+			wait1.until(ExpectedConditions.visibilityOf(cp.getMonthYear()));
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
 				cp.getRightArrow().click();

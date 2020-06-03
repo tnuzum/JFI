@@ -8,7 +8,7 @@
 	
 	 <test  name="Test1" parallel = "none" preserve-order="true" group-by-instances="true" verbose = "2">
     <classes>
-      <class name="FamilyMemberClasses.FamilyMemberClassEnrollment"/>  
+      <!--class name="FamilyMemberClasses.FamilyMemberClassEnrollment"/-->  
       <class name="FamilyMemberCourses.FamilyMemberCourseEnrollment"/>  
     </classes>
   </test>
@@ -16,7 +16,7 @@
     <classes>
      <class name = "GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_OnAccount"/>
       <class name = "FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage"/>
-       <class name = "SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_AdditionalResources"/>
+       <!--class name = "SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_AdditionalResources"/-->
     </classes>
   </test>
     <!--test  name="Test3">
