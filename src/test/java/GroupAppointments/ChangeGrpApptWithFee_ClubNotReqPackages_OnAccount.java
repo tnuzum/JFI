@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -60,7 +61,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_OnAccount extends base {
 
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
-		rm.activeMemberLogin("apptmember6", "Testing1!");
+		rm.activeMemberLogin("apptmember8", "Testing1!");
 
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
@@ -234,7 +235,9 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_OnAccount extends base {
 					System.out.println("Waiting for available times");
 				}
 
-				AftrnunSlot.click();
+				// AftrnunSlot.click();
+				JavascriptExecutor jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", AftrnunSlot);
 				Thread.sleep(1000);
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
 						.findElement(By.id("tab-2-1"));
