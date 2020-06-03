@@ -317,6 +317,7 @@ public class reusableMethods extends base {
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
 				cp.getRightArrow().click();
+				wait1.until(ExpectedConditions.visibilityOf(cp.getMonthYear()));
 				monthYear = cp.getMonthYear().getText();
 			}
 			Thread.sleep(1000);
