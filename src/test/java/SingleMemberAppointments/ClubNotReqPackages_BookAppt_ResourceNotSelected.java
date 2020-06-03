@@ -49,7 +49,7 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		rm.activeMemberLogin("scottauto", "Testing1!");
+		rm.activeMemberLogin("apptmember10", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
