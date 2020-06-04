@@ -37,6 +37,7 @@ public class base {
 	public static String DateTime = null;
 	public static String tomorrowsDate = null;
 	public static String dayAfter = null;
+	public static String TwodaysAfter = null;
 	public static String ssTime = null;
 
 	String projectPath = System.getenv("EME_HOME");
@@ -134,6 +135,10 @@ public class base {
 		Calendar today2 = Calendar.getInstance();
 		today2.add(Calendar.DAY_OF_YEAR, 2);
 		dayAfter = dateFormat1.format(today2.getTime());
+
+		Calendar today3 = Calendar.getInstance();
+		today3.add(Calendar.DAY_OF_YEAR, 3);
+		TwodaysAfter = dateFormat1.format(today3.getTime());
 
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");// or, DateFormat dateFormat = new
 																			// SimpleDateFormat(" HH:mm:ss");

@@ -34,7 +34,7 @@ public class ChangeApptWithFee_ClubReqPackages_ToGrpAppt extends base {
 	private static String appointmentToBook2 = "PT Grp-ChangeWithFee2";
 	private static String resourceName1 = "FitExpert1";
 	private static String resourceName2 = "PT.Shepard, Elliana";
-	private static String resourceName3 = "FitExpert2-Grp";
+	private static String resourceName3 = "FitExpert1-Grp";
 	private static String resourceName4 = "PT Smith, Andrew-Grp";
 	private static String unitsToBeSelected = "1 - $5.00/per";
 	private static String participant2 = "Auto, Scott";
@@ -219,7 +219,7 @@ public class ChangeApptWithFee_ClubReqPackages_ToGrpAppt extends base {
 
 		System.out.println("came out of the loop");
 
-		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
+		String classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
 
 		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
@@ -233,7 +233,7 @@ public class ChangeApptWithFee_ClubReqPackages_ToGrpAppt extends base {
 
 		}
 
-		ap.getCalendarDayAfterTomorrow().click();
+		ap.getCalendarTwodaysAfter().click();
 		log.info("Calendar Date Clicked");
 		System.out.println("Calendar Date Clicked");
 
@@ -272,12 +272,12 @@ public class ChangeApptWithFee_ClubReqPackages_ToGrpAppt extends base {
 		Thread.sleep(2000);
 
 		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: " + dayAfter + " " + startTime2);
+		System.out.println("Time: " + TwodaysAfter + " " + startTime2);
 		System.out.println("Product: " + appointmentToBook2);
 		System.out.println("Resource: " + resourceName2);
 
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName2));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + dayAfter + " " + startTime2));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + TwodaysAfter + " " + startTime2));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook2));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName3));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName4));
@@ -305,7 +305,7 @@ public class ChangeApptWithFee_ClubReqPackages_ToGrpAppt extends base {
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains("New Appointment"));
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(appointmentToBook2));
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(startTime2));
-		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
+		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(TwodaysAfter));
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(participant2));
 
 		for (int i = 0; i < ap.getReviewSection().size(); i++) {
@@ -421,7 +421,7 @@ public class ChangeApptWithFee_ClubReqPackages_ToGrpAppt extends base {
 																						// to the
 																						// appointment
 
-		rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
+		rm.ConfirmAndCancelAppointmentNoFee(TwodaysAfter, startTime2, appointmentToBook2);
 
 	}
 	// @AfterTest
