@@ -267,7 +267,8 @@ public class EnrollClassByBuyingPackage extends base {
 			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
-			Thread.sleep(3000);
+
+			rm.unenrollFromClass();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -305,8 +306,6 @@ public class EnrollClassByBuyingPackage extends base {
 			 * rm.returnToDashboard();}
 			 */
 
-			rm.returnToDashboard();
-			rm.unenrollFromClass();
 			rm.memberLogout();
 		}
 	}
@@ -330,19 +329,9 @@ public class EnrollClassByBuyingPackage extends base {
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+			rm.SelectClassOrCourseToEnroll(classToEnroll);
 
-				if (className.contains(classToEnroll)) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-			}
-
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			if (c.getPopupSignUpButton().isEnabled()) {
 				c.getPopupSignUpButton().click();
 
@@ -447,7 +436,9 @@ public class EnrollClassByBuyingPackage extends base {
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Classes", driver.getTitle());
-			Thread.sleep(2000);
+
+			rm.returnToDashboard();
+			rm.unenrollFromClass();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -483,9 +474,6 @@ public class EnrollClassByBuyingPackage extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click(); }
 			 */
 
-			Thread.sleep(2000);
-			rm.returnToDashboard();
-			rm.unenrollFromClass();
 			rm.memberLogout();
 		}
 	}
@@ -511,19 +499,9 @@ public class EnrollClassByBuyingPackage extends base {
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			int ClassCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-			for (int j = 0; j < ClassCount; j++) {
-				String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+			rm.SelectClassOrCourseToEnroll(classToEnroll);
 
-				if (className.contains(classToEnroll)) {
-					driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																										// specific
-																										// class
-					break;
-				}
-			}
-
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			if (c.getPopupSignUpButton().isEnabled()) {
 				c.getPopupSignUpButton().click();
@@ -565,7 +543,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 			{
 				Thread.sleep(1000);
-				;
+
 			}
 
 			PM.getNewCardButton().click();
@@ -664,7 +642,6 @@ public class EnrollClassByBuyingPackage extends base {
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Courses / Events", driver.getTitle());
-			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -701,14 +678,13 @@ public class EnrollClassByBuyingPackage extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click();}
 			 */
 
-			Thread.sleep(2000);
 			rm.returnToDashboard();
 
 		}
 
 	}
 
-	@Test(priority = 6, description = "Unenroll from the class")
+	@Test(priority = 6, description = "Unenroll from the class", dependsOnMethods = { "EnrollWithNewCard" })
 	public void unenrollFromClass() throws IOException, InterruptedException {
 
 		Thread.sleep(2000);

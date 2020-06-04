@@ -248,7 +248,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
-			Thread.sleep(3000);
+
+			rm.unenrollFromClass();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -285,9 +286,6 @@ public class EnrollWithSingleClassFeeTest extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click(); }
 			 */
 
-			Thread.sleep(2000);
-			rm.returnToDashboard();
-			rm.unenrollFromClass();
 			rm.memberLogout();
 		}
 
@@ -312,7 +310,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			rm.SelectClassOrCourseToEnroll(classToEnroll);
 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			if (c.getPopupSignUpButton().isEnabled()) {
 				c.getPopupSignUpButton().click();
 
@@ -410,7 +408,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Classes", driver.getTitle());
-			Thread.sleep(2000);
+
+			rm.returnToDashboard();
+			rm.unenrollFromClass();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -446,9 +446,6 @@ public class EnrollWithSingleClassFeeTest extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click(); }
 			 */
 
-			Thread.sleep(2000);
-			rm.returnToDashboard();
-			rm.unenrollFromClass();
 			rm.memberLogout();
 		}
 
@@ -475,7 +472,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			rm.SelectClassOrCourseToEnroll(classToEnroll);
 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			if (c.getPopupSignUpButton().isEnabled()) {
 				c.getPopupSignUpButton().click();
@@ -634,14 +631,13 @@ public class EnrollWithSingleClassFeeTest extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click();}
 			 */
 
-			Thread.sleep(2000);
 			rm.returnToDashboard();
 
 		}
 
 	}
 
-	@Test(priority = 6, description = "Unenroll from the class")
+	@Test(priority = 6, description = "Unenroll from the class", dependsOnMethods = { "EnrollWithNewCard" })
 	public void unenrollFromClass() throws IOException, InterruptedException {
 
 		rw.waitForDashboardLoaded();
