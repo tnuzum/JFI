@@ -355,6 +355,7 @@ public class EnrollInFreeClassTest extends base {
 				}
 
 			}
+			Thread.sleep(1000);
 
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Appointments", driver.getTitle());
@@ -362,11 +363,14 @@ public class EnrollInFreeClassTest extends base {
 
 			// Note the package units after enrolling
 			IntPackageCountAfter = rm.getPackageUnits("ServiceNC");
-//	System.out.println(IntUnitCountAfter);
+			// System.out.println(IntUnitCountAfter);
 
 			// Verifies the package units is now decremented by one unit
 			IntPackageCountBefore--;
 			Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter);
+
+			rm.returnToDashboard();
+			rm.unenrollFromClass();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -403,9 +407,6 @@ public class EnrollInFreeClassTest extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click();
 			 * rm.returnToDashboard();}
 			 */
-
-			rm.returnToDashboard();
-			rm.unenrollFromClass();
 			rm.memberLogout();
 		}
 	}
@@ -491,10 +492,12 @@ public class EnrollInFreeClassTest extends base {
 				}
 
 			}
-
+			Thread.sleep(1000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Appointments", driver.getTitle());
-			Thread.sleep(1000);
+
+			rm.returnToDashboard();
+			rm.unenrollFromClass();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -531,8 +534,6 @@ public class EnrollInFreeClassTest extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click();}
 			 */
 
-			rm.returnToDashboard();
-			rm.unenrollFromClass();
 			rm.memberLogout();
 
 		}

@@ -247,7 +247,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
 
-			Thread.sleep(3000);
+			rm.unenrollFromCourse(dsiredMonthYear);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -284,8 +284,6 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click(); }
 			 */
 
-			rm.returnToDashboard();
-			rm.unenrollFromCourse(dsiredMonthYear);
 			rm.memberLogout();
 		}
 
@@ -315,7 +313,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 			rm.SelectClassOrCourseToEnroll(courseToEnroll);
 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
 				c.getPopupSignupButtonCourse().click();
 
@@ -418,7 +416,9 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Classes", driver.getTitle());
-			Thread.sleep(2000);
+
+			rm.returnToDashboard();
+			rm.unenrollFromCourse(dsiredMonthYear);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -454,8 +454,6 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click(); }
 			 */
 
-			rm.returnToDashboard();
-			rm.unenrollFromCourse(dsiredMonthYear);
 			rm.memberLogout();
 		}
 
@@ -487,7 +485,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 			rm.SelectClassOrCourseToEnroll(courseToEnroll);
 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
 				c.getPopupSignupButtonCourse().click();
 
@@ -649,7 +647,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 	}
 
-	@Test(priority = 6, description = "Unenroll from the course", enabled = true)
+	@Test(priority = 6, description = "Unenroll from the course", enabled = true, dependsOnMethods = {
+			"EnrollWithNewCard" })
 	public void unenrollFromCourse() throws IOException, InterruptedException {
 		try {
 

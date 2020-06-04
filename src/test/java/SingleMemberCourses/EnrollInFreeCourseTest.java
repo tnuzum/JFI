@@ -369,6 +369,7 @@ public class EnrollInFreeCourseTest extends base {
 				}
 
 			}
+			Thread.sleep(1000);
 
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Appointments", driver.getTitle());
@@ -381,6 +382,10 @@ public class EnrollInFreeCourseTest extends base {
 			// Verifies the package units is now decremented by one unit
 			IntPackageCountBefore--;
 			Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter);
+
+			rm.returnToDashboard();
+			rm.unenrollFromCourse(dsiredMonthYear);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -417,8 +422,6 @@ public class EnrollInFreeCourseTest extends base {
 			 * rm.returnToDashboard();}
 			 */
 
-			rm.returnToDashboard();
-			rm.unenrollFromCourse(dsiredMonthYear);
 			rm.memberLogout();
 		}
 
@@ -508,10 +511,14 @@ public class EnrollInFreeCourseTest extends base {
 				}
 
 			}
+			Thread.sleep(1000);
 
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Appointments", driver.getTitle());
-			Thread.sleep(1000);
+
+			rm.returnToDashboard();
+			rm.unenrollFromCourse(dsiredMonthYear);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -547,8 +554,6 @@ public class EnrollInFreeCourseTest extends base {
 			 * xpath("//button[contains(text(), 'Close')]")).click();}
 			 */
 
-			rm.returnToDashboard();
-			rm.unenrollFromCourse(dsiredMonthYear);
 			rm.memberLogout();
 		}
 
