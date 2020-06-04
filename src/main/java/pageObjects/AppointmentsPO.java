@@ -40,6 +40,7 @@ public class AppointmentsPO {
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
 	By calendarDayAfterTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[2]");
+	By calendarTwodaysAfter = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[3]");
 	By calendarMonday1stFullWeek = By.xpath("//div[@class='cal-month-view']/div/div[2]/div/mwl-calendar-month-cell[2]");
 	// By selectTimeMorningButton =
 	// By.xpath("//strong[contains(text(),'MORNING')]");
@@ -185,6 +186,10 @@ public class AppointmentsPO {
 
 	public WebElement getCalendarDayAfterTomorrow() {
 		return driver.findElement(calendarDayAfterTomorrow);
+	}
+
+	public WebElement getCalendarTwodaysAfter() {
+		return driver.findElement(calendarTwodaysAfter);
 	}
 
 	public WebElement getCalendarMonday1stFullWeek() {

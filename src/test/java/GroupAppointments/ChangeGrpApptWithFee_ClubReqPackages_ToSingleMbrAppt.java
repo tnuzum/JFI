@@ -196,7 +196,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 
 		System.out.println("came out of the loop");
 
-		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
+		String classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
 
 		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
@@ -210,7 +210,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 
 		}
 
-		ap.getCalendarDayAfterTomorrow().click();
+		ap.getCalendarTwodaysAfter().click();
 		log.info("Calendar Date Clicked");
 		System.out.println("Calendar Date Clicked");
 
@@ -249,12 +249,12 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 		Thread.sleep(2000);
 
 		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: " + dayAfter + " " + startTime2);
+		System.out.println("Time: " + TwodaysAfter + " " + startTime2);
 		System.out.println("Product: " + appointmentToBook2);
 		System.out.println("Resource: " + resourceName2);
 
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName2));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + dayAfter + " " + startTime2));
+		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + TwodaysAfter + " " + startTime2));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook2));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName3));
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName4));
@@ -283,7 +283,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains("New Appointment"));
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(appointmentToBook2));
 		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(startTime2));
-		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
+		Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(TwodaysAfter));
 
 		for (int i = 0; i < ap.getReviewSection().size(); i++) {
 			if (ap.getReviewSection().get(i).getText().contains("REVIEW"))
@@ -399,7 +399,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 																						// to the
 																						// appointment
 
-		rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
+		rm.ConfirmAndCancelAppointmentNoFee(TwodaysAfter, startTime2, appointmentToBook2);
 
 	}
 	// @AfterTest
