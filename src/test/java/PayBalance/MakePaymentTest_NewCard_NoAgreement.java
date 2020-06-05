@@ -60,13 +60,14 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account")
 	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
-		rm.activeMemberLogin("hoh", "Testing1!");
-		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
-		d.getMyAccountPayNow().click();
-
 		try {
+			rm.activeMemberLogin("hoh", "Testing1!");
+			rw.waitForDashboardLoaded();
+
+			d.getMyAccountPayNow().click();
+
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
