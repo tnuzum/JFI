@@ -726,6 +726,7 @@ public class EnrollClassByBuyingPackage extends base {
 				System.out.println("assertion error");
 				ae.printStackTrace();
 				log.error(ae.getMessage(), ae);
+				getScreenshot("Unenroll", driver);
 				Assert.fail(ae.getMessage());
 			}
 
@@ -733,6 +734,7 @@ public class EnrollClassByBuyingPackage extends base {
 				System.out.println("No element present");
 				ne.printStackTrace();
 				log.error(ne.getMessage(), ne);
+				getScreenshot("Unenroll", driver);
 				Assert.fail(ne.getMessage());
 			}
 
@@ -741,6 +743,7 @@ public class EnrollClassByBuyingPackage extends base {
 				eci.printStackTrace();
 				log.error(eci.getMessage(), eci);
 				rm.catchErrorMessage();
+				getScreenshot("Unenroll", driver);
 				Assert.fail(eci.getMessage());
 			} finally {
 				rm.returnToDashboard();

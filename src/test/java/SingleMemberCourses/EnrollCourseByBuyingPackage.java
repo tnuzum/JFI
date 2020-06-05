@@ -718,15 +718,17 @@ public class EnrollCourseByBuyingPackage extends base {
 				Thread.sleep(500);
 			}
 
-			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			WebDriverWait wait1 = new WebDriverWait(driver, 50);
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
-			wait1.until(ExpectedConditions.visibilityOf(cp.getMonthYear()));
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
 				cp.getRightArrow().click();
-				wait1.until(ExpectedConditions.visibilityOf(cp.getMonthYear()));
+				wait1.until(ExpectedConditions.presenceOfElementLocated(
+						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 				monthYear = cp.getMonthYear().getText();
 			}
 
@@ -756,6 +758,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			log.error(ae.getMessage(), ae);
+			getScreenshot("Unenroll", driver);
 			Assert.fail(ae.getMessage());
 		}
 
@@ -763,6 +766,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			System.out.println("No element present");
 			ne.printStackTrace();
 			log.error(ne.getMessage(), ne);
+			getScreenshot("Unenroll", driver);
 			Assert.fail(ne.getMessage());
 		}
 
@@ -771,6 +775,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			eci.printStackTrace();
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
+			getScreenshot("Unenroll", driver);
 			Assert.fail(eci.getMessage());
 		} finally {
 			rm.returnToDashboard();
