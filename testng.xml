@@ -96,9 +96,9 @@
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesSelected" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_NonMSS" />
 			
+			<class name="GroupAppointments.CancelGrpApptWithFee_NewCard" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_SavedCard" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_OnAccount" />
-			<class name="GroupAppointments.CancelGrpApptWithFee_NewCard" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_cancelTransaction" />
 			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" />
 			
