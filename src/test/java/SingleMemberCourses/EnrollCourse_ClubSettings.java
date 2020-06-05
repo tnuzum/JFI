@@ -50,11 +50,27 @@ public class EnrollCourse_ClubSettings extends base {
 		rw.waitForDashboardLoaded1();
 		Thread.sleep(2000);
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-courseschedule')]")));
+
+	}
+
+	@Test(priority = 2, description = " Verify Classes Button Present And Classes Dispalyed", dependsOnMethods = {
+			"ViewCoursesUncheckedForClub" })
+	public void VerifyClassesButtonPresentAndClassesDispalyed() throws InterruptedException {
+
+		Assert.assertTrue(rm.isElementPresent(By.xpath("//button[contains(@class, 'at-widget-classschedule')]")));
+		DashboardPO d = new DashboardPO(driver);
+
+		d.getMyClassesScheduleButton().click();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		Assert.assertTrue(driver.findElements(By.className("column2")).size() > 0);
+
 		rm.memberLogout();
 
 	}
 
-	@Test(priority = 2, description = "Allow  Class Enrollment Unchecked For Club won't display the Class List")
+	@Test(priority = 3, description = "Allow  Class Enrollment Unchecked For Club won't display the Class List")
 
 	public void AllowCourseEnrollmentUncheckedForClub() throws InterruptedException {
 
@@ -82,9 +98,11 @@ public class EnrollCourse_ClubSettings extends base {
 	}
 
 //	@AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;
 	}
+
 }
