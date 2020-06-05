@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -210,7 +211,9 @@ public class CanNotCancelApptAsGroupMember extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 
 		startTime = st2.getText();
-		st2.click();
+		// st2.click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(1000);
 
 		System.out.println(ap.getPopup1Content().getText());
