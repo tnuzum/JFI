@@ -270,6 +270,7 @@ public class reusableMethods extends base {
 				System.out.println("assertion error");
 				ae.printStackTrace();
 				log.error(ae.getMessage(), ae);
+				getScreenshot("Unenroll", driver);
 				Assert.fail(ae.getMessage());
 			}
 
@@ -277,6 +278,7 @@ public class reusableMethods extends base {
 				System.out.println("No element present");
 				ne.printStackTrace();
 				log.error(ne.getMessage(), ne);
+				getScreenshot("Unenroll", driver);
 				Assert.fail(ne.getMessage());
 			}
 
@@ -285,6 +287,7 @@ public class reusableMethods extends base {
 				eci.printStackTrace();
 				log.error(eci.getMessage(), eci);
 				this.catchErrorMessage();
+				getScreenshot("Unenroll", driver);
 				Assert.fail(eci.getMessage());
 			} finally {
 				this.returnToDashboard();
@@ -308,7 +311,7 @@ public class reusableMethods extends base {
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 				Thread.sleep(500);
 			}
-			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			WebDriverWait wait1 = new WebDriverWait(driver, 50);
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			Actions a = new Actions(driver);
@@ -316,12 +319,15 @@ public class reusableMethods extends base {
 			// JavascriptExecutor jse = (JavascriptExecutor) driver;
 			// jse.executeScript("arguments[0].click();", d.getMenuMyCalendar());
 			// d.getMenuMyCalendar().click();
+			log.info("Menu My Calendar clicked");
 			System.out.println("Menu My Calendar clicked");
-			wait1.until(ExpectedConditions.visibilityOf(cp.getMonthYear()));
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
 				cp.getRightArrow().click();
-				wait1.until(ExpectedConditions.visibilityOf(cp.getMonthYear()));
+				wait1.until(ExpectedConditions.presenceOfElementLocated(
+						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 				monthYear = cp.getMonthYear().getText();
 			}
 			Thread.sleep(1000);
@@ -353,6 +359,7 @@ public class reusableMethods extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			log.error(ae.getMessage(), ae);
+			getScreenshot("Unenroll", driver);
 			Assert.fail(ae.getMessage());
 		}
 
@@ -360,6 +367,7 @@ public class reusableMethods extends base {
 			System.out.println("No element present");
 			ne.printStackTrace();
 			log.error(ne.getMessage(), ne);
+			getScreenshot("Unenroll", driver);
 			Assert.fail(ne.getMessage());
 		}
 
@@ -368,6 +376,7 @@ public class reusableMethods extends base {
 			eci.printStackTrace();
 			log.error(eci.getMessage(), eci);
 			this.catchErrorMessage();
+			getScreenshot("Unenroll", driver);
 			Assert.fail(eci.getMessage());
 		} finally {
 

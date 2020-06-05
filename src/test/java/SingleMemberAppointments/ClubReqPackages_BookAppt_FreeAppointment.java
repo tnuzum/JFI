@@ -381,7 +381,9 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
-		st2.click();
+		// st2.click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(1000);
 
 		System.out.println(ap.getPopup1Content().getText());
@@ -563,7 +565,9 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
-		st2.click();
+		// st2.click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(2000);
 
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
@@ -759,7 +763,9 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
-		st2.click();
+		// st2.click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(1000);
 
 		ap.getPopup1BookButton().click();
@@ -913,7 +919,9 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
-		st2.click();
+		// st2.click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(1000);
 
 		ap.getPopup1BookButton().click();
@@ -1067,7 +1075,9 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
-		st2.click();
+		// st2.click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(1000);
 
 		System.out.println(ap.getPopup1Content().getText());

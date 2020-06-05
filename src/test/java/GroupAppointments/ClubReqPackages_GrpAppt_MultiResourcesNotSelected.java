@@ -33,7 +33,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT Group-ThreeResources";
 	private static String resourceName = "FitExpert1-Grp";
-	private static String additionalResourceName = "Gym-Grp";
+	private static String additionalResourceName = "Mind Body-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String mssClubPricing = "$5.15";
 	private static String startTime;
