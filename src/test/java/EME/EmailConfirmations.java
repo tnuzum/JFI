@@ -216,7 +216,8 @@ public class EmailConfirmations {
 			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Club: Studio Jonas"));
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email7, "Participant(s): Auto, Apptmember1; Auto, Emailmember2"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Boo=ks: FitExpert1-Grp; Holmes, Jeff-Grp; |Gym-Grp"));
+			Assert.assertTrue(
+					emailUtils.isTextInMessage(email7, "Boo=ks: FitExpert1-Grp; Holmes, Jeff-Grp; |Mind Body-Grp"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Descripti=on: PT Group-ThreeResources"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Date: " + tomorrowsDayAndDate));
 			Assert.assertTrue(emailUtils.isTextInMessage(email7, "1 Hour 0 Minute"));

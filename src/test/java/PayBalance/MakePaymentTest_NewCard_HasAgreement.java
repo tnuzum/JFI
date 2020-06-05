@@ -84,7 +84,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 			p.getCustomAmountInput().sendKeys("5.00");
 			Thread.sleep(2000);
 
-			p.getSelectPaymentNewCardButton().click();
+			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			Thread.sleep(1000);
 
 			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
