@@ -29,7 +29,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook1 = "Free GrpServiceV Auto";
 	private static String appointmentToBook2 = "Free GrpTraining Due 2 Discount";
-	private static String additionalResourceName = "Gym-Grp";
+	private static String additionalResourceName = "Mind Body-Grp";
 	private static String resourceName1 = "PT Smith, Andrew-Grp";
 	private static String resourceName2 = "FitExpert2-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
@@ -57,7 +57,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 	@Test(priority = 1)
 	public void ScheduleFreeServiceV() throws IOException, InterruptedException {
-		rm.activeMemberLogin("bauto", "Testing1!");
+		rm.activeMemberLogin("dauto", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
