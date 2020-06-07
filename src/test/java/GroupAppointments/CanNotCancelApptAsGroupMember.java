@@ -58,7 +58,7 @@ public class CanNotCancelApptAsGroupMember extends base {
 	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
 	public void ScheduleAppointmentWithExistingPackageWithTwoResources() throws IOException, InterruptedException {
 
-		rm.activeMemberLogin("cancelmember3", "Testing1!");
+		rm.activeMemberLogin("cancelmember9", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
@@ -193,6 +193,7 @@ public class CanNotCancelApptAsGroupMember extends base {
 		}
 
 		ap.getCalendarTomorrow().click();
+
 		Thread.sleep(1000);
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
@@ -315,7 +316,7 @@ public class CanNotCancelApptAsGroupMember extends base {
 	@Test(priority = 4)
 	public void CancelAppointmentWithFee() throws IOException, InterruptedException {
 
-		rm.activeMemberLogin("cancelmember3", "Testing1!");
+		rm.activeMemberLogin("cancelmember9", "Testing1!");
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 

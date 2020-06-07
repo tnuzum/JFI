@@ -296,7 +296,8 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		 * driver.findElement(By.id("show-saved")).getAttribute("style"); while
 		 * (opacity.contains("1")) { PM.getNewCardButton().click(); opacity =
 		 * driver.findElement(By.id("show-saved")).getAttribute("style"); }
-		 * 
+		 * wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id(
+		 * "show-newcard")), "style", "1"));
 		 * Assert.assertTrue(PM.getCloseButton().isDisplayed());
 		 * Assert.assertFalse(ap.getPaymentButton().isEnabled());
 		 * System.out.println("Pay Button disabled:" +

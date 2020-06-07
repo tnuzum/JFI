@@ -300,6 +300,8 @@ public class ChangeApptWithFee_ClubNotReqPackages_NewCard extends base {
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		}
 
+		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
 		Assert.assertFalse(ap.getPaymentButton().isEnabled());
 		System.out.println("Pay Button disabled:" + ap.getPaymentButton().getAttribute("disabled"));

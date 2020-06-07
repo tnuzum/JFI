@@ -31,7 +31,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PTGrpThreeResourceWithCancelFee";
 	private static String resourceName = "FitExpert1-Grp";
-	private static String memberName = "CancelMember1 Auto";
+	private static String memberName = "Cancelmember5 Auto";
 	private static String additionalResourceName = "Gym-Grp";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
 	private static String appointmentPrice = "$90.00";
@@ -61,7 +61,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
 	public void ScheduleGrpAppointmentWithExistingPackageWithThreeResources() throws IOException, InterruptedException {
-		rm.activeMemberLogin("cancelmember1", "Testing1!");
+		rm.activeMemberLogin("cancelmember5", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
@@ -214,6 +214,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		// st2.click();
+
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(1000);
@@ -346,7 +347,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 		{
 			Thread.sleep(1000);
-			;
+
 		}
 
 		PM.getNewCardButton().click();
@@ -359,6 +360,8 @@ public class CancelGrpApptWithFee_NewCard extends base {
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}
+
+		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
 		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));

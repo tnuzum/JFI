@@ -58,7 +58,7 @@ public class CancelGrpApptWithFee_OnAccount extends base {
 
 	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
 	public void ScheduleGrpAppointmentWithExistingPackage() throws IOException, InterruptedException {
-		rm.activeMemberLogin("cancelmember2", "Testing1!");
+		rm.activeMemberLogin("cancelmember6", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);

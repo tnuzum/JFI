@@ -55,7 +55,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		rm.activeMemberLogin("cancelmember4", "Testing1!");
+		rm.activeMemberLogin("cancelmember8", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
@@ -189,6 +189,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 		}
 
 		ap.getCalendarTomorrow().click();
+
 		Thread.sleep(1000);
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
@@ -211,6 +212,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(st2));
 		startTime = st2.getText();
 		// st2.click();
+
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(1000);
