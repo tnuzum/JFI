@@ -86,6 +86,8 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 
 			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			Thread.sleep(1000);
+			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("newcard")), "aria-expanded",
+					"true"));
 
 			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
 			// JavascriptExecutor jse = (JavascriptExecutor) driver;

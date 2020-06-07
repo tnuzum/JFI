@@ -337,6 +337,8 @@ public class CancelApptWithFee_NewCard extends base {
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		}
 
+		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
 		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
 		Assert.assertFalse(PM.getPaymentButton().isEnabled());

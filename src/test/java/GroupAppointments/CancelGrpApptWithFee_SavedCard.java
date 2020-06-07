@@ -57,7 +57,7 @@ public class CancelGrpApptWithFee_SavedCard extends base {
 
 	@Test(priority = 1, description = "In this test appointment is booked with existing Packages to book the appointment and the cancelled using a cancellation fee")
 	public void ScheduleGrpAppointmentWithExistingPackageWithTwoResources() throws IOException, InterruptedException {
-		rm.activeMemberLogin("cancelmember3", "Testing1!");
+		rm.activeMemberLogin("cancelmember7", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
@@ -210,6 +210,7 @@ public class CancelGrpApptWithFee_SavedCard extends base {
 
 		startTime = st2.getText();
 		// st2.click();
+
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", st2);
 		Thread.sleep(1000);
