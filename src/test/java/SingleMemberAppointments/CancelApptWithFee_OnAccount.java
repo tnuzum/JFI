@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -149,7 +150,11 @@ public class CancelApptWithFee_OnAccount extends base {
 			System.out.println("came out of the loop");
 		}
 
-		ap.getCalendarTomorrow().click();
+		Actions a = new Actions(driver);
+		a.click(ap.getCalendarTomorrow()).build().perform();
+		System.out.println("Calendar date clicked");
+		log.info("Calendar Date Clicked");
+		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));

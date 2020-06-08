@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -210,7 +211,9 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 
 		}
 
-		ap.getCalendarTwodaysAfter().click();
+		Actions a = new Actions(driver);
+		a.click(ap.getCalendarTwodaysAfter()).build().perform();
+		// ap.getCalendarTwodaysAfter().click();
 		log.info("Calendar Date Clicked");
 		System.out.println("Calendar Date Clicked");
 
