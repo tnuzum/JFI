@@ -198,10 +198,12 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			System.out.println("came out of the loop");
 		}
 
-		// ap.getCalendarTomorrow().click();
 		Actions a = new Actions(driver);
 		a.click(ap.getCalendarTomorrow()).build().perform();
 		Thread.sleep(1000);
+		System.out.println("Calendar date clicked");
+		log.info("Calendar Date Clicked");
+		// ap.getCalendarTomorrow().click();
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 

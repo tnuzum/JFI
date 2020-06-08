@@ -937,7 +937,11 @@ public class reusableMethods extends base {
 			System.out.println("came out of the loop");
 		}
 
-		ap.getCalendarTomorrow().click();
+		Actions a = new Actions(driver);
+		a.click(ap.getCalendarTomorrow()).build().perform();
+		System.out.println("Calendar date clicked");
+		log.info("Calendar Date Clicked");
+		// ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
@@ -1147,7 +1151,11 @@ public class reusableMethods extends base {
 			System.out.println("came out of the loop");
 		}
 
-		ap.getCalendarTomorrow().click();
+		Actions a = new Actions(driver);
+		a.click(ap.getCalendarTomorrow()).build().perform();
+		System.out.println("Calendar date clicked");
+		log.info("Calendar Date Clicked");
+		// ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
