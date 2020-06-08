@@ -40,7 +40,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 	private static int appointmentsCount;
 	private static String participant2 = "Auto, Emailmember2";
 	private static String unitsToBeSelected = "1 - $5.00/per";
-	private static String membername = "ApptMember1 Auto";
+	private static String membername = "Apptmember13 Auto";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -64,7 +64,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		rm.activeMemberLogin("apptmember1", "Testing1!");
+		rm.activeMemberLogin("apptmember13", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
@@ -483,9 +483,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		rm.ApptCheckinInCOG("Auto, Apptmember1", appointmentToBook, "apptmember1"); // Check In the Member
-																					// to the
-																					// appointment
+		rm.ApptCheckinInCOG("Auto, Apptmember13", appointmentToBook, "apptmember13"); // Check In the Member
+																						// to the
+																						// appointment
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 

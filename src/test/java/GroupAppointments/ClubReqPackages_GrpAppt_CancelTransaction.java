@@ -59,7 +59,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 
 	@Test(priority = 1)
 	public void CancelTransaction() throws IOException, InterruptedException {
-		rm.activeMemberLogin("apptmember3", "Testing1!");
+		rm.activeMemberLogin("apptmember15", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);

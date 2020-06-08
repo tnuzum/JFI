@@ -153,4 +153,5 @@
 						
 		</classes>
 	</test>
+	<!-- When adding new test tag, include this test tag name in the POM.xml to be inclued in test execution through maven/jenkins -->
 </suite>
