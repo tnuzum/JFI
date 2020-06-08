@@ -62,7 +62,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
-		rm.activeMemberLogin("apptmember3", "Testing1!");
+		rm.activeMemberLogin("apptmember15", "Testing1!");
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
@@ -442,9 +442,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		rm.ApptCheckinInCOG("Auto, apptmember3", appointmentToBook, "apptmember3"); // Check In the Member
-																					// to the
-																					// appointment
+		rm.ApptCheckinInCOG("Auto, apptmember15", appointmentToBook, "apptmember15"); // Check In the Member
+																						// to the
+																						// appointment
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		DashboardPO d = new DashboardPO(driver);
 
