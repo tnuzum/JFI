@@ -172,7 +172,7 @@ public class ChangeApptWithFee_Demo extends base {
 
 		Actions a = new Actions(driver);
 		a.click(ap.getCalendarDayAfterTomorrow()).build().perform();
-		System.out.println("Calendar date clicked");
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarDayAfterTomorrow().click();;
 
 		for (int m = 0; m < ap.getApptBox().size(); m++) {

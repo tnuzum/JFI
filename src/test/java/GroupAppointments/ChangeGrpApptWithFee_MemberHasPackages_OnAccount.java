@@ -224,8 +224,8 @@ public class ChangeGrpApptWithFee_MemberHasPackages_OnAccount extends base {
 		Actions a = new Actions(driver);
 		a.click(ap.getCalendarDayAfterTomorrow()).build().perform();
 		// ap.getCalendarDayAfterTomorrow().click();
-		log.info("Calendar Date Clicked");
-		System.out.println("Calendar Date Clicked");
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 
 		for (int m = 0; m < ap.getApptBox().size(); m++) {
 			String bookName = ap.getApptBox().get(m).getText();
