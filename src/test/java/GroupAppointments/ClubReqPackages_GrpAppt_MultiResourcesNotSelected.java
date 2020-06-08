@@ -201,8 +201,8 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		Actions a = new Actions(driver);
 		a.click(ap.getCalendarTomorrow()).build().perform();
 		Thread.sleep(1000);
-		System.out.println("Calendar date clicked");
-		log.info("Calendar Date Clicked");
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));

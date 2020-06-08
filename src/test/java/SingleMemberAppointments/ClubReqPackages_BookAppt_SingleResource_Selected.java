@@ -151,8 +151,8 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 
 		Actions a = new Actions(driver);
 		a.click(ap.getCalendarTomorrow()).build().perform();
-		System.out.println("Calendar date clicked");
-		log.info("Calendar Date Clicked");
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
 
