@@ -477,6 +477,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 
 				a.click(ap.getCalendarTomorrow()).build().perform();
 				log.error("calendar date was clicked again");
+				System.out.println("calendar date was clicked again");
 
 				timeout = timeout + 5;
 			}
