@@ -205,256 +205,282 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 
-		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
+		int timeout = 0;
+		while (timeout < 30) {
 
-		WebElement st1 = ap.getSelectTimeMorningButton();
+			try
 
-		wait.until(ExpectedConditions.elementToBeClickable(st1));
-		while (!st1.isEnabled())// while button is NOT(!) enabled
-		{
-			System.out.println("Waiting for available times");
-		}
-		st1.click();
-		WebElement st2 = ap.getSelectTime1stAvailable();
+			{
+
+				Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
+
+				WebElement st1 = ap.getSelectTimeMorningButton();
+
+				wait.until(ExpectedConditions.elementToBeClickable(st1));
+				while (!st1.isEnabled())// while button is NOT(!) enabled
+				{
+					System.out.println("Waiting for available times");
+				}
+				st1.click();
+				log.info("St1 Clicked for " + this.getClass().getSimpleName());
+				System.out.println("St1 Clicked for " + this.getClass().getSimpleName());
+				WebElement st2 = ap.getSelectTime1stAvailable();
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
 //					Thread.sleep(200);
 //					}
 
-		wait.until(ExpectedConditions.elementToBeClickable(st2));
-		startTime = st2.getText();
-		// st2.click();
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", st2);
-		Thread.sleep(2000);
+				wait.until(ExpectedConditions.elementToBeClickable(st2));
+				startTime = st2.getText();
+				// st2.click();
+				JavascriptExecutor jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].click();", st2);
+				Thread.sleep(2000);
+				log.info("St2 Clicked for " + this.getClass().getSimpleName());
+				System.out.println("St2 Clicked for " + this.getClass().getSimpleName());
 
-		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
+				Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
+				Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+				Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook));
+				Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName));
 
-		Assert.assertEquals(ap.getPopup1Title().getText(), "Package Required");
+				Assert.assertEquals(ap.getPopup1Title().getText(), "Package Required");
 
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment requires a package purchase."));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Would you like to continue?"));
-
-		ap.getPopup1BookButton().click();
-		Thread.sleep(3000);
-
-		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
-		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
-		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
-		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
-		Assert.assertTrue(ap.getGroup().getText().contains(participant2));
-		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
-
-		for (int i = 0; i < ap.getReviewSection().size(); i++) {
-			if (ap.getReviewSection().get(i).getText().contains("REVIEW"))
-
-			{
-				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("PACKAGE REQUIRED"));
 				Assert.assertTrue(
-						ap.getReviewSection().get(i).getText().contains("This appointment requires a package."));
-				Assert.assertTrue(ap.getReviewSection().get(i).getText().contains(
-						"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
-			}
-		}
+						ap.getPopup1Content().getText().contains("This appointment requires a package purchase."));
+				Assert.assertTrue(ap.getPopup1Content().getText().contains("Would you like to continue?"));
 
-		while (ap.getRateBox().getText().isBlank()) {
-			System.out.println("Waiting");
-		}
-		Assert.assertTrue(
-				ap.getRateBox().findElement(By.tagName("span")).getText().contains(appointmentToBook.toUpperCase()));
+				ap.getPopup1BookButton().click();
+				Thread.sleep(3000);
 
-		Select s4 = new Select(
-				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
-		List<WebElement> UnitRates = s4.getOptions();
+				BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+				Assert.assertEquals("Appointments", BT.getPageHeader().getText());
+				Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+				Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
+				Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+				Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
+				Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
+				Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
+				Assert.assertTrue(ap.getGroup().getText().contains(participant2));
+				Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 
-		int count4 = UnitRates.size();
-		System.out.println("4 " + count4);
+				for (int i = 0; i < ap.getReviewSection().size(); i++) {
+					if (ap.getReviewSection().get(i).getText().contains("REVIEW"))
 
-		for (int i = 0; i < count4; i++) {
-			String unitRate = UnitRates.get(i).getText();
-			System.out.println(unitRate);
+					{
+						Assert.assertTrue(ap.getReviewSection().get(i).getText().contains("PACKAGE REQUIRED"));
+						Assert.assertTrue(ap.getReviewSection().get(i).getText()
+								.contains("This appointment requires a package."));
+						Assert.assertTrue(ap.getReviewSection().get(i).getText().contains(
+								"We noticed you do not have an existing package that satisfies this appointment so we have included the correct package for you."));
+					}
+				}
 
-			if (unitRate.contains(unitsToBeSelected)) {
-				s4.selectByVisibleText(unitRate);
-				break;
-			}
-		}
-		Thread.sleep(1000);
+				while (ap.getRateBox().getText().isBlank()) {
+					System.out.println("Waiting");
+				}
+				Assert.assertTrue(ap.getRateBox().findElement(By.tagName("span")).getText()
+						.contains(appointmentToBook.toUpperCase()));
 
-		int additionalResourcesCount = ap.getAdditionalResources().size();
+				Select s4 = new Select(driver
+						.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
+				List<WebElement> UnitRates = s4.getOptions();
 
-		for (int n = 0; n < additionalResourcesCount; n++) {
-			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
-				ap.getAdditionalResources().get(n).click();
-		}
+				int count4 = UnitRates.size();
+				System.out.println("4 " + count4);
 
-		// Noting down the total amount
-		wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-		System.out.println(ap.getTotalAmount().getText());
+				for (int i = 0; i < count4; i++) {
+					String unitRate = UnitRates.get(i).getText();
+					System.out.println(unitRate);
 
-		String[] totalAmt = ap.getTotalAmount().getText().split(": ");
-		String FormatTotalAmt = totalAmt[1].trim();
-		System.out.println(FormatTotalAmt);
+					if (unitRate.contains(unitsToBeSelected)) {
+						s4.selectByVisibleText(unitRate);
+						break;
+					}
+				}
+				Thread.sleep(1000);
 
-		Assert.assertEquals(FormatTotalAmt, mssClubPricing);
+				int additionalResourcesCount = ap.getAdditionalResources().size();
 
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+				for (int n = 0; n < additionalResourcesCount; n++) {
+					if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
+						ap.getAdditionalResources().get(n).click();
+				}
 
-		while (!PM.getNewCardButton().isDisplayed())
+				// Noting down the total amount
+				wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+				System.out.println(ap.getTotalAmount().getText());
 
-		{
-			Thread.sleep(1000);
-			;
-		}
+				String[] totalAmt = ap.getTotalAmount().getText().split(": ");
+				String FormatTotalAmt = totalAmt[1].trim();
+				System.out.println(FormatTotalAmt);
 
-		PM.getNewCardButton().click();
-		Thread.sleep(2000);
+				Assert.assertEquals(FormatTotalAmt, mssClubPricing);
 
-		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
-		while (opacity.contains("1")) {
-			PM.getNewCardButton().click();
-			Thread.sleep(2000);
-			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
-		}
+				PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
-		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+				while (!PM.getNewCardButton().isDisplayed())
 
-		Assert.assertTrue(PM.getCloseButton().isDisplayed());
-		Assert.assertFalse(ap.getPaymentButton().isEnabled());
-		System.out.println("Pay Button disabled:" + ap.getPaymentButton().getAttribute("disabled"));
+				{
+					Thread.sleep(1000);
+					;
+				}
+
+				PM.getNewCardButton().click();
+				Thread.sleep(2000);
+
+				String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+				while (opacity.contains("1")) {
+					PM.getNewCardButton().click();
+					Thread.sleep(2000);
+					opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+				}
+
+				wait.until(
+						ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+
+				Assert.assertTrue(PM.getCloseButton().isDisplayed());
+				Assert.assertFalse(ap.getPaymentButton().isEnabled());
+				System.out.println("Pay Button disabled:" + ap.getPaymentButton().getAttribute("disabled"));
 
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
-		Assert.assertEquals(membername, PM.getNameOnCardField().getAttribute("value"));
+				Assert.assertEquals(membername, PM.getNameOnCardField().getAttribute("value"));
 
-		PM.getCardNumberField().sendKeys("4111111111111111");
-		PM.getExpirationMonth().sendKeys("12");
-		PM.getExpirationYear().sendKeys("29");
-		PM.getSecurityCode().sendKeys("123");
-		Thread.sleep(1000);
-		PM.getCheckBox().click();
-		while (!ap.getPaymentButton().isEnabled()) {
-			Thread.sleep(1000);
-		}
-		ap.getPaymentButton().click();
-		Thread.sleep(1000);
-		System.out.println(PM.getPopupContent().getText());
-		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
-		PM.getPopupOk().click();
-		Thread.sleep(1000);
-		PM.getSaveCardNo().click();
-		Thread.sleep(1000);
-		// Verifies the Pay button contains the total amount
+				PM.getCardNumberField().sendKeys("4111111111111111");
+				PM.getExpirationMonth().sendKeys("12");
+				PM.getExpirationYear().sendKeys("29");
+				PM.getSecurityCode().sendKeys("123");
+				Thread.sleep(1000);
+				PM.getCheckBox().click();
+				while (!ap.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				ap.getPaymentButton().click();
+				Thread.sleep(1000);
+				System.out.println(PM.getPopupContent().getText());
+				Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+				PM.getPopupOk().click();
+				Thread.sleep(1000);
+				PM.getSaveCardNo().click();
+				Thread.sleep(1000);
+				// Verifies the Pay button contains the total amount
 
-		Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
+				Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
 
-		// Click the Pay button
-		while (!ap.getPaymentButton().isEnabled()) {
-			Thread.sleep(1000);
-		}
-		ap.getPaymentButton().click();
+				// Click the Pay button
+				while (!ap.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				ap.getPaymentButton().click();
 
-		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+				wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
-		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
 //Verifies the success message
-		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
-		ap.getPopup2OKButton().click();
-		Thread.sleep(1000);
-		ThankYouPO TY = new ThankYouPO(driver);
+				Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
+				ap.getPopup2OKButton().click();
+				Thread.sleep(1000);
+				ThankYouPO TY = new ThankYouPO(driver);
 
 //Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
-		rm.ThankYouPageValidations();
+				rm.ThankYouPageValidations();
 
 //Note down the Receipt number
-		String receiptNumber = TY.getReceiptNumber().getText();
+				String receiptNumber = TY.getReceiptNumber().getText();
 
-		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
-		TY.getPrintReceiptButton().click();
-		Thread.sleep(2000);
-		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-		Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
+				Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
+				TY.getPrintReceiptButton().click();
+				Thread.sleep(2000);
+				Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+				Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
 
 //Verifies the buttons on Print Receipt Popup
-		rm.ReceiptPopupValidations();
+				rm.ReceiptPopupValidations();
 
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(2000);
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+				Thread.sleep(2000);
 
 //Navigate to Dashboard
-		int linkcount = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < linkcount; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+				int linkcount = driver.findElements(By.tagName("a")).size();
+				for (int i = 0; i < linkcount; i++) {
+					if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
-			{
-				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
-				break;
-			}
+					{
+						// rw.linksToBeClickable();
+						driver.findElements(By.tagName("a")).get(i).click();
+						break;
+					}
 
-		}
-		rw.waitForDashboardLoaded();
+				}
+				rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
-		Assert.assertEquals("Dashboard", driver.getTitle());
-		Thread.sleep(2000);
+				Assert.assertEquals("Dashboard", driver.getTitle());
+				Thread.sleep(2000);
 
 //Note the package units after purchase
-		int IntUnitCountAfter = rm.getPackageUnits(appointmentToBook);
+				int IntUnitCountAfter = rm.getPackageUnits(appointmentToBook);
 //System.out.println(IntUnitCountAfter);
 
 //Verifies the package units is now incremented by one unit
 
-		Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
+				Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
 
-		DashboardPO dp = new DashboardPO(driver);
-		wait.until(
-				ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-		dp.getMyAccountAccountHistory().click();
+				DashboardPO dp = new DashboardPO(driver);
+				wait.until(ExpectedConditions
+						.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
+				dp.getMyAccountAccountHistory().click();
 
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
+				AcctHistoryPO ahp = new AcctHistoryPO(driver);
 
-		while (!ahp.getReceiptNumberTable().isDisplayed()) {
-			Thread.sleep(2000);
-			System.out.println("waiting");
-		}
+				while (!ahp.getReceiptNumberTable().isDisplayed()) {
+					Thread.sleep(2000);
+					System.out.println("waiting");
+				}
 
 //Clicks on the Receiptnumber in Account History 
 
-		ahp.getSearchField().sendKeys(receiptNumber);
-		Thread.sleep(1000);
-		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumber()));
-		ahp.getReceiptNumber().click();
-		Thread.sleep(1000);
+				ahp.getSearchField().sendKeys(receiptNumber);
+				Thread.sleep(1000);
+				wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumber()));
+				ahp.getReceiptNumber().click();
+				Thread.sleep(1000);
 
-		/*
-		 * while (!ahp.getReceiptNumberTable().isDisplayed()) { Thread.sleep(2000);
-		 * System.out.println("waiting"); }
-		 * 
-		 * Thread.sleep(2000); for (int k = 0; k < ahp.getReceiptNumbers().size(); k++)
-		 * { receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-		 * 
-		 * if (receiptNumber1.equals(receiptNumber)) {
-		 * ahp.getReceiptNumbers().get(k).click(); break; } }
-		 */
+				/*
+				 * while (!ahp.getReceiptNumberTable().isDisplayed()) { Thread.sleep(2000);
+				 * System.out.println("waiting"); }
+				 * 
+				 * Thread.sleep(2000); for (int k = 0; k < ahp.getReceiptNumbers().size(); k++)
+				 * { receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
+				 * 
+				 * if (receiptNumber1.equals(receiptNumber)) {
+				 * ahp.getReceiptNumbers().get(k).click(); break; } }
+				 */
 
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 
-		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText().isBlank()) {
-			Thread.sleep(500);
+				while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+						.isBlank()) {
+					Thread.sleep(500);
+				}
+				System.out.println(
+						TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
+				Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
+						.getText().contains(FormatTotalAmt));
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+				Thread.sleep(2000);
+				rm.returnToDashboard();
+
+				timeout = 30;
+
+			} catch (Exception e) {
+
+				a.click(ap.getCalendarTomorrow()).build().perform();
+				log.error("calendar date was clicked again");
+
+				timeout = timeout + 5;
+			}
 		}
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(FormatTotalAmt));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(2000);
-		rm.returnToDashboard();
 	}
 
 	@Test(priority = 2)
