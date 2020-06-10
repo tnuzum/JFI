@@ -228,4 +228,18 @@ public class reusableWaits2 extends base {
 
 	}
 
+	public Object waitForSelectATimeToOpen() {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		try {
+			wait.until(ExpectedConditions.attributeContains(ap.getSelectATimeDrawer(), "ng-reflect-opened", "true"));
+		} catch (Exception e) {
+			log.error("Select A Time drawer is not opened");
+
+		}
+		return null;
+	}
+
 }

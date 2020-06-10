@@ -194,6 +194,10 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
 
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
 		WebElement st1 = ap.getSelectTimeMorningButton();

@@ -166,9 +166,13 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+
 		wait.until(ExpectedConditions.elementToBeClickable(st1));
 		while (!st1.isEnabled())// while button is NOT(!) enabled
 		{

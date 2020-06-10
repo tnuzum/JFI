@@ -199,6 +199,9 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 

@@ -198,6 +198,9 @@ public class CanNotCancelApptAsGroupMember extends base {
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		Thread.sleep(1000);
 

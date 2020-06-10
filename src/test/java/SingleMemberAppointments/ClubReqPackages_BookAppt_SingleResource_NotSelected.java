@@ -176,6 +176,10 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
 
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
 		Assert.assertEquals(ap.getBooksNames().getText(), resourceName);
 
 		WebElement st1 = ap.getSelectTimeMorningButton();

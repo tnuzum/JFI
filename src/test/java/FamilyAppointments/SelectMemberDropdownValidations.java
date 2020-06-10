@@ -249,13 +249,17 @@ public class SelectMemberDropdownValidations extends base {
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
 			if (bookName.contains(resourceName2)) {
 				List<WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
 				WebElement MorningSlot = TimeSlots.get(0);
-				WebDriverWait wait = new WebDriverWait(driver, 30);
+
 				wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
 				while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
 				{
