@@ -239,6 +239,9 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 		// ap.getCalendarDayAfterTomorrow().click();
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarDayAfterTomorrow());
 
 		for (int m = 0; m < ap.getApptBox().size(); m++) {
 			String bookName = ap.getApptBox().get(m).getText();

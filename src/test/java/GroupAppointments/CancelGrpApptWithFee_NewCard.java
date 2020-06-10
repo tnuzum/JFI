@@ -202,6 +202,9 @@ public class CancelGrpApptWithFee_NewCard extends base {
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 

@@ -175,6 +175,10 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 		System.out.println(ap.getBooksNames().getText());
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 

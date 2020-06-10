@@ -184,6 +184,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
 
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
 		Assert.assertEquals(ap.getBooksNames().getText(), resourceName1);
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
@@ -370,6 +374,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		Assert.assertEquals(ap.getBooksNames().getText(), resourceName2);
 
@@ -558,6 +566,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName3));
 
@@ -761,6 +773,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
 
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
 		Assert.assertEquals(ap.getBooksNames().getText(), resourceName1);
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
@@ -921,6 +937,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
 
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
 		Assert.assertEquals(ap.getBooksNames().getText(), resourceName2);
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
@@ -1080,6 +1100,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName3));
 

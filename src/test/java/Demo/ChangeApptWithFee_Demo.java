@@ -175,6 +175,10 @@ public class ChangeApptWithFee_Demo extends base {
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarDayAfterTomorrow().click();;
 
+		rw.waitForSelectATimeToOpen();
+
+		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarDayAfterTomorrow());
+
 		for (int m = 0; m < ap.getApptBox().size(); m++) {
 			String bookName = ap.getApptBox().get(m).getText();
 			if (bookName.contains(resourceName4)) {

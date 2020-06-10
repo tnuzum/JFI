@@ -57,6 +57,7 @@ public class AppointmentsPO {
 	By bookButton = By.xpath("//button[@type = 'submit']");
 	By apptBox = By.xpath("//div[contains(@class, 'appt-box')]");
 	By timeSlotContainers = By.xpath("//div[contains(@class, 'tabs-container')]");
+	By selectATimeDrawer = By.xpath("//mat-sidenav[contains(@class, 'mat-drawer-over')]");
 
 	// By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
@@ -231,6 +232,11 @@ public class AppointmentsPO {
 
 	public List<WebElement> getTimeSlotContainers() {
 		return driver.findElements(timeSlotContainers);
+
+	}
+
+	public WebElement getSelectATimeDrawer() {
+		return driver.findElement(selectATimeDrawer);
 
 	}
 

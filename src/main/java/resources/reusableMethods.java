@@ -943,6 +943,9 @@ public class reusableMethods extends base {
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
+		rw.waitForSelectATimeToOpen();
+
+		OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
@@ -1158,6 +1161,10 @@ public class reusableMethods extends base {
 		// ap.getCalendarTomorrow().click();
 		Thread.sleep(3000);
 
+		rw.waitForSelectATimeToOpen();
+
+		OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
 			if (bookName.contains(resourceName2)) {
@@ -1254,6 +1261,22 @@ public class reusableMethods extends base {
 		while (leftMenuOpen.equals("false")) {
 			d.getMenuButton().click();
 			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
+		}
+		return null;
+
+	}
+
+	public String OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(WebElement Element) {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+
+		while (selectATimeOpen.equals("false")) {
+			Element.click();
+			log.error("calendar date was clicked again");
+			System.out.println("calendar date was clicked again");
+			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
 		}
 		return null;
 
