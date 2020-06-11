@@ -383,6 +383,10 @@ public class ChangeGrpApptWithFee_MemberHasPackages_SavedCard extends base {
 			log.error(e.getMessage(), e);
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
+			log.error("Appointment is not changed");
+			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
 
 	}
@@ -394,6 +398,10 @@ public class ChangeGrpApptWithFee_MemberHasPackages_SavedCard extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+			log.error("Appointment is not changed");
+			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}

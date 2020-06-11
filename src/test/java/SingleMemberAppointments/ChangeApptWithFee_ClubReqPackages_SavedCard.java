@@ -308,22 +308,7 @@ public class ChangeApptWithFee_ClubReqPackages_SavedCard extends base {
 		wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook2.toUpperCase()));
 		System.out.println(ap.getRateBox().getText());
 
-		Select s4 = new Select(
-				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
-		List<WebElement> UnitRates = s4.getOptions();
-
-		int count4 = UnitRates.size();
-		System.out.println("4 " + count4);
-
-		for (int i = 0; i < count4; i++) {
-			String unitRate = UnitRates.get(i).getText();
-			System.out.println(unitRate);
-
-			if (unitRate.contains(unitsToBeSelected)) {
-				s4.selectByVisibleText(unitRate);
-				break;
-			}
-		}
+		rm.verifyLowestNumberOfUnitsIsSelectedByDefault(unitsToBeSelected);
 
 		Thread.sleep(2000);
 

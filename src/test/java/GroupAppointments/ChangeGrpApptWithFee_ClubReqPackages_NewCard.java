@@ -338,22 +338,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook2.toUpperCase()));
 			System.out.println(ap.getRateBox().getText());
 
-			Select s4 = new Select(
-					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
-			List<WebElement> UnitRates = s4.getOptions();
-
-			int count4 = UnitRates.size();
-			System.out.println("4 " + count4);
-
-			for (int i = 0; i < count4; i++) {
-				String unitRate = UnitRates.get(i).getText();
-				System.out.println(unitRate);
-
-				if (unitRate.contains(unitsToBeSelected)) {
-					s4.selectByVisibleText(unitRate);
-					break;
-				}
-			}
+			rm.verifyLowestNumberOfUnitsIsSelectedByDefault(unitsToBeSelected);
 			Thread.sleep(2000);
 
 			System.out.println(ap.getTotalAmount().getText());
@@ -462,6 +447,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 			log.error(e.getMessage(), e);
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
+			log.error("Appointment is not changed");
+			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
 	}
 
@@ -477,6 +466,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+			log.error("Appointment is not changed");
+			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}

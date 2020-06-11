@@ -186,6 +186,10 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			log.error(e.getMessage(), e);
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
 	}
 	// @AfterTest

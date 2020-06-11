@@ -281,22 +281,8 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			Assert.assertTrue(ap.getRateBox().findElement(By.tagName("span")).getText()
 					.contains(appointmentToBook.toUpperCase()));
 
-			Select s4 = new Select(
-					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
-			List<WebElement> UnitRates = s4.getOptions();
+			rm.verifyLowestNumberOfUnitsIsSelectedByDefault(unitsToBeSelected);
 
-			int count4 = UnitRates.size();
-			System.out.println("4 " + count4);
-
-			for (int i = 0; i < count4; i++) {
-				String unitRate = UnitRates.get(i).getText();
-				System.out.println(unitRate);
-
-				if (unitRate.contains(unitsToBeSelected)) {
-					s4.selectByVisibleText(unitRate);
-					break;
-				}
-			}
 			Thread.sleep(1000);
 
 			int additionalResourcesCount = ap.getAdditionalResources().size();
@@ -472,6 +458,10 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			log.error(e.getMessage(), e);
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
 
 	}
@@ -499,6 +489,10 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			rm.memberLogout();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -567,6 +561,10 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			rm.memberLogout();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
