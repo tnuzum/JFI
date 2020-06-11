@@ -58,130 +58,119 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 	@Test(priority = 1)
 	public void ScheduleFreeServiceV() throws IOException, InterruptedException {
-		rm.activeMemberLogin("dauto", "Testing1!");
-		rw.waitForDashboardLoaded();
+		try {
+			rm.activeMemberLogin("dauto", "Testing1!");
+			rw.waitForDashboardLoaded();
 
-		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
-		Thread.sleep(2000);
+			DashboardPO p = new DashboardPO(driver);
+			p.getMyApptsScheduleButton().click();
+			Thread.sleep(2000);
 
-		rm.catchErrorMessage();
+			rm.catchErrorMessage();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		AppointmentsPO ap = new AppointmentsPO(driver);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			AppointmentsPO ap = new AppointmentsPO(driver);
 
-		Select s = new Select(ap.getclubs());
-		List<WebElement> Clubs = s.getOptions();
+			Select s = new Select(ap.getclubs());
+			List<WebElement> Clubs = s.getOptions();
 
-		while (!ap.getclubs().isEnabled()) {
-			System.out.println("Waiting for Clubs drop down to not be blank");
-		}
-
-		int count0 = Clubs.size();
-		System.out.println("1 " + count0);
-
-		for (int i = 0; i < count0; i++) {
-			String club = Clubs.get(i).getText();
-
-			if (club.equals(clubName)) {
-				s.selectByVisibleText(club);
-				break;
+			while (!ap.getclubs().isEnabled()) {
+				System.out.println("Waiting for Clubs drop down to not be blank");
 			}
-		}
 
-		WebElement bic = ap.getBookableItemCategory();
+			int count0 = Clubs.size();
+			System.out.println("1 " + count0);
 
-		Thread.sleep(2000);
+			for (int i = 0; i < count0; i++) {
+				String club = Clubs.get(i).getText();
 
-		Select s1 = new Select(bic);
-		List<WebElement> ProductCategories = s1.getOptions();
-
-		int count = ProductCategories.size();
-		System.out.println("2 " + count);
-
-		for (int i = 0; i < count; i++) {
-			String category = ProductCategories.get(i).getText();
-
-			if (category.equals(productCategory)) {
-				s1.selectByVisibleText(category);
-				break;
+				if (club.equals(clubName)) {
+					s.selectByVisibleText(club);
+					break;
+				}
 			}
-		}
 
-		Select s2 = new Select(ap.getBookableItem());
-		// Thread.sleep(2000);
+			WebElement bic = ap.getBookableItemCategory();
 
-		while (!ap.getBookableItem().isEnabled()) {
-			System.out.println("Waiting for Product drop down to not be blank");
-		}
-		List<WebElement> Products = s2.getOptions();
+			Thread.sleep(2000);
 
-		int count1 = Products.size();
-		System.out.println(count1);
+			Select s1 = new Select(bic);
+			List<WebElement> ProductCategories = s1.getOptions();
 
-		for (int j = 0; j < count1; j++) {
-			String product = Products.get(j).getText();
+			int count = ProductCategories.size();
+			System.out.println("2 " + count);
 
-			if (product.equals(appointmentToBook1)) {
-				s2.selectByVisibleText(product);
-				break;
+			for (int i = 0; i < count; i++) {
+				String category = ProductCategories.get(i).getText();
+
+				if (category.equals(productCategory)) {
+					s1.selectByVisibleText(category);
+					break;
+				}
 			}
-		}
 
-		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
-		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
-		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-		ap.getGroupMemberSearchInput().sendKeys("auto");
-		ap.getGroupMemberSearchButton().click();
+			Select s2 = new Select(ap.getBookableItem());
+			// Thread.sleep(2000);
 
-		Thread.sleep(2000);
-
-		int memberCount = ap.getGroupPopupAddButtons().size();
-		for (int i = 0; i < memberCount; i++)
-
-		{
-			String text = ap.getGroupPopupMembers().get(i).getText();
-			System.out.println(text);
-			if (ap.getGroupPopupMembers().get(i).getText().contains("Scott")) {
-				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-				ap.getGroupPopupAddButtons().get(i).click();
-				break;
+			while (!ap.getBookableItem().isEnabled()) {
+				System.out.println("Waiting for Product drop down to not be blank");
 			}
-		}
+			List<WebElement> Products = s2.getOptions();
 
-		WebElement rt = ap.getResourceType();
+			int count1 = Products.size();
+			System.out.println(count1);
 
-		while (!rt.isEnabled())// while button is NOT(!) enabled
-		{
-			System.out.println("Waiting for Resource drop down to not be blank");
-		}
-		Select s3 = new Select(rt);
+			for (int j = 0; j < count1; j++) {
+				String product = Products.get(j).getText();
+
+				if (product.equals(appointmentToBook1)) {
+					s2.selectByVisibleText(product);
+					break;
+				}
+			}
+
+			Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchButton().click();
+
+			Thread.sleep(2000);
+
+			int memberCount = ap.getGroupPopupAddButtons().size();
+			for (int i = 0; i < memberCount; i++)
+
+			{
+				String text = ap.getGroupPopupMembers().get(i).getText();
+				System.out.println(text);
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Scott")) {
+					wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+					ap.getGroupPopupAddButtons().get(i).click();
+					break;
+				}
+			}
+
+			WebElement rt = ap.getResourceType();
+
+			while (!rt.isEnabled())// while button is NOT(!) enabled
+			{
+				System.out.println("Waiting for Resource drop down to not be blank");
+			}
+			Select s3 = new Select(rt);
 //		Thread.sleep(2000);
-		List<WebElement> Resources = s3.getOptions();
+			List<WebElement> Resources = s3.getOptions();
 
-		int count2 = Resources.size();
-		System.out.println(count2);
+			int count2 = Resources.size();
+			System.out.println(count2);
 
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
+			for (int k = 0; k < count2; k++) {
+				String resource = Resources.get(k).getText();
 
-			if (resource.equals(resourceName1)) {
-				s3.selectByVisibleText(resource);
-				break;
+				if (resource.equals(resourceName1)) {
+					s3.selectByVisibleText(resource);
+					break;
+				}
 			}
-		}
-
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-		if (classtext.contains("cal-out-month")) {
-
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -189,211 +178,217 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			}
 
 			System.out.println("came out of the loop");
-		}
+			String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		Actions a = new Actions(driver);
-		a.click(ap.getCalendarTomorrow()).build().perform();
-		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-		// ap.getCalendarTomorrow().click();
-		Thread.sleep(1000);
-		rw.waitForSelectATimeToOpen();
+			if (classtext.contains("cal-out-month")) {
 
-		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+				driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-		Assert.assertEquals(ap.getBooksNames().getText(), resourceName1);
+				while (ap.getloadingAvailabilityMessage().size() != 0) {
+					System.out.println("waiting1");
+					Thread.sleep(1000);
+				}
 
-		WebElement st1 = ap.getSelectTimeMorningButton();
+				System.out.println("came out of the loop");
+			}
 
-		wait.until(ExpectedConditions.elementToBeClickable(st1));
-		while (!st1.isEnabled())// while button is NOT(!) enabled
-		{
-			System.out.println("Waiting for available times");
-		}
+			Actions a = new Actions(driver);
+			a.click(ap.getCalendarTomorrow()).build().perform();
+			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+			// ap.getCalendarTomorrow().click();
+			Thread.sleep(1000);
+			rw.waitForSelectATimeToOpen();
 
-		st1.click();
-		WebElement st2 = ap.getSelectTime1stAvailable();
+			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
+			Assert.assertEquals(ap.getBooksNames().getText(), resourceName1);
+
+			WebElement st1 = ap.getSelectTimeMorningButton();
+
+			wait.until(ExpectedConditions.elementToBeClickable(st1));
+			while (!st1.isEnabled())// while button is NOT(!) enabled
+			{
+				System.out.println("Waiting for available times");
+			}
+
+			st1.click();
+			WebElement st2 = ap.getSelectTime1stAvailable();
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
 //					Thread.sleep(200);
 //					}
 
-		wait.until(ExpectedConditions.elementToBeClickable(st2));
-		startTime = st2.getText();
-		// st2.click();
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", st2);
-		Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			startTime = st2.getText();
+			// st2.click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", st2);
+			Thread.sleep(2000);
 
-		System.out.println(ap.getPopup1Content().getText());
-		System.out.println("Time: " + tomorrowsDate + ", " + startTime);
-		System.out.println("Product: " + appointmentToBook1);
-		System.out.println("Resource: " + resourceName1);
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment is free!"));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook1));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Resource: " + resourceName1));
+			System.out.println(ap.getPopup1Content().getText());
+			System.out.println("Time: " + tomorrowsDate + ", " + startTime);
+			System.out.println("Product: " + appointmentToBook1);
+			System.out.println("Resource: " + resourceName1);
+			Assert.assertTrue(ap.getPopup1Content().getText().contains("This appointment is free!"));
+			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
+			Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+			Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook1));
+			Assert.assertTrue(ap.getPopup1Content().getText().contains("Resource: " + resourceName1));
 
-		ap.getPopup1BookButton().click();
+			ap.getPopup1BookButton().click();
 
-		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
-		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
 //Verifies the success message
-		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
-		ap.getPopup2OKButton().click();
-		Thread.sleep(2000);
+			Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
+			ap.getPopup2OKButton().click();
+			Thread.sleep(2000);
 
 //Navigate to Dashboard
-		int linkcount = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < linkcount; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+			int linkcount = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < linkcount; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
-			{
-				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
-				break;
+				{
+					// rw.linksToBeClickable();
+					driver.findElements(By.tagName("a")).get(i).click();
+					break;
+				}
+
 			}
-
-		}
-		rw.waitForDashboardLoaded();
+			rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
-		Assert.assertEquals("Dashboard", driver.getTitle());
-		Thread.sleep(2000);
-		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
+			Assert.assertEquals("Dashboard", driver.getTitle());
+			Thread.sleep(2000);
+			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
 
-		rm.memberLogout();
+			rm.memberLogout();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
+		}
 
 	}
 
 	@Test(priority = 2, description = "Schedule a free appointment due to membership type discount")
 	public void ScheduleFreeTrainingDueToDiscount() throws IOException, InterruptedException {
-		rm.activeMemberLogin("freemember", "Testing1!");
-		rw.waitForDashboardLoaded();
+		try {
+			rm.activeMemberLogin("freemember", "Testing1!");
+			rw.waitForDashboardLoaded();
 
-		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
-		Thread.sleep(2000);
+			DashboardPO p = new DashboardPO(driver);
+			p.getMyApptsScheduleButton().click();
+			Thread.sleep(2000);
 
-		rm.catchErrorMessage();
+			rm.catchErrorMessage();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		AppointmentsPO ap = new AppointmentsPO(driver);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			AppointmentsPO ap = new AppointmentsPO(driver);
 
-		Select s = new Select(ap.getclubs());
-		List<WebElement> Clubs = s.getOptions();
+			Select s = new Select(ap.getclubs());
+			List<WebElement> Clubs = s.getOptions();
 
-		while (!ap.getclubs().isEnabled()) {
-			System.out.println("Waiting for Clubs drop down to not be blank");
-		}
-
-		int count0 = Clubs.size();
-		System.out.println("1 " + count0);
-
-		for (int i = 0; i < count0; i++) {
-			String club = Clubs.get(i).getText();
-
-			if (club.equals(clubName)) {
-				s.selectByVisibleText(club);
-				break;
+			while (!ap.getclubs().isEnabled()) {
+				System.out.println("Waiting for Clubs drop down to not be blank");
 			}
-		}
 
-		WebElement bic = ap.getBookableItemCategory();
+			int count0 = Clubs.size();
+			System.out.println("1 " + count0);
 
-		Thread.sleep(2000);
+			for (int i = 0; i < count0; i++) {
+				String club = Clubs.get(i).getText();
 
-		Select s1 = new Select(bic);
-		List<WebElement> ProductCategories = s1.getOptions();
-
-		int count = ProductCategories.size();
-		System.out.println("2 " + count);
-
-		for (int i = 0; i < count; i++) {
-			String category = ProductCategories.get(i).getText();
-
-			if (category.equals(productCategory)) {
-				s1.selectByVisibleText(category);
-				break;
+				if (club.equals(clubName)) {
+					s.selectByVisibleText(club);
+					break;
+				}
 			}
-		}
 
-		Select s2 = new Select(ap.getBookableItem());
-		// Thread.sleep(2000);
+			WebElement bic = ap.getBookableItemCategory();
 
-		while (!ap.getBookableItem().isEnabled()) {
-			System.out.println("Waiting for Product drop down to not be blank");
-		}
-		List<WebElement> Products = s2.getOptions();
+			Thread.sleep(2000);
 
-		int count1 = Products.size();
-		System.out.println(count1);
+			Select s1 = new Select(bic);
+			List<WebElement> ProductCategories = s1.getOptions();
 
-		for (int j = 0; j < count1; j++) {
-			String product = Products.get(j).getText();
+			int count = ProductCategories.size();
+			System.out.println("2 " + count);
 
-			if (product.equals(appointmentToBook2)) {
-				s2.selectByVisibleText(product);
-				break;
+			for (int i = 0; i < count; i++) {
+				String category = ProductCategories.get(i).getText();
+
+				if (category.equals(productCategory)) {
+					s1.selectByVisibleText(category);
+					break;
+				}
 			}
-		}
 
-		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
-		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
-		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-		ap.getGroupMemberSearchInput().sendKeys("auto");
-		ap.getGroupMemberSearchButton().click();
+			Select s2 = new Select(ap.getBookableItem());
+			// Thread.sleep(2000);
 
-		Thread.sleep(2000);
-
-		int memberCount = ap.getGroupPopupAddButtons().size();
-		for (int i = 0; i < memberCount; i++)
-
-		{
-			String text = ap.getGroupPopupMembers().get(i).getText();
-			System.out.println(text);
-			if (ap.getGroupPopupMembers().get(i).getText().contains("Scott")) {
-				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-				ap.getGroupPopupAddButtons().get(i).click();
-				break;
+			while (!ap.getBookableItem().isEnabled()) {
+				System.out.println("Waiting for Product drop down to not be blank");
 			}
-		}
+			List<WebElement> Products = s2.getOptions();
 
-		WebElement rt = ap.getResourceType();
+			int count1 = Products.size();
+			System.out.println(count1);
 
-		while (!rt.isEnabled())// while button is NOT(!) enabled
-		{
-			System.out.println("Waiting for Resource drop down to not be blank");
-		}
-		Select s3 = new Select(rt);
+			for (int j = 0; j < count1; j++) {
+				String product = Products.get(j).getText();
+
+				if (product.equals(appointmentToBook2)) {
+					s2.selectByVisibleText(product);
+					break;
+				}
+			}
+
+			Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchButton().click();
+
+			Thread.sleep(2000);
+
+			int memberCount = ap.getGroupPopupAddButtons().size();
+			for (int i = 0; i < memberCount; i++)
+
+			{
+				String text = ap.getGroupPopupMembers().get(i).getText();
+				System.out.println(text);
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Scott")) {
+					wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+					ap.getGroupPopupAddButtons().get(i).click();
+					break;
+				}
+			}
+
+			WebElement rt = ap.getResourceType();
+
+			while (!rt.isEnabled())// while button is NOT(!) enabled
+			{
+				System.out.println("Waiting for Resource drop down to not be blank");
+			}
+			Select s3 = new Select(rt);
 //		Thread.sleep(2000);
-		List<WebElement> Resources = s3.getOptions();
+			List<WebElement> Resources = s3.getOptions();
 
-		int count2 = Resources.size();
-		System.out.println(count2);
+			int count2 = Resources.size();
+			System.out.println(count2);
 
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
+			for (int k = 0; k < count2; k++) {
+				String resource = Resources.get(k).getText();
 
-			if (resource.equals(resourceName2)) {
-				s3.selectByVisibleText(resource);
-				break;
+				if (resource.equals(resourceName2)) {
+					s3.selectByVisibleText(resource);
+					break;
+				}
 			}
-		}
-
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -401,94 +396,111 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			}
 
 			System.out.println("came out of the loop");
-		}
 
-		Actions a = new Actions(driver);
-		a.click(ap.getCalendarTomorrow()).build().perform();
-		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-		// ap.getCalendarTomorrow().click();
-		Thread.sleep(1000);
-		rw.waitForSelectATimeToOpen();
+			String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
-		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+			if (classtext.contains("cal-out-month")) {
+				driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-		Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName2));
+				while (ap.getloadingAvailabilityMessage().size() != 0) {
+					System.out.println("waiting1");
+					Thread.sleep(1000);
+				}
 
-		WebElement st1 = ap.getSelectTimeMorningButton();
+				System.out.println("came out of the loop");
+			}
 
-		wait.until(ExpectedConditions.elementToBeClickable(st1));
-		while (!st1.isEnabled())// while button is NOT(!) enabled
-		{
-			System.out.println("Waiting for available times");
-		}
+			Actions a = new Actions(driver);
+			a.click(ap.getCalendarTomorrow()).build().perform();
+			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+			// ap.getCalendarTomorrow().click();
+			Thread.sleep(1000);
+			rw.waitForSelectATimeToOpen();
 
-		st1.click();
-		WebElement st2 = ap.getSelectTime1stAvailable();
+			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
+			Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName2));
+
+			WebElement st1 = ap.getSelectTimeMorningButton();
+
+			wait.until(ExpectedConditions.elementToBeClickable(st1));
+			while (!st1.isEnabled())// while button is NOT(!) enabled
+			{
+				System.out.println("Waiting for available times");
+			}
+
+			st1.click();
+			WebElement st2 = ap.getSelectTime1stAvailable();
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
 //					Thread.sleep(200);
 //					}
 
-		wait.until(ExpectedConditions.elementToBeClickable(st2));
-		startTime = st2.getText();
-		// st2.click();
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", st2);
-		Thread.sleep(2000);
+			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			startTime = st2.getText();
+			// st2.click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", st2);
+			Thread.sleep(2000);
 
-		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook2));
-		Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName2));
+			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
+			Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
+			Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook2));
+			Assert.assertTrue(ap.getPopup1Content().getText().contains(resourceName2));
 
-		ap.getPopup1BookButton().click();
+			ap.getPopup1BookButton().click();
 
-		int additionalResourcesCount = ap.getAdditionalResources().size();
+			int additionalResourcesCount = ap.getAdditionalResources().size();
 
-		for (int n = 0; n < additionalResourcesCount; n++) {
-			if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
-				ap.getAdditionalResources().get(n).click();
-		}
-
-		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-		Assert.assertEquals("Appointments", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
-		Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook2);
-		Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
-		Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
-		Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
-
-		ap.getbookButton().click();
-
-		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
-
-		wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
-//Verifies the success message
-		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
-		ap.getPopup2OKButton().click();
-		Thread.sleep(2000);
-
-//Navigate to Dashboard
-		int linkcount = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < linkcount; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-			{
-				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
-				break;
+			for (int n = 0; n < additionalResourcesCount; n++) {
+				if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
+					ap.getAdditionalResources().get(n).click();
 			}
 
-		}
-		rw.waitForDashboardLoaded();
-//Verifies the link navigates to the right page
-		Assert.assertEquals("Dashboard", driver.getTitle());
-		Thread.sleep(2000);
-		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
+			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+			Assert.assertEquals("Appointments", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Book Appointment", BT.getBreadcrumb2().getText());
+			Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook2);
+			Assert.assertEquals(ap.getClubName().getText(), clubNameDisplayed);
+			Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
+			Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 
-		rm.memberLogout();
+			ap.getbookButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
+//Verifies the success message
+			Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
+			ap.getPopup2OKButton().click();
+			Thread.sleep(2000);
+
+//Navigate to Dashboard
+			int linkcount = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < linkcount; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+				{
+					// rw.linksToBeClickable();
+					driver.findElements(By.tagName("a")).get(i).click();
+					break;
+				}
+
+			}
+			rw.waitForDashboardLoaded();
+//Verifies the link navigates to the right page
+			Assert.assertEquals("Dashboard", driver.getTitle());
+			Thread.sleep(2000);
+			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
+
+			rm.memberLogout();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
+		}
 
 	}
 
