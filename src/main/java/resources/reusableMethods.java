@@ -1281,4 +1281,13 @@ public class reusableMethods extends base {
 		return null;
 
 	}
+
+	public Object verifyLowestNumberOfUnitsIsSelectedByDefault(String unitsToBeSelected) {
+		Select s4 = new Select(
+				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
+		String defaultSelection = s4.getFirstSelectedOption().getText().trim();
+
+		Assert.assertEquals(defaultSelection, unitsToBeSelected);
+		return null;
+	}
 }

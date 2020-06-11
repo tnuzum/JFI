@@ -272,22 +272,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 			Assert.assertTrue(ap.getRateBox().findElement(By.tagName("span")).getText()
 					.contains(appointmentToBook.toUpperCase()));
 
-			Select s4 = new Select(
-					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
-			List<WebElement> UnitRates = s4.getOptions();
-
-			int count4 = UnitRates.size();
-			System.out.println("4 " + count4);
-
-			for (int i = 0; i < count4; i++) {
-				String unitRate = UnitRates.get(i).getText();
-				System.out.println(unitRate);
-
-				if (unitRate.contains(unitsToBeSelected)) {
-					s4.selectByVisibleText(unitRate);
-					break;
-				}
-			}
+			rm.verifyLowestNumberOfUnitsIsSelectedByDefault(unitsToBeSelected);
 			Thread.sleep(1000);
 
 			// Noting down the total amount
@@ -427,6 +412,10 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 			log.error(e.getMessage(), e);
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
 	}
 
@@ -455,58 +444,63 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 			log.error(e.getMessage(), e);
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
 	}
 
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
+		try {
 
-		rm.ApptCheckinInCOG("Auto, apptmember15", appointmentToBook, "apptmember15"); // Check In the Member
-																						// to the
-																						// appointment
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		DashboardPO d = new DashboardPO(driver);
+			rm.ApptCheckinInCOG("Auto, apptmember15", appointmentToBook, "apptmember15"); // Check In the Member
+																							// to the
+																							// appointment
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			DashboardPO d = new DashboardPO(driver);
 
-		appointmentsCount = d.getMyAppts().size();
+			appointmentsCount = d.getMyAppts().size();
 
-		for (int k = 0; k < appointmentsCount; k++) {
-			if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))
+			for (int k = 0; k < appointmentsCount; k++) {
+				if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))
 
-			{
+				{
 
-				if (d.getMyAppts().get(k).getText().contains(startTime)) {
-					wait.until(ExpectedConditions
-							.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+					if (d.getMyAppts().get(k).getText().contains(startTime)) {
+						wait.until(ExpectedConditions
+								.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
+						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
 
-					WebElement EditButton = d.getEditButton().get(k);
+						WebElement EditButton = d.getEditButton().get(k);
 
-					wait.until(ExpectedConditions.visibilityOf(EditButton));
-					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
+						wait.until(ExpectedConditions.visibilityOf(EditButton));
+						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-					EditButton.click();
-					break;
+						EditButton.click();
+						break;
+					}
 				}
 			}
-		}
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
-		Thread.sleep(2000);
-		AppointmentsPO a = new AppointmentsPO(driver);
-		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
-		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
-		a.getEditApptCancelButton().click();
-		WebElement wait2 = a.getEditApptProceedButton();
-		while (!wait2.isEnabled())// while button is NOT(!) enabled
-		{
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+			Thread.sleep(2000);
+			AppointmentsPO a = new AppointmentsPO(driver);
+			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+			wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
+			a.getEditApptCancelButton().click();
+			WebElement wait2 = a.getEditApptProceedButton();
+			while (!wait2.isEnabled())// while button is NOT(!) enabled
+			{
 //			Thread.sleep(200);
-		}
-		a.getEditApptProceedButton().click();
-		Thread.sleep(1000);
-		boolean result1 = rw.popupMessageYesButton();
-		if (result1 == true) {
+			}
+			a.getEditApptProceedButton().click();
+			Thread.sleep(1000);
+			boolean result1 = rw.popupMessageYesButton();
+			if (result1 == true) {
 //				Thread.sleep(500);	
-		}
-		a.getEditApptCancelYesButton().click();
+			}
+			a.getEditApptCancelYesButton().click();
 //			boolean result2 = rw.popupMessageYesButton();
 //			if (result2 == true)
 //			{
@@ -514,9 +508,18 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 //			}
 //		a.getEditApptCanceledOKButton().click();
 //		rw.waitForDashboardLoaded();
-		Thread.sleep(2000);
-		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
-		rm.memberLogout();
+			Thread.sleep(2000);
+			Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+			rm.memberLogout();
+		} catch (Exception e) {
+			log.error(e.getMessage(), e);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
+		} catch (java.lang.AssertionError ae) {
+			log.error(ae.getMessage(), ae);
+			log.error("Appointment is not booked");
+			getScreenshot(this.getClass().getSimpleName(), driver);
+		}
 	}
 
 	// @AfterTest
