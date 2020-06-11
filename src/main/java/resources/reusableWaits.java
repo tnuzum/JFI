@@ -250,6 +250,7 @@ public class reusableWaits extends base {
 		try {
 			wait.until(ExpectedConditions.attributeContains(ap.getSelectATimeDrawer(), "ng-reflect-opened", "true"));
 			System.out.println(ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened"));
+			log.info(ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened"));
 		} catch (Exception e) {
 			log.error("Select A Time drawer is not opened");
 
