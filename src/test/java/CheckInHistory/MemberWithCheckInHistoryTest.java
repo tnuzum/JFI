@@ -81,7 +81,7 @@ public class MemberWithCheckInHistoryTest extends base {
 
 		rm.verifyCurrentDateIsSelectedByDefault(CalendarDates);
 		Actions a = new Actions(driver);
-		a.moveToElement(chp.getSecondCalendarIcon()).click().build().perform();
+		a.moveToElement(chp.getFirstCalendarIcon()).click().build().perform();
 	}
 
 	@Test(priority = 3)
