@@ -140,8 +140,12 @@ public class MemberWithCheckInHistoryTest extends base {
 	}
 
 	@Test(priority = 5)
-	public void verifyVisitsByMonthSectionIsPresentTest() {
+	public void verifyVisitsByMonthSectionIsPresentTest() throws InterruptedException {
 		Assert.assertTrue(chp.getVisitsByMonthSection().isDisplayed());
+		boolean checkinChartPresent = rm
+				.isElementPresent(By.xpath("//div[@class='ibox-content no-margins no-padding']/div"));
+		Assert.assertEquals(checkinChartPresent, true);
+		rm.memberLogout();
 
 	}
 
