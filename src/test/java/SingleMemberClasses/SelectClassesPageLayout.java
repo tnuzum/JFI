@@ -82,22 +82,13 @@ public class SelectClassesPageLayout extends base {
 	@Test(priority = 2)
 	public void VerifyDefaultDateSelection() throws IOException, InterruptedException {
 
-		df1 = new SimpleDateFormat("d");
-		today = Calendar.getInstance();
-		String todaysMDate = df1.format(today.getTime());
-
 		c.getCalendarIcon().click();
-		int dayCount = c.getCalendarDates().size();
 
-		for (int i = 0; i < dayCount; i++) {
+		rm.verifyCurrentDateIsSelectedByDefault(c.getCalendarDates());
 
-			if (c.getCalendarDates().get(i).getText().equals(todaysMDate)) {
-				Assert.assertTrue(c.getCalendarDates().get(i).getAttribute("class").contains("active"));
-				break;
-			}
-		}
 		Actions a = new Actions(driver);
 		a.moveToElement(c.getCalendarIcon()).click().build().perform();
+
 	}
 
 	@Test(priority = 3)

@@ -54,7 +54,7 @@ public class DashboardPO {
 	// mat-nav-list[@class='mat-nav-list']/div[2]/a[5]");
 	By menuPackages = By.xpath("//a[contains(@class, 'at-mainnav-packages')]");
 	// By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[6]");
-	By menuCheckInHistory = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]/a[7]");
+	By menuCheckInHistory = By.xpath("//a[contains(@class, 'at-mainnav-checkinhistory')]");
 
 	By myAccountSectionLabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[1]");
 //	By myAccountAccountHistoryButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[1]");

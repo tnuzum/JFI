@@ -1290,4 +1290,47 @@ public class reusableMethods extends base {
 		Assert.assertEquals(defaultSelection, unitsToBeSelected);
 		return null;
 	}
+
+	public Object verifyCurrentDateIsSelectedByDefault(List<WebElement> element) throws InterruptedException {
+
+		SimpleDateFormat df1 = new SimpleDateFormat("d");
+		Calendar today = Calendar.getInstance();
+		String todaysMDate = df1.format(today.getTime());
+
+		Thread.sleep(1000);
+		int dayCount = element.size();
+
+		for (int i = 0; i < dayCount; i++) {
+
+			if (element.get(i).getText().equals(todaysMDate)) {
+				Assert.assertTrue(element.get(i).getAttribute("class").contains("active"));
+				break;
+			}
+		}
+
+		return null;
+	}
+
+	public Object verifyFirstDateOfPreviousMonthIsSelectedByDefault(List<WebElement> element)
+			throws InterruptedException {
+
+		SimpleDateFormat df1 = new SimpleDateFormat("d");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, -1);
+		cal.set(Calendar.DATE, 1);
+		Date firstDateOfPreviousMonth = cal.getTime();
+		String date = df1.format(firstDateOfPreviousMonth);
+
+		int dayCount = element.size();
+
+		for (int i = 0; i < dayCount; i++) {
+
+			if (element.get(i).getText().equals(date)) {
+				Assert.assertTrue(element.get(i).getAttribute("class").contains("active"));
+				break;
+			}
+		}
+
+		return null;
+	}
 }
