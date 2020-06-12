@@ -34,10 +34,9 @@ import resources.reusableWaits;
 
 public class PageLaunchTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	DashboardPO d = new DashboardPO(driver);
-
 	public reusableWaits rw;
 	public reusableMethods rm;
+	private static DashboardPO d;
 
 	public PageLaunchTest() {
 		rw = new reusableWaits();
@@ -53,6 +52,7 @@ public class PageLaunchTest extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		d = new DashboardPO(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		// String EMELoginPage = prop.getProperty("EMELoginPage");
 		driver.get(EMELoginPage);

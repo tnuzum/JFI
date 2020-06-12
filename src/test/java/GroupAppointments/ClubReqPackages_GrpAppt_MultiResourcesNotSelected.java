@@ -346,7 +346,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			PM.getPopupOk().click();
 			Thread.sleep(1000);
 			PM.getSaveCardNo().click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			// Verifies the Pay button contains the total amount
 
 			Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
