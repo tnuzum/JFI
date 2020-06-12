@@ -21,6 +21,9 @@
 			
 			<class name="ManagePaymentMethods.VerifyMessageTest" />
 			
+			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
+			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
+			
 			
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberClasses.EnrollWithSingleClassFeeTest" />

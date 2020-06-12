@@ -13,6 +13,8 @@
 			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
 			<class name="PayBalance.MakePaymentTest_StoredCard" />
+			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
+			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
 			</classes>
 			</test>
 			
