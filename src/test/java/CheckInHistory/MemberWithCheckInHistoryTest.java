@@ -90,7 +90,6 @@ public class MemberWithCheckInHistoryTest extends base {
 		chp.getFirstCalendarIcon().click();
 
 		Assert.assertTrue(chp.getCalendarDates().get(0).getAttribute("class").contains("selected"));
-		chp.getCalendarDates().get(0).click();
 
 		Thread.sleep(2000);
 	}
@@ -98,8 +97,6 @@ public class MemberWithCheckInHistoryTest extends base {
 	@Test(priority = 4)
 	public void verifyCheckInHistoryPresentTest() throws InterruptedException {
 
-		wait.until(ExpectedConditions.elementToBeClickable(chp.getFirstCalendarIcon()));
-		chp.getFirstCalendarIcon().click();
 		int dayCount = 0;
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("d");
