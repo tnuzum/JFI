@@ -88,6 +88,7 @@ public class MemberWithNoCheckInHistoryTest extends base {
 	@Test(priority = 3)
 	public void verifyDefaultDateSelectionOnStartDateCalendarIconTest() throws InterruptedException {
 
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//table[@class='mat-calendar-table']")));
 		wait.until(ExpectedConditions.elementToBeClickable(chp.getFirstCalendarIcon()));
 		chp.getFirstCalendarIcon().click();
 		List<WebElement> CalendarDates = driver
@@ -102,6 +103,7 @@ public class MemberWithNoCheckInHistoryTest extends base {
 	@Test(priority = 4)
 	public void verifyCheckInHistoryNotPresentTest() throws InterruptedException {
 
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//table[@class='mat-calendar-table']")));
 		wait.until(ExpectedConditions.elementToBeClickable(chp.getFirstCalendarIcon()));
 		chp.getFirstCalendarIcon().click();
 		int dayCount = 0;
