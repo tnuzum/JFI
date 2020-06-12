@@ -81,7 +81,7 @@ public class MemberWithNoCheckInHistoryTest extends base {
 
 		rm.verifyCurrentDateIsSelectedByDefault(CalendarDates);
 		Actions a = new Actions(driver);
-		a.moveToElement(chp.getSecondCalendarIcon()).click().build().perform();
+		a.moveToElement(chp.getFirstCalendarIcon()).click().build().perform();
 		Thread.sleep(2000);
 	}
 
@@ -138,12 +138,16 @@ public class MemberWithNoCheckInHistoryTest extends base {
 				}
 			}
 		}
-		Assert.assertFalse(chp.getCheckinHistorySection().isDisplayed());
+
+		boolean CheckinHistorySectionPresent = rm.isElementPresent(By.id("checkinHistory"));
+		Assert.assertEquals(CheckinHistorySectionPresent, false);
+		Assert.assertEquals(chp.getNoEntriesMessage().getText(),
+				"There are no check in history entries that match the search criteria.");
 	}
 
 	@Test(priority = 5)
-	public void verifyVisitsByMonthSectionIsPresentTest() {
-		Assert.assertTrue(chp.getVisitsByMonthSection().isDisplayed());
+	public void verifyVisitsByMonthSectionIsNotPresentTest() {
+
 		boolean checkinChartPresent = rm
 				.isElementPresent(By.xpath("//div[@class='ibox-content no-margins no-padding']/div"));
 		Assert.assertEquals(checkinChartPresent, false);
