@@ -1304,6 +1304,7 @@ public class reusableMethods extends base {
 
 			if (element.get(i).getText().equals(todaysMDate)) {
 				Assert.assertTrue(element.get(i).getAttribute("class").contains("active"));
+				element.get(i).click();
 				break;
 			}
 		}
@@ -1321,12 +1322,18 @@ public class reusableMethods extends base {
 		Date firstDateOfPreviousMonth = cal.getTime();
 		String date = df1.format(firstDateOfPreviousMonth);
 
+		Assert.assertTrue(element.get(0).getAttribute("class").contains("selected"));
+
+		element.get(0).click();
+
 		int dayCount = element.size();
 
 		for (int i = 0; i < dayCount; i++) {
 
-			if (element.get(i).getText().equals(date)) {
-				Assert.assertTrue(element.get(i).getAttribute("class").contains("active"));
+			if (element.get(i).getAttribute("class").contains("selected")) {
+
+				Assert.assertTrue(i == 0);
+				element.get(i).click();
 				break;
 			}
 		}

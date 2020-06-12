@@ -9,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -80,29 +79,25 @@ public class MemberWithCheckInHistoryTest extends base {
 				.findElements(By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td"));
 
 		rm.verifyCurrentDateIsSelectedByDefault(CalendarDates);
-		Actions a = new Actions(driver);
-		a.moveToElement(chp.getFirstCalendarIcon()).click().build().perform();
+
 		Thread.sleep(2000);
 	}
 
 	@Test(priority = 3)
 	public void verifyDefaultDateSelectionOnStartDateCalendarIconTest() throws InterruptedException {
 
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//table[@class='mat-calendar-table']")));
 		wait.until(ExpectedConditions.elementToBeClickable(chp.getFirstCalendarIcon()));
 		chp.getFirstCalendarIcon().click();
-		List<WebElement> CalendarDates = driver
-				.findElements(By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td"));
 
-		rm.verifyFirstDateOfPreviousMonthIsSelectedByDefault(CalendarDates);
-		Actions a = new Actions(driver);
-		a.moveToElement(chp.getFirstCalendarIcon()).click().build().perform();
+		Assert.assertTrue(chp.getCalendarDates().get(0).getAttribute("class").contains("selected"));
+		chp.getCalendarDates().get(0).click();
+
 		Thread.sleep(2000);
 	}
 
 	@Test(priority = 4)
 	public void verifyCheckInHistoryPresentTest() throws InterruptedException {
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//table[@class='mat-calendar-table']")));
+
 		wait.until(ExpectedConditions.elementToBeClickable(chp.getFirstCalendarIcon()));
 		chp.getFirstCalendarIcon().click();
 		int dayCount = 0;
