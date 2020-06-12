@@ -82,11 +82,13 @@ public class MemberWithCheckInHistoryTest extends base {
 		rm.verifyCurrentDateIsSelectedByDefault(CalendarDates);
 		Actions a = new Actions(driver);
 		a.moveToElement(chp.getFirstCalendarIcon()).click().build().perform();
+		Thread.sleep(2000);
 	}
 
 	@Test(priority = 3)
 	public void verifyDefaultDateSelectionOnStartDateCalendarIconTest() throws InterruptedException {
 
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//table[@class='mat-calendar-table']")));
 		wait.until(ExpectedConditions.elementToBeClickable(chp.getFirstCalendarIcon()));
 		chp.getFirstCalendarIcon().click();
 		List<WebElement> CalendarDates = driver
@@ -100,6 +102,7 @@ public class MemberWithCheckInHistoryTest extends base {
 
 	@Test(priority = 4)
 	public void verifyCheckInHistoryPresentTest() throws InterruptedException {
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//table[@class='mat-calendar-table']")));
 		wait.until(ExpectedConditions.elementToBeClickable(chp.getFirstCalendarIcon()));
 		chp.getFirstCalendarIcon().click();
 		int dayCount = 0;

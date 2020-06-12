@@ -1307,7 +1307,7 @@ public class reusableMethods extends base {
 				break;
 			}
 		}
-
+		Thread.sleep(1000);
 		return null;
 	}
 
