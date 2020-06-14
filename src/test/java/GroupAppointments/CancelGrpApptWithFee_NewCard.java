@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -196,12 +195,12 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 				System.out.println("came out of the loop");
 			}
-
-			Actions a = new Actions(driver);
-			a.moveToElement(ap.getCalendarTomorrow()).click().build().perform();
+			ap.getCalendarTomorrow().click();
+			// Actions a = new Actions(driver);
+			// a.moveToElement(ap.getCalendarTomorrow()).click().build().perform();
 			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-			// ap.getCalendarTomorrow().click();
+
 			Thread.sleep(1000);
 			rw.waitForSelectATimeToOpen();
 
