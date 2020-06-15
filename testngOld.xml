@@ -14,7 +14,7 @@
   </test>
   <test  name="Test2">
     <classes>
-     <class name = "GroupAppointments.CancelGrpApptWithFee_NewCard"/>
+     <class name = "FamilyMemberClasses.EnrollClassMemberAndItemRestrictions"/>
       <!--class name = "FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage"/-->
        <!--class name = "SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_AdditionalResources"/-->
     </classes>

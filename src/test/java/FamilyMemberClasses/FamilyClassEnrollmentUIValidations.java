@@ -234,6 +234,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 		Thread.sleep(2000);
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignUpButton()).click().perform();
+		// c.getPopupSignUpButton().click();
 		Thread.sleep(2000);
 
 	}
