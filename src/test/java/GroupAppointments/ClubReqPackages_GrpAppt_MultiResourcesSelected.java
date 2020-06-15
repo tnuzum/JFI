@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -198,11 +197,12 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 //		Thread.sleep(3000);
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getCalendarTomorrow()));
 
-			Actions a = new Actions(driver);
-			a.click(ap.getCalendarTomorrow()).build().perform();
+			// Actions a = new Actions(driver);
+			// a.click(ap.getCalendarTomorrow()).build().perform();
+			ap.getCalendarTomorrow().click();
 			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-			// ap.getCalendarTomorrow().click();
+
 			rw.waitForSelectATimeToOpen();
 
 			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
