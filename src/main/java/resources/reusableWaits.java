@@ -234,6 +234,7 @@ public class reusableWaits extends base {
 	public String catchErrorMessage() throws InterruptedException {
 		boolean e = this.catchErrorMessagePrivate();
 		if (e == true) {
+			log.error("ERROR: An Error Has Occurred");
 			System.out.println("ERROR: An Error Has Occurred");
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
