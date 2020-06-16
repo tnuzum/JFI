@@ -8,13 +8,13 @@
   <test thread-count="5" name="EMERelease- Smoke Testing">
   
   			<!-- URL for Future/-->
-  <parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224"/>
+  <!--parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224"/-->
      
   			<!-- URL for Cert Future/-->
   <!--parameter name = "EMELoginPage" value=""/-->
      
   			<!-- URL for Prod Future/-->
-  <!--parameter name = "EMELoginPage" value="https://future.ourclublogin.com/Account/Login?ReturnUrl=%2f510306"/-->
+  <parameter name = "EMELoginPage" value="https://future.ourclublogin.com/Account/Login?ReturnUrl=%2f510306"/>
    
    			<!-- URL for Prod Current/ -->
   <!--parameter name = "EMELoginPage" value="https://www.ourclublogin.com/Account/Login?ReturnUrl=%2f510223"/-->
