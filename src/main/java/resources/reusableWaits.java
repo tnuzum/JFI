@@ -259,4 +259,21 @@ public class reusableWaits extends base {
 		}
 		return null;
 	}
+
+	public Object waitForNewCardFormToOpen() {
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		try {
+			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("newcard")), "aria-expanded",
+					"true"));
+			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("newcard")), "class", "in"));
+			System.out.println(driver.findElement(By.id("newcard")).getAttribute("aria-expanded"));
+			log.info(driver.findElement(By.id("newcard")).getAttribute("aria-expanded"));
+		} catch (Exception e) {
+			log.error("New card form is not opened");
+
+		}
+		return null;
+	}
 }
