@@ -265,7 +265,6 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			Thread.sleep(2000);
 			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
 
-			rm.memberLogout();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			log.error("Appointment is not booked");
@@ -274,6 +273,8 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			log.error(ae.getMessage(), ae);
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
+		} finally {
+			rm.memberLogout();
 		}
 
 	}
@@ -500,7 +501,6 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			Thread.sleep(2000);
 			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
 
-			rm.memberLogout();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
 			log.error("Appointment is not booked");
@@ -509,6 +509,8 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			log.error(ae.getMessage(), ae);
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
+		} finally {
+			rm.memberLogout();
 		}
 
 	}
