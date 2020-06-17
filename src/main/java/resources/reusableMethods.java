@@ -1342,4 +1342,20 @@ public class reusableMethods extends base {
 
 		return null;
 	}
+
+	public String OpenNewcardFormIfNotOpenInFirstAttempt() {
+
+		PaymentPO p = new PaymentPO(driver);
+
+		String ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
+
+		while (ariaExpanded.equals("false")) {
+			p.getSelectPaymentNewCardButton().click();
+			log.error("NewCard Button was clicked again");
+			System.out.println("NewCard Button was clicked again");
+			ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
+		}
+		return null;
+
+	}
 }

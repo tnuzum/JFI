@@ -87,8 +87,12 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 
 			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("newcard")), "aria-expanded",
-					"true"));
+
+			log.info("NewCard Button was clicked");
+			System.out.println("NewCard Button was clicked");
+
+			rw.waitForNewCardFormToOpen();
+			rm.OpenNewcardFormIfNotOpenInFirstAttempt();
 
 			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
 			// JavascriptExecutor jse = (JavascriptExecutor) driver;
