@@ -241,7 +241,7 @@ public class CanNotCancelApptAsGroupMember extends base {
 
 			ap.getPopup1BookButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
@@ -428,7 +428,7 @@ public class CanNotCancelApptAsGroupMember extends base {
 			}
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

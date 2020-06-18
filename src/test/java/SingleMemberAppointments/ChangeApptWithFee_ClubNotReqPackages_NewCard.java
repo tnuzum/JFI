@@ -341,7 +341,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_NewCard extends base {
 			}
 			ap.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

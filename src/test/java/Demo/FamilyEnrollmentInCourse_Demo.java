@@ -293,6 +293,7 @@ public class FamilyEnrollmentInCourse_Demo extends base {
 		}
 		PM.getPaymentButton().click();
 
+		wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
 		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 		// Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());

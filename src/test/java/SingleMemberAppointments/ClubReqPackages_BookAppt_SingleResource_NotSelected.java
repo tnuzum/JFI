@@ -277,7 +277,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 			}
 			ap.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

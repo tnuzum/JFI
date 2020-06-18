@@ -323,7 +323,7 @@ public class FamilyMemberCourseEnrollment extends base {
 			Thread.sleep(1000);
 		}
 		PM.getPaymentButton().click();
-
+		wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		// Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
