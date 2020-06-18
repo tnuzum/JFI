@@ -110,6 +110,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 			}
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), courseNameDisplayed));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -323,7 +324,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 			}
 			Thread.sleep(1000);
-
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), courseNameDisplayed));
 			Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 			Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
 			Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
@@ -495,7 +496,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 			}
 			Thread.sleep(1000);
-
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), courseNameDisplayed));
 			Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 			Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
 			Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());

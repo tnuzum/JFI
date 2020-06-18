@@ -70,6 +70,7 @@ public class EnrollInClass_CancelTransaction extends base {
 		Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
 		Thread.sleep(2000);
+		wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), classNameDisplayed));
 		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -112,6 +113,7 @@ public class EnrollInClass_CancelTransaction extends base {
 		Thread.sleep(2000);
 		c.getPopupSignUpButton().click();
 		Thread.sleep(2000);
+		wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), classNameDisplayed));
 		Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
