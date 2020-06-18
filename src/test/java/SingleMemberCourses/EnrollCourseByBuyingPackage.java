@@ -120,6 +120,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			}
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), CourseNameDisplayed));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -350,7 +351,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			}
 			Thread.sleep(2000);
-
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), CourseNameDisplayed));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -529,7 +530,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			}
 			Thread.sleep(2000);
-
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), CourseNameDisplayed));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());

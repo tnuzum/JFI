@@ -105,6 +105,7 @@ public class EnrollInFreeCourseTest extends base {
 
 			}
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), "Free Course Auto"));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -320,6 +321,7 @@ public class EnrollInFreeCourseTest extends base {
 
 			}
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), "CourseFreeWithExistingPunches"));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -468,6 +470,7 @@ public class EnrollInFreeCourseTest extends base {
 
 			}
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), "CourseFreeWithServiceD"));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());

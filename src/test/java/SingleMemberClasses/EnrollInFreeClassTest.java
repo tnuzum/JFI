@@ -95,6 +95,7 @@ public class EnrollInFreeClassTest extends base {
 
 			}
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), "Free Class Auto"));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -302,6 +303,7 @@ public class EnrollInFreeClassTest extends base {
 			}
 
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), "ClassFreeWithExistingPunches"));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -446,6 +448,7 @@ public class EnrollInFreeClassTest extends base {
 			}
 
 			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), "ClassFreeWithServiceD"));
 			Assert.assertEquals("Select Rates", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
