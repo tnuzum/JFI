@@ -43,7 +43,7 @@ public class EmailConfirmations {
 
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email1, "You have been successfully enrol=led in the following class."));
-			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Location: =Jonas Sports-Plex"));
+			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Location:= Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Class Name: Free Class Auto"));
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/d/yyyy");
 			Calendar today11 = Calendar.getInstance();
