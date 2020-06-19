@@ -221,7 +221,7 @@ public class FamilyMemberClassEnrollment2 extends base {
 
 		{
 			Thread.sleep(1000);
-			;
+
 		}
 
 		PM.getPaymentButton().click();
