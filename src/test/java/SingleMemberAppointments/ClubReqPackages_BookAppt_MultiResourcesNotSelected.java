@@ -248,8 +248,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 			while (ap.getRateBox().getText().isBlank()) {
 				System.out.println("Waiting");
 			}
-			Assert.assertTrue(ap.getRateBox().findElement(By.tagName("span")).getText()
-					.contains(appointmentToBook.toUpperCase()));
+			wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook.toUpperCase()));
 
 			rm.verifyLowestNumberOfUnitsIsSelectedByDefault(unitsToBeSelected);
 			Thread.sleep(1000);
