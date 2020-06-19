@@ -206,6 +206,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			PM.getPaymentButton().click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
@@ -378,6 +379,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			}
 			PM.getPaymentButton().click();
 
+			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -567,6 +569,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			}
 			PM.getPaymentButton().click();
 
+			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());

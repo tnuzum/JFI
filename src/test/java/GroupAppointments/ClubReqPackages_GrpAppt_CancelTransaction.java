@@ -264,9 +264,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 			while (ap.getRateBox().getText().isBlank()) {
 				System.out.println("Waiting");
 			}
-			Assert.assertTrue(ap.getRateBox().findElement(By.tagName("span")).getText()
-					.contains(appointmentToBook.toUpperCase()));
-
+			wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook.toUpperCase()));
 			Select s4 = new Select(
 					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
 			List<WebElement> UnitRates = s4.getOptions();

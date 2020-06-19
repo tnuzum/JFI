@@ -240,8 +240,8 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 			while (ap.getRateBox().getText().isBlank()) {
 				System.out.println("Waiting");
 			}
-			Assert.assertTrue(ap.getRateBox().findElement(By.tagName("span")).getText()
-					.contains(appointmentToBook.toUpperCase()));
+			wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook.toUpperCase()));
+
 			rm.verifyLowestNumberOfUnitsIsSelectedByDefault(unitsToBeSelected);
 			Thread.sleep(1000);
 
@@ -280,7 +280,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 			}
 			ap.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

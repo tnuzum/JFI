@@ -109,7 +109,7 @@ public class EnrollInFreeClassTest extends base {
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
 
 			c.getContinueButton().click();
-
+			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
 			c.getPopupClose().click();
@@ -324,6 +324,7 @@ public class EnrollInFreeClassTest extends base {
 			}
 
 			c.getContinueButton().click();
+			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
 			c.getPopupClose().click();
@@ -462,6 +463,7 @@ public class EnrollInFreeClassTest extends base {
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
 
 			c.getContinueButton().click();
+			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
 			c.getPopupClose().click();
