@@ -339,7 +339,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_SavedCard extends base {
 			}
 			ap.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

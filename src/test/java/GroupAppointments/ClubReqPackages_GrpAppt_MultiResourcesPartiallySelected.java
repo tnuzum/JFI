@@ -297,7 +297,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 			}
 			ap.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
