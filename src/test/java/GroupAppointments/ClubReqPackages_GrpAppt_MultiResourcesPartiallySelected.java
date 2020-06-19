@@ -201,7 +201,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			rw.waitForSelectATimeToOpen();
 
 			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
