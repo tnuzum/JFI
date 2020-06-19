@@ -361,7 +361,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 			}
 			ap.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
+			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
