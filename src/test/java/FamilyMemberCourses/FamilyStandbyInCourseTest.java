@@ -1,4 +1,4 @@
-package Demo;
+package FamilyMemberCourses;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -27,7 +27,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyStandbyInCourse_Demo extends base {
+public class FamilyStandbyInCourseTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String dsiredMonthYear = "December 2020";
 	private static String CourseStartMonth = "Dec";
@@ -59,7 +59,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public FamilyStandbyInCourse_Demo() {
+	public FamilyStandbyInCourseTest() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
