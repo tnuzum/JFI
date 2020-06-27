@@ -1,4 +1,4 @@
-package Demo;
+package FamilyMemberClasses;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -27,17 +27,15 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyStandbyInCourse_Demo extends base {
+public class FamilyStandbyInClassTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String dsiredMonthYear = "December 2020";
-	private static String CourseStartMonth = "Dec";
-	private static String courseToEnroll = "DEMO STANDBY COURSE";
-	private static String courseNameDisplayed = "Demo Standby Course";
-	private static String courseTimeDisplayed = "Start Time: 4:30 PM";
-	private static String courseInstructorDisplayed = "Course Instructor: Max Gibbs";
-	private static String courseInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
-	private static String courseTimeDisplayedOnSearchScreen = "4:30 PM";
-	private static String courseDuration = "30 min";
+	private static String ClassToEnroll = "DEMO STANDBY CLASS";
+	private static String ClassNameDisplayed = "Demo Standby Class";
+	private static String ClassTimeDisplayed = "Start Time: 4:30 PM";
+	private static String ClassInstructorDisplayed = "Class Instructor: Max Gibbs";
+	private static String ClassInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
+	private static String ClassTimeDisplayedOnSearchScreen = "4:30 PM";
+	private static String ClassDuration = "30 min";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";
@@ -59,7 +57,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public FamilyStandbyInCourse_Demo() {
+	public FamilyStandbyInClassTest() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -85,48 +83,48 @@ public class FamilyStandbyInCourse_Demo extends base {
 	public void FamilyMemberEnrollment() throws IOException, InterruptedException {
 		try {
 			rm.activeMemberLogin("hoh", "Testing1!");
-			// rm.unenrollFromCourse();
+			// rm.unenrollFromClass();
 			// Thread.sleep(2000);
 			// rm.returnToDashboard();
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			d.getMyClassesScheduleButton().click();
 
-			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			rm.SelectCourseStartMonth(CourseStartMonth);
+			rm.SelectTomorrowDate();
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			c.getCourseFilter().click();
 			c.getCourseKeyword().click();
 			c.getSearchField().sendKeys("demo");
-			c.getCourseApplyFilters().click();
+			c.getClassApplyFilters().click();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			int CourseCount = c.getClassTable().size();
-			for (int j = 0; j < CourseCount; j++) {
+			int ClassCount = c.getClassTable().size();
+			for (int j = 0; j < ClassCount; j++) {
 
 				WebElement w = c.getClassTable().get(j);
 				WebElement w1 = c.getClassTimeAndDuration().get(j);
-				String courseName = w.getText();
-				String courseTimeAndDuration = w1.getText();
+				String ClassName = w.getText();
+				String ClassTimeAndDuration = w1.getText();
 
-				if (courseName.contains(courseToEnroll))
+				if (ClassName.contains(ClassToEnroll))
 
 				{
-					Assert.assertTrue(courseName.contains(courseInstructorDisplayedOnSearchScreen));
-					Assert.assertTrue(courseTimeAndDuration.contains(courseTimeDisplayedOnSearchScreen));
-					Assert.assertTrue(courseTimeAndDuration.contains(courseDuration));
+					Assert.assertTrue(ClassName.contains(ClassInstructorDisplayedOnSearchScreen));
+					Assert.assertTrue(ClassTimeAndDuration.contains(ClassTimeDisplayedOnSearchScreen));
+					Assert.assertTrue(ClassTimeAndDuration.contains(ClassDuration));
 
 					List<WebElement> getMemberRate = w.findElements(By.className("ng-star-inserted"));
 
@@ -153,7 +151,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 
 					}
 
-					w.click(); // Click on the specific course
+					w.click(); // Click on the specific Class
 					break;
 				}
 			}
@@ -164,7 +162,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 				Thread.sleep(500);
 			}
 
-			Assert.assertEquals(c.getClasslabel().getText(), courseNameDisplayed); // Verifies the course name
+			Assert.assertEquals(c.getClasslabel().getText(), ClassNameDisplayed); // Verifies the Class name
 			int count = c.getFmlyMemberLabel().size();
 
 			// Selects the other eligible members
@@ -186,15 +184,15 @@ public class FamilyStandbyInCourse_Demo extends base {
 					fml.click(); // Selects the member
 
 			}
-			c.getPopupSignupButtonCourse().click();
+			c.getPopupSignUpButton().click();
 
 			while (c.getClassName().getText().isBlank()) {
 				Thread.sleep(500);
 			}
 
-			Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
-			Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
-			Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
+			Assert.assertEquals(ClassNameDisplayed, c.getClassName().getText());
+			Assert.assertEquals(ClassTimeDisplayed, c.getClassStartTime().getText());
+			Assert.assertEquals(ClassInstructorDisplayed, c.getClassInstructor().getText());
 
 			Assert.assertTrue(c.getstandbyMessage().getText().contains("2 spot(s) left"));
 			Assert.assertTrue(c.getstandbyMessage().getText().contains("Who should get it?"));
@@ -223,7 +221,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 				if (c.getMemberSections().get(i).getText().contains(member2)) {
 
 					for (int j = 0; j < Labels.size(); j++) {
-						if (Labels.get(j).getText().contains("Pay Course Fee")) {
+						if (Labels.get(j).getText().contains("Pay Single Class Fee")) {
 							Labels.get(j).click();
 							break;
 						}
@@ -232,7 +230,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 
 				if (c.getMemberSections().get(i).getText().contains(member3)) {
 
-					Assert.assertTrue(paymentOptions.contains("Free")); // Course is free for this member
+					Assert.assertTrue(paymentOptions.contains("Free")); // Class is free for this member
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Free"))
 							Assert.assertTrue(Labels.get(j).isEnabled());
@@ -257,10 +255,10 @@ public class FamilyStandbyInCourse_Demo extends base {
 				String text = pp.getMemberfeesSection().get(i).getText();
 
 				if (text.contains(member2))
-					Assert.assertTrue(text.contains("Single Course Fee $9.00"));
+					Assert.assertTrue(text.contains("Single Class Fee $9.00"));
 
 				if (text.contains(member3))
-					Assert.assertTrue(text.contains("Single Course Fee Free"));
+					Assert.assertTrue(text.contains("Single Class Fee Free"));
 
 				if (text.contains(member5))
 					Assert.assertTrue(text.contains("Standby"));
@@ -371,8 +369,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 	public void FamilyMemberUnenroll(String username, String password) throws InterruptedException, IOException {
 		try {
 			rm.activeMemberLogin(username, password);
-
-			rm.unenrollFromCourse(dsiredMonthYear);
+			rm.unenrollFromClass();
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
@@ -404,7 +401,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 	@Test(priority = 3)
 	public void FamilyMemberDeleteStandby() throws InterruptedException, IOException {
 		try {
-			rm.deleteStandbyCourseInCOG(courseNameDisplayed, member5, member6);
+			rm.deleteStandbyClassInCOG(ClassNameDisplayed, member5, member6);
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();

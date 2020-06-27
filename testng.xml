@@ -16,6 +16,8 @@
 			<class name="PayBalance.MakePaymentTest_StoredCard" />
 			<class name="PayBalance.MakePaymentTest_NewCard_NoAgreement" />
 			<class name="PayBalance.MakePaymentTest_NewCard_HasAgreement" />
+			<class name="PayBalance.MakePaymentTest_NewCard_NoAgreement_NoSave" />
+			<class name="PayBalance.MakePaymentTest_NewCard_HasAgreement_NoSave" />
 			
 			<class name="ShopPackages.ShopAndPurchasePackages" />
 			
@@ -137,12 +139,14 @@
 			<class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
+			<class name="FamilyMemberClasses.FamilyStandbyInClassTest" />
 			
 			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
 			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
 			<class name="FamilyMemberCourses.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
+			<class name="FamilyMemberCourses.FamilyStandbyInCourseTest" />
 			
 			<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_NoPackage"/>
 			<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage"/>

@@ -24,7 +24,16 @@ public class PaymentMethodsPO {
 	By expirationMonth = By.xpath("//input[@name='ExpireMonth']");
 	By expirationYear = By.xpath("//input[@name='ExpireYear']");
 	By securityCode = By.xpath("//input[@id='securityCode']");
-	By saveCardNo = By.xpath("//label[@for = 'sc-no']");
+//	By saveCardNo = By.xpath("//label[@for = 'sc-no']");
+	By saveCardNo = By.xpath("//input[@id='sc-no']");
+	By saveCardYes = By.xpath("//input[@id='sc-yes']");
+	By moreInfoSaveCard = By.xpath("div[contains(@class, ' at-additionalquestions-moreinfosavecard')]");
+	By houseAcctNo = By.xpath("//input[@id='ac-no']");
+	By houseAcctYes = By.xpath("//input[@id='ac-yes']");
+	By moreInfoOnAccount = By.xpath("div[contains(@class, ' at-additionalquestions-moreinfoonaccount')]");
+	By inClubPurchaseNo = By.xpath("//input[@id='ic-no']");
+	By inClubPurchaseYes = By.xpath("//input[@id='ic-yes']");
+	By moreInfoUseInPos = By.xpath("div[contains(@class, ' at-additionalquestions-moreinfouseinpos')]");
 	By checkBox = By.id("checkTermsPaymentMethods");
 	By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
 	By popupContent = By.xpath("//div[@id = 'swal2-content']");
@@ -76,6 +85,38 @@ public class PaymentMethodsPO {
 
 	public WebElement getSaveCardNo() {
 		return driver.findElement(saveCardNo);
+	}
+
+	public WebElement getSaveCardYes() {
+		return driver.findElement(saveCardYes);
+	}
+
+	public WebElement getMoreInfoSaveCard() {
+		return driver.findElement(moreInfoSaveCard);
+	}
+
+	public WebElement getHouseAcctNo() {
+		return driver.findElement(houseAcctNo);
+	}
+
+	public WebElement getHouseAcctYes() {
+		return driver.findElement(houseAcctYes);
+	}
+
+	public WebElement getMoreInfoOnAccount() {
+		return driver.findElement(moreInfoOnAccount);
+	}
+
+	public WebElement getInClubPurchaseNo() {
+		return driver.findElement(inClubPurchaseNo);
+	}
+
+	public WebElement getInClubPurchaseYes() {
+		return driver.findElement(inClubPurchaseYes);
+	}
+
+	public WebElement getMoreInfoUseInPos() {
+		return driver.findElement(moreInfoUseInPos);
 	}
 
 	public WebElement getCheckBox() {
