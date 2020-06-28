@@ -96,8 +96,8 @@ public class MakePaymentTest_NewCard_HasAgreement_NoSave extends base {
 			// JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getCardNumber());
 			p.getCardNumber().sendKeys("4111111111111111");
-			p.getExpireMonth().sendKeys("12");
-			p.getExpireYear().sendKeys("29");
+			p.getExpireMonth().sendKeys("04");
+			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
 			Thread.sleep(1000);
 			p.getSaveCardNoRadio().click();

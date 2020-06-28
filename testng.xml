@@ -16,6 +16,7 @@
 			<class name="PayBalance.MakePaymentTest_StoredCard" />
 			<class name="PayBalance.MakePaymentTest_NewCard_NoAgreement" />
 			<class name="PayBalance.MakePaymentTest_NewCard_HasAgreement" />
+			<class name="PayBalance.MakePaymentTest_NewCard_LinkAgreement" />
 			<class name="PayBalance.MakePaymentTest_NewCard_NoAgreement_NoSave" />
 			<class name="PayBalance.MakePaymentTest_NewCard_HasAgreement_NoSave" />
 			
