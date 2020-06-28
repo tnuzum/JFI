@@ -398,10 +398,10 @@ public class FamilyStandbyInClass_Demo extends base {
 		}
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3, dependsOnMethods = { "FamilyMemberEnrollment" })
 	public void FamilyMemberDeleteStandby() throws InterruptedException, IOException {
 		try {
-			rm.deleteStandbyClassInCOG(ClassNameDisplayed, member5, member6);
+			rm.deleteStandbyClassInCOG(ClassNameDisplayed, "Jonas Sports-Plex", member5, member6);
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();

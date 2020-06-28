@@ -400,8 +400,8 @@ public class CancelGrpApptWithFee_NewCard extends base {
 			Assert.assertEquals(memberName, PM.getNameOnCardField().getAttribute("value"));
 
 			PM.getCardNumberField().sendKeys("4111111111111111");
-			PM.getExpirationMonth().sendKeys("12");
-			PM.getExpirationYear().sendKeys("29");
+			PM.getExpirationMonth().sendKeys("04");
+			PM.getExpirationYear().sendKeys("22");
 			PM.getSecurityCode().sendKeys("123");
 			PM.getCheckBox().click();
 			while (!PM.getPaymentButton().isEnabled()) {

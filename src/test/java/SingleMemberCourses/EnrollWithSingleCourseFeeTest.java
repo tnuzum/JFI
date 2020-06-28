@@ -545,9 +545,9 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			jse.executeScript("arguments[0].click();", PM.getCardNumberField());
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
-			PM.getExpirationMonth().sendKeys("12");
+			PM.getExpirationMonth().sendKeys("04");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
-			PM.getExpirationYear().sendKeys("29");
+			PM.getExpirationYear().sendKeys("22");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getSecurityCode().sendKeys("123");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");

@@ -29,7 +29,7 @@ import resources.reusableWaits;
 public class MakePaymentTest_NewCard_HasAgreement extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "Debbie Auto";
+	private static String memberName = "AgreementMember Auto";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -64,7 +64,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
-			rm.activeMemberLogin("dauto", "Testing1!");
+			rm.activeMemberLogin("agrmntmbr", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			d.getMyAccountPayNow().click();
@@ -97,10 +97,12 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 			// JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getCardNumber());
 			p.getCardNumber().sendKeys("4111111111111111");
-			p.getExpireMonth().sendKeys("12");
-			p.getExpireYear().sendKeys("29");
+			p.getExpireMonth().sendKeys("04");
+			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
 			p.getSaveCardYesRadio().click();
+			p.getHouseAcctNoRadioButton().click();
+			p.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
 
 			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
@@ -133,7 +135,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 			p.getNoThanks().click();
 			Thread.sleep(1000);
 
-			p.getSaveCardNoRadio().click();
+//			p.getSaveCardNoRadio().click();
 			Thread.sleep(1000);
 
 			p.getSubmitButton().click();
@@ -227,6 +229,38 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 
 		finally {
 			rm.memberLogout();
+		}
+	}
+
+	@Test(priority = 3, description = "Delete the Card in COG")
+	public void deleteCardInCOG() throws InterruptedException, IOException {
+		try {
+
+			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", "1111", "No");
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
 		}
 	}
 

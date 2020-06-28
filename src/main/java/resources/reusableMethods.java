@@ -735,10 +735,77 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object deleteStandbyCourseInCOG(String className, String memberName1, String memberName2)
+	public Object deleteFOPInCOG(String barcodeId, String clubName, String fopNumber, String agreementLinked)
 			throws InterruptedException {
 
-		this.loginCOG("Jonas Sports-Plex");
+		this.loginCOG(clubName);
+		WebElement BackOfficeTile = driver.findElement(By.xpath("(//div[@class='tile'])[2]"));
+		int count = BackOfficeTile.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count; i++) {
+			System.out.println(BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("MemberManagement")) {
+				Thread.sleep(1000);
+				BackOfficeTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.id("txt_barcodeId")).sendKeys(barcodeId);
+
+		driver.findElement(By.id("btn_search")).click();
+		driver.findElement(By.xpath("//i[@class='fa fa-cogs fa-2x']")).click();
+		Thread.sleep(2000);
+		if (agreementLinked.equals("Yes")) {
+			int agrmntCount = driver
+					.findElements(By.xpath("//section[@class='featureWhite']//table[@id='tbl_search'] //tr ")).size();
+			System.out.println(agrmntCount);
+			for (int i = 1; i < agrmntCount; i++) {
+				WebElement AgrmntRow = driver
+						.findElements(By.xpath("//section[@class='featureWhite']//table[@id='tbl_search'] //tr "))
+						.get(i);
+				List<WebElement> AgrmntRowSections = AgrmntRow.findElements(By.tagName("td"));
+				if (AgrmntRowSections.get(1).getText().equals("Balance Weight Loss 12 Week")) {
+					driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1).click();
+					Thread.sleep(1000);
+					driver.findElements(By.xpath("//td[@class = 'tblCheckBox']/a")).get(0).click();
+					Thread.sleep(1000);
+					driver.findElement(By.xpath("//a[@class='btn btn-lg btn-primary btn']")).click();
+					Thread.sleep(1000);
+					driver.findElement(By.xpath(
+							"//a[@class='btn btn-lg btn-primary hidden-print'][contains(text(),'SAVE PLAN CHANGES')]"))
+							.click();
+					driver.findElement(By.xpath("//button[@id='btnsaveCanges']")).click();
+					Thread.sleep(1000);
+					break;
+				}
+			}
+		}
+
+		int fopCount = driver.findElements(By.xpath("//section[@id='divPaymentSection'] //tr")).size();
+		System.out.println(fopCount);
+		for (int i = 3; i < fopCount; i++) {
+			WebElement FOPRow = driver.findElements(By.xpath("//section[@id='divPaymentSection'] //tr")).get(i);
+			List<WebElement> FOPRowSections = FOPRow.findElements(By.tagName("td"));
+			if (FOPRowSections.get(1).getText().equals("Visa") && FOPRowSections.get(2).getText().equals(fopNumber)) {
+				driver.findElements(By.xpath("//i[@class = 'fa fa-2x fa-times']")).get(i - 3).click();
+				Thread.sleep(1000);
+				driver.findElement(By.xpath("//a[@id='btn_ConfirmDel']")).click();
+				break;
+			}
+		}
+		Thread.sleep(1000);
+		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'success')]")).isDisplayed());
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+
+		return null;
+
+	}
+
+	public Object deleteStandbyCourseInCOG(String className, String classSellClub, String memberName1,
+			String memberName2) throws InterruptedException {
+
+		this.loginCOG(classSellClub);
 
 		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
 
@@ -808,10 +875,10 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object deleteStandbyClassInCOG(String className, String memberName1, String memberName2)
-			throws InterruptedException {
+	public Object deleteStandbyClassInCOG(String className, String classSellClub, String memberName1,
+			String memberName2) throws InterruptedException {
 
-		this.loginCOG("Jonas Sports-Plex");
+		this.loginCOG(classSellClub);
 
 		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
 

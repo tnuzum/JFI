@@ -638,8 +638,8 @@ public class ShopAndPurchasePackages extends base {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", PM.getCardNumberField());
 			PM.getCardNumberField().sendKeys("4111111111111111");
-			PM.getExpirationMonth().sendKeys("12");
-			PM.getExpirationYear().sendKeys("29");
+			PM.getExpirationMonth().sendKeys("04");
+			PM.getExpirationYear().sendKeys("22");
 			PM.getSecurityCode().sendKeys("123");
 			PM.getCheckBox().click();
 			while (!PM.getPaymentButton().isEnabled()) {
