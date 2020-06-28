@@ -764,10 +764,24 @@ public class reusableMethods extends base {
 						.findElements(By.xpath("//section[@class='featureWhite']//table[@id='tbl_search'] //tr "))
 						.get(i);
 				List<WebElement> AgrmntRowSections = AgrmntRow.findElements(By.tagName("td"));
+
 				if (AgrmntRowSections.get(1).getText().equals("Balance Weight Loss 12 Week")) {
 					driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1).click();
-					Thread.sleep(1000);
-					driver.findElements(By.xpath("//td[@class = 'tblCheckBox']/a")).get(0).click();
+
+					int fopCount = driver.findElements(By.xpath("//table[@class='table table-striped'] //tr")).size();
+					System.out.println(fopCount);
+					for (int j = 1; j < fopCount; j++) {
+						WebElement FOPRow = driver.findElements(By.xpath("//table[@class='table table-striped'] //tr"))
+								.get(j);
+						List<WebElement> FOPRowSections = FOPRow.findElements(By.tagName("td"));
+						if (FOPRowSections.get(1).getText().equals("Master Card")
+								&& FOPRowSections.get(2).getText().equals("5454")) {
+							driver.findElements(By.id("btn_Activate")).get(j - 1).click();
+
+							break;
+						}
+					}
+
 					Thread.sleep(1000);
 					driver.findElement(By.xpath("//a[@class='btn btn-lg btn-primary btn']")).click();
 					Thread.sleep(1000);
