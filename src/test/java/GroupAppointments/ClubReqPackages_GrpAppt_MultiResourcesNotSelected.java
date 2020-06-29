@@ -185,30 +185,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 
 			System.out.println("came out of the loop");
 
-			String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-			if (classtext.contains("cal-out-month")) {
-
-				driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-				while (ap.getloadingAvailabilityMessage().size() != 0) {
-					System.out.println("waiting1");
-					Thread.sleep(1000);
-				}
-
-				System.out.println("came out of the loop");
-			}
-
-			// Actions a = new Actions(driver);
-			// a.click(ap.getCalendarTomorrow()).build().perform();
-			ap.getCalendarTomorrow().click();
-			Thread.sleep(2000);
-			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-
-			rw.waitForSelectATimeToOpen();
-
-			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+			rm.calendarTomorrowClick();
 
 			Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
@@ -501,9 +478,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 	public void CancelAppointment() throws IOException, InterruptedException {
 
 		try {
-			rm.ApptCheckinInCOG("Auto, Apptmember13", appointmentToBook, "apptmember13"); // Check In the Member
-																							// to the
-																							// appointment
+			rm.ApptCheckinInCOG("Auto, Apptmember13", appointmentToBook, "apptmember13", "1"); // Check In the Member
+																								// to the
+																								// appointment
 			DashboardPO d = new DashboardPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 

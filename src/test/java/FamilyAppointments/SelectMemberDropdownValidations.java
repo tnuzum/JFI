@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -231,28 +230,8 @@ public class SelectMemberDropdownValidations extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting");
-				Thread.sleep(1000);
-			}
-			System.out.println("came out of the loop");
-		}
-
-		Actions a = new Actions(driver);
-		a.click(ap.getCalendarTomorrow()).build().perform();
-		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-		// ap.getCalendarTomorrow().click();
-		Thread.sleep(3000);
+		rm.calendarTomorrowClick();
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		rw.waitForSelectATimeToOpen();
-
-		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();

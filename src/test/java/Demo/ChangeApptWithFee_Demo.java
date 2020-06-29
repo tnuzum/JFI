@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -156,28 +155,7 @@ public class ChangeApptWithFee_Demo extends base {
 
 		System.out.println("came out of the loop");
 
-		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
-
-		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
-
-		}
-
-		Actions a = new Actions(driver);
-		a.click(ap.getCalendarDayAfterTomorrow()).build().perform();
-		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-		// ap.getCalendarDayAfterTomorrow().click();;
-
-		rw.waitForSelectATimeToOpen();
-
-		rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarDayAfterTomorrow());
+		rm.calendarDayAfterTomorrowClick();
 
 		for (int m = 0; m < ap.getApptBox().size(); m++) {
 			String bookName = ap.getApptBox().get(m).getText();

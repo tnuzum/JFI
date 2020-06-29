@@ -21,8 +21,12 @@
 			<class name="PayBalance.MakePaymentTest_NewCard_HasAgreement_NoSave" />
 			
 			<class name="ShopPackages.ShopAndPurchasePackages" />
+			<class name="PaymentMethods.ShopPackages_AdditionalQuestionsTest"/>
+			<class name="PaymentMethods.EnrollClassAndCourse_AdditionalQuestionsTest"/>
+			<class name="PaymentMethods.Appointments_AdditionalQuestions"/>
 			
 			<class name="ManagePaymentMethods.VerifyMessageTest" />
+			<class name="ManagePaymentMethods.ManagepaymntMethods_AdditionalQuestionsTest" />
 			
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />

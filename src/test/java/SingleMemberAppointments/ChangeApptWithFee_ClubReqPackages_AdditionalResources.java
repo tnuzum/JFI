@@ -198,29 +198,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 
 			System.out.println("came out of the loop");
 
-			String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
-
-			if (classtext.contains("cal-out-month")) {
-				driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-				while (ap.getloadingAvailabilityMessage().size() != 0) {
-					System.out.println("waiting1");
-					Thread.sleep(1000);
-				}
-
-				System.out.println("came out of the loop");
-
-			}
-
-			// Actions a = new Actions(driver);
-			// a.click(ap.getCalendarDayAfterTomorrow()).build().perform();
-			ap.getCalendarDayAfterTomorrow().click();
-			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-
-			rw.waitForSelectATimeToOpen();
-
-			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarDayAfterTomorrow());
+			rm.calendarDayAfterTomorrowClick();
 
 			for (int m = 0; m < ap.getApptBox().size(); m++) {
 				String bookName = ap.getApptBox().get(m).getText();
@@ -319,22 +297,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 			}
 			Thread.sleep(1000);
 
-			Select s4 = new Select(
-					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
-			List<WebElement> UnitRates = s4.getOptions();
-
-			int count4 = UnitRates.size();
-			System.out.println("4 " + count4);
-
-			for (int i = 0; i < count4; i++) {
-				String unitRate = UnitRates.get(i).getText();
-				System.out.println(unitRate);
-
-				if (unitRate.contains(unitsToBeSelected)) {
-					s4.selectByVisibleText(unitRate);
-					break;
-				}
-			}
+			rm.verifyLowestNumberOfUnitsIsSelectedByDefault(unitsToBeSelected);
 
 			Thread.sleep(2000);
 
@@ -420,10 +383,10 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 	public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
 		try {
 
-			rm.ApptCheckinInCOG("Auto, apptmember11", appointmentToBook2, "apptmember11"); // Check In the
-																							// Member
-																							// to the
-																							// appointment
+			rm.ApptCheckinInCOG("Auto, apptmember11", appointmentToBook2, "apptmember11", "1"); // Check In the
+			// Member
+			// to the
+			// appointment
 
 			rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 

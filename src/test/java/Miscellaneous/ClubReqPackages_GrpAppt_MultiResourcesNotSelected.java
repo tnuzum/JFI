@@ -510,9 +510,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		rm.ApptCheckinInCOG("Auto, Apptmember13", appointmentToBook, "apptmember13"); // Check In the Member
-																						// to the
-																						// appointment
+		rm.ApptCheckinInCOG("Auto, Apptmember13", appointmentToBook, "apptmember13", "1"); // Check In the Member
+																							// to the
+																							// appointment
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 

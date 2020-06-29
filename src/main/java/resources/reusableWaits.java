@@ -272,6 +272,7 @@ public class reusableWaits extends base {
 			log.info(driver.findElement(By.id("newcard")).getAttribute("aria-expanded"));
 		} catch (Exception e) {
 			log.error("New card form is not opened");
+			System.out.println("New card form is not opened");
 
 		}
 		return null;

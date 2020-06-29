@@ -675,14 +675,14 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object ApptCheckinInCOG(String memberName, String appointmentName, String username)
+	public Object ApptCheckinInCOG(String memberName, String appointmentName, String username, String unitValue)
 			throws InterruptedException {
 
 		this.loginCOG("Studio Jonas");
 		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
 		int count = FrontDeskTile.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count; i++) {
-			System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
 			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("CheckIn")) {
 				Thread.sleep(1000);
 				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
@@ -724,10 +724,13 @@ public class reusableMethods extends base {
 				System.out.println("appointment name present");
 				CheckInOptions.get(j).findElement(By.className("checkbox")).click();
 				System.out.println("clicked");
+				Select s = new Select(CheckInOptions.get(j).findElement(By.id("ddlVisits")));
+				s.selectByValue(unitValue);
 				break;
 			}
 
 		}
+
 		driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
 		driver.get(prop.getProperty("EMELoginPage"));
@@ -742,7 +745,7 @@ public class reusableMethods extends base {
 		WebElement BackOfficeTile = driver.findElement(By.xpath("(//div[@class='tile'])[2]"));
 		int count = BackOfficeTile.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count; i++) {
-			System.out.println(BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			// System.out.println(BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
 			if (BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("MemberManagement")) {
 				Thread.sleep(1000);
 				BackOfficeTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
@@ -811,6 +814,7 @@ public class reusableMethods extends base {
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'success')]")).isDisplayed());
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		driver.get(prop.getProperty("EMELoginPage"));
 
 		return null;
 
@@ -826,7 +830,7 @@ public class reusableMethods extends base {
 		int count = FrontDeskTile.findElements(By.tagName("a")).size();
 
 		for (int i = 0; i < count; i++) {
-			System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
 			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("ClassCheckIn")) {
 				Thread.sleep(1000);
 				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
@@ -899,7 +903,7 @@ public class reusableMethods extends base {
 		int count = FrontDeskTile.findElements(By.tagName("a")).size();
 
 		for (int i = 0; i < count; i++) {
-			System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
 			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("ClassCheckIn")) {
 				Thread.sleep(1000);
 				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
@@ -1152,28 +1156,7 @@ public class reusableMethods extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting");
-				Thread.sleep(1000);
-			}
-			System.out.println("came out of the loop");
-		}
-
-		// Actions a = new Actions(driver);
-		// a.click(ap.getCalendarTomorrow()).build().perform();
-		ap.getCalendarTomorrow().click();
-		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-
-		Thread.sleep(3000);
-		rw.waitForSelectATimeToOpen();
-
-		OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+		this.calendarTomorrowClick();
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
@@ -1370,29 +1353,7 @@ public class reusableMethods extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting");
-				Thread.sleep(1000);
-			}
-			System.out.println("came out of the loop");
-		}
-
-		// Actions a = new Actions(driver);
-		// a.click(ap.getCalendarTomorrow()).build().perform();
-		ap.getCalendarTomorrow().click();
-		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-
-		Thread.sleep(3000);
-
-		rw.waitForSelectATimeToOpen();
-
-		OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+		this.calendarTomorrowClick();
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
@@ -1502,7 +1463,7 @@ public class reusableMethods extends base {
 		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
 
 		while (selectATimeOpen.equals("false")) {
-			Element.click();
+			Element.findElement(By.tagName("span")).click();
 			log.error("calendar date was clicked again");
 			System.out.println("calendar date was clicked again");
 			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
@@ -1585,4 +1546,104 @@ public class reusableMethods extends base {
 		return null;
 
 	}
+
+	public Object calendarTomorrowClick() throws InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
+		}
+
+		// Actions a = new Actions(driver);
+		// a.click(ap.getCalendarTomorrow()).build().perform();
+		ap.getCalendarTomorrow().findElement(By.tagName("span")).click();
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+
+		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
+		return null;
+
+	}
+
+	public Object calendarDayAfterTomorrowClick() throws InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
+		}
+
+		// Actions a = new Actions(driver);
+		// a.click(ap.getCalendarTomorrow()).build().perform();
+		ap.getCalendarDayAfterTomorrow().click();
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+
+		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarDayAfterTomorrow());
+
+		return null;
+
+	}
+
+	public Object calendarTwoDaysDayAfterClick() throws InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		String classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
+		}
+
+		// Actions a = new Actions(driver);
+		// a.click(ap.getCalendarTomorrow()).build().perform();
+		ap.getCalendarTwodaysAfter().click();
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+
+		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTwodaysAfter());
+
+		return null;
+
+	}
+
 }
