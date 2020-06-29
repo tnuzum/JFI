@@ -158,30 +158,7 @@ public class CancelApptWithFee_SavedCard extends base {
 
 			System.out.println("came out of the loop");
 
-			String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-			if (classtext.contains("cal-out-month")) {
-
-				driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-				while (ap.getloadingAvailabilityMessage().size() != 0) {
-					System.out.println("waiting1");
-					Thread.sleep(1000);
-				}
-
-				System.out.println("came out of the loop");
-			}
-
-			// Actions a = new Actions(driver);
-			// a.click(ap.getCalendarTomorrow()).build().perform();
-			ap.getCalendarTomorrow().click();
-			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-
-			Thread.sleep(1000);
-			rw.waitForSelectATimeToOpen();
-
-			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+			rm.calendarTomorrowClick();
 
 			Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 

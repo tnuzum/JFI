@@ -13,6 +13,8 @@ public class ManagePayMethodsPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By noSavedCardMessage = By.xpath("//h1[@class='text-capitalize']");
+	By bankAccountLink = By.xpath("//a[@href = '#collapseOne'] //i");
+	By managePMBreadcrumb = By.xpath("//a[contains(text(),'Manage Payment Methods')]");
 
 // CONSTRUCTOR
 
@@ -27,6 +29,14 @@ public class ManagePayMethodsPO {
 
 	public WebElement getNoSavedCardMessage() {
 		return driver.findElement(noSavedCardMessage);
+	}
+
+	public WebElement getBankAccountLink() {
+		return driver.findElement(bankAccountLink);
+	}
+
+	public WebElement getManagePMBreadcrumb() {
+		return driver.findElement(managePMBreadcrumb);
 	}
 
 }

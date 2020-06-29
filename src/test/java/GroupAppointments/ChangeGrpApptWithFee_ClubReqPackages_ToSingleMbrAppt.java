@@ -199,29 +199,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 
 			System.out.println("came out of the loop");
 
-			String classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
-
-			if (classtext.contains("cal-out-month")) {
-				driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-				while (ap.getloadingAvailabilityMessage().size() != 0) {
-					System.out.println("waiting1");
-					Thread.sleep(1000);
-				}
-
-				System.out.println("came out of the loop");
-
-			}
-
-			// Actions a = new Actions(driver);
-			// a.click(ap.getCalendarTwodaysAfter()).build().perform();
-			ap.getCalendarTwodaysAfter().click();
-			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-
-			rw.waitForSelectATimeToOpen();
-
-			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTwodaysAfter());
+			rm.calendarTwoDaysDayAfterClick();
 
 			for (int m = 0; m < ap.getApptBox().size(); m++) {
 				String bookName = ap.getApptBox().get(m).getText();
@@ -399,10 +377,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 	public void ConfirmNewAppointmentIsScheduled() throws IOException, InterruptedException {
 		try {
 
-			rm.ApptCheckinInCOG("Auto, apptmember12", appointmentToBook2, "apptmember12"); // Check In the
-																							// Member
-																							// to the
-																							// appointment
+			rm.ApptCheckinInCOG("Auto, apptmember12", appointmentToBook2, "apptmember12", "1"); // Check In the
+			// Member
+			// to the
+			// appointment
 
 			rm.ConfirmAndCancelAppointmentNoFee(TwodaysAfter, startTime2, appointmentToBook2);
 		} catch (Exception e) {

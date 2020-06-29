@@ -85,7 +85,7 @@ public class ShopAndPurchasePackages extends base {
 				System.out.println("Waiting for the packages to be displayed");
 			}
 
-			WebDriverWait wait = new WebDriverWait(driver, 12);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
 			wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
 
@@ -581,7 +581,7 @@ public class ShopAndPurchasePackages extends base {
 
 			d.getMenuShopPackages().click();
 
-			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 //	wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 
 			while (!sp.getPackagesList().isDisplayed()) {
@@ -589,8 +589,8 @@ public class ShopAndPurchasePackages extends base {
 				System.out.println("Waiting for the packages to be displayed");
 			}
 
-			wait1.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
-			wait1.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
+			wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+			wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
 			sp.getKeyWord().sendKeys("ServiceNC");
 
 			for (int i = 0; i < sp.getPackageNames().size(); i++)
@@ -605,7 +605,7 @@ public class ShopAndPurchasePackages extends base {
 
 			}
 
-			wait1.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
+			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 			Thread.sleep(3000);
 			Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 
@@ -625,7 +625,6 @@ public class ShopAndPurchasePackages extends base {
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 			Assert.assertTrue(PM.getCloseButton().isDisplayed());
@@ -655,7 +654,7 @@ public class ShopAndPurchasePackages extends base {
 			PM.getSaveCardNo().click();
 
 			// Noting down the total amount
-			wait1.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
+			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 //	System.out.println(PP.getTotalAmount().getText());
 			String[] totalAmt2 = PP.getShopPackageTotalAmount().getText().split(": ");
 			String FormatTotalAmt2 = totalAmt2[1].trim();
@@ -676,7 +675,7 @@ public class ShopAndPurchasePackages extends base {
 			// Clicks the Pay button
 			PM.getPaymentButton().click();
 			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
-			wait1.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -737,14 +736,14 @@ public class ShopAndPurchasePackages extends base {
 				System.out.println("waiting");
 			}
 
-			wait1.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
+			wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 
 			// Clicks on the Receiptnumber in Account History
 
 			ahp.getSearchField().sendKeys(receiptNumber4);
 
 			Thread.sleep(3000);
-			wait1.until(ExpectedConditions
+			wait.until(ExpectedConditions
 					.presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a")));
 			ahp.getReceiptNumber().click();
 			Thread.sleep(1000);

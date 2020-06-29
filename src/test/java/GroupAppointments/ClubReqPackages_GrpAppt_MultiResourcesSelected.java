@@ -182,31 +182,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 
 			System.out.println("came out of the loop");
 
-			String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-			if (classtext.contains("cal-out-month")) {
-				driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-				while (ap.getloadingAvailabilityMessage().size() != 0) {
-					System.out.println("waiting1");
-					Thread.sleep(1000);
-				}
-
-				System.out.println("came out of the loop");
-			}
-//		Thread.sleep(3000);
-			wait.until(ExpectedConditions.elementToBeClickable(ap.getCalendarTomorrow()));
-
-			// Actions a = new Actions(driver);
-			// a.click(ap.getCalendarTomorrow()).build().perform();
-			ap.getCalendarTomorrow().click();
-			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-
-			rw.waitForSelectATimeToOpen();
-
-			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
-
+			rm.calendarTomorrowClick();
 			Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
 			WebElement st1 = ap.getSelectTimeMorningButton();
@@ -454,9 +430,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 	public void CancelAppointment() throws IOException, InterruptedException {
 		try {
 
-			rm.ApptCheckinInCOG("Auto, apptmember15", appointmentToBook, "apptmember15"); // Check In the Member
-																							// to the
-																							// appointment
+			rm.ApptCheckinInCOG("Auto, apptmember15", appointmentToBook, "apptmember15", "1"); // Check In the Member
+																								// to the
+																								// appointment
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			DashboardPO d = new DashboardPO(driver);
 

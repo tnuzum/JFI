@@ -145,35 +145,10 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 
 			System.out.println("came out of the loop");
 
-			String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-			if (classtext.contains("cal-out-month")) {
-
-				driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-				;
-
-				while (ap.getloadingAvailabilityMessage().size() != 0) {
-					System.out.println("waiting1");
-					Thread.sleep(1000);
-				}
-
-				System.out.println("came out of the loop");
-			}
-
-			// Actions a = new Actions(driver);
-			// a.click(ap.getCalendarTomorrow()).build().perform();
-			ap.getCalendarTomorrow().click();
-			System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-			log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-			//
-			Thread.sleep(1000);
-			WebDriverWait wait = new WebDriverWait(driver, 30);
-			rw.waitForSelectATimeToOpen();
-
-			rm.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+			rm.calendarTomorrowClick();
 
 			WebElement st1 = ap.getSelectTimeMorningButton();
-
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.elementToBeClickable(st1));
 			while (!st1.isEnabled())// while button is NOT(!) enabled
 			{

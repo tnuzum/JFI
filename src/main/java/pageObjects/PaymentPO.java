@@ -35,10 +35,13 @@ public class PaymentPO {
 	By cvc = By.xpath("//input[@name='CVC']");
 	By saveCardNoRadio = By.xpath("//input[@id='sc-no']");
 	By saveCardYesRadio = By.xpath("//input[@id='sc-yes']");
+	By moreInfoSaveCard = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfosavecard')]/a");
 	By houseAcctNoRadio = By.xpath("//input[@id='ac-no']");
 	By houseAcctYesRadio = By.xpath("//input[@id='ac-yes']");
+	By moreInfoOnAccount = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfoonaccount')]/a");
 	By inClubPurchaseNoRadio = By.xpath("//input[@id='ic-no']");
 	By inClubPurchaseYesRadio = By.xpath("//input[@id='ic-yes']");
+	By moreInfoUseInPos = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfouseinpos')]/a");
 	By iAgreeCheckbox = By.xpath("//div[contains(@class, 'at-paybalance-checkbox-tandc')]/input");
 	By submitButton = By.xpath("//button[contains(@class, 'at-paybalance-button-newcard-submit')]");
 	By popupPayButton = By.xpath("//div[@class='swal2-actions']/button[1]");
@@ -61,6 +64,12 @@ public class PaymentPO {
 	By labelText1 = By.xpath("//div[contains(text(),'A selection is required')]");
 	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input");
 	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/preceding-sibling::input");
+	By additionalQuestionsSection = By.xpath("//additionalquestions[contains(@class,'ng-tns')]/div");
+	By saveCardQuestion = By.xpath("//label[contains(text(),'Save this card for future use on this site?')]");
+	By onAccountQuestion = By.xpath("//label[contains(text(),'Would you like to use this card for your On Accoun')]");
+	By inClubQuestion = By.xpath("//label[contains(text(),'Would you like to use this card at the club?')]");
+	By additionalQuestionPopupTitle = By.xpath("//h1[@class='modal-title text-center']");
+	By additionalQuestionPopupClose = By.xpath("//button[@class='btn btn-primary btn-outline']");
 
 // CONSTRUCTOR
 
@@ -240,4 +249,41 @@ public class PaymentPO {
 	public WebElement getNoThanks() {
 		return driver.findElement(noThanks);
 	}
+
+	public List<WebElement> getAdditionalQuestionsSection() {
+		return driver.findElements(additionalQuestionsSection);
+	}
+
+	public WebElement getSaveCardQuestion() {
+		return driver.findElement(saveCardQuestion);
+	}
+
+	public List<WebElement> getOnAccountQuestion() {
+		return driver.findElements(onAccountQuestion);
+	}
+
+	public WebElement getInClubQuestion() {
+		return driver.findElement(inClubQuestion);
+	}
+
+	public WebElement getMoreInfoSaveCard() {
+		return driver.findElement(moreInfoSaveCard);
+	}
+
+	public List<WebElement> getMoreInfoOnAccount() {
+		return driver.findElements(moreInfoOnAccount);
+	}
+
+	public WebElement getMoreInfoUseInPos() {
+		return driver.findElement(moreInfoUseInPos);
+	}
+
+	public WebElement getAdditionalQuestionPopupTitle() {
+		return driver.findElement(additionalQuestionPopupTitle);
+	}
+
+	public WebElement getAdditionalQuestionPopupClose() {
+		return driver.findElement(additionalQuestionPopupClose);
+	}
+
 }

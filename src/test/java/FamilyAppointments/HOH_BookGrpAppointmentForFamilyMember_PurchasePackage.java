@@ -69,7 +69,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends base 
 		startTime = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 				resourceName2);
 		rm.memberLogout();
-		rm.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "kidapptmbr");
+		rm.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "kidapptmbr", "1");
 		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
 		rm.memberLogout();
 

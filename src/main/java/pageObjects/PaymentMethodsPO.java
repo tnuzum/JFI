@@ -27,18 +27,26 @@ public class PaymentMethodsPO {
 //	By saveCardNo = By.xpath("//label[@for = 'sc-no']");
 	By saveCardNo = By.xpath("//input[@id='sc-no']");
 	By saveCardYes = By.xpath("//input[@id='sc-yes']");
-	By moreInfoSaveCard = By.xpath("div[contains(@class, ' at-additionalquestions-moreinfosavecard')]");
+	By moreInfoSaveCard = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfosavecard')]/a");
 	By houseAcctNo = By.xpath("//input[@id='ac-no']");
 	By houseAcctYes = By.xpath("//input[@id='ac-yes']");
-	By moreInfoOnAccount = By.xpath("div[contains(@class, ' at-additionalquestions-moreinfoonaccount')]");
+	By moreInfoOnAccount = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfoonaccount')]/a");
 	By inClubPurchaseNo = By.xpath("//input[@id='ic-no']");
 	By inClubPurchaseYes = By.xpath("//input[@id='ic-yes']");
-	By moreInfoUseInPos = By.xpath("div[contains(@class, ' at-additionalquestions-moreinfouseinpos')]");
+	By moreInfoUseInPos = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfouseinpos')]/a");
 	By checkBox = By.id("checkTermsPaymentMethods");
 	By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
 	By popupContent = By.xpath("//div[@id = 'swal2-content']");
 	By popupOk = By.xpath("//button[contains(@class,  'swal2-confirm')]");
 	By popupElement = By.xpath("//div[contains(@class, 'swal2-popup')]");
+	By additionalQuestionsSection = By.xpath("//additionalquestions[contains(@class,'ng-tns')]/div");
+	By saveCardQuestion = By.xpath("//label[contains(text(),'Save this card for future use on this site?')]");
+	By onAccountQuestion = By.xpath("//label[contains(text(),'Would you like to use this card for your On Accoun')]");
+	By inClubQuestion = By.xpath("//label[contains(text(),'Would you like to use this card at the club?')]");
+	By additionalQuestionPopupTitle = By.xpath("//h1[@class='modal-title text-center']");
+	By additionalQuestionPopupClose = By
+			.xpath("//button[@class='btn btn-primary btn-outline'][contains(text(),'close')]");
+	By signaturePad = By.xpath("//div[@class='m-signature-pad--body']");
 
 // CONSTRUCTOR
 
@@ -137,5 +145,33 @@ public class PaymentMethodsPO {
 
 	public WebElement getCancelButton() {
 		return driver.findElement(cancelButton);
+	}
+
+	public WebElement getAdditionalQuestionsSection() {
+		return driver.findElement(additionalQuestionsSection);
+	}
+
+	public WebElement getSaveCardQuestion() {
+		return driver.findElement(saveCardQuestion);
+	}
+
+	public WebElement getOnAccountQuestion() {
+		return driver.findElement(onAccountQuestion);
+	}
+
+	public WebElement getInClubQuestion() {
+		return driver.findElement(inClubQuestion);
+	}
+
+	public WebElement getAdditionalQuestionPopupTitle() {
+		return driver.findElement(additionalQuestionPopupTitle);
+	}
+
+	public WebElement getAdditionalQuestionPopupClose() {
+		return driver.findElement(additionalQuestionPopupClose);
+	}
+
+	public WebElement getSignaturePad() {
+		return driver.findElement(signaturePad);
 	}
 }
