@@ -30,8 +30,8 @@ public class Appointments_AdditionalQuestions extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-AQTest";
 	private static String startTime1;
-	private static String startTime2;
-	private static int appointmentsCount;
+	private static String startTime2 = "12:15 PM";
+	private static int appointmentsCount = 1;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -375,8 +375,12 @@ public class Appointments_AdditionalQuestions extends base {
 			ap.getPopup1BookButton().click();
 			Thread.sleep(3000);
 
-			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
+			while (ap.getRateBox().getText().isBlank()) {
+				System.out.println("Waiting");
+			}
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getRateBox(), appointmentToBook.toUpperCase()));
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 
 			while (!PM.getNewCardButton().isDisplayed())
 
@@ -386,7 +390,7 @@ public class Appointments_AdditionalQuestions extends base {
 			}
 
 			PM.getNewCardButton().click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
@@ -526,7 +530,7 @@ public class Appointments_AdditionalQuestions extends base {
 			ap.getEditApptCancelButton().click();
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-			Thread.sleep(3000);
+			Thread.sleep(4000);
 			while (!PM.getNewCardButton().isDisplayed())
 
 			{
@@ -535,7 +539,7 @@ public class Appointments_AdditionalQuestions extends base {
 			}
 
 			PM.getNewCardButton().click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
