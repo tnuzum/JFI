@@ -9,7 +9,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -98,7 +97,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			}
 
 			c.getContinueButton().click();
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())
 
@@ -327,10 +326,9 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	}
 
 //	@AfterTest
-	@AfterClass
-	public void teardown() throws InterruptedException {
-		driver.close();
-		driver = null;
-	}
+	/*
+	 * @AfterClass public void teardown() throws InterruptedException {
+	 * driver.close(); driver = null; }
+	 */
 
 }
