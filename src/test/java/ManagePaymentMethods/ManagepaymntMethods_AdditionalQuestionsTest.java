@@ -69,7 +69,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			Thread.sleep(2000);
 
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(1).isDisplayed());
-			Assert.assertTrue(p.getOnAccountQuestion().get(1).isDisplayed());
+			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(1).click();
 			Thread.sleep(500);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
@@ -124,7 +124,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			}
 
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
-			Assert.assertTrue(p.getOnAccountQuestion().get(0).isDisplayed());
+			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(0).click();
 			Thread.sleep(500);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
@@ -172,7 +172,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			mp.getBankAccountLink().click();
 			Thread.sleep(500);
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
-			Assert.assertTrue(p.getOnAccountQuestion().get(0).isDisplayed());
+			Assert.assertTrue(p.getOnAccountBankQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(0).click();
 			Thread.sleep(500);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
@@ -221,7 +221,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			}
 
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
-			Assert.assertTrue(p.getOnAccountQuestion().get(0).isDisplayed());
+			Assert.assertTrue(p.getOnAccountBankQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(0).click();
 			Thread.sleep(500);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
@@ -296,7 +296,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			p.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
-			Assert.assertTrue(p.getOnAccountQuestion().get(0).isDisplayed());
+			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(0).click();
 			Thread.sleep(500);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
