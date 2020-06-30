@@ -560,7 +560,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
 
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())
 

@@ -502,7 +502,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			c.getContinueButton().click();
 
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())
 
