@@ -66,7 +66,10 @@ public class PaymentPO {
 	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/preceding-sibling::input");
 	By additionalQuestionsSection = By.xpath("//additionalquestions[contains(@class,'ng-tns')]/div");
 	By saveCardQuestion = By.xpath("//label[contains(text(),'Save this card for future use on this site?')]");
-	By onAccountQuestion = By.xpath("//label[contains(text(),'Would you like to use this card for your On Accoun')]");
+	By onAccountCardQuestion = By
+			.xpath("//label[contains(text(),'Would you like to use this card for your On Accoun')]");
+	By onAccountBankQuestion = By
+			.xpath("//label[contains(text(),'Would you like to use this bank account for your O')]");
 	By inClubQuestion = By.xpath("//label[contains(text(),'Would you like to use this card at the club?')]");
 	By additionalQuestionPopupTitle = By.xpath("//h1[@class='modal-title text-center']");
 	By additionalQuestionPopupClose = By.xpath("//button[@class='btn btn-primary btn-outline']");
@@ -258,8 +261,12 @@ public class PaymentPO {
 		return driver.findElement(saveCardQuestion);
 	}
 
-	public List<WebElement> getOnAccountQuestion() {
-		return driver.findElements(onAccountQuestion);
+	public WebElement getOnAccountCardQuestion() {
+		return driver.findElement(onAccountCardQuestion);
+	}
+
+	public WebElement getOnAccountBankQuestion() {
+		return driver.findElement(onAccountBankQuestion);
 	}
 
 	public WebElement getInClubQuestion() {
