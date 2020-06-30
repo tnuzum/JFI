@@ -7,7 +7,9 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -184,7 +186,10 @@ public class FamilyStandbyInClassTest extends base {
 					fml.click(); // Selects the member
 
 			}
-			c.getPopupSignUpButton().click();
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+			Actions actions = new Actions(driver);
+			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 
 			while (c.getClassName().getText().isBlank()) {
 				Thread.sleep(500);
