@@ -94,8 +94,8 @@ public class EmailConfirmations {
 			Message email3 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 8)[0];
 
 			System.out.println(emailUtils.getMessageContent(email3));
-			String emailMessage1 = emailUtils.getMessageContent(email3);
-			Assert.assertTrue(emailMessage1.contains("You have been successfully enrol=led in the following class."));
+			String emailMessage3 = emailUtils.getMessageContent(email3);
+			Assert.assertTrue(emailMessage3.contains("You have been successfully enrol=led in the following class."));
 
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email3, "You have been successfully enrol=led in the following class."));
@@ -116,8 +116,8 @@ public class EmailConfirmations {
 					8)[0];
 
 			System.out.println(emailUtils.getMessageContent(email4));
-			String emailMessage2 = emailUtils.getMessageContent(email4);
-			Assert.assertTrue(emailMessage2.contains("You have unenrolled from the following  course."));
+			String emailMessage4 = emailUtils.getMessageContent(email4);
+			Assert.assertTrue(emailMessage4.contains("You have unenrolled from the following  course."));
 
 			Assert.assertTrue(emailUtils.isTextInMessage(email4, "You have unenrolled from the following  course."));
 			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Location: Jonas Sports-Plex"));
@@ -138,7 +138,7 @@ public class EmailConfirmations {
 					8)[0];
 
 			System.out.println(emailUtils.getMessageContent(email5));
-			String emailMessage2 = emailUtils.getMessageContent(email5);
+			String emailMessage5 = emailUtils.getMessageContent(email5);
 
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
@@ -146,7 +146,7 @@ public class EmailConfirmations {
 			String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
 			System.out.println(tomorrowsDayAndDate);
 
-			Assert.assertTrue(emailMessage2.contains("Your appointment has been booked= as follows:"));
+			Assert.assertTrue(emailMessage5.contains("Your appointment has been booked= as follows:"));
 
 			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Your appointment has been booked= as follows:"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Club: Jonas Fitness"));
@@ -171,14 +171,14 @@ public class EmailConfirmations {
 					.getMessagesBySubject("Cancellation of Appointment Confirmation for Auto, Emailmember", true, 8)[0];
 
 			System.out.println(emailUtils.getMessageContent(email6));
-			String emailMessage2 = emailUtils.getMessageContent(email6);
+			String emailMessage6 = emailUtils.getMessageContent(email6);
 
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
 			today11.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
 			System.out.println(tomorrowsDayAndDate);
-			Assert.assertTrue(emailMessage2.contains("Your appointment for the followi=ng has been canceled:"));
+			Assert.assertTrue(emailMessage6.contains("Your appointment for the followi=ng has been canceled:"));
 
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email6, "Your appointment for the followi=ng has been canceled:"));
@@ -202,7 +202,7 @@ public class EmailConfirmations {
 					8)[0];
 
 			System.out.println(emailUtils.getMessageContent(email7));
-			String emailMessage2 = emailUtils.getMessageContent(email7);
+			String emailMessage7 = emailUtils.getMessageContent(email7);
 
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
@@ -210,7 +210,7 @@ public class EmailConfirmations {
 			String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
 			System.out.println(tomorrowsDayAndDate);
 
-			Assert.assertTrue(emailMessage2.contains("Your appointment has been booke=d as follows:"));
+			Assert.assertTrue(emailMessage7.contains("Your appointment has been booke=d as follows:"));
 
 			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Your appointment has been booke=d as follows:"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Club: Studio Jonas"));
@@ -236,14 +236,14 @@ public class EmailConfirmations {
 					"Cancellation of Appointment Confirmation for Auto, Emailmember2", true, 8)[0];
 
 			System.out.println(emailUtils.getMessageContent(email8));
-			String emailMessage2 = emailUtils.getMessageContent(email8);
+			String emailMessage8 = emailUtils.getMessageContent(email8);
 
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
 			today11.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
 			System.out.println(tomorrowsDayAndDate);
-			Assert.assertTrue(emailMessage2.contains("Your appointment for the follow=ing has been canceled:"));
+			Assert.assertTrue(emailMessage8.contains("Your appointment for the follow=ing has been canceled:"));
 
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email8, "Your appointment for the follow=ing has been canceled:"));
