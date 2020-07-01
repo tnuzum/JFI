@@ -613,6 +613,38 @@ public class Appointments_AdditionalQuestions extends base {
 			ap.getPopup2OKButton().click();
 			Thread.sleep(1000);
 			rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+	}
+
+	@Test(priority = 4, description = "Delete the Card in COG")
+	public void deleteCardInCOG() throws InterruptedException, IOException {
+		try {
+
 			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", "1111", "No");
 
 		} catch (java.lang.AssertionError ae) {
