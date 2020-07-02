@@ -27,9 +27,17 @@
 			
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberClasses.ClassDetailsPopupUIValidation" />
+			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
 			
 			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberCourses.CourseDetailsPopupUIValidation" />
+			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
+			
+			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
+			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
+			
+			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
+			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
 			
 		</classes>
 			</test>
@@ -52,14 +60,14 @@
 			<class name="SingleMemberClasses.EnrollInFreeClassTest" />
 			<class name="SingleMemberClasses.EnrollClassByBuyingPackage" />
 			<class name="SingleMemberClasses.EnrollInClass_CancelTransaction" />
-			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
+			
 			
 			
 			<class name="SingleMemberCourses.EnrollInFreeCourseTest" />
 			<class name="SingleMemberCourses.EnrollWithSingleCourseFeeTest" />
 			<class name="SingleMemberCourses.EnrollCourseByBuyingPackage" />
 			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" />
-			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
+			
 			
 									
 			</classes>
@@ -153,15 +161,13 @@
 			<test name = "Family Classes Courses Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
 			
 			<classes>
-			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
-			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
+			
 			<class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
 			<class name="FamilyMemberClasses.FamilyStandbyInClassTest" />
 			
-			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
-			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
+			
 			<class name="FamilyMemberCourses.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
