@@ -325,7 +325,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 
 	}
 
-	@Test(priority = 2, description = "Delete the Card in COG")
+	@Test(priority = 3, description = "Delete the Card in COG")
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
