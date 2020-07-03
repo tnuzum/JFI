@@ -26,12 +26,12 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
-	private static String appointmentToBook1 = "PT 60 Mins";
-	private static String appointmentToBook2 = "PT 30 Mins";
-	private static String resourceName1 = "Holmes, Jeff";
-	private static String resourceName2 = "|Mind Body";
-	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "PT.Smith, Andrew";
+	private static String appointmentToBook1 = "PT No Change Fee1";
+	private static String appointmentToBook2 = "PT No Change Fee2";
+	private static String resourceName1 = "Holmes, JeffCA";
+	private static String resourceName2 = "|Mind BodyCA";
+	private static String resourceName3 = "FitExpert2CA";
+	private static String resourceName4 = "PT.Smith, AndrewCA";
 	private static String appointmentPrice = "$60.00";
 	private static String startTime1;
 	private static String startTime2;

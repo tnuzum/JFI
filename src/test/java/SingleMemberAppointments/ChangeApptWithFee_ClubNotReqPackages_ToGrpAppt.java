@@ -31,10 +31,10 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 	private static String productCategory2 = "Personal Training 1";
 	private static String appointmentToBook1 = "PT 60 Mins-ChangeWithFee1";
 	private static String appointmentToBook2 = "PT Grp-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1";
-	private static String resourceName2 = "PT.Shepard, Elliana";
-	private static String resourceName3 = "FitExpert1-Grp";
-	private static String resourceName4 = "Holmes, Jeff-Grp";
+	private static String resourceName1 = "FitExpert1CA";
+	private static String resourceName2 = "Holmes, JeffCA";
+	private static String resourceName3 = "FitExpert1CA-Grp";
+	private static String resourceName4 = "PT.Smith, AndrewCA-Grp";
 	private static String appointmentPrice = "$90.00";
 	private static String participant2 = "Auto, Daisy";
 	private static String startTime1;
@@ -232,7 +232,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
-							.findElement(By.id("tab-2-0"));
+							.findElement(By.id("tab-2-2"));
 					List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
 							.findElements(By.tagName("button"));
 					WebElement secondAvailableTimeAfternoon = AftrenoonAvailableTimes.get(1);

@@ -32,10 +32,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 	private static String productCategory2 = "Personal Training";
 	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
 	private static String appointmentToBook2 = "PT 60 Mins-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1-Grp";
-	private static String resourceName2 = "Holmes, Jeff-Grp";
-	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "PT Smith, Andrew";
+	private static String resourceName1 = "FitExpert1CA-Grp";
+	private static String resourceName2 = "Holmes, JeffCA-Grp";
+	private static String resourceName3 = "FitExpert2CA";
+	private static String resourceName4 = "PT Smith, AndrewCA";
 	private static String unitsToBeSelected = "1 - $5.00/per";
 	private static String participant2 = "Auto, Daisy";
 	private static String startTime1;

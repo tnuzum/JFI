@@ -29,12 +29,12 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 	private static String clubName1 = "Jonas Fitness";
 	private static String clubName2 = "Studio Jonas";
 	private static String productCategory = "Personal Training";
-	private static String appointmentToBook1 = "PT 60 Mins";
-	private static String appointmentToBook2 = "PT 30 Mins";
-	private static String resourceName1 = "Holmes, Jeff";
-	private static String resourceName2 = "|Mind Body";
-	private static String resourceName3 = "FitExpert2";
-	private static String resourceName4 = "PT Smith, Andrew";
+	private static String appointmentToBook1 = "PT No Change Fee1";
+	private static String appointmentToBook2 = "PT No Change Fee2";
+	private static String resourceName1 = "Holmes, JeffCA";
+	private static String resourceName2 = "|Mind BodyCA";
+	private static String resourceName3 = "FitExpert2CA";
+	private static String resourceName4 = "PT Smith, AndrewCA";
 	private static String unitsToBeSelected = "1 - $10.00/per";
 	private static String startTime1;
 	private static String startTime2;

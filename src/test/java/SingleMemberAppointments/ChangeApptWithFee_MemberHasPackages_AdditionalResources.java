@@ -30,11 +30,11 @@ public class ChangeApptWithFee_MemberHasPackages_AdditionalResources extends bas
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook1 = "PT 60 Mins-ChangeWithFee1";
 	private static String appointmentToBook2 = "PT 60 Mins-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1";
-	private static String resourceName2 = "Holmes, Jeff";
+	private static String resourceName1 = "FitExpert1CA";
+	private static String resourceName2 = "Holmes, JeffCA";
 	private static String resourceName3 = "All Resources";
-	private static String resourceName4 = "FitExpert2";
-	private static String resourceName5 = "PT Smith, Andrew";
+	private static String resourceName4 = "FitExpert2CA";
+	private static String resourceName5 = "PT Smith, AndrewCA";
 	private static String appointmentPrice = "$5.00";
 	private static String startTime1;
 	private static String startTime2;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="EME - E2E Testing" parallel = "tests" thread-count = "5" preserve-order="true" verbose = "2">
+<suite name="EME - E2E Testing" parallel = "tests" thread-count = "7" preserve-order="true" verbose = "2">
 	<listeners>
 		<listener class-name="EME.listeners" />
 		<!--listener class-name = "resources.ExtentReporterNG"/-->
@@ -92,7 +92,14 @@
 			<class name="SingleMemberAppointments.CancelApptWithFee_OnAccount" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_SavedCard" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_cancelTransaction" />
+									
+				</classes>
+			</test>
 			
+			<test name = "Change Single Member Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
+			
+			<classes>	
+						
 			<class name="SingleMemberAppointments.ChangeApptWithFee_CancelTransaction" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_AdditionalResources" />
 			<class name="SingleMemberAppointments.ChangeApptWithFee_ClubNotReqPackages_NewCard" />
@@ -134,6 +141,17 @@
 			<class name="GroupAppointments.CancelGrpApptWithFee_cancelTransaction" />
 			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" />
 			
+						
+			<class name="EME.EmailConfirmations"/>
+			
+				</classes>
+			</test>
+			
+			<test name = "Change Group Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
+			
+			<classes>
+			
+						
 			<class name="GroupAppointments.ChangeGrpApptWithFee_CancelTransaction"/>
 			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources" />
 			<class name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_NewCard" />
