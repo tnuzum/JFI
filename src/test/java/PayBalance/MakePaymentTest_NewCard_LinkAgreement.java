@@ -106,8 +106,8 @@ public class MakePaymentTest_NewCard_LinkAgreement extends base {
 			Thread.sleep(1000);
 
 			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
-			Assert.assertTrue(p.getLabelText().isDisplayed());
-			Assert.assertTrue(p.getLabelText1().isDisplayed());
+			// Assert.assertTrue(p.getLabelText().isDisplayed());
+			// Assert.assertTrue(p.getLabelText1().isDisplayed());
 
 			Assert.assertTrue(!p.getSubmitButton().isEnabled());
 
