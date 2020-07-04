@@ -37,7 +37,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 	private static String resourceName3 = "FitExpert2CA";
 	private static String resourceName4 = "PT Smith, AndrewCA";
 	private static String unitsToBeSelected = "1 - $5.00/per";
-	private static String participant2 = "Auto, Daisy";
+	private static String participant2 = "Auto, Robert";
 	private static String startTime1;
 	private static String startTime2;
 
@@ -73,7 +73,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 
 			// Book an appointment and get the start time for the appointment
 			startTime1 = rm.BookGrpApptWith2Resources(clubName1, productCategory1, appointmentToBook1, resourceName1,
-					resourceName2);
+					resourceName2, "Robert");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(

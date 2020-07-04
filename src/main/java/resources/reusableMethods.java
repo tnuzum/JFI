@@ -1242,7 +1242,7 @@ public class reusableMethods extends base {
 	}
 
 	public String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
-			String resourceName1, String resourceName2) throws IOException, InterruptedException {
+			String resourceName1, String resourceName2, String groupMember) throws IOException, InterruptedException {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
@@ -1321,7 +1321,7 @@ public class reusableMethods extends base {
 		{
 			String text = ap.getGroupPopupMembers().get(i).getText();
 			System.out.println(text);
-			if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy")) {
+			if (ap.getGroupPopupMembers().get(i).getText().contains(groupMember)) {
 				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
 				ap.getGroupPopupAddButtons().get(i).click();
 				break;
