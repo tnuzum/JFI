@@ -73,7 +73,7 @@
 			</classes>
 			</test>
 			
-			<test name = "Single Member Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
+			<test name = "Book And Cancel Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
 			
 			<classes>	
 			
@@ -92,6 +92,12 @@
 			<class name="SingleMemberAppointments.CancelApptWithFee_OnAccount" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_SavedCard" />
 			<class name="SingleMemberAppointments.CancelApptWithFee_cancelTransaction" />
+			
+			<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_NoPackage"/>
+			<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage"/>
+			<class name="FamilyAppointments.HOH_BookAppointmentForSelf_NoFamilyMember"/>
+			<class name="FamilyAppointments.HOH_BookAppointmentForSelf"/>
+			<class name="FamilyAppointments.NonHOH_BookAppointmentForSelf"/>
 									
 				</classes>
 			</test>
@@ -122,7 +128,7 @@
 				</classes>
 			</test>
 			
-			<test name = "Group Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
+			<test name = "Bool And Cancel Group Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
 			
 			<classes>
 			
@@ -140,6 +146,12 @@
 			<class name="GroupAppointments.CancelGrpApptWithFee_OnAccount" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_cancelTransaction" />
 			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" />
+			
+			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_NoPackage"/>
+			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_PurchasePackage"/>
+			<class name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf"/>
+			<class name="FamilyAppointments.SelectMemberDropdownValidations"/>
+						
 			
 						
 			<class name="EME.EmailConfirmations"/>
@@ -175,7 +187,7 @@
 				</classes>
 			</test>
 			
-			<test name = "Family Classes Courses Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
+			<test name = "Family Classes Courses" parallel = "none" preserve-order="true" group-by-instances="true">
 			
 			<classes>
 			
@@ -190,16 +202,8 @@
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
 			<class name="FamilyMemberCourses.FamilyStandbyInCourseTest" />
 			
-			<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_NoPackage"/>
-			<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage"/>
-			<class name="FamilyAppointments.HOH_BookAppointmentForSelf_NoFamilyMember"/>
-			<class name="FamilyAppointments.HOH_BookAppointmentForSelf"/>
-			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_NoPackage"/>
-			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_PurchasePackage"/>
-			<class name="FamilyAppointments.NonHOH_BookAppointmentForSelf"/>
-			<class name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf"/>
-			<class name="FamilyAppointments.SelectMemberDropdownValidations"/>
-						
+			
+			
 		</classes>
 	</test>
 	<!-- When adding new test tag, include this test tag name in the POM.xml to be inclued in test execution through maven/jenkins -->

@@ -36,7 +36,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_SavedCard extends base {
 	private static String resourceName3 = "FitExpert2CA-Grp";
 	private static String resourceName4 = "PT Smith, AndrewCA-Grp";
 	private static String unitsToBeSelected = "1 - $5.00/per";
-	private static String participant2 = "Auto, Daisy";
+	private static String participant2 = "Auto, Robert";
 	private static String startTime1;
 	private static String startTime2;
 
@@ -72,7 +72,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_SavedCard extends base {
 
 			// Book an appointment and get the start time for the appointment
 			startTime1 = rm.BookGrpApptWith2Resources(clubName1, productCategory, appointmentToBook1, resourceName1,
-					resourceName2);
+					resourceName2, "Robert");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -189,7 +189,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_SavedCard extends base {
 			{
 				String text = ap.getGroupPopupMembers().get(i).getText();
 				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy")) {
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Robert")) {
 					wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
 					ap.getGroupPopupAddButtons().get(i).click();
 					break;

@@ -53,7 +53,7 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 		Thread.sleep(2000);
 
 		startTime = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
-				resourceName2);
+				resourceName2, "Donald");
 
 		rm.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "kidapptmbr", "1");
 		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);

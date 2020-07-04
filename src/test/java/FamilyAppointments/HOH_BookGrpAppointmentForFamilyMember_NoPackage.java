@@ -67,7 +67,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 		}
 
 		startTime = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
-				resourceName2);
+				resourceName2, "Donald");
 		rm.memberLogout();
 		rm.activeMemberLogin("fmlyapptmbr", "Testing1!");
 		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
