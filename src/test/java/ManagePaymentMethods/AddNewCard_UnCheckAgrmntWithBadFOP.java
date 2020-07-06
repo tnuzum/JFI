@@ -1,4 +1,4 @@
-package PayBalance;
+package ManagePaymentMethods;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -10,31 +10,31 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
+import pageObjects.ManagePayMethodsPO;
 import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MakePaymentTest_NewCard_LinkAgreement extends base {
+public class AddNewCard_UnCheckAgrmntWithBadFOP extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "AgreementMember Auto";
+	private static String memberName = "BadFopMbr Auto";
+	private static String agreement = "Balance Weight Loss 12 Week";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public MakePaymentTest_NewCard_LinkAgreement() {
+	public AddNewCard_UnCheckAgrmntWithBadFOP() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -59,77 +59,69 @@ public class MakePaymentTest_NewCard_LinkAgreement extends base {
 	}
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account")
-	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
+	public void AddNewCard_SelectAreYouSure() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
+		ManagePayMethodsPO mp = new ManagePayMethodsPO(driver);
 		try {
-			rm.activeMemberLogin("agrmntmbr", "Testing1!");
+			rm.activeMemberLogin("badfopmbr", "Testing1!");
 			rw.waitForDashboardLoaded();
+			rm.openSideMenuIfNotOpenedAlready();
 
-			d.getMyAccountPayNow().click();
-
-			WebDriverWait wait = new WebDriverWait(driver, 10);
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
-
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
-
-			Thread.sleep(500);
-			int variable = 1;
-			while (variable < 13) {
-				p.getCustomAmountInput().sendKeys(Keys.BACK_SPACE);
-				variable++;
+			d.getMenuMyAccount().click();
+			while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
+				Thread.sleep(1000);
 			}
-			p.getCustomAmountInput().sendKeys("5.00");
+
+			d.getMenuManagePmntMethods().click();
 			Thread.sleep(2000);
 
-			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
+			mp.getNameOnCard().sendKeys(memberName);
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", mp.getCardNumber());
+			mp.getCardNumber().sendKeys("4111111111111111");
+			mp.getExpireMonth().sendKeys("04");
+			mp.getExpireYear().sendKeys("22");
+			mp.getHouseAcctNoRadioButton().get(1).click();
+			mp.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
 
-			log.info("NewCard Button was clicked");
-			System.out.println("NewCard Button was clicked");
-
-			rw.waitForNewCardFormToOpen();
-			rm.OpenNewcardFormIfNotOpenInFirstAttempt();
-
-			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
-			// JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", p.getCardNumber());
-			p.getCardNumber().sendKeys("4111111111111111");
-			p.getExpireMonth().sendKeys("04");
-			p.getExpireYear().sendKeys("22");
-			p.getCVC().sendKeys("123");
-			p.getSaveCardYesRadio().click();
-			p.getHouseAcctNoRadioButton().click();
-			p.getInClubPurchaseNoRadio().click();
-			Thread.sleep(1000);
-
-			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
+			// Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
 			// Assert.assertTrue(p.getLabelText().isDisplayed());
 			// Assert.assertTrue(p.getLabelText1().isDisplayed());
 
-			Assert.assertTrue(!p.getSubmitButton().isEnabled());
+			Assert.assertTrue(!mp.getAddCCButton().isEnabled());
 
-			p.getFirstAgreement().click();
+			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
+				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
+					mp.getAgreementCheckBox().get(i).click();
+					break;
+
+				}
+			}
+
+			Assert.assertTrue(mp.getSlideDownBox().isDisplayed());
+			// Assert.assertTrue(p.getLabelText1().isDisplayed());
+			mp.getAreYouSure().click();
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
 			Thread.sleep(1000);
-			p.getIAgreeCheckbox().click();
+			mp.getIAgreeCheckbox().click();
 			Thread.sleep(2000);
 
-			Assert.assertTrue(p.getSubmitButton().isEnabled());
+			Assert.assertTrue(mp.getAddCCButton().isEnabled());
 
-			p.getSubmitButton().click();
+			mp.getAddCCButton().click();
 
-			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
+			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			p.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
-			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
+			a.moveToElement(mp.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
 			/*
@@ -139,13 +131,11 @@ public class MakePaymentTest_NewCard_LinkAgreement extends base {
 			 */
 			Thread.sleep(1000);
 
-			p.getSubmitButton().click();
+			mp.getAddCCButton().click();
 			rw.waitForAcceptButton();
-			p.getPopupConfirmationButton().click();
-			rw.waitForAcceptButton();
-			System.out.println(p.getPopupText().getText());
-			Assert.assertEquals("Payment Made!", p.getPopupText().getText());
-			p.getPopupConfirmationButton().click();
+			System.out.println(mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("Payment Made!", mp.getPopupConfirmation1().getText());
+			mp.getPopupConfirmationButton().click();
 
 			Thread.sleep(3000);
 
@@ -187,7 +177,8 @@ public class MakePaymentTest_NewCard_LinkAgreement extends base {
 
 	}
 
-	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = { "MakePaymentWithNewCard" })
+	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
+			"MakePaymentWithNewCard_SelectAreYouSure" })
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
@@ -237,7 +228,7 @@ public class MakePaymentTest_NewCard_LinkAgreement extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", "1111", "Yes");
+			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", "1111", "No");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -266,9 +257,8 @@ public class MakePaymentTest_NewCard_LinkAgreement extends base {
 	}
 
 //	@AfterTest
-	@AfterClass
-	public void teardown() throws InterruptedException {
-		driver.close();
-		driver = null;
-	}
+	/*
+	 * @AfterClass public void teardown() throws InterruptedException {
+	 * driver.close(); driver = null; }
+	 */
 }

@@ -25,15 +25,15 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MakePaymentTest_NewCard_NoAgreement_NoSave extends base {
+public class PayBalance_NewCard_HasAgreement_NoSave extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "HOH Auto";
+	private static String memberName = "Debbie Auto";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public MakePaymentTest_NewCard_NoAgreement_NoSave() {
+	public PayBalance_NewCard_HasAgreement_NoSave() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -59,10 +59,11 @@ public class MakePaymentTest_NewCard_NoAgreement_NoSave extends base {
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account")
 	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
+
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
-			rm.activeMemberLogin("hoh", "Testing1!");
+			rm.activeMemberLogin("dauto", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			d.getMyAccountPayNow().click();
@@ -72,8 +73,6 @@ public class MakePaymentTest_NewCard_NoAgreement_NoSave extends base {
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
-//  	Thread.sleep(5000);
-//  	p.getAmountRadioButton3().click();
 
 			Thread.sleep(500);
 			int variable = 1;
@@ -82,7 +81,7 @@ public class MakePaymentTest_NewCard_NoAgreement_NoSave extends base {
 				variable++;
 			}
 			p.getCustomAmountInput().sendKeys("5.00");
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			Thread.sleep(1000);
@@ -103,6 +102,7 @@ public class MakePaymentTest_NewCard_NoAgreement_NoSave extends base {
 			Thread.sleep(1000);
 			p.getSaveCardNoRadio().click();
 			Thread.sleep(1000);
+
 			p.getSubmitButton().click();
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
@@ -110,6 +110,7 @@ public class MakePaymentTest_NewCard_NoAgreement_NoSave extends base {
 			System.out.println(p.getPopupText().getText());
 			Assert.assertEquals("Payment Made!", p.getPopupText().getText());
 			p.getPopupConfirmationButton().click();
+
 			Thread.sleep(3000);
 
 		} catch (java.lang.AssertionError ae) {

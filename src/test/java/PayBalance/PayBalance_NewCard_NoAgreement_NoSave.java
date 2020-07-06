@@ -25,14 +25,15 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MakePaymentTest_StoredCard extends base {
+public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
+	private static String memberName = "HOH Auto";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public MakePaymentTest_StoredCard() {
+	public PayBalance_NewCard_NoAgreement_NoSave() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -57,12 +58,11 @@ public class MakePaymentTest_StoredCard extends base {
 	}
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account")
-	public void MakePaymentWithStoredCard() throws InterruptedException, IOException {
-
+	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
-			rm.activeMemberLogin("hoh", "Testing1!");
+			rm.activeMemberLogin("rauto", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			d.getMyAccountPayNow().click();
@@ -82,17 +82,34 @@ public class MakePaymentTest_StoredCard extends base {
 				variable++;
 			}
 			p.getCustomAmountInput().sendKeys("5.00");
-			Thread.sleep(300);
+			Thread.sleep(1000);
 
-			p.getPayWithThisMethodButton1().click();
+			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
+			Thread.sleep(1000);
 
+			log.info("NewCard Button was clicked");
+			System.out.println("NewCard Button was clicked");
+
+			rw.waitForNewCardFormToOpen();
+			rm.OpenNewcardFormIfNotOpenInFirstAttempt();
+
+			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
+			// JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", p.getCardNumber());
+			p.getCardNumber().sendKeys("4111111111111111");
+			p.getExpireMonth().sendKeys("04");
+			p.getExpireYear().sendKeys("22");
+			p.getCVC().sendKeys("123");
+			Thread.sleep(1000);
+			p.getSaveCardNoRadio().click();
+			Thread.sleep(1000);
+			p.getSubmitButton().click();
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
 			rw.waitForAcceptButton();
 			System.out.println(p.getPopupText().getText());
 			Assert.assertEquals("Payment Made!", p.getPopupText().getText());
 			p.getPopupConfirmationButton().click();
-//		rm.returnToDashboard();
 			Thread.sleep(3000);
 
 		} catch (java.lang.AssertionError ae) {
@@ -133,8 +150,7 @@ public class MakePaymentTest_StoredCard extends base {
 
 	}
 
-	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
-			"MakePaymentWithStoredCard" })
+	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = { "MakePaymentWithNewCard" })
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
