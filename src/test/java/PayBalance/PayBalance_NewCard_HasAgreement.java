@@ -26,7 +26,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MakePaymentTest_NewCard_HasAgreement extends base {
+public class PayBalance_NewCard_HasAgreement extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "AgreementMember Auto";
@@ -34,7 +34,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public MakePaymentTest_NewCard_HasAgreement() {
+	public PayBalance_NewCard_HasAgreement() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -105,7 +105,7 @@ public class MakePaymentTest_NewCard_HasAgreement extends base {
 			p.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
 
-			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
+			// Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
 			// Assert.assertTrue(p.getLabelText().isDisplayed());
 			// Assert.assertTrue(p.getLabelText1().isDisplayed());
 

@@ -63,7 +63,11 @@ public class PaymentPO {
 	By labelText = By.xpath("//label[contains(text(),'Would you like to link this card to existing Membe')]");
 	By labelText1 = By.xpath("//div[contains(text(),'A selection is required')]");
 	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input");
+	By agreementCheckBox = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]");
+	By agreementLabel = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]/following-sibling::label");
 	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/preceding-sibling::input");
+	By areYouSure = By.xpath("//input[contains(@class,'at-foplinkagreement-agreement-areyousure')]");
+	By slideDownBox = By.xpath("//div[@class='rate-box']");
 	By additionalQuestionsSection = By.xpath("//additionalquestions[contains(@class,'ng-tns')]/div");
 	By saveCardQuestion = By.xpath("//label[contains(text(),'Save this card for future use on this site?')]");
 	By onAccountCardQuestion = By
@@ -249,8 +253,24 @@ public class PaymentPO {
 		return driver.findElement(firstAgreement);
 	}
 
+	public List<WebElement> getAgreementCheckBox() {
+		return driver.findElements(agreementCheckBox);
+	}
+
+	public List<WebElement> getAgreementLabel() {
+		return driver.findElements(agreementLabel);
+	}
+
 	public WebElement getNoThanks() {
 		return driver.findElement(noThanks);
+	}
+
+	public WebElement getAreYouSure() {
+		return driver.findElement(areYouSure);
+	}
+
+	public WebElement getSlideDownBox() {
+		return driver.findElement(slideDownBox);
 	}
 
 	public List<WebElement> getAdditionalQuestionsSection() {

@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -25,15 +26,16 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MakePaymentTest_NewCard_HasAgreement_NoSave extends base {
+public class PayBalance_NewCard_CheckAgrmntWithBadFOP extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "Debbie Auto";
+	private static String memberName = "BadFopMbr Auto";
+	private static String agreement = "Balance Weight Loss 12 Week";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public MakePaymentTest_NewCard_HasAgreement_NoSave() {
+	public PayBalance_NewCard_CheckAgrmntWithBadFOP() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -58,12 +60,12 @@ public class MakePaymentTest_NewCard_HasAgreement_NoSave extends base {
 	}
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account")
-	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
+	public void MakePaymentWithNewCard_SelectAgreementWithBadFOP() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
-			rm.activeMemberLogin("dauto", "Testing1!");
+			rm.activeMemberLogin("badfopmbr", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			d.getMyAccountPayNow().click();
@@ -99,8 +101,49 @@ public class MakePaymentTest_NewCard_HasAgreement_NoSave extends base {
 			p.getExpireMonth().sendKeys("04");
 			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
+			p.getSaveCardYesRadio().click();
+			p.getHouseAcctNoRadioButton().click();
+			p.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
-			p.getSaveCardNoRadio().click();
+
+			// Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
+			// Assert.assertTrue(p.getLabelText().isDisplayed());
+			// Assert.assertTrue(p.getLabelText1().isDisplayed());
+
+			Assert.assertTrue(!p.getSubmitButton().isEnabled());
+
+			for (int i = 0; i < p.getAgreementLabel().size(); i++) {
+				if (p.getAgreementLabel().get(i).getText().contains(agreement)) {
+					Assert.assertTrue(p.getAgreementCheckBox().get(i).isSelected());
+					break;
+				}
+			}
+
+			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+					false);
+
+			Thread.sleep(1000);
+			p.getIAgreeCheckbox().click();
+			Thread.sleep(2000);
+
+			Assert.assertTrue(p.getSubmitButton().isEnabled());
+
+			p.getSubmitButton().click();
+
+			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
+			Thread.sleep(1000);
+			p.getPopupConfirmationButton().click();
+			Thread.sleep(1000);
+
+			Actions a = new Actions(driver);
+			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
+					.build().perform();
+
+			/*
+			 * p.getNoThanks().click(); Thread.sleep(1000);
+			 * 
+			 * p.getSaveCardNoRadio().click();
+			 */
 			Thread.sleep(1000);
 
 			p.getSubmitButton().click();
@@ -151,7 +194,8 @@ public class MakePaymentTest_NewCard_HasAgreement_NoSave extends base {
 
 	}
 
-	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = { "MakePaymentWithNewCard" })
+	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
+			"MakePaymentWithNewCard_SelectAgreementWithBadFOP" })
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
@@ -194,6 +238,38 @@ public class MakePaymentTest_NewCard_HasAgreement_NoSave extends base {
 
 		finally {
 			rm.memberLogout();
+		}
+	}
+
+	@Test(priority = 3, description = "Delete the Card in COG")
+	public void deleteCardInCOG() throws InterruptedException, IOException {
+		try {
+
+			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", "1111", "Yes");
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
 		}
 	}
 

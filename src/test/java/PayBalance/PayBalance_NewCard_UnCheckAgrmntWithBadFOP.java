@@ -26,15 +26,16 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MakePaymentTest_NewCard_NoAgreement extends base {
+public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "Paymember Auto";
+	private static String memberName = "BadFopMbr Auto";
+	private static String agreement = "Balance Weight Loss 12 Week";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public MakePaymentTest_NewCard_NoAgreement() {
+	public PayBalance_NewCard_UnCheckAgrmntWithBadFOP() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -59,11 +60,12 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 	}
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account")
-	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
+	public void MakePaymentWithNewCard_SelectAreYouSure() throws InterruptedException, IOException {
+
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
-			rm.activeMemberLogin("paymember", "Testing1!");
+			rm.activeMemberLogin("badfopmbr", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			d.getMyAccountPayNow().click();
@@ -73,8 +75,6 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
-//  	Thread.sleep(5000);
-//  	p.getAmountRadioButton3().click();
 
 			Thread.sleep(500);
 			int variable = 1;
@@ -82,9 +82,8 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 				p.getCustomAmountInput().sendKeys(Keys.BACK_SPACE);
 				variable++;
 			}
-
 			p.getCustomAmountInput().sendKeys("5.00");
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			Thread.sleep(1000);
@@ -105,6 +104,29 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 			p.getSaveCardYesRadio().click();
 			p.getHouseAcctNoRadioButton().click();
 			p.getInClubPurchaseNoRadio().click();
+			Thread.sleep(1000);
+
+			// Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
+			// Assert.assertTrue(p.getLabelText().isDisplayed());
+			// Assert.assertTrue(p.getLabelText1().isDisplayed());
+
+			Assert.assertTrue(!p.getSubmitButton().isEnabled());
+
+			for (int i = 0; i < p.getAgreementLabel().size(); i++) {
+				if (p.getAgreementLabel().get(i).getText().contains(agreement)) {
+					p.getAgreementCheckBox().get(i).click();
+					break;
+
+				}
+			}
+
+			Assert.assertTrue(p.getSlideDownBox().isDisplayed());
+			// Assert.assertTrue(p.getLabelText1().isDisplayed());
+			p.getAreYouSure().click();
+			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+					false);
+
+			Thread.sleep(1000);
 			p.getIAgreeCheckbox().click();
 			Thread.sleep(2000);
 
@@ -113,7 +135,6 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 			p.getSubmitButton().click();
 
 			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
-
 			Thread.sleep(1000);
 			p.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
@@ -122,8 +143,13 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
-			// p.getSaveCardNoRadio().click();
+			/*
+			 * p.getNoThanks().click(); Thread.sleep(1000);
+			 * 
+			 * p.getSaveCardNoRadio().click();
+			 */
 			Thread.sleep(1000);
+
 			p.getSubmitButton().click();
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
@@ -131,6 +157,7 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 			System.out.println(p.getPopupText().getText());
 			Assert.assertEquals("Payment Made!", p.getPopupText().getText());
 			p.getPopupConfirmationButton().click();
+
 			Thread.sleep(3000);
 
 		} catch (java.lang.AssertionError ae) {
@@ -171,7 +198,8 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 
 	}
 
-	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = { "MakePaymentWithNewCard" })
+	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
+			"MakePaymentWithNewCard_SelectAreYouSure" })
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
@@ -221,7 +249,7 @@ public class MakePaymentTest_NewCard_NoAgreement extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143354", "Jonas Sports-Plex", "1111", "No");
+			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", "1111", "No");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
