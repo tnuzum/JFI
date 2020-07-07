@@ -106,9 +106,8 @@ public class PayBalance_NewCard_CheckAgrmntWithBadFOP extends base {
 			p.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
 
-			// Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
-			// Assert.assertTrue(p.getLabelText().isDisplayed());
-			// Assert.assertTrue(p.getLabelText1().isDisplayed());
+			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
+			Assert.assertTrue(p.getLabelText().isDisplayed());
 
 			Assert.assertTrue(!p.getSubmitButton().isEnabled());
 
@@ -119,7 +118,7 @@ public class PayBalance_NewCard_CheckAgrmntWithBadFOP extends base {
 				}
 			}
 
-			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A Selection is Required')]")),
 					false);
 
 			Thread.sleep(1000);
