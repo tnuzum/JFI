@@ -59,7 +59,7 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding $5.00 to member's account")
+	@Test(priority = 1, description = "Adding $5.00 to member's account and saving the card but not selecting the agreement with Bad FOP")
 	public void MakePaymentWithNewCard_SelectAreYouSure() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);

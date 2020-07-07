@@ -57,7 +57,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding $5.00 to member's account")
+	@Test(priority = 1, description = "Adding $5.00 to member's account and not saving the card and no agreement exists for the member")
 	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
