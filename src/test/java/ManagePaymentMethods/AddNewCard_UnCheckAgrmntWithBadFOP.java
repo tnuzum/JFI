@@ -14,6 +14,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -178,7 +179,7 @@ public class AddNewCard_UnCheckAgrmntWithBadFOP extends base {
 	}
 
 	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
-			"MakePaymentWithNewCard_SelectAreYouSure" })
+			"AddNewCard_SelectAreYouSure" })
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
@@ -257,8 +258,11 @@ public class AddNewCard_UnCheckAgrmntWithBadFOP extends base {
 	}
 
 //	@AfterTest
-	/*
-	 * @AfterClass public void teardown() throws InterruptedException {
-	 * driver.close(); driver = null; }
-	 */
+
+	@AfterClass
+	public void teardown() throws InterruptedException {
+		driver.close();
+		driver = null;
+	}
+
 }

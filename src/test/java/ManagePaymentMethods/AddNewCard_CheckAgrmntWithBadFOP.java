@@ -60,7 +60,7 @@ public class AddNewCard_CheckAgrmntWithBadFOP extends base {
 	}
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account")
-	public void MakePaymentWithNewCard_SelectAgreementWithBadFOP() throws InterruptedException, IOException {
+	public void AddNewCard_SelectAgreementWithBadFOP() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
@@ -175,7 +175,7 @@ public class AddNewCard_CheckAgrmntWithBadFOP extends base {
 	}
 
 	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
-			"MakePaymentWithNewCard_SelectAgreementWithBadFOP" })
+			"AddNewCard_SelectAgreementWithBadFOP" })
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
