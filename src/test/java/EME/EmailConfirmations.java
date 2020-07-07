@@ -39,7 +39,7 @@ public class EmailConfirmations {
 
 			System.out.println(emailUtils.getMessageContent(email1));
 			String emailMessage1 = emailUtils.getMessageContent(email1);
-			Assert.assertTrue(emailMessage1.contains("You have been successfully enrol=led in the following class."));
+			Assert.assertTrue(emailMessage1.contains("You have been successfully enroll=ed in the following class."));
 
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email1, "You have been successfully enrol=led in the following class."));
@@ -95,7 +95,7 @@ public class EmailConfirmations {
 
 			System.out.println(emailUtils.getMessageContent(email3));
 			String emailMessage3 = emailUtils.getMessageContent(email3);
-			Assert.assertTrue(emailMessage3.contains("You have been successfully enrol=led in the following class."));
+			Assert.assertTrue(emailMessage3.contains("You have been successfully enroll=ed in the following class."));
 
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email3, "You have been successfully enrol=led in the following class."));
