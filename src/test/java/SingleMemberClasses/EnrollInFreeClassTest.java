@@ -102,7 +102,7 @@ public class EnrollInFreeClassTest extends base {
 			Assert.assertEquals("Select Rates", BT.getBreadcrumb3().getText());
 			Assert.assertEquals("Free Class Auto", c.getClassName().getText());
 			Assert.assertEquals("Start Time: 10:00 AM", c.getClassStartTime().getText());
-			Assert.assertEquals("Class Instructor: ", c.getClassInstructor().getText());
+			Assert.assertEquals("Class Instructor: Max Gibbs", c.getClassInstructor().getText());
 			Assert.assertEquals(c.getClassDate().getText(), "Date: " + tomorrowsDate);
 
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");

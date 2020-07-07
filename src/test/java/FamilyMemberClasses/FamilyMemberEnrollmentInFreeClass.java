@@ -31,8 +31,8 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 	private static String classToEnroll = "FREE CLASS AUTO";
 	private static String classNameDisplayed = "Free Class Auto";
 	private static String classTimeDisplayed = "Start Time: 10:00 AM";
-	private static String classInstructorDisplayed = "Class Instructor: ";
-	private static String classInstructorDisplayedOnSearchScreen = "Inst: ";
+	private static String classInstructorDisplayed = "Class Instructor: Max Gibbs";
+	private static String classInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
 	private static String classTimeDisplayedOnSearchScreen = "10:00 AM";
 	private static String classDuration = "60 min";
 	private static String member1 = "Cadmember";
