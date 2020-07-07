@@ -28,7 +28,7 @@ import resources.reusableWaits;
 public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "HOH Auto";
+	private static String memberName = "Robert Auto";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
