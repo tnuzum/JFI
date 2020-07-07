@@ -2,17 +2,12 @@ package ManagePaymentMethods;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -59,7 +54,7 @@ public class AddNewCard_CheckAgrmntWithBadFOP extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding $5.00 to member's account")
+	@Test(priority = 1, description = "Adding a new Credit Card and linking the card to agreement with Bad FOP")
 	public void AddNewCard_SelectAgreementWithBadFOP() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);
@@ -88,9 +83,8 @@ public class AddNewCard_CheckAgrmntWithBadFOP extends base {
 			mp.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
 
-			// Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
-			// Assert.assertTrue(p.getLabelText().isDisplayed());
-			// Assert.assertTrue(p.getLabelText1().isDisplayed());
+			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
+			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
 
 			Assert.assertTrue(!mp.getAddCCButton().isEnabled());
 
@@ -118,8 +112,8 @@ public class AddNewCard_CheckAgrmntWithBadFOP extends base {
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
-			a.moveToElement(mp.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
-					.build().perform();
+			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
+					.release().build().perform();
 
 			/*
 			 * p.getNoThanks().click(); Thread.sleep(1000);
@@ -131,7 +125,7 @@ public class AddNewCard_CheckAgrmntWithBadFOP extends base {
 			mp.getAddCCButton().click();
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
-			Assert.assertEquals("Payment Made!", mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
 			mp.getPopupConfirmationButton().click();
 
 			Thread.sleep(3000);
@@ -169,59 +163,12 @@ public class AddNewCard_CheckAgrmntWithBadFOP extends base {
 				System.out.println("popup was present");
 			}
 
-			d.getBreadcrumbDashboard().click();
-		}
-
-	}
-
-	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
-			"AddNewCard_SelectAgreementWithBadFOP" })
-	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
-		try {
-			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 10);
-			wait.until(ExpectedConditions.presenceOfElementLocated(
-					By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[1]")));
-			while (d.getMyAccountLastPaymentDate().getText().equalsIgnoreCase("Last Payment:")) {
-				Thread.sleep(500);
-				System.out.println("Sleeping for 500ms");
-			}
-			DateFormat dateFormat = new SimpleDateFormat("M/d/yyyy");
-			Date date = new Date();
-			String DateTime = dateFormat.format(date);
-			Assert.assertEquals("Last Payment: " + DateTime, d.getMyAccountLastPaymentDate().getText());
-
-		} catch (java.lang.AssertionError ae) {
-			System.out.println("assertion error");
-			ae.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);
-			// Assert.fail(ae.getMessage());
-		}
-
-		catch (org.openqa.selenium.NoSuchElementException ne) {
-			System.out.println("No element present");
-			ne.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(ne.getMessage(), ne);
-			// Assert.fail(ne.getMessage());
-		}
-
-		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
-			System.out.println("Element Click Intercepted");
-			eci.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(eci.getMessage(), eci);
-			rm.catchErrorMessage();
-			// Assert.fail(eci.getMessage());
-		}
-
-		finally {
 			rm.memberLogout();
 		}
+
 	}
 
-	@Test(priority = 3, description = "Delete the Card in COG")
+	@Test(priority = 2, description = "Unlink the agreement and Delete the Card in COG")
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 

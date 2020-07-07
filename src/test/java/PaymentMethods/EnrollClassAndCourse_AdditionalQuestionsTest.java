@@ -180,7 +180,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			rm.unenrollFromClass();
 			d.getMyClassesScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();

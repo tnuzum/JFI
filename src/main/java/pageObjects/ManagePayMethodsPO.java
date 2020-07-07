@@ -101,8 +101,8 @@ public class ManagePayMethodsPO {
 		return driver.findElement(inClubPurchaseYesRadio);
 	}
 
-	public WebElement getSignaturePad() {
-		return driver.findElement(signaturePad);
+	public List<WebElement> getSignaturePad() {
+		return driver.findElements(signaturePad);
 	}
 
 	public WebElement getPopupContent() {
@@ -113,16 +113,16 @@ public class ManagePayMethodsPO {
 		return driver.findElements(checkboxes);
 	}
 
-	public WebElement getLinkAgreementsHeader() {
-		return driver.findElement(linkAgreementsHeader);
+	public List<WebElement> getLinkAgreementsHeader() {
+		return driver.findElements(linkAgreementsHeader);
 	}
 
-	public WebElement getLabelText() {
-		return driver.findElement(labelText);
+	public List<WebElement> getLabelText() {
+		return driver.findElements(labelText);
 	}
 
-	public WebElement getLabelText1() {
-		return driver.findElement(labelText1);
+	public List<WebElement> getLabelText1() {
+		return driver.findElements(labelText1);
 	}
 
 	public WebElement getFirstAgreement() {
@@ -137,8 +137,8 @@ public class ManagePayMethodsPO {
 		return driver.findElements(agreementLabel);
 	}
 
-	public WebElement getNoThanks() {
-		return driver.findElement(noThanks);
+	public List<WebElement> getNoThanks() {
+		return driver.findElements(noThanks);
 	}
 
 	public WebElement getAreYouSure() {

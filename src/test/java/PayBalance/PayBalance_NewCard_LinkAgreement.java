@@ -59,7 +59,7 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding $5.00 to member's account")
+	@Test(priority = 1, description = "Adding $5.00 to member's account and saving and linking it to an agreement")
 	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);
