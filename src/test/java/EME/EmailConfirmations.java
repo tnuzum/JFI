@@ -42,7 +42,7 @@ public class EmailConfirmations {
 			Assert.assertTrue(emailMessage1.contains("You have been successfully enroll=ed in the following class."));
 
 			Assert.assertTrue(
-					emailUtils.isTextInMessage(email1, "You have been successfully enrol=led in the following class."));
+					emailUtils.isTextInMessage(email1, "You have been successfully enroll=ed in the following class."));
 			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Location:= Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Class Name: Free Class Auto"));
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/d/yyyy");
@@ -98,7 +98,7 @@ public class EmailConfirmations {
 			Assert.assertTrue(emailMessage3.contains("You have been successfully enroll=ed in the following class."));
 
 			Assert.assertTrue(
-					emailUtils.isTextInMessage(email3, "You have been successfully enrol=led in the following class."));
+					emailUtils.isTextInMessage(email3, "You have been successfully enroll=ed in the following class."));
 			Assert.assertTrue(emailUtils.isTextInMessage(email3, "L=ocation: Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email3, "Class Name: Free Course Auto"));
 
