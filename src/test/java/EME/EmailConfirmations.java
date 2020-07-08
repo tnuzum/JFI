@@ -43,13 +43,13 @@ public class EmailConfirmations {
 
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email1, "You have been successfully enroll=ed in the following class."));
-			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Location:= Jonas Sports-Plex"));
+			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Lo=cation: Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Class Name: Free Class Auto"));
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/d/yyyy");
 			Calendar today11 = Calendar.getInstance();
 			today11.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDate = dateFormat11.format(today11.getTime());
-			String classdateAndTime = "Class Time=: " + tomorrowsDate + " 10:00 AM";
+			String classdateAndTime = "Cla=ss Time: " + tomorrowsDate + " 10:00 AM";
 			System.out.println(classdateAndTime);
 			Assert.assertTrue(emailUtils.isTextInMessage(email1, classdateAndTime));
 
@@ -99,7 +99,7 @@ public class EmailConfirmations {
 
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email3, "You have been successfully enroll=ed in the following class."));
-			Assert.assertTrue(emailUtils.isTextInMessage(email3, "L=ocation: Jonas Sports-Plex"));
+			Assert.assertTrue(emailUtils.isTextInMessage(email3, "Lo=cation: Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email3, "Class Name: Free Course Auto"));
 
 		} catch (Exception e) {
