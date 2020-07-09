@@ -21,7 +21,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class AddNewCard_CheckAgrmntWithBadFOP extends base {
+public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "BadFopMbr Auto";
@@ -30,7 +30,7 @@ public class AddNewCard_CheckAgrmntWithBadFOP extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public AddNewCard_CheckAgrmntWithBadFOP() {
+	public AddCreditCard_CheckAgrmntWithBadFOP() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 

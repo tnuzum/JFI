@@ -21,7 +21,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class AddNewCard_UnCheckAgrmntWithBadFOP extends base {
+public class AddCreditCard_UnCheckAgrmntWithBadFOP extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "BadFopMbr Auto";
@@ -30,7 +30,7 @@ public class AddNewCard_UnCheckAgrmntWithBadFOP extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public AddNewCard_UnCheckAgrmntWithBadFOP() {
+	public AddCreditCard_UnCheckAgrmntWithBadFOP() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -97,7 +97,7 @@ public class AddNewCard_UnCheckAgrmntWithBadFOP extends base {
 			}
 
 			Assert.assertTrue(mp.getSlideDownBox().isDisplayed());
-			// Assert.assertTrue(p.getLabelText1().isDisplayed());
+			Assert.assertTrue(p.getLabelText1().isDisplayed());
 			mp.getAreYouSure().click();
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);

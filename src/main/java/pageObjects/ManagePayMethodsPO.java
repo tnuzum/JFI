@@ -33,7 +33,7 @@ public class ManagePayMethodsPO {
 	By checkboxes = By.xpath("//input[contains(@class, 'checkbox')]");
 	By linkAgreementsHeader = By.xpath("//span[contains(text(),'My Agreements')]");
 	By labelText = By.xpath(
-			"//label[contains(text(),'Would you like to use this card for paying existing Membership/Service Plan(s)?')]");
+			"//label[contains(text(),'Would you like to use this form of payment for paying existing Membership/Service Plan(s)?')]");
 	By labelText1 = By.xpath("//div[contains(text(),'A Selection is Required')]");
 	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input");
 	By agreementCheckBox = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]");
@@ -45,6 +45,27 @@ public class ManagePayMethodsPO {
 	By popupConfirmationButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 	By popupText = By.xpath("//h2[@id ='swal2-title']");
 	By slideDownBox = By.xpath("//div[@class='rate-box']");
+
+	By accountHolder = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-accountholder')]");
+	By usBankRadio = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-radio-usbank')]");
+	By canadianBankRadio = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-radio-canadian')]");
+	By usRoutingNumber = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-usrouting')]");
+	By canadaRoutingOne = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-canroutingone')]");
+	By canadaRoutingTwo = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-canroutingtwo')]");
+	By usAccountNumber = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-usacct')]");
+	By canadaAccountNumber = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-canacct')]");
+	By addBankAcctButton = By.xpath("//button[contains(@class, 'at-managepayments-addbankaccount-button-addbank')]");
+	By iAgreeCheckboxACH = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-checkbox-tandc')]");
+
+	By cardNumbers = By.xpath("//div[@class='payment-card']  //h2");
+	By editPaymentMethodsButton = By.xpath("//a[contains(@class, 'at-managepayments-cardedit-button')]");
+	By editAccountHolder = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-acctholder')]");
+	By editUSRoutingNumber = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-usrouting')]");
+	By editCanadaRoutingOne = By
+			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-canroutingone')]");
+	By editCanadaRoutingTwo = By
+			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-canroutingtwo')]");
+	By editCanadianBankRadio = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-canbank')]");
 
 // CONSTRUCTOR
 
@@ -175,6 +196,74 @@ public class ManagePayMethodsPO {
 
 	public WebElement getPopupText() {
 		return driver.findElement(popupText);
+	}
+
+	public WebElement getAccountHolder() {
+		return driver.findElement(accountHolder);
+	}
+
+	public WebElement getUSBankRadio() {
+		return driver.findElement(usBankRadio);
+	}
+
+	public WebElement getCanadianBankRadio() {
+		return driver.findElement(canadianBankRadio);
+	}
+
+	public WebElement getUSRoutingNumber() {
+		return driver.findElement(usRoutingNumber);
+	}
+
+	public WebElement getCanadaRoutingOne() {
+		return driver.findElement(canadaRoutingOne);
+	}
+
+	public WebElement getCanadaRoutingTwo() {
+		return driver.findElement(canadaRoutingTwo);
+	}
+
+	public WebElement getUSAccountNumber() {
+		return driver.findElement(usAccountNumber);
+	}
+
+	public WebElement getCanadaAccountNumber() {
+		return driver.findElement(canadaAccountNumber);
+	}
+
+	public WebElement getAddBankAcctButton() {
+		return driver.findElement(addBankAcctButton);
+	}
+
+	public WebElement getIAgreeCheckboxACH() {
+		return driver.findElement(iAgreeCheckboxACH);
+	}
+
+	public List<WebElement> getCardNumbers() {
+		return driver.findElements(cardNumbers);
+	}
+
+	public List<WebElement> getEditPaymentMethodsButton() {
+		return driver.findElements(editPaymentMethodsButton);
+	}
+
+	public WebElement getEditAccountHolder() {
+		return driver.findElement(editAccountHolder);
+	}
+
+	public WebElement getEditUSRoutingNumber() {
+		return driver.findElement(editUSRoutingNumber);
+	}
+
+	public WebElement getEditCanadaRoutingOne() {
+		return driver.findElement(editCanadaRoutingOne);
+	}
+
+	public WebElement getEditCanadaRoutingTwo() {
+		return driver.findElement(editCanadaRoutingTwo);
+	}
+
+	public WebElement getEditCanadianBankRadio() {
+		return driver.findElement(editCanadianBankRadio);
 	}
 
 }
