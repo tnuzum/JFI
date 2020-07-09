@@ -61,7 +61,7 @@ public class PaymentPO {
 	By checkboxes = By.xpath("//input[contains(@class, 'checkbox')]");
 	By linkAgreementsHeader = By.xpath("//span[contains(text(),'My Agreements')]");
 	By labelText = By.xpath(
-			"//label[contains(text(),'Would you like to use this card for paying existing Membership/Service Plan(s)?')]");
+			"//label[contains(text(),'Would you like to use this form of payment for paying existing Membership/Service Plan(s)?')]");
 	By labelText1 = By.xpath("//div[contains(text(),'A Selection is Required')]");
 	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input");
 	By agreementCheckBox = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]");
