@@ -177,104 +177,131 @@ public class SelectMemberDropdownValidations extends base {
 
 	public void VerifyPackagePriceForFamilyMember() throws InterruptedException, IOException {
 
-		int count = ProductCategories.size();
-		System.out.println(count);
+		try {
 
-		for (int i = 0; i < count; i++) {
-			String category = ProductCategories.get(i).getText();
+			int count = ProductCategories.size();
+			System.out.println(count);
 
-			if (category.equals(productCategory2)) {
-				s2.selectByVisibleText(category);
-				break;
-			}
-		}
+			for (int i = 0; i < count; i++) {
+				String category = ProductCategories.get(i).getText();
 
-		Select s3 = new Select(ap.getBookableItem());
-		Thread.sleep(2000);
-		List<WebElement> Products = s3.getOptions();
-
-		int count2 = Products.size();
-		System.out.println(count2);
-
-		for (int j = 0; j < count2; j++) {
-			String product = Products.get(j).getText();
-
-			if (product.equals(appointmentToBook)) {
-				s3.selectByVisibleText(product);
-				break;
-			}
-		}
-		Thread.sleep(2000);
-		WebElement rt = ap.getResourceType();
-
-		Select s4 = new Select(rt);
-
-		List<WebElement> Resources = s4.getOptions();
-
-		int count3 = Resources.size();
-		System.out.println(count3);
-
-		for (int k = 0; k < count3; k++) {
-			String resource = Resources.get(k).getText();
-
-			if (resource.equals(resourceName1)) {
-				s4.selectByVisibleText(resource);
-				break;
-			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-		Thread.sleep(2000);
-
-		rm.calendarTomorrowClick();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-
-		for (int i = 0; i < ap.getApptBox().size(); i++) {
-			String bookName = ap.getApptBox().get(i).getText();
-			if (bookName.contains(resourceName2)) {
-				List<WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
-				WebElement MorningSlot = TimeSlots.get(0);
-
-				wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
-				while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
-				{
-					System.out.println("Waiting for available times");
+				if (category.equals(productCategory2)) {
+					s2.selectByVisibleText(category);
+					break;
 				}
+			}
 
-				MorningSlot.click();
+			Select s3 = new Select(ap.getBookableItem());
+			Thread.sleep(2000);
+			List<WebElement> Products = s3.getOptions();
 
-				WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i)
-						.findElement(By.id("tab-1-0"));
-				List<WebElement> MorningAvailableTimes = MorningAvailableTimeContainer
-						.findElements(By.tagName("button"));
-				WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+			int count2 = Products.size();
+			System.out.println(count2);
+
+			for (int j = 0; j < count2; j++) {
+				String product = Products.get(j).getText();
+
+				if (product.equals(appointmentToBook)) {
+					s3.selectByVisibleText(product);
+					break;
+				}
+			}
+			Thread.sleep(2000);
+			WebElement rt = ap.getResourceType();
+
+			Select s4 = new Select(rt);
+
+			List<WebElement> Resources = s4.getOptions();
+
+			int count3 = Resources.size();
+			System.out.println(count3);
+
+			for (int k = 0; k < count3; k++) {
+				String resource = Resources.get(k).getText();
+
+				if (resource.equals(resourceName1)) {
+					s4.selectByVisibleText(resource);
+					break;
+				}
+			}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
+			Thread.sleep(2000);
+
+			rm.calendarTomorrowClick();
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			for (int i = 0; i < ap.getApptBox().size(); i++) {
+				String bookName = ap.getApptBox().get(i).getText();
+				if (bookName.contains(resourceName2)) {
+					List<WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+					WebElement MorningSlot = TimeSlots.get(0);
+
+					wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
+					while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
+					{
+						System.out.println("Waiting for available times");
+					}
+
+					MorningSlot.click();
+
+					WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i)
+							.findElement(By.id("tab-1-0"));
+					List<WebElement> MorningAvailableTimes = MorningAvailableTimeContainer
+							.findElements(By.tagName("button"));
+					WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
 //					Thread.sleep(200);
 //					}
 
-				wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
-				String startTime = firstAvailableTimeMorning.getText();
-				System.out.println(startTime);
-				firstAvailableTimeMorning.click();
-				break;
+					wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
+					String startTime = firstAvailableTimeMorning.getText();
+					System.out.println(startTime);
+					firstAvailableTimeMorning.click();
+					break;
+				}
 			}
+			Thread.sleep(2000);
+
+			ap.getPopup1BookButton().click();
+			Thread.sleep(2000);
+			Select s5 = new Select(
+					driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
+			List<WebElement> UnitRates = s5.getOptions();
+			String unitRate = UnitRates.get(0).getText();
+			Assert.assertEquals(unitRate, "1 - $1.75/per");
+
+			Assert.assertTrue(ap.getForMember().getText().contains(familyMbrName));
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
 		}
-		Thread.sleep(2000);
 
-		ap.getPopup1BookButton().click();
-		Thread.sleep(2000);
-		Select s5 = new Select(
-				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
-		List<WebElement> UnitRates = s5.getOptions();
-		String unitRate = UnitRates.get(0).getText();
-		Assert.assertEquals(unitRate, "1 - $1.75/per");
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
 
-		Assert.assertTrue(ap.getForMember().getText().contains(familyMbrName));
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 
