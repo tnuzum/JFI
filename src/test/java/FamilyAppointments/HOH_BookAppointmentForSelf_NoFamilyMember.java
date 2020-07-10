@@ -44,21 +44,46 @@ public class HOH_BookAppointmentForSelf_NoFamilyMember extends base {
 
 	@Test
 	public void BookAppointmentForself_HohWithMoFamily() throws InterruptedException, IOException {
+		try {
 
-		rm.activeMemberLogin("apptmember10", "Testing1!");
-		rw.waitForDashboardLoaded();
-		DashboardPO d = new DashboardPO(driver);
-		d.getMyApptsScheduleButton().click();
-		Thread.sleep(2000);
+			rm.activeMemberLogin("apptmember10", "Testing1!");
+			rw.waitForDashboardLoaded();
+			DashboardPO d = new DashboardPO(driver);
+			d.getMyApptsScheduleButton().click();
+			Thread.sleep(2000);
 
-		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
-		Assert.assertEquals(SelectMemberDropdownPresent, false);
+			boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
+			Assert.assertEquals(SelectMemberDropdownPresent, false);
 
-		startTime = rm.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
-				resourceName2);
+			startTime = rm.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
+					resourceName2);
 
-		rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
-		rm.memberLogout();
+			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
+			rm.memberLogout();
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 
