@@ -128,9 +128,14 @@
 				</classes>
 			</test>
 			
-			<test name = "Bool And Cancel Group Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
+			<test name = "Book And Cancel Group Appointments" parallel = "none" preserve-order="true" group-by-instances="true">
 			
 			<classes>
+			
+			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_NoPackage"/>
+			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_PurchasePackage"/>
+			<class name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf"/>
+			<class name="FamilyAppointments.SelectMemberDropdownValidations"/>
 			
 			<class name="GroupAppointments.ClubNotReqPackages_GrpAppt_ResourceNotSelected" />
 			<class name="GroupAppointments.ClubNotReqPackages_GrpAppt_ThreeResources" />
@@ -147,10 +152,7 @@
 			<class name="GroupAppointments.CancelGrpApptWithFee_cancelTransaction" />
 			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" />
 			
-			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_NoPackage"/>
-			<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_PurchasePackage"/>
-			<class name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf"/>
-			<class name="FamilyAppointments.SelectMemberDropdownValidations"/>
+			
 							
 			</classes>
 			</test>
