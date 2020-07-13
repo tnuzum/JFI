@@ -57,18 +57,19 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 	@Test(priority = 1)
 	public void ScheduleFreeServiceV() throws IOException, InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+		DashboardPO p = new DashboardPO(driver);
 		try {
 			rm.activeMemberLogin("dauto", "Testing1!");
 			rw.waitForDashboardLoaded();
 
-			DashboardPO p = new DashboardPO(driver);
 			p.getMyApptsScheduleButton().click();
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			AppointmentsPO ap = new AppointmentsPO(driver);
 
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
@@ -251,6 +252,13 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				ap.getPopup2OKButton().click();
+				System.out.println("popup was present");
+			}
 			rm.memberLogout();
 		}
 
@@ -465,6 +473,13 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				ap.getPopup2OKButton().click();
+				System.out.println("popup was present");
+			}
 			rm.memberLogout();
 		}
 
