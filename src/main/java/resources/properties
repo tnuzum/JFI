@@ -81,5 +81,7 @@ CanadaBankRoutingNumberOne = 12345
 CanadaBankRoutingNumberTwo = 678
 CanadaBankAcctNumber = 1234567
 CanadianBankLast4Digits = 4567
+CCNumber = 4111111111111111
+CCLast4Digits = 1111
 
 

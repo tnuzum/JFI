@@ -45,6 +45,8 @@ public class ManagePayMethodsPO {
 	By popupConfirmationButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 	By popupText = By.xpath("//h2[@id ='swal2-title']");
 	By slideDownBox = By.xpath("//div[@class='rate-box']");
+	By agreementDiv = By.xpath("//div[contains(@class, 'm-l-lg')]/preceding-sibling::div");
+	By agreementInfoDiv = By.xpath("//div[contains(@class, 'm-l-lg')]");
 
 	By accountHolder = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-accountholder')]");
 	By usBankRadio = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-radio-usbank')]");
@@ -54,6 +56,8 @@ public class ManagePayMethodsPO {
 	By canadaRoutingTwo = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-canroutingtwo')]");
 	By usAccountNumber = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-usacct')]");
 	By canadaAccountNumber = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-input-canacct')]");
+	By checkingRadio = By.xpath("//input[@id='at-checking']");
+	By savingsRadio = By.xpath("//input[@id='at-savings']");
 	By addBankAcctButton = By.xpath("//button[contains(@class, 'at-managepayments-addbankaccount-button-addbank')]");
 	By iAgreeCheckboxACH = By.xpath("//input[contains(@class, 'at-managepayments-addbankaccount-checkbox-tandc')]");
 
@@ -66,6 +70,17 @@ public class ManagePayMethodsPO {
 	By editCanadaRoutingTwo = By
 			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-canroutingtwo')]");
 	By editCanadianBankRadio = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-canbank')]");
+	By editCheckingRadio = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-uschecking')]");
+	By editSavingsRadio = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-ussavings')]");
+	By editCheckingRadio1 = By
+			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-canchecking')]");
+	By editSavingsRadio1 = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-cansavings')]");
+	By saveChangeButton = By.xpath("//button[contains(@class, 'at-managepayments-editbankaccount-button-save')]");
+	By iAgreeCheckboxEditACH = By
+			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-checkbox-tandc')]");
+	By editNameOnCard = By.xpath("//input[contains(@class, 'at-managepayments-editcc-input-name')]");
+	By editIAgreeCheckbox = By.xpath("//input[contains(@class, 'at-managepayments-editcc-tandc')]");
+	By saveChangesButtonCC = By.xpath("//button[contains(@class, 'at-managepayments-editcc-button-save')]");
 
 // CONSTRUCTOR
 
@@ -166,8 +181,16 @@ public class ManagePayMethodsPO {
 		return driver.findElement(areYouSure);
 	}
 
+	public List<WebElement> getMultiAreYouSure() {
+		return driver.findElements(areYouSure);
+	}
+
 	public WebElement getSlideDownBox() {
 		return driver.findElement(slideDownBox);
+	}
+
+	public List<WebElement> getMultiSlideDownBox() {
+		return driver.findElements(slideDownBox);
 	}
 
 	public WebElement getAddCCButton() {
@@ -202,6 +225,14 @@ public class ManagePayMethodsPO {
 		return driver.findElement(accountHolder);
 	}
 
+	public List<WebElement> getAgreementInfoDiv() {
+		return driver.findElements(agreementInfoDiv);
+	}
+
+	public List<WebElement> getAgreementDiv() {
+		return driver.findElements(agreementDiv);
+	}
+
 	public WebElement getUSBankRadio() {
 		return driver.findElement(usBankRadio);
 	}
@@ -228,6 +259,14 @@ public class ManagePayMethodsPO {
 
 	public WebElement getCanadaAccountNumber() {
 		return driver.findElement(canadaAccountNumber);
+	}
+
+	public WebElement getCheckingRadio() {
+		return driver.findElement(checkingRadio);
+	}
+
+	public WebElement getSavingsradio() {
+		return driver.findElement(savingsRadio);
 	}
 
 	public WebElement getAddBankAcctButton() {
@@ -266,4 +305,39 @@ public class ManagePayMethodsPO {
 		return driver.findElement(editCanadianBankRadio);
 	}
 
+	public WebElement getEditCheckingRadio() {
+		return driver.findElement(editCheckingRadio);
+	}
+
+	public WebElement getEditSavingsRadio() {
+		return driver.findElement(editSavingsRadio);
+	}
+
+	public WebElement getEditCheckingRadio1() {
+		return driver.findElement(editCheckingRadio1);
+	}
+
+	public WebElement getEditSavingsRadio1() {
+		return driver.findElement(editSavingsRadio1);
+	}
+
+	public WebElement getSaveChangeButton() {
+		return driver.findElement(saveChangeButton);
+	}
+
+	public WebElement getIAgreeCheckboxEditACH() {
+		return driver.findElement(iAgreeCheckboxEditACH);
+	}
+
+	public WebElement getEditNameOnCard() {
+		return driver.findElement(editNameOnCard);
+	}
+
+	public WebElement getEditIAgreeCheckbox() {
+		return driver.findElement(editIAgreeCheckbox);
+	}
+
+	public WebElement getSaveChangesButtonCC() {
+		return driver.findElement(saveChangesButtonCC);
+	}
 }

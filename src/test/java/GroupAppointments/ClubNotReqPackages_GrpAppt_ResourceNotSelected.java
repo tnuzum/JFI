@@ -200,8 +200,9 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubAndMemberSpecifiPrice));
 
 			ap.getPopup1BookButton().click();
+			rw.waitForAcceptButton();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			// wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
 			Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");

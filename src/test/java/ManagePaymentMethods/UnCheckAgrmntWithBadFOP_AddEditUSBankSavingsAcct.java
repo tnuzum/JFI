@@ -7,7 +7,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -22,7 +21,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class AddEditUSBankAcct_UnCheckAgrmntWithBadFOP extends base {
+public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "BadFopMbr Auto";
@@ -35,7 +34,7 @@ public class AddEditUSBankAcct_UnCheckAgrmntWithBadFOP extends base {
 	public static ManagePayMethodsPO mp;
 	public static BreadcrumbTrailPO bt;
 
-	public AddEditUSBankAcct_UnCheckAgrmntWithBadFOP() {
+	public UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -65,8 +64,8 @@ public class AddEditUSBankAcct_UnCheckAgrmntWithBadFOP extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding a US Bank Account but not linking the card to agreement with Bad FOP")
-	public void AddUSBankAcct_SelectAreYouSure() throws InterruptedException, IOException {
+	@Test(priority = 1, description = "Adding a US savings Bank Account but not linking the card to agreement with Bad FOP")
+	public void AddUSBankSavingsAcct_SelectAreYouSure() throws InterruptedException, IOException {
 
 		try {
 			rm.activeMemberLogin("badfopmbr", "Testing1!");
@@ -90,9 +89,8 @@ public class AddEditUSBankAcct_UnCheckAgrmntWithBadFOP extends base {
 			mp.getUSRoutingNumber().sendKeys(prop.getProperty("USBankRoutingNumber"));
 			mp.getUSAccountNumber().sendKeys(prop.getProperty("USBankAcctNumber"));
 
-			Select S = new Select(driver.findElement(
-					By.xpath("//select[contains(@class, 'at-managepayments-addbankaccount-dropdown-accounttype')]")));
-			S.selectByVisibleText("Checking");
+			mp.getSavingsradio().click();
+
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
@@ -107,7 +105,7 @@ public class AddEditUSBankAcct_UnCheckAgrmntWithBadFOP extends base {
 
 				}
 			}
-
+			Thread.sleep(2000);
 			Assert.assertTrue(mp.getSlideDownBox().isDisplayed());
 			Assert.assertTrue(p.getLabelText1().isDisplayed());
 			mp.getAreYouSure().click();
@@ -167,8 +165,8 @@ public class AddEditUSBankAcct_UnCheckAgrmntWithBadFOP extends base {
 
 	}
 
-	@Test(priority = 2, description = "Editing a US Bank Account and linking the card to agreement with Bad FOP")
-	public void EditUSBankAcct_SelectAgreement() throws InterruptedException, IOException {
+	@Test(priority = 2, description = "Editing a US Bank Savings Account and linking the card to agreement with Bad FOP")
+	public void EditUSBankSavingsAcct_SelectAgreement() throws InterruptedException, IOException {
 
 		try {
 			int FopCount = mp.getCardNumbers().size();
@@ -190,49 +188,52 @@ public class AddEditUSBankAcct_UnCheckAgrmntWithBadFOP extends base {
 			System.out.println(text1);
 			Assert.assertEquals(text1, prop.getProperty("USBankRoutingNumber"));
 
+			Assert.assertTrue(mp.getEditSavingsRadio().isSelected());
+
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
 
-			/*
-			 * Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
-			 * Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
-			 * 
-			 * Assert.assertTrue(!mp.getAddBankAcctButton().isEnabled());
-			 * 
-			 * for (int i = 0; i < mp.getAgreementLabel().size(); i++) { if
-			 * (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
-			 * mp.getAgreementCheckBox().get(i).click(); break;
-			 * 
-			 * } }
-			 * 
-			 * Assert.assertTrue(mp.getSlideDownBox().isDisplayed());
-			 * Assert.assertTrue(p.getLabelText1().isDisplayed());
-			 * mp.getAreYouSure().click(); Assert.assertEquals(rm.isElementPresent(By.
-			 * xpath("//div[contains(text(),'A selection is required')]")), false);
-			 * 
-			 * mp.getIAgreeCheckboxACH().click(); Thread.sleep(1000);
-			 * 
-			 * Assert.assertTrue(mp.getAddBankAcctButton().isEnabled());
-			 * 
-			 * mp.getAddBankAcctButton().click();
-			 * 
-			 * Assert.assertTrue(mp.getPopupContent().getText().
-			 * contains("A signature is required to continue.")); Thread.sleep(1000);
-			 * p.getPopupConfirmationButton().click(); Thread.sleep(1000);
-			 * 
-			 * Actions a = new Actions(driver);
-			 * a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30,
-			 * 10).moveByOffset(80, 10) .release().build().perform();
-			 * 
-			 * Thread.sleep(1000);
-			 * 
-			 * mp.getAddBankAcctButton().click(); rw.waitForAcceptButton();
-			 * System.out.println(mp.getPopupConfirmation1().getText());
-			 * Assert.assertEquals("BANK ACCOUNT ADDED",
-			 * mp.getPopupConfirmation1().getText());
-			 * mp.getPopupConfirmationButton().click();
-			 * 
-			 * Thread.sleep(3000);
-			 */
+			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
+			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
+
+			Assert.assertTrue(!mp.getSaveChangeButton().isEnabled());
+
+			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
+				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
+					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
+					break;
+
+				}
+			}
+
+			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+					false);
+
+			mp.getIAgreeCheckboxEditACH().click();
+			Thread.sleep(1000);
+
+			Assert.assertTrue(mp.getSaveChangeButton().isEnabled());
+
+			mp.getSaveChangeButton().click();
+
+			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
+			Thread.sleep(1000);
+			p.getPopupConfirmationButton().click();
+			Thread.sleep(1000);
+
+			Actions a = new Actions(driver);
+			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
+					.release().build().perform();
+
+			Thread.sleep(1000);
+
+			mp.getSaveChangeButton().click();
+			rw.waitForAcceptButton();
+			System.out.println(mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
+			mp.getPopupConfirmationButton().click();
+
+			Thread.sleep(3000);
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -261,11 +262,11 @@ public class AddEditUSBankAcct_UnCheckAgrmntWithBadFOP extends base {
 
 	}
 
-	@Test(priority = 2, description = "Delete the Card in COG")
+	@Test(priority = 3, description = "Delete the Card in COG")
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "No");
+			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "Yes");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

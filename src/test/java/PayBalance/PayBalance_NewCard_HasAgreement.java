@@ -59,7 +59,7 @@ public class PayBalance_NewCard_HasAgreement extends base {
 	}
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account and saving the card but not linking to any agreement")
-	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
+	public void MakePaymentWithNewCard_SelectNoThanks() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
@@ -186,7 +186,8 @@ public class PayBalance_NewCard_HasAgreement extends base {
 
 	}
 
-	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = { "MakePaymentWithNewCard" })
+	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
+			"MakePaymentWithNewCard_SelectNoThanks" })
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
