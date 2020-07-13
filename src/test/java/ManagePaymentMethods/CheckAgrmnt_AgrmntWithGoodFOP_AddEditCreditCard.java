@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.ManagePayMethodsPO;
 import pageObjects.PaymentPO;
@@ -21,16 +22,21 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
+public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "BadFopMbr Auto";
+	private static String memberName = "AgreementMember Auto";
 	private static String agreement = "Balance Weight Loss 12 Week";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public AddCreditCard_CheckAgrmntWithBadFOP() {
+	public static DashboardPO d;
+	public static PaymentPO p;
+	public static ManagePayMethodsPO mp;
+	public static BreadcrumbTrailPO bt;
+
+	public CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -42,6 +48,12 @@ public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+
+		d = new DashboardPO(driver);
+		p = new PaymentPO(driver);
+		mp = new ManagePayMethodsPO(driver);
+		bt = new BreadcrumbTrailPO(driver);
+
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
@@ -54,14 +66,11 @@ public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding a new Credit Card and linking the card to agreement with Bad FOP")
-	public void AddNewCard_SelectAgreementWithBadFOP() throws InterruptedException, IOException {
+	@Test(priority = 1, description = "Adding a new Credit Card and linking the card to agreement")
+	public void AddNewCard_SelectAgreement() throws InterruptedException, IOException {
 
-		DashboardPO d = new DashboardPO(driver);
-		PaymentPO p = new PaymentPO(driver);
-		ManagePayMethodsPO mp = new ManagePayMethodsPO(driver);
 		try {
-			rm.activeMemberLogin("badfopmbr", "Testing1!");
+			rm.activeMemberLogin("agrmntmbr", "Testing1!");
 			rw.waitForDashboardLoaded();
 			rm.openSideMenuIfNotOpenedAlready();
 
@@ -76,7 +85,7 @@ public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
 			mp.getNameOnCard().sendKeys(memberName);
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
-			mp.getCardNumber().sendKeys("4111111111111111");
+			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
 			mp.getExpireMonth().sendKeys("04");
 			mp.getExpireYear().sendKeys("22");
 			mp.getHouseAcctNoRadioButton().get(1).click();
@@ -85,15 +94,18 @@ public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
+			Assert.assertTrue(mp.getLabelText1().get(1).isDisplayed());
 
 			Assert.assertTrue(!mp.getAddCCButton().isEnabled());
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
-					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
+					mp.getAgreementCheckBox().get(i).click();
 					break;
+
 				}
 			}
+			Thread.sleep(2000);
 
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
@@ -115,11 +127,6 @@ public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
 			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
 
-			/*
-			 * p.getNoThanks().click(); Thread.sleep(1000);
-			 * 
-			 * p.getSaveCardNoRadio().click();
-			 */
 			Thread.sleep(1000);
 
 			mp.getAddCCButton().click();
@@ -155,24 +162,108 @@ public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
 			// Assert.fail(eci.getMessage());
 		}
 
-		finally {
-			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
-
-			if (popup == true) {
-				p.getPopupConfirmationButton().click();
-				System.out.println("popup was present");
-			}
-
-			rm.memberLogout();
-		}
-
 	}
 
-	@Test(priority = 2, description = "Unlink the agreement and Delete the Card in COG")
+	@Test(priority = 2, description = "Editing  a Credit Card ")
+	public void EditCard() throws InterruptedException, IOException {
+
+		try {
+			int FopCount = mp.getCardNumbers().size();
+			for (int i = 0; i < FopCount; i++) {
+
+				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("CCLast4Digits"))) {
+					mp.getEditPaymentMethodsButton().get(i).click();
+					break;
+				}
+			}
+			Thread.sleep(1000);
+			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Card"));
+
+			String text = mp.getEditNameOnCard().getAttribute("ng-reflect-model");
+			System.out.println(text);
+
+			Assert.assertEquals(text, memberName);
+
+			mp.getHouseAcctNoRadioButton().get(0).click();
+			mp.getInClubPurchaseNoRadio().click();
+			Thread.sleep(1000);
+
+			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
+			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
+
+			Assert.assertTrue(!mp.getSaveChangesButtonCC().isEnabled());
+
+			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
+				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
+					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
+					break;
+
+				}
+			}
+
+			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+					false);
+
+			Thread.sleep(1000);
+			mp.getEditIAgreeCheckbox().click();
+			Thread.sleep(2000);
+
+			Assert.assertTrue(mp.getSaveChangesButtonCC().isEnabled());
+
+			mp.getSaveChangesButtonCC().click();
+
+			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
+			Thread.sleep(1000);
+			p.getPopupConfirmationButton().click();
+			Thread.sleep(1000);
+
+			Actions a = new Actions(driver);
+			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
+					.release().build().perform();
+
+			Thread.sleep(1000);
+
+			mp.getSaveChangesButtonCC().click();
+			rw.waitForAcceptButton();
+			System.out.println(mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("CARD UPDATED", mp.getPopupConfirmation1().getText());
+			mp.getPopupConfirmationButton().click();
+
+			Thread.sleep(3000);
+
+			rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+	}
+
+	@Test(priority = 3, description = "Delete the Card in COG")
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", "1111", "Yes");
+			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", "1111", "Yes");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -201,9 +292,11 @@ public class AddCreditCard_CheckAgrmntWithBadFOP extends base {
 	}
 
 //	@AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;
 	}
+
 }

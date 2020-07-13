@@ -60,7 +60,7 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 	}
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account and saving and linking it to an agreement")
-	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
+	public void MakePaymentWithNewCard_SelectAgreement() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
@@ -192,7 +192,8 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 
 	}
 
-	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = { "MakePaymentWithNewCard" })
+	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = {
+			"MakePaymentWithNewCard_SelectAgreement" })
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);

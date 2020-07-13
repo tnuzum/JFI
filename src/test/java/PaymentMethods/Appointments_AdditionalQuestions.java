@@ -251,8 +251,9 @@ public class Appointments_AdditionalQuestions extends base {
 			// Click the Pay button
 
 			ap.getPaymentButton().click();
+			rw.waitForAcceptButton();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			// wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
@@ -454,8 +455,9 @@ public class Appointments_AdditionalQuestions extends base {
 			// Click the Pay button
 
 			ap.getPaymentButton().click();
+			rw.waitForAcceptButton();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			// wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
@@ -603,8 +605,9 @@ public class Appointments_AdditionalQuestions extends base {
 			// Click the Pay button
 
 			PM.getPaymentButton().click();
+			rw.waitForAcceptButton();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			// wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

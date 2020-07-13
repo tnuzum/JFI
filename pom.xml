@@ -82,13 +82,13 @@
 					<forkCount>1</forkCount>
     				<reuseForks>true</reuseForks>
     				<parallel>tests</parallel>
-   					 <threadCount>7</threadCount>
+   					 <threadCount>8</threadCount>
 					 <printSummary>true</printSummary>
 					 
 					 <!--properties>
 						<property>
 						<name>testnames</name>
-						<value>EME - Navigation and Layout, EME - Pay Balance, Classes and Courses,Book And Cancel Appointments,Change Single Member Appointments,Book And Cancel Group Appointments, Change Group Appointments, Family Classes Courses</value>
+						<value>EME - Navigation and Layout, EME - Pay Balance, Classes and Courses,Book And Cancel Appointments,Change Single Member Appointments,Book And Cancel Group Appointments, Change Group Appointments, Family Classes Courses, Manage Payment Methods</value>
 						</property>
 					</properties-->
 				
