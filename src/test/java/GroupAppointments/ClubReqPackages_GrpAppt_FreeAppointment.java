@@ -266,18 +266,19 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 	@Test(priority = 2, description = "Schedule a free appointment due to membership type discount")
 	public void ScheduleFreeTrainingDueToDiscount() throws IOException, InterruptedException {
+
+		DashboardPO p = new DashboardPO(driver);
+		AppointmentsPO ap = new AppointmentsPO(driver);
 		try {
 			rm.activeMemberLogin("freemember", "Testing1!");
 			rw.waitForDashboardLoaded();
 
-			DashboardPO p = new DashboardPO(driver);
 			p.getMyApptsScheduleButton().click();
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			AppointmentsPO ap = new AppointmentsPO(driver);
 
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
