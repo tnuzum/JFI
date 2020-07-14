@@ -45,7 +45,9 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
+
 		driver = initializeDriver();
+
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 
