@@ -22,7 +22,20 @@ public class loginPageTest extends base {
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
-		driver = initializeDriver();
+
+		try {
+			driver = initializeDriver();
+		} catch (java.lang.NullPointerException npe) {
+
+			driver = initializeDriver();
+
+			System.out.println("driver initialized again");
+			log.error("driver initialized again");
+			npe.printStackTrace();
+			log.error(npe.getMessage(), npe);
+
+		}
+
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));

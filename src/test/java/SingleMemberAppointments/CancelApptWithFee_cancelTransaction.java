@@ -45,8 +45,20 @@ public class CancelApptWithFee_cancelTransaction extends base {
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
-		driver = initializeDriver();
-		rm.setDriver(driver);
+
+		try {
+			driver = initializeDriver();
+		} catch (java.lang.NullPointerException npe) {
+
+			driver = initializeDriver();
+
+			System.out.println("driver initialized again");
+			log.error("driver initialized again");
+			npe.printStackTrace();
+			log.error(npe.getMessage(), npe);
+
+		}
+
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
