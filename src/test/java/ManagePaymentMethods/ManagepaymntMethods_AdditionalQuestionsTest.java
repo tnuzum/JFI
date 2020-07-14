@@ -71,16 +71,16 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(1).isDisplayed());
 			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(1).click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertTrue(p.getInClubQuestion().isDisplayed());
 			p.getMoreInfoUseInPos().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -126,16 +126,16 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(0).click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertTrue(p.getInClubQuestion().isDisplayed());
 			p.getMoreInfoUseInPos().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			mp.getManagePMBreadcrumb().click();
 
 		} catch (java.lang.AssertionError ae) {
@@ -170,14 +170,14 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 		try {
 
 			mp.getBankAccountLink().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 			Assert.assertTrue(p.getOnAccountBankQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(0).click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -223,10 +223,10 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 			Assert.assertTrue(p.getOnAccountBankQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(0).click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			rm.returnToDashboard();
 
 		} catch (java.lang.AssertionError ae) {
@@ -268,7 +268,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			int variable = 1;
 			while (variable < 13) {
 				p.getCustomAmountInput().sendKeys(Keys.BACK_SPACE);
@@ -286,29 +286,29 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 			rw.waitForNewCardFormToOpen();
 			rm.OpenNewcardFormIfNotOpenInFirstAttempt();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 
 			Assert.assertTrue(p.getSaveCardQuestion().isDisplayed());
 			p.getMoreInfoSaveCard().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "Save Card For Use On Site");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 
 			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
 			p.getMoreInfoOnAccount().get(0).click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 
 			Assert.assertTrue(p.getInClubQuestion().isDisplayed());
 			p.getMoreInfoUseInPos().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			p.getAdditionalQuestionPopupClose().click();
-			Thread.sleep(500);
+			Thread.sleep(1000);
 
 			rm.returnToDashboard();
 			rm.memberLogout();
