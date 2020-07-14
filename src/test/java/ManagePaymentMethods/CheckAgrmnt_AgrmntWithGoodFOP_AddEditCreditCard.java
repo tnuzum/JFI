@@ -186,7 +186,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 			mp.getHouseAcctNoRadioButton().get(0).click();
 			mp.getInClubPurchaseNoRadio().click();
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
