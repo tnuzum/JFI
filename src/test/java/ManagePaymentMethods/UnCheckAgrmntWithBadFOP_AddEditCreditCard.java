@@ -167,7 +167,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCreditCard extends base {
 	}
 
 	@Test(priority = 2, description = "Editing  a Credit Card but not linking the card to agreement with Bad FOP")
-	public void EditCard_SelectAreYouSure() throws InterruptedException, IOException {
+	public void EditCard_SelectAgreement() throws InterruptedException, IOException {
 
 		try {
 			int FopCount = mp.getCardNumbers().size();
@@ -196,16 +196,13 @@ public class UnCheckAgrmntWithBadFOP_AddEditCreditCard extends base {
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
-					mp.getAgreementCheckBox().get(i).click();
+					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
 					break;
 
 				}
 			}
 			Thread.sleep(2000);
 
-			Assert.assertTrue(mp.getSlideDownBox().isDisplayed());
-			Assert.assertTrue(p.getLabelText1().isDisplayed());
-			mp.getAreYouSure().click();
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
@@ -268,7 +265,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCreditCard extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", "1111", "No");
+			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", "1111", "Yes");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
