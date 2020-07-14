@@ -183,7 +183,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 			{
 				String text = ap.getGroupPopupMembers().get(i).getText();
 				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy")) {
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Fred")) {
 					wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
 					ap.getGroupPopupAddButtons().get(i).click();
 					break;

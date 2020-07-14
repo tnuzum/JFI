@@ -58,7 +58,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			log.error(npe.getMessage(), npe);
 
 		}
-
+		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
