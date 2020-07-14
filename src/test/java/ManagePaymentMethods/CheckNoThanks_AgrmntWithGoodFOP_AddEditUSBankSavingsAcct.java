@@ -157,7 +157,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 	}
 
 	@Test(priority = 2, description = "Editing a US savings Bank Account and selecting No Thanks")
-	public void EditUSBankSavingsAcct_SelectNoThanks() throws InterruptedException, IOException {
+	public void EditUSBankSavingsAcct_SelectAgreement() throws InterruptedException, IOException {
 
 		try {
 			int FopCount = mp.getCardNumbers().size();
