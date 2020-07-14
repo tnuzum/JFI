@@ -113,7 +113,9 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 
 			for (int i = 0; i < p.getAgreementLabel().size(); i++) {
 				if (p.getAgreementLabel().get(i).getText().contains(agreement)) {
-					p.getAgreementCheckBox().get(i).click();
+
+					jse.executeScript("arguments[0].click();", p.getAgreementCheckBox().get(i));
+
 					break;
 
 				}
@@ -143,11 +145,6 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
-			/*
-			 * p.getNoThanks().click(); Thread.sleep(1000);
-			 * 
-			 * p.getSaveCardNoRadio().click();
-			 */
 			Thread.sleep(1000);
 
 			p.getSubmitButton().click();
