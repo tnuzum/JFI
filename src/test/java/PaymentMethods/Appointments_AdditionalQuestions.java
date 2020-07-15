@@ -262,7 +262,7 @@ public class Appointments_AdditionalQuestions extends base {
 			ap.getPopup2OKButton().click();
 			Thread.sleep(1000);
 			rm.memberLogout();
-			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", "1111", "No");
+			rm.deleteFOPInCOG("1143515", "Jonas Sports-Plex", "1111", "No");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -294,7 +294,7 @@ public class Appointments_AdditionalQuestions extends base {
 	@Test(priority = 2, description = "Verify Additional Questions on Change Appointment")
 	public void verifyAdditionalQuestionsChangeAppointment() throws InterruptedException, IOException {
 		try {
-			rm.activeMemberLogin("agrmntmbr", "Testing1!");
+			rm.activeMemberLogin("aqmember", "Testing1!");
 
 			rw.waitForDashboardLoaded();
 			WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -466,7 +466,7 @@ public class Appointments_AdditionalQuestions extends base {
 			ap.getPopup2OKButton().click();
 			Thread.sleep(1000);
 			rm.memberLogout();
-			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", "1111", "No");
+			rm.deleteFOPInCOG("1143515", "Jonas Sports-Plex", "1111", "No");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -498,7 +498,7 @@ public class Appointments_AdditionalQuestions extends base {
 	@Test(priority = 3, description = "Verify Additional Questions on Cancel Appointment")
 	public void verifyAdditionalQuestionsCancelAppointment() throws InterruptedException, IOException {
 		try {
-			rm.ApptCheckinInCOG("Auto, AgreementMember", appointmentToBook, "agrmntmbr", "2");
+			rm.ApptCheckinInCOG("Auto, AQMember", appointmentToBook, "aqmember", "2");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -648,7 +648,7 @@ public class Appointments_AdditionalQuestions extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", "1111", "No");
+			rm.deleteFOPInCOG("1143515", "Jonas Sports-Plex", "1111", "No");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
