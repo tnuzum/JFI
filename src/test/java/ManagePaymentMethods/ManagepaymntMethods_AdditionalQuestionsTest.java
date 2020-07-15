@@ -66,7 +66,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			}
 
 			d.getMenuManagePmntMethods().click();
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(1).isDisplayed());
 			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
