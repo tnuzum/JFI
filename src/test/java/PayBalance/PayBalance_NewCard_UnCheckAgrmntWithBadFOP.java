@@ -120,7 +120,7 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 
 				}
 			}
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			Assert.assertTrue(p.getSlideDownBox().isDisplayed());
 			Assert.assertTrue(p.getLabelText1().isDisplayed());

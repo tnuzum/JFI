@@ -61,7 +61,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		DashboardPO p = new DashboardPO(driver);
 		try {
-			rm.activeMemberLogin("dauto", "Testing1!");
+			rm.activeMemberLogin("freemember", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			p.getMyApptsScheduleButton().click();

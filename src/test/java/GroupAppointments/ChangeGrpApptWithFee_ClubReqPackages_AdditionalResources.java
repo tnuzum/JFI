@@ -39,7 +39,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 	private static String resourceName5 = "PT Smith, AndrewCA-Grp";
 	private static String unitsToBeSelected = "1 - $5.00/per";
 	private static String participant2 = "Auto, Robert";
-	private static String participant3 = "Auto, Scott";
+	private static String participant3 = "Auto, Adam";
 	private static String startTime1;
 	private static String startTime2;
 
@@ -192,7 +192,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 			{
 				String text = ap.getGroupPopupMembers().get(i).getText();
 				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Scott")) {
+				if (ap.getGroupPopupMembers().get(i).getText().contains("Adam")) {
 					wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
 					ap.getGroupPopupAddButtons().get(i).click();
 					break;
