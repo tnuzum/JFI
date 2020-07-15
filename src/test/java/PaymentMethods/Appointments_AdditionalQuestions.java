@@ -63,7 +63,7 @@ public class Appointments_AdditionalQuestions extends base {
 	@Test(priority = 1, description = "Verify Additional Questions on Book Appointment")
 	public void verifyAdditionalQuestionsBookAppointment() throws InterruptedException, IOException {
 		try {
-			rm.activeMemberLogin("agrmntmbr", "Testing1!");
+			rm.activeMemberLogin("aqmember", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			DashboardPO p = new DashboardPO(driver);
