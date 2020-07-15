@@ -104,7 +104,7 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 			p.getSaveCardYesRadio().click();
 			p.getHouseAcctNoRadioButton().click();
 			p.getInClubPurchaseNoRadio().click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
 			Assert.assertTrue(p.getLabelText().isDisplayed());
@@ -114,7 +114,15 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 			for (int i = 0; i < p.getAgreementLabel().size(); i++) {
 				if (p.getAgreementLabel().get(i).getText().contains(agreement)) {
 
+					// jse.executeScript("window.scrollTo(0," +
+					// p.getAgreementCheckBox().get(i).getLocation().y + ")");
+
+					// jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+					jse.executeScript("arguments[0].scrollIntoView();", p.getAgreementCheckBox().get(i));
+
 					jse.executeScript("arguments[0].click();", p.getAgreementCheckBox().get(i));
+					getScreenshot(testName + "agreementclicked", driver);
 
 					break;
 
