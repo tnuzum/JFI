@@ -38,18 +38,9 @@
 			
 		</classes>
 		</test>
-	<test name="EME - Pay Balance, Classes and Courses" parallel = "none" preserve-order="true" group-by-instances="true">
+	<test name="EME - Shop Packages, Classes and Courses" parallel = "none" preserve-order="true" group-by-instances="true">
 		<classes>
-			
-			
-			  <class name="PayBalance.PayBalance_NewCard_CheckAgrmntWithBadFOP"/>
-     		  <class name="PayBalance.PayBalance_NewCard_HasAgreement_NoSave"/>
-      		  <class name="PayBalance.PayBalance_NewCard_NoAgreement_NoSave"/>
-      		  <class name="PayBalance.PayBalance_NewCard_UnCheckAgrmntWithBadFOP"/>
-      		  <class name="PayBalance.PayBalance_StoredCard"/>
-      		  <class name="PayBalance.PayBalance_NewCard_LinkAgreement"/>
-      		  <class name="PayBalance.PayBalance_NewCard_HasAgreement"/>
-     		  <class name="PayBalance.PayBalance_NewCard_NoAgreement"/>
+					 
 			
 			<class name="ShopPackages.ShopAndPurchasePackages" />
 							
@@ -202,8 +193,18 @@
 		</classes>
 	</test>
 	
-	<test name = "Manage Payment Methods" parallel = "none" preserve-order="true" group-by-instances="true">
+	<test name = "Pay Balance And Manage Payment Methods" parallel = "none" preserve-order="true" group-by-instances="true">
     <classes>
+    
+      <class name="PayBalance.PayBalance_NewCard_CheckAgrmntWithBadFOP"/>
+      <class name="PayBalance.PayBalance_NewCard_HasAgreement_NoSave"/>
+      <class name="PayBalance.PayBalance_NewCard_NoAgreement_NoSave"/>
+      <class name="PayBalance.PayBalance_NewCard_UnCheckAgrmntWithBadFOP"/>
+      <class name="PayBalance.PayBalance_StoredCard"/>
+      <class name="PayBalance.PayBalance_NewCard_LinkAgreement"/>
+      <class name="PayBalance.PayBalance_NewCard_HasAgreement"/>
+      <class name="PayBalance.PayBalance_NewCard_NoAgreement"/>
+      
       <class name="ManagePaymentMethods.NoAgreement_AddCanadianBankSavingsAcct"/>
       <class name="ManagePaymentMethods.ManagepaymntMethods_AdditionalQuestionsTest"/>
       <class name="ManagePaymentMethods.CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard"/>

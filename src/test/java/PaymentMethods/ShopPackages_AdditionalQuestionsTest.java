@@ -50,7 +50,7 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 
-		rm.activeMemberLogin("paymember", "Testing1!"); // Login to EME
+		rm.activeMemberLogin("aqmember", "Testing1!"); // Login to EME
 		rw.waitForDashboardLoaded();
 
 	}
