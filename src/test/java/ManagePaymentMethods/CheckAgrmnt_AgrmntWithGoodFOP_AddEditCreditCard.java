@@ -101,7 +101,11 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
 
-					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
+					jse.executeScript("arguments[0].scrollIntoView();", p.getAgreementCheckBox().get(i));
+
+					jse.executeScript("arguments[0].click();", p.getAgreementCheckBox().get(i));
+					getScreenshot(testName + "agreementclicked", driver);
+
 					break;
 
 				}
