@@ -329,7 +329,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143354", "Jonas Sports-Plex", "1111", "No");
+			rm.deleteFOPInCOG("1143515", "Jonas Sports-Plex", "1111", "No");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
