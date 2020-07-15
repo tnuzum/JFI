@@ -230,7 +230,8 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 
 		}
 		c.getContinueButton().click();
-		wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
+		// wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
+		rw.waitForAcceptButton();
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
