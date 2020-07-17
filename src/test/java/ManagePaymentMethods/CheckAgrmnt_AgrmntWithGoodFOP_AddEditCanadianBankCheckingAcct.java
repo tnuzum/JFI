@@ -272,7 +272,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", prop.getProperty("CanadianBankLast4Digits"), "Yes");
+			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", prop.getProperty("CanadianBankLast4Digits"), "Yes",
+					agreement);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

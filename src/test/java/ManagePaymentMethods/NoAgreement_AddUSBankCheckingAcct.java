@@ -152,7 +152,7 @@ public class NoAgreement_AddUSBankCheckingAcct extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143354", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "No");
+			rm.deleteFOPInCOG("1143354", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "No", "");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

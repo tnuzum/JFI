@@ -65,29 +65,38 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	@Test(priority = 1, description = "Validating that Frozen member cannot enroll When the club settings won't allow")
 	public void FrozenMemberCannotEnroll() throws IOException, InterruptedException {
 
-		rm.activeMemberLogin("freezemember", "Testing1!");
-		rw.waitForDashboardLoaded1();
-
-		d.getMyClassesScheduleButton().click();
-		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
-		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
-
-		WebDriverWait wait = new WebDriverWait(driver, 50);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-
-		rm.SelectTomorrowDate();
-
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
-
-		rm.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
-
-		Thread.sleep(1000);
 		try {
+			rm.activeMemberLogin("freezemember", "Testing1!");
+			rw.waitForDashboardLoaded1();
+
+			d.getMyClassesScheduleButton().click();
+			softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
+			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+
+			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+			rm.SelectTomorrowDate();
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+			rm.SelectClassOrCourseToEnroll("FAMILYENROLLCLASS");
+
+			Thread.sleep(1000);
+
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.",
 					c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
+
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
+			c.getPopupCancelButton().click();
+
+			Thread.sleep(1000);
+			softAssertion.assertAll();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -115,12 +124,6 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
-			c.getPopupCancelButton().click();
-
-			Thread.sleep(1000);
 			rm.memberLogout();
 		}
 	}
@@ -151,6 +154,15 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.",
 					c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
+
+			softAssertion.assertAll();
+
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
+			c.getPopupCancelButton().click();
+			Thread.sleep(1000);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -177,11 +189,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
-			c.getPopupCancelButton().click();
-			Thread.sleep(1000);
+
 			rm.memberLogout();
 		}
 
@@ -213,6 +221,16 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			softAssertion.assertEquals("The online enrollment window for this class has closed.",
 					c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
+
+			softAssertion.assertAll();
+
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
+			c.getPopupCancelButton().click();
+
+			Thread.sleep(1000);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -239,12 +257,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
-			c.getPopupCancelButton().click();
 
-			Thread.sleep(1000);
 			rm.memberLogout();
 		}
 
@@ -276,6 +289,15 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			softAssertion.assertEquals("Online enrollment for this class is not allowed.",
 					c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
+
+			softAssertion.assertAll();
+
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
+			c.getPopupCancelButton().click();
+			Thread.sleep(1000);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -302,11 +324,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
-			c.getPopupCancelButton().click();
-			Thread.sleep(1000);
+
 			rm.memberLogout();
 		}
 
@@ -360,6 +378,16 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			softAssertion.assertEquals("Online enrollment for this class is currently closed.",
 					c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
+
+			softAssertion.assertAll();
+
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
+			c.getPopupCancelButton().click();
+
+			Thread.sleep(1000);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -386,12 +414,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
-			c.getPopupCancelButton().click();
 
-			Thread.sleep(1000);
 			rm.memberLogout();
 		}
 
@@ -423,6 +446,15 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			softAssertion.assertEquals("The online enrollment window for this class has closed.",
 					c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
+
+			softAssertion.assertAll();
+
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
+			c.getPopupCancelButton().click();
+			Thread.sleep(1000);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -449,11 +481,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
-			c.getPopupCancelButton().click();
-			Thread.sleep(1000);
+
 			rm.memberLogout();
 		}
 
@@ -486,6 +514,16 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			softAssertion.assertEquals("Membership restrictions have limited enrollment into this class.",
 					c.getPopUpErrorMessage().getText().trim());
 			softAssertion.assertFalse(c.getPopupSignUpButton().isEnabled());
+
+			softAssertion.assertAll();
+
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver)
+					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
+			c.getPopupCancelButton().click();
+
+			Thread.sleep(1000);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -512,12 +550,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButton().getLocation().x + ")");
-			c.getPopupCancelButton().click();
 
-			Thread.sleep(1000);
 			rm.memberLogout();
 		}
 
@@ -553,6 +586,17 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 				}
 			}
 
+			softAssertion.assertAll();
+
+			Thread.sleep(1000);
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
+
+			Actions actions = new Actions(driver);
+			actions.moveToElement(c.getPopupCancelButton()).click().perform();
+			// c.getPopupCancelButton().click();
+
+			Thread.sleep(1000);
+
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -579,14 +623,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		}
 
 		finally {
-			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
 
-			Actions actions = new Actions(driver);
-			actions.moveToElement(c.getPopupCancelButton()).click().perform();
-			// c.getPopupCancelButton().click();
-
-			Thread.sleep(1000);
 			rm.memberLogout();
 		}
 
@@ -672,9 +709,11 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	}
 
 //	@AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;
 	}
+
 }
