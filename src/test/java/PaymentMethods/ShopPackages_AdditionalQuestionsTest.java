@@ -159,7 +159,8 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
+			// wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message

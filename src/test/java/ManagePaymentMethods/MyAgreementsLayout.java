@@ -361,7 +361,7 @@ public class MyAgreementsLayout extends base {
 					break;
 				}
 			}
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 
 			String text = mp.getEditAccountHolder().getAttribute("ng-reflect-model");
 			System.out.println(text);
