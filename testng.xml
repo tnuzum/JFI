@@ -221,6 +221,7 @@
       <class name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditCanadianBankCheckingAcct"/>
       <class name="ManagePaymentMethods.NoAgreement_AddUSBankCheckingAcct"/>
       <class name="ManagePaymentMethods.CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard"/>
+      <class name="ManagePaymentMethods.Bug167495_AddACHCheckingVsSavingsFiltering"/>
     </classes>
   </test> 
 	<!-- When adding new test tag, include this test tag name in the POM.xml to be inclued in test execution through maven/jenkins -->
