@@ -256,7 +256,7 @@ public class PayBalance_NewCard_CheckAgrmntWithBadFOP extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", "1111", "Yes");
+			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", "1111", "Yes", agreement);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

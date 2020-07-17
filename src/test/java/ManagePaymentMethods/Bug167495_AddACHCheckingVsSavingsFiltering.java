@@ -2,11 +2,11 @@ package ManagePaymentMethods;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -22,21 +22,20 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
+public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "AgreementMember Auto";
-	private static String agreement = "Balance Weight Loss 12 Week";
+	private static String memberName = "Robert Auto";
+	private static String agreementWithBadFOP = "Athletic Platinum";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
-
 	public static DashboardPO d;
 	public static PaymentPO p;
 	public static ManagePayMethodsPO mp;
 	public static BreadcrumbTrailPO bt;
 
-	public CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard() {
+	public Bug167495_AddACHCheckingVsSavingsFiltering() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -66,11 +65,11 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding a new Credit Card and selecting No Thanks")
-	public void AddCard_NoThanks() throws InterruptedException, IOException {
+	@Test(priority = 1, description = "Verify that No Thanks is displayed for Savings Filter")
+	public void CheckingVsSavings() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin("agrmntmbr", "Testing1!");
+			rm.activeMemberLogin("rauto", "Testing1!");
 			rw.waitForDashboardLoaded();
 			rm.openSideMenuIfNotOpenedAlready();
 
@@ -82,51 +81,62 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(2000);
 
-			mp.getNameOnCard().sendKeys(memberName);
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", mp.getCardNumber());
-			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
-			mp.getExpireMonth().sendKeys("04");
-			mp.getExpireYear().sendKeys("22");
-			mp.getHouseAcctNoRadioButton().get(1).click();
-			mp.getInClubPurchaseNoRadio().click();
+			mp.getBankAccountLink().click();
 			Thread.sleep(1000);
 
-			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
-			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
-			Assert.assertTrue(mp.getLabelText1().get(1).isDisplayed());
+			mp.getAccountHolder().sendKeys(memberName);
+			Assert.assertTrue(mp.getUSBankRadio().isSelected());
 
-			Assert.assertTrue(!mp.getAddCCButton().isEnabled());
+			mp.getUSRoutingNumber().sendKeys(prop.getProperty("USBankRoutingNumber"));
+			mp.getUSAccountNumber().sendKeys(prop.getProperty("USBankAcctNumber"));
 
-			mp.getNoThanks().get(1).click();
-			Thread.sleep(2000);
+			Assert.assertTrue(mp.getCheckingRadio().isSelected()); // Checking Account
 
-			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
-					false);
+			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 
-			Thread.sleep(1000);
-			mp.getIAgreeCheckbox().click();
-			Thread.sleep(2000);
+				ArrayList<String> agreementLabels = new ArrayList<String>();
 
-			Assert.assertTrue(mp.getAddCCButton().isEnabled());
+				agreementLabels.add(mp.getAgreementLabel().get(i).getText());
 
-			mp.getAddCCButton().click();
+				Assert.assertTrue(agreementLabels.contains(agreementWithBadFOP));
 
-			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
-			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
-			Thread.sleep(1000);
+				if (mp.getAgreementLabel().get(i).getText().contains(agreementWithBadFOP)) {
+
+					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
+					break;
+
+				}
+			}
+
+			mp.getSavingsradio().click();
+
+			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
+
+				ArrayList<String> agreementLabels = new ArrayList<String>();
+
+				agreementLabels.add(mp.getAgreementLabel().get(i).getText());
+
+				Assert.assertFalse(agreementLabels.contains(agreementWithBadFOP));
+
+			}
+
+			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
+
+			Assert.assertTrue(mp.getNoThanks().size() > 0);
+			mp.getNoThanks().get(0).click();
 
 			Actions a = new Actions(driver);
-			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
+			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
 
 			Thread.sleep(1000);
+			mp.getIAgreeCheckboxACH().click();
+			Thread.sleep(1000);
 
-			mp.getAddCCButton().click();
+			mp.getAddBankAcctButton().click();
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
-			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("BANK ACCOUNT ADDED", mp.getPopupConfirmation1().getText());
 			mp.getPopupConfirmationButton().click();
 
 			Thread.sleep(3000);
@@ -158,59 +168,57 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 	}
 
-	@Test(priority = 2, description = "Adding a new Credit Card and selecting the Agreement")
-	public void EditCard_SelectAgreement() throws InterruptedException, IOException {
+	@Test(priority = 2, description = "Verify that No Thanks is displayed for Savings Filter on Edit")
+	public void EditCheckingVsSavings() throws InterruptedException, IOException {
 
 		try {
 			int FopCount = mp.getCardNumbers().size();
 			for (int i = 0; i < FopCount; i++) {
 
-				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("CCLast4Digits"))) {
+				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("USBankLast4Digits"))) {
 					mp.getEditPaymentMethodsButton().get(i).click();
 					break;
 				}
 			}
 			Thread.sleep(1000);
-			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Card"));
-			String text = mp.getEditNameOnCard().getAttribute("ng-reflect-model");
-			System.out.println(text);
 
-			Assert.assertEquals(text, memberName);
-
-			mp.getHouseAcctNoRadioButton().get(0).click();
-			mp.getInClubPurchaseNoRadio().click();
-			Thread.sleep(1000);
-
-			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
-			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
-			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
-
-			Assert.assertTrue(!mp.getSaveChangesButtonCC().isEnabled());
-
-			Thread.sleep(2000);
+			Assert.assertTrue(mp.getEditSavingsRadio().isSelected());
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
-				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
-					mp.getAgreementCheckBox().get(i).click();
+
+				ArrayList<String> agreementLabels = new ArrayList<String>();
+
+				agreementLabels.add(mp.getAgreementLabel().get(i).getText());
+
+				Assert.assertFalse(agreementLabels.contains(agreementWithBadFOP));
+
+			}
+			Assert.assertTrue(mp.getNoThanks().size() > 0);
+			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
+
+			mp.getEditCheckingRadio().click(); // Checking Account
+
+			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+					false);
+
+			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
+
+				ArrayList<String> agreementLabels = new ArrayList<String>();
+
+				agreementLabels.add(mp.getAgreementLabel().get(i).getText());
+
+				Assert.assertTrue(agreementLabels.contains(agreementWithBadFOP));
+
+				if (mp.getAgreementLabel().get(i).getText().contains(agreementWithBadFOP)) {
+
+					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
+
 					break;
 
 				}
 			}
-			Thread.sleep(2000);
-			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
-					false);
 
-			Thread.sleep(1000);
-			mp.getEditIAgreeCheckbox().click();
-			Thread.sleep(2000);
-
-			Assert.assertTrue(mp.getSaveChangesButtonCC().isEnabled());
-
-			mp.getSaveChangesButtonCC().click();
-
-			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
-			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getIAgreeCheckboxEditACH().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
@@ -219,14 +227,13 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 			Thread.sleep(1000);
 
-			mp.getSaveChangesButtonCC().click();
+			mp.getSaveChangeButton().click();
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
-			Assert.assertEquals("CARD UPDATED", mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
 			mp.getPopupConfirmationButton().click();
 
-			Thread.sleep(3000);
-
+			Thread.sleep(1000);
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
@@ -256,10 +263,11 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 	}
 
 	@Test(priority = 3, description = "Delete the Card in COG")
-	public void deleteCardInCOG() throws InterruptedException, IOException {
+	public void deleteACHInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", "1111", "Yes", agreement);
+			rm.deleteFOPInCOG("1141112", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "Yes",
+					agreementWithBadFOP);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -286,8 +294,6 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			// Assert.fail(eci.getMessage());
 		}
 	}
-
-//	@AfterTest
 
 	@AfterClass
 	public void teardown() throws InterruptedException {

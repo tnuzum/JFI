@@ -738,8 +738,8 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object deleteFOPInCOG(String barcodeId, String clubName, String fopNumber, String agreementLinked)
-			throws InterruptedException {
+	public Object deleteFOPInCOG(String barcodeId, String clubName, String fopNumber, String agreementLinked,
+			String agreement) throws InterruptedException {
 
 		this.loginCOG(clubName);
 		WebElement BackOfficeTile = driver.findElement(By.xpath("(//div[@class='tile'])[2]"));
@@ -767,9 +767,20 @@ public class reusableMethods extends base {
 						.findElements(By.xpath("//section[@class='featureWhite']//table[@id='tbl_search'] //tr "))
 						.get(i);
 				List<WebElement> AgrmntRowSections = AgrmntRow.findElements(By.tagName("td"));
+				System.out.println(AgrmntRowSections.get(1).getText());
+				if (AgrmntRowSections.get(1).getText().equals(agreement)) {
+					System.out.println(driver.findElements(By.xpath("//span[@class = 'hide-span']")).size());
 
-				if (AgrmntRowSections.get(1).getText().equals("Balance Weight Loss 12 Week")) {
-					driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1).click();
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+					jse.executeScript("arguments[0].scrollIntoView();",
+							driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1));
+
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1));
+
+					// driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i -
+					// 1).click();
 
 					int fopCount = driver.findElements(By.xpath("//table[@class='table table-striped'] //tr")).size();
 					System.out.println(fopCount);

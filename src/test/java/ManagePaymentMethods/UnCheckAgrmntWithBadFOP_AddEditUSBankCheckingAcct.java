@@ -265,7 +265,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankCheckingAcct extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "Yes");
+			rm.deleteFOPInCOG("1143412", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "Yes", agreement);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

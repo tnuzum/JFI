@@ -259,7 +259,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "Yes");
+			rm.deleteFOPInCOG("1143355", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "Yes", agreement);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

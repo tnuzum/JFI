@@ -166,7 +166,7 @@ public class NoAgreement_AddCanadianBankSavingsAcct extends base {
 	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1143354", "Jonas Sports-Plex", prop.getProperty("CanadianBankLast4Digits"), "Yes");
+			rm.deleteFOPInCOG("1143354", "Jonas Sports-Plex", prop.getProperty("CanadianBankLast4Digits"), "No", "");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
