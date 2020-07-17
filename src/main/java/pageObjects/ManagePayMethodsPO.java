@@ -64,6 +64,8 @@ public class ManagePayMethodsPO {
 	By cardNumbers = By.xpath("//div[@class='payment-card']  //h2");
 	By editPaymentMethodsButton = By.xpath("//a[contains(@class, 'at-managepayments-cardedit-button')]");
 	By editAccountHolder = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-acctholder')]");
+	By editCanAccountHolder = By
+			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-cancctholder')]");
 	By editUSRoutingNumber = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-usrouting')]");
 	By editCanadaRoutingOne = By
 			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-canroutingone')]");
@@ -287,6 +289,10 @@ public class ManagePayMethodsPO {
 
 	public WebElement getEditAccountHolder() {
 		return driver.findElement(editAccountHolder);
+	}
+
+	public WebElement getEditCanAccountHolder() {
+		return driver.findElement(editCanAccountHolder);
 	}
 
 	public WebElement getEditUSRoutingNumber() {
