@@ -264,6 +264,8 @@ public class MyAgreementsLayout extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains("5454")) {
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
 					mp.getEditPaymentMethodsButton().get(i).click();
 					break;
 				}
@@ -357,6 +359,8 @@ public class MyAgreementsLayout extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains("7899")) {
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
 					mp.getEditPaymentMethodsButton().get(i).click();
 					break;
 				}
