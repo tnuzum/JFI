@@ -266,7 +266,7 @@ public class MyAgreementsLayout extends base {
 				if (mp.getCardNumbers().get(i).getText().contains("5454")) {
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
-					mp.getEditPaymentMethodsButton().get(i).click();
+					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
 			}
@@ -361,7 +361,8 @@ public class MyAgreementsLayout extends base {
 				if (mp.getCardNumbers().get(i).getText().contains("7899")) {
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
-					mp.getEditPaymentMethodsButton().get(i).click();
+					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
+
 					break;
 				}
 			}
