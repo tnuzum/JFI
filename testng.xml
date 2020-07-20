@@ -124,6 +124,12 @@
 			<class name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf"/>
 			<class name="FamilyAppointments.SelectMemberDropdownValidations"/>
 			
+			<class name="GroupAppointments.CancelGrpApptWithFee_NewCard" />
+			<class name="GroupAppointments.CancelGrpApptWithFee_SavedCard" />
+			<class name="GroupAppointments.CancelGrpApptWithFee_OnAccount" />
+			<class name="GroupAppointments.CancelGrpApptWithFee_cancelTransaction" />
+			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" />
+			
 			<class name="GroupAppointments.ClubNotReqPackages_GrpAppt_ResourceNotSelected" />
 			<class name="GroupAppointments.ClubNotReqPackages_GrpAppt_ThreeResources" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_CancelTransaction" />
@@ -132,13 +138,7 @@
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesSelected" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_NonMSS" />
-			
-			<class name="GroupAppointments.CancelGrpApptWithFee_NewCard" />
-			<class name="GroupAppointments.CancelGrpApptWithFee_SavedCard" />
-			<class name="GroupAppointments.CancelGrpApptWithFee_OnAccount" />
-			<class name="GroupAppointments.CancelGrpApptWithFee_cancelTransaction" />
-			<class name="GroupAppointments.CanNotCancelApptAsGroupMember" />
-					
+									
 							
 			</classes>
 		</test>

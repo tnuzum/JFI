@@ -27,6 +27,7 @@ import pageObjects.DashboardPO;
 import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
 import pageObjects.PackagesPO;
+import pageObjects.PaymentMethodsPO;
 import pageObjects.PaymentPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
@@ -1657,6 +1658,81 @@ public class reusableMethods extends base {
 
 		return null;
 
+	}
+
+	public Object enrollInClass(String classToEnroll) throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+
+		d.getMyClassesScheduleButton().click();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		this.SelectTomorrowDate();
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		this.SelectClassOrCourseToEnroll(classToEnroll);
+
+		Thread.sleep(2000);
+		if (c.getPopupSignUpButton().isEnabled()) {
+			c.getPopupSignUpButton().click();
+
+		} else {
+			c.getPopupCancelButton().click();
+			Assert.fail("SignUp button not available");
+
+		}
+		Thread.sleep(2000);
+
+		int radioButtonCount = driver.findElements(By.tagName("label")).size();
+		for (int i = 0; i < radioButtonCount; i++) {
+			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
+				driver.findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+		}
+
+		c.getContinueButton().click();
+
+		Thread.sleep(3000);
+
+		while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+		{
+			Thread.sleep(1000);
+
+		}
+
+		while (!PM.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+		PM.getPaymentButton().click();
+		rw.waitForAcceptButton();
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+		// Verifies the success message
+		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+		PP.getPopupOKButton().click();
+		Thread.sleep(1000);
+
+		int count1 = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count1; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+			{
+				// rw.linksToBeClickable();
+				driver.findElements(By.tagName("a")).get(i).click();
+				break;
+			}
+
+		}
+		rw.waitForDashboardLoaded();
+
+		return null;
 	}
 
 }
