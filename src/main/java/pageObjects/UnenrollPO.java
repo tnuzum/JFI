@@ -18,6 +18,7 @@ public class UnenrollPO {
 																				// not eligible for unenrollment."
 	By cancelButton = By.xpath("//div[contains(@class,'alert-danger')]/div");
 	By popupMessageBox = By.xpath("//div[contains(@class, 'swal2-popup')]");
+	By noCancelFeeMsg = By.xpath("//div[contains(@class, 'alert alert-success')]");
 
 // CONSTRUCTOR
 
@@ -52,6 +53,10 @@ public class UnenrollPO {
 
 	public WebElement getPopupMessageBox() {
 		return driver.findElement(popupMessageBox);
+	}
+
+	public WebElement getNoCancelFeeMsg() {
+		return driver.findElement(noCancelFeeMsg);
 	}
 
 }
