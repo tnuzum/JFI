@@ -19,16 +19,22 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class Unenroll_NoCancellationFeeApplied extends base {
+public class UnenrollTests extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String classToEnroll = "UNENROLLCLASS";
+	private static String classToEnroll1 = "UNENROLLCLASS1";
+	private static String classToEnroll2 = "UNENROLLCLASS2";
+	private static String paymentOption1 = "Use Existing Package";
+	private static String paymentOption2 = "Pay Single Class Fee";
+	private static String paymentOption3 = "Buy Day Pass";
+	private static String payMethod1 = "On Account";
+	private static String payMethod2 = "Saved Card";
 	private static DashboardPO d;
 	private static String testName = null;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public Unenroll_NoCancellationFeeApplied() {
+	public UnenrollTests() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -54,12 +60,12 @@ public class Unenroll_NoCancellationFeeApplied extends base {
 
 	}
 
-	@Test(priority = 1, description = "Can Unenroll and No Cancellation Fee is applied")
-	public void CanUnenrollNoCancellationFee() throws IOException, InterruptedException {
+	@Test(priority = 1, description = "Can Unenroll With No Cancellation Fee as Unenrollment time falls outside the Cancellation Fee window")
+	public void Unenroll_Scenario1() throws IOException, InterruptedException {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr", "Testing1!");
-			rm.enrollInClass(classToEnroll);
+			rm.enrollInClass(classToEnroll1, paymentOption2, payMethod1, "Not Free");
 
 			d.getMyClassesClass1GearButton().click();
 
@@ -74,7 +80,8 @@ public class Unenroll_NoCancellationFeeApplied extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 
 			Assert.assertEquals("There are no cancellation fees for unenrolling in this class.",
-					u.getNoCancelFeeMsg().getText());
+					u.getNoCancelFeeMsg().get(0).getText());
+			Assert.assertEquals("This class is non-refundable.", u.getNoRefundMSg().get(0).getText());
 
 			u.getUnenrollButton().click();
 
@@ -89,7 +96,74 @@ public class Unenroll_NoCancellationFeeApplied extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			rm.memberLogout();
+			rm.returnToDashboard();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+	}
+
+	@Test(priority = 2, description = "Can Unenroll-Cancellation Fee exists even if class/ course is enrolled with punches - Refund Allowed")
+	public void Unenroll_Scenario2() throws IOException, InterruptedException {
+
+		try {
+//			rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll2, paymentOption1, "", "Not Free");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+			System.out.println(u.getCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getRefundMsg().get(0).getText());
+
+			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText()
+					.contains("There is a cancellation fee for unenrolling from this class."));
+			Assert.assertTrue(u.getRefundMsg().get(0).getText().contains("1 Package Visit(s)"));
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+			rm.returnToDashboard();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

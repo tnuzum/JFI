@@ -1660,7 +1660,8 @@ public class reusableMethods extends base {
 
 	}
 
-	public Object enrollInClass(String classToEnroll) throws InterruptedException {
+	public Object enrollInClass(String classToEnroll, String paymentOption, String payMethod, String classFee)
+			throws InterruptedException {
 
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -1688,12 +1689,13 @@ public class reusableMethods extends base {
 
 		}
 		Thread.sleep(2000);
-
-		int radioButtonCount = driver.findElements(By.tagName("label")).size();
-		for (int i = 0; i < radioButtonCount; i++) {
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-				driver.findElements(By.tagName("label")).get(i).click();
-				break;
+		if (classFee.equalsIgnoreCase("Not Free")) {
+			int radioButtonCount = driver.findElements(By.tagName("label")).size();
+			for (int i = 0; i < radioButtonCount; i++) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
+					driver.findElements(By.tagName("label")).get(i).click();
+					break;
+				}
 			}
 		}
 
@@ -1701,17 +1703,32 @@ public class reusableMethods extends base {
 
 		Thread.sleep(3000);
 
-		while (!PM.getOnAccountAndSavedCards().isDisplayed())
+		if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
 
-		{
-			Thread.sleep(1000);
+			while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+			{
+				Thread.sleep(1000);
+
+			}
+			if (payMethod.equalsIgnoreCase("Saved Card")) {
+
+				int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+				for (int i = 0; i < count; i++) {
+					if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+							.contains("1111")) {
+
+						PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+						break;
+					}
+				}
+			}
+			while (!PM.getPaymentButton().isEnabled()) {
+				Thread.sleep(1000);
+			}
+			PM.getPaymentButton().click();
 
 		}
-
-		while (!PM.getPaymentButton().isEnabled()) {
-			Thread.sleep(1000);
-		}
-		PM.getPaymentButton().click();
 		rw.waitForAcceptButton();
 		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 		// Verifies the success message

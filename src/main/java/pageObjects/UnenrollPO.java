@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,8 +20,8 @@ public class UnenrollPO {
 																				// not eligible for unenrollment."
 	By cancelButton = By.xpath("//div[contains(@class,'alert-danger')]/div");
 	By popupMessageBox = By.xpath("//div[contains(@class, 'swal2-popup')]");
-	By noCancelFeeMsg = By.xpath("//div[contains(@class, 'alert alert-success')]");
-
+	By alertSuccess = By.xpath("//div[contains(@class, 'alert alert-success')]");
+	By alertDanger = By.xpath("//div[contains(@class, 'alert alert-danger')]");
 // CONSTRUCTOR
 
 	public UnenrollPO(WebDriver driver) {
@@ -55,8 +57,20 @@ public class UnenrollPO {
 		return driver.findElement(popupMessageBox);
 	}
 
-	public WebElement getNoCancelFeeMsg() {
-		return driver.findElement(noCancelFeeMsg);
+	public List<WebElement> getNoCancelFeeMsg() {
+		return driver.findElements(alertSuccess);
+	}
+
+	public List<WebElement> getCancelFeeMsg() {
+		return driver.findElements(alertDanger);
+	}
+
+	public List<WebElement> getRefundMsg() {
+		return driver.findElements(alertSuccess);
+	}
+
+	public List<WebElement> getNoRefundMSg() {
+		return driver.findElements(alertDanger);
 	}
 
 }
