@@ -358,7 +358,9 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			for (int i = 0; i < count; i++) {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
-
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].scrollIntoView();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 					break;
 				}
