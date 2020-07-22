@@ -31,10 +31,10 @@ public class FamilyStandbyInClass_Demo extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String ClassToEnroll = "DEMO STANDBY CLASS";
 	private static String ClassNameDisplayed = "Demo Standby Class";
-	private static String ClassTimeDisplayed = "Start Time: 4:30 PM";
+	private static String ClassTimeDisplayed = "Start Time: 3:30 PM";
 	private static String ClassInstructorDisplayed = "Class Instructor: Max Gibbs";
 	private static String ClassInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
-	private static String ClassTimeDisplayedOnSearchScreen = "4:30 PM";
+	private static String ClassTimeDisplayedOnSearchScreen = "3:30 PM";
 	private static String ClassDuration = "30 min";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";

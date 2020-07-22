@@ -33,10 +33,10 @@ public class FamilyStandbyInCourse_Demo extends base {
 	private static String CourseStartMonth = "Dec";
 	private static String courseToEnroll = "DEMO STANDBY COURSE";
 	private static String courseNameDisplayed = "Demo Standby Course";
-	private static String courseTimeDisplayed = "Start Time: 4:30 PM";
+	private static String courseTimeDisplayed = "Start Time: 4:00 PM";
 	private static String courseInstructorDisplayed = "Course Instructor: Max Gibbs";
 	private static String courseInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
-	private static String courseTimeDisplayedOnSearchScreen = "4:30 PM";
+	private static String courseTimeDisplayedOnSearchScreen = "4:00 PM";
 	private static String courseDuration = "30 min";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
