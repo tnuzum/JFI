@@ -46,7 +46,20 @@ public class ShopAndPurchasePackages extends base {
 
 	@BeforeClass
 	public void initialize() throws InterruptedException, IOException {
-		driver = initializeDriver();
+
+		try {
+			driver = initializeDriver();
+		} catch (java.lang.NullPointerException npe) {
+
+			driver = initializeDriver();
+
+			System.out.println("driver initialized again");
+			log.error("driver initialized again");
+			npe.printStackTrace();
+			log.error(npe.getMessage(), npe);
+
+		}
+
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
