@@ -22,6 +22,8 @@ public class UnenrollPO {
 	By popupMessageBox = By.xpath("//div[contains(@class, 'swal2-popup')]");
 	By alertSuccess = By.xpath("//div[contains(@class, 'alert alert-success')]");
 	By alertDanger = By.xpath("//div[contains(@class, 'alert alert-danger')]");
+	By unenrollWithSavedCard = By.xpath("//a[contains(text(),'UNEROLL WITH SAVED CARD')]");
+	By unenrollWithNewCard = By.xpath("//a[contains(text(),'UNENROLL WITH NEW CREDIT CARD')]");
 // CONSTRUCTOR
 
 	public UnenrollPO(WebDriver driver) {
@@ -73,4 +75,11 @@ public class UnenrollPO {
 		return driver.findElements(alertDanger);
 	}
 
+	public WebElement getUnenrollWithSavedCard() {
+		return driver.findElement(unenrollWithSavedCard);
+	}
+
+	public WebElement getUnenrollWithNewCard() {
+		return driver.findElement(unenrollWithNewCard);
+	}
 }
