@@ -14,7 +14,8 @@ public class ErrorMessagesPO {
 	By errorMessage = By.xpath("//*[text()='An Error Has Occurred']");
 
 	By tryAgainMessage = By.xpath("//div[@id='swal2-content']");
-	By okButton = By.xpath("(//button[@type='button'])[1]");
+//	By okButton = By.xpath("(//button[@type='button'])[1]");
+	By okButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 
 	// CONSTRUCTOR
 
