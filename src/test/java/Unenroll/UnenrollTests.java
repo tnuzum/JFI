@@ -24,11 +24,26 @@ public class UnenrollTests extends base {
 	private static String classToEnroll1 = "UNENROLLCLASS1";
 	private static String classToEnroll2 = "UNENROLLCLASS2";
 	private static String classToEnroll3 = "UNENROLLCLASS3";
+	private static String classToEnroll4 = "UNENROLLCLASS4";
+	private static String classToEnroll5 = "UNENROLLCLASS5";
+	private static String classToEnroll6 = "UNENROLLCLASS6";
+	private static String classToEnroll7 = "UNENROLLCLASS7";
+	private static String classToEnroll8 = "UNENROLLCLASS8";
+	private static String classToEnroll9 = "UNENROLLCLASS9";
+	private static String classToEnroll10 = "UNENROLLCLASS10";
+	private static String classToEnroll11 = "UNENROLLCLASS11";
+	private static String classToEnroll12 = "UNENROLLCLASS12";
+	private static String classToEnroll13 = "UNENROLLCLASS13";
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Single Class Fee";
-	private static String paymentOption3 = "Buy Day Pass";
+	// private static String paymentOption3 = "Buy Day Pass";
 	private static String payMethod1 = "On Account";
 	private static String payMethod2 = "Saved Card";
+	private static String YesCancelFee = "There is a cancellation fee for unenrolling from this class.";
+	private static String NoCancelFee = "There are no cancellation fees for unenrolling in this class.";
+	private static String YesRefund = "You will be refunded:";
+	private static String NoRefund = "This class is non-refundable.";
+	private static String RefundUnits = "1 Package Visit(s)";
 	private static DashboardPO d;
 	private static String testName = null;
 
@@ -80,9 +95,8 @@ public class UnenrollTests extends base {
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
 
-			Assert.assertEquals("There are no cancellation fees for unenrolling in this class.",
-					u.getNoCancelFeeMsg().get(0).getText());
-			Assert.assertEquals("This class is non-refundable.", u.getNoRefundMSg().get(0).getText());
+			Assert.assertEquals(NoCancelFee, u.getNoCancelFeeMsg().get(0).getText());
+			Assert.assertEquals(NoRefund, u.getNoRefundMSg().get(0).getText());
 
 			u.getUnenrollButton().click();
 
@@ -96,8 +110,6 @@ public class UnenrollTests extends base {
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
-
-			rm.returnToDashboard();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -122,6 +134,8 @@ public class UnenrollTests extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
+		} finally {
+			rm.returnToDashboard();
 		}
 	}
 
@@ -147,9 +161,8 @@ public class UnenrollTests extends base {
 
 			System.out.println(u.getRefundMsg().get(0).getText());
 
-			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText()
-					.contains("There is a cancellation fee for unenrolling from this class."));
-			Assert.assertTrue(u.getRefundMsg().get(0).getText().contains("1 Package Visit(s)"));
+			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getRefundMsg().get(0).getText().contains(RefundUnits));
 
 			Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
 			Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
@@ -166,8 +179,6 @@ public class UnenrollTests extends base {
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
-
-			rm.returnToDashboard();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -192,6 +203,8 @@ public class UnenrollTests extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
+		} finally {
+			rm.returnToDashboard();
 		}
 	}
 
@@ -218,10 +231,9 @@ public class UnenrollTests extends base {
 
 			System.out.println(u.getNoRefundMSg().get(1).getText());
 
-			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText()
-					.contains("There is a cancellation fee for unenrolling from this class."));
+			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText().contains(YesCancelFee));
 
-			Assert.assertTrue(u.getNoRefundMSg().get(1).getText().contains("This class is non-refundable."));
+			Assert.assertTrue(u.getNoRefundMSg().get(1).getText().contains(NoRefund));
 
 			Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
 			Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
@@ -238,8 +250,6 @@ public class UnenrollTests extends base {
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
-
-			rm.returnToDashboard();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -264,6 +274,664 @@ public class UnenrollTests extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
+		} finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 4, description = "Can Unenroll-No Cancellation Fee - Refund Allowed - Class or Course enrolled with Credit Card")
+	public void Unenroll_Scenario4() throws IOException, InterruptedException {
+
+		try {
+//			rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll4, paymentOption2, payMethod2, "Not Free");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getNoCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getRefundMsg().get(1).getText());
+
+			Assert.assertTrue(u.getNoCancelFeeMsg().get(0).getText()
+					.contains("There are no cancellation fees for unenrolling in this class."));
+
+			Assert.assertTrue(u.getRefundMsg().get(1).getText().contains(""));
+
+			Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
+			Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 5, description = "Can Unenroll-No Cancellation Fee - Refund Allowed - Class or Course enrolled with On Account")
+	public void Unenroll_Scenario5() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll5, paymentOption2, payMethod1, "Not Free");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getNoCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getRefundMsg().get(1).getText());
+
+			Assert.assertTrue(u.getNoCancelFeeMsg().get(0).getText().contains(NoCancelFee));
+
+			Assert.assertTrue(u.getRefundMsg().get(1).getText().contains(YesRefund));
+
+			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
+			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 6, description = "Can Unenroll-No Cancellation Fee - Refund Allowed - Class or Course enrolled with Punches")
+	public void Unenroll_Scenario6() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll6, paymentOption1, "", "Free With Punch");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getNoCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getRefundMsg().get(1).getText());
+
+			Assert.assertTrue(u.getNoCancelFeeMsg().get(0).getText().contains(NoCancelFee));
+
+			Assert.assertTrue(u.getRefundMsg().get(1).getText().contains(RefundUnits));
+
+			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
+			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 7, description = "Can Unenroll-No Cancellation Fee - Refund Allowed only in units- Class or Course enrolled with CC")
+	public void Unenroll_Scenario7() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll7, paymentOption2, payMethod2, "Not Free");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getNoCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getNoRefundMSg().get(0).getText());
+
+			Assert.assertTrue(u.getNoCancelFeeMsg().get(0).getText().contains(NoCancelFee));
+
+			Assert.assertTrue(u.getNoRefundMSg().get(0).getText().contains(NoRefund));
+
+			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
+			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 8, description = "Can Unenroll-No Cancellation Fee - Refund Allowed only in units- Class or Course enrolled with On Account")
+	//
+	public void Unenroll_Scenario8() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll8, paymentOption2, payMethod1, "Not Free");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getNoCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getNoRefundMSg().get(0).getText());
+
+			Assert.assertTrue(u.getNoCancelFeeMsg().get(0).getText().contains(NoCancelFee));
+
+			Assert.assertTrue(u.getNoRefundMSg().get(0).getText().contains(NoRefund));
+
+			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
+			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 9, description = "Can Unenroll-No Cancellation Fee - Refund Allowed to only OA or CC- Class or Course enrolled with Punches")
+	public void Unenroll_Scenario9() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll9, paymentOption1, "", "Free With Punch");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getNoCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getNoRefundMSg().get(0).getText());
+
+			Assert.assertTrue(u.getNoCancelFeeMsg().get(0).getText().contains(NoCancelFee));
+
+			Assert.assertTrue(u.getNoRefundMSg().get(0).getText().contains(NoRefund));
+
+			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
+			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 10, description = "Can Unenroll-With Cancellation Fee - Refund Allowed - Class or Course enrolled with Credit Card")
+	public void Unenroll_Scenario10() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll10, paymentOption2, payMethod2, "Not Free");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getRefundMsg().get(0).getText());
+
+			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText().contains(YesCancelFee));
+
+			Assert.assertTrue(u.getRefundMsg().get(0).getText().contains(YesRefund));
+
+			Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
+			Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 11, description = "Can Unenroll-With Cancellation Fee - Refund Allowed - Class or Course enrolled with On Account")
+	public void Unenroll_Scenario11() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll11, paymentOption2, payMethod1, "Not Free");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getRefundMsg().get(0).getText());
+
+			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText().contains(YesCancelFee));
+
+			Assert.assertTrue(u.getRefundMsg().get(0).getText().contains(YesRefund));
+
+			Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
+			Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 12, description = "Can Unenroll-With Cancellation Fee - Refund Allowed - Class or Course enrolled with Punches")
+	public void Unenroll_Scenario12() throws IOException, InterruptedException {
+
+		try {
+			rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll12, paymentOption1, "", "Free With Punch");
+
+			d.getMyClassesClass1GearButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
+			d.getmyClassesUnenrollButton().click();
+			Thread.sleep(1000);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getRefundMsg().get(0).getText());
+
+			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText().contains(YesCancelFee));
+
+			Assert.assertTrue(u.getRefundMsg().get(0).getText().contains(RefundUnits));
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
 		}
 	}
 //	@AfterTest

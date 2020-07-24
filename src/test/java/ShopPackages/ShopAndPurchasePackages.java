@@ -268,7 +268,7 @@ public class ShopAndPurchasePackages extends base {
 			}
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
@@ -467,7 +467,7 @@ public class ShopAndPurchasePackages extends base {
 			}
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
@@ -687,7 +687,7 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt2));
 			// Clicks the Pay button
 			PM.getPaymentButton().click();
-			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
