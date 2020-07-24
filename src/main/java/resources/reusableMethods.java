@@ -1757,4 +1757,26 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public Object myClassClickToUnenroll(String classEnrolled) throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		int count = d.getClassInfoSections().size();
+		for (int i = 0; i < count; i++) {
+
+			if (d.getClassInfoSections().get(i).getText().contains(classEnrolled)) {
+
+				d.getMyClassesClass1GearButtons().get(i).click();
+				WebDriverWait wait = new WebDriverWait(driver, 30);
+				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
+				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
+				d.getmyClassesUnenrollButtons().get(i).click();
+				Thread.sleep(1000);
+				break;
+
+			}
+
+		}
+		return null;
+
+	}
 }
