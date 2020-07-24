@@ -176,7 +176,7 @@ public class GroupAppt_MinRequiredMemberCheck extends base {
 			System.out.println("came out of the loop");
 
 			Assert.assertTrue(ap.getCalendarToday().getAttribute("class").contains("appointmentAvailable-cell"));
-			// add code to delete a group member after the calendar loads
+			// delete a group member after the calendar loads
 
 			ap.getDeleteMember().get(0).click();
 
@@ -212,7 +212,6 @@ public class GroupAppt_MinRequiredMemberCheck extends base {
 			ap.getPopup1BookButton().click();
 			rw.waitForAcceptButton();
 
-			// wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
 			Assert.assertEquals(ap.getPopup2Title().getText(), "Oops!");
@@ -221,6 +220,7 @@ public class GroupAppt_MinRequiredMemberCheck extends base {
 			ap.getPopup2OKButton().click();
 			Thread.sleep(1000);
 
+			// Add another member again to meet the minimum number of members required
 			ap.getGroupMemberSearchInput().sendKeys("Susan Auto");
 			ap.getGroupMemberSearchButton().click();
 			Thread.sleep(2000);
@@ -237,10 +237,7 @@ public class GroupAppt_MinRequiredMemberCheck extends base {
 			}
 			ap.getSelectTimeMorningButton().click();
 			st2 = ap.getSelectTime1stAvailable();
-//					while (!st2.isEnabled())//while button is NOT(!) enabled
-//					{
-//					Thread.sleep(200);
-//					}
+//					
 			wait1.until(ExpectedConditions.elementToBeClickable(st2));
 			startTime = st2.getText();
 			System.out.println(startTime);
@@ -257,7 +254,6 @@ public class GroupAppt_MinRequiredMemberCheck extends base {
 			ap.getPopup1BookButton().click();
 			rw.waitForAcceptButton();
 
-			// wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 			Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 			ap.getPopup2OKButton().click();
