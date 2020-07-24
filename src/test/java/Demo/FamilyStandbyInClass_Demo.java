@@ -292,7 +292,7 @@ public class FamilyStandbyInClass_Demo extends base {
 			}
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());

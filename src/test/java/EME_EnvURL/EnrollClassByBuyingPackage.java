@@ -229,7 +229,7 @@ public class EnrollClassByBuyingPackage extends base {
 			PM.getPaymentButton().click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -412,7 +412,7 @@ public class EnrollClassByBuyingPackage extends base {
 			}
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
@@ -630,7 +630,7 @@ public class EnrollClassByBuyingPackage extends base {
 			PM.getPaymentButton().click();
 			System.out.println("Element clicked");
 
-			wait.until(ExpectedConditions.visibilityOf(PP.getPopupOKButton()));wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
