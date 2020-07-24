@@ -103,6 +103,8 @@ public class DashboardPO {
 	By myClassesClass1GearButton = By.xpath("//classeswidget//div[@class = 'class-table-container']/div[3]/i[1]");
 	By myClassesUnenrollButton = By.xpath("//button[@title='UNENROLL']");// button on dashboard after clicking the gear
 																			// button
+	By classInfoSections = By.xpath("//classeswidget//div[@class = 'class-table-container']");
+	By myClassesClass1GearButtons = By.xpath("//classeswidget//div[@class = 'class-table-container']/div[3]/i");
 
 	By myCoursesEventsSectionLabel = By.xpath("//div[@class='homeComponent']//courseswidget/div/div[1]");
 //	By myCoursesEventsScheduleButton = By.xpath("//button[contains(text(),'Courses/Events Schedule')]");
@@ -347,6 +349,18 @@ public class DashboardPO {
 
 	public WebElement getmyClassesUnenrollButton() {
 		return driver.findElement(myClassesUnenrollButton);
+	}
+
+	public List<WebElement> getmyClassesUnenrollButtons() {
+		return driver.findElements(myClassesUnenrollButton);
+	}
+
+	public List<WebElement> getClassInfoSections() {
+		return driver.findElements(classInfoSections);
+	}
+
+	public List<WebElement> getMyClassesClass1GearButtons() {
+		return driver.findElements(myClassesClass1GearButtons);
 	}
 
 	// My Courses/Events

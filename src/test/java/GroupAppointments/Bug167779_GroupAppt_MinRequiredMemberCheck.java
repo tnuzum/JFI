@@ -22,7 +22,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class GroupAppt_MinRequiredMemberCheck extends base {
+public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String startTime;;
 	private static int appointmentsCount;
@@ -34,7 +34,7 @@ public class GroupAppt_MinRequiredMemberCheck extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public GroupAppt_MinRequiredMemberCheck() {
+	public Bug167779_GroupAppt_MinRequiredMemberCheck() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 

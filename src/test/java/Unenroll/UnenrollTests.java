@@ -13,7 +13,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import pageObjects.DashboardPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
@@ -34,6 +33,9 @@ public class UnenrollTests extends base {
 	private static String classToEnroll11 = "UNENROLLCLASS11";
 	private static String classToEnroll12 = "UNENROLLCLASS12";
 	private static String classToEnroll13 = "UNENROLLCLASS13";
+	private static String classToEnroll14 = "UNENROLLCLASS14";
+	private static String classToEnroll15 = "UNENROLLCLASS15";
+	private static String classToEnroll16 = "UNENROLLCLASS16";
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Single Class Fee";
 	// private static String paymentOption3 = "Buy Day Pass";
@@ -44,7 +46,7 @@ public class UnenrollTests extends base {
 	private static String YesRefund = "You will be refunded:";
 	private static String NoRefund = "This class is non-refundable.";
 	private static String RefundUnits = "1 Package Visit(s)";
-	private static DashboardPO d;
+
 	private static String testName = null;
 
 	public reusableWaits rw;
@@ -66,8 +68,6 @@ public class UnenrollTests extends base {
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(prop.getProperty("EMELoginPage"));
 
-		d = new DashboardPO(driver);
-
 	}
 
 	@BeforeMethod
@@ -83,13 +83,9 @@ public class UnenrollTests extends base {
 			rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll1, paymentOption2, payMethod1, "Not Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll1);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -146,13 +142,9 @@ public class UnenrollTests extends base {
 //			rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll2, paymentOption1, "", "Not Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll2);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -215,13 +207,9 @@ public class UnenrollTests extends base {
 //			rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll3, "", "", "Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll3);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -286,13 +274,9 @@ public class UnenrollTests extends base {
 //			rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll4, paymentOption2, payMethod2, "Not Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll4);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -360,13 +344,9 @@ public class UnenrollTests extends base {
 			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll5, paymentOption2, payMethod1, "Not Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll5);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -433,13 +413,9 @@ public class UnenrollTests extends base {
 			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll6, paymentOption1, "", "Free With Punch");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll6);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -506,13 +482,9 @@ public class UnenrollTests extends base {
 			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll7, paymentOption2, payMethod2, "Not Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll7);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -580,13 +552,9 @@ public class UnenrollTests extends base {
 			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll8, paymentOption2, payMethod1, "Not Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll8);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -653,13 +621,9 @@ public class UnenrollTests extends base {
 			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll9, paymentOption1, "", "Free With Punch");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll9);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -726,13 +690,9 @@ public class UnenrollTests extends base {
 			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll10, paymentOption2, payMethod2, "Not Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll10);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -799,13 +759,9 @@ public class UnenrollTests extends base {
 			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll11, paymentOption2, payMethod1, "Not Free");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll11);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -869,16 +825,12 @@ public class UnenrollTests extends base {
 	public void Unenroll_Scenario12() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll12, paymentOption1, "", "Free With Punch");
 
-			d.getMyClassesClass1GearButton().click();
+			rm.myClassClickToUnenroll(classToEnroll12);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-			d.getmyClassesUnenrollButton().click();
-			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
@@ -891,6 +843,138 @@ public class UnenrollTests extends base {
 			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText().contains(YesCancelFee));
 
 			Assert.assertTrue(u.getRefundMsg().get(0).getText().contains(RefundUnits));
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 13, description = "Can Unenroll-No Cancellation Fee and No Refund set on the class/course")
+	public void Unenroll_Scenario13() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll13, paymentOption2, "payMethod1", "Not Free");
+
+			rm.myClassClickToUnenroll(classToEnroll13);
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getNoCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getNoRefundMSg().get(0).getText());
+
+			Assert.assertTrue(u.getNoCancelFeeMsg().get(0).getText().contains(NoCancelFee));
+
+			Assert.assertTrue(u.getNoRefundMSg().get(0).getText().contains(NoRefund));
+
+			u.getUnenrollButton().click();
+
+			Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			u.getUnenrollConfirmYesButton().click();
+
+			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
+			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 14, description = "Can Unenroll-With Cancellation Fee and No Refund set on the class/course")
+	public void Unenroll_Scenario14() throws IOException, InterruptedException {
+
+		try {
+			rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll14, paymentOption2, "payMethod1", "Not Free");
+
+			rm.myClassClickToUnenroll(classToEnroll14);
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
+
+			System.out.println(u.getCancelFeeMsg().get(0).getText());
+
+			System.out.println(u.getNoRefundMSg().get(1).getText());
+
+			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText().contains(YesCancelFee));
+
+			Assert.assertTrue(u.getNoRefundMSg().get(1).getText().contains(NoRefund));
 
 			u.getUnenrollButton().click();
 
