@@ -38,6 +38,7 @@ public class AppointmentsPO {
 	By resourceType = By.xpath("(//select[@name='primaryResourceType'])");
 	By monthSelectBackButton = By.xpath("//div[@class='btn-group']/div[1]/i");
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
+	By calendarToday = By.xpath("(//mwl-calendar-month-cell[contains(@class,'today')])");
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
 	By calendarDayAfterTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[2]");
 	By calendarTwodaysAfter = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[3]");
@@ -100,6 +101,7 @@ public class AppointmentsPO {
 	By editApptCanceledOKButton = By.cssSelector("button[class*='confirm']");
 	By cancelFeeSection = By.xpath("//div[contains(@class,'alert-danger')]");
 	By noFeeSection = By.xpath("//div[contains(@class,'alert-success')]");
+	By deleteMember = By.xpath("//button[contains(@class, 'delete-user')]");
 
 	// CONSTRUCTOR
 
@@ -183,6 +185,10 @@ public class AppointmentsPO {
 
 	public WebElement getCalendarTomorrow() {
 		return driver.findElement(calendarTomorrow);
+	}
+
+	public WebElement getCalendarToday() {
+		return driver.findElement(calendarToday);
 	}
 
 	public WebElement getCalendarDayAfterTomorrow() {
@@ -386,6 +392,10 @@ public class AppointmentsPO {
 
 	public WebElement getEditApptCanceledOKButton() {
 		return driver.findElement(editApptCanceledOKButton);
+	}
+
+	public List<WebElement> getDeleteMember() {
+		return driver.findElements(deleteMember);
 	}
 
 }

@@ -1689,7 +1689,7 @@ public class reusableMethods extends base {
 
 		}
 		Thread.sleep(2000);
-		if (classFee.equalsIgnoreCase("Not Free")) {
+		if (!classFee.equalsIgnoreCase("Free")) {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
@@ -1702,32 +1702,37 @@ public class reusableMethods extends base {
 		c.getContinueButton().click();
 
 		Thread.sleep(3000);
+		if (!classFee.equalsIgnoreCase("Free")) {
 
-		if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
+			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
 
-			while (!PM.getOnAccountAndSavedCards().isDisplayed())
+				wait.until(
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
-			{
-				Thread.sleep(1000);
+					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+					for (int i = 0; i < count; i++) {
+						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+								.contains("5454")) {
 
-			}
-			if (payMethod.equalsIgnoreCase("Saved Card")) {
+							JavascriptExecutor jse = (JavascriptExecutor) driver;
+							jse.executeScript("arguments[0].scrollIntoView();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-				int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
-				for (int i = 0; i < count; i++) {
-					if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-							.contains("1111")) {
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-						PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-						break;
+							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+							break;
+						}
 					}
 				}
-			}
-			while (!PM.getPaymentButton().isEnabled()) {
-				Thread.sleep(1000);
-			}
-			PM.getPaymentButton().click();
+				while (!PM.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				PM.getPaymentButton().click();
 
+			}
 		}
 		rw.waitForAcceptButton();
 		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
