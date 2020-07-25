@@ -46,6 +46,7 @@ public class UnenrollTests extends base {
 	private static String YesRefund = "You will be refunded:";
 	private static String NoRefund = "This class is non-refundable.";
 	private static String RefundUnits = "1 Package Visit(s)";
+	private static String cannotCancelMsg = "this class is not eligible for unenrollment.";
 
 	private static String testName = null;
 
@@ -957,7 +958,7 @@ public class UnenrollTests extends base {
 	public void Unenroll_Scenario14() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
 			rm.enrollInClass(classToEnroll14, paymentOption2, "payMethod1", "Not Free");
 
 			rm.myClassClickToUnenroll(classToEnroll14);
@@ -1017,6 +1018,51 @@ public class UnenrollTests extends base {
 		finally {
 			rm.returnToDashboard();
 		}
+	}
+
+	@Test(priority = 15, description = "Can Unenroll-With Cancellation Fee and No Refund set on the class/course")
+	public void Unenroll_Scenario15() throws IOException, InterruptedException {
+
+		try {
+			// rm.activeMemberLogin("unenrollmbr", "Testing1!");
+			rm.enrollInClass(classToEnroll15, paymentOption2, "payMethod1", "Not Free");
+
+			rm.myClassClickToUnenroll(classToEnroll15);
+
+			UnenrollPO u = new UnenrollPO(driver);
+
+			System.out.println(u.getCancelFeeMsg().get(0).getText());
+
+			Assert.assertTrue(u.getCancelFeeMsg().get(0).getText().contains(cannotCancelMsg));
+
+			rm.memberLogout();
+			rm.deleteEnrollInClassInCOG("UnenrollClass15", "Jonas Sports-Plex", "Auto, Unenrollmbr");
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 //	@AfterTest
 
