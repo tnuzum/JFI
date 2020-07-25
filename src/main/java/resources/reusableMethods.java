@@ -972,6 +972,60 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public Object deleteEnrollInClassInCOG(String className, String classSellClub, String memberName1)
+			throws InterruptedException {
+
+		this.loginCOG(classSellClub);
+
+		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
+
+		int count = FrontDeskTile.findElements(By.tagName("a")).size();
+
+		for (int i = 0; i < count; i++) {
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("ClassCheckIn")) {
+				Thread.sleep(1000);
+				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.xpath("//input[@id='txtDate']")).clear();
+		driver.findElement(By.xpath("//input[@id='txtDate']")).sendKeys(tomorrowsDate);
+		driver.findElement(By.xpath("//input[@id='txtDate']")).sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
+
+		int classCount = driver.findElements(By.tagName("tr")).size();
+
+		for (int i = 1; i < classCount; i++) {
+			WebElement ClassRow = driver.findElements(By.tagName("tr")).get(i);
+			List<WebElement> ClassRowSections = ClassRow.findElements(By.tagName("td"));
+			String classNameText = ClassRowSections.get(0).getText();
+			if (classNameText.equals(className)) {
+				driver.findElements(By.xpath("//a[@role = 'button']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		int memberCount = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).size();
+
+		for (int i = 1; i < memberCount; i++) {
+			WebElement MemberRow = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).get(i);
+			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
+			String memberNameText = MemberRowSections.get(2).getText();
+
+			if (memberNameText.contains(memberName1)) {
+				driver.findElements(By.xpath("//a[@data-enrollstatus = 'Enrolled']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		return null;
+	}
+
 	public Object ConfirmAndCancelAppointmentNoFee(String Date, String startTime, String appointmentToBook)
 			throws IOException, InterruptedException {
 		rw.waitForDashboardLoaded();
