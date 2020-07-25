@@ -18,7 +18,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class UnenrollTests extends base {
+public class ClassUnenrollTests extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll1 = "UNENROLLCLASS1";
 	private static String classToEnroll2 = "UNENROLLCLASS2";
@@ -53,7 +53,7 @@ public class UnenrollTests extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public UnenrollTests() {
+	public ClassUnenrollTests() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -1020,7 +1020,7 @@ public class UnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 15, description = "Can Unenroll-With Cancellation Fee and No Refund set on the class/course")
+	@Test(priority = 15, description = "Class/Course Start time in the future but unenrollment time falls inside the cannot cancel window")
 	public void Unenroll_Scenario15() throws IOException, InterruptedException {
 
 		try {
