@@ -224,8 +224,11 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			ap.getGroupMemberSearchInput().sendKeys("Susan Auto");
 			ap.getGroupMemberSearchButton().click();
 			Thread.sleep(2000);
-			ap.getGroupPopupAddButtons().get(0).click();
 
+			ap.getGroupPopupAddButtons().get(0).click();
+			Thread.sleep(2000);
+
+			// Book appointment
 			rm.calendarTomorrowClick();
 
 			st1 = ap.getSelectTimeMorningButton();
