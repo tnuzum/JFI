@@ -138,6 +138,7 @@
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesSelected" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_NonMSS" />
+			<class name="GroupAppointments.Bug167779_GroupAppt_MinRequiredMemberCheck"/>
 									
 							
 			</classes>

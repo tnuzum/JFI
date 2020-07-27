@@ -110,14 +110,26 @@ public class SelectClassesPageLayout extends base {
 
 	}
 
-	@Test(priority = 5)
+	@Test(priority = 5, description = "Bug 167830 - Verification")
 	public void VerifyWeekOfReturnsClassesForTheWeek() throws IOException, InterruptedException {
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		rm.SelectTomorrowDate();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getweekOfButton().click();
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		int n = today.get(Calendar.DAY_OF_WEEK);
+		int dayHeaders = c.getDayHeader().size();
+		Assert.assertEquals(dayHeaders, 7 - n);
+
+		today.add(Calendar.DAY_OF_YEAR, 1);
+		day = df2.format(today.getTime());
+		date = df3.format(today.getTime());
 
 		for (int i = 0; i < c.getDayHeader().size(); i++) {
 
