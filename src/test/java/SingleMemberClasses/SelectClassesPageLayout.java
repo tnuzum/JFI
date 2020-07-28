@@ -124,8 +124,15 @@ public class SelectClassesPageLayout extends base {
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		int n = today.get(Calendar.DAY_OF_WEEK);
+		System.out.println(n);
+		System.out.println(day);
+		System.out.println(date);
 		int dayHeaders = c.getDayHeader().size();
-		Assert.assertEquals(dayHeaders, 7 - n);
+
+		if (n < 7)
+			Assert.assertEquals(dayHeaders, 7 - n);
+		else
+			Assert.assertEquals(dayHeaders, n);
 
 		today.add(Calendar.DAY_OF_YEAR, 1);
 		day = df2.format(today.getTime());
