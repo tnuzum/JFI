@@ -35,7 +35,9 @@ public class loginPageTest_FF extends base {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setBrowserName("firefox");
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\geckodriver.exe");
+		// dc.setCapability(FirefoxDriver.BINARY, "C:\\Program Files\\Mozilla
+		// Firefox\\firefox.exe");
+		System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
