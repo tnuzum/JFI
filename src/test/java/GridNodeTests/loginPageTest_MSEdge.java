@@ -21,7 +21,7 @@ import org.testng.annotations.Test;
 import pageObjects.LoginPO;
 import resources.base;
 
-public class loginPageTest_FF extends base {
+public class loginPageTest_MSEdge extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String wrongCredentialsMsg = "WE APOLOGIZE... It seems the credentials you entered are different than what is in our system. Please try again, and if the problem persists, contact your club for additional help.";
 	private static String invalid_username = "tpowers";
@@ -33,9 +33,9 @@ public class loginPageTest_FF extends base {
 
 		log.info("Firefox Browser: Running Tests on Selenium Grid");
 		DesiredCapabilities dc = new DesiredCapabilities();
-		dc.setBrowserName("firefox");
+		dc.setBrowserName("MicrosoftEdge");
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\geckodriver.exe");
+		System.setProperty("webdriver.edge.driver", "C:\\Automation\\msedgedriver.exe");
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);

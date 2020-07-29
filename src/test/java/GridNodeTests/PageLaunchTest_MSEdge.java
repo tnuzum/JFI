@@ -36,7 +36,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class PageLaunchTest_FF extends base {
+public class PageLaunchTest_MSEdge extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String EMELoginPage = "https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236";
 
@@ -44,7 +44,7 @@ public class PageLaunchTest_FF extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public PageLaunchTest_FF() {
+	public PageLaunchTest_MSEdge() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -55,9 +55,9 @@ public class PageLaunchTest_FF extends base {
 	public void initialize() throws IOException, InterruptedException {
 		log.info("Firefox Browser: Running Tests on Selenium Grid");
 		DesiredCapabilities dc = new DesiredCapabilities();
-		dc.setBrowserName("firefox");
+		dc.setBrowserName("MicrosoftEdge");
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.gecko.driver", "C:\\\\Automation\\\\libs\\\\webdrivers\\\\geckodriver.exe");
+		System.setProperty("webdriver.edge.driver", "C:\\\\Automation\\msedgedriver.exe");
 
 		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 
