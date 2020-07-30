@@ -1,12 +1,12 @@
-test_environment = grid
+test_environment = local
 browser2 = Chrome
 browser1 = Firefox
 browser = Edge
-EMELoginPage1 = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
-COGLoginPage1 = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
+EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
+COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
 
-EMELoginPage =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
-COGLoginPage = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
+EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
+COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
 
 	**************************************************************************************
 	Web addresses for URL parameter
