@@ -7,10 +7,11 @@
 	</listeners>
   <test thread-count="5" name="Grid Node Test">
     <classes>
+       <class name="GridNodeTests.loginPageTest_FF"/>
       <class name="GridNodeTests.PageLaunchTest_FF"/>
-      <class name="GridNodeTests.loginPageTest_FF"/>
-      <!--class name="GridNodeTests.PageLaunchTest_MSEdge"/>
-      <class name="GridNodeTests.loginPageTest_MSEdge"/-->
+      <class name="GridNodeTests.loginPageTest_MSEdge"/>
+      <class name="GridNodeTests.PageLaunchTest_MSEdge"/>
+       <class name="GridNodeTests.loginPageTest_Chrome"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
