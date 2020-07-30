@@ -29,11 +29,8 @@
 			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberCourses.CourseDetailsPopupUIValidation" />
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
-			
-			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
-					
-			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
-			
+				
+						
 		</classes>
 		</test>
 	<test name="EME - Shop Packages, Classes and Courses" parallel = "none" preserve-order="true" group-by-instances="true">
@@ -176,6 +173,7 @@
 			
 			<classes>
 			
+			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
 			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
 			<class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
@@ -183,6 +181,7 @@
 			<class name="FamilyMemberClasses.FamilyStandbyInClassTest" />
 			
 			
+			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
 			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
 			<class name="FamilyMemberCourses.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment" />

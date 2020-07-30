@@ -53,7 +53,7 @@ public class PageLaunchTest_MSEdge extends base {
 //	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
-		log.info("Firefox Browser: Running Tests on Selenium Grid");
+		log.info("Edge Browser: Running Tests on Selenium Grid");
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setBrowserName("MicrosoftEdge");
 		dc.setPlatform(Platform.WINDOWS);
