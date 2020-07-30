@@ -35,7 +35,7 @@ public class loginPageTest_MSEdge extends base {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setBrowserName("MicrosoftEdge");
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.edge.driver", "C:\\Automation\\msedgedriver.exe");
+		System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
