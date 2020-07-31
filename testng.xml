@@ -24,7 +24,7 @@
 			
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberClasses.ClassDetailsPopupUIValidation" />
-			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
+			<!--class name="SingleMemberClasses.EnrollClass_ClubSettings" /-->
 			
 			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberCourses.CourseDetailsPopupUIValidation" />
