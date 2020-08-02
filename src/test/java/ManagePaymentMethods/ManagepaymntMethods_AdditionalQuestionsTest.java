@@ -47,7 +47,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 		rm.activeMemberLogin("paymember", "Testing1!"); // Login to EME
 		rw.waitForDashboardLoaded();
 

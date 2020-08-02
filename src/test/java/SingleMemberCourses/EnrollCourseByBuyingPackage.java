@@ -69,7 +69,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 
 		d = new DashboardPO(driver);
 		BT = new BreadcrumbTrailPO(driver);

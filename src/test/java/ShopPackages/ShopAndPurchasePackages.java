@@ -64,7 +64,7 @@ public class ShopAndPurchasePackages extends base {
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 		d = new DashboardPO(driver);
 		sp = new ShopPackagesPO(driver);
 		PM = new PaymentMethodsPO(driver);

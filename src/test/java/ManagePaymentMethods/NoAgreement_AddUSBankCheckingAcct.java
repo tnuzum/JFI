@@ -53,7 +53,7 @@ public class NoAgreement_AddUSBankCheckingAcct extends base {
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 //		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 

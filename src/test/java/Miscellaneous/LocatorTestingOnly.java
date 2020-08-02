@@ -36,7 +36,7 @@ public class LocatorTestingOnly extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 
 	}
 

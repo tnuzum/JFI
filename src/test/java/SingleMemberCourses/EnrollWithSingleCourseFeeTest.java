@@ -61,7 +61,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 		d = new DashboardPO(driver);
 		BT = new BreadcrumbTrailPO(driver);
 		c = new ClassSignUpPO(driver);

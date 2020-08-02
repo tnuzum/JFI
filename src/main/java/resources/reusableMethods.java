@@ -662,7 +662,8 @@ public class reusableMethods extends base {
 
 	public Object loginCOG(String clubName) throws InterruptedException {
 
-		driver.get(prop.getProperty("COGLoginPage"));
+		// driver.get(prop.getProperty("COGLoginPage"));
+		getCOGURL();
 
 		driver.findElement(By.id("UserName")).sendKeys("bhagya");
 		driver.findElement(By.id("Password")).sendKeys("111");
@@ -734,7 +735,8 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
-		driver.get(prop.getProperty("EMELoginPage"));
+		// driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 		this.activeMemberLogin(username, "Testing1!");
 		return null;
 	}
@@ -828,7 +830,8 @@ public class reusableMethods extends base {
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'success')]")).isDisplayed());
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
-		driver.get(prop.getProperty("EMELoginPage"));
+		// driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 
 		return null;
 

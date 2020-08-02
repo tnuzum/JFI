@@ -58,7 +58,7 @@ public class SelectCoursesPageLayout extends base {
 		d = new DashboardPO(driver);
 		c = new ClassSignUpPO(driver);
 
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		rw.waitForDashboardLoaded();
 

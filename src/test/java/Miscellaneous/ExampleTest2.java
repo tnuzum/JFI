@@ -23,7 +23,7 @@ public class ExampleTest2 extends base {
 	public void initialize() throws IOException, InterruptedException {
 
 		driver = initializeDriver();
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 	}
 
 	@Test(priority = 1)
@@ -63,7 +63,7 @@ public class ExampleTest2 extends base {
 //		driver.navigate().to("https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101");
 
 //		driver = initializeDriver();
-//		driver.get(prop.getProperty("EMELoginPage"));
+//		getEMEURL();
 
 //		** Login Member ** 
 		driver.findElement(By.id("Username")).sendKeys("rauto");

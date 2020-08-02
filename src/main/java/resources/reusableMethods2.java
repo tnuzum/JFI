@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -26,6 +27,7 @@ import pageObjects.DashboardPO;
 import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
 import pageObjects.PackagesPO;
+import pageObjects.PaymentMethodsPO;
 import pageObjects.PaymentPO;
 import pageObjects.PurchaseConfirmationPO;
 import pageObjects.ThankYouPO;
@@ -658,23 +660,31 @@ public class reusableMethods2 extends base {
 		return null;
 	}
 
-	public Object ApptCheckinInCOG(String memberName, String appointmentName, String username)
-			throws InterruptedException {
+	public Object loginCOG(String clubName) throws InterruptedException {
 
-		driver.get(prop.getProperty("COGLoginPage"));
+		// driver.get(prop.getProperty("COGLoginPage"));
+		getCOGURL();
 
 		driver.findElement(By.id("UserName")).sendKeys("bhagya");
 		driver.findElement(By.id("Password")).sendKeys("111");
 		driver.findElement(By.id("submit")).click();
 		Thread.sleep(1000);
 		Select s = new Select(driver.findElement(By.id("ddl_clubSelection")));
-		s.selectByVisibleText("Studio Jonas");
+		s.selectByVisibleText(clubName);
 		driver.findElement(By.id("submit")).click();
 		Thread.sleep(3000);
+
+		return null;
+	}
+
+	public Object ApptCheckinInCOG(String memberName, String appointmentName, String username, String unitValue)
+			throws InterruptedException {
+
+		this.loginCOG("Studio Jonas");
 		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
 		int count = FrontDeskTile.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count; i++) {
-			System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
 			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("CheckIn")) {
 				Thread.sleep(1000);
 				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
@@ -716,14 +726,306 @@ public class reusableMethods2 extends base {
 				System.out.println("appointment name present");
 				CheckInOptions.get(j).findElement(By.className("checkbox")).click();
 				System.out.println("clicked");
+				Select s = new Select(CheckInOptions.get(j).findElement(By.id("ddlVisits")));
+				s.selectByValue(unitValue);
 				break;
 			}
 
 		}
+
 		driver.findElement(By.xpath("//i[@class='fa fa-thumbs-up mrs']")).click();
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
-		driver.get(prop.getProperty("EMELoginPage"));
+		// driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 		this.activeMemberLogin(username, "Testing1!");
+		return null;
+	}
+
+	public Object deleteFOPInCOG(String barcodeId, String clubName, String fopNumber, String agreementLinked,
+			String agreement) throws InterruptedException {
+
+		this.loginCOG(clubName);
+		WebElement BackOfficeTile = driver.findElement(By.xpath("(//div[@class='tile'])[2]"));
+		int count = BackOfficeTile.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count; i++) {
+			// System.out.println(BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("MemberManagement")) {
+				Thread.sleep(1000);
+				BackOfficeTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.id("txt_barcodeId")).sendKeys(barcodeId);
+
+		driver.findElement(By.id("btn_search")).click();
+		driver.findElement(By.xpath("//i[@class='fa fa-cogs fa-2x']")).click();
+		Thread.sleep(2000);
+		if (agreementLinked.equals("Yes")) {
+			int agrmntCount = driver
+					.findElements(By.xpath("//section[@class='featureWhite']//table[@id='tbl_search'] //tr ")).size();
+			System.out.println(agrmntCount);
+			for (int i = 1; i < agrmntCount; i++) {
+				WebElement AgrmntRow = driver
+						.findElements(By.xpath("//section[@class='featureWhite']//table[@id='tbl_search'] //tr "))
+						.get(i);
+				List<WebElement> AgrmntRowSections = AgrmntRow.findElements(By.tagName("td"));
+				System.out.println(AgrmntRowSections.get(1).getText());
+				if (AgrmntRowSections.get(1).getText().equals(agreement)) {
+					System.out.println(driver.findElements(By.xpath("//span[@class = 'hide-span']")).size());
+
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+					jse.executeScript("arguments[0].scrollIntoView();",
+							driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1));
+
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1));
+
+					// driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i -
+					// 1).click();
+
+					int fopCount = driver.findElements(By.xpath("//table[@class='table table-striped'] //tr")).size();
+					System.out.println(fopCount);
+					for (int j = 1; j < fopCount; j++) {
+						WebElement FOPRow = driver.findElements(By.xpath("//table[@class='table table-striped'] //tr"))
+								.get(j);
+						List<WebElement> FOPRowSections = FOPRow.findElements(By.tagName("td"));
+						if (FOPRowSections.get(1).getText().equals("Master Card")
+								&& FOPRowSections.get(2).getText().equals("5454")) {
+							driver.findElements(By.id("btn_Activate")).get(j - 1).click();
+
+							break;
+						}
+					}
+
+					Thread.sleep(1000);
+					driver.findElement(By.xpath("//a[@class='btn btn-lg btn-primary btn']")).click();
+					Thread.sleep(1000);
+					driver.findElement(By.xpath(
+							"//a[@class='btn btn-lg btn-primary hidden-print'][contains(text(),'SAVE PLAN CHANGES')]"))
+							.click();
+					driver.findElement(By.xpath("//button[@id='btnsaveCanges']")).click();
+					Thread.sleep(1000);
+					break;
+				}
+			}
+		}
+
+		int fopCount = driver.findElements(By.xpath("//section[@id='divPaymentSection'] //tr")).size();
+		System.out.println(fopCount);
+		for (int i = 3; i < fopCount; i++) {
+			WebElement FOPRow = driver.findElements(By.xpath("//section[@id='divPaymentSection'] //tr")).get(i);
+			List<WebElement> FOPRowSections = FOPRow.findElements(By.tagName("td"));
+			if ((FOPRowSections.get(1).getText().equals("Visa") || FOPRowSections.get(1).getText().equals("Saving")
+					|| FOPRowSections.get(1).getText().equals("Checking"))
+					&& FOPRowSections.get(2).getText().equals(fopNumber)) {
+				driver.findElements(By.xpath("//i[@class = 'fa fa-2x fa-times']")).get(i - 3).click();
+				Thread.sleep(1000);
+				driver.findElement(By.xpath("//a[@id='btn_ConfirmDel']")).click();
+				break;
+			}
+		}
+		Thread.sleep(1000);
+		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'success')]")).isDisplayed());
+		Thread.sleep(1000);
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		// driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
+
+		return null;
+
+	}
+
+	public Object deleteStandbyCourseInCOG(String className, String classSellClub, String memberName1,
+			String memberName2) throws InterruptedException {
+
+		this.loginCOG(classSellClub);
+
+		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
+
+		int count = FrontDeskTile.findElements(By.tagName("a")).size();
+
+		for (int i = 0; i < count; i++) {
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("ClassCheckIn")) {
+				Thread.sleep(1000);
+				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
+		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
+		monthDropdown.selectByVisibleText("Dec");
+		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
+		int dateCount = Dates.size();
+		for (int j = 0; j < dateCount; j++) {
+			if (Dates.get(j).getText().contains("21")) {
+				Dates.get(j).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		int classCount = driver.findElements(By.tagName("tr")).size();
+
+		for (int i = 1; i < classCount; i++) {
+			WebElement ClassRow = driver.findElements(By.tagName("tr")).get(i);
+			List<WebElement> ClassRowSections = ClassRow.findElements(By.tagName("td"));
+			String classNameText = ClassRowSections.get(0).getText();
+			if (classNameText.equals(className)) {
+				driver.findElements(By.xpath("//a[@role = 'button']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		int memberCount = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).size();
+
+		for (int i = 1; i < memberCount; i++) {
+			WebElement MemberRow = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).get(i);
+			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
+			String memberNameText = MemberRowSections.get(2).getText();
+
+			if (memberNameText.contains(memberName1)) {
+				driver.findElements(By.xpath("//a[@data-enrollstatus = 'StandBy']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		for (int i = 1; i < memberCount; i++) {
+			WebElement MemberRow = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).get(i);
+			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
+			String memberNameText = MemberRowSections.get(2).getText();
+
+			if (memberNameText.contains(memberName2)) {
+				driver.findElements(By.xpath("//a[@data-enrollstatus = 'StandBy']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		return null;
+	}
+
+	public Object deleteStandbyClassInCOG(String className, String classSellClub, String memberName1,
+			String memberName2) throws InterruptedException {
+
+		this.loginCOG(classSellClub);
+
+		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
+
+		int count = FrontDeskTile.findElements(By.tagName("a")).size();
+
+		for (int i = 0; i < count; i++) {
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("ClassCheckIn")) {
+				Thread.sleep(1000);
+				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.xpath("//input[@id='txtDate']")).clear();
+		driver.findElement(By.xpath("//input[@id='txtDate']")).sendKeys(tomorrowsDate);
+		driver.findElement(By.xpath("//input[@id='txtDate']")).sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
+
+		int classCount = driver.findElements(By.tagName("tr")).size();
+
+		for (int i = 1; i < classCount; i++) {
+			WebElement ClassRow = driver.findElements(By.tagName("tr")).get(i);
+			List<WebElement> ClassRowSections = ClassRow.findElements(By.tagName("td"));
+			String classNameText = ClassRowSections.get(0).getText();
+			if (classNameText.equals(className)) {
+				driver.findElements(By.xpath("//a[@role = 'button']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		int memberCount = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).size();
+
+		for (int i = 1; i < memberCount; i++) {
+			WebElement MemberRow = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).get(i);
+			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
+			String memberNameText = MemberRowSections.get(2).getText();
+
+			if (memberNameText.contains(memberName1)) {
+				driver.findElements(By.xpath("//a[@data-enrollstatus = 'StandBy']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		for (int i = 1; i < memberCount; i++) {
+			WebElement MemberRow = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).get(i);
+			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
+			String memberNameText = MemberRowSections.get(2).getText();
+
+			if (memberNameText.contains(memberName2)) {
+				driver.findElements(By.xpath("//a[@data-enrollstatus = 'StandBy']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		return null;
+	}
+
+	public Object deleteEnrollInClassInCOG(String className, String classSellClub, String memberName1)
+			throws InterruptedException {
+
+		this.loginCOG(classSellClub);
+
+		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
+
+		int count = FrontDeskTile.findElements(By.tagName("a")).size();
+
+		for (int i = 0; i < count; i++) {
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("ClassCheckIn")) {
+				Thread.sleep(1000);
+				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.xpath("//input[@id='txtDate']")).clear();
+		driver.findElement(By.xpath("//input[@id='txtDate']")).sendKeys(tomorrowsDate);
+		driver.findElement(By.xpath("//input[@id='txtDate']")).sendKeys(Keys.ENTER);
+		Thread.sleep(2000);
+
+		int classCount = driver.findElements(By.tagName("tr")).size();
+
+		for (int i = 1; i < classCount; i++) {
+			WebElement ClassRow = driver.findElements(By.tagName("tr")).get(i);
+			List<WebElement> ClassRowSections = ClassRow.findElements(By.tagName("td"));
+			String classNameText = ClassRowSections.get(0).getText();
+			if (classNameText.equals(className)) {
+				driver.findElements(By.xpath("//a[@role = 'button']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		int memberCount = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).size();
+
+		for (int i = 1; i < memberCount; i++) {
+			WebElement MemberRow = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).get(i);
+			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
+			String memberNameText = MemberRowSections.get(2).getText();
+
+			if (memberNameText.contains(memberName1)) {
+				driver.findElements(By.xpath("//a[@data-enrollstatus = 'Enrolled']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
 		return null;
 	}
 
@@ -925,27 +1227,7 @@ public class reusableMethods2 extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting");
-				Thread.sleep(1000);
-			}
-			System.out.println("came out of the loop");
-		}
-
-		Actions a = new Actions(driver);
-		a.click(ap.getCalendarTomorrow()).build().perform();
-		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-		// ap.getCalendarTomorrow().click();
-		Thread.sleep(3000);
-		rw.waitForSelectATimeToOpen();
-
-		OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+		this.calendarTomorrowClick();
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
@@ -1031,7 +1313,7 @@ public class reusableMethods2 extends base {
 	}
 
 	public String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
-			String resourceName1, String resourceName2) throws IOException, InterruptedException {
+			String resourceName1, String resourceName2, String groupMember) throws IOException, InterruptedException {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
@@ -1110,7 +1392,7 @@ public class reusableMethods2 extends base {
 		{
 			String text = ap.getGroupPopupMembers().get(i).getText();
 			System.out.println(text);
-			if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy")) {
+			if (ap.getGroupPopupMembers().get(i).getText().contains(groupMember)) {
 				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
 				ap.getGroupPopupAddButtons().get(i).click();
 				break;
@@ -1142,28 +1424,7 @@ public class reusableMethods2 extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
-
-		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting");
-				Thread.sleep(1000);
-			}
-			System.out.println("came out of the loop");
-		}
-
-		Actions a = new Actions(driver);
-		a.click(ap.getCalendarTomorrow()).build().perform();
-		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
-		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
-		// ap.getCalendarTomorrow().click();
-		Thread.sleep(3000);
-
-		rw.waitForSelectATimeToOpen();
-
-		OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+		this.calendarTomorrowClick();
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
@@ -1273,10 +1534,304 @@ public class reusableMethods2 extends base {
 		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
 
 		while (selectATimeOpen.equals("false")) {
-			Element.click();
+			Element.findElement(By.tagName("span")).click();
 			log.error("calendar date was clicked again");
 			System.out.println("calendar date was clicked again");
 			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+		}
+		return null;
+
+	}
+
+	public Object verifyLowestNumberOfUnitsIsSelectedByDefault(String unitsToBeSelected) {
+		Select s4 = new Select(
+				driver.findElement(By.xpath("//select[contains(@class, 'at-appointments-checkout-dropdown')]")));
+		String defaultSelection = s4.getFirstSelectedOption().getText().trim();
+
+		Assert.assertEquals(defaultSelection, unitsToBeSelected);
+		return null;
+	}
+
+	public Object verifyCurrentDateIsSelectedByDefault(List<WebElement> element) throws InterruptedException {
+
+		SimpleDateFormat df1 = new SimpleDateFormat("d");
+		Calendar today = Calendar.getInstance();
+		String todaysMDate = df1.format(today.getTime());
+
+		Thread.sleep(1000);
+		int dayCount = element.size();
+
+		for (int i = 0; i < dayCount; i++) {
+
+			if (element.get(i).getText().equals(todaysMDate)) {
+				Assert.assertTrue(element.get(i).getAttribute("class").contains("active"));
+				element.get(i).click();
+				break;
+			}
+		}
+		Thread.sleep(1000);
+		return null;
+	}
+
+	public Object verifyFirstDateOfPreviousMonthIsSelectedByDefault(List<WebElement> element)
+			throws InterruptedException {
+
+		SimpleDateFormat df1 = new SimpleDateFormat("d");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, -1);
+		cal.set(Calendar.DATE, 1);
+		Date firstDateOfPreviousMonth = cal.getTime();
+		String date = df1.format(firstDateOfPreviousMonth);
+
+		Assert.assertTrue(element.get(0).getAttribute("class").contains("selected"));
+
+		element.get(0).click();
+
+		int dayCount = element.size();
+
+		for (int i = 0; i < dayCount; i++) {
+
+			if (element.get(i).getAttribute("class").contains("selected")) {
+
+				Assert.assertTrue(i == 0);
+				element.get(i).click();
+				break;
+			}
+		}
+
+		return null;
+	}
+
+	public String OpenNewcardFormIfNotOpenInFirstAttempt() {
+
+		PaymentPO p = new PaymentPO(driver);
+
+		String ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
+
+		while (ariaExpanded.equals("false")) {
+			p.getSelectPaymentNewCardButton().click();
+			log.error("NewCard Button was clicked again");
+			System.out.println("NewCard Button was clicked again");
+			ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
+		}
+		return null;
+
+	}
+
+	public Object calendarTomorrowClick() throws InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
+		}
+
+		// Actions a = new Actions(driver);
+		// a.click(ap.getCalendarTomorrow()).build().perform();
+		ap.getCalendarTomorrow().findElement(By.tagName("span")).click();
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+
+		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
+		return null;
+
+	}
+
+	public Object calendarDayAfterTomorrowClick() throws InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
+		}
+
+		// Actions a = new Actions(driver);
+		// a.click(ap.getCalendarTomorrow()).build().perform();
+		ap.getCalendarDayAfterTomorrow().click();
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+
+		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarDayAfterTomorrow());
+
+		return null;
+
+	}
+
+	public Object calendarTwoDaysDayAfterClick() throws InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+
+		String classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
+		}
+
+		// Actions a = new Actions(driver);
+		// a.click(ap.getCalendarTomorrow()).build().perform();
+		ap.getCalendarTwodaysAfter().click();
+		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
+		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
+
+		Thread.sleep(1000);
+
+		rw.waitForSelectATimeToOpen();
+
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTwodaysAfter());
+
+		return null;
+
+	}
+
+	public Object enrollInClass(String classToEnroll, String paymentOption, String payMethod, String classFee)
+			throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+
+		d.getMyClassesScheduleButton().click();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		this.SelectTomorrowDate();
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		this.SelectClassOrCourseToEnroll(classToEnroll);
+
+		Thread.sleep(2000);
+		if (c.getPopupSignUpButton().isEnabled()) {
+			c.getPopupSignUpButton().click();
+
+		} else {
+			c.getPopupCancelButton().click();
+			Assert.fail("SignUp button not available");
+
+		}
+		Thread.sleep(2000);
+		if (!classFee.equalsIgnoreCase("Free")) {
+			int radioButtonCount = driver.findElements(By.tagName("label")).size();
+			for (int i = 0; i < radioButtonCount; i++) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
+					driver.findElements(By.tagName("label")).get(i).click();
+					break;
+				}
+			}
+		}
+
+		c.getContinueButton().click();
+
+		Thread.sleep(3000);
+		if (!classFee.equalsIgnoreCase("Free")) {
+
+			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
+
+				wait.until(
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+				if (payMethod.equalsIgnoreCase("Saved Card")) {
+
+					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+					for (int i = 0; i < count; i++) {
+						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+								.contains("5454")) {
+
+							JavascriptExecutor jse = (JavascriptExecutor) driver;
+							jse.executeScript("arguments[0].scrollIntoView();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+							break;
+						}
+					}
+				}
+				while (!PM.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				PM.getPaymentButton().click();
+
+			}
+		}
+		rw.waitForAcceptButton();
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+		// Verifies the success message
+		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+		PP.getPopupOKButton().click();
+		Thread.sleep(1000);
+
+		int count1 = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count1; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+			{
+				// rw.linksToBeClickable();
+				driver.findElements(By.tagName("a")).get(i).click();
+				break;
+			}
+
+		}
+		rw.waitForDashboardLoaded();
+
+		return null;
+	}
+
+	public Object myClassClickToUnenroll(String classEnrolled) throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		int count = d.getClassInfoSections().size();
+		for (int i = 0; i < count; i++) {
+
+			if (d.getClassInfoSections().get(i).getText().contains(classEnrolled)) {
+
+				d.getMyClassesClass1GearButtons().get(i).click();
+				WebDriverWait wait = new WebDriverWait(driver, 30);
+				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
+				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
+				d.getmyClassesUnenrollButtons().get(i).click();
+				Thread.sleep(1000);
+				break;
+
+			}
+
 		}
 		return null;
 

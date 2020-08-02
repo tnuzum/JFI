@@ -72,7 +72,7 @@ public class FamilyStandbyInClassTest extends base {
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 	}
 
 	@BeforeMethod
