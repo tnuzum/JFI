@@ -40,7 +40,7 @@ public class ClassDetailsPopupUIValidation extends base {
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 
 		d = new DashboardPO(driver);
 		c = new ClassSignUpPO(driver);

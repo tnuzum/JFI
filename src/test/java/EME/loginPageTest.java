@@ -38,7 +38,8 @@ public class loginPageTest extends base {
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+
+		getEMEURL();
 	}
 
 	@Test(priority = 1)
@@ -104,6 +105,7 @@ public class loginPageTest extends base {
 	}
 
 //	@AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();

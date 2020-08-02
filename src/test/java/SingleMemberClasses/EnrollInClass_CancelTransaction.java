@@ -41,7 +41,7 @@ public class EnrollInClass_CancelTransaction extends base {
 		rm.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 	}
 
 	@Test(priority = 1, description = "Cancelling from the Rate Select Rates page")

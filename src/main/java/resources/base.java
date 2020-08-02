@@ -39,6 +39,8 @@ public class base {
 	public static String dayAfter = null;
 	public static String TwodaysAfter = null;
 	public static String ssTime = null;
+	public static String COGLoginPage = null;
+	public static String EMELoginPage = null;
 
 	String projectPath = System.getenv("EME_HOME");
 
@@ -132,6 +134,7 @@ public class base {
 				}
 			}
 		}
+
 		DateFormat dateFormat1 = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar today1 = Calendar.getInstance();
 		today1.add(Calendar.DAY_OF_YEAR, 1);
@@ -163,6 +166,24 @@ public class base {
 		// driver.manage().window().setSize(dimension);
 
 		return driver;
+	}
+
+	public void getEMEURL() {
+
+		// String EMELoginPage = prop.getProperty("EMELoginPage");
+		String EMELoginPage = System.getProperty("EMELoginPage");
+		System.out.println(EMELoginPage);
+
+		driver.get(EMELoginPage);
+	}
+
+	public void getCOGURL() {
+
+		// String COGLoginPage = prop.getProperty("COGLoginPage");
+		String COGLoginPage = System.getProperty("COGLoginPage");
+		System.out.println(COGLoginPage);
+
+		driver.get(COGLoginPage);
 	}
 
 	public String getScreenshot(String result, WebDriver driver) throws IOException {

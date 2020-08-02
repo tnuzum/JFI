@@ -32,7 +32,7 @@ public class ValidateMember extends base {
 	public void initialize() throws IOException {
 		driver = initializeDriver();
 		rm.setDriver(driver);
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 	}
 
 	@Test(priority = 1, description = "...")

@@ -54,7 +54,7 @@ public class SelectMemberDropdownValidations extends base {
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 
 		ap = new AppointmentsPO(driver);
 	}

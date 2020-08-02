@@ -39,7 +39,7 @@ public class EnrollCourse_ClubSettings extends base {
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 	}
 
 	@Test(priority = 1, description = "View Courses / Events Unchecked For Club won't display the Courses / Events Schedule button")

@@ -20,7 +20,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 		public void initialize() throws IOException
 		{
 			 driver = initializeDriver();
-			 driver.get(prop.getProperty("EMELoginPage"));
+			 getEMEURL();
 		}
 		
 	@Test (priority = 1, description="...")

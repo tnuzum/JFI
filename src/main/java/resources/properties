@@ -1,7 +1,7 @@
 test_environment = local
-browser2 = Chrome
+browser = Chrome
 browser1 = Firefox
-browser = Edge
+browser2 = Edge
 EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
 COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
 

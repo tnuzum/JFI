@@ -56,7 +56,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 
 		rm.activeMemberLogin("aqmember", "Testing1!"); // Login to EME
 		rw.waitForDashboardLoaded();

@@ -58,7 +58,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_ToSingleMbrAppt extends bas
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 	}
 
 	@Test(priority = 1)

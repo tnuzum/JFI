@@ -52,7 +52,7 @@ public class MemberWithNoCheckInHistoryTest extends base {
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 		rm.activeMemberLogin("hoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 	}

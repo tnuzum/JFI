@@ -52,7 +52,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
 	}
 
 	@Test(priority = 1)
