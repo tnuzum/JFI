@@ -56,8 +56,11 @@ public class base {
 				System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
 
 		prop.load(fis);
-		String browserName = prop.getProperty("browser");
-		String testEnvironment = prop.getProperty("test_environment");
+		// String browserName = prop.getProperty("browser");
+		String browserName = System.getProperty("browser");
+
+		// String testEnvironment = prop.getProperty("test_environment");
+		String testEnvironment = System.getProperty("test_environment");
 
 		if (testEnvironment.equals("grid")) {
 			if (browserName.equals("Chrome")) {
