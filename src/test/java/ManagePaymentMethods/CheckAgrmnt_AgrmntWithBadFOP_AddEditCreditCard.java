@@ -17,7 +17,6 @@ import org.testng.annotations.Test;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.ManagePayMethodsPO;
-import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -32,7 +31,6 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 	public reusableMethods rm;
 
 	public static DashboardPO d;
-	public static PaymentPO p;
 	public static ManagePayMethodsPO mp;
 	public static BreadcrumbTrailPO bt;
 
@@ -52,7 +50,6 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 		rw.setDriver(driver);
 
 		d = new DashboardPO(driver);
-		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
 
@@ -119,7 +116,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
@@ -195,7 +192,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
 
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].scrollIntoView();", p.getAgreementCheckBox().get(i));
+					jse.executeScript("arguments[0].scrollIntoView();", mp.getAgreementCheckBox().get(i));
 					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
 //					getScreenshot(testName + "agreementclicked", driver);
 					break;
@@ -216,7 +213,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);

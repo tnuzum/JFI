@@ -761,6 +761,7 @@ public class reusableMethods extends base {
 		driver.findElement(By.id("btn_search")).click();
 		driver.findElement(By.xpath("//i[@class='fa fa-cogs fa-2x']")).click();
 		Thread.sleep(2000);
+
 		if (agreementLinked.equals("Yes")) {
 			int agrmntCount = driver
 					.findElements(By.xpath("//section[@class='featureWhite']//table[@id='tbl_search'] //tr ")).size();

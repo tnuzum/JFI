@@ -16,7 +16,6 @@ import org.testng.annotations.Test;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.ManagePayMethodsPO;
-import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -30,7 +29,6 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
-	public static PaymentPO p;
 	public static ManagePayMethodsPO mp;
 	public static BreadcrumbTrailPO bt;
 
@@ -48,7 +46,6 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 		rw.setDriver(driver);
 
 		d = new DashboardPO(driver);
-		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
 
@@ -112,7 +109,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
@@ -210,7 +207,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
