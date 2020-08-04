@@ -187,6 +187,8 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 
 			rm.calendarTomorrowClick();
 
+			getScreenshot(this.getClass().getSimpleName() + "_CalendarClicked", driver);
+
 			Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 
 			WebElement st1 = ap.getSelectTimeMorningButton();
@@ -213,6 +215,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			Thread.sleep(2000);
 			log.info("St2 Clicked for " + this.getClass().getSimpleName());
 			System.out.println("St2 Clicked for " + this.getClass().getSimpleName());
+
+			System.out.println(startTime);
+			log.info(startTime);
 
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
 			Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
