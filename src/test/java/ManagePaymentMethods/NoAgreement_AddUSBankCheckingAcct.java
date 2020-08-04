@@ -16,7 +16,6 @@ import org.testng.annotations.Test;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.ManagePayMethodsPO;
-import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -29,7 +28,7 @@ public class NoAgreement_AddUSBankCheckingAcct extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
-	public static PaymentPO p;
+	// public static PaymentPO p;
 	public static ManagePayMethodsPO mp;
 	public static BreadcrumbTrailPO bt;
 
@@ -47,7 +46,6 @@ public class NoAgreement_AddUSBankCheckingAcct extends base {
 		rw.setDriver(driver);
 
 		d = new DashboardPO(driver);
-		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
 
@@ -103,7 +101,7 @@ public class NoAgreement_AddUSBankCheckingAcct extends base {
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);

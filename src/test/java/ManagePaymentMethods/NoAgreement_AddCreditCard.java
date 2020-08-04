@@ -16,7 +16,6 @@ import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
 import pageObjects.ManagePayMethodsPO;
-import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -57,7 +56,6 @@ public class NoAgreement_AddCreditCard extends base {
 	public void AddNewCard_NoAgreement() throws InterruptedException, IOException {
 
 		DashboardPO d = new DashboardPO(driver);
-		PaymentPO p = new PaymentPO(driver);
 		ManagePayMethodsPO mp = new ManagePayMethodsPO(driver);
 		try {
 			rm.activeMemberLogin("paymember", "Testing1!");
@@ -94,7 +92,7 @@ public class NoAgreement_AddCreditCard extends base {
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);

@@ -17,7 +17,6 @@ import org.testng.annotations.Test;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.ManagePayMethodsPO;
-import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -31,7 +30,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
-	public static PaymentPO p;
+	// public static PaymentPO p;
 	public static ManagePayMethodsPO mp;
 	public static BreadcrumbTrailPO bt;
 
@@ -49,7 +48,6 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct extends base {
 		rw.setDriver(driver);
 
 		d = new DashboardPO(driver);
-		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
 
@@ -103,16 +101,16 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct extends base {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
 
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].scrollIntoView();", p.getAgreementCheckBox().get(i));
+					jse.executeScript("arguments[0].scrollIntoView();", mp.getAgreementCheckBox().get(i));
 
-					jse.executeScript("arguments[0].click();", p.getAgreementCheckBox().get(i));
+					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
 					break;
 
 				}
 			}
 			Thread.sleep(2000);
 			Assert.assertTrue(mp.getSlideDownBox().isDisplayed());
-			Assert.assertTrue(p.getLabelText1().isDisplayed());
+			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
 			mp.getAreYouSure().click();
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
@@ -126,7 +124,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct extends base {
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
@@ -222,7 +220,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct extends base {
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			p.getPopupConfirmationButton().click();
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
