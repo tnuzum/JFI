@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -188,7 +189,10 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
-					mp.getAgreementCheckBox().get(i).click();
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].scrollIntoView();", mp.getAgreementCheckBox().get(i));
+
+					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
 					;
 					break;
 

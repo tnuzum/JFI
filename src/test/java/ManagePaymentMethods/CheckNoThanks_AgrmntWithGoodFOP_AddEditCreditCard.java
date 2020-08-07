@@ -188,7 +188,10 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
-					mp.getAgreementCheckBox().get(i).click();
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].scrollIntoView();", mp.getAgreementCheckBox().get(i));
+
+					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
 					break;
 
 				}
