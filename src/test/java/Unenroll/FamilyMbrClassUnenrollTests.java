@@ -26,7 +26,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ClassUnenrollTests extends base {
+public class FamilyMbrClassUnenrollTests extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll1 = "UnenrollClass1";
 	private static String classToEnroll2 = "UnenrollClass2";
@@ -65,7 +65,7 @@ public class ClassUnenrollTests extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public ClassUnenrollTests() {
+	public FamilyMbrClassUnenrollTests() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -81,6 +81,9 @@ public class ClassUnenrollTests extends base {
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
 
+		rm.activeMemberLogin("unenrollhoh", "Testing1!");
+		rw.waitForDashboardLoaded();
+
 	}
 
 	@BeforeMethod
@@ -93,10 +96,11 @@ public class ClassUnenrollTests extends base {
 	public void Unenroll_Scenario1() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr1", "Testing1!");
-			rm.enrollInClass(classToEnroll1, paymentOption2, payMethod1, "Not Free");
 
-			rm.myClassClickToUnenroll(classToEnroll1);
+			// rm.enrollFamilyMbrInClass(classToEnroll1, paymentOption2, payMethod1, "Not
+			// Free", "Unenrollmbr1");
+
+			rm.familyClassClickToUnenroll();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 

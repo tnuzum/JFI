@@ -18,6 +18,7 @@ public class CalendarPO {
 	By calDayBadge = By.xpath("//span[contains(@class, 'cal-day-badge')]");
 	By calEventTitle = By.xpath("//span[contains(@class, 'cal-event-title')]");
 	By unEnrollBtn = By.xpath("//div[contains(text(), 'unenroll')]");
+	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
 
 // CONSTRUCTOR
 
@@ -52,6 +53,10 @@ public class CalendarPO {
 
 	public WebElement getUnEnrollBtn() {
 		return driver.findElement(unEnrollBtn);
+	}
+
+	public WebElement getCalendarTomorrow() {
+		return driver.findElement(calendarTomorrow);
 	}
 
 }
