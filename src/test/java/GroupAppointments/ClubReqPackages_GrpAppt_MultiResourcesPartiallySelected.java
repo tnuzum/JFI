@@ -182,6 +182,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 			System.out.println("came out of the loop");
 
 			rm.calendarTomorrowClick();
+			getScreenshot(this.getClass().getSimpleName() + "_CalendarClicked", driver);
 
 			Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName));
 

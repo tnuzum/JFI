@@ -180,6 +180,8 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			System.out.println("came out of the loop");
 			rm.calendarTomorrowClick();
 
+			getScreenshot(this.getClass().getSimpleName() + "_CalendarClicked", driver);
+
 			Assert.assertEquals(ap.getBooksNames().getText(), resourceName1);
 
 			WebElement st1 = ap.getSelectTimeMorningButton();
@@ -389,6 +391,8 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			System.out.println("came out of the loop");
 
 			rm.calendarTomorrowClick();
+
+			getScreenshot(this.getClass().getSimpleName() + "_CalendarClicked", driver);
 
 			Assert.assertTrue(ap.getBooksNames().getText().contains(resourceName2));
 
