@@ -405,6 +405,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			}
 
 			st1.click();
+			getScreenshot(this.getClass().getSimpleName() + "_MorningSlotClicked", driver);
 			WebElement st2 = ap.getSelectTime1stAvailable();
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
@@ -416,6 +417,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			// st2.click();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", st2);
+			getScreenshot(this.getClass().getSimpleName() + "_MorningTimeClicked", driver);
 			Thread.sleep(2000);
 
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
