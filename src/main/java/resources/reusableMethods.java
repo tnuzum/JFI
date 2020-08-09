@@ -3,6 +3,7 @@ package resources;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -2320,6 +2321,32 @@ public class reusableMethods extends base {
 		Thread.sleep(1000);
 		return null;
 
+	}
+
+	public Object OnAccountIsSelectedByDefault() {
+		UnenrollPO u = new UnenrollPO(driver);
+		ArrayList<String> paymethods = new ArrayList<String>();
+		int count = u.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+
+		for (int i = 0; i < count; i++) {
+
+			paymethods.add(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText());
+		}
+
+		Assert.assertTrue(paymethods.contains("On Account"));
+
+		for (int i = 0; i < count; i++) {
+
+			if (u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+					.contains(" On Account"))
+
+			{
+				Assert.assertTrue(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				break;
+			}
+		}
+
+		return null;
 	}
 
 }
