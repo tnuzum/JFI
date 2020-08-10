@@ -39,6 +39,7 @@ public class ManagePayMethodsPO {
 	By agreementCheckBox = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]");
 	By agreementLabel = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]/following-sibling::label");
 	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/preceding-sibling::input");
+	By noThanksLabel = By.xpath("//label[contains(text(),'No Thanks')]");
 	By areYouSure = By.xpath("//input[contains(@class,'at-foplinkagreement-agreement-areyousure')]");
 	By addCCButton = By.xpath("//button[contains(@class, 'at-managepayments-addcc-button-addcard')]");
 	By popupConfirmation1 = By.xpath("//div[@class='swal2-header']/h2");// displays Payment Made! message
@@ -177,6 +178,10 @@ public class ManagePayMethodsPO {
 
 	public List<WebElement> getNoThanks() {
 		return driver.findElements(noThanks);
+	}
+
+	public List<WebElement> getNoThanksLabel() {
+		return driver.findElements(noThanksLabel);
 	}
 
 	public WebElement getAreYouSure() {
