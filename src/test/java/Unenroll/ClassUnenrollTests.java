@@ -52,6 +52,7 @@ public class ClassUnenrollTests extends base {
 	// private static String paymentOption3 = "Buy Day Pass";
 	private static String payMethod1 = "On Account";
 	private static String payMethod2 = "Saved Card";
+
 	private static String YesCancelFee = "Class Cancellation Fee";
 
 	private static String YesRefundCC = "Refund Class Price";
@@ -60,6 +61,7 @@ public class ClassUnenrollTests extends base {
 	private static String NoRefund = "This Class is non refundable";
 
 	private static String cannotCancelMsg = "We apologize, this class is not eligible for unenrollment.";
+
 	private static String testName = null;
 
 	public reusableWaits rw;
@@ -184,7 +186,7 @@ public class ClassUnenrollTests extends base {
 			String FormatTotalAmt = totalAmt[1].trim();
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsSelectedByDefault();
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
@@ -270,7 +272,7 @@ public class ClassUnenrollTests extends base {
 			String FormatTotalAmt = totalAmt[1].trim();
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsSelectedByDefault();
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
@@ -349,7 +351,7 @@ public class ClassUnenrollTests extends base {
 			System.out.println(FormatTotalAmt);
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsSelectedByDefault();
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
@@ -468,6 +470,8 @@ public class ClassUnenrollTests extends base {
 			rm.activeMemberLogin("unenrollmbr6", "Testing1!");
 			rm.enrollInClass(classToEnroll6, paymentOption1, "", "Free With Punch");
 
+			int unitsBefore = rm.getPackageUnits("Day Pass");
+
 			rm.myClassClickToUnenroll(classToEnroll6);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -492,6 +496,12 @@ public class ClassUnenrollTests extends base {
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
+
+			int unitsAfter = rm.getPackageUnits("Day Pass");
+
+			unitsBefore++;
+
+			Assert.assertEquals(unitsAfter, unitsBefore);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -742,7 +752,7 @@ public class ClassUnenrollTests extends base {
 			System.out.println(FormatTotalAmt);
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsSelectedByDefault();
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
@@ -827,7 +837,7 @@ public class ClassUnenrollTests extends base {
 			System.out.println(FormatTotalAmt);
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsSelectedByDefault();
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
@@ -912,7 +922,7 @@ public class ClassUnenrollTests extends base {
 			System.out.println(FormatTotalAmt);
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsSelectedByDefault();
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
@@ -967,7 +977,9 @@ public class ClassUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr13", "Testing1!");
-			// rm.enrollInClass(classToEnroll12, paymentOption1, "", "Free With Punch");
+			rm.enrollInClass(classToEnroll12, paymentOption1, "", "Free With Punch");
+
+			int unitsBefore = rm.getPackageUnits("Day Pass");
 
 			rm.myClassClickToUnenroll(classToEnroll12);
 
@@ -997,7 +1009,7 @@ public class ClassUnenrollTests extends base {
 			System.out.println(FormatTotalAmt);
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsSelectedByDefault();
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
@@ -1015,6 +1027,12 @@ public class ClassUnenrollTests extends base {
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
+
+			int unitsAfter = rm.getPackageUnits("Day Pass");
+
+			unitsBefore++;
+
+			Assert.assertEquals(unitsAfter, unitsBefore);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -1062,6 +1080,9 @@ public class ClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
 			u.getUnenrollNoRefund().click();
 
@@ -1139,7 +1160,7 @@ public class ClassUnenrollTests extends base {
 			System.out.println(FormatTotalAmt);
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsSelectedByDefault();
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
@@ -1189,7 +1210,7 @@ public class ClassUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 16, description = "Unenroll Free Class - Course-Refund section should be hidden")
+	@Test(priority = 16, description = "Unenroll Free Class -  Refund not allowed")
 	public void Unenroll_Scenario15() throws IOException, InterruptedException {
 
 		try {
@@ -1349,8 +1370,6 @@ public class ClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll16));
 
-			System.out.println(u.getCancelFeeMsg().getText());
-
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
 			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
@@ -1371,7 +1390,11 @@ public class ClassUnenrollTests extends base {
 
 			System.out.println(FormatTotalAmt);
 
-			Assert.assertFalse(rm.isElementPresent(By.xpath("//div[@class='radio no-padding']")));
+			try {
+				rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			} catch (java.lang.AssertionError ae) {
+				Assert.assertTrue(true);
+			}
 
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
@@ -1426,11 +1449,13 @@ public class ClassUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr18", "Testing1!");
-			// rm.enrollInClass(classToEnroll17, paymentOption2, payMethod1, "Not Free");
+			rm.enrollInClass(classToEnroll17, paymentOption2, payMethod1, "Not Free");
 
 			rm.myClassClickToUnenroll(classToEnroll17);
 
 			UnenrollPO u = new UnenrollPO(driver);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll17));
 
 			Assert.assertTrue(u.getCanNotCancelFMsg().getText().contains(cannotCancelMsg));
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
