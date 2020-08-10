@@ -2005,6 +2005,7 @@ public class reusableMethods extends base {
 
 		Thread.sleep(2000);
 		rw.waitForDashboardLoaded();
+		this.openSideMenuIfNotOpenedAlready();
 		d.getMenuMyActivies().click();
 
 		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
@@ -2296,6 +2297,7 @@ public class reusableMethods extends base {
 
 		Thread.sleep(2000);
 		rw.waitForDashboardLoaded();
+		this.openSideMenuIfNotOpenedAlready();
 		d.getMenuMyActivies().click();
 
 		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
@@ -2323,7 +2325,7 @@ public class reusableMethods extends base {
 
 	}
 
-	public Object verifyOnAccountIsSelectedByDefault() {
+	public Object verifyOnAccountIsPresentAndSelectedByDefault() {
 		UnenrollPO u = new UnenrollPO(driver);
 		ArrayList<String> paymethods = new ArrayList<String>();
 		int count = u.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
