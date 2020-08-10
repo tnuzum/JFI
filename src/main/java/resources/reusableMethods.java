@@ -2323,7 +2323,7 @@ public class reusableMethods extends base {
 
 	}
 
-	public Object OnAccountIsSelectedByDefault() {
+	public Object verifyOnAccountIsSelectedByDefault() {
 		UnenrollPO u = new UnenrollPO(driver);
 		ArrayList<String> paymethods = new ArrayList<String>();
 		int count = u.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
