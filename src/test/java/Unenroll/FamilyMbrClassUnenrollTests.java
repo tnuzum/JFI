@@ -9,6 +9,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -52,14 +53,16 @@ public class FamilyMbrClassUnenrollTests extends base {
 	// private static String paymentOption3 = "Buy Day Pass";
 	private static String payMethod1 = "On Account";
 	private static String payMethod2 = "Saved Card";
-	private static String YesCancelFee = "There is a cancellation fee for unenrolling from this class.";
-	private static String NoCancelFee = "There are no restrictions for unenrolling from this class.";
-	private static String YesRefund = "You will be refunded:";
-	private static String YesRefundOnAccount = "You will be refunded on account:";
-	private static String NoRefund = "This class is non-refundable";
-	private static String RefundUnits = "1 Package Visit(s)";
-	private static String cannotCancelMsg = "this class is not eligible for unenrollment.";
-	private static String youOweMsg = "You Owe:";
+
+	private static String YesCancelFee = "Class Cancellation Fee";
+
+	private static String YesRefundCC = "Refund Class Price";
+	private static String YesRefundOnAccount = "This credit will be placed on your house account and be applied to your outstanding invoice.";
+	private static String YesRefundUnit = "Refund Class Package Quantity:";
+	private static String NoRefund = "This Class is non refundable";
+
+	private static String cannotCancelMsg = "We apologize, this class is not eligible for unenrollment.";
+
 	private static String testName = null;
 
 	public reusableWaits rw;
@@ -97,8 +100,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 		try {
 
-			// rm.enrollFamilyMbrInClass(classToEnroll1, paymentOption2, payMethod1, "Not
-			// Free", "Unenrollmbr1");
+			rm.enrollFamilyMbrInClass(classToEnroll1, paymentOption2, payMethod1, "Not Free", "Unenrollmbr1");
 
 			rm.familyClassClickToUnenroll();
 
@@ -107,17 +109,19 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll1));
 
-			Assert.assertEquals(NoCancelFee, u.getNoCancelFeeMsg().getText());
-			Assert.assertTrue(u.getRefundMsg().getText().contains(YesRefundOnAccount));
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.23"));
 
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
 			u.getUnenrollButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -147,7 +151,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		} finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -155,8 +159,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario2() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr2", "Testing1!");
-			rm.enrollInClass(classToEnroll2, paymentOption1, "", "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll2, paymentOption1, "", "Not Free", "Unenrollmbr2");
+
+			int unitsBefore = rm.getPackageUnits("Day Pass");
 
 			rm.myClassClickToUnenroll(classToEnroll2);
 
@@ -165,28 +171,50 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll2));
 
-			System.out.println(u.getCancelFeeMsg().getText());
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
 
-			System.out.println(u.getRefundMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundUnitText().getText().contains(YesRefundUnit));
+			Assert.assertTrue(u.getRefundUnitNo().getText().contains("1"));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(YesCancelFee));
-			Assert.assertTrue(u.getRefundMsg().getText().contains(RefundUnits));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
+
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
 			u.getPaymentButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
+
+			int unitsAfter = rm.getPackageUnits("Day Pass");
+
+			unitsBefore++;
+
+			Assert.assertEquals(unitsAfter, unitsBefore);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -212,7 +240,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		} finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -220,8 +248,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario3() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr3", "Testing1!");
-			rm.enrollInClass(classToEnroll3, "", "", "Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll3, "", "", "Free", "Unenrollmbr3");
 
 			rm.myClassClickToUnenroll(classToEnroll3);
 
@@ -230,25 +258,39 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll3));
 
-			System.out.println(u.getCancelFeeMsg().getText());
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
 
-			System.out.println(u.getNoRefundMSg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(YesCancelFee));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
 
-			Assert.assertTrue(u.getNoRefundMSg().getText().contains(NoRefund));
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
 			u.getPaymentButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -278,7 +320,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		} finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -286,8 +328,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario4() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr4", "Testing1!");
-			rm.enrollInClass(classToEnroll4, paymentOption2, payMethod2, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll4, paymentOption2, payMethod2, "Not Free", "Unenrollmbr4");
 
 			rm.myClassClickToUnenroll(classToEnroll4);
 
@@ -296,25 +338,38 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll4));
 
-			System.out.println(u.getNoCancelFeeMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
+			Assert.assertTrue(u.getRefundCCAmnt().getText().contains("-$9.00"));
 
-			System.out.println(u.getRefundMsg().getText());
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
 
-			Assert.assertTrue(u.getNoCancelFeeMsg().getText().contains(NoCancelFee));
+			String[] totalAmt = u.getTotalAmount().getText().split(": -");
+			String FormatTotalAmt = totalAmt[1].trim();
 
-			Assert.assertTrue(u.getRefundMsg().getText().contains(YesRefund));
+			System.out.println(FormatTotalAmt);
 
 			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getRefundButton().isDisplayed());
+
+			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
 
 			u.getRefundButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -346,7 +401,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -354,8 +409,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario5() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr5", "Testing1!");
-			// rm.enrollInClass(classToEnroll5, paymentOption2, payMethod1, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll5, paymentOption2, payMethod1, "Not Free", "Unenrollmbr5");
 
 			rm.myClassClickToUnenroll(classToEnroll5);
 
@@ -364,25 +419,19 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll5));
 
-			System.out.println(u.getNoCancelFeeMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.23"));
 
-			System.out.println(u.getRefundMsg().getText());
-
-			Assert.assertTrue(u.getNoCancelFeeMsg().getText().contains(NoCancelFee));
-
-			Assert.assertTrue(u.getRefundMsg().getText().contains(YesRefundOnAccount));
-
-			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
-			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
-
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
 			u.getUnenrollButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -414,7 +463,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -422,8 +471,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario6() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr6", "Testing1!");
-			rm.enrollInClass(classToEnroll6, paymentOption1, "", "Free With Punch");
+
+			rm.enrollFamilyMbrInClass(classToEnroll6, paymentOption1, "", "Free With Punch", "Unenrollmbr6");
+
+			int unitsBefore = rm.getPackageUnits("Day Pass");
 
 			rm.myClassClickToUnenroll(classToEnroll6);
 
@@ -433,26 +484,31 @@ public class FamilyMbrClassUnenrollTests extends base {
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll6));
 			System.out.println(u.getNoCancelFeeMsg().getText());
 
-			System.out.println(u.getRefundMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundUnitText().getText().contains(YesRefundUnit));
+			Assert.assertTrue(u.getRefundUnitNo().getText().contains("1"));
 
-			Assert.assertTrue(u.getNoCancelFeeMsg().getText().contains(NoCancelFee));
-
-			Assert.assertTrue(u.getRefundMsg().getText().contains(RefundUnits));
-
-			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
-			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
 
 			u.getUnenrollButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+			int unitsAfter = rm.getPackageUnits("Day Pass");
+
+			unitsBefore++;
+
+			Assert.assertEquals(unitsAfter, unitsBefore);
+
 			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
@@ -481,7 +537,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -489,8 +545,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario7() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr7", "Testing1!");
-			rm.enrollInClass(classToEnroll7, paymentOption2, payMethod2, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll7, paymentOption2, payMethod2, "Not Free", "Unenrollmbr7");
 
 			rm.myClassClickToUnenroll(classToEnroll7);
 
@@ -499,25 +555,18 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll7));
 
-			System.out.println(u.getNoCancelFeeMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			System.out.println(u.getNoRefundMSg().getText());
-
-			Assert.assertTrue(u.getNoCancelFeeMsg().getText().contains(NoCancelFee));
-
-			Assert.assertTrue(u.getNoRefundMSg().getText().contains(NoRefund));
-
-			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
-			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
-
-			u.getUnenrollButton().click();
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
+			u.getUnenrollNoRefund().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -549,7 +598,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -558,8 +607,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario8() throws IOException, InterruptedException {
 
 		try {
-			// rm.activeMemberLogin("unenrollmbr8", "Testing1!");
-			rm.enrollInClass(classToEnroll8, paymentOption2, payMethod1, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll8, paymentOption2, payMethod1, "Not Free", "Unenrollmbr8");
 
 			rm.myClassClickToUnenroll(classToEnroll8);
 
@@ -568,25 +617,18 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll8));
 
-			System.out.println(u.getNoCancelFeeMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			System.out.println(u.getNoRefundMSg().getText());
-
-			Assert.assertTrue(u.getNoCancelFeeMsg().getText().contains(NoCancelFee));
-
-			Assert.assertTrue(u.getNoRefundMSg().getText().contains(NoRefund));
-
-			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
-			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
-
-			u.getUnenrollButton().click();
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
+			u.getUnenrollNoRefund().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -618,7 +660,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -626,8 +668,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario9() throws IOException, InterruptedException {
 
 		try {
-			// rm.activeMemberLogin("unenrollmbr9", "Testing1!");
-			rm.enrollInClass(classToEnroll9, paymentOption1, "", "Free With Punch");
+
+			rm.enrollFamilyMbrInClass(classToEnroll9, paymentOption1, "", "Free With Punch", "Unenrollmbr9");
 
 			rm.myClassClickToUnenroll(classToEnroll9);
 
@@ -636,25 +678,18 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll9));
 
-			System.out.println(u.getNoCancelFeeMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			System.out.println(u.getNoRefundMSg().getText());
-
-			Assert.assertTrue(u.getNoCancelFeeMsg().getText().contains(NoCancelFee));
-
-			Assert.assertTrue(u.getNoRefundMSg().getText().contains(NoRefund));
-
-			// Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
-			// Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
-
-			u.getUnenrollButton().click();
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
+			u.getUnenrollNoRefund().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -686,7 +721,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -694,8 +729,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario10() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr10", "Testing1!");
-			rm.enrollInClass(classToEnroll10, paymentOption2, payMethod2, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll10, paymentOption2, payMethod2, "Not Free", "Unenrollmbr10");
 
 			rm.myClassClickToUnenroll(classToEnroll10);
 
@@ -703,25 +738,43 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll10));
-			System.out.println(u.getCancelFeeMsg().getText());
 
-			System.out.println(u.getRefundMsg().getText());
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
+			Assert.assertTrue(u.getRefundCCAmnt().getText().contains("-$9.00"));
 
-			Assert.assertTrue(u.getRefundMsg().getText().contains(YesRefund));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
 
-			Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
-			Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+			String[] totalAmt = u.getTotalAmount().getText().split(": -");
+			String FormatTotalAmt = totalAmt[1].trim();
 
-			u.getUnenrollButton().click();
+			System.out.println(FormatTotalAmt);
+
+			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getRefundButton().isDisplayed());
+
+			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
+
+			u.getRefundButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -753,7 +806,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -761,8 +814,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario10_1() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr11", "Testing1!");
-			rm.enrollInClass(classToEnroll10_1, paymentOption2, payMethod2, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll10_1, paymentOption2, payMethod2, "Not Free", "Unenrollmbr11");
 
 			rm.myClassClickToUnenroll(classToEnroll10_1);
 
@@ -771,27 +824,42 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll10_1));
 
-			System.out.println(u.getCancelFeeMsg().getText());
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$16.00"));
 
-			System.out.println(u.getRefundMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
+			Assert.assertTrue(u.getRefundCCAmnt().getText().contains("-$9.00"));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(YesCancelFee));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(youOweMsg));
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
 
-			// Assert.assertTrue(u.getRefundMsg().getText().contains(YesRefund));
+			System.out.println(FormatTotalAmt);
 
-			Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
-			Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
 
-			u.getUnenrollButton().click();
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			u.getPaymentButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -823,7 +891,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -831,8 +899,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario11() throws IOException, InterruptedException {
 
 		try {
-			// rm.activeMemberLogin("unenrollmbr12", "Testing1!");
-			rm.enrollInClass(classToEnroll11, paymentOption2, payMethod1, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll11, paymentOption2, payMethod1, "Not Free", "Unenrollmbr12");
 
 			rm.myClassClickToUnenroll(classToEnroll11);
 
@@ -841,25 +909,42 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll11));
 
-			System.out.println(u.getCancelFeeMsg().getText());
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
 
-			System.out.println(u.getRefundMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(YesCancelFee));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
 
-			Assert.assertTrue(u.getRefundMsg().getText().contains(YesRefund));
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
 
-			Assert.assertTrue(u.getUnenrollWithSavedCard().isDisplayed());
-			Assert.assertTrue(u.getUnenrollWithNewCard().isDisplayed());
+			System.out.println(FormatTotalAmt);
 
-			u.getUnenrollButton().click();
+			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			u.getPaymentButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -891,7 +976,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -899,8 +984,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario12() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr13", "Testing1!");
-			rm.enrollInClass(classToEnroll12, paymentOption1, "", "Free With Punch");
+
+			rm.enrollFamilyMbrInClass(classToEnroll12, paymentOption1, "", "Free With Punch", "Unenrollmbr13");
+
+			int unitsBefore = rm.getPackageUnits("Day Pass");
 
 			rm.myClassClickToUnenroll(classToEnroll12);
 
@@ -909,26 +996,51 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll12));
 
-			System.out.println(u.getCancelFeeMsg().getText());
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
 
-			System.out.println(u.getRefundMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundUnitText().getText().contains(YesRefundUnit));
+			Assert.assertTrue(u.getRefundUnitNo().getText().contains("1"));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(YesCancelFee));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
 
-			Assert.assertTrue(u.getRefundMsg().getText().contains(RefundUnits));
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
 
-			u.getUnenrollButton().click();
+			System.out.println(FormatTotalAmt);
 
+			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			u.getPaymentButton().click();
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
+
+			int unitsAfter = rm.getPackageUnits("Day Pass");
+
+			unitsBefore++;
+
+			Assert.assertEquals(unitsAfter, unitsBefore);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -956,7 +1068,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -964,8 +1076,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario13() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr14", "Testing1!");
-			rm.enrollInClass(classToEnroll13, paymentOption2, payMethod1, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll13, paymentOption2, payMethod1, "Not Free", "Unenrollmbr14");
 
 			rm.myClassClickToUnenroll(classToEnroll13);
 
@@ -974,22 +1086,19 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll13));
 
-			System.out.println(u.getNoCancelFeeMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			System.out.println(u.getNoRefundMSg().getText());
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			Assert.assertTrue(u.getNoCancelFeeMsg().getText().contains(NoCancelFee));
-
-			Assert.assertTrue(u.getNoRefundMSg().getText().contains(NoRefund));
-
-			u.getUnenrollButton().click();
+			u.getUnenrollNoRefund().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -1021,7 +1130,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -1029,8 +1138,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario14() throws IOException, InterruptedException {
 
 		try {
-			// rm.activeMemberLogin("unenrollmbr15", "Testing1!");
-			rm.enrollInClass(classToEnroll14, paymentOption2, payMethod1, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll14, paymentOption2, payMethod1, "Not Free", "Unenrollmbr15");
 
 			rm.myClassClickToUnenroll(classToEnroll14);
 
@@ -1039,22 +1148,41 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll14));
 
-			System.out.println(u.getCancelFeeMsg().getText());
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
 
-			System.out.println(u.getNoRefundMSg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(YesCancelFee));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
 
-			Assert.assertTrue(u.getNoRefundMSg().getText().contains(NoRefund));
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
 
-			u.getUnenrollButton().click();
+			System.out.println(FormatTotalAmt);
+
+			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			u.getPaymentButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -1086,7 +1214,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -1094,8 +1222,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario15() throws IOException, InterruptedException {
 
 		try {
-			// rm.activeMemberLogin("unenrollmbr16", "Testing1!");
-			rm.enrollInClass(classToEnroll15, "", "", "Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll15, "", "", "Free", "Unenrollmbr16");
 
 			rm.myClassClickToUnenroll(classToEnroll15);
 
@@ -1104,21 +1232,19 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll15));
 
-			System.out.println(u.getNoCancelFeeMsg().getText());
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			Assert.assertTrue(u.getNoCancelFeeMsg().getText().contains(NoCancelFee));
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			// Refund section should be hidden. add a step for that
-			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(@class, 'alert alert-danger')]")), false);
-
-			u.getUnenrollButton().click();
+			u.getUnenrollNoRefund().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -1150,7 +1276,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -1159,7 +1285,6 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 		try {
 
-			// rm.activeMemberLogin("unenrollmbr17", "Testing1!");
 			DashboardPO d = new DashboardPO(driver);
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -1176,21 +1301,59 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			WebElement Club = c.getClassClubDropdown();
 			Select s = new Select(Club);
-			s.deselectByVisibleText("OnlinePayNotAllowed");
+			s.selectByVisibleText("OnlinePayNotAllowed");
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			rm.SelectClassOrCourseToEnroll(classToEnroll16);
+			rm.SelectClassOrCourseToEnroll(classToEnroll16.toUpperCase());
+
+			wait.until(
+					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+
+			while (c.getClasslabel().getText().isBlank()) {
+				Thread.sleep(500);
+			}
+
+			int fmlyMbrcount = c.getFmlyMemberLabel().size();
+
+			for (int i = 0; i < fmlyMbrcount; i++) {
+
+				WebElement fml = c.getFmlyMemberLabel().get(i);
+				WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+				if (fmc.isSelected()) {
+					fml.click(); // de-selects the hoh
+					break;
+				}
+			}
+
+			// Selects the falimy member
+			for (int i = 0; i < fmlyMbrcount; i++) {
+
+				WebElement fml = c.getFmlyMemberLabel().get(i);
+				// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+				if (fml.getText().contains("Unenrollmbr17")) {
+					fml.click(); // Selects the member
+					break;
+				}
+			}
+			Actions actions = new Actions(driver);
+			JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 			Thread.sleep(2000);
 			if (c.getPopupSignUpButton().isEnabled()) {
-				c.getPopupSignUpButton().click();
+				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+
+				actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 
 			} else {
-				c.getPopupCancelButton().click();
+				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
+				actions.moveToElement(c.getPopupCancelButton()).click().perform();
 				Assert.fail("SignUp button not available");
 
 			}
+			Thread.sleep(2000);
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
@@ -1202,6 +1365,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			c.getContinueButton().click();
 
+			Thread.sleep(3000);
+
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 
 			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -1209,7 +1374,6 @@ public class FamilyMbrClassUnenrollTests extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("5454")) {
 
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].scrollIntoView();",
 							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
@@ -1221,6 +1385,9 @@ public class FamilyMbrClassUnenrollTests extends base {
 				}
 			}
 
+			while (!PM.getPaymentButton().isEnabled()) {
+				Thread.sleep(1000);
+			}
 			PM.getPaymentButton().click();
 
 			rw.waitForAcceptButton();
@@ -1231,12 +1398,12 @@ public class FamilyMbrClassUnenrollTests extends base {
 			Thread.sleep(1000);
 
 			int count1 = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count1; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+			for (int j = 0; j < count1; j++) {
+				if (driver.findElements(By.tagName("a")).get(j).getText().equals("Dashboard"))
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					driver.findElements(By.tagName("a")).get(j).click();
 					break;
 				}
 
@@ -1248,22 +1415,47 @@ public class FamilyMbrClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll6));
 
-			System.out.println(u.getCancelFeeMsg().getText());
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
+			Assert.assertTrue(u.getRefundCCAmnt().getText().contains("-$9.00"));
 
-			Assert.assertTrue(u.getRefundMsg().getText().contains(YesRefund));
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
 
-			// add a step to verify that On Account and Saved cards are not displayed
+			String[] totalAmt = u.getTotalAmount().getText().split(": -");
+			String FormatTotalAmt = totalAmt[1].trim();
 
-			u.getUnenrollButton().click();
+			System.out.println(FormatTotalAmt);
+
+			try {
+				rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			} catch (java.lang.AssertionError ae) {
+				Assert.assertTrue(true);
+				System.out.println("Verified that On Account is not present");
+				log.info("Verified that On Account is not present");
+			}
+
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getRefundButton().isDisplayed());
+
+			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
+			u.getRefundButton().click();
 
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -1295,7 +1487,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
@@ -1303,16 +1495,18 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public void Unenroll_Scenario17() throws IOException, InterruptedException {
 
 		try {
-			// rm.activeMemberLogin("unenrollmbr18", "Testing1!");
-			rm.enrollInClass(classToEnroll17, paymentOption2, payMethod1, "Not Free");
+
+			rm.enrollFamilyMbrInClass(classToEnroll17, paymentOption2, payMethod1, "Not Free", "Unenrollmbr18");
 
 			rm.myClassClickToUnenroll(classToEnroll17);
 
 			UnenrollPO u = new UnenrollPO(driver);
 
-			System.out.println(u.getCancelFeeMsg().getText());
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll17));
 
-			Assert.assertTrue(u.getCancelFeeMsg().getText().contains(cannotCancelMsg));
+			Assert.assertTrue(u.getCanNotCancelFMsg().getText().contains(cannotCancelMsg));
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
 
 			rm.memberLogout();
 			rm.deleteEnrollInClassInCOG(classToEnroll17, "Jonas Sports-Plex", "Auto, Unenrollmbr18");

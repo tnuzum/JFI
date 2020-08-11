@@ -1394,6 +1394,8 @@ public class ClassUnenrollTests extends base {
 				rm.verifyOnAccountIsPresentAndSelectedByDefault();
 			} catch (java.lang.AssertionError ae) {
 				Assert.assertTrue(true);
+				System.out.println("Verified that On Account is not present");
+				log.info("Verified that On Account is not present");
 			}
 
 			Assert.assertTrue(u.getNewCardButton().isDisplayed());
