@@ -977,7 +977,7 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object deleteEnrollInClassInCOG(String className, String classSellClub, String memberName1)
+	public Object deleteEnrollInClassInCOG(String className, String classSellClub, String memberName)
 			throws InterruptedException {
 
 		this.loginCOG(classSellClub);
@@ -1020,7 +1020,7 @@ public class reusableMethods extends base {
 			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
 			String memberNameText = MemberRowSections.get(2).getText();
 
-			if (memberNameText.contains(memberName1)) {
+			if (memberNameText.contains(memberName)) {
 				driver.findElements(By.xpath("//a[@data-enrollstatus = 'Enrolled']")).get(i - 1).click();
 				break;
 			}
@@ -1031,7 +1031,7 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object deleteEnrollInCourseInCOG(String courseName, String classSellClub, String memberName1)
+	public Object deleteEnrollInCourseInCOG(String courseName, String classSellClub, String memberName)
 			throws InterruptedException {
 
 		this.loginCOG(classSellClub);
@@ -1082,7 +1082,7 @@ public class reusableMethods extends base {
 			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
 			String memberNameText = MemberRowSections.get(2).getText();
 
-			if (memberNameText.contains(memberName1)) {
+			if (memberNameText.contains(memberName)) {
 				driver.findElements(By.xpath("//a[@data-enrollstatus = 'Enrolled']")).get(i - 1).click();
 				break;
 			}
@@ -1597,11 +1597,16 @@ public class reusableMethods extends base {
 
 		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
 
-		while (selectATimeOpen.equals("false")) {
-			Element.findElement(By.tagName("span")).click();
-			log.error("calendar date was clicked again");
-			System.out.println("calendar date was clicked again");
-			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+		int i = 0;
+		while (i < 10) {
+			while (selectATimeOpen.equals("false")) {
+
+				Element.findElement(By.tagName("span")).click();
+				log.error("calendar date was clicked again");
+				System.out.println("calendar date was clicked again");
+				selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+			}
+			i++;
 		}
 		return null;
 
@@ -2177,14 +2182,14 @@ public class reusableMethods extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyClassesScheduleButton().click();
+		d.getMyCoursesEventsScheduleButton().click();
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		this.SelectCourseStartMonth(CourseStartMonth);
 
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		this.SelectClassOrCourseToEnroll(courseToEnroll.toUpperCase());
 
@@ -2195,6 +2200,17 @@ public class reusableMethods extends base {
 		}
 
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
+
+		for (int i = 0; i < fmlyMbrcount; i++) {
+
+			WebElement fml = c.getFmlyMemberLabel().get(i);
+			WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+			if (fmc.isSelected()) {
+				fml.click(); // de-selects the hoh
+				break;
+			}
+		}
 
 		// Selects the falimy member
 		for (int i = 0; i < fmlyMbrcount; i++) {
@@ -2238,7 +2254,7 @@ public class reusableMethods extends base {
 		Thread.sleep(3000);
 		if (!courseFee.equalsIgnoreCase("Free")) {
 
-			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
+			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
 
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
