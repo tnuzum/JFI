@@ -15,6 +15,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.TakesScreenshot;
@@ -28,6 +29,7 @@ import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariOptions;
 
 public class base {
 	public WebDriver driver;
@@ -89,6 +91,23 @@ public class base {
 				dc.setBrowserName("MicrosoftEdge");
 				dc.setPlatform(Platform.WINDOWS);
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
+			}
+
+			if (browserName.equals("Safari")) {
+				log.info("Safari Browser: Running Tests on Selenium Grid");
+				MutableCapabilities sauceOptions = new MutableCapabilities();
+
+				SafariOptions browserOptions = new SafariOptions();
+				browserOptions.setCapability("platformName", "macOS 10.15");
+				browserOptions.setCapability("browserVersion", "13.1");
+				browserOptions.setCapability("sauce:options", sauceOptions);
+
+				driver = new RemoteWebDriver(new URL(
+						"https://JonasEME:f4c10b60-ae6c-4972-a0be-72d5ce4feb96@ondemand.us-west-1.saucelabs.com:443/wd/hub"),
+						browserOptions);
+
+				// driver = new RemoteWebDriver(new
+				// URL("http://localhost:4444/wd/hub"),browserOptions);
 			}
 			/*
 			 * if (browserName.equals("IE")) {

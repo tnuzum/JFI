@@ -1832,6 +1832,8 @@ public class reusableMethods extends base {
 
 			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
 
+				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
@@ -1928,6 +1930,8 @@ public class reusableMethods extends base {
 		if (!courseFee.equalsIgnoreCase("Free")) {
 
 			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
+
+				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
@@ -2124,6 +2128,8 @@ public class reusableMethods extends base {
 
 			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
 
+				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
@@ -2256,6 +2262,8 @@ public class reusableMethods extends base {
 
 			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
 
+				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
@@ -2364,6 +2372,134 @@ public class reusableMethods extends base {
 			}
 		}
 
+		return null;
+	}
+
+	public Object selectSavedcard() {
+
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
+		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+		for (int i = 0; i < count; i++) {
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
+
+				JavascriptExecutor jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].scrollIntoView();",
+						PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+				jse.executeScript("arguments[0].click();",
+						PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+				// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+		}
+		return null;
+	}
+
+	public Object selectNewcardToPay(String memberName) throws InterruptedException {
+
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+		while (!PM.getNewCardButton().isDisplayed())
+
+		{
+			Thread.sleep(1000);
+
+		}
+
+		PM.getNewCardButton().click();
+		Thread.sleep(3000);
+
+		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		while (opacity.contains("1")) {
+			PM.getNewCardButton().click();
+			Thread.sleep(3000);
+			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+
+		}
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+
+		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+		Assert.assertFalse(PM.getPaymentButton().isEnabled());
+
+//			System.out.println(PM.getNameOnCardField().getAttribute("value"));
+		Assert.assertEquals(memberName, PM.getNameOnCardField().getAttribute("value"));
+
+		PM.getCardNumberField().sendKeys("4111111111111111");
+		PM.getExpirationMonth().sendKeys("04");
+		PM.getExpirationYear().sendKeys("22");
+		PM.getSecurityCode().sendKeys("123");
+		PM.getCheckBox().click();
+		while (!PM.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+
+		// Clicks on the Pay button without signature
+		PM.getPaymentButton().click();
+		System.out.println(PM.getPopupContent().getText());
+		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+		PM.getPopupOk().click();
+		Thread.sleep(1000);
+		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
+		return null;
+	}
+
+	public Object selectNewcardToRefund(String memberName) throws InterruptedException {
+
+		UnenrollPO u = new UnenrollPO(driver);
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+		while (!u.getNewCardButton().isDisplayed())
+
+		{
+			Thread.sleep(1000);
+
+		}
+
+		u.getNewCardButton().click();
+		Thread.sleep(3000);
+
+		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		while (opacity.contains("1")) {
+			u.getNewCardButton().click();
+			Thread.sleep(3000);
+			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+
+		}
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+
+		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		System.out.println("Pay Button disabled:" + u.getRefundButton().getAttribute("disabled"));
+		Assert.assertFalse(u.getRefundButton().isEnabled());
+
+//			System.out.println(PM.getNameOnCardField().getAttribute("value"));
+		Assert.assertEquals(memberName, PM.getNameOnCardField().getAttribute("value"));
+
+		PM.getCardNumberField().sendKeys("4111111111111111");
+		PM.getExpirationMonth().sendKeys("04");
+		PM.getExpirationYear().sendKeys("22");
+		PM.getSecurityCode().sendKeys("123");
+		PM.getCheckBox().click();
+		while (!PM.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+
+		// Clicks on the Pay button without signature
+		u.getRefundButton().click();
+		System.out.println(PM.getPopupContent().getText());
+		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+		PM.getPopupOk().click();
+		Thread.sleep(1000);
+		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
 		return null;
 	}
 

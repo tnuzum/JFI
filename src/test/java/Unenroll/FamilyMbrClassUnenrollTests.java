@@ -56,9 +56,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 	private static String YesCancelFee = "Class Cancellation Fee";
 
-	private static String YesRefundCC = "Refund Class Price";
+	private static String YesRefundCC = "Class Refund Price";
 	private static String YesRefundOnAccount = "This credit will be placed on your house account and be applied to your outstanding invoice.";
-	private static String YesRefundUnit = "Refund Class Package Quantity:";
+	private static String YesRefundOATaxInfo = "Plus applicable taxes.";
+	private static String YesRefundUnit = "Class Package Refund Quantity:";
 	private static String NoRefund = "This Class is non refundable";
 
 	private static String cannotCancelMsg = "We apologize, this class is not eligible for unenrollment.";
@@ -111,7 +112,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
-			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.23"));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
@@ -421,7 +423,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
-			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.23"));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
@@ -768,6 +771,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
 
+			rm.selectSavedcard();
+
 			u.getRefundButton().click();
 
 			Thread.sleep(1000);
@@ -853,6 +858,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
+			rm.selectSavedcard();
+
 			u.getPaymentButton().click();
 
 			Thread.sleep(1000);
@@ -916,6 +923,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
 			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
 			Assert.assertTrue(SubTotalLabelPresent);
@@ -937,6 +945,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 			Assert.assertTrue(u.getPaymentButton().isDisplayed());
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			rm.selectSavedcard();
 
 			u.getPaymentButton().click();
 
@@ -1175,6 +1185,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 			Assert.assertTrue(u.getPaymentButton().isDisplayed());
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			rm.selectNewcardToPay("UnenrollMbr15 Auto");
 
 			u.getPaymentButton().click();
 
@@ -1449,6 +1461,9 @@ public class FamilyMbrClassUnenrollTests extends base {
 			Assert.assertTrue(u.getRefundButton().isDisplayed());
 
 			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
+
+			rm.selectNewcardToRefund("UnenrollMbr15 Auto");
+
 			u.getRefundButton().click();
 
 			Thread.sleep(1000);

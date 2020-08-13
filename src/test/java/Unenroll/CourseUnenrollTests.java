@@ -58,9 +58,10 @@ public class CourseUnenrollTests extends base {
 
 	private static String YesCancelFee = "Course Cancellation Fee";
 
-	private static String YesRefundCC = "Refund Course Price";
+	private static String YesRefundCC = "Course Refund Price";
 	private static String YesRefundOnAccount = "This credit will be placed on your house account and be applied to your outstanding invoice.";
-	private static String YesRefundUnit = "Refund Course Package Quantity:";
+	private static String YesRefundOATaxInfo = "Plus applicable taxes.";
+	private static String YesRefundUnit = "Course Package Refund Quantity:";
 	private static String NoRefund = "This Course is non refundable";
 
 	private static String cannotCancelMsg = "We apologize, this course is not eligible for unenrollment.";
@@ -101,8 +102,6 @@ public class CourseUnenrollTests extends base {
 			rm.activeMemberLogin("unenrollmbr1", "Testing1!");
 			rm.enrollInCourse(courseToEnroll1, paymentOption2, payMethod1, "Not Free", CourseStartMonth);
 
-			int unitsBefore = rm.getPackageUnits("Day Pass");
-
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -112,7 +111,8 @@ public class CourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
-			// Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.23"));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
@@ -127,12 +127,6 @@ public class CourseUnenrollTests extends base {
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
-
-			int unitsAfter = rm.getPackageUnits("Day Pass");
-
-			unitsBefore++;
-
-			Assert.assertEquals(unitsAfter, unitsBefore);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -426,7 +420,8 @@ public class CourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
-			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.23"));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
@@ -769,6 +764,8 @@ public class CourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
 
+			rm.selectSavedcard();
+
 			u.getRefundButton().click();
 
 			Thread.sleep(1000);
@@ -854,6 +851,8 @@ public class CourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
+			rm.selectSavedcard();
+
 			u.getPaymentButton().click();
 
 			Thread.sleep(1000);
@@ -917,6 +916,7 @@ public class CourseUnenrollTests extends base {
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
 			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
 			Assert.assertTrue(SubTotalLabelPresent);
@@ -938,6 +938,8 @@ public class CourseUnenrollTests extends base {
 			Assert.assertTrue(u.getPaymentButton().isDisplayed());
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			rm.selectSavedcard();
 
 			u.getPaymentButton().click();
 
@@ -1177,6 +1179,8 @@ public class CourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
+			rm.selectNewcardToPay("UnenrollMbr15 Auto");
+
 			u.getPaymentButton().click();
 
 			Thread.sleep(1000);
@@ -1415,6 +1419,9 @@ public class CourseUnenrollTests extends base {
 			Assert.assertTrue(u.getRefundButton().isDisplayed());
 
 			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
+
+			rm.selectNewcardToRefund("UnenrollMbr15 Auto");
+
 			u.getRefundButton().click();
 
 			Thread.sleep(1000);
