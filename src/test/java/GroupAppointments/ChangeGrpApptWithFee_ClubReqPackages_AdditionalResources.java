@@ -127,8 +127,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 			Select se = new Select(ap.getclubs());
 			List<WebElement> Clubs = se.getOptions();
 
-			while (!ap.getclubs().isEnabled()) {
+			int x = 0;
+			while (!ap.getclubs().isEnabled() && x < 100) {
 				System.out.println("Waiting for Clubs drop down to not be blank");
+				x++;
 			}
 
 			int count0 = Clubs.size();
