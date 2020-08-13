@@ -34,6 +34,7 @@ public class UnenrollPO {
 	By refundOAInfo = By.xpath("//div[@class='rate-box unenroll-refund-on-account']");
 	By refundOAText = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/strong");
 	By refundOAAmnt = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/span");
+	By refundOATaxInfo = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/small");
 
 	By refundCCInfo = By.xpath("//div[@class='rate-box unenroll-refund-item-price']");
 	By refundCCText = By.xpath("//div[@class='rate-box unenroll-refund-item-price']/strong");
@@ -151,6 +152,10 @@ public class UnenrollPO {
 
 	public WebElement getRefundOAAmnt() {
 		return driver.findElement(refundOAAmnt);
+	}
+
+	public WebElement getRefundOATaxInfo() {
+		return driver.findElement(refundOATaxInfo);
 	}
 
 	public WebElement getRefundCCInfo() {
