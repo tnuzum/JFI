@@ -47,6 +47,7 @@ public class PaymentMethodsPO {
 	By additionalQuestionPopupClose = By
 			.xpath("//button[@class='btn btn-primary btn-outline'][contains(text(),'close')]");
 	By signaturePad = By.xpath("//div[@class='m-signature-pad--body']");
+	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase text')]");
 
 // CONSTRUCTOR
 
@@ -173,5 +174,9 @@ public class PaymentMethodsPO {
 
 	public WebElement getSignaturePad() {
 		return driver.findElement(signaturePad);
+	}
+
+	public WebElement getTotalAmount() {
+		return driver.findElement(totalAmount);
 	}
 }
