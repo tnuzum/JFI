@@ -81,8 +81,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
 
-			while (!ap.getclubs().isEnabled()) {
+			int x = 0;
+			while (!ap.getclubs().isEnabled() && x < 100) {
 				System.out.println("Waiting for Clubs drop down to not be blank");
+				x++;
 			}
 
 			int count0 = Clubs.size();
@@ -262,8 +264,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
 
-			while (!ap.getclubs().isEnabled()) {
+			int x = 0;
+			while (!ap.getclubs().isEnabled() && x < 100) {
 				System.out.println("Waiting for Clubs drop down to not be blank");
+				x++;
 			}
 
 			int count0 = Clubs.size();
@@ -443,8 +447,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
 
-			while (!ap.getclubs().isEnabled()) {
+			int x = 0;
+			while (!ap.getclubs().isEnabled() && x < 100) {
 				System.out.println("Waiting for Clubs drop down to not be blank");
+				x++;
 			}
 
 			int count0 = Clubs.size();
@@ -638,8 +644,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
 
-			while (!ap.getclubs().isEnabled()) {
+			int x = 0;
+			while (!ap.getclubs().isEnabled() && x < 100) {
 				System.out.println("Waiting for Clubs drop down to not be blank");
+				x++;
 			}
 
 			int count0 = Clubs.size();
@@ -794,8 +802,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
 
-			while (!ap.getclubs().isEnabled()) {
+			int x = 0;
+			while (!ap.getclubs().isEnabled() && x < 100) {
 				System.out.println("Waiting for Clubs drop down to not be blank");
+				x++;
 			}
 
 			int count0 = Clubs.size();
@@ -950,8 +960,10 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
 
-			while (!ap.getclubs().isEnabled()) {
+			int x = 0;
+			while (!ap.getclubs().isEnabled() && x < 100) {
 				System.out.println("Waiting for Clubs drop down to not be blank");
+				x++;
 			}
 
 			int count0 = Clubs.size();
