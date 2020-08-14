@@ -1047,6 +1047,143 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 
+	@Test(priority = 12, description = "Buy Day Pass for MemberWithPunch")
+	public void PurchaseDayPass() throws InterruptedException, IOException {
+		try {
+			rm.activeMemberLogin("memberwithpunch", "Testing1!");
+			rw.waitForDashboardLoaded();
+			Thread.sleep(2000);
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			rm.openSideMenuIfNotOpenedAlready();
+
+			d.getMenuShopPackages().click();
+
+			while (!sp.getPackagesList().isDisplayed()) {
+				Thread.sleep(1000);
+				System.out.println("Waiting for the packages to be displayed");
+			}
+			wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+			wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
+
+			sp.getKeyWord().sendKeys("Day Pass");
+
+			for (int i = 0; i < sp.getPackageNames().size(); i++)
+
+			{
+				if (sp.getPackageNames().get(i).getText().equals("Day Pass"))
+
+				{
+					sp.getPurchaseButtons().get(i).click();
+					break;
+				}
+
+			}
+
+			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
+			Thread.sleep(3000);
+			Assert.assertEquals("Day Pass", PP.getPackageName().getText());
+
+			while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+			{
+				Thread.sleep(1000);
+				;
+			}
+
+			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+			for (int i = 0; i < count; i++) {
+				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+						.contains("5454")) {
+
+					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					break;
+				}
+			}
+
+			// Noting down the total amount
+
+			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
+//		System.out.println(PP.getTotalAmount().getText());
+			String[] totalAmt1 = PP.getShopPackageTotalAmount().getText().split(": ");
+			String FormatTotalAmt1 = totalAmt1[1].trim();
+			System.out.println(FormatTotalAmt1);
+
+			// Noting down the Package Units before purchasing
+			int IntUnitCountBefore1 = 0;
+			int IntUnitCountAfter1 = 0;
+
+			IntUnitCountBefore1 = rm.getPackageUnits("Day Pass");
+//		System.out.println(IntUnitCountBefore1);
+
+			// Verifies the Pay button contains the total amount
+			Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
+
+			// Click the Pay button
+			while (!PM.getPaymentButton().isEnabled()) {
+				Thread.sleep(1000);
+			}
+			PM.getPaymentButton().click();
+
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+
+			// Verifies the success message
+			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			PP.getPopupOKButton().click();
+			Thread.sleep(1000);
+
+			// Navigate to Dashboard
+			int count1 = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count1; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+				{
+					// rw.linksToBeClickable();
+					driver.findElements(By.tagName("a")).get(i).click();
+					break;
+				}
+
+			}
+			Thread.sleep(2000);
+
+			// Note the package units after purchase
+			IntUnitCountAfter1 = rm.getPackageUnits("Day Pass");
+//				System.out.println(IntUnitCountAfter1);
+
+			// Verifies the package units is now incremented by one unit
+			IntUnitCountBefore1++;
+			Assert.assertEquals(IntUnitCountBefore1, IntUnitCountAfter1); // verifies the unit count of the Package
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			Assert.fail(eci.getMessage());
+		} finally {
+			rm.memberLogout();
+		}
+
+	}
+
 	@AfterClass
 
 	public void teardown() throws InterruptedException {

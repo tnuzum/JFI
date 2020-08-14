@@ -55,6 +55,51 @@ public class UnenrollPO {
 
 	By canNotCancelMsg = By.xpath("//div[contains(@class, 'unenroll-not-eligible-for-unenrollment')]");
 
+	By type = By.xpath("//small[contains(text(),'Type:')]//following-sibling::strong");
+	By date = By.xpath("//small[contains(text(),'Date:')]//following-sibling::strong");
+	By startDate = By.xpath("//small[contains(text(),'Start Date:')]//following-sibling::strong");
+	By endDate = By.xpath("//small[contains(text(),'End Date:')]//following-sibling::strong");
+	By startTime = By.xpath("//small[contains(text(),'Start Time:')]//following-sibling::strong");
+	By duration = By.xpath("//small[contains(text(),'Duration:')]//following-sibling::strong");
+	By instructor = By.xpath("//small[contains(text(),'Instructor')]//following-sibling::strong");
+	By location = By.xpath("//small[contains(text(),'Location:')]//following-sibling::strong");
+	By category = By.xpath("//small[contains(text(),'Category:')]//following-sibling::strong");
+
+	public WebElement getType() {
+		return driver.findElement(type);
+	}
+
+	public WebElement getDate() {
+		return driver.findElement(date);
+	}
+
+	public WebElement getStartDate() {
+		return driver.findElement(startDate);
+	}
+
+	public WebElement getEndDate() {
+		return driver.findElement(endDate);
+	}
+
+	public WebElement getStartTime() {
+		return driver.findElement(startTime);
+	}
+
+	public WebElement getDuration() {
+		return driver.findElement(duration);
+	}
+
+	public WebElement getInstructor() {
+		return driver.findElement(instructor);
+	}
+
+	public WebElement getLocation() {
+		return driver.findElement(location);
+	}
+
+	public WebElement getCategory() {
+		return driver.findElement(category);
+	}
 // CONSTRUCTOR
 
 	public UnenrollPO(WebDriver driver) {
