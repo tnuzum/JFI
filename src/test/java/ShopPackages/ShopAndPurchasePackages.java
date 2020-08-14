@@ -1110,10 +1110,10 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println(FormatTotalAmt1);
 
 			// Noting down the Package Units before purchasing
-			int IntUnitCountBefore1 = 0;
-			int IntUnitCountAfter1 = 0;
+			int IntUnitCountBefore3 = 0;
+			int IntUnitCountAfter3 = 0;
 
-			IntUnitCountBefore1 = rm.getPackageUnits("Day Pass");
+			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
 //		System.out.println(IntUnitCountBefore1);
 
 			// Verifies the Pay button contains the total amount
@@ -1148,12 +1148,12 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(2000);
 
 			// Note the package units after purchase
-			IntUnitCountAfter1 = rm.getPackageUnits("Day Pass");
+			IntUnitCountAfter3 = rm.getPackageUnits("Day Pass");
 //				System.out.println(IntUnitCountAfter1);
 
 			// Verifies the package units is now incremented by one unit
-			IntUnitCountBefore1++;
-			Assert.assertEquals(IntUnitCountBefore1, IntUnitCountAfter1); // verifies the unit count of the Package
+			IntUnitCountBefore3 = IntUnitCountBefore3 + 2;
+			Assert.assertEquals(IntUnitCountBefore3, IntUnitCountAfter3); // verifies the unit count of the Package
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
