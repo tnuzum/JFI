@@ -55,7 +55,7 @@ public class ClassUnenrollTests extends base {
 	private static String YesCancelFee = "Class Cancellation Fee";
 
 	private static String YesRefundCC = "Class Refund Price";
-	private static String YesRefundOnAccount = "This credit will be placed on your house account and be applied to your outstanding invoice.";
+	private static String YesRefundOnAccount = "This credit will be placed on your on account and be applied to your outstanding invoice.";
 	private static String YesRefundOATaxInfo = "Plus applicable taxes.";
 	private static String YesRefundUnit = "Class Package Refund Quantity:";
 	private static String NoRefund = "This Class is non refundable";
@@ -105,6 +105,14 @@ public class ClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll1));
 
+			Assert.assertEquals("Class", u.getType().getText());
+			Assert.assertEquals(tomorrowsDate, u.getDate().getText());
+			Assert.assertEquals("6:00 AM", u.getStartTime().getText());
+			Assert.assertEquals("30 min", u.getDuration().getText());
+			Assert.assertEquals("Max Gibbs", u.getInstructor().getText());
+			Assert.assertEquals("Jonas Sports-Plex", u.getLocation().getText());
+			Assert.assertEquals("Tennis Lessons", u.getCategory().getText());
+
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
@@ -152,7 +160,7 @@ public class ClassUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 2, description = "Can Unenroll - Cancellation Fee exists even if class is enrolled with punches - Refund Allowed")
+	@Test(priority = 2, description = "Can Unenroll - Cancellation Fee exists even if class is enrolled with punches - Refund Allowed", enabled = true)
 	public void Unenroll_Scenario2() throws IOException, InterruptedException {
 
 		try {
@@ -465,7 +473,7 @@ public class ClassUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 6, description = "Can Unenroll-No Cancellation Fee - Refund Allowed - Class enrolled with Punches")
+	@Test(priority = 6, description = "Can Unenroll-No Cancellation Fee - Refund Allowed - Class enrolled with Punches", enabled = true)
 	public void Unenroll_Scenario6() throws IOException, InterruptedException {
 
 		try {
@@ -486,8 +494,8 @@ public class ClassUnenrollTests extends base {
 			Assert.assertTrue(u.getRefundUnitNo().getText().contains("1"));
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
-			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
-			u.getUnenrollButton().click();
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
+			u.getUnenrollNoRefund().click();
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -658,7 +666,7 @@ public class ClassUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 9, description = "Can Unenroll-No Cancellation Fee - Refund Allowed to only OA or CC- Class enrolled with Punches")
+	@Test(priority = 9, description = "Can Unenroll-No Cancellation Fee - Refund Allowed to only OA or CC- Class enrolled with Punches", enabled = true)
 	public void Unenroll_Scenario9() throws IOException, InterruptedException {
 
 		try {
@@ -981,7 +989,7 @@ public class ClassUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 13, description = "Can Unenroll-With Cancellation Fee - Refund Allowed - Class enrolled with Punches")
+	@Test(priority = 13, description = "Can Unenroll-With Cancellation Fee on the product but not charged - Refund Allowed - Class enrolled with Punches", enabled = true)
 	public void Unenroll_Scenario12() throws IOException, InterruptedException {
 
 		try {
@@ -997,36 +1005,14 @@ public class ClassUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll12));
 
-			Assert.assertTrue(u.getCancelHeader().isDisplayed());
-			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
-			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
-
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundUnitText().getText().contains(YesRefundUnit));
 			Assert.assertTrue(u.getRefundUnitNo().getText().contains("1"));
 
-			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
-			Assert.assertTrue(SubTotalLabelPresent);
-			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
-			Assert.assertTrue(TaxLabelPresent);
-			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
-			Assert.assertTrue(TotalLabelPresent);
-
-			String[] totalAmt = u.getTotalAmount().getText().split(": ");
-			String FormatTotalAmt = totalAmt[1].trim();
-
-			System.out.println(FormatTotalAmt);
-
-			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsPresentAndSelectedByDefault();
-			Assert.assertTrue(u.getNewCardButton().isDisplayed());
-
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
-			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
-
-			u.getPaymentButton().click();
+			u.getUnenrollNoRefund().click();
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
