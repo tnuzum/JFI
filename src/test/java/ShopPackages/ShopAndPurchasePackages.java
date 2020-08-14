@@ -1047,7 +1047,7 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 
-	@Test(priority = 12, description = "Buy Day Pass for MemberWithPunch")
+	@Test(priority = 0, description = "Buy Day Pass for MemberWithPunch")
 	public void PurchaseDayPass() throws InterruptedException, IOException {
 		try {
 			rm.activeMemberLogin("memberwithpunch", "Testing1!");

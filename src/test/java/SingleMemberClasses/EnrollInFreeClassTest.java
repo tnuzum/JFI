@@ -194,7 +194,7 @@ public class EnrollInFreeClassTest extends base {
 
 	}
 
-	@Test(priority = 2, description = "Unenroll from the class")
+	@Test(priority = 2, description = "Unenroll from the class", dependsOnMethods = { "EnrollInZeroDollarClass" })
 	public void unenrollFromClass() throws IOException, InterruptedException {
 
 		rw.waitForDashboardLoaded();

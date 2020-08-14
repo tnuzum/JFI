@@ -16,7 +16,7 @@
 			<class name="EME.DashBoard_Menu" />
 			
 			<class name="PaymentMethods.ShopPackages_AdditionalQuestionsTest"/>
-			<!--class name="PaymentMethods.EnrollClassAndCourse_AdditionalQuestionsTest"/-->
+			<class name="PaymentMethods.EnrollClassAndCourse_AdditionalQuestionsTest"/>
 			<class name="PaymentMethods.Appointments_AdditionalQuestions"/>
 						
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
