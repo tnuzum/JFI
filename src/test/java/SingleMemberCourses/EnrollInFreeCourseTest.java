@@ -238,9 +238,9 @@ public class EnrollInFreeCourseTest extends base {
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
-			u.getUnenrollButton().click();
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
+			u.getUnenrollNoRefund().click();
 			Thread.sleep(1000);
 			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
 			u.getUnenrollConfirmYesButton().click();
