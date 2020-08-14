@@ -57,7 +57,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 	private static String YesCancelFee = "Course Cancellation Fee";
 
 	private static String YesRefundCC = "Course Refund Price";
-	private static String YesRefundOnAccount = "This credit will be placed on your house account and be applied to your outstanding invoice.";
+	private static String YesRefundOnAccount = "This credit will be placed on your on account and be applied to your outstanding invoice.";
 	private static String YesRefundOATaxInfo = "Plus applicable taxes.";
 	private static String YesRefundUnit = "Course Package Refund Quantity:";
 	private static String NoRefund = "This Course is non refundable";
@@ -497,9 +497,9 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			Assert.assertTrue(u.getRefundUnitNo().getText().contains("1"));
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
-			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			u.getUnenrollButton().click();
+			u.getUnenrollNoRefund().click();
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -1001,7 +1001,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 13, description = "Can Unenroll-With Cancellation Fee - Refund Allowed - Class enrolled with Punches")
+	@Test(priority = 13, description = "Can Unenroll-With Cancellation Fee on the product but not charged - Refund Allowed - Class enrolled with Punches")
 	public void Unenroll_Scenario12() throws IOException, InterruptedException {
 
 		try {
@@ -1018,36 +1018,14 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll12));
 
-			Assert.assertTrue(u.getCancelHeader().isDisplayed());
-			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
-			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
-
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundUnitText().getText().contains(YesRefundUnit));
 			Assert.assertTrue(u.getRefundUnitNo().getText().contains("1"));
 
-			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
-			Assert.assertTrue(SubTotalLabelPresent);
-			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
-			Assert.assertTrue(TaxLabelPresent);
-			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
-			Assert.assertTrue(TotalLabelPresent);
-
-			String[] totalAmt = u.getTotalAmount().getText().split(": ");
-			String FormatTotalAmt = totalAmt[1].trim();
-
-			System.out.println(FormatTotalAmt);
-
-			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
-			rm.verifyOnAccountIsPresentAndSelectedByDefault();
-			Assert.assertTrue(u.getNewCardButton().isDisplayed());
-
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
-			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
-
-			u.getPaymentButton().click();
+			u.getUnenrollNoRefund().click();
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
@@ -1391,25 +1369,11 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			c.getContinueButton().click();
 
-			Thread.sleep(3000);
+			Thread.sleep(4000);
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 
-			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
-			for (int i = 0; i < count; i++) {
-				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-						.contains("5454")) {
-
-					jse.executeScript("arguments[0].scrollIntoView();",
-							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
-
-					jse.executeScript("arguments[0].click();",
-							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
-
-					// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-					break;
-				}
-			}
+			rm.selectSavedcard();
 
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
