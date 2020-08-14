@@ -40,7 +40,7 @@
 			<class name="ShopPackages.ShopAndPurchasePackages" />
 							
 			
-			<!--class name="SingleMemberClasses.EnrollWithSingleClassFeeTest" />
+			<class name="SingleMemberClasses.EnrollWithSingleClassFeeTest" />
 			<class name="SingleMemberClasses.EnrollInFreeClassTest" />
 			<class name="SingleMemberClasses.EnrollClassByBuyingPackage" />
 			<class name="SingleMemberClasses.EnrollInClass_CancelTransaction" />
@@ -50,7 +50,7 @@
 			<class name="SingleMemberCourses.EnrollInFreeCourseTest" />
 			<class name="SingleMemberCourses.EnrollWithSingleCourseFeeTest" />
 			<class name="SingleMemberCourses.EnrollCourseByBuyingPackage" />
-			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" /-->
+			<class name="SingleMemberCourses.EnrollInCourse_CancelTransaction" />
 			
 			
 									
@@ -174,19 +174,19 @@
 			<classes>
 			
 			<class name="FamilyMemberClasses.FamilyClassEnrollmentUIValidations" />
-			<!--class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
+			<class name="FamilyMemberClasses.EnrollClassMemberAndItemRestrictions" />
 			<class name="FamilyMemberClasses.FamilyMemberEnrollmentInFreeClass" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
-			<class name="FamilyMemberClasses.FamilyStandbyInClassTest" /-->
+			<class name="FamilyMemberClasses.FamilyStandbyInClassTest" />
 			
 			
 			<class name="FamilyMemberCourses.FamilyCourseEnrollmentUIValidations" />
-			<!--class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
+			<class name="FamilyMemberCourses.EnrollCourseMemberAndItemRestrictions" />
 			<class name="FamilyMemberCourses.FamilyMemberEnrollmentInFreeCourse" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment" />
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
-			<class name="FamilyMemberCourses.FamilyStandbyInCourseTest" /-->
+			<class name="FamilyMemberCourses.FamilyStandbyInCourseTest" />
 			
 			
 			
