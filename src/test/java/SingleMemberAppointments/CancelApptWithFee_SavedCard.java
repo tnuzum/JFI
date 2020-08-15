@@ -196,7 +196,7 @@ public class CancelApptWithFee_SavedCard extends base {
 
 			ap.getPopup1BookButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
@@ -426,7 +426,7 @@ public class CancelApptWithFee_SavedCard extends base {
 			}
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

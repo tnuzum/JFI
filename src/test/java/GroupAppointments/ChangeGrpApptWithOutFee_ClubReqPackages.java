@@ -352,7 +352,7 @@ public class ChangeGrpApptWithOutFee_ClubReqPackages extends base {
 			}
 			ap.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

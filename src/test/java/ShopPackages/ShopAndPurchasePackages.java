@@ -7,7 +7,9 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -1047,10 +1049,10 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 
-	@Test(priority = 0, description = "Buy Day Pass for MemberWithPunch")
+	@Test(priority = 0, description = "Buy Day Pass for Unenrollmbr9")
 	public void PurchaseDayPass() throws InterruptedException, IOException {
 		try {
-			rm.activeMemberLogin("memberwithpunch", "Testing1!");
+			rm.activeMemberLogin("Unenrollmbr9", "Testing1!");
 			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
@@ -1074,6 +1076,12 @@ public class ShopAndPurchasePackages extends base {
 				if (sp.getPackageNames().get(i).getText().equals("Day Pass"))
 
 				{
+					WebElement SelectDropdown = driver
+							.findElements(By.xpath("//select[contains(@class, 'at-shoppackage-dropdown-units')]"))
+							.get(i);
+					Select s = new Select(SelectDropdown);
+					s.selectByVisibleText("4 - $10.00/per");
+					Thread.sleep(1000);
 					sp.getPurchaseButtons().get(i).click();
 					break;
 				}
@@ -1152,7 +1160,7 @@ public class ShopAndPurchasePackages extends base {
 //				System.out.println(IntUnitCountAfter1);
 
 			// Verifies the package units is now incremented by one unit
-			IntUnitCountBefore3 = IntUnitCountBefore3 + 2;
+			IntUnitCountBefore3 = IntUnitCountBefore3 + 4;
 			Assert.assertEquals(IntUnitCountBefore3, IntUnitCountAfter3); // verifies the unit count of the Package
 
 		} catch (java.lang.AssertionError ae) {

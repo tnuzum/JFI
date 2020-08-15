@@ -232,7 +232,7 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 
 			ap.getPopup1BookButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
