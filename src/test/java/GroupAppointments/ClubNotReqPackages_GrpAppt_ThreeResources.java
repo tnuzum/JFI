@@ -222,7 +222,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 
 			ap.getbookButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
 			Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");

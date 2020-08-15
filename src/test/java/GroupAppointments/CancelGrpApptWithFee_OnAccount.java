@@ -203,7 +203,7 @@ public class CancelGrpApptWithFee_OnAccount extends base {
 
 			ap.getPopup1BookButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
@@ -339,7 +339,7 @@ public class CancelGrpApptWithFee_OnAccount extends base {
 
 			rw.waitForAcceptButton();
 
-			// wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			// rw.waitForAcceptButton();
 
 			// wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

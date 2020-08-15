@@ -219,9 +219,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 
 			ap.getPopup1BookButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
-
-			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			// Verifies the success message
 			Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
@@ -422,9 +420,11 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 			}
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
-			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
+			// rw.waitForAcceptButton();
+
+			// wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
 			// Verifies the success message
 			Assert.assertEquals(ap.getPopup2Title().getText(), "Success");

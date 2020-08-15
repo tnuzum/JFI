@@ -1288,7 +1288,7 @@ public class reusableMethods2 extends base {
 			ap.getPopup1BookButton().click();
 		}
 
-		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+		rw.waitForAcceptButton();
 		wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
 
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
@@ -1489,7 +1489,7 @@ public class reusableMethods2 extends base {
 			ap.getPopup1BookButton().click();
 		}
 
-		wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+		rw.waitForAcceptButton();
 		wait.until(ExpectedConditions.visibilityOf(ap.getPopup2OKButton()));
 
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");

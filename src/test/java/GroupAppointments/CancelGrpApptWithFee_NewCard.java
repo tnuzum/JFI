@@ -235,7 +235,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 			ap.getbookButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
@@ -405,7 +405,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 			}
 			PM.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 

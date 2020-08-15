@@ -289,7 +289,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_ToSingleMbrAppt extends bas
 			}
 			ap.getPaymentButton().click();
 
-			wait.until(ExpectedConditions.stalenessOf(ap.getPopup2OKButton()));
+			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));
 
