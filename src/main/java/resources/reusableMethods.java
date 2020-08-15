@@ -257,11 +257,9 @@ public class reusableMethods extends base {
 				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
 				u.getUnenrollNoRefund().click();
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+				rw.waitForAcceptButton();
 				u.getUnenrollConfirmYesButton().click();
-
-				wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+				rw.waitForAcceptButton();
 				Thread.sleep(1000);
 				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
@@ -347,10 +345,9 @@ public class reusableMethods extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
 			u.getUnenrollNoRefund().click();
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -475,6 +472,7 @@ public class reusableMethods extends base {
 		d.getMenuPackages().click();
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.className("ibox"))));
+		Thread.sleep(2000);
 		int IntUnitCount = 0;
 		for (int i = 0; i < pp.getMemberSections().size(); i++) {
 
@@ -2077,6 +2075,7 @@ public class reusableMethods extends base {
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
+		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
@@ -2086,6 +2085,7 @@ public class reusableMethods extends base {
 			WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 			if (fmc.isSelected()) {
+				jse.executeScript("arguments[0].scrollIntoView();", fml);
 				fml.click(); // de-selects the hoh
 				break;
 			}
@@ -2098,12 +2098,14 @@ public class reusableMethods extends base {
 			// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 			if (fml.getText().contains(familyMbrName)) {
+
+				jse.executeScript("arguments[0].scrollIntoView();", fml);
 				fml.click(); // Selects the member
+
 				break;
 			}
 		}
 		Actions actions = new Actions(driver);
-		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 		Thread.sleep(2000);
 		if (c.getPopupSignUpButton().isEnabled()) {
@@ -2130,7 +2132,7 @@ public class reusableMethods extends base {
 
 		c.getContinueButton().click();
 
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if (!classFee.equalsIgnoreCase("Free")) {
 
 			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
@@ -2211,7 +2213,7 @@ public class reusableMethods extends base {
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
-
+		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
 		for (int i = 0; i < fmlyMbrcount; i++) {
@@ -2220,6 +2222,7 @@ public class reusableMethods extends base {
 			WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 			if (fmc.isSelected()) {
+				jse.executeScript("arguments[0].scrollIntoView();", fml);
 				fml.click(); // de-selects the hoh
 				break;
 			}
@@ -2232,12 +2235,12 @@ public class reusableMethods extends base {
 			// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 			if (fml.getText().contains(familyMbrName)) {
+				jse.executeScript("arguments[0].scrollIntoView();", fml);
 				fml.click(); // Selects the member
 				break;
 			}
 		}
 		Actions actions = new Actions(driver);
-		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 		Thread.sleep(2000);
 		if (c.getPopupSignupButtonCourse().isEnabled()) {
@@ -2264,7 +2267,7 @@ public class reusableMethods extends base {
 
 		c.getContinueButton().click();
 
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if (!courseFee.equalsIgnoreCase("Free")) {
 
 			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
@@ -2321,7 +2324,8 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object familyClassClickToUnenroll() throws InterruptedException {
+	public Object familyClassClickToUnenroll(String classEnrolled, String enrolledMemberName)
+			throws InterruptedException {
 
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
@@ -2329,10 +2333,13 @@ public class reusableMethods extends base {
 		Thread.sleep(2000);
 		rw.waitForDashboardLoaded();
 		this.openSideMenuIfNotOpenedAlready();
-		d.getMenuMyActivies().click();
 
 		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
-			Thread.sleep(500);
+
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
 		}
 
 		WebDriverWait wait1 = new WebDriverWait(driver, 50);
@@ -2348,7 +2355,80 @@ public class reusableMethods extends base {
 		 * Thread.sleep(1000); cp.getCalDayBadge().click();
 		 */
 		Thread.sleep(1000);
-		cp.getCalEventTitle().click();
+
+		int eventCount = cp.getCalEventTitles().size();
+
+		for (int i = 0; i < eventCount; i++) {
+
+			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
+
+				cp.getCalEventTitles().get(i).click();
+				break;
+			}
+		}
+
+		Thread.sleep(1000);
+
+		Assert.assertTrue(cp.getClassName().getText().contains(classEnrolled));
+		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
+		cp.getUnEnrollBtn().click();
+		Thread.sleep(1000);
+		return null;
+
+	}
+
+	public Object familyCourseClickToUnenroll(String dsiredMonthYear, String classEnrolled, String enrolledMemberName)
+			throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
+
+		Thread.sleep(2000);
+		rw.waitForDashboardLoaded();
+		this.openSideMenuIfNotOpenedAlready();
+
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+		d.getMenuMyCalendar().click();
+		wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+		String monthYear = cp.getMonthYear().getText();
+		while (!monthYear.equals(dsiredMonthYear)) {
+			cp.getRightArrow().click();
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+			monthYear = cp.getMonthYear().getText();
+		}
+
+		Thread.sleep(1000);
+
+		cp.getCalDayBadge().click();
+
+		Thread.sleep(1000);
+
+		int eventCount = cp.getCalEventTitles().size();
+
+		for (int i = 0; i < eventCount; i++) {
+
+			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
+
+				cp.getCalEventTitles().get(i).click();
+				break;
+			}
+		}
+
+		Thread.sleep(1000);
+
+		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
 		Thread.sleep(1000);
 		cp.getUnEnrollBtn().click();
 		Thread.sleep(1000);
