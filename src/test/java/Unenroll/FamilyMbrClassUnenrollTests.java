@@ -103,7 +103,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll1, paymentOption2, payMethod1, "Not Free", "Unenrollmbr1");
 
-			rm.familyClassClickToUnenroll();
+			rm.familyClassClickToUnenroll(classToEnroll1, "Unenrollmbr1");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -164,9 +164,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll2, paymentOption1, "", "Not Free", "Unenrollmbr2");
 
-			int unitsBefore = rm.getPackageUnits("Day Pass");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr2");
+			System.out.println(unitsBefore);
 
-			rm.myClassClickToUnenroll(classToEnroll2);
+			rm.familyClassClickToUnenroll(classToEnroll2, "Unenrollmbr2");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -212,7 +213,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnits("Day Pass");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr2");
+			System.out.println(unitsAfter);
 
 			unitsBefore++;
 
@@ -253,7 +255,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll3, "", "", "Free", "Unenrollmbr3");
 
-			rm.myClassClickToUnenroll(classToEnroll3);
+			rm.familyClassClickToUnenroll(classToEnroll3, "Unenrollmbr3");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -333,7 +335,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll4, paymentOption2, payMethod2, "Not Free", "Unenrollmbr4");
 
-			rm.myClassClickToUnenroll(classToEnroll4);
+			rm.familyClassClickToUnenroll(classToEnroll4, "Unenrollmbr4");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -414,7 +416,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll5, paymentOption2, payMethod1, "Not Free", "Unenrollmbr5");
 
-			rm.myClassClickToUnenroll(classToEnroll5);
+			rm.familyClassClickToUnenroll(classToEnroll5, "Unenrollmbr5");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -477,15 +479,15 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll6, paymentOption1, "", "Free With Punch", "Unenrollmbr6");
 
-			int unitsBefore = rm.getPackageUnits("Day Pass");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6 AUTO");
+			System.out.println(unitsBefore);
 
-			rm.myClassClickToUnenroll(classToEnroll6);
+			rm.familyClassClickToUnenroll(classToEnroll6, "Unenrollmbr6");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll6));
-			System.out.println(u.getNoCancelFeeMsg().getText());
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundUnitText().getText().contains(YesRefundUnit));
@@ -506,7 +508,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnits("Day Pass");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6 AUTO");
+			System.out.println(unitsAfter);
 
 			unitsBefore++;
 
@@ -551,7 +554,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll7, paymentOption2, payMethod2, "Not Free", "Unenrollmbr7");
 
-			rm.myClassClickToUnenroll(classToEnroll7);
+			rm.familyClassClickToUnenroll(classToEnroll7, "Unenrollmbr7");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -613,7 +616,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll8, paymentOption2, payMethod1, "Not Free", "Unenrollmbr8");
 
-			rm.myClassClickToUnenroll(classToEnroll8);
+			rm.familyClassClickToUnenroll(classToEnroll8, "Unenrollmbr8");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -674,7 +677,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll9, paymentOption1, "", "Free With Punch", "Unenrollmbr9");
 
-			rm.myClassClickToUnenroll(classToEnroll9);
+			rm.familyClassClickToUnenroll(classToEnroll9, "Unenrollmbr9");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -735,7 +738,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll10, paymentOption2, payMethod2, "Not Free", "Unenrollmbr10");
 
-			rm.myClassClickToUnenroll(classToEnroll10);
+			rm.familyClassClickToUnenroll(classToEnroll10, "Unenrollmbr10");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -822,7 +825,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll10_1, paymentOption2, payMethod2, "Not Free", "Unenrollmbr11");
 
-			rm.myClassClickToUnenroll(classToEnroll10_1);
+			rm.familyClassClickToUnenroll(classToEnroll10_1, "Unenrollmbr11");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -831,7 +834,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
-			Assert.assertTrue(u.getCancelAmnt().getText().contains("$16.00"));
+			// Assert.assertTrue(u.getCancelAmnt().getText().contains("$16.00"));
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
@@ -909,7 +912,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll11, paymentOption2, payMethod1, "Not Free", "Unenrollmbr12");
 
-			rm.myClassClickToUnenroll(classToEnroll11);
+			rm.familyClassClickToUnenroll(classToEnroll11, "Unenrollmbr12");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -997,9 +1000,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll12, paymentOption1, "", "Free With Punch", "Unenrollmbr13");
 
-			int unitsBefore = rm.getPackageUnits("Day Pass");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13 AUTO");
+			System.out.println(unitsBefore);
 
-			rm.myClassClickToUnenroll(classToEnroll12);
+			rm.familyClassClickToUnenroll(classToEnroll12, "Unenrollmbr13");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -1024,7 +1028,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnits("Day Pass");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13 AUTO");
+			System.out.println(unitsAfter);
 
 			unitsBefore++;
 
@@ -1067,7 +1072,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll13, paymentOption2, payMethod1, "Not Free", "Unenrollmbr14");
 
-			rm.myClassClickToUnenroll(classToEnroll13);
+			rm.familyClassClickToUnenroll(classToEnroll13, "Unenrollmbr14");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -1129,7 +1134,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll14, paymentOption2, payMethod1, "Not Free", "Unenrollmbr15");
 
-			rm.myClassClickToUnenroll(classToEnroll14);
+			rm.familyClassClickToUnenroll(classToEnroll14, "Unenrollmbr15");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -1164,7 +1169,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
-			rm.selectNewcardToPay("UnenrollMbr15 Auto");
+			rm.selectNewcardToPay("UnenrollHoh Auto");
 
 			u.getPaymentButton().click();
 
@@ -1215,7 +1220,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll15, "", "", "Free", "Unenrollmbr16");
 
-			rm.myClassClickToUnenroll(classToEnroll15);
+			rm.familyClassClickToUnenroll(classToEnroll15, "Unenrollmbr16");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -1386,10 +1391,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 			}
 			rw.waitForDashboardLoaded();
 
-			rm.myClassClickToUnenroll(classToEnroll16);
+			rm.familyClassClickToUnenroll(classToEnroll16, "Unenrollmbr17");
 
 			UnenrollPO u = new UnenrollPO(driver);
-			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll6));
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll16));
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
@@ -1426,7 +1431,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
 
-			rm.selectNewcardToRefund("UnenrollMbr15 Auto");
+			rm.selectNewcardToRefund("UnenrollHoh Auto");
 
 			u.getRefundButton().click();
 
@@ -1477,7 +1482,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll17, paymentOption2, payMethod1, "Not Free", "Unenrollmbr18");
 
-			rm.myClassClickToUnenroll(classToEnroll17);
+			rm.familyClassClickToUnenroll(classToEnroll17, "Unenrollmbr18");
 
 			UnenrollPO u = new UnenrollPO(driver);
 

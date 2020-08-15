@@ -61,6 +61,7 @@ public class DashBoard_Menu extends base {
 		String myActivitiesMenuLabel = d.getMenuMyActivies().getText();
 		Assert.assertEquals(myActivitiesMenuLabel, "  My Activities");
 		d.getMenuMyActivies().click();
+		Thread.sleep(1000);
 
 		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 			Thread.sleep(1000);

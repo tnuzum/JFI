@@ -242,10 +242,10 @@ public class EnrollInFreeCourseTest extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
 			u.getUnenrollNoRefund().click();
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
