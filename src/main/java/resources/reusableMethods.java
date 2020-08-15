@@ -1604,11 +1604,12 @@ public class reusableMethods extends base {
 		while (selectATimeOpen.equals("false") && i < 10) {
 
 			Element.findElement(By.tagName("span")).click();
-			log.error("calendar date was clicked again");
+			log.info("calendar date was clicked again");
 			System.out.println("calendar date was clicked again");
 			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
 			i++;
 			System.out.println(i);
+			log.info("i");
 		}
 
 		System.out.println(i);
