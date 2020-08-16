@@ -164,11 +164,11 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth,
-					"Unenrollmbr2");
+					"Unenrollmbr2_1");
 
-			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR2 AUTO");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR2_1 AUTO");
 
-			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll2, "Unenrollmbr2");
+			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll2, "Unenrollmbr2_1");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -214,7 +214,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR2 AUTO");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR2_1 AUTO");
 
 			unitsBefore++;
 
@@ -480,11 +480,11 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll6, paymentOption1, "", "Free With Punch", CourseStartMonth,
-					"Unenrollmbr6");
+					"Unenrollmbr6_1");
 
-			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6 AUTO");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6_1 AUTO");
 
-			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll6, "Unenrollmbr6");
+			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll6, "Unenrollmbr6_1");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -510,7 +510,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6 AUTO");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6_1 AUTO");
 
 			unitsBefore++;
 
@@ -1006,11 +1006,11 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll12, paymentOption1, "", "Free With Punch", CourseStartMonth,
-					"Unenrollmbr13");
+					"Unenrollmbr13_1");
 
-			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13 AUTO");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13_1 AUTO");
 
-			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll12, "Unenrollmbr13");
+			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll12, "Unenrollmbr13_1");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -1035,7 +1035,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13 AUTO");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13_1 AUTO");
 
 			unitsBefore++;
 

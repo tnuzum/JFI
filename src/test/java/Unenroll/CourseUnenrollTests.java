@@ -163,11 +163,11 @@ public class CourseUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 2, description = "Can Unenroll - Cancellation Fee exists even if course is enrolled with punches - Refund Allowed", enabled = false)
+	@Test(priority = 2, description = "Can Unenroll - Cancellation Fee exists even if course is enrolled with punches - Refund Allowed", enabled = true)
 	public void Unenroll_Scenario2() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr2", "Testing1!");
+			rm.activeMemberLogin("unenrollmbr2_1", "Testing1!");
 			rm.enrollInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth);
 			int unitsBefore = rm.getPackageUnits("Day Pass");
 
@@ -474,11 +474,11 @@ public class CourseUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 6, description = "Can Unenroll-No Cancellation Fee - Refund Allowed - Course enrolled with Punches", enabled = false)
+	@Test(priority = 6, description = "Can Unenroll-No Cancellation Fee - Refund Allowed - Course enrolled with Punches", enabled = true)
 	public void Unenroll_Scenario6() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr6", "Testing1!");
+			rm.activeMemberLogin("unenrollmbr6_1", "Testing1!");
 			rm.enrollInCourse(courseToEnroll6, paymentOption1, "", "Free With Punch", CourseStartMonth);
 
 			int unitsBefore = rm.getPackageUnits("Day Pass");
@@ -667,7 +667,7 @@ public class CourseUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 9, description = "Can Unenroll-No Cancellation Fee - Refund Allowed to only OA or CC- Course enrolled with Punches", enabled = false)
+	@Test(priority = 9, description = "Can Unenroll-No Cancellation Fee - Refund Allowed to only OA or CC- Course enrolled with Punches", enabled = true)
 	public void Unenroll_Scenario9() throws IOException, InterruptedException {
 
 		try {
@@ -990,11 +990,11 @@ public class CourseUnenrollTests extends base {
 		}
 	}
 
-	@Test(priority = 13, description = "Can Unenroll-With Cancellation Fee on the product but not charged - Refund Allowed - Course enrolled with Punches", enabled = false)
+	@Test(priority = 13, description = "Can Unenroll-With Cancellation Fee on the product but not charged - Refund Allowed - Course enrolled with Punches", enabled = true)
 	public void Unenroll_Scenario12() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("unenrollmbr13", "Testing1!");
+			rm.activeMemberLogin("unenrollmbr13_1", "Testing1!");
 			rm.enrollInCourse(courseToEnroll12, paymentOption1, "", "Free With Punch", CourseStartMonth);
 
 			int unitsBefore = rm.getPackageUnits("Day Pass");

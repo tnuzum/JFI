@@ -466,13 +466,14 @@ public class reusableMethods extends base {
 
 		// Note the package units
 		d.getMenuMyAccount().click();
+		Thread.sleep(1000);
 		while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
 			Thread.sleep(1000);
 		}
 		d.getMenuPackages().click();
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.className("ibox"))));
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 		int IntUnitCount = 0;
 		for (int i = 0; i < pp.getMemberSections().size(); i++) {
 
@@ -1873,7 +1874,7 @@ public class reusableMethods extends base {
 		// Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 		PP.getPopupOKButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		int count1 = driver.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count1; i++) {
@@ -1972,7 +1973,7 @@ public class reusableMethods extends base {
 		// Verifies the success message
 		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 		PP.getPopupOKButton().click();
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 
 		int count1 = driver.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count1; i++) {
