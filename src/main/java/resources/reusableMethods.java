@@ -2506,7 +2506,7 @@ public class reusableMethods extends base {
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		while (opacity.contains("1")) {
 			PM.getNewCardButton().click();
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}

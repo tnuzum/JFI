@@ -1322,7 +1322,7 @@ public class CourseUnenrollTests extends base {
 
 			c.getContinueButton().click();
 
-			Thread.sleep(4000);
+			Thread.sleep(5000);
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 
