@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="EME - E2E Testing" parallel = "tests" thread-count = "8" preserve-order="true" verbose = "3">
+<suite name="EME - E2E Testing" parallel = "tests" thread-count = "11" preserve-order="true" verbose = "3">
 	<listeners>
 		<listener class-name="EME.listeners" />
 		<!--listener class-name = "resources.ExtentReporterNG"/-->
@@ -224,5 +224,36 @@
       <class name="ManagePaymentMethods.Bug167495_AddACHCheckingVsSavingsFiltering"/>
     </classes>
   </test> 
+  
+	
+	<test name = "Calendar" parallel = "none" preserve-order="true" group-by-instances="true">
+    <classes>
+    
+      <class name="Calendar.CalendarLayout"/>
+      
+    </classes>
+  </test> 
+  
+  <test name = "Unenroll Course" parallel = "none" preserve-order="true" group-by-instances="true">
+			
+			<classes>	
+			
+			<class name="Unenroll.CourseUnenrollTests"/>
+			<class name="Unenroll.FamilyMbrCourseUnenrollTests"/>
+       
+      
+				</classes>
+		</test>
+		
+		<test name = "Unenroll Class"  parallel = "none" preserve-order="true" group-by-instances="true">
+			
+			<classes>
+			
+			 <class name="Unenroll.ClassUnenrollTests"/>
+			 <class name="Unenroll.FamilyMbrClassUnenrollTests"/>
+									
+							
+			</classes>
+		</test>
 	<!-- When adding new test tag, include this test tag name in the POM.xml to be inclued in test execution through maven/jenkins -->
 </suite>
