@@ -471,9 +471,9 @@ public class reusableMethods extends base {
 			Thread.sleep(1000);
 		}
 		d.getMenuPackages().click();
-		WebDriverWait wait = new WebDriverWait(driver, 50);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.className("ibox"))));
 		Thread.sleep(3000);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ibox")));
 		int IntUnitCount = 0;
 		for (int i = 0; i < pp.getMemberSections().size(); i++) {
 
