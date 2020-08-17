@@ -35,6 +35,11 @@ public class CalendarLayout extends base {
 
 	private static String testName = null;
 
+	private static DashboardPO d;
+	private static CalendarPO cp;
+	private static BreadcrumbTrailPO BT;
+	private static UnenrollPO u;
+
 	public reusableWaits rw;
 	public reusableMethods rm;
 
@@ -50,6 +55,12 @@ public class CalendarLayout extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+
+		d = new DashboardPO(driver);
+		cp = new CalendarPO(driver);
+		BT = new BreadcrumbTrailPO(driver);
+		u = new UnenrollPO(driver);
+
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -65,13 +76,8 @@ public class CalendarLayout extends base {
 
 	}
 
-	@Test
+	@Test(priority = 1)
 	public void LayoutTest() throws InterruptedException, IOException {
-
-		DashboardPO d = new DashboardPO(driver);
-		CalendarPO cp = new CalendarPO(driver);
-		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-		UnenrollPO u = new UnenrollPO(driver);
 
 		try {
 			rm.enrollFamilyMbrInClass(classToEnroll, paymentOption, payMethod, "Not Free", "Calmember");
@@ -137,21 +143,52 @@ public class CalendarLayout extends base {
 			Assert.assertTrue(cp.getAddToCalButtonListView().isDisplayed());
 			Assert.assertTrue(cp.getUnenrollListview().isDisplayed());
 
-			/*
-			 * cp.getUnenrollListview().click(); Thread.sleep(1000);
-			 * Assert.assertTrue(cp.getClassDetailPopup().isDisplayed());
-			 * cp.getCancelBtn().click(); Thread.sleep(1000);
-			 */
+			cp.getUnenrollListview().click();
+			Thread.sleep(1000);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll));
+
+			Assert.assertEquals(u.getPageHeader().getText(), "Unenroll");
+			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
+			u.getCancelButton().click();
+			Thread.sleep(1000);
 
 			cp.getCalendarViewLink().click();
 			Thread.sleep(1000);
 			Assert.assertTrue(cp.getCalendar().isDisplayed());
 
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+	}
+
+	@Test(priority = 2, dependsOnMethods = { "LayoutTest" })
+	public void UnenrollFromCalendarView() throws InterruptedException, IOException {
+		try {
+
 			cp.getCalendarTomorrow().click();
 
-			/*
-			 * Thread.sleep(1000); cp.getCalDayBadge().click();
-			 */
 			Thread.sleep(1000);
 
 			int eventCount = cp.getCalEventTitles().size();
@@ -219,10 +256,89 @@ public class CalendarLayout extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
 	}
 
+	@Test(priority = 3)
+	public void unenrollFromCalendarListView() throws InterruptedException, IOException {
+
+		try {
+			rm.enrollInClass(classToEnroll, paymentOption, payMethod, "Not Free");
+
+			rm.openSideMenuIfNotOpenedAlready();
+
+			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+				d.getMenuMyActivies().click();
+				Thread.sleep(1000);
+				d.getmenuMyActivitiesSubMenu().getAttribute("style");
+				System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
+			}
+
+			WebDriverWait wait1 = new WebDriverWait(driver, 50);
+			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+			d.getMenuMyCalendar().click();
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+			cp.getCalendarListViewLink().click();
+			Thread.sleep(1000);
+
+			cp.getClassGearButton().click();
+
+			cp.getUnenrollListview().click();
+			Thread.sleep(1000);
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll));
+
+			Assert.assertEquals(u.getPageHeader().getText(), "Unenroll");
+			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Thread.sleep(1000);
+
+			u.getUnenrollButton().click();
+			rw.waitForAcceptButton();
+
+			u.getUnenrollConfirmYesButton().click();
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
+
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.memberLogout();
+		}
+	}
 //@AfterTest
 
 	@AfterClass
