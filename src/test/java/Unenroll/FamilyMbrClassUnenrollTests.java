@@ -479,7 +479,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll6, paymentOption1, "", "Free With Punch", "Unenrollmbr6");
 
-			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6 AUTO");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr6");
 			System.out.println(unitsBefore);
 
 			rm.familyClassClickToUnenroll(classToEnroll6, "Unenrollmbr6");
@@ -508,7 +508,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6 AUTO");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr6");
 			System.out.println(unitsAfter);
 
 			unitsBefore++;
@@ -1000,7 +1000,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			rm.enrollFamilyMbrInClass(classToEnroll12, paymentOption1, "", "Free With Punch", "Unenrollmbr13");
 
-			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13 AUTO");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr13");
 			System.out.println(unitsBefore);
 
 			rm.familyClassClickToUnenroll(classToEnroll12, "Unenrollmbr13");
@@ -1028,7 +1028,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13 AUTO");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr13");
 			System.out.println(unitsAfter);
 
 			unitsBefore++;
@@ -1309,6 +1309,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 				Thread.sleep(500);
 			}
 
+			JavascriptExecutor jse = ((JavascriptExecutor) driver);
 			int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
 			for (int i = 0; i < fmlyMbrcount; i++) {
@@ -1317,6 +1318,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 				WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fmc.isSelected()) {
+					jse.executeScript("arguments[0].scrollIntoView();", fml);
 					fml.click(); // de-selects the hoh
 					break;
 				}
@@ -1329,12 +1331,12 @@ public class FamilyMbrClassUnenrollTests extends base {
 				// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fml.getText().contains("Unenrollmbr17")) {
+					jse.executeScript("arguments[0].scrollIntoView();", fml);
 					fml.click(); // Selects the member
 					break;
 				}
 			}
 			Actions actions = new Actions(driver);
-			JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 			Thread.sleep(2000);
 			if (c.getPopupSignUpButton().isEnabled()) {
@@ -1360,7 +1362,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			c.getContinueButton().click();
 
-			Thread.sleep(4000);
+			Thread.sleep(5000);
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 

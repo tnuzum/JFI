@@ -166,7 +166,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			rm.enrollFamilyMbrInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth,
 					"Unenrollmbr2_1");
 
-			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR2_1 AUTO");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr2_1");
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll2, "Unenrollmbr2_1");
 
@@ -214,7 +214,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR2_1 AUTO");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr2_1");
 
 			unitsBefore++;
 
@@ -482,7 +482,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			rm.enrollFamilyMbrInCourse(courseToEnroll6, paymentOption1, "", "Free With Punch", CourseStartMonth,
 					"Unenrollmbr6_1");
 
-			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6_1 AUTO");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr6_1");
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll6, "Unenrollmbr6_1");
 
@@ -510,7 +510,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR6_1 AUTO");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr6_1");
 
 			unitsBefore++;
 
@@ -1008,7 +1008,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			rm.enrollFamilyMbrInCourse(courseToEnroll12, paymentOption1, "", "Free With Punch", CourseStartMonth,
 					"Unenrollmbr13_1");
 
-			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13_1 AUTO");
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr13_1");
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll12, "Unenrollmbr13_1");
 
@@ -1035,7 +1035,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
 
-			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "UNENROLLMBR13_1 AUTO");
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr13_1");
 
 			unitsBefore++;
 
@@ -1317,6 +1317,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 				Thread.sleep(500);
 			}
 
+			JavascriptExecutor jse = ((JavascriptExecutor) driver);
 			int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
 			for (int i = 0; i < fmlyMbrcount; i++) {
@@ -1325,6 +1326,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 				WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fmc.isSelected()) {
+					jse.executeScript("arguments[0].scrollIntoView();", fml);
 					fml.click(); // de-selects the hoh
 					break;
 				}
@@ -1337,12 +1339,12 @@ public class FamilyMbrCourseUnenrollTests extends base {
 				// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fml.getText().contains("Unenrollmbr17")) {
+					jse.executeScript("arguments[0].scrollIntoView();", fml);
 					fml.click(); // Selects the member
 					break;
 				}
 			}
 			Actions actions = new Actions(driver);
-			JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
@@ -1368,7 +1370,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			c.getContinueButton().click();
 
-			Thread.sleep(4000);
+			Thread.sleep(5000);
 
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 
