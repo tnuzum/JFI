@@ -240,6 +240,7 @@
 			
 			<class name="Unenroll.CourseUnenrollTests"/>
 			<class name="Unenroll.FamilyMbrCourseUnenrollTests"/>
+			<class name="Unenroll.FamilyMbrCourseUnenrollTests2"/>
        
       
 				</classes>
@@ -251,6 +252,7 @@
 			
 			 <class name="Unenroll.ClassUnenrollTests"/>
 			 <class name="Unenroll.FamilyMbrClassUnenrollTests"/>
+			  <class name="Unenroll.FamilyMbrClassUnenrollTests2"/>
 									
 							
 			</classes>
