@@ -483,6 +483,9 @@ public class reusableMethods extends base {
 
 				for (int k = 0; k < Packages.size(); k++) {
 					if (Packages.get(k).getText().contains(packageName)) {
+						JavascriptExecutor jse = ((JavascriptExecutor) driver);
+						jse.executeScript("arguments[0].scrollIntoView();", Packages.get(k));
+						Thread.sleep(1000);
 						String[] text = Packages.get(k).getText().split("\n");
 						String unitCount = text[2];
 						IntUnitCount = Integer.parseInt(unitCount);
@@ -2558,7 +2561,7 @@ public class reusableMethods extends base {
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		while (opacity.contains("1")) {
 			u.getNewCardButton().click();
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}
@@ -2566,7 +2569,7 @@ public class reusableMethods extends base {
 		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
-		System.out.println("Pay Button disabled:" + u.getRefundButton().getAttribute("disabled"));
+		System.out.println("Refund Button disabled:" + u.getRefundButton().getAttribute("disabled"));
 		Assert.assertFalse(u.getRefundButton().isEnabled());
 
 //			System.out.println(PM.getNameOnCardField().getAttribute("value"));
