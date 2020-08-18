@@ -831,7 +831,7 @@ public class CourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
-			// Assert.assertTrue(u.getCancelAmnt().getText().contains("$16.00"));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$16.00"));
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
