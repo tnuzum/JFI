@@ -2513,7 +2513,7 @@ public class reusableMethods extends base {
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		while (opacity.contains("1")) {
 			PM.getNewCardButton().click();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}
@@ -2521,7 +2521,7 @@ public class reusableMethods extends base {
 		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
-		wait.until(ExpectedConditions.attributeToBeNotEmpty(PM.getPaymentButton(), "disabled"));
+		Thread.sleep(2000);
 		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
 		Assert.assertFalse(PM.getPaymentButton().isEnabled());
 
@@ -2566,7 +2566,7 @@ public class reusableMethods extends base {
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 		while (opacity.contains("1")) {
 			u.getNewCardButton().click();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}
@@ -2574,6 +2574,7 @@ public class reusableMethods extends base {
 		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		Thread.sleep(2000);
 		System.out.println("Refund Button disabled:" + u.getRefundButton().getAttribute("disabled"));
 		Assert.assertFalse(u.getRefundButton().isEnabled());
 
