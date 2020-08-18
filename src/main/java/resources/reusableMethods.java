@@ -615,6 +615,10 @@ public class reusableMethods extends base {
 					.getText();
 
 			if (ClassOrCourseName.contains(ClassOrCourseToEnroll)) {
+				JavascriptExecutor jse = ((JavascriptExecutor) driver);
+				jse.executeScript("arguments[0].scrollIntoView();",
+						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
+
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific
 																									// Course
@@ -2517,6 +2521,7 @@ public class reusableMethods extends base {
 		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		wait.until(ExpectedConditions.attributeToBeNotEmpty(PM.getPaymentButton(), "disabled"));
 		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
 		Assert.assertFalse(PM.getPaymentButton().isEnabled());
 
