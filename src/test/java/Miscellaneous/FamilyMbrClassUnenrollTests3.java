@@ -1,4 +1,4 @@
-package Unenroll;
+package Miscellaneous;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -7,19 +7,27 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import pageObjects.ClassSignUpPO;
+import pageObjects.DashboardPO;
+import pageObjects.PaymentMethodsPO;
+import pageObjects.PurchaseConfirmationPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class FamilyMbrClassUnenrollTests extends base {
+public class FamilyMbrClassUnenrollTests3 extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll1 = "UnenrollClass1";
 	private static String classToEnroll2 = "UnenrollClass2";
@@ -61,7 +69,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public FamilyMbrClassUnenrollTests() {
+	public FamilyMbrClassUnenrollTests3() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -806,8 +814,714 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
-			rm.memberLogout();
+			rm.returnToDashboard();
 		}
+	}
+
+	@Test(priority = 11, description = "Can Unenroll-With Cancellation Fee > Refund Allowed - enrolled with Credit Card")
+	public void Unenroll_Scenario10_1() throws IOException, InterruptedException {
+
+		try {
+
+			rm.enrollFamilyMbrInClass(classToEnroll10_1, paymentOption2, payMethod2, "Not Free", "Unenrollmbr11");
+
+			rm.familyClassClickToUnenroll(classToEnroll10_1, "Unenrollmbr11");
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll10_1));
+
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			// Assert.assertTrue(u.getCancelAmnt().getText().contains("$16.00"));
+
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
+			Assert.assertTrue(u.getRefundCCAmnt().getText().contains("-$9.00"));
+
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
+
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
+
+			System.out.println(FormatTotalAmt);
+
+			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			rm.selectSavedcard();
+
+			u.getPaymentButton().click();
+
+			Thread.sleep(1000);
+			rw.waitForAcceptButton();
+			u.getUnenrollConfirmYesButton().click();
+
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 12, description = "Can Unenroll-With Cancellation Fee - Refund Allowed - Class enrolled with On Account")
+	public void Unenroll_Scenario11() throws IOException, InterruptedException {
+
+		try {
+
+			rm.enrollFamilyMbrInClass(classToEnroll11, paymentOption2, payMethod1, "Not Free", "Unenrollmbr12");
+
+			rm.familyClassClickToUnenroll(classToEnroll11, "Unenrollmbr12");
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll11));
+
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
+
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
+
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
+
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
+
+			System.out.println(FormatTotalAmt);
+
+			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			rm.selectSavedcard();
+
+			u.getPaymentButton().click();
+
+			Thread.sleep(1000);
+			rw.waitForAcceptButton();
+			u.getUnenrollConfirmYesButton().click();
+
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 13, description = "Can Unenroll-With Cancellation Fee on the product but not charged - Refund Allowed - Class enrolled with Punches")
+	public void Unenroll_Scenario12() throws IOException, InterruptedException {
+
+		try {
+
+			rm.enrollFamilyMbrInClass(classToEnroll12, paymentOption1, "", "Free With Punch", "Unenrollmbr13");
+
+			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr13");
+			System.out.println(unitsBefore);
+
+			rm.familyClassClickToUnenroll(classToEnroll12, "Unenrollmbr13");
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll12));
+
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundUnitText().getText().contains(YesRefundUnit));
+			Assert.assertTrue(u.getRefundUnitNo().getText().contains("1"));
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
+
+			u.getUnenrollNoRefund().click();
+			Thread.sleep(1000);
+			rw.waitForAcceptButton();
+			u.getUnenrollConfirmYesButton().click();
+
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+			int unitsAfter = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr13");
+			System.out.println(unitsAfter);
+
+			unitsBefore++;
+
+			Assert.assertEquals(unitsAfter, unitsBefore);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 14, description = "Can Unenroll-No Cancellation Fee and No Refund set on the class")
+	public void Unenroll_Scenario13() throws IOException, InterruptedException {
+
+		try {
+
+			rm.enrollFamilyMbrInClass(classToEnroll13, paymentOption2, payMethod1, "Not Free", "Unenrollmbr14");
+
+			rm.familyClassClickToUnenroll(classToEnroll13, "Unenrollmbr14");
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll13));
+
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
+
+			u.getUnenrollNoRefund().click();
+
+			Thread.sleep(1000);
+			rw.waitForAcceptButton();
+			u.getUnenrollConfirmYesButton().click();
+
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 15, description = "Can Unenroll-With Cancellation Fee and No Refund set on the class")
+	public void Unenroll_Scenario14() throws IOException, InterruptedException {
+
+		try {
+
+			rm.enrollFamilyMbrInClass(classToEnroll14, paymentOption2, payMethod1, "Not Free", "Unenrollmbr15");
+
+			rm.familyClassClickToUnenroll(classToEnroll14, "Unenrollmbr15");
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll14));
+
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
+
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
+
+			String[] totalAmt = u.getTotalAmount().getText().split(": ");
+			String FormatTotalAmt = totalAmt[1].trim();
+
+			System.out.println(FormatTotalAmt);
+
+			Assert.assertTrue(u.getOnAccountAndSavedCards().isDisplayed());
+			rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getPaymentButton().isDisplayed());
+
+			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
+
+			rm.selectNewcardToPay("UnenrollHoh Auto");
+
+			u.getPaymentButton().click();
+
+			Thread.sleep(1000);
+			rw.waitForAcceptButton();
+			u.getUnenrollConfirmYesButton().click();
+
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 16, description = "Unenroll Free Class - Course-Refund section should be hidden")
+	public void Unenroll_Scenario15() throws IOException, InterruptedException {
+
+		try {
+
+			rm.enrollFamilyMbrInClass(classToEnroll15, "", "", "Free", "Unenrollmbr16");
+
+			rm.familyClassClickToUnenroll(classToEnroll15, "Unenrollmbr16");
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll15));
+
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
+
+			u.getUnenrollNoRefund().click();
+
+			Thread.sleep(1000);
+			rw.waitForAcceptButton();
+			u.getUnenrollConfirmYesButton().click();
+
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 17, description = "Payment and Refund Methods displaying On Account and Credit cards should follow the sell club's configuration")
+	public void Unenroll_Scenario16() throws IOException, InterruptedException {
+
+		try {
+
+			DashboardPO d = new DashboardPO(driver);
+			ClassSignUpPO c = new ClassSignUpPO(driver);
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+
+			d.getMyClassesScheduleButton().click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+			rm.SelectTomorrowDate();
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+			WebElement Club = c.getClassClubDropdown();
+			Select s = new Select(Club);
+			s.selectByVisibleText("OnlinePayNotAllowed");
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+			rm.SelectClassOrCourseToEnroll(classToEnroll16.toUpperCase());
+
+			wait.until(
+					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+
+			while (c.getClasslabel().getText().isBlank()) {
+				Thread.sleep(500);
+			}
+
+			JavascriptExecutor jse = ((JavascriptExecutor) driver);
+			int fmlyMbrcount = c.getFmlyMemberLabel().size();
+
+			for (int i = 0; i < fmlyMbrcount; i++) {
+
+				WebElement fml = c.getFmlyMemberLabel().get(i);
+				WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+				if (fmc.isSelected()) {
+					jse.executeScript("arguments[0].scrollIntoView();", fml);
+					fml.click(); // de-selects the hoh
+					break;
+				}
+			}
+
+			// Selects the falimy member
+			for (int i = 0; i < fmlyMbrcount; i++) {
+
+				WebElement fml = c.getFmlyMemberLabel().get(i);
+				// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+				if (fml.getText().contains("Unenrollmbr17")) {
+					jse.executeScript("arguments[0].scrollIntoView();", fml);
+					fml.click(); // Selects the member
+					break;
+				}
+			}
+			Actions actions = new Actions(driver);
+
+			Thread.sleep(2000);
+			if (c.getPopupSignUpButton().isEnabled()) {
+				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+
+				actions.moveToElement(c.getPopupSignUpButton()).click().perform();
+
+			} else {
+				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
+				actions.moveToElement(c.getPopupCancelButton()).click().perform();
+				Assert.fail("SignUp button not available");
+
+			}
+			Thread.sleep(2000);
+
+			int radioButtonCount = driver.findElements(By.tagName("label")).size();
+			for (int i = 0; i < radioButtonCount; i++) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
+					driver.findElements(By.tagName("label")).get(i).click();
+					break;
+				}
+			}
+
+			c.getContinueButton().click();
+
+			Thread.sleep(5000);
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+
+			rm.selectSavedcard();
+
+			while (!PM.getPaymentButton().isEnabled()) {
+				Thread.sleep(1000);
+			}
+			PM.getPaymentButton().click();
+
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			// Verifies the success message
+			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			PP.getPopupOKButton().click();
+			Thread.sleep(1000);
+
+			int count1 = driver.findElements(By.tagName("a")).size();
+			for (int j = 0; j < count1; j++) {
+				if (driver.findElements(By.tagName("a")).get(j).getText().equals("Dashboard"))
+
+				{
+					// rw.linksToBeClickable();
+					driver.findElements(By.tagName("a")).get(j).click();
+					break;
+				}
+
+			}
+			rw.waitForDashboardLoaded();
+
+			rm.familyClassClickToUnenroll(classToEnroll16, "Unenrollmbr17");
+
+			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll16));
+
+			Assert.assertTrue(u.getCancelHeader().isDisplayed());
+			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
+			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
+
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
+			Assert.assertTrue(u.getRefundCCAmnt().getText().contains("-$9.00"));
+
+			Boolean SubTotalLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'SUB-TOTAL:')]"));
+			Assert.assertTrue(SubTotalLabelPresent);
+			Boolean TaxLabelPresent = rm.isElementPresent(By.xpath("//strong[contains(text(),'TAX:')]"));
+			Assert.assertTrue(TaxLabelPresent);
+			Boolean TotalLabelPresent = rm.isElementPresent(By.xpath("//h2[contains(text(),'TOTAL:')]"));
+			Assert.assertTrue(TotalLabelPresent);
+
+			String[] totalAmt = u.getTotalAmount().getText().split(": -");
+			String FormatTotalAmt = totalAmt[1].trim();
+
+			System.out.println(FormatTotalAmt);
+
+			try {
+				rm.verifyOnAccountIsPresentAndSelectedByDefault();
+			} catch (java.lang.AssertionError ae) {
+				Assert.assertTrue(true);
+				System.out.println("Verified that On Account is not present");
+				log.info("Verified that On Account is not present");
+			}
+
+			Assert.assertTrue(u.getNewCardButton().isDisplayed());
+
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+			Assert.assertTrue(u.getRefundButton().isDisplayed());
+
+			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
+
+			rm.selectNewcardToRefund("UnenrollHoh Auto");
+
+			u.getRefundButton().click();
+
+			Thread.sleep(1000);
+			rw.waitForAcceptButton();
+			u.getUnenrollConfirmYesButton().click();
+
+			rw.waitForAcceptButton();
+			Thread.sleep(1000);
+			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+			u.getUnenrollConfirmYesButton().click();
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		finally {
+			rm.returnToDashboard();
+		}
+	}
+
+	@Test(priority = 18, description = "class Start time in the future but unenrollment time falls inside the cannot cancel window")
+	public void Unenroll_Scenario17() throws IOException, InterruptedException {
+
+		try {
+
+			rm.enrollFamilyMbrInClass(classToEnroll17, paymentOption2, payMethod1, "Not Free", "Unenrollmbr18");
+
+			rm.familyClassClickToUnenroll(classToEnroll17, "Unenrollmbr18");
+
+			UnenrollPO u = new UnenrollPO(driver);
+
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll17));
+
+			Assert.assertTrue(u.getCanNotCancelFMsg().getText().contains(cannotCancelMsg));
+			Assert.assertTrue(u.getCancelButton().isDisplayed());
+
+			rm.memberLogout();
+			rm.deleteEnrollInClassInCOG(classToEnroll17, "Jonas Sports-Plex", "Auto, Unenrollmbr18");
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 //	@AfterTest
