@@ -24,6 +24,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.remote.CapabilityType;
@@ -83,6 +84,10 @@ public class base {
 				dc.setBrowserName("firefox");
 				dc.setPlatform(Platform.WINDOWS);
 				dc.acceptInsecureCerts();
+				dc.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+				dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+				FirefoxOptions fo = new FirefoxOptions();
+				fo.merge(dc);
 				System.setProperty("webdriver.gecko.driver", "c:\\WebDrivers\\geckodriver.exe");
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}
