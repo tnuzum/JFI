@@ -63,21 +63,22 @@ public class EmailConfirmations {
 	@Test(priority = 3, description = "Verifies the Class Unenrollment confirmation email")
 	public void ClassUnenrollmentConfirmation() {
 		try {
-			Message email2 = emailUtils.getMessagesBySubject("Unenrollment Notification for Member Self-Service", true,
-					8)[0];
+			Message email2 = emailUtils.getMessagesBySubject("Free Class Auto - Unenrollment Notification", true, 8)[0];
 
 			System.out.println(emailUtils.getMessageContent(email2));
 			String emailMessage2 = emailUtils.getMessageContent(email2);
-			Assert.assertTrue(emailMessage2.contains("You have unenrolled from the following  class."));
+			Assert.assertTrue(
+					emailMessage2.contains("You have been successfully unenrolled from the following class. "));
 
-			Assert.assertTrue(emailUtils.isTextInMessage(email2, "You have unenrolled from the following  class."));
+			Assert.assertTrue(emailUtils.isTextInMessage(email2,
+					"You have been successfully unenrolled from the following class. "));
 			Assert.assertTrue(emailUtils.isTextInMessage(email2, "Location: Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email2, "Class Name: Free Class Auto"));
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/d/yyyy");
 			Calendar today11 = Calendar.getInstance();
 			today11.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDate = dateFormat11.format(today11.getTime());
-			String classdateAndTime = "Class Time: " + tomorrowsDate + " 10:00:00 AM";
+			String classdateAndTime = "Class Time: " + tomorrowsDate + " 10:00 AM";
 			System.out.println(classdateAndTime);
 			Assert.assertTrue(emailUtils.isTextInMessage(email2, classdateAndTime));
 
@@ -112,17 +113,20 @@ public class EmailConfirmations {
 	@Test(priority = 5, description = "Verifies the Course Unenrollment confirmation email")
 	public void CourseUnenrollmentConfirmation() {
 		try {
-			Message email4 = emailUtils.getMessagesBySubject("Unenrollment Notification for Member Self-Service", true,
+			Message email4 = emailUtils.getMessagesBySubject("Free Course Auto - Unenrollment Notification", true,
 					8)[0];
 
 			System.out.println(emailUtils.getMessageContent(email4));
 			String emailMessage4 = emailUtils.getMessageContent(email4);
-			Assert.assertTrue(emailMessage4.contains("You have unenrolled from the following  course."));
+			Assert.assertTrue(
+					emailMessage4.contains("You have been successfully unenrolled from the following course."));
 
-			Assert.assertTrue(emailUtils.isTextInMessage(email4, "You have unenrolled from the following  course."));
+			Assert.assertTrue(emailUtils.isTextInMessage(email4,
+					"You have been successfully unenrolled from the following course. "));
 			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Location: Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Course Name: Free Course Auto"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Course Time: 4:30 PM"));
+			Assert.assertTrue(emailUtils.isTextInMessage(email4,
+					"Course Time: Every Monday, Wednesday, Thursday, Friday between 12/21/2020 and 12/31/2020 from 4:30 PM to 5:30 PM"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
