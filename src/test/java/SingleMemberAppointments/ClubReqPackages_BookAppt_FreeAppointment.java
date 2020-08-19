@@ -232,11 +232,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
@@ -415,11 +415,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
@@ -612,11 +612,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook5);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
@@ -769,11 +769,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			Assert.assertFalse(ap.getPaymentButton().isEnabled());
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
@@ -926,11 +926,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			Assert.assertFalse(ap.getPaymentButton().isEnabled());
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
@@ -1112,11 +1112,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook6);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {

@@ -356,11 +356,11 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 			Assert.assertEquals(IntUnitCountAfter, 1); // verifies the unit count of the Package
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -391,11 +391,11 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 			rm.memberLogout();
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -465,11 +465,11 @@ public class ClubReqPackages_BookAppt_MultiResourcesNotSelected extends base {
 			rm.memberLogout();
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}

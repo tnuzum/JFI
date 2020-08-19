@@ -82,6 +82,7 @@ public class base {
 				DesiredCapabilities dc = new DesiredCapabilities();
 				dc.setBrowserName("firefox");
 				dc.setPlatform(Platform.WINDOWS);
+				dc.acceptInsecureCerts();
 				System.setProperty("webdriver.gecko.driver", "c:\\WebDrivers\\geckodriver.exe");
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}

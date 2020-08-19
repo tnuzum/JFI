@@ -271,7 +271,7 @@ public class reusableMethods2 extends base {
 			catch (java.lang.AssertionError ae) {
 				System.out.println("assertion error");
 				ae.printStackTrace();
-				log.error(ae.getMessage(), ae);
+				log.error(ae.getMessage(), ae);ae. printStackTrace();
 				getScreenshot("Unenroll", driver);
 				Assert.fail(ae.getMessage());
 			}
@@ -360,7 +360,7 @@ public class reusableMethods2 extends base {
 		catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			getScreenshot("Unenroll", driver);
 			Assert.fail(ae.getMessage());
 		}

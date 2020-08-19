@@ -268,7 +268,7 @@ public class Appointments_AdditionalQuestions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -472,7 +472,7 @@ public class Appointments_AdditionalQuestions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -621,7 +621,7 @@ public class Appointments_AdditionalQuestions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -654,7 +654,7 @@ public class Appointments_AdditionalQuestions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

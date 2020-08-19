@@ -258,11 +258,12 @@ public class CancelGrpApptWithFee_NewCard extends base {
 			}
 			rw.waitForDashboardLoaded();
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -291,11 +292,11 @@ public class CancelGrpApptWithFee_NewCard extends base {
 				}
 			}
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -452,11 +453,11 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 			rm.memberLogout();
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
