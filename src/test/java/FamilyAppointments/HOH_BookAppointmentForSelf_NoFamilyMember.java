@@ -64,7 +64,7 @@ public class HOH_BookAppointmentForSelf_NoFamilyMember extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

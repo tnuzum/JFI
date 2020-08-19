@@ -281,12 +281,12 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			Assert.assertEquals("Dashboard", driver.getTitle());
 			Thread.sleep(2000);
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
@@ -314,12 +314,12 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 				}
 			}
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			e.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
@@ -384,12 +384,12 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 			rm.memberLogout();
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not booked");
 			e.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not booked");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);

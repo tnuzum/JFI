@@ -398,11 +398,11 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 			rm.memberLogout();
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -421,11 +421,11 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(e.getMessage(), e);e.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);
+			log.error(ae.getMessage(), ae);ae. printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
