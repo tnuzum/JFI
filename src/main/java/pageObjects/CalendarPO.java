@@ -33,6 +33,7 @@ public class CalendarPO {
 	By type = By.xpath("//div[@class='modal-body']//small[3]");
 	By instructor = By.xpath("//div[@class='modal-body']//small[4]");
 	By club = By.xpath("//div[@class='modal-body']//small[5]");
+	By status = By.xpath("//div[@class='modal-body']//small[6]");
 	By calendar = By.xpath("//div[@ng-reflect-ng-switch = 'month']");
 	By calendarList = By.xpath("//div[@class= 'panel panel-default m-t-md ng-star-inserted']");
 	By calendarHistory = By.xpath("//div[@class= 'panel panel-default m-t-md ng-star-inserted']");
@@ -51,22 +52,7 @@ public class CalendarPO {
 	By classGearButton = By.xpath("//i[@class='fa fa-gear pull-right m-r-xs ng-star-inserted']");
 	By addToCalButtonListView = By.xpath("//button[contains(text(), 'ADD TO CALENDAR')]");
 	By unenrollListview = By.xpath("//a[contains(text(), 'UNENROLL')]");
-
-	public WebElement getMemberClassDetails() {
-		return driver.findElement(memberClassDetails);
-	}
-
-	public WebElement getClassGearButton() {
-		return driver.findElement(classGearButton);
-	}
-
-	public WebElement getAddToCalButtonListView() {
-		return driver.findElement(addToCalButtonListView);
-	}
-
-	public WebElement getUnenrollListview() {
-		return driver.findElement(unenrollListview);
-	}
+	By memberSections = By.xpath("//div[@class = 'ng-star-inserted'] ");
 
 // CONSTRUCTOR
 
@@ -213,5 +199,29 @@ public class CalendarPO {
 
 	public WebElement getApplyFiltersLink() {
 		return driver.findElement(applyFiltersLink);
+	}
+
+	public WebElement getMemberClassDetails() {
+		return driver.findElement(memberClassDetails);
+	}
+
+	public WebElement getClassGearButton() {
+		return driver.findElement(classGearButton);
+	}
+
+	public WebElement getAddToCalButtonListView() {
+		return driver.findElement(addToCalButtonListView);
+	}
+
+	public WebElement getUnenrollListview() {
+		return driver.findElement(unenrollListview);
+	}
+
+	public List<WebElement> getMemberSections() {
+		return driver.findElements(memberSections);
+	}
+
+	public WebElement getStatus() {
+		return driver.findElement(status);
 	}
 }

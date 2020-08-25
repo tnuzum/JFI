@@ -35,7 +35,7 @@ public class FamilyMemberClassEnrollment2 extends base {
 	private static String classInstructorDisplayed = "Class Instructor: Max Gibbs";
 	private static String classInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
 	private static String classTimeDisplayedOnSearchScreen = "10:00 AM";
-	private static String classDuration = "45 min";
+	private static String classDuration = "45 Min";
 	private static String member1 = "FreeServiceDMbr";
 	private static String member1Rate = "Free";
 	private static String member2 = "HOH2";

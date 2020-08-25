@@ -35,7 +35,7 @@ public class FamilyStandbyInClass_Demo extends base {
 	private static String ClassInstructorDisplayed = "Class Instructor: Max Gibbs";
 	private static String ClassInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
 	private static String ClassTimeDisplayedOnSearchScreen = "3:30 PM";
-	private static String ClassDuration = "30 min";
+	private static String ClassDuration = "30 Min";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";

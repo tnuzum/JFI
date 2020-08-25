@@ -39,7 +39,7 @@ public class FamilyStandbyInCourseTest extends base {
 	private static String courseInstructorDisplayed = "Course Instructor: Max Gibbs";
 	private static String courseInstructorDisplayedOnSearchScreen = "Inst: Max Gibbs";
 	private static String courseTimeDisplayedOnSearchScreen = "4:00 PM";
-	private static String courseDuration = "30 min";
+	private static String courseDuration = "30 Min";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";

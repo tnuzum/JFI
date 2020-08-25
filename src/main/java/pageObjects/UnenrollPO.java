@@ -49,6 +49,11 @@ public class UnenrollPO {
 	By cancelText = By.xpath("//div[@class='rate-box unenroll-cancel-fee']/strong");
 	By cancelAmnt = By.xpath("//div[@class='rate-box unenroll-cancel-fee']/span");
 
+	By stanbyUnenrollText = By
+			.xpath("//div[@class='rate-box text-danger unenroll-not-eligible-for-unenrollment']//strong");
+
+	By stanbyHeader = By.xpath("//small[contains(text(),'On Standby')]");
+
 	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase')]");
 
 	By noRefund = By.xpath("//div[@class='rate-box unenroll-non-refundable']/strong");
@@ -64,42 +69,8 @@ public class UnenrollPO {
 	By instructor = By.xpath("//small[contains(text(),'Instructor')]//following-sibling::strong");
 	By location = By.xpath("//small[contains(text(),'Location:')]//following-sibling::strong");
 	By category = By.xpath("//small[contains(text(),'Category:')]//following-sibling::strong");
+	By status = By.xpath("//small[contains(text(),'Status:')]//following-sibling::strong");
 
-	public WebElement getType() {
-		return driver.findElement(type);
-	}
-
-	public WebElement getDate() {
-		return driver.findElement(date);
-	}
-
-	public WebElement getStartDate() {
-		return driver.findElement(startDate);
-	}
-
-	public WebElement getEndDate() {
-		return driver.findElement(endDate);
-	}
-
-	public WebElement getStartTime() {
-		return driver.findElement(startTime);
-	}
-
-	public WebElement getDuration() {
-		return driver.findElement(duration);
-	}
-
-	public WebElement getInstructor() {
-		return driver.findElement(instructor);
-	}
-
-	public WebElement getLocation() {
-		return driver.findElement(location);
-	}
-
-	public WebElement getCategory() {
-		return driver.findElement(category);
-	}
 // CONSTRUCTOR
 
 	public UnenrollPO(WebDriver driver) {
@@ -253,5 +224,53 @@ public class UnenrollPO {
 
 	public WebElement getCanNotCancelFMsg() {
 		return driver.findElement(canNotCancelMsg);
+	}
+
+	public WebElement getStanbyHeader() {
+		return driver.findElement(stanbyHeader);
+	}
+
+	public WebElement getType() {
+		return driver.findElement(type);
+	}
+
+	public WebElement getDate() {
+		return driver.findElement(date);
+	}
+
+	public WebElement getStartDate() {
+		return driver.findElement(startDate);
+	}
+
+	public WebElement getEndDate() {
+		return driver.findElement(endDate);
+	}
+
+	public WebElement getStartTime() {
+		return driver.findElement(startTime);
+	}
+
+	public WebElement getDuration() {
+		return driver.findElement(duration);
+	}
+
+	public WebElement getInstructor() {
+		return driver.findElement(instructor);
+	}
+
+	public WebElement getLocation() {
+		return driver.findElement(location);
+	}
+
+	public WebElement getCategory() {
+		return driver.findElement(category);
+	}
+
+	public WebElement getStatus() {
+		return driver.findElement(status);
+	}
+
+	public WebElement getStanbyUnenrollText() {
+		return driver.findElement(stanbyUnenrollText);
 	}
 }
