@@ -36,7 +36,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 	private static String courseInstructorDisplayed = "Course Instructor: Jillian S";
 	private static String courseInstructorDisplayedOnSearchScreen = "Inst: Jillian S";
 	private static String courseTimeDisplayedOnSearchScreen = "4:30 PM";
-	private static String courseDuration = "60 min";
+	private static String courseDuration = "60 Min";
 	private static String member1 = "Cadmember";
 	private static String member1Rate = "Not Eligible";
 	private static String member2 = "Feemember";

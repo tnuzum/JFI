@@ -161,7 +161,8 @@ public class CalendarLayout extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -209,7 +210,7 @@ public class CalendarLayout extends base {
 			Assert.assertTrue(cp.getClassDate().getText().equals(tomorrowsDate));
 			Assert.assertTrue(cp.getClassTime().getText().contains("6:00 AM"));
 			Assert.assertTrue(cp.getType().getText().contains("Class"));
-			Assert.assertTrue(cp.getDuration().getText().contains("30 min"));
+			Assert.assertTrue(cp.getDuration().getText().contains("30 Min"));
 			Assert.assertTrue(cp.getCategory().getText().contains("Tennis Lessons"));
 			Assert.assertTrue(cp.getInstructor().getText().contains("Max Gibbs"));
 			Assert.assertTrue(cp.getClub().getText().contains("Jonas Sports-Plex"));
@@ -234,7 +235,8 @@ public class CalendarLayout extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -314,7 +316,8 @@ public class CalendarLayout extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

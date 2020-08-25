@@ -188,6 +188,9 @@
 			<class name="FamilyMemberCourses.FamilyMemberCourseEnrollment2" />
 			<class name="FamilyMemberCourses.FamilyStandbyInCourseTest" />
 			
+			<class name="Unenroll.UnenrollStandbyClass" />
+			<class name="Unenroll.UnenrollStandbyCourse" />
+			
 			
 			
 		</classes>
