@@ -571,7 +571,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 		}
 	}
 
-	@Test(priority = 17, description = "Payment and Refund Methods displaying On Account and Credit cards should follow the sell club's configuration")
+	@Test(priority = 17, description = "Payment and Refund Methods displaying On Account and Credit cards should follow the Home club's configuration")
 	public void Unenroll_Scenario16() throws IOException, InterruptedException {
 
 		try {
@@ -735,6 +735,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 
 			rm.selectNewcardToRefund("UnenrollHoh2 Auto");
 
+			Thread.sleep(3000);
 			u.getRefundButton().click();
 
 			Thread.sleep(1000);
