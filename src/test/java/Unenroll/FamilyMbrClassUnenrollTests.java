@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import pageObjects.PaymentMethodsPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
@@ -167,6 +168,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll2));
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
@@ -256,6 +259,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll3));
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
@@ -337,6 +342,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll4));
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
@@ -746,6 +753,8 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll10));
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));

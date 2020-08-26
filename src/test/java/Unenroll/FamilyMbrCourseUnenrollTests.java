@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import pageObjects.PaymentMethodsPO;
 import pageObjects.UnenrollPO;
 import resources.base;
 import resources.reusableMethods;
@@ -126,7 +127,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -166,6 +168,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll2));
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
@@ -216,7 +220,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -253,6 +258,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll3));
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
@@ -296,7 +303,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -334,6 +342,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll4));
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundCCText().getText().contains(YesRefundCC));
@@ -376,7 +386,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -440,7 +451,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -514,7 +526,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -576,7 +589,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -639,7 +653,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -701,7 +716,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -741,6 +757,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll10));
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 			Assert.assertTrue(u.getCancelHeader().isDisplayed());
 			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
@@ -789,7 +807,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
