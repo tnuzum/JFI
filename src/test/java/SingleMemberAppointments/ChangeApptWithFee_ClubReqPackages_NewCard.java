@@ -233,7 +233,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 					break;
 				}
 			}
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 
 			System.out.println(ap.getPopup1Content().getText());
 			System.out.println("Time: " + dayAfter + " " + startTime2);
@@ -398,11 +398,13 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 			rm.memberLogout();
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -421,11 +423,13 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
