@@ -733,6 +733,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 
 			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
 
+			Thread.sleep(3000);
 			rm.selectNewcardToRefund("UnenrollHoh2 Auto");
 
 			Thread.sleep(3000);
