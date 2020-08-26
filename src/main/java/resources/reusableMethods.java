@@ -834,7 +834,7 @@ public class reusableMethods extends base {
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'success')]")).isDisplayed());
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
