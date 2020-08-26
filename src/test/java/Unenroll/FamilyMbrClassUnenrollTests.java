@@ -94,8 +94,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 		try {
 
-			// rm.enrollFamilyMbrInClass(classToEnroll1, paymentOption2, payMethod1, "Not
-			// Free", "Unenrollmbr1");
+			rm.enrollFamilyMbrInClass(classToEnroll1, paymentOption2, payMethod1, "Not Free", "Unenrollmbr1");
 
 			rm.familyClassClickToUnenroll(classToEnroll1, "Unenrollmbr1");
 
