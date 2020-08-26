@@ -248,11 +248,13 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook1);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
@@ -422,7 +424,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", st2);
 			getScreenshot(this.getClass().getSimpleName() + "_MorningTimeClicked", driver);
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
 			Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
@@ -476,11 +478,13 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook2);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} finally {
