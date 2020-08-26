@@ -103,7 +103,15 @@ public class PageLaunchTest extends base {
 		log.info("Select Classes Page Header Verified");
 //		d.getDashboardButton().click();
 		rm.returnToDashboard();
-		d.getMenuMyActivies().click();// Accessing from left pane menu
+		rm.openSideMenuIfNotOpenedAlready();
+		// Accessing from left pane menu
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
+		}
 		d.getMenuClassSchedule().click();
 
 		Assert.assertEquals(cs.getPageHeader().getText(), "Select Classes");
@@ -119,8 +127,15 @@ public class PageLaunchTest extends base {
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 //		log.info("Appointments Page Header Verified");
 //		d.getDashboardButton().click();
-		d.getMenuMyActivies().click();// Accessing from left pane menu
+		// Accessing from left pane menu
+		rm.openSideMenuIfNotOpenedAlready();
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
+		}
 		d.getMenuBookAppointment().click();
 // The pageHeader changed in 7.28
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
