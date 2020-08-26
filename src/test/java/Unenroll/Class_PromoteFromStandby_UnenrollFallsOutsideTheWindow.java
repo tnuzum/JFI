@@ -318,16 +318,12 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));
 
-			Assert.assertTrue(u.getCancelHeader().isDisplayed());
-			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
-			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
-
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$10.00"));
 			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
-			u.getPaymentButton().click();
+			u.getUnenrollButton().click();
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -401,14 +397,10 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			Assert.assertFalse(rm.isElementPresent(By.xpath("//small[contains(text(),'On Standby')]")));
 
-			Assert.assertTrue(u.getCancelHeader().isDisplayed());
-			Assert.assertTrue(u.getCancelText().getText().contains(YesCancelFee));
-			Assert.assertTrue(u.getCancelAmnt().getText().contains("$6.00"));
-
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			u.getPaymentButton().click();
+			u.getUnenrollNoRefund().click();
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -450,10 +442,10 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 	}
 
 	@Test(priority = 5, description = "Member Can Unenroll from Standby")
-	public void SelfUnenrollStandby() throws IOException, InterruptedException {
+	public void verifyNowTheThirdMemberIsEnrolled() throws IOException, InterruptedException {
 
 		try {
-			rm.activeMemberLogin("feemember", "Testing1!");
+			rm.activeMemberLogin("freemember", "Testing1!");
 
 			DashboardPO d = new DashboardPO(driver);
 
@@ -461,7 +453,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			for (int i = 0; i < count; i++) {
 
 				if (d.getClassInfoSections().get(i).getText().contains(ClassToEnroll)) {
-					Assert.assertTrue(d.getClassInfoSections().get(i).getText().contains("ON STANDBY"));
+					Assert.assertFalse(d.getClassInfoSections().get(i).getText().contains("ON STANDBY"));
 				}
 			}
 
@@ -472,11 +464,10 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));
 
-			Assert.assertEquals("ON STANDBY", u.getStatus().getText());
+			Assert.assertFalse(rm.isElementPresent(By.xpath("//small[contains(text(),'On Standby')]")));
 
-			Assert.assertTrue(u.getStanbyHeader().isDisplayed());
-
-			Assert.assertEquals(u.getStanbyUnenrollText().getText(), standbyUnenrollText);
+			Assert.assertTrue(u.getRefundHeader().isDisplayed());
+			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
 			u.getUnenrollNoRefund().click();
 

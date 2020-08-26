@@ -462,6 +462,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
+			Thread.sleep(3000);
 			rm.selectNewcardToPay("UnenrollHoh2 Auto");
 
 			u.getPaymentButton().click();

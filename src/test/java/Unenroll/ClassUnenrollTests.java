@@ -1191,6 +1191,7 @@ public class ClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
+			Thread.sleep(3000);
 			rm.selectNewcardToPay("UnenrollMbr15 Auto");
 
 			u.getPaymentButton().click();
