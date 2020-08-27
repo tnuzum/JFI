@@ -244,8 +244,7 @@
 			<class name="Unenroll.CourseUnenrollTests"/>
 			<class name="Unenroll.FamilyMbrCourseUnenrollTests"/>
 			<class name="Unenroll.FamilyMbrCourseUnenrollTests2"/>
-			<class name="Unenroll.Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
-			  <class name="Unenroll.Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
+			
        
       
 				</classes>
@@ -255,12 +254,14 @@
 			
 			<classes>
 			
+			<class name="Unenroll.Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
+			  <class name="Unenroll.Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
+			  <class name="Unenroll.Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
+			  <class name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow"/>
 			 <class name="Unenroll.ClassUnenrollTests"/>
 			 <class name="Unenroll.FamilyMbrClassUnenrollTests"/>
 			  <class name="Unenroll.FamilyMbrClassUnenrollTests2"/>
-			  <class name="Unenroll.Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
-			  <class name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow"/>
-									
+			  									
 							
 			</classes>
 		</test>
