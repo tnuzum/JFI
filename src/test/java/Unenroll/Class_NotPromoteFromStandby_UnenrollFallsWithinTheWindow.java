@@ -28,22 +28,22 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base {
+public class Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String ClassToEnroll = "STANDBYPROMOYESCLASS";
-	private static String ClassNameDisplayed = "StandbyPromoYesClass";
-
+	private static String ClassToEnroll = "STANDBYPROMONOCLASS";
+	private static String ClassNameDisplayed = "StandbyPromoNoClass";
 	private static String YesRefundOnAccount = "This credit will be placed on your on account and be applied to your outstanding invoice.";
 	private static String YesRefundOATaxInfo = "Plus applicable taxes.";
-	private static String NoRefund = "This Class is non refundable";
+	private static String standbyUnenrollText = "Select Unenroll to be removed from the standby list for this Class.";
 	private static String member2 = "Standbypromo1";
 	private static String member5 = "Standbyhoh";
+
 	private static String testName = null;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow() {
+	public Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -359,7 +359,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 	}
 
 	@Test(priority = 4)
-	public void VerifyMemberIsPromotedToEnrolled() throws InterruptedException, IOException {
+	public void VerifyMemberIsNotPromotedToEnrolled() throws InterruptedException, IOException {
 		try {
 
 			CalendarPO cp = new CalendarPO(driver);
@@ -383,6 +383,8 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			Thread.sleep(1000);
 
+			Assert.assertEquals("Status: ON STANDBY", cp.getStatus().getText());
+
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 
@@ -390,10 +392,11 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));
 
-			Assert.assertFalse(rm.isElementPresent(By.xpath("//small[contains(text(),'On Standby')]")));
+			Assert.assertEquals("ON STANDBY", u.getStatus().getText());
 
-			Assert.assertTrue(u.getRefundHeader().isDisplayed());
-			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+			Assert.assertTrue(u.getStanbyHeader().isDisplayed());
+
+			Assert.assertEquals(u.getStanbyUnenrollText().getText(), standbyUnenrollText);
 
 			u.getUnenrollNoRefund().click();
 
@@ -437,7 +440,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 	}
 
 	@Test(priority = 5)
-	public void verifyNowTheThirdMemberIsEnrolled() throws IOException, InterruptedException {
+	public void verifyTheThirdMemberIsNotEnrolled() throws IOException, InterruptedException {
 
 		try {
 			rm.activeMemberLogin("standbypromo2", "Testing1!");
@@ -448,7 +451,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			for (int i = 0; i < count; i++) {
 
 				if (d.getClassInfoSections().get(i).getText().contains(ClassToEnroll)) {
-					Assert.assertFalse(d.getClassInfoSections().get(i).getText().contains("ON STANDBY"));
+					Assert.assertTrue(d.getClassInfoSections().get(i).getText().contains("ON STANDBY"));
 				}
 			}
 
@@ -459,10 +462,11 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));
 
-			Assert.assertFalse(rm.isElementPresent(By.xpath("//small[contains(text(),'On Standby')]")));
+			Assert.assertEquals("ON STANDBY", u.getStatus().getText());
 
-			Assert.assertTrue(u.getRefundHeader().isDisplayed());
-			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+			Assert.assertTrue(u.getStanbyHeader().isDisplayed());
+
+			Assert.assertEquals(u.getStanbyUnenrollText().getText(), standbyUnenrollText);
 
 			u.getUnenrollNoRefund().click();
 

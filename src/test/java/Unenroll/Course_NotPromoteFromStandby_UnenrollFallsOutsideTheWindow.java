@@ -28,14 +28,17 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base {
+public class Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String ClassToEnroll = "STANDBYPROMOYESCLASS";
-	private static String ClassNameDisplayed = "StandbyPromoYesClass";
+	private static String CourseStartMonth = "Dec";
+	private static String dsiredMonthYear = "December 2020";
+	private static String CourseToEnroll = "STANDBYPROMONOCOURSE";
+	private static String CourseNameDisplayed = "StandbyPromoNoCourse";
 
 	private static String YesRefundOnAccount = "This credit will be placed on your on account and be applied to your outstanding invoice.";
 	private static String YesRefundOATaxInfo = "Plus applicable taxes.";
-	private static String NoRefund = "This Class is non refundable";
+	private static String NoRefund = "This Course is non refundable";
+	private static String standbyUnenrollText = "Select Unenroll to be removed from the standby list for this Course.";
 	private static String member2 = "Standbypromo1";
 	private static String member5 = "Standbyhoh";
 	private static String testName = null;
@@ -43,7 +46,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow() {
+	public Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -73,31 +76,32 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 
-			d.getMyClassesScheduleButton().click();
+			d.getMyCoursesEventsScheduleButton().click();
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-			rm.SelectTomorrowDate();
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+			rm.SelectCourseStartMonth(CourseStartMonth);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			c.getCourseFilter().click();
 			c.getCourseKeyword().click();
 			c.getSearchField().sendKeys("stand");
-			c.getClassApplyFilters().click();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+			c.getCourseApplyFilters().click();
+			Thread.sleep(2000);
 
-			int ClassCount = c.getClassTable().size();
-			for (int j = 0; j < ClassCount; j++) {
+			int CourseCount = c.getClassTable().size();
+			for (int j = 0; j < CourseCount; j++) {
 
 				WebElement w = c.getClassTable().get(j);
 
-				String ClassName = w.getText();
+				String CourseName = w.getText();
 
-				if (ClassName.contains(ClassToEnroll)) {
+				if (CourseName.contains(CourseToEnroll)) {
 					w.click(); // Click on the specific Class
 					break;
 				}
@@ -109,7 +113,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 				Thread.sleep(500);
 			}
 
-			Assert.assertEquals(c.getClasslabel().getText(), ClassNameDisplayed); // Verifies the Class name
+			Assert.assertEquals(c.getClasslabel().getText(), CourseNameDisplayed); // Verifies the Class name
 			int count = c.getFmlyMemberLabel().size();
 
 			// Selects members
@@ -157,7 +161,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 				if (c.getMemberSections().get(i).getText().contains(member5)) {
 
 					for (int j = 0; j < Labels.size(); j++) {
-						if (Labels.get(j).getText().contains("Pay Single Class Fee")) {
+						if (Labels.get(j).getText().contains("Pay Course Fee")) {
 							Labels.get(j).click();
 							break;
 						}
@@ -194,7 +198,6 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 				}
 
 			}
-			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -220,6 +223,8 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
+		} finally {
+			rm.memberLogout();
 		}
 
 	}
@@ -233,23 +238,23 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-			d.getMyClassesScheduleButton().click();
+			d.getMyCoursesEventsScheduleButton().click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			rm.SelectTomorrowDate();
+			rm.SelectCourseStartMonth(CourseStartMonth);
 
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			c.getCourseFilter().click();
 			c.getCourseKeyword().click();
 			c.getSearchField().sendKeys("stand");
-			c.getClassApplyFilters().click();
+			c.getCourseApplyFilters().click();
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			rm.SelectClassOrCourseToEnroll(ClassToEnroll);
+			rm.SelectClassOrCourseToEnroll(CourseToEnroll);
 
 			Thread.sleep(2000);
 			if (c.getPopupSignUpButton().isEnabled()) {
@@ -261,7 +266,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			}
 			Thread.sleep(2000);
-			Assert.assertTrue(PP.getClassIsFull().getText().contains("Class is full"));
+			Assert.assertTrue(PP.getCourseEventIsFull().getText().contains("Course/Event is full"));
 			Assert.assertTrue(PP.getStandbyQuestion().getText().contains("Would you like to be placed on Standby?"));
 
 			PP.getGoOnStndby().click();
@@ -306,13 +311,56 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 	public void Unenrollself() throws InterruptedException, IOException {
 		try {
 
+			DashboardPO d = new DashboardPO(driver);
+			CalendarPO cp = new CalendarPO(driver);
+
 			rm.activeMemberLogin("standbyhoh", "Testing1!");
-			rm.myClassClickToUnenroll(ClassToEnroll);
+			rm.openSideMenuIfNotOpenedAlready();
+			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+				d.getMenuMyActivies().click();
+				Thread.sleep(1000);
+				d.getmenuMyActivitiesSubMenu().getAttribute("style");
+				System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
+			}
+
+			WebDriverWait wait1 = new WebDriverWait(driver, 50);
+			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+			d.getMenuMyCalendar().click();
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+			String monthYear = cp.getMonthYear().getText();
+			while (!monthYear.equals(dsiredMonthYear)) {
+				cp.getRightArrow().click();
+				wait1.until(ExpectedConditions.presenceOfElementLocated(
+						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+				monthYear = cp.getMonthYear().getText();
+			}
+
+			Thread.sleep(1000);
+
+			cp.getCalendarListViewLink().click();
+			Thread.sleep(1000);
+
+			int count = cp.getMemberSections().size();
+
+			for (int i = 0; i < count; i++) {
+				if (cp.getMemberSections().get(i).getText().contains("StandbyHoh")) {
+					cp.getMemberSections().get(i).findElement(By.tagName("i")).click();
+					break;
+				}
+
+			}
+
+			cp.getUnenrollListview().click();
+			Thread.sleep(1000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
-			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), CourseNameDisplayed));
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
@@ -359,7 +407,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 	}
 
 	@Test(priority = 4)
-	public void VerifyMemberIsPromotedToEnrolled() throws InterruptedException, IOException {
+	public void VerifyMemberIsNotPromotedToEnrolled() throws InterruptedException, IOException {
 		try {
 
 			CalendarPO cp = new CalendarPO(driver);
@@ -368,13 +416,21 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
-			cp.getCalendarTomorrow().click();
+			String monthYear = cp.getMonthYear().getText();
+			while (!monthYear.equals(dsiredMonthYear)) {
+				cp.getRightArrow().click();
+				wait.until(ExpectedConditions.presenceOfElementLocated(
+						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+				monthYear = cp.getMonthYear().getText();
+			}
+
+			cp.getCalDayBadge().click();
 
 			int eventCount = cp.getCalEventTitles().size();
 
 			for (int i = 0; i < eventCount; i++) {
 
-				if (cp.getCalEventTitles().get(i).getText().contains(ClassNameDisplayed)) {
+				if (cp.getCalEventTitles().get(i).getText().contains(CourseNameDisplayed)) {
 
 					cp.getCalEventTitles().get(i).click();
 					break;
@@ -383,17 +439,19 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			Thread.sleep(1000);
 
+			Assert.assertEquals("Status: ON STANDBY", cp.getStatus().getText());
+
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 
 			UnenrollPO u = new UnenrollPO(driver);
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), CourseNameDisplayed));
 
-			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));
+			Assert.assertEquals("ON STANDBY", u.getStatus().getText());
 
-			Assert.assertFalse(rm.isElementPresent(By.xpath("//small[contains(text(),'On Standby')]")));
+			Assert.assertTrue(u.getStanbyHeader().isDisplayed());
 
-			Assert.assertTrue(u.getRefundHeader().isDisplayed());
-			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+			Assert.assertEquals(u.getStanbyUnenrollText().getText(), standbyUnenrollText);
 
 			u.getUnenrollNoRefund().click();
 
@@ -442,27 +500,18 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 		try {
 			rm.activeMemberLogin("standbypromo2", "Testing1!");
 
-			DashboardPO d = new DashboardPO(driver);
-
-			int count = d.getClassInfoSections().size();
-			for (int i = 0; i < count; i++) {
-
-				if (d.getClassInfoSections().get(i).getText().contains(ClassToEnroll)) {
-					Assert.assertFalse(d.getClassInfoSections().get(i).getText().contains("ON STANDBY"));
-				}
-			}
-
-			rm.myClassClickToUnenroll(ClassNameDisplayed);
+			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
-			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));
+			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), CourseNameDisplayed));
 
-			Assert.assertFalse(rm.isElementPresent(By.xpath("//small[contains(text(),'On Standby')]")));
+			Assert.assertEquals("ON STANDBY", u.getStatus().getText());
 
-			Assert.assertTrue(u.getRefundHeader().isDisplayed());
-			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+			Assert.assertTrue(u.getStanbyHeader().isDisplayed());
+
+			Assert.assertEquals(u.getStanbyUnenrollText().getText(), standbyUnenrollText);
 
 			u.getUnenrollNoRefund().click();
 

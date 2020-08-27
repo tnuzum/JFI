@@ -28,6 +28,7 @@ public class PurchaseConfirmationPO {
 	By classesReviewtotalAmount = By.xpath("//span[contains(@class,'At-classes-review-text-total')]");
 	By memberFeesSection = By.xpath("//div[@class = 'text-right']");
 	By classIsFull = By.xpath("//span[contains(text(), ' Class is full ')]");
+	By courseEventIsFull = By.xpath("//span[contains(text(), ' Course/Event is full ')]");
 	By goOnStndby = By.linkText("Yes, Go On Standby");
 	By standbyQuestion = By.xpath("//strong[contains(text(),'Would you like to be placed on Standby?')]");
 
@@ -100,6 +101,10 @@ public class PurchaseConfirmationPO {
 
 	public WebElement getClassIsFull() {
 		return driver.findElement(classIsFull);
+	}
+
+	public WebElement getCourseEventIsFull() {
+		return driver.findElement(courseEventIsFull);
 	}
 
 	public WebElement getGoOnStndby() {
