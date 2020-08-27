@@ -116,7 +116,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -198,7 +199,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -362,7 +364,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -558,7 +561,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -621,7 +625,7 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 			Assert.assertEquals("ServiceNC", PP.getPackageName().getText());
 
 			while (!PM.getNewCardButton().isDisplayed())
@@ -779,7 +783,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -860,7 +865,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -944,7 +950,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -1022,7 +1029,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -1167,7 +1175,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
