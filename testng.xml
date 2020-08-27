@@ -163,8 +163,7 @@
 			<class name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt"/>
 			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages"/>
 			<class name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages"/>
-			
-			<class name="EME.EmailConfirmations"/>
+					
 							
 			</classes>
 		</test>
@@ -253,14 +252,15 @@
 		<test name = "Unenroll Class"  parallel = "none" preserve-order="true" group-by-instances="true">
 			
 			<classes>
-			
-			<class name="Unenroll.Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
-			  <class name="Unenroll.Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
-			  <class name="Unenroll.Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
-			  <class name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow"/>
+						
 			 <class name="Unenroll.ClassUnenrollTests"/>
 			 <class name="Unenroll.FamilyMbrClassUnenrollTests"/>
 			  <class name="Unenroll.FamilyMbrClassUnenrollTests2"/>
+			  <class name="Unenroll.Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
+			  <class name="Unenroll.Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
+			  <class name="Unenroll.Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow"/>
+			  <class name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow"/>
+			  <class name="EME.EmailConfirmations"/>
 			  									
 							
 			</classes>
