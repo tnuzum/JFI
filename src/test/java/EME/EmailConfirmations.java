@@ -279,4 +279,23 @@ public class EmailConfirmations {
 
 	}
 
+	@Test(priority = 11, description = "Verifies the Group Appointment Cancellation email")
+	public void markAsReadTheRest() throws MessagingException {
+		System.out.println(emailUtils.getNumberOfUnreadMessages());
+
+		Message[] messages = emailUtils.getMessages(emailUtils.getNumberOfUnreadMessages() - 1);
+		System.out.println(messages.length);
+
+		try {
+			for (int i = 0; i < messages.length; i++) {
+				emailUtils.openEmail(messages[i]);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Assert.fail(e.getMessage());
+		}
+
+	}
+
 }
