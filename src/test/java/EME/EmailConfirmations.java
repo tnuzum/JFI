@@ -35,7 +35,7 @@ public class EmailConfirmations {
 	@Test(priority = 2, description = "Verifies the Class Enrollment confirmation email")
 	public void ClassEnrollmentConfirmation() {
 		try {
-			Message email1 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 8)[0];
+			Message email1 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email1));
 			String emailMessage1 = emailUtils.getMessageContent(email1);
@@ -63,7 +63,8 @@ public class EmailConfirmations {
 	@Test(priority = 3, description = "Verifies the Class Unenrollment confirmation email")
 	public void ClassUnenrollmentConfirmation() {
 		try {
-			Message email2 = emailUtils.getMessagesBySubject("Free Class Auto - Unenrollment Notification", true, 8)[0];
+			Message email2 = emailUtils.getMessagesBySubject("Free Class Auto - Unenrollment Notification", true,
+					20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email2));
 			String emailMessage2 = emailUtils.getMessageContent(email2);
@@ -92,7 +93,7 @@ public class EmailConfirmations {
 	@Test(priority = 4, description = "Verifies the Course Enrollment confirmation email")
 	public void CourseEnrollmentConfirmation() {
 		try {
-			Message email3 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 8)[0];
+			Message email3 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email3));
 			String emailMessage3 = emailUtils.getMessageContent(email3);
@@ -114,7 +115,7 @@ public class EmailConfirmations {
 	public void CourseUnenrollmentConfirmation() {
 		try {
 			Message email4 = emailUtils.getMessagesBySubject("Free Course Auto - Unenrollment Notification", true,
-					8)[0];
+					20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email4));
 			String emailMessage4 = emailUtils.getMessageContent(email4);
@@ -139,7 +140,7 @@ public class EmailConfirmations {
 	public void BookAppointmentConfirmation() {
 		try {
 			Message email5 = emailUtils.getMessagesBySubject("Appointment Confirmation for Auto, Emailmember", true,
-					8)[0];
+					20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email5));
 			String emailMessage5 = emailUtils.getMessageContent(email5);
@@ -171,8 +172,8 @@ public class EmailConfirmations {
 	@Test(priority = 7, description = "Verifies the Appointment Cancellation email")
 	public void CancelApointmentConfirmation() {
 		try {
-			Message email6 = emailUtils
-					.getMessagesBySubject("Cancellation of Appointment Confirmation for Auto, Emailmember", true, 8)[0];
+			Message email6 = emailUtils.getMessagesBySubject(
+					"Cancellation of Appointment Confirmation for Auto, Emailmember", true, 20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email6));
 			String emailMessage6 = emailUtils.getMessageContent(email6);
@@ -203,7 +204,7 @@ public class EmailConfirmations {
 	public void BookGroupAppointmentConfirmation() {
 		try {
 			Message email7 = emailUtils.getMessagesBySubject("Appointment Confirmation for Auto, Emailmember2", true,
-					8)[0];
+					20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email7));
 			String emailMessage7 = emailUtils.getMessageContent(email7);
@@ -237,7 +238,7 @@ public class EmailConfirmations {
 	public void CancelGroupApointmentConfirmation() {
 		try {
 			Message email8 = emailUtils.getMessagesBySubject(
-					"Cancellation of Appointment Confirmation for Auto, Emailmember2", true, 8)[0];
+					"Cancellation of Appointment Confirmation for Auto, Emailmember2", true, 20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email8));
 			String emailMessage8 = emailUtils.getMessageContent(email8);
@@ -256,6 +257,20 @@ public class EmailConfirmations {
 			Assert.assertTrue(emailUtils.isTextInMessage(email8, "Date: " + tomorrowsDayAndDate));
 			// Assert.assertTrue(emailUtils.isTextInMessage(email8, "5:00 AM"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email8, "1 Hour"));
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// Assert.fail(e.getMessage());
+		}
+
+	}
+
+	@Test(priority = 10, description = "Verifies the Group Appointment Cancellation email")
+	public void StandbyPromotionEmailConfirmation() {
+		try {
+			int mailCount = emailUtils.getMessagesBySubject("Standby Notification – You're Enrolled", true, 20).length;
+
+			Assert.assertEquals(mailCount, 4);
 
 		} catch (Exception e) {
 			e.printStackTrace();
