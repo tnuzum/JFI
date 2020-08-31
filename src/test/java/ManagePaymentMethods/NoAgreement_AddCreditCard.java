@@ -76,7 +76,9 @@ public class NoAgreement_AddCreditCard extends base {
 			mp.getCardNumber().sendKeys("4111111111111111");
 			mp.getExpireMonth().sendKeys("04");
 			mp.getExpireYear().sendKeys("22");
+			Thread.sleep(500);
 			mp.getHouseAcctNoRadioButton().get(1).click();
+			Thread.sleep(500);
 			mp.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
 
@@ -114,7 +116,8 @@ public class NoAgreement_AddCreditCard extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -147,7 +150,8 @@ public class NoAgreement_AddCreditCard extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
