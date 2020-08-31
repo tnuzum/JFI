@@ -48,7 +48,7 @@ public class CalendarPO {
 	By familyMemberNames = By.id("checkbox-colored-list");
 	By selectFamilyLabel = By.xpath("//small[contains(text(),'SELECT FAMILY')]");
 	By applyFiltersLink = By.linkText("Apply Filters");
-	By memberClassDetails = By.xpath("//div[@id='listview']//div[4]");
+	By memberClassDetails = By.xpath("//div[@class='column2']");
 	By classGearButton = By.xpath("//i[@class='fa fa-gear pull-right m-r-xs ng-star-inserted']");
 	By addToCalButtonListView = By.xpath("//button[contains(text(), 'ADD TO CALENDAR')]");
 	By unenrollListview = By.xpath("//a[contains(text(), 'UNENROLL')]");

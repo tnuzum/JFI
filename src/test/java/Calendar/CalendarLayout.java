@@ -2,6 +2,7 @@ package Calendar;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.Calendar;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -137,6 +138,19 @@ public class CalendarLayout extends base {
 			Thread.sleep(1000);
 			Assert.assertTrue(cp.getCalendarList().isDisplayed());
 
+			Calendar calendar = Calendar.getInstance();
+
+			if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
+
+				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1).click();
+
+				WebDriverWait wait = new WebDriverWait(driver, 50);
+				wait.until(ExpectedConditions.presenceOfElementLocated(
+						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+				Thread.sleep(1000);
+
+			}
 			Assert.assertTrue(cp.getMemberClassDetails().isDisplayed());
 			cp.getClassGearButton().click();
 
@@ -188,7 +202,7 @@ public class CalendarLayout extends base {
 	public void UnenrollFromCalendarView() throws InterruptedException, IOException {
 		try {
 
-			cp.getCalendarTomorrow().click();
+			rm.MyActivitiesTomorrowClick();
 
 			Thread.sleep(1000);
 
@@ -287,6 +301,20 @@ public class CalendarLayout extends base {
 
 			cp.getCalendarListViewLink().click();
 			Thread.sleep(1000);
+
+			Calendar calendar = Calendar.getInstance();
+
+			if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
+
+				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1).click();
+
+				WebDriverWait wait = new WebDriverWait(driver, 50);
+				wait.until(ExpectedConditions.presenceOfElementLocated(
+						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+				Thread.sleep(1000);
+
+			}
 
 			cp.getClassGearButton().click();
 

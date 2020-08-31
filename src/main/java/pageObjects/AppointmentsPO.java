@@ -50,6 +50,7 @@ public class AppointmentsPO {
 	By selectTimeMorningLabel2 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTime1stAvailable = By.xpath("//div[contains(@class,'tag-wrap')]/button[1]");
 	By booksNames = By.xpath("//div[contains(@class,'widget-callout p-xs clearfix')]");
+	By closeButton = By.xpath("//button[@class='btn btn-primary btn-outline']");
 	By addlResourcesCancelButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[1]"); // cancel
 																														// button
 	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book
@@ -396,6 +397,10 @@ public class AppointmentsPO {
 
 	public List<WebElement> getDeleteMember() {
 		return driver.findElements(deleteMember);
+	}
+
+	public WebElement getCloseButton() {
+		return driver.findElement(closeButton);
 	}
 
 }

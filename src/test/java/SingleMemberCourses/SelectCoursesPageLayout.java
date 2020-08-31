@@ -134,6 +134,63 @@ public class SelectCoursesPageLayout extends base {
 		WebElement Category = c.getSelectCourseCategory();
 		Select s1 = new Select(Category);
 		Assert.assertEquals(s1.getFirstSelectedOption().getText(), defaultCategorySelection);
+
+	}
+
+	@Test(priority = 8)
+	public void VerifyVirtualCourseIndicator() throws IOException, InterruptedException {
+
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		c.getCourseFilter().click();
+		c.getCourseKeyword().click();
+		Thread.sleep(2000);
+		c.getSearchField().sendKeys("NEWVIRTUALCOURSE");
+		Thread.sleep(2000);
+		c.getCourseApplyFilters().click();
+		Thread.sleep(2000);
+
+		int ClassCount = c.getClassTable().size();
+		for (int j = 0; j < ClassCount; j++) {
+
+			WebElement w = c.getClassTable().get(j);
+			WebElement w1 = c.getClassTimeAndDuration().get(j);
+			String className = w.getText();
+			String classTimeAndDuration = w1.getText();
+
+			if (className.contains("NEWVIRTUALCOURSE"))
+
+			{
+				Assert.assertTrue(classTimeAndDuration.contains("Virtual Course"));
+				Assert.assertTrue(c.getVirtualCourseSearch().isDisplayed());
+				w.click(); // Click on the specific class
+				break;
+			}
+		}
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		while (c.getClasslabel().getText().isBlank()) {
+			Thread.sleep(500);
+		}
+
+		Assert.assertTrue(c.getVirtualDetails().isDisplayed());
+		Assert.assertEquals(c.getVirtualDetails().getText().trim(), "Virtual Course");
+
+		c.getPopupSignUpButton().click();
+		Thread.sleep(2000);
+
+		Assert.assertTrue(c.getVirtualRates().isDisplayed());
+		Assert.assertEquals(c.getVirtualRates().getText().trim(), "Virtual Course");
+
+		c.getContinueButton().click();
+		Thread.sleep(2000);
+
+		Assert.assertTrue(c.getVirtualReview().isDisplayed());
+		Assert.assertEquals(c.getVirtualReview().getText().trim(), "Virtual Course");
+
 		rm.memberLogout();
 	}
 //	@AfterTest

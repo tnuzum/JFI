@@ -368,7 +368,7 @@ public class Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends ba
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
-			cp.getCalendarTomorrow().click();
+			rm.MyActivitiesTomorrowClick();
 
 			int eventCount = cp.getCalEventTitles().size();
 
