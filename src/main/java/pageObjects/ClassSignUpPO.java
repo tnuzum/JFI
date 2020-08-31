@@ -73,6 +73,11 @@ public class ClassSignUpPO {
 	By standbySection = By.xpath("//div[contains(@class, 'row-box-red')]");
 	By restOnStandby = By.xpath("//input[@id='rest_on_standby']");
 	By cancelLink = By.xpath("//a[@class='btn btn-sm btn-primary btn-outline ng-star-inserted']");
+	By virtualClassSearch = By.xpath("//small[contains(@class, 'at-class-search-virtual')]");
+	By virtualCourseSearch = By.xpath("//small[contains(@class, 'at-course-search-virtual')]");
+	By virtualDetails = By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]");
+	By virtualRates = By.xpath("//div[contains(@class, 'at-class-course-rates-virtual')]");
+	By virtualReview = By.xpath("//div[contains(@class, 'at-class-course-review-virtual')]");
 
 // CONSTRUCTOR
 
@@ -335,9 +340,28 @@ public class ClassSignUpPO {
 	{
 		return driver.findElement(cancelLink);
 	}
+
 	/*
 	 * public WebElement getUnitsDropdown() { return
 	 * driver.findElement(unitsDropdown); }
 	 */
+	public WebElement getVirtualClassSearch() {
+		return driver.findElement(virtualClassSearch);
+	}
 
+	public WebElement getVirtualCourseSearch() {
+		return driver.findElement(virtualCourseSearch);
+	}
+
+	public WebElement getVirtualDetails() {
+		return driver.findElement(virtualDetails);
+	}
+
+	public WebElement getVirtualRates() {
+		return driver.findElement(virtualRates);
+	}
+
+	public WebElement getVirtualReview() {
+		return driver.findElement(virtualReview);
+	}
 }

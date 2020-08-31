@@ -1611,7 +1611,7 @@ public class reusableMethods extends base {
 
 		int i = 0;
 
-		while (selectATimeOpen.equals("false") && i < 10) {
+		while (selectATimeOpen.equals("false") && i < 20) {
 
 			Element.findElement(By.tagName("span")).click();
 			log.info("calendar date was clicked again");
@@ -1619,7 +1619,7 @@ public class reusableMethods extends base {
 			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
 			i++;
 			System.out.println(i);
-			log.info("i");
+			log.info(i);
 		}
 
 		System.out.println(i);
@@ -1731,6 +1731,30 @@ public class reusableMethods extends base {
 		rw.waitForSelectATimeToOpen();
 
 		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
+
+		return null;
+
+	}
+
+	public Object MyActivitiesTomorrowClick() throws InterruptedException {
+
+		CalendarPO cp = new CalendarPO(driver);
+
+		String classtext = cp.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+			Thread.sleep(1000);
+		}
+
+		cp.getCalendarTomorrow().findElement(By.tagName("span")).click();
+
+		Thread.sleep(1000);
 
 		return null;
 
@@ -2360,7 +2384,7 @@ public class reusableMethods extends base {
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
-		cp.getCalendarTomorrow().click();
+		this.MyActivitiesTomorrowClick();
 
 		/*
 		 * Thread.sleep(1000); cp.getCalDayBadge().click();

@@ -73,8 +73,8 @@ public class NoAgreement_AddCanadianBankSavingsAcct extends base {
 
 	}
 
-	@Test(priority = 1, description = "Adding a Canadian Bank Savings Account but not linking the card to agreement with Bad FOP")
-	public void AddCanadianBankSavingsAcct_SelectAreYouSure() throws InterruptedException, IOException {
+	@Test(priority = 1, description = "Adding a Canadian Bank Savings Account with no agreement")
+	public void AddCanadianBankSavingsAcct_NoAgreement() throws InterruptedException, IOException {
 
 		try {
 			rm.activeMemberLogin("paymember", "Testing1!");
@@ -136,7 +136,8 @@ public class NoAgreement_AddCanadianBankSavingsAcct extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -169,7 +170,8 @@ public class NoAgreement_AddCanadianBankSavingsAcct extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

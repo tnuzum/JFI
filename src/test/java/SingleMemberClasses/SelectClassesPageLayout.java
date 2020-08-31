@@ -163,6 +163,65 @@ public class SelectClassesPageLayout extends base {
 		WebElement Category = c.getSelectClassCategory();
 		Select s1 = new Select(Category);
 		Assert.assertEquals(s1.getFirstSelectedOption().getText(), defaultCategorySelection);
+
+	}
+
+	@Test(priority = 8)
+	public void VerifyVirtualClassIndicator() throws IOException, InterruptedException {
+
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+
+		rm.SelectTomorrowDate();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		c.getCourseFilter().click();
+		c.getCourseKeyword().click();
+		Thread.sleep(2000);
+		c.getSearchField().sendKeys("NEWVIRTUALCLASS");
+		Thread.sleep(2000);
+		c.getClassApplyFilters().click();
+		Thread.sleep(2000);
+
+		int ClassCount = c.getClassTable().size();
+		for (int j = 0; j < ClassCount; j++) {
+
+			WebElement w = c.getClassTable().get(j);
+			WebElement w1 = c.getClassTimeAndDuration().get(j);
+			String className = w.getText();
+			String classTimeAndDuration = w1.getText();
+
+			if (className.contains("NEWVIRTUALCLASS"))
+
+			{
+				Assert.assertTrue(classTimeAndDuration.contains("Virtual Class"));
+				Assert.assertTrue(c.getVirtualClassSearch().isDisplayed());
+				w.click(); // Click on the specific class
+				break;
+			}
+		}
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		while (c.getClasslabel().getText().isBlank()) {
+			Thread.sleep(500);
+		}
+
+		Assert.assertTrue(c.getVirtualDetails().isDisplayed());
+		Assert.assertEquals(c.getVirtualDetails().getText().trim(), "Virtual Class");
+
+		c.getPopupSignUpButton().click();
+		Thread.sleep(2000);
+
+		Assert.assertTrue(c.getVirtualRates().isDisplayed());
+		Assert.assertEquals(c.getVirtualRates().getText().trim(), "Virtual Class");
+
+		c.getContinueButton().click();
+		Thread.sleep(2000);
+
+		Assert.assertTrue(c.getVirtualReview().isDisplayed());
+		Assert.assertEquals(c.getVirtualReview().getText().trim(), "Virtual Class");
+
 		rm.memberLogout();
 	}
 //	@AfterTest
