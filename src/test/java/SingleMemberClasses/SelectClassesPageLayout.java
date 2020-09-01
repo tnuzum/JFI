@@ -146,7 +146,9 @@ public class SelectClassesPageLayout extends base {
 			day = df2.format(today.getTime());
 			date = df3.format(today.getTime());
 		}
+		c.getDayOfButton().click();
 
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 	}
 
 	@Test(priority = 6)
@@ -168,8 +170,6 @@ public class SelectClassesPageLayout extends base {
 
 	@Test(priority = 8)
 	public void VerifyVirtualClassIndicator() throws IOException, InterruptedException {
-
-		ClassSignUpPO c = new ClassSignUpPO(driver);
 
 		rm.SelectTomorrowDate();
 
@@ -221,6 +221,64 @@ public class SelectClassesPageLayout extends base {
 
 		Assert.assertTrue(c.getVirtualReview().isDisplayed());
 		Assert.assertEquals(c.getVirtualReview().getText().trim(), "Virtual Class");
+
+		rm.returnToDashboard();
+	}
+
+	@Test(priority = 9)
+	public void VerifyVirtualClassIndicatorIsNotPresentForNonVirtualClassWithOverrideURLs()
+			throws IOException, InterruptedException {
+
+		d.getMyClassesScheduleButton().click();
+
+		rm.SelectTomorrowDate();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		c.getCourseFilter().click();
+		c.getCourseKeyword().click();
+		Thread.sleep(2000);
+		c.getSearchField().sendKeys("COPY OF BALANCE");
+		Thread.sleep(2000);
+		c.getClassApplyFilters().click();
+		Thread.sleep(2000);
+
+		int ClassCount = c.getClassTable().size();
+		for (int j = 0; j < ClassCount; j++) {
+
+			WebElement w = c.getClassTable().get(j);
+			WebElement w1 = c.getClassTimeAndDuration().get(j);
+			String className = w.getText();
+			String classTimeAndDuration = w1.getText();
+
+			if (className.contains("COPY OF BALANCE WEIGHT LOSS & NUTRITION"))
+
+			{
+				Assert.assertFalse(classTimeAndDuration.contains("Virtual Class"));
+				Assert.assertFalse(
+						rm.isElementPresent(By.xpath("//small[contains(@class, 'at-class-search-virtual')]")));
+				w.click(); // Click on the specific class
+				break;
+			}
+		}
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		while (c.getClasslabel().getText().isBlank()) {
+			Thread.sleep(500);
+		}
+
+		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]")));
+
+		c.getPopupSignUpButton().click();
+		Thread.sleep(2000);
+
+		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-rates-virtual')]")));
+
+		c.getContinueButton().click();
+		Thread.sleep(2000);
+
+		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-review-virtual')]")));
 
 		rm.memberLogout();
 	}
