@@ -124,7 +124,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -151,7 +152,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				int radioButtonCount = driver.findElements(By.tagName("label")).size();
 				for (int i = 0; i < radioButtonCount; i++) {
 					if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-						driver.findElements(By.tagName("label")).get(i).click();
+						driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
 						break;
 					}
 				}
@@ -255,7 +256,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -334,7 +336,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
 					break;
 				}
 			}
@@ -429,7 +431,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -508,7 +511,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
 					break;
 				}
 			}
@@ -618,7 +621,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 
 		}
@@ -707,7 +711,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			getScreenshot("Unenroll", driver);
 			Assert.fail(ae.getMessage());
 		}
