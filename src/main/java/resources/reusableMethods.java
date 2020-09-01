@@ -1859,7 +1859,7 @@ public class reusableMethods extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
 					break;
 				}
 			}
@@ -1887,8 +1887,8 @@ public class reusableMethods extends base {
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+							jse.executeScript("arguments[0].click();", PM.getOnAccountAndSavedCards()
+									.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 
 							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 							break;
@@ -1958,7 +1958,7 @@ public class reusableMethods extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
 					break;
 				}
 			}
@@ -1986,8 +1986,8 @@ public class reusableMethods extends base {
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+							jse.executeScript("arguments[0].click();", PM.getOnAccountAndSavedCards()
+									.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 
 							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 							break;
@@ -2159,7 +2159,7 @@ public class reusableMethods extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
 					break;
 				}
 			}
@@ -2186,8 +2186,8 @@ public class reusableMethods extends base {
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+							jse.executeScript("arguments[0].click();", PM.getOnAccountAndSavedCards()
+									.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 
 							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 							break;
@@ -2294,7 +2294,7 @@ public class reusableMethods extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
 					break;
 				}
 			}
@@ -2321,8 +2321,8 @@ public class reusableMethods extends base {
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+							jse.executeScript("arguments[0].click();", PM.getOnAccountAndSavedCards()
+									.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 
 							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 							break;
