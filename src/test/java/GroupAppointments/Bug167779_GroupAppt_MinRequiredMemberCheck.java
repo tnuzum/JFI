@@ -232,7 +232,11 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			Thread.sleep(2000);
 
 			ap.getGroupPopupAddButtons().get(0).click();
-			Thread.sleep(2000);
+
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
 
 			// Book appointment
 			rm.calendarTomorrowClick();

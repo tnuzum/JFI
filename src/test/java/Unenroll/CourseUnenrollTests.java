@@ -1345,7 +1345,7 @@ public class CourseUnenrollTests extends base {
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
-				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
 					driver.findElements(By.tagName("label")).get(i).click();
 					break;
 				}
