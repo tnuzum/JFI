@@ -1887,8 +1887,8 @@ public class reusableMethods extends base {
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-							jse.executeScript("arguments[0].click();", PM.getOnAccountAndSavedCards()
-									.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 							break;
@@ -1986,8 +1986,8 @@ public class reusableMethods extends base {
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-							jse.executeScript("arguments[0].click();", PM.getOnAccountAndSavedCards()
-									.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 							break;
@@ -2186,8 +2186,8 @@ public class reusableMethods extends base {
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-							jse.executeScript("arguments[0].click();", PM.getOnAccountAndSavedCards()
-									.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 							break;
@@ -2321,8 +2321,8 @@ public class reusableMethods extends base {
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
-							jse.executeScript("arguments[0].click();", PM.getOnAccountAndSavedCards()
-									.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
 							break;
