@@ -449,7 +449,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			u.getUnenrollNoRefund().click();
+			u.getUnenrollButton().click();
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -508,7 +508,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
 			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
 
-			u.getUnenrollNoRefund().click();
+			u.getUnenrollButton().click();
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();

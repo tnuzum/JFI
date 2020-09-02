@@ -147,6 +147,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		} finally {
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
+
 			rm.returnToDashboard();
 		}
 	}
@@ -241,6 +248,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		} finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.returnToDashboard();
 		}
 	}
@@ -324,6 +338,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		} finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.returnToDashboard();
 		}
 	}
@@ -408,6 +429,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.returnToDashboard();
 		}
 	}
@@ -472,6 +500,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.returnToDashboard();
 		}
 	}
@@ -548,6 +583,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.returnToDashboard();
 		}
 	}
@@ -610,6 +652,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.returnToDashboard();
 		}
 	}
@@ -673,6 +722,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.returnToDashboard();
 		}
 	}
@@ -735,6 +791,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.returnToDashboard();
 		}
 	}
@@ -825,6 +888,13 @@ public class FamilyMbrClassUnenrollTests extends base {
 		}
 
 		finally {
+
+			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
+			if (popup == true) {
+				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
+				System.out.println("popup was present");
+			}
 			rm.memberLogout();
 		}
 	}
