@@ -370,6 +370,7 @@ public class FamilyMemberClassEnrollment extends base {
 		ahp.getSearchField().sendKeys(receiptNumber);
 
 		Thread.sleep(2000);
+		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
 		ahp.getReceiptNumber().click();
 		Thread.sleep(1000);
 		// Verifies the Invoice amount

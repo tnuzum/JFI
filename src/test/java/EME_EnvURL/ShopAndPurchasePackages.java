@@ -105,7 +105,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -187,7 +188,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -259,7 +261,8 @@ public class ShopAndPurchasePackages extends base {
 			}
 			PM.getPaymentButton().click();
 
-			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -327,8 +330,7 @@ public class ShopAndPurchasePackages extends base {
 			ahp.getSearchField().sendKeys(receiptNumber);
 
 			Thread.sleep(3000);
-			wait.until(ExpectedConditions
-					.presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a")));
+			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
 			ahp.getReceiptNumber().click();
 			Thread.sleep(1000);
 
@@ -350,7 +352,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -457,7 +460,8 @@ public class ShopAndPurchasePackages extends base {
 			}
 			PM.getPaymentButton().click();
 
-			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -522,8 +526,7 @@ public class ShopAndPurchasePackages extends base {
 			ahp.getSearchField().sendKeys(receiptNumber2);
 
 			Thread.sleep(3000);
-			wait.until(ExpectedConditions
-					.presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a")));
+			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
 			ahp.getReceiptNumber().click();
 			Thread.sleep(1000);
 
@@ -545,7 +548,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -746,8 +750,10 @@ public class ShopAndPurchasePackages extends base {
 			ahp.getSearchField().sendKeys(receiptNumber4);
 
 			Thread.sleep(3000);
-			wait1.until(ExpectedConditions
-					.presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a")));
+			// wait1.until(ExpectedConditions
+			// .presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm
+			// hidden-xs']//a")));
+			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber4));
 			ahp.getReceiptNumber().click();
 			Thread.sleep(1000);
 			// Verifies the amount in the receipt is the same as it was displayed on the
@@ -767,7 +773,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -848,7 +855,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -932,7 +940,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -1010,7 +1019,8 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
