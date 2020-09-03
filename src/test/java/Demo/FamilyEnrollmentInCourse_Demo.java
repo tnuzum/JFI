@@ -345,6 +345,7 @@ public class FamilyEnrollmentInCourse_Demo extends base {
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
 		ahp.getSearchField().sendKeys(receiptNumber2);
 		Thread.sleep(2000);
+		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
 		ahp.getReceiptNumber().click();
 		Thread.sleep(1000);
 		// Verifies the amount in the receipt is the same as it was displayed on the
