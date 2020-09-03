@@ -447,7 +447,9 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 			Assert.assertFalse(rm.isElementPresent(By.xpath("//small[contains(text(),'On Standby')]")));
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
-			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$10.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
 			u.getUnenrollButton().click();
 
@@ -506,7 +508,9 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 			Assert.assertFalse(rm.isElementPresent(By.xpath("//small[contains(text(),'On Standby')]")));
 
 			Assert.assertTrue(u.getRefundHeader().isDisplayed());
-			Assert.assertTrue(u.getNoRefund().getText().contains(NoRefund));
+			Assert.assertTrue(u.getRefundOAText().getText().contains(YesRefundOnAccount));
+			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$10.00"));
+			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
 			u.getUnenrollButton().click();
 
