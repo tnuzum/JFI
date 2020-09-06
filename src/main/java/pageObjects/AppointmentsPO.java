@@ -205,7 +205,7 @@ public class AppointmentsPO {
 	}
 
 	public WebElement getSelectTimeMorningButton() {
-		return driver.findElement(selectTimeMorningButton);
+		return driver.findElements(selectTimeMorningButton).get(0);
 	}
 
 	public WebElement getSelectTimeMorningLabel1() {
@@ -217,7 +217,7 @@ public class AppointmentsPO {
 	}
 
 	public WebElement getSelectTime1stAvailable() {
-		return driver.findElement(selectTime1stAvailable);
+		return driver.findElements(selectTime1stAvailable).get(0);
 	}
 
 	public WebElement getBooksNames() {
