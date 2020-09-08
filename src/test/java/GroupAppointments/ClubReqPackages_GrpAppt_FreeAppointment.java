@@ -208,6 +208,32 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
+			System.out.println("popupSize = " + ap.getPopup1().size());
+			log.info("popupSize = " + ap.getPopup1().size());
+
+			while (ap.getPopup1().size() == 0)
+
+			{
+				rm.calendarTomorrowClick();
+
+				wait.until(ExpectedConditions.elementToBeClickable(st1));
+				while (!st1.isEnabled())// while button is NOT(!) enabled
+				{
+					System.out.println("Waiting for available times");
+				}
+
+				st1.click();
+
+				wait.until(ExpectedConditions.elementToBeClickable(st2));
+				startTime = st2.getText();
+				// st2.click();
+
+				jse.executeScript("arguments[0].click();", st2);
+				Thread.sleep(1000);
+
+				ap.getPopup1().size();
+			}
+
 			System.out.println(ap.getPopup1Content().getText());
 			System.out.println("Time: " + tomorrowsDate + ", " + startTime);
 			System.out.println("Product: " + appointmentToBook1);
@@ -425,6 +451,32 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			jse.executeScript("arguments[0].click();", st2);
 			getScreenshot(this.getClass().getSimpleName() + "_MorningTimeClicked", driver);
 			Thread.sleep(5000);
+
+			System.out.println("popupSize = " + ap.getPopup1().size());
+			log.info("popupSize = " + ap.getPopup1().size());
+
+			while (ap.getPopup1().size() == 0)
+
+			{
+				rm.calendarTomorrowClick();
+
+				wait.until(ExpectedConditions.elementToBeClickable(st1));
+				while (!st1.isEnabled())// while button is NOT(!) enabled
+				{
+					System.out.println("Waiting for available times");
+				}
+
+				st1.click();
+
+				wait.until(ExpectedConditions.elementToBeClickable(st2));
+				startTime = st2.getText();
+				// st2.click();
+
+				jse.executeScript("arguments[0].click();", st2);
+				Thread.sleep(1000);
+
+				ap.getPopup1().size();
+			}
 
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
 			Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));

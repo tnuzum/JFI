@@ -207,6 +207,32 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
+			System.out.println("popupSize = " + ap.getPopup1().size());
+			log.info("popupSize = " + ap.getPopup1().size());
+
+			while (ap.getPopup1().size() == 0)
+
+			{
+				rm.calendarTomorrowClick();
+
+				wait.until(ExpectedConditions.elementToBeClickable(st1));
+				while (!st1.isEnabled())// while button is NOT(!) enabled
+				{
+					System.out.println("Waiting for available times");
+				}
+
+				st1.click();
+
+				wait.until(ExpectedConditions.elementToBeClickable(st2));
+				startTime = st2.getText();
+				// st2.click();
+
+				jse.executeScript("arguments[0].click();", st2);
+				Thread.sleep(1000);
+
+				ap.getPopup1().size();
+			}
+
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
 			Assert.assertTrue(ap.getPopup1Content().getText().contains("Time: " + tomorrowsDate + " " + startTime));
 			Assert.assertTrue(ap.getPopup1Content().getText().contains("Product: " + appointmentToBook));

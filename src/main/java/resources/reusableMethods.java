@@ -1301,13 +1301,18 @@ public class reusableMethods extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
-		this.calendarTomorrowClick();
+		List<WebElement> TimeSlots;
+		WebElement MorningSlot;
+		WebElement MorningAvailableTimeContainer;
+		List<WebElement> MorningAvailableTimes;
+		WebElement firstAvailableTimeMorning;
 
+		this.calendarTomorrowClick();
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
 			if (bookName.contains(resourceName2)) {
-				List<WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
-				WebElement MorningSlot = TimeSlots.get(0);
+				TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+				MorningSlot = TimeSlots.get(0);
 				wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
 				while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
 				{
@@ -1318,11 +1323,9 @@ public class reusableMethods extends base {
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", MorningSlot);
 
-				WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i)
-						.findElement(By.id("tab-1-0"));
-				List<WebElement> MorningAvailableTimes = MorningAvailableTimeContainer
-						.findElements(By.tagName("button"));
-				WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+				MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+				MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));
+				firstAvailableTimeMorning = MorningAvailableTimes.get(0);
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
 //					Thread.sleep(200);
@@ -1336,6 +1339,50 @@ public class reusableMethods extends base {
 			}
 		}
 		Thread.sleep(2000);
+
+		System.out.println("RMpopupSize = " + ap.getPopup1().size());
+		log.info("RMpopupSize = " + ap.getPopup1().size());
+
+		while (ap.getPopup1().size() == 0)
+
+		{
+			this.calendarTomorrowClick();
+
+			for (int i = 0; i < ap.getApptBox().size(); i++) {
+				String bookName = ap.getApptBox().get(i).getText();
+				if (bookName.contains(resourceName2)) {
+					TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+					MorningSlot = TimeSlots.get(0);
+					wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
+					while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
+					{
+						System.out.println("Waiting for available times");
+					}
+
+					// MorningSlot.click();
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].click();", MorningSlot);
+
+					MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+					MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));
+					firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+//						while (!st2.isEnabled())//while button is NOT(!) enabled
+//						{
+//						Thread.sleep(200);
+//						}
+
+					wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
+					startTime = firstAvailableTimeMorning.getText();
+					System.out.println(startTime);
+					firstAvailableTimeMorning.click();
+					break;
+				}
+			}
+			Thread.sleep(2000);
+
+			ap.getPopup1().size();
+		}
+
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
 			ap.getPopup1BookButton().click();
 			Thread.sleep(2000);
@@ -1500,13 +1547,19 @@ public class reusableMethods extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
+		List<WebElement> TimeSlots;
+		WebElement MorningSlot;
+		WebElement MorningAvailableTimeContainer;
+		List<WebElement> MorningAvailableTimes;
+		WebElement firstAvailableTimeMorning;
+
 		this.calendarTomorrowClick();
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
 			if (bookName.contains(resourceName2)) {
-				List<WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
-				WebElement MorningSlot = TimeSlots.get(0);
+				TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+				MorningSlot = TimeSlots.get(0);
 				wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
 				while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
 				{
@@ -1517,11 +1570,9 @@ public class reusableMethods extends base {
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", MorningSlot);
 
-				WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i)
-						.findElement(By.id("tab-1-0"));
-				List<WebElement> MorningAvailableTimes = MorningAvailableTimeContainer
-						.findElements(By.tagName("button"));
-				WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+				MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+				MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));
+				firstAvailableTimeMorning = MorningAvailableTimes.get(0);
 //				while (!st2.isEnabled())//while button is NOT(!) enabled
 //				{
 //				Thread.sleep(200);
@@ -1535,6 +1586,50 @@ public class reusableMethods extends base {
 			}
 		}
 		Thread.sleep(2000);
+
+		System.out.println("RMpopupSize = " + ap.getPopup1().size());
+		log.info("RMpopupSize = " + ap.getPopup1().size());
+
+		while (ap.getPopup1().size() == 0)
+
+		{
+			this.calendarTomorrowClick();
+
+			for (int i = 0; i < ap.getApptBox().size(); i++) {
+				String bookName = ap.getApptBox().get(i).getText();
+				if (bookName.contains(resourceName2)) {
+					TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+					MorningSlot = TimeSlots.get(0);
+					wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
+					while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
+					{
+						System.out.println("Waiting for available times");
+					}
+
+					// MorningSlot.click();
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].click();", MorningSlot);
+
+					MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+					MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));
+					firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+//						while (!st2.isEnabled())//while button is NOT(!) enabled
+//						{
+//						Thread.sleep(200);
+//						}
+
+					wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
+					startTime = firstAvailableTimeMorning.getText();
+					System.out.println(startTime);
+					firstAvailableTimeMorning.click();
+					break;
+				}
+			}
+			Thread.sleep(2000);
+
+			ap.getPopup1().size();
+		}
+
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
 
 			System.out.println("Went into the loop of Package required");

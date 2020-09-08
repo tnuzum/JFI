@@ -3,6 +3,7 @@ package resources;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -252,15 +253,13 @@ public class reusableMethods2 extends base {
 				d.getmyClassesUnenrollButton().click();
 				Thread.sleep(1000);
 				UnenrollPO u = new UnenrollPO(driver);
-				wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
-				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
-				u.getUnenrollButton().click();
+				wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
+				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
+				u.getUnenrollNoRefund().click();
 				Thread.sleep(1000);
-				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+				rw.waitForAcceptButton();
 				u.getUnenrollConfirmYesButton().click();
-
-				wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-				wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+				rw.waitForAcceptButton();
 				Thread.sleep(1000);
 				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 				u.getUnenrollConfirmYesButton().click();
@@ -271,7 +270,7 @@ public class reusableMethods2 extends base {
 			catch (java.lang.AssertionError ae) {
 				System.out.println("assertion error");
 				ae.printStackTrace();
-				log.error(ae.getMessage(), ae);ae. printStackTrace();
+				log.error(ae.getMessage(), ae);
 				getScreenshot("Unenroll", driver);
 				Assert.fail(ae.getMessage());
 			}
@@ -342,14 +341,13 @@ public class reusableMethods2 extends base {
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
-			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollButton()));
-			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollButton()));
-			u.getUnenrollButton().click();
+			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
+			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
+			u.getUnenrollNoRefund().click();
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
-			wait.until(ExpectedConditions.stalenessOf(u.getUnenrollConfirmYesButton()));
-			wait.until(ExpectedConditions.visibilityOf(u.getPopupMessageBox()));
+			rw.waitForAcceptButton();
 			Thread.sleep(1000);
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
@@ -360,7 +358,7 @@ public class reusableMethods2 extends base {
 		catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
 			getScreenshot("Unenroll", driver);
 			Assert.fail(ae.getMessage());
 		}
@@ -468,12 +466,16 @@ public class reusableMethods2 extends base {
 
 		// Note the package units
 		d.getMenuMyAccount().click();
+		Thread.sleep(1000);
 		while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
 			Thread.sleep(1000);
 		}
 		d.getMenuPackages().click();
-		WebDriverWait wait = new WebDriverWait(driver, 50);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.className("ibox"))));
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ibox")));
+		Thread.sleep(3000);
+
 		int IntUnitCount = 0;
 		for (int i = 0; i < pp.getMemberSections().size(); i++) {
 
@@ -483,6 +485,9 @@ public class reusableMethods2 extends base {
 
 				for (int k = 0; k < Packages.size(); k++) {
 					if (Packages.get(k).getText().contains(packageName)) {
+						JavascriptExecutor jse = ((JavascriptExecutor) driver);
+						jse.executeScript("arguments[0].scrollIntoView();", Packages.get(k));
+						Thread.sleep(1000);
 						String[] text = Packages.get(k).getText().split("\n");
 						String unitCount = text[2];
 						IntUnitCount = Integer.parseInt(unitCount);
@@ -612,6 +617,10 @@ public class reusableMethods2 extends base {
 					.getText();
 
 			if (ClassOrCourseName.contains(ClassOrCourseToEnroll)) {
+				JavascriptExecutor jse = ((JavascriptExecutor) driver);
+				jse.executeScript("arguments[0].scrollIntoView();",
+						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
+
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
 																									// specific
 																									// Course
@@ -761,6 +770,7 @@ public class reusableMethods2 extends base {
 		driver.findElement(By.id("btn_search")).click();
 		driver.findElement(By.xpath("//i[@class='fa fa-cogs fa-2x']")).click();
 		Thread.sleep(2000);
+
 		if (agreementLinked.equals("Yes")) {
 			int agrmntCount = driver
 					.findElements(By.xpath("//section[@class='featureWhite']//table[@id='tbl_search'] //tr ")).size();
@@ -826,7 +836,7 @@ public class reusableMethods2 extends base {
 				break;
 			}
 		}
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 		Assert.assertTrue(driver.findElement(By.xpath("//div[contains(@class, 'success')]")).isDisplayed());
 		Thread.sleep(1000);
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
@@ -975,7 +985,7 @@ public class reusableMethods2 extends base {
 		return null;
 	}
 
-	public Object deleteEnrollInClassInCOG(String className, String classSellClub, String memberName1)
+	public Object deleteEnrollInClassInCOG(String className, String classSellClub, String memberName)
 			throws InterruptedException {
 
 		this.loginCOG(classSellClub);
@@ -1018,7 +1028,69 @@ public class reusableMethods2 extends base {
 			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
 			String memberNameText = MemberRowSections.get(2).getText();
 
-			if (memberNameText.contains(memberName1)) {
+			if (memberNameText.contains(memberName)) {
+				driver.findElements(By.xpath("//a[@data-enrollstatus = 'Enrolled']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		return null;
+	}
+
+	public Object deleteEnrollInCourseInCOG(String courseName, String classSellClub, String memberName)
+			throws InterruptedException {
+
+		this.loginCOG(classSellClub);
+
+		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
+
+		int count = FrontDeskTile.findElements(By.tagName("a")).size();
+
+		for (int i = 0; i < count; i++) {
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("ClassCheckIn")) {
+				Thread.sleep(1000);
+				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
+		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
+		monthDropdown.selectByVisibleText("Dec");
+		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
+		int dateCount = Dates.size();
+		for (int j = 0; j < dateCount; j++) {
+			if (Dates.get(j).getText().contains("15")) {
+				Dates.get(j).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		int classCount = driver.findElements(By.tagName("tr")).size();
+
+		for (int i = 1; i < classCount; i++) {
+			WebElement ClassRow = driver.findElements(By.tagName("tr")).get(i);
+			List<WebElement> ClassRowSections = ClassRow.findElements(By.tagName("td"));
+			String courseNameText = ClassRowSections.get(0).getText();
+			if (courseNameText.equals(courseName)) {
+				driver.findElements(By.xpath("//a[@role = 'button']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		int memberCount = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).size();
+
+		for (int i = 1; i < memberCount; i++) {
+			WebElement MemberRow = driver.findElements(By.xpath("//div[@id='attendanceList'] //tr")).get(i);
+			List<WebElement> MemberRowSections = MemberRow.findElements(By.tagName("td"));
+			String memberNameText = MemberRowSections.get(2).getText();
+
+			if (memberNameText.contains(memberName)) {
 				driver.findElements(By.xpath("//a[@data-enrollstatus = 'Enrolled']")).get(i - 1).click();
 				break;
 			}
@@ -1152,8 +1224,10 @@ public class reusableMethods2 extends base {
 		Select se = new Select(ap.getclubs());
 		List<WebElement> Clubs = se.getOptions();
 
-		while (!ap.getclubs().isEnabled()) {
+		int x = 0;
+		while (!ap.getclubs().isEnabled() && x < 100) {
 			System.out.println("Waiting for Clubs drop down to not be blank");
+			x++;
 		}
 
 		int count0 = Clubs.size();
@@ -1227,13 +1301,18 @@ public class reusableMethods2 extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
-		this.calendarTomorrowClick();
+		List<WebElement> TimeSlots;
+		WebElement MorningSlot;
+		WebElement MorningAvailableTimeContainer;
+		List<WebElement> MorningAvailableTimes;
+		WebElement firstAvailableTimeMorning;
 
+		this.calendarTomorrowClick();
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
 			if (bookName.contains(resourceName2)) {
-				List<WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
-				WebElement MorningSlot = TimeSlots.get(0);
+				TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+				MorningSlot = TimeSlots.get(0);
 				wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
 				while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
 				{
@@ -1244,11 +1323,9 @@ public class reusableMethods2 extends base {
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", MorningSlot);
 
-				WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i)
-						.findElement(By.id("tab-1-0"));
-				List<WebElement> MorningAvailableTimes = MorningAvailableTimeContainer
-						.findElements(By.tagName("button"));
-				WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+				MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+				MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));
+				firstAvailableTimeMorning = MorningAvailableTimes.get(0);
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
 //					Thread.sleep(200);
@@ -1262,6 +1339,50 @@ public class reusableMethods2 extends base {
 			}
 		}
 		Thread.sleep(2000);
+
+		System.out.println("RMpopupSize = " + ap.getPopup1().size());
+		log.info("RMpopupSize = " + ap.getPopup1().size());
+
+		while (ap.getPopup1().size() == 0)
+
+		{
+			this.calendarTomorrowClick();
+
+			for (int i = 0; i < ap.getApptBox().size(); i++) {
+				String bookName = ap.getApptBox().get(i).getText();
+				if (bookName.contains(resourceName2)) {
+					TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+					MorningSlot = TimeSlots.get(0);
+					wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
+					while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
+					{
+						System.out.println("Waiting for available times");
+					}
+
+					// MorningSlot.click();
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].click();", MorningSlot);
+
+					MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+					MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));
+					firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+//						while (!st2.isEnabled())//while button is NOT(!) enabled
+//						{
+//						Thread.sleep(200);
+//						}
+
+					wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
+					startTime = firstAvailableTimeMorning.getText();
+					System.out.println(startTime);
+					firstAvailableTimeMorning.click();
+					break;
+				}
+			}
+			Thread.sleep(2000);
+
+			ap.getPopup1().size();
+		}
+
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
 			ap.getPopup1BookButton().click();
 			Thread.sleep(2000);
@@ -1327,8 +1448,10 @@ public class reusableMethods2 extends base {
 		Select se = new Select(ap.getclubs());
 		List<WebElement> Clubs = se.getOptions();
 
-		while (!ap.getclubs().isEnabled()) {
+		int x = 0;
+		while (!ap.getclubs().isEnabled() && x < 100) {
 			System.out.println("Waiting for Clubs drop down to not be blank");
+			x++;
 		}
 
 		int count0 = Clubs.size();
@@ -1424,13 +1547,19 @@ public class reusableMethods2 extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
+		List<WebElement> TimeSlots;
+		WebElement MorningSlot;
+		WebElement MorningAvailableTimeContainer;
+		List<WebElement> MorningAvailableTimes;
+		WebElement firstAvailableTimeMorning;
+
 		this.calendarTomorrowClick();
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
 			if (bookName.contains(resourceName2)) {
-				List<WebElement> TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
-				WebElement MorningSlot = TimeSlots.get(0);
+				TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+				MorningSlot = TimeSlots.get(0);
 				wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
 				while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
 				{
@@ -1441,11 +1570,9 @@ public class reusableMethods2 extends base {
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
 				jse.executeScript("arguments[0].click();", MorningSlot);
 
-				WebElement MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i)
-						.findElement(By.id("tab-1-0"));
-				List<WebElement> MorningAvailableTimes = MorningAvailableTimeContainer
-						.findElements(By.tagName("button"));
-				WebElement firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+				MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+				MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));
+				firstAvailableTimeMorning = MorningAvailableTimes.get(0);
 //				while (!st2.isEnabled())//while button is NOT(!) enabled
 //				{
 //				Thread.sleep(200);
@@ -1459,6 +1586,50 @@ public class reusableMethods2 extends base {
 			}
 		}
 		Thread.sleep(2000);
+
+		System.out.println("RMpopupSize = " + ap.getPopup1().size());
+		log.info("RMpopupSize = " + ap.getPopup1().size());
+
+		while (ap.getPopup1().size() == 0)
+
+		{
+			this.calendarTomorrowClick();
+
+			for (int i = 0; i < ap.getApptBox().size(); i++) {
+				String bookName = ap.getApptBox().get(i).getText();
+				if (bookName.contains(resourceName2)) {
+					TimeSlots = ap.getTimeSlotContainers().get(i).findElements(By.tagName("a"));
+					MorningSlot = TimeSlots.get(0);
+					wait.until(ExpectedConditions.elementToBeClickable(MorningSlot));
+					while (!MorningSlot.isEnabled())// while button is NOT(!) enabled
+					{
+						System.out.println("Waiting for available times");
+					}
+
+					// MorningSlot.click();
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].click();", MorningSlot);
+
+					MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
+					MorningAvailableTimes = MorningAvailableTimeContainer.findElements(By.tagName("button"));
+					firstAvailableTimeMorning = MorningAvailableTimes.get(0);
+//						while (!st2.isEnabled())//while button is NOT(!) enabled
+//						{
+//						Thread.sleep(200);
+//						}
+
+					wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
+					startTime = firstAvailableTimeMorning.getText();
+					System.out.println(startTime);
+					firstAvailableTimeMorning.click();
+					break;
+				}
+			}
+			Thread.sleep(2000);
+
+			ap.getPopup1().size();
+		}
+
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
 
 			System.out.println("Went into the loop of Package required");
@@ -1533,12 +1704,21 @@ public class reusableMethods2 extends base {
 
 		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
 
-		while (selectATimeOpen.equals("false")) {
+		int i = 0;
+
+		while (selectATimeOpen.equals("false") && i < 20) {
+
 			Element.findElement(By.tagName("span")).click();
-			log.error("calendar date was clicked again");
+			log.info("calendar date was clicked again");
 			System.out.println("calendar date was clicked again");
 			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+			i++;
+			System.out.println(i);
+			log.info(i);
 		}
+
+		System.out.println(i);
+
 		return null;
 
 	}
@@ -1651,6 +1831,30 @@ public class reusableMethods2 extends base {
 
 	}
 
+	public Object MyActivitiesTomorrowClick() throws InterruptedException {
+
+		CalendarPO cp = new CalendarPO(driver);
+
+		String classtext = cp.getCalendarTomorrow().getAttribute("class");
+
+		if (classtext.contains("cal-out-month")) {
+			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+
+			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+			Thread.sleep(1000);
+		}
+
+		cp.getCalendarTomorrow().findElement(By.tagName("span")).click();
+
+		Thread.sleep(1000);
+
+		return null;
+
+	}
+
 	public Object calendarDayAfterTomorrowClick() throws InterruptedException {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
@@ -1734,7 +1938,7 @@ public class reusableMethods2 extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		this.SelectClassOrCourseToEnroll(classToEnroll);
+		this.SelectClassOrCourseToEnroll(classToEnroll.toUpperCase());
 
 		Thread.sleep(2000);
 		if (c.getPopupSignUpButton().isEnabled()) {
@@ -1750,7 +1954,7 @@ public class reusableMethods2 extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
 					break;
 				}
 			}
@@ -1758,10 +1962,12 @@ public class reusableMethods2 extends base {
 
 		c.getContinueButton().click();
 
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		if (!classFee.equalsIgnoreCase("Free")) {
 
 			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
+
+				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
@@ -1773,6 +1979,305 @@ public class reusableMethods2 extends base {
 								.contains("5454")) {
 
 							JavascriptExecutor jse = (JavascriptExecutor) driver;
+							jse.executeScript("arguments[0].scrollIntoView();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+							break;
+						}
+					}
+				}
+				while (!PM.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				PM.getPaymentButton().click();
+
+			}
+		}
+		rw.waitForAcceptButton();
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+		// Verifies the success message
+		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+		PP.getPopupOKButton().click();
+		Thread.sleep(2000);
+
+		int count1 = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count1; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+			{
+				// rw.linksToBeClickable();
+				driver.findElements(By.tagName("a")).get(i).click();
+				break;
+			}
+
+		}
+		rw.waitForDashboardLoaded();
+
+		return null;
+	}
+
+	public Object enrollInCourse(String courseToEnroll, String paymentOption, String payMethod, String courseFee,
+			String CourseStartMonth) throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+
+		d.getMyCoursesEventsScheduleButton().click();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		this.SelectCourseStartMonth(CourseStartMonth);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		this.SelectClassOrCourseToEnroll(courseToEnroll.toUpperCase());
+
+		Thread.sleep(2000);
+		if (c.getPopupSignupButtonCourse().isEnabled()) {
+			c.getPopupSignupButtonCourse().click();
+
+		} else {
+			c.getPopupCancelButtonCourse().click();
+			Assert.fail("SignUp button not available");
+
+		}
+		Thread.sleep(2000);
+		if (!courseFee.equalsIgnoreCase("Free")) {
+			int radioButtonCount = driver.findElements(By.tagName("label")).size();
+			for (int i = 0; i < radioButtonCount; i++) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					break;
+				}
+			}
+		}
+
+		c.getContinueButton().click();
+
+		Thread.sleep(5000);
+		if (!courseFee.equalsIgnoreCase("Free")) {
+
+			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
+
+				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
+				wait.until(
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+				if (payMethod.equalsIgnoreCase("Saved Card")) {
+
+					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+					for (int i = 0; i < count; i++) {
+						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+								.contains("5454")) {
+
+							JavascriptExecutor jse = (JavascriptExecutor) driver;
+							jse.executeScript("arguments[0].scrollIntoView();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+							break;
+						}
+					}
+				}
+				while (!PM.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				PM.getPaymentButton().click();
+
+			}
+		}
+		rw.waitForAcceptButton();
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+		// Verifies the success message
+		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+		PP.getPopupOKButton().click();
+		Thread.sleep(2000);
+
+		int count1 = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count1; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+			{
+				// rw.linksToBeClickable();
+				driver.findElements(By.tagName("a")).get(i).click();
+				break;
+			}
+
+		}
+		rw.waitForDashboardLoaded();
+
+		return null;
+	}
+
+	public Object myClassClickToUnenroll(String classEnrolled) throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		int count = d.getClassInfoSections().size();
+		for (int i = 0; i < count; i++) {
+
+			if (d.getClassInfoSections().get(i).getText().contains(classEnrolled.toUpperCase())) {
+
+				d.getMyClassesClass1GearButtons().get(i).click();
+				WebDriverWait wait = new WebDriverWait(driver, 30);
+				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
+				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
+				d.getmyClassesUnenrollButtons().get(i).click();
+				Thread.sleep(1000);
+				break;
+
+			}
+
+		}
+		return null;
+
+	}
+
+	public Object myCourseClickToUnenroll(String dsiredMonthYear) throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
+
+		Thread.sleep(2000);
+		rw.waitForDashboardLoaded();
+		this.openSideMenuIfNotOpenedAlready();
+		d.getMenuMyActivies().click();
+
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+			Thread.sleep(500);
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+		d.getMenuMyCalendar().click();
+		wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+		String monthYear = cp.getMonthYear().getText();
+		while (!monthYear.equals(dsiredMonthYear)) {
+			cp.getRightArrow().click();
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+			monthYear = cp.getMonthYear().getText();
+		}
+
+		Thread.sleep(1000);
+		cp.getCalDayBadge().click();
+		Thread.sleep(1000);
+		cp.getCalEventTitle().click();
+		Thread.sleep(1000);
+		cp.getUnEnrollBtn().click();
+		Thread.sleep(1000);
+		return null;
+
+	}
+
+	public Object enrollFamilyMbrInClass(String classToEnroll, String paymentOption, String payMethod, String classFee,
+			String familyMbrName) throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+
+		d.getMyClassesScheduleButton().click();
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		this.SelectTomorrowDate();
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+
+		this.SelectClassOrCourseToEnroll(classToEnroll.toUpperCase());
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+
+		while (c.getClasslabel().getText().isBlank()) {
+			Thread.sleep(500);
+		}
+		JavascriptExecutor jse = ((JavascriptExecutor) driver);
+
+		int fmlyMbrcount = c.getFmlyMemberLabel().size();
+
+		for (int i = 0; i < fmlyMbrcount; i++) {
+
+			WebElement fml = c.getFmlyMemberLabel().get(i);
+			WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+			if (fmc.isSelected()) {
+				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				fml.click(); // de-selects the hoh
+				break;
+			}
+		}
+
+		// Selects the falimy member
+		for (int i = 0; i < fmlyMbrcount; i++) {
+
+			WebElement fml = c.getFmlyMemberLabel().get(i);
+			// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+			if (fml.getText().contains(familyMbrName)) {
+
+				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				fml.click(); // Selects the member
+
+				break;
+			}
+		}
+		Actions actions = new Actions(driver);
+
+		Thread.sleep(2000);
+		if (c.getPopupSignUpButton().isEnabled()) {
+			jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+
+			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
+
+		} else {
+			jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
+			actions.moveToElement(c.getPopupCancelButton()).click().perform();
+			Assert.fail("SignUp button not available");
+
+		}
+		Thread.sleep(2000);
+		if (!classFee.equalsIgnoreCase("Free")) {
+			int radioButtonCount = driver.findElements(By.tagName("label")).size();
+			for (int i = 0; i < radioButtonCount; i++) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					break;
+				}
+			}
+		}
+
+		c.getContinueButton().click();
+
+		Thread.sleep(5000);
+		if (!classFee.equalsIgnoreCase("Free")) {
+
+			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
+
+				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
+				wait.until(
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+				if (payMethod.equalsIgnoreCase("Saved Card")) {
+
+					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+					for (int i = 0; i < count; i++) {
+						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+								.contains("5454")) {
+
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
@@ -1814,26 +2319,407 @@ public class reusableMethods2 extends base {
 		return null;
 	}
 
-	public Object myClassClickToUnenroll(String classEnrolled) throws InterruptedException {
+	public Object enrollFamilyMbrInCourse(String courseToEnroll, String paymentOption, String payMethod,
+			String courseFee, String CourseStartMonth, String familyMbrName) throws InterruptedException {
 
 		DashboardPO d = new DashboardPO(driver);
-		int count = d.getClassInfoSections().size();
-		for (int i = 0; i < count; i++) {
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-			if (d.getClassInfoSections().get(i).getText().contains(classEnrolled)) {
+		d.getMyCoursesEventsScheduleButton().click();
 
-				d.getMyClassesClass1GearButtons().get(i).click();
-				WebDriverWait wait = new WebDriverWait(driver, 30);
-				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
-				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
-				d.getmyClassesUnenrollButtons().get(i).click();
-				Thread.sleep(1000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		this.SelectCourseStartMonth(CourseStartMonth);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		this.SelectClassOrCourseToEnroll(courseToEnroll.toUpperCase());
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+
+		while (c.getClasslabel().getText().isBlank()) {
+			Thread.sleep(500);
+		}
+		JavascriptExecutor jse = ((JavascriptExecutor) driver);
+		int fmlyMbrcount = c.getFmlyMemberLabel().size();
+
+		for (int i = 0; i < fmlyMbrcount; i++) {
+
+			WebElement fml = c.getFmlyMemberLabel().get(i);
+			WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+			if (fmc.isSelected()) {
+				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				fml.click(); // de-selects the hoh
 				break;
+			}
+		}
 
+		// Selects the falimy member
+		for (int i = 0; i < fmlyMbrcount; i++) {
+
+			WebElement fml = c.getFmlyMemberLabel().get(i);
+			// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+			if (fml.getText().contains(familyMbrName)) {
+				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				fml.click(); // Selects the member
+				break;
+			}
+		}
+		Actions actions = new Actions(driver);
+
+		Thread.sleep(2000);
+		if (c.getPopupSignupButtonCourse().isEnabled()) {
+			jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignupButtonCourse());
+
+			actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
+
+		} else {
+			jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButtonCourse());
+			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
+			Assert.fail("SignUp button not available");
+
+		}
+		Thread.sleep(2000);
+		if (!courseFee.equalsIgnoreCase("Free")) {
+			int radioButtonCount = driver.findElements(By.tagName("label")).size();
+			for (int i = 0; i < radioButtonCount; i++) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
+					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					break;
+				}
+			}
+		}
+
+		c.getContinueButton().click();
+
+		Thread.sleep(5000);
+		if (!courseFee.equalsIgnoreCase("Free")) {
+
+			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
+
+				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
+				wait.until(
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+				if (payMethod.equalsIgnoreCase("Saved Card")) {
+
+					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+					for (int i = 0; i < count; i++) {
+						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+								.contains("5454")) {
+
+							jse.executeScript("arguments[0].scrollIntoView();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+							jse.executeScript("arguments[0].click();",
+									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+							break;
+						}
+					}
+				}
+				while (!PM.getPaymentButton().isEnabled()) {
+					Thread.sleep(1000);
+				}
+				PM.getPaymentButton().click();
+
+			}
+		}
+		rw.waitForAcceptButton();
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+		// Verifies the success message
+		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+		PP.getPopupOKButton().click();
+		Thread.sleep(1000);
+
+		int count1 = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count1; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+			{
+				// rw.linksToBeClickable();
+				driver.findElements(By.tagName("a")).get(i).click();
+				break;
 			}
 
 		}
+		rw.waitForDashboardLoaded();
+
+		return null;
+	}
+
+	public Object familyClassClickToUnenroll(String classEnrolled, String enrolledMemberName)
+			throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
+
+		Thread.sleep(2000);
+		rw.waitForDashboardLoaded();
+		this.openSideMenuIfNotOpenedAlready();
+
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+		d.getMenuMyCalendar().click();
+		wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+		this.MyActivitiesTomorrowClick();
+
+		/*
+		 * Thread.sleep(1000); cp.getCalDayBadge().click();
+		 */
+		Thread.sleep(1000);
+
+		int eventCount = cp.getCalEventTitles().size();
+
+		for (int i = 0; i < eventCount; i++) {
+
+			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
+
+				cp.getCalEventTitles().get(i).click();
+				break;
+			}
+		}
+
+		Thread.sleep(1000);
+
+		Assert.assertTrue(cp.getClassName().getText().contains(classEnrolled));
+		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
+		cp.getUnEnrollBtn().click();
+		Thread.sleep(1000);
 		return null;
 
 	}
+
+	public Object familyCourseClickToUnenroll(String dsiredMonthYear, String classEnrolled, String enrolledMemberName)
+			throws InterruptedException {
+
+		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
+
+		Thread.sleep(2000);
+		rw.waitForDashboardLoaded();
+		this.openSideMenuIfNotOpenedAlready();
+
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+		d.getMenuMyCalendar().click();
+		wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+		String monthYear = cp.getMonthYear().getText();
+		while (!monthYear.equals(dsiredMonthYear)) {
+			cp.getRightArrow().click();
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+			monthYear = cp.getMonthYear().getText();
+		}
+
+		Thread.sleep(1000);
+
+		cp.getCalDayBadge().click();
+
+		Thread.sleep(1000);
+
+		int eventCount = cp.getCalEventTitles().size();
+
+		for (int i = 0; i < eventCount; i++) {
+
+			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
+
+				cp.getCalEventTitles().get(i).click();
+				break;
+			}
+		}
+
+		Thread.sleep(1000);
+
+		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
+		Thread.sleep(1000);
+		cp.getUnEnrollBtn().click();
+		Thread.sleep(1000);
+		return null;
+
+	}
+
+	public Object verifyOnAccountIsPresentAndSelectedByDefault() {
+		UnenrollPO u = new UnenrollPO(driver);
+		ArrayList<String> paymethods = new ArrayList<String>();
+		int count = u.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+
+		for (int i = 0; i < count; i++) {
+
+			paymethods.add(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText());
+		}
+
+		Assert.assertTrue(paymethods.contains("On Account"));
+
+		for (int i = 0; i < count; i++) {
+
+			if (u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+					.contains(" On Account"))
+
+			{
+				Assert.assertTrue(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				break;
+			}
+		}
+
+		return null;
+	}
+
+	public Object selectSavedcard() {
+
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
+		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+		for (int i = 0; i < count; i++) {
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
+
+				JavascriptExecutor jse = (JavascriptExecutor) driver;
+				jse.executeScript("arguments[0].scrollIntoView();",
+						PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+				jse.executeScript("arguments[0].click();",
+						PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+				// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+				break;
+			}
+		}
+		return null;
+	}
+
+	public Object selectNewcardToPay(String memberName) throws InterruptedException {
+
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+		while (!PM.getNewCardButton().isDisplayed())
+
+		{
+			Thread.sleep(1000);
+
+		}
+
+		PM.getNewCardButton().click();
+		Thread.sleep(3000);
+
+		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		while (opacity.contains("1")) {
+			PM.getNewCardButton().click();
+			Thread.sleep(3000);
+			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+
+		}
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+
+		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		Thread.sleep(2000);
+		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+//		Assert.assertFalse(PM.getPaymentButton().isEnabled());
+
+//			System.out.println(PM.getNameOnCardField().getAttribute("value"));
+		Assert.assertEquals(memberName, PM.getNameOnCardField().getAttribute("value"));
+
+		PM.getCardNumberField().sendKeys("4111111111111111");
+		PM.getExpirationMonth().sendKeys("04");
+		PM.getExpirationYear().sendKeys("22");
+		PM.getSecurityCode().sendKeys("123");
+		PM.getCheckBox().click();
+		while (!PM.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+
+		// Clicks on the Pay button without signature
+		PM.getPaymentButton().click();
+		System.out.println(PM.getPopupContent().getText());
+		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+		PM.getPopupOk().click();
+		Thread.sleep(1000);
+		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
+		return null;
+	}
+
+	public Object selectNewcardToRefund(String memberName) throws InterruptedException {
+
+		UnenrollPO u = new UnenrollPO(driver);
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+		while (!u.getNewCardButton().isDisplayed())
+
+		{
+			Thread.sleep(1000);
+
+		}
+
+		u.getNewCardButton().click();
+		Thread.sleep(5000);
+
+		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		while (opacity.contains("1")) {
+			u.getNewCardButton().click();
+			Thread.sleep(5000);
+			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+
+		}
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+
+		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		Thread.sleep(2000);
+		System.out.println("Refund Button disabled:" + u.getRefundButton().getAttribute("disabled"));
+//		Assert.assertFalse(u.getRefundButton().isEnabled());
+
+//			System.out.println(PM.getNameOnCardField().getAttribute("value"));
+		Assert.assertEquals(memberName, PM.getNameOnCardField().getAttribute("value"));
+
+		PM.getCardNumberField().sendKeys("4111111111111111");
+		PM.getExpirationMonth().sendKeys("04");
+		PM.getExpirationYear().sendKeys("22");
+		PM.getSecurityCode().sendKeys("123");
+		PM.getCheckBox().click();
+		while (!u.getRefundButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+
+		// Clicks on the Pay button without signature
+		u.getRefundButton().click();
+		System.out.println(PM.getPopupContent().getText());
+		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+		PM.getPopupOk().click();
+		Thread.sleep(1000);
+		PM.getSaveCardNo().click();
+		Thread.sleep(1000);
+		return null;
+	}
+
 }
