@@ -1,8 +1,5 @@
 package resources;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -20,9 +17,9 @@ import pageObjects.PaymentPO;
 
 public class reusableWaits extends base {
 
-	static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-	static Date date = new Date();
-	static String DateTime = dateFormat.format(date);
+	// static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	// static Date date = new Date();
+	// static String DateTime = dateFormat.format(date);
 
 	public void setDriver(WebDriver wd) {
 		driver = wd;
