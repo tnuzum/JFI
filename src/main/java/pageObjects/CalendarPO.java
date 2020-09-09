@@ -81,6 +81,10 @@ public class CalendarPO {
 		return driver.findElement(calDayBadge);
 	}
 
+	public List<WebElement> getCalDayBadges() {
+		return driver.findElements(calDayBadge);
+	}
+
 	public WebElement getCalEventTitle() {
 		return driver.findElement(calEventTitle);
 	}
