@@ -2174,7 +2174,7 @@ public class reusableMethods extends base {
 		}
 
 		Thread.sleep(1000);
-		cp.getCalDayBadge().click();
+		cp.getCalDayBadges().get(1).click();
 		Thread.sleep(1000);
 		cp.getCalEventTitle().click();
 		Thread.sleep(1000);
