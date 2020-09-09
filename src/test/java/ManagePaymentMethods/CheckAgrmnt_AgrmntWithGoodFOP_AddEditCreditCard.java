@@ -67,7 +67,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 	public void AddNewCard_SelectAgreement() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin("agrmntmbr", "Testing1!");
+			rm.activeMemberLogin(" ", "Testing1!");
 			rw.waitForDashboardLoaded();
 			rm.openSideMenuIfNotOpenedAlready();
 
@@ -143,7 +143,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -239,7 +240,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -271,7 +273,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
