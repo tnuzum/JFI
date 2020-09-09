@@ -443,8 +443,11 @@ public class reusableMethods extends base {
 		PP.getMyPackagesButton().click();
 		int IntUnitCount = 0;
 		Thread.sleep(3000);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[@class = 'dropdown-item']")));
 		int packagesCount = PP.getPackagesList().size();
 		for (int j = 0; j < packagesCount; j++) {
+			wait.until(ExpectedConditions.textToBePresentInElement(PP.getPackagesList().get(j), "Remaining"));
 			String text = PP.getPackagesList().get(j).getText();
 			if (text.contains(packageName)) {
 				String[] unitCount = PP.getUnitsCount().get(j).getText().split(" ");

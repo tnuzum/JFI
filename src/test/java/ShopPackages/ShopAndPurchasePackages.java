@@ -254,7 +254,7 @@ public class ShopAndPurchasePackages extends base {
 			int IntUnitCountAfter = 0;
 
 			IntUnitCountBefore = rm.getPackageUnits("ServiceOA");
-//		System.out.println(IntUnitCountBefore);
+			System.out.println("Before: " + IntUnitCountBefore);
 
 			// Verifies the Pay button contains the total amount
 			Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -318,7 +318,7 @@ public class ShopAndPurchasePackages extends base {
 
 			// Note the package units after purchase
 			IntUnitCountAfter = rm.getPackageUnits("ServiceOA");
-//		System.out.println(IntUnitCountAfter);
+			System.out.println("Aftre: " + IntUnitCountAfter);
 
 			// Verifies the package units is now incremented by one unit
 			IntUnitCountBefore++;
@@ -1064,6 +1064,14 @@ public class ShopAndPurchasePackages extends base {
 			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
+			// Noting down the Package Units before purchasing
+			int IntUnitCountBefore3 = 0;
+			int IntUnitCountAfter3 = 0;
+
+			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
+
+			System.out.println("Before: " + IntUnitCountBefore3);
+
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			rm.openSideMenuIfNotOpenedAlready();
 
@@ -1125,13 +1133,6 @@ public class ShopAndPurchasePackages extends base {
 			String FormatTotalAmt1 = totalAmt1[1].trim();
 			System.out.println(FormatTotalAmt1);
 
-			// Noting down the Package Units before purchasing
-			int IntUnitCountBefore3 = 0;
-			int IntUnitCountAfter3 = 0;
-
-			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
-//		System.out.println(IntUnitCountBefore1);
-
 			// Verifies the Pay button contains the total amount
 			Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt1));
 
@@ -1161,11 +1162,11 @@ public class ShopAndPurchasePackages extends base {
 				}
 
 			}
-			Thread.sleep(2000);
+			rw.waitForDashboardLoaded();
 
 			// Note the package units after purchase
 			IntUnitCountAfter3 = rm.getPackageUnits("Day Pass");
-//				System.out.println(IntUnitCountAfter1);
+			System.out.println("After: " + IntUnitCountAfter3);
 
 			// Verifies the package units is now incremented by one unit
 			IntUnitCountBefore3 = IntUnitCountBefore3 + 4;
