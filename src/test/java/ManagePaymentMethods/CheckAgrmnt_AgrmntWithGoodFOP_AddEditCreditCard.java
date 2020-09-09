@@ -67,7 +67,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 	public void AddNewCard_SelectAgreement() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin(" ", "Testing1!");
+			rm.activeMemberLogin("agrmntmbr ", "Testing1!");
 			rw.waitForDashboardLoaded();
 			rm.openSideMenuIfNotOpenedAlready();
 
