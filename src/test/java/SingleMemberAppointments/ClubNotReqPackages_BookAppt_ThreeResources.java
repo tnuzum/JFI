@@ -177,24 +177,21 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 			while (ap.getPopup1().size() == 0)
 
 			{
+				if (ap.getCloseButtons().size() != 0) {
+					ap.getCloseButton().click();
+				}
 				rm.calendarTomorrowClick();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st1));
-				while (!st1.isEnabled())// while button is NOT(!) enabled
-				{
-					System.out.println("Waiting for available times");
-				}
-
-				st1.click();
+				ap.getSelectTimeMorningButton().click();
 
 				wait.until(ExpectedConditions.elementToBeClickable(st2));
-				startTime = st2.getText();
-				// st2.click();
+				startTime = ap.getSelectTime1stAvailable().getText();
 
-				jse.executeScript("arguments[0].click();", st2);
+				jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
 				Thread.sleep(1000);
 
 				ap.getPopup1().size();
+
 			}
 
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));

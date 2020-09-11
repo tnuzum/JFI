@@ -407,4 +407,8 @@ public class AppointmentsPO {
 		return driver.findElement(closeButton);
 	}
 
+	public List<WebElement> getCloseButtons() {
+		return driver.findElements(closeButton);
+	}
+
 }

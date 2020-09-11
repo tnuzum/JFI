@@ -1349,6 +1349,11 @@ public class reusableMethods extends base {
 		while (ap.getPopup1().size() == 0)
 
 		{
+
+			if (ap.getCloseButtons().size() != 0) {
+				ap.getCloseButton().click();
+			}
+
 			this.calendarTomorrowClick();
 
 			for (int i = 0; i < ap.getApptBox().size(); i++) {
@@ -1596,6 +1601,10 @@ public class reusableMethods extends base {
 		while (ap.getPopup1().size() == 0)
 
 		{
+			if (ap.getCloseButtons().size() != 0) {
+				ap.getCloseButton().click();
+			}
+
 			this.calendarTomorrowClick();
 
 			for (int i = 0; i < ap.getApptBox().size(); i++) {
