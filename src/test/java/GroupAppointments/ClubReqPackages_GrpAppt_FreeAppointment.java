@@ -201,7 +201,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 //					Thread.sleep(200);
 //					}
 
-			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -214,14 +214,14 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			while (ap.getPopup1().size() == 0)
 
 			{
-				if (ap.getCloseButtons().size() != 0) {
+				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
 					ap.getCloseButton().click();
 				}
 				rm.calendarTomorrowClick();
 
 				ap.getSelectTimeMorningButton().click();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st2));
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 				startTime = ap.getSelectTime1stAvailable().getText();
 
 				jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
@@ -441,7 +441,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 //					Thread.sleep(200);
 //					}
 
-			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -455,14 +455,14 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			while (ap.getPopup1().size() == 0)
 
 			{
-				if (ap.getCloseButtons().size() != 0) {
+				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
 					ap.getCloseButton().click();
 				}
 				rm.calendarTomorrowClick();
 
 				ap.getSelectTimeMorningButton().click();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st2));
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 				startTime = ap.getSelectTime1stAvailable().getText();
 
 				jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());

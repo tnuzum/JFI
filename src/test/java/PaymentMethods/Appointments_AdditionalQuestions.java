@@ -155,7 +155,7 @@ public class Appointments_AdditionalQuestions extends base {
 //					Thread.sleep(200);
 //					}
 
-			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime1 = st2.getText();
 			// st2.click();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
