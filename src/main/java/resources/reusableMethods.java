@@ -1350,7 +1350,7 @@ public class reusableMethods extends base {
 
 		{
 
-			if (ap.getCloseButtons().size() != 0) {
+			if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
 				ap.getCloseButton().click();
 			}
 
@@ -1601,7 +1601,7 @@ public class reusableMethods extends base {
 		while (ap.getPopup1().size() == 0)
 
 		{
-			if (ap.getCloseButtons().size() != 0) {
+			if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
 				ap.getCloseButton().click();
 			}
 
