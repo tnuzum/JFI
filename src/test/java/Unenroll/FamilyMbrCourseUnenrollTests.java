@@ -29,14 +29,6 @@ public class FamilyMbrCourseUnenrollTests extends base {
 	private static String courseToEnroll8 = "UnenrollCourse8";
 	private static String courseToEnroll9 = "UnenrollCourse9";
 	private static String courseToEnroll10 = "UnenrollCourse10";
-	private static String courseToEnroll10_1 = "UnenrollCourse10_1";
-	private static String courseToEnroll11 = "UnenrollCourse11";
-	private static String courseToEnroll12 = "UnenrollCourse12";
-	private static String courseToEnroll13 = "UnenrollCourse13";
-	private static String courseToEnroll14 = "UnenrollCourse14";
-	private static String courseToEnroll15 = "UnenrollCourse15";
-	private static String courseToEnroll16 = "UnenrollCourse16";
-	private static String courseToEnroll17 = "UnenrollCourse17";
 
 	private static String CourseStartMonth = "Nov";
 	private static String dsiredMonthYear = "November 2020";

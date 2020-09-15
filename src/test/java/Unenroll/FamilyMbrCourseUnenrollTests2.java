@@ -26,16 +26,7 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class FamilyMbrCourseUnenrollTests2 extends base {
-	private static String courseToEnroll1 = "UnenrollCourse1";
-	private static String courseToEnroll2 = "UnenrollCourse2";
-	private static String courseToEnroll3 = "UnenrollCourse3";
-	private static String courseToEnroll4 = "UnenrollCourse4";
-	private static String courseToEnroll5 = "UnenrollCourse5";
-	private static String courseToEnroll6 = "UnenrollCourse6";
-	private static String courseToEnroll7 = "UnenrollCourse7";
-	private static String courseToEnroll8 = "UnenrollCourse8";
-	private static String courseToEnroll9 = "UnenrollCourse9";
-	private static String courseToEnroll10 = "UnenrollCourse10";
+
 	private static String courseToEnroll10_1 = "UnenrollCourse10_1";
 	private static String courseToEnroll11 = "UnenrollCourse11";
 	private static String courseToEnroll12 = "UnenrollCourse12";

@@ -3,8 +3,6 @@ package Unenroll;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -28,17 +26,7 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class FamilyMbrClassUnenrollTests2 extends base {
-	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String classToEnroll1 = "UnenrollClass1";
-	private static String classToEnroll2 = "UnenrollClass2";
-	private static String classToEnroll3 = "UnenrollClass3";
-	private static String classToEnroll4 = "UnenrollClass4";
-	private static String classToEnroll5 = "UnenrollClass5";
-	private static String classToEnroll6 = "UnenrollClass6";
-	private static String classToEnroll7 = "UnenrollClass7";
-	private static String classToEnroll8 = "UnenrollClass8";
-	private static String classToEnroll9 = "UnenrollClass9";
-	private static String classToEnroll10 = "UnenrollClass10";
+
 	private static String classToEnroll10_1 = "UnenrollClass10_1";
 	private static String classToEnroll11 = "UnenrollClass11";
 	private static String classToEnroll12 = "UnenrollClass12";

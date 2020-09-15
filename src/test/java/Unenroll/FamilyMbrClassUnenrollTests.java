@@ -32,14 +32,6 @@ public class FamilyMbrClassUnenrollTests extends base {
 	private static String classToEnroll8 = "UnenrollClass8";
 	private static String classToEnroll9 = "UnenrollClass9";
 	private static String classToEnroll10 = "UnenrollClass10";
-	private static String classToEnroll10_1 = "UnenrollClass10_1";
-	private static String classToEnroll11 = "UnenrollClass11";
-	private static String classToEnroll12 = "UnenrollClass12";
-	private static String classToEnroll13 = "UnenrollClass13";
-	private static String classToEnroll14 = "UnenrollClass14";
-	private static String classToEnroll15 = "UnenrollClass15";
-	private static String classToEnroll16 = "UnenrollClass16";
-	private static String classToEnroll17 = "UnenrollClass17";
 
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Single Class Fee";
