@@ -8,46 +8,60 @@ import org.openqa.selenium.WebElement;
 
 public class AppointmentsPO {
 
-	public static WebDriver driver;
+	WebDriver driver;
 
 // OBJECTS
-		
+
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By loadingAvailabilityMessage = By.xpath("//div[contains(@class, 'swal2-loading')]");
-	By clubs = By.xpath("(//select[@name='clubs'])");
+	By selectMember = By.xpath("//select[@name='familySelect']");
+	By clubs = By.xpath("(//select[@name='clubSelect'])");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
-	By groupApptsHeader = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div/h2");
-	By groupMinPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[1]/div/small[1]"); //minimum persons count
-	By groupMaxPersons = By.xpath("//appointmentresourceselection/div/div[4]/div[2]/div/div[3]/div[2]/div/small[1]"); //maximum persons count
+//	By groupApptsHeader = By.xpath("//appointmentresourceselection/div/div[5]/div[2]/div/div/h2");
+	By groupApptsHeader = By.xpath("//div[@id='group-activity'] //h2");
+
+	By groupMinMaxPersons = By.xpath("//small[contains(@class, 'class-list-subheader')]"); // minimum maximum persons
+																							// count
+	By groupMinPersons = By.xpath("//small[contains(@class, 'at-bookappointment-group-product-min')]"); // minimum
+																										// persons count
+	By groupMaxPersons = By.xpath("//small[contains(@class, 'at-bookappointment-group-product-max')]");// maximum
+																										// persons count
 	By groupMemberSearchInput = By.xpath("//div[@id = 'group-activity'] //input[contains(@class, 'form-control')]");
 	By groupMemberSearchButton = By.xpath("//div[@id = 'group-activity'] //a[@class='btn btn-primary']");
 	By groupPopupAddButton1 = By.xpath("//appointmentmembersearch/div[2]/div[1]/a");// first add button
 	By groupPopupAddButton2 = By.xpath("//appointmentmembersearch/div[2]/div[2]/a");// second add button
 	By groupPopupMembers = By.xpath("//div[@class = 'modal-content'] //div[@class = 'ng-star-inserted']");
 	By groupPopupAddButtons = By.xpath("//div[@class = 'modal-content'] //div[@class = 'ng-star-inserted']/a");
-	
-	By resourceType= By.xpath("(//select[@name='primaryResourceType'])");
+
+	By resourceType = By.xpath("(//select[@name='primaryResourceType'])");
 	By monthSelectBackButton = By.xpath("//div[@class='btn-group']/div[1]/i");
 	By monthSelectForwardButton = By.xpath("//div[@class='btn-group']/div[3]/i");
+	By calendarToday = By.xpath("(//mwl-calendar-month-cell[contains(@class,'today')])");
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
 	By calendarDayAfterTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[2]");
+	By calendarTwodaysAfter = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[3]");
 	By calendarMonday1stFullWeek = By.xpath("//div[@class='cal-month-view']/div/div[2]/div/mwl-calendar-month-cell[2]");
-	//By selectTimeMorningButton = By.xpath("//strong[contains(text(),'MORNING')]");
+	// By selectTimeMorningButton =
+	// By.xpath("//strong[contains(text(),'MORNING')]");
 	By selectTimeMorningButton = By.xpath("//div[contains(@class, 'tabs-container')]/ul/li[1]/a[1]");
 	By selectTimeMorningLabel1 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTimeMorningLabel2 = By.xpath("//div[@class='tabs-container']/ul/li[1]/a/small[1]");
 	By selectTime1stAvailable = By.xpath("//div[contains(@class,'tag-wrap')]/button[1]");
 	By booksNames = By.xpath("//div[contains(@class,'widget-callout p-xs clearfix')]");
-	By addlResourcesCancelButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[1]"); //cancel button
-	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book button
+	By closeButton = By.xpath("//button[@class='btn btn-primary btn-outline']");
+	By addlResourcesCancelButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[1]"); // cancel
+																														// button
+	By addlResourcesBookButton = By.xpath("//appointmentsecondaryactioncomponent/div[1]/div[2]/div[1]/button[2]"); // book
+																													// button
 	By packageRequiredContinueButton = By.xpath("//*[text()='CONTINUE']"); // Continue button
 	By bookButton = By.xpath("//button[@type = 'submit']");
 	By apptBox = By.xpath("//div[contains(@class, 'appt-box')]");
 	By timeSlotContainers = By.xpath("//div[contains(@class, 'tabs-container')]");
-		
-	//By popup1BookButton = By.xpath("(//button[@type='button'][4]");
+	By selectATimeDrawer = By.xpath("//mat-sidenav[contains(@class, 'mat-drawer-over')]");
+	By popup1 = By.xpath("//div[@class = 'swal2-popup swal2-modal swal2-show']");
+	// By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
 	By popup1Content = By.xpath("//div[@id='swal2-content']");
@@ -55,11 +69,11 @@ public class AppointmentsPO {
 	By paymentButton = By.xpath("//button[contains(text(), 'pay')]");
 	By cancelButton = By.xpath("//button[contains(text(), 'cancel')]");
 	By popup2Title = By.xpath("//h2[@id='swal2-title']");
-	//By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
+	// By popup2OKButton = By.xpath("(//button[@type='button'])[4]");
 	By popup2OKButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	By popup2Content = By.xpath("//div[@id='swal2-content']");
 	By apptCheckout = By.xpath("//div[@class='row ng-star-inserted']");
-	
+
 	By appointmentName = By.xpath("//div[contains(@class, 'widget')]/h2");
 	By clubName = By.xpath("//span[contains(@class, 'float')]/small[1]");
 	By appointmentTime = By.xpath("//span[contains(@class, 'float')]/small[2]");
@@ -73,11 +87,14 @@ public class AppointmentsPO {
 	By newAppointmentBanner = By.xpath("//div[@class='widget widget-callout']");
 	By dueAtTimeOfService = By.xpath("//div[contains(@class, 'appointment-secondaryaction-dueattimeofservice')]");
 	By changeFee = By.xpath("//div[contains(@class, 'appointment-secondaryaction-changefee')]");
-	
+	By forMember = By.xpath("//div[@class = 'text-right ']/span[2]");
+
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By editApptChangeButton = By.xpath("//button[contains(text(), 'change')]");
-	By editApptCancelButton = By.xpath("//*[text()='cancel']"); //By.cssSelector("#button-cancel"); stopped working in 7.28
-	By editApptProceedButton = By.xpath("//*[text()='proceed with cancel']"); //By.xpath("//div[@id='show-hide-cancel']/div/div/a"); stopped working in 7.28
+	By editApptCancelButton = By.xpath("//*[text()='cancel']"); // By.cssSelector("#button-cancel"); stopped working in
+																// 7.28
+	By editApptProceedButton = By.xpath("//*[text()='proceed with cancel']"); // By.xpath("//div[@id='show-hide-cancel']/div/div/a");
+																				// stopped working in 7.28
 	By editApptProceedButton1 = By.xpath("//*[text()='proceed with change']");
 	By editApptCancelYesButton = By.cssSelector("button[class*='confirm']");
 	By editApptCancelNoButton = By.cssSelector("button[class*='cancel']");
@@ -85,317 +102,313 @@ public class AppointmentsPO {
 	By editApptCanceledOKButton = By.cssSelector("button[class*='confirm']");
 	By cancelFeeSection = By.xpath("//div[contains(@class,'alert-danger')]");
 	By noFeeSection = By.xpath("//div[contains(@class,'alert-success')]");
+	By deleteMember = By.xpath("//button[contains(@class, 'delete-user')]");
 
 	// CONSTRUCTOR
-		
+
 	public AppointmentsPO(WebDriver driver) {
 		// TODO Auto-generated constructor stub
-		AppointmentsPO.driver = driver;
+		this.driver = driver;
 	}
 // METHODS
 
-	public WebElement getPageHeader()
-	{
+	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);
 	}
-	public List<WebElement> getloadingAvailabilityMessage()
-	{
+
+	public List<WebElement> getloadingAvailabilityMessage() {
 		return driver.findElements(loadingAvailabilityMessage);
 	}
-	public WebElement getclubs()
-	{
+
+	public WebElement getSelectMember() {
+		return driver.findElement(selectMember);
+	}
+
+	public WebElement getclubs() {
 		return driver.findElement(clubs);
 	}
-	public WebElement getBookableItemCategory()
-	{
+
+	public WebElement getBookableItemCategory() {
 		return driver.findElement(bookableItemCategory);
 	}
-	public WebElement getBookableItem()
-	{
+
+	public WebElement getBookableItem() {
 		return driver.findElement(bookableItem);
 	}
-	public WebElement getGroupApptsHeader()
-	{
+
+	public WebElement getGroupApptsHeader() {
 		return driver.findElement(groupApptsHeader);
 	}
-	public WebElement getGroupMinPersons()
-	{
+
+	public WebElement getGroupMinPersons() {
 		return driver.findElement(groupMinPersons);
 	}
-	public WebElement getGroupMaxPersons()
-	{
+
+	public WebElement getGroupMaxPersons() {
 		return driver.findElement(groupMaxPersons);
 	}
-	public WebElement getGroupMemberSearchInput()
-	{
+
+	public WebElement getGroupMemberSearchInput() {
 		return driver.findElement(groupMemberSearchInput);
 	}
-	public WebElement getGroupMemberSearchButton()
-	{
+
+	public WebElement getGroupMemberSearchButton() {
 		return driver.findElement(groupMemberSearchButton);
 	}
-	
-	public WebElement getGroupPopupAddButton1()
-	{
+
+	public WebElement getGroupPopupAddButton1() {
 		return driver.findElement(groupPopupAddButton1);
 	}
-	public WebElement getGroupPopupAddButton2()
-	{
+
+	public WebElement getGroupPopupAddButton2() {
 		return driver.findElement(groupPopupAddButton2);
 	}
-	
-	
-	public List <WebElement> getGroupPopupMembers()
-	{
+
+	public List<WebElement> getGroupPopupMembers() {
 		return driver.findElements(groupPopupMembers);
 	}
-	public List <WebElement> getGroupPopupAddButtons()
-	{
+
+	public List<WebElement> getGroupPopupAddButtons() {
 		return driver.findElements(groupPopupAddButtons);
 	}
-	
-	
-	public WebElement getResourceType()
-	{
+
+	public WebElement getResourceType() {
 		return driver.findElement(resourceType);
 	}
-	public WebElement getMonthSelectBackButton()
-	{
+
+	public WebElement getMonthSelectBackButton() {
 		return driver.findElement(monthSelectBackButton);
 	}
-	public WebElement getMonthSelectForwardButton()
-	{
+
+	public WebElement getMonthSelectForwardButton() {
 		return driver.findElement(monthSelectForwardButton);
 	}
-	public WebElement getCalendarTomorrow()
-	{
+
+	public WebElement getCalendarTomorrow() {
 		return driver.findElement(calendarTomorrow);
 	}
-	
-	public WebElement getCalendarDayAfterTomorrow()
-	{
+
+	public WebElement getCalendarToday() {
+		return driver.findElement(calendarToday);
+	}
+
+	public WebElement getCalendarDayAfterTomorrow() {
 		return driver.findElement(calendarDayAfterTomorrow);
 	}
-	
-	public WebElement getCalendarMonday1stFullWeek()
-	{
+
+	public WebElement getCalendarTwodaysAfter() {
+		return driver.findElement(calendarTwodaysAfter);
+	}
+
+	public WebElement getCalendarMonday1stFullWeek() {
 		return driver.findElement(calendarMonday1stFullWeek);
 	}
-	public WebElement getSelectTimeMorningButton()
-	{
-		return driver.findElement(selectTimeMorningButton);
+
+	public WebElement getSelectTimeMorningButton() {
+		return driver.findElements(selectTimeMorningButton).get(0);
 	}
-	public WebElement getSelectTimeMorningLabel1()
-	{
+
+	public WebElement getSelectTimeMorningLabel1() {
 		return driver.findElement(selectTimeMorningLabel1);
 	}
-	public WebElement getSelectTimeMorningLabel2()
-	{
+
+	public WebElement getSelectTimeMorningLabel2() {
 		return driver.findElement(selectTimeMorningLabel2);
 	}
-	public WebElement getSelectTime1stAvailable()
-	{
-		return driver.findElement(selectTime1stAvailable);
+
+	public WebElement getSelectTime1stAvailable() {
+		return driver.findElements(selectTime1stAvailable).get(0);
 	}
-	public WebElement getBooksNames()
-	{
+
+	public WebElement getBooksNames() {
 		return driver.findElement(booksNames);
 	}
-	public WebElement getAddlResourcesCancelButton()
-	{
+
+	public WebElement getAddlResourcesCancelButton() {
 		return driver.findElement(addlResourcesCancelButton);
 	}
-	public WebElement getAddlResourcesBookButton()
-	{
+
+	public WebElement getAddlResourcesBookButton() {
 		return driver.findElement(addlResourcesBookButton);
 	}
-	
-	public List<WebElement> getApptBox()
-	{
+
+	public List<WebElement> getApptBox() {
 		return driver.findElements(apptBox);
-		
+
 	}
-	
-	public List<WebElement> getTimeSlotContainers()
-	{
+
+	public List<WebElement> getTimeSlotContainers() {
 		return driver.findElements(timeSlotContainers);
-		
+
 	}
-	
-	
-	public WebElement getPackageRequiredContinueButton()
-	{
+
+	public WebElement getSelectATimeDrawer() {
+		return driver.findElement(selectATimeDrawer);
+
+	}
+
+	public WebElement getPackageRequiredContinueButton() {
 		return driver.findElement(packageRequiredContinueButton);
 	}
-	
-	public WebElement getPopup1BookButton()
-	{
+
+	public List<WebElement> getPopup1() {
+		return driver.findElements(popup1);
+	}
+
+	public WebElement getPopup1BookButton() {
 		return driver.findElement(popup1BookButton);
 	}
-	
 
-	public WebElement getPopup1CancelButton()
-	{
+	public WebElement getPopup1CancelButton() {
 		return driver.findElement(popup1CancelButton);
 	}
-	
 
-	public WebElement getPopup1Content()
-	{
+	public WebElement getPopup1Content() {
 		return driver.findElement(popup1Content);
 	}
-	
-	public WebElement getPopup1Title()
-	{
+
+	public WebElement getPopup1Title() {
 		return driver.findElement(popup1Title);
 	}
-	
-	public WebElement getPaymentButton()
-	{
+
+	public WebElement getPaymentButton() {
 		return driver.findElement(paymentButton);
 	}
-	
-	public WebElement getCancelButton()
-	{
+
+	public WebElement getCancelButton() {
 		return driver.findElement(cancelButton);
 	}
-	
-	public WebElement getApptCheckout()
-	{
+
+	public WebElement getApptCheckout() {
 		return driver.findElement(apptCheckout);
 	}
-	
-	
-	public WebElement getPopup2Title()
-	{
+
+	public WebElement getPopup2Title() {
 		return driver.findElement(popup2Title);
 	}
-	public WebElement getPopup2OKButton()
-	{
+
+	public WebElement getPopup2OKButton() {
 		return driver.findElement(popup2OKButton);
 	}
-	public WebElement getPopup2Content()
-	{
+
+	public WebElement getPopup2Content() {
 		return driver.findElement(popup2Content);
 	}
-	
-	public WebElement getAppointmentTime()
-	{
+
+	public WebElement getAppointmentTime() {
 		return driver.findElement(appointmentTime);
 	}
-	
-	public WebElement getAppointmentDate()
-	{
+
+	public WebElement getAppointmentDate() {
 		return driver.findElement(appointmentDate);
 	}
-	
-	public WebElement getGroup()
-	{
+
+	public WebElement getGroup() {
 		return driver.findElement(group);
 	}
-	
-	public WebElement getAppointmentName()
-	{
+
+	public WebElement getAppointmentName() {
 		return driver.findElement(appointmentName);
 	}
-	
-	public WebElement getClubName()
-	{
+
+	public WebElement getClubName() {
 		return driver.findElement(clubName);
 	}
-	
-	public List<WebElement> getReviewSection()
-	{
+
+	public List<WebElement> getReviewSection() {
 		return driver.findElements(reviewSection);
 	}
-	
-	public WebElement getRateBox()
-	{
+
+	public WebElement getRateBox() {
 		return driver.findElement(rateBox);
 	}
-	
-	public WebElement getTotalAmount()
-	{
+
+	public WebElement getTotalAmount() {
 		return driver.findElement(totalAmount);
 	}
-	
-	public List<WebElement> getAdditionalResources()
-	{
+
+	public List<WebElement> getAdditionalResources() {
 		return driver.findElements(additionalResources);
 	}
-	
-	public WebElement getbookButton()
-	{
+
+	public WebElement getbookButton() {
 		return driver.findElement(bookButton);
 	}
-	
-	public WebElement getOldAppointmentBanner()
-	{
+
+	public WebElement getOldAppointmentBanner() {
 		return driver.findElement(oldAppointmentBanner);
 	}
-	
-	
-	public WebElement getNewAppointmentBanner()
-	{
+
+	public WebElement getNewAppointmentBanner() {
 		return driver.findElement(newAppointmentBanner);
 	}
-	
-	public WebElement getDueAtTimeOfService()
-	{
+
+	public WebElement getDueAtTimeOfService() {
 		return driver.findElement(dueAtTimeOfService);
 	}
-	
-	public WebElement getChangeFee()
-	{
+
+	public WebElement getChangeFee() {
 		return driver.findElement(changeFee);
 	}
 
-	public WebElement getEditApptPageHeader()
-	{
+	public WebElement getForMember() {
+		return driver.findElement(forMember);
+	}
+
+	public WebElement getEditApptPageHeader() {
 		return driver.findElement(editApptPageHeader);
 	}
-	public WebElement getEditApptChangeButton()
-	{
+
+	public WebElement getEditApptChangeButton() {
 		return driver.findElement(editApptChangeButton);
 	}
-	public WebElement getEditApptCancelButton()
-	{
+
+	public WebElement getEditApptCancelButton() {
 		return driver.findElement(editApptCancelButton);
 	}
-	
-	public WebElement getCancelFeeSection()
-	{
+
+	public WebElement getCancelFeeSection() {
 		return driver.findElement(cancelFeeSection);
 	}
-	
 
-	public WebElement getNoFeeSection()
-	{
+	public WebElement getNoFeeSection() {
 		return driver.findElement(noFeeSection);
 	}
-	public WebElement getEditApptProceedButton()
-	{
+
+	public WebElement getEditApptProceedButton() {
 		return driver.findElement(editApptProceedButton);
 	}
-	public WebElement getEditApptProceedButton1()
-	{
+
+	public WebElement getEditApptProceedButton1() {
 		return driver.findElement(editApptProceedButton1);
 	}
-	public WebElement getEditApptCancelYesButton()
-	{
+
+	public WebElement getEditApptCancelYesButton() {
 		return driver.findElement(editApptCancelYesButton);
 	}
-	public WebElement getEditApptCancelNoButton()
-	{
+
+	public WebElement getEditApptCancelNoButton() {
 		return driver.findElement(editApptCancelNoButton);
 	}
-	public WebElement getEditApptCanceledMessage()
-	{
+
+	public WebElement getEditApptCanceledMessage() {
 		return driver.findElement(editApptCanceledMessage);
 	}
-	public WebElement getEditApptCanceledOKButton()
-	{
+
+	public WebElement getEditApptCanceledOKButton() {
 		return driver.findElement(editApptCanceledOKButton);
 	}
-	
+
+	public List<WebElement> getDeleteMember() {
+		return driver.findElements(deleteMember);
+	}
+
+	public WebElement getCloseButton() {
+		return driver.findElement(closeButton);
+	}
+
+	public List<WebElement> getCloseButtons() {
+		return driver.findElements(closeButton);
+	}
+
 }

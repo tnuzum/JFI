@@ -22,7 +22,7 @@ public class ExampleTest extends base{
 		driver.navigate().to("https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101");
 		
 //		driver = initializeDriver();
-//		driver.get(prop.getProperty("EMELoginPage"));
+//		getEMEURL();
 				
 
 //		** Login Member ** 

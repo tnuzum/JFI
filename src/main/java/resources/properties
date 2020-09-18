@@ -1,7 +1,13 @@
 test_environment = local
-browser = Firefox
+browser = Chrome
+browser1 = Firefox
+browser2 = Edge
 EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
+COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
+
 EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
+COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
+
 	**************************************************************************************
 	Web addresses for URL parameter
 	EMEFuture2AutoURL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
@@ -12,7 +18,6 @@ EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/l
 	**************************************************************************************
 JOLLoginPage = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236
 JOLSearchPromo = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236/1/searchpromo
-
 
 MastercardNumber = 5454545454545454
 MastercardExpireMonth = 01
@@ -69,3 +74,15 @@ phoneNumberRequiredMessage = Phone Number is required
 emailRequiredMessage = Email is required
 forgotPasswordDescription = Fill out the form below to reset your password. You will receive a temporary password via email.
 userNameRequiredMessage = Username is required
+
+USBankRoutingNumber = 322271627
+USBankAcctNumber = 9876543210
+USBankLast4Digits = 3210
+CanadaBankRoutingNumberOne = 12345
+CanadaBankRoutingNumberTwo = 678
+CanadaBankAcctNumber = 1234567
+CanadianBankLast4Digits = 4567
+CCNumber = 4111111111111111
+CCLast4Digits = 1111
+
+

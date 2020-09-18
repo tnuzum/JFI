@@ -34,8 +34,18 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>testngSmoke.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<forkMode>never</forkMode>
-					 <printSummary>true</printSummary>
+					<forkCount>1</forkCount>
+    				<reuseForks>true</reuseForks>
+    				<parallel>tests</parallel>
+   					 <threadCount>2</threadCount>
+    				 <printSummary>true</printSummary>
+    			<properties>
+						<property>
+						<name>testnames</name>
+						<value>EME - Login And Page Navigation,Shop Packages And Class Course Ui Validations</value>
+						</property>
+				</properties>
+    				 
 				</configuration>
 			</plugin>
 			<plugin>
@@ -69,8 +79,19 @@
 					<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<forkMode>never</forkMode>
+					<forkCount>1</forkCount>
+    				<reuseForks>true</reuseForks>
+    				<parallel>tests</parallel>
+   					 <threadCount>11</threadCount>
 					 <printSummary>true</printSummary>
+					 
+					 <!--properties>
+						<property>
+						<name>testnames</name>
+						<value>EME - Navigation and Layout, EME - Pay Balance, Classes and Courses,Book And Cancel Appointments,Change Single Member Appointments,Book And Cancel Group Appointments, Change Group Appointments, Family Classes Courses, Manage Payment Methods</value>
+						</property>
+					</properties-->
+				
 				</configuration>
 			</plugin>
 			<plugin>
@@ -86,7 +107,7 @@
 	</profile>
 	
 	<profile>
-	 <id>EMEFuture</id>
+	 <id>EMEGrid</id>
 	<build>
 		<resources>
 			<resource>
@@ -102,9 +123,10 @@
 				<!-- version>2.20</version-->
 				<configuration>
 					<suiteXmlFiles>
-						<suiteXmlFile>testngFuture.xml</suiteXmlFile>
+						<suiteXmlFile>testngGridNode.xml</suiteXmlFile>
 					</suiteXmlFiles>
-					<forkMode>never</forkMode>
+					<forkCount>1</forkCount>
+    				<reuseForks>true</reuseForks>
 					 <printSummary>true</printSummary>
 				</configuration>
 			</plugin>
