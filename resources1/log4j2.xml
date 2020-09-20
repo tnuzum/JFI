@@ -4,6 +4,7 @@
 	<Properties>
 		<Property name="basePath">./logs</Property>
 	</Properties>
+
   <Appenders>
   	<RollingFile name="File"
   				 fileName="${basePath}/JonasFitness.log"
@@ -25,4 +26,5 @@
     </Root>
     
   </Loggers>
+
 </Configuration>
