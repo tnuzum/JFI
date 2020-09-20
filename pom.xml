@@ -40,13 +40,13 @@
 							<parallel>tests</parallel>
 							<threadCount>2</threadCount>
 							<printSummary>true</printSummary>
-							<properties>
+							<!--properties>
 								<property>
 									<name>testnames</name>
 									<value>EME - Login And Page Navigation,Shop Packages And Class
 										Course Ui Validations</value>
 								</property>
-							</properties>
+							</properties-->
 
 						</configuration>
 					</plugin>
