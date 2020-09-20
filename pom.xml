@@ -167,7 +167,7 @@
 			<artifactId>testng</artifactId>
 			<version>7.3.0</version>
 			<!--version>7.0.0</version -->
-			<scope>test</scope>
+			<scope>compile</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.github.scribejava</groupId>
