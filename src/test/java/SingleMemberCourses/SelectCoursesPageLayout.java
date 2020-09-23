@@ -162,7 +162,7 @@ public class SelectCoursesPageLayout extends base {
 			if (className.contains("NEWVIRTUALCOURSE"))
 
 			{
-				Assert.assertTrue(classTimeAndDuration.contains("Virtual Course"));
+				Assert.assertTrue(classTimeAndDuration.contains("Virtual"));
 				Assert.assertTrue(c.getVirtualCourseSearch().isDisplayed());
 				w.click(); // Click on the specific class
 				break;
@@ -220,7 +220,7 @@ public class SelectCoursesPageLayout extends base {
 			if (className.contains("VIRTUALTEST"))
 
 			{
-				Assert.assertFalse(classTimeAndDuration.contains("Virtual Course"));
+				Assert.assertFalse(classTimeAndDuration.contains("Virtual"));
 				Assert.assertFalse(
 						rm.isElementPresent(By.xpath("//small[contains(@class, 'at-course-search-virtual')]")));
 				w.click(); // Click on the specific class
