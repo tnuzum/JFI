@@ -73,8 +73,8 @@ public class ClassSignUpPO {
 	By standbySection = By.xpath("//div[contains(@class, 'row-box-red')]");
 	By restOnStandby = By.xpath("//input[@id='rest_on_standby']");
 	By cancelLink = By.xpath("//a[@class='btn btn-sm btn-primary btn-outline ng-star-inserted']");
-	By virtualClassSearch = By.xpath("//small[contains(@class, 'at-class-search-virtual')]");
-	By virtualCourseSearch = By.xpath("//small[contains(@class, 'at-course-search-virtual')]");
+	By virtualClassSearch = By.xpath("//span[contains(@class, 'at-class-search-virtual')]");
+	By virtualCourseSearch = By.xpath("//span[contains(@class, 'at-course-search-virtual')]");
 	By virtualDetails = By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]");
 	By virtualRates = By.xpath("//div[contains(@class, 'at-class-course-rates-virtual')]");
 	By virtualReview = By.xpath("//div[contains(@class, 'at-class-course-review-virtual')]");
