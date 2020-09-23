@@ -195,7 +195,7 @@ public class SelectClassesPageLayout extends base {
 			if (className.contains("NEWVIRTUALCLASS"))
 
 			{
-				Assert.assertTrue(classTimeAndDuration.contains("Virtual Class"));
+				Assert.assertTrue(classTimeAndDuration.contains("Virtual"));
 				Assert.assertTrue(c.getVirtualClassSearch().isDisplayed());
 				w.click(); // Click on the specific class
 				break;
@@ -255,7 +255,7 @@ public class SelectClassesPageLayout extends base {
 			if (className.contains("COPY OF BALANCE WEIGHT LOSS & NUTRITION"))
 
 			{
-				Assert.assertFalse(classTimeAndDuration.contains("Virtual Class"));
+				Assert.assertFalse(classTimeAndDuration.contains("Virtual"));
 				Assert.assertFalse(
 						rm.isElementPresent(By.xpath("//small[contains(@class, 'at-class-search-virtual')]")));
 				w.click(); // Click on the specific class
