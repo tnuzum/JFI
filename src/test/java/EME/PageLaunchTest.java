@@ -55,7 +55,7 @@ public class PageLaunchTest extends base {
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
 		rm.activeMember1Login();
-		rw.waitForDashboardLoaded();
+
 	}
 
 	@Test(priority = 20)
@@ -142,12 +142,12 @@ public class PageLaunchTest extends base {
 		Assert.assertEquals(a.getPageHeader().getText(), "Appointments");
 		log.info("Appointments Page Header Verified");
 		rm.returnToDashboard();
-		rw.waitForDashboardLoaded();
+
 	}
 
 	@Test(priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException {
-		rw.waitForDashboardLoaded();
+
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		WebElement w = a.getPageHeader();
@@ -157,7 +157,7 @@ public class PageLaunchTest extends base {
 		Assert.assertEquals(a.getPageHeader().getText(), "Manage Family");
 		log.info("Manage Family Page Header Verified");
 		rm.returnToDashboard();
-		rw.waitForDashboardLoaded();
+
 	}
 
 	@Test(priority = 55)
@@ -167,12 +167,12 @@ public class PageLaunchTest extends base {
 		Assert.assertEquals(a.getPageHeader().getText(), "Manage Profile");
 		log.info("Manage Profile Page Header Verified");
 		rm.returnToDashboard();
-		rw.waitForDashboardLoaded();
+
 	}
 
 	@Test(priority = 60)
 	public void PrivacyPolicyLinkTest() throws InterruptedException {
-		rw.waitForDashboardLoaded();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
 		log.info("element is clickable");
