@@ -143,13 +143,13 @@ public class PageLaunchTest_MSEdge extends base {
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		Assert.assertEquals(a.getPageHeader().getText(), "Appointments");
 		log.info("Appointments Page Header Verified");
-		rm.returnToDashboard();
+		rm.memberLogout();
 
 	}
 
 	@Test(priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException {
-
+		rm.activeMember1Login();
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		WebElement w = a.getPageHeader();

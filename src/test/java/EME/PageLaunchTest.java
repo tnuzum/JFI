@@ -287,7 +287,7 @@ public class PageLaunchTest extends base {
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 			Assert.assertEquals(a.getPageHeader().getText(), "Appointments");
 			log.info("Appointments Page Header Verified");
-			rm.returnToDashboard();
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -320,7 +320,7 @@ public class PageLaunchTest extends base {
 	@Test(priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException, IOException {
 		try {
-
+			rm.activeMember1Login();
 			d.getMyFamilyManageButton().click();
 			ManageFamilyPO a = new ManageFamilyPO(driver);
 			WebElement w = a.getPageHeader();
