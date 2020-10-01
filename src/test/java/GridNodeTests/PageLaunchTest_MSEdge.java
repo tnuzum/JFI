@@ -149,7 +149,8 @@ public class PageLaunchTest_MSEdge extends base {
 
 	@Test(priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException {
-		rm.activeMember1Login();
+		rm.activeMemberLogin("rauto", "Testing1!");
+		rw.waitForDashboardLoaded();
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		WebElement w = a.getPageHeader();
