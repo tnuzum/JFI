@@ -45,7 +45,8 @@ public class base {
 	public static String COGLoginPage = null;
 	public static String EMELoginPage = null;
 
-	String projectPath = System.getenv("EME_HOME");
+	// String projectPath = System.getenv("EME_HOME");
+	String projectPath = System.getProperty("user.dir");
 
 	public WebDriver initializeDriver() throws IOException {
 
@@ -56,17 +57,17 @@ public class base {
 		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
 		prop = new Properties();
-//		FileInputStream fis=new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
+//		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
 		FileInputStream fis = new FileInputStream(
 				System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
 
 		prop.load(fis);
-		// String browserName = prop.getProperty("browser");
-		String browserName = System.getProperty("browser");
+		String browserName = prop.getProperty("browser");
+		// String browserName = System.getProperty("browser");
 		System.out.println(browserName);
 
-		// String testEnvironment = prop.getProperty("test_environment");
-		String testEnvironment = System.getProperty("test_environment");
+		String testEnvironment = prop.getProperty("test_environment");
+		// String testEnvironment = System.getProperty("test_environment");
 		System.out.println(testEnvironment);
 
 		if (testEnvironment.equals("grid")) {
@@ -133,7 +134,8 @@ public class base {
 					co.addArguments("--start-maximized");
 					// co.addArguments("--window-size=1920, 1080");
 					co.merge(dcch);
-					System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
+					System.setProperty("webdriver.chrome.driver",
+							projectPath + "\\src\\main\\java\\webDrivers\\chromedriver.exe");
 					if (browserName.contains("headless")) {
 						co.addArguments("--headless");
 					}
@@ -141,19 +143,21 @@ public class base {
 				}
 				if (browserName.equals("Firefox")) {
 					log.info("Firefox Browser: Running Tests on local machine");
-					System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
+					System.setProperty("webdriver.gecko.driver",
+							projectPath + "\\src\\main\\java\\webDrivers\\geckodriver.exe");
 					driver = new FirefoxDriver();
 				}
 				if (browserName.equals("Edge")) {
 					log.info("Edge Browser: Running Tests on local machine");
-					System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\webdrivers\\msedgedriver.exe");
+					System.setProperty("webdriver.edge.driver",
+							projectPath + "\\src\\main\\java\\webDrivers\\msedgedriver.exe");
 					driver = new EdgeDriver();
 				}
 				if (browserName.equals("IE")) {
 					log.info("IE Browser: Running Tests on local machine");
 					InternetExplorerOptions options = new InternetExplorerOptions();
 					System.setProperty("webdriver.ie.driver",
-							"C:\\Automation\\libs\\webdrivers\\MicrosoftWebDriver.exe");
+							projectPath + "\\src\\main\\java\\webdrivers\\IEDriverServer.exe");
 					options.setCapability("ignoreZoomSetting", true);
 					driver = new InternetExplorerDriver(options);
 				}
@@ -195,8 +199,8 @@ public class base {
 
 	public void getEMEURL() {
 
-		// String EMELoginPage = prop.getProperty("EMELoginPage");
-		String EMELoginPage = System.getProperty("EMELoginPage");
+		String EMELoginPage = prop.getProperty("EMELoginPage");
+		// String EMELoginPage = System.getProperty("EMELoginPage");
 		System.out.println(EMELoginPage);
 
 		driver.get(EMELoginPage);
