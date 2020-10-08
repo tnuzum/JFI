@@ -495,7 +495,7 @@ public class Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow extends 
 	}
 
 	@Test(priority = 5)
-	public void verifyNowTheThirdMemberIsEnrolled() throws IOException, InterruptedException {
+	public void verifyTheThirdMemberIsNotEnrolled() throws IOException, InterruptedException {
 
 		try {
 			rm.activeMemberLogin("standbypromo2", "Testing1!");
