@@ -143,9 +143,17 @@ public class base {
 				}
 				if (browserName.equals("Firefox")) {
 					log.info("Firefox Browser: Running Tests on local machine");
+					DesiredCapabilities dc = new DesiredCapabilities();
+					dc.setBrowserName("firefox");
+					dc.setPlatform(Platform.WINDOWS);
+					dc.acceptInsecureCerts();
+					dc.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+					dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+					FirefoxOptions fo = new FirefoxOptions();
+					fo.merge(dc);
 					System.setProperty("webdriver.gecko.driver",
 							projectPath + "\\src\\main\\java\\webDrivers\\geckodriver.exe");
-					driver = new FirefoxDriver();
+					driver = new FirefoxDriver(fo);
 				}
 				if (browserName.equals("Edge")) {
 					log.info("Edge Browser: Running Tests on local machine");
