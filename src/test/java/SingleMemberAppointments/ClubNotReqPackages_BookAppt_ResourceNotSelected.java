@@ -149,6 +149,33 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
+
+			System.out.println("popupSize = " + ap.getPopup1().size());
+			log.info("popupSize = " + ap.getPopup1().size());
+
+			int k = 0;
+
+			while (ap.getPopup1().size() == 0 && k < 2)
+
+			{
+				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
+					ap.getCloseButton().click();
+				}
+				rm.calendarTomorrowClick();
+
+				ap.getSelectTimeMorningButton().click();
+
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
+				startTime = ap.getSelectTime1stAvailable().getText();
+
+				jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
+				Thread.sleep(1000);
+
+				ap.getPopup1().size();
+				k++;
+
+			}
+
 			WebElement p1 = ap.getPopup1BookButton();
 			while (!p1.isEnabled())// while button is NOT(!) enabled
 			{
@@ -182,11 +209,13 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 			Thread.sleep(2000);
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -216,11 +245,13 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 			}
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -285,11 +316,13 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 			rm.memberLogout();
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
