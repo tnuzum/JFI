@@ -1214,6 +1214,7 @@ public class reusableMethods extends base {
 
 	public String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2) throws IOException, InterruptedException {
+
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
@@ -1346,7 +1347,9 @@ public class reusableMethods extends base {
 		System.out.println("RMpopupSize = " + ap.getPopup1().size());
 		log.info("RMpopupSize = " + ap.getPopup1().size());
 
-		while (ap.getPopup1().size() == 0)
+		int k = 0;
+
+		while (ap.getPopup1().size() == 0 && k < 2)
 
 		{
 
@@ -1389,6 +1392,7 @@ public class reusableMethods extends base {
 			Thread.sleep(2000);
 
 			ap.getPopup1().size();
+			k++;
 		}
 
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
@@ -1439,10 +1443,12 @@ public class reusableMethods extends base {
 		this.catchErrorMessage();
 		rw.waitForDashboardLoaded();
 		return startTime;
+
 	}
 
 	public String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2, String groupMember) throws IOException, InterruptedException {
+
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
@@ -1598,7 +1604,9 @@ public class reusableMethods extends base {
 		System.out.println("RMpopupSize = " + ap.getPopup1().size());
 		log.info("RMpopupSize = " + ap.getPopup1().size());
 
-		while (ap.getPopup1().size() == 0)
+		int k = 0;
+
+		while (ap.getPopup1().size() == 0 && k < 2)
 
 		{
 			if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
@@ -1640,6 +1648,7 @@ public class reusableMethods extends base {
 			Thread.sleep(2000);
 
 			ap.getPopup1().size();
+			k++;
 		}
 
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
@@ -1695,6 +1704,7 @@ public class reusableMethods extends base {
 		this.catchErrorMessage();
 		rw.waitForDashboardLoaded();
 		return startTime;
+
 	}
 
 	public String openSideMenuIfNotOpenedAlready() {

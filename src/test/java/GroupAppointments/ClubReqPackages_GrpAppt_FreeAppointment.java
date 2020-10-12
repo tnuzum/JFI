@@ -210,8 +210,9 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 			System.out.println("popupSize = " + ap.getPopup1().size());
 			log.info("popupSize = " + ap.getPopup1().size());
+			int k = 0;
 
-			while (ap.getPopup1().size() == 0)
+			while (ap.getPopup1().size() == 0 && k < 2)
 
 			{
 				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
@@ -228,6 +229,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 				Thread.sleep(1000);
 
 				ap.getPopup1().size();
+				k++;
 
 			}
 
@@ -452,7 +454,9 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			System.out.println("popupSize = " + ap.getPopup1().size());
 			log.info("popupSize = " + ap.getPopup1().size());
 
-			while (ap.getPopup1().size() == 0)
+			int k = 0;
+
+			while (ap.getPopup1().size() == 0 && k < 2)
 
 			{
 				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
@@ -469,6 +473,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 				Thread.sleep(1000);
 
 				ap.getPopup1().size();
+				k++;
 
 			}
 

@@ -202,7 +202,9 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			System.out.println("popupSize = " + ap.getPopup1().size());
 			log.info("popupSize = " + ap.getPopup1().size());
 
-			while (ap.getPopup1().size() == 0)
+			int k = 0;
+
+			while (ap.getPopup1().size() == 0 && k < 2)
 
 			{
 				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
@@ -219,6 +221,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 				Thread.sleep(1000);
 
 				ap.getPopup1().size();
+				k++;
 
 			}
 
