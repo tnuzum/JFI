@@ -137,7 +137,8 @@ public class PayBalance_NewCard_NoAgreement extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -161,9 +162,10 @@ public class PayBalance_NewCard_NoAgreement extends base {
 		finally {
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				p.getPopupConfirmationButton().click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 
 			d.getBreadcrumbDashboard().click();
@@ -191,7 +193,8 @@ public class PayBalance_NewCard_NoAgreement extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -227,7 +230,8 @@ public class PayBalance_NewCard_NoAgreement extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

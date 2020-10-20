@@ -286,9 +286,10 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				ap.getPopup2OKButton().click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.memberLogout();
 		}
@@ -542,9 +543,10 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				ap.getPopup2OKButton().click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.memberLogout();
 		}

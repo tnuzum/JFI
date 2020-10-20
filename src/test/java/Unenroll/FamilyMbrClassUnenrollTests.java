@@ -141,9 +141,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 		} finally {
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 
 			rm.returnToDashboard();
@@ -243,9 +244,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -333,9 +335,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -424,9 +427,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -495,9 +499,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -578,9 +583,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -647,9 +653,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -717,9 +724,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -786,9 +794,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -883,9 +892,10 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.memberLogout();
 		}
