@@ -1,6 +1,7 @@
 package GroupAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -69,7 +70,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 			rm.catchErrorMessage();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
@@ -310,7 +311,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 			rm.catchErrorMessage();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();

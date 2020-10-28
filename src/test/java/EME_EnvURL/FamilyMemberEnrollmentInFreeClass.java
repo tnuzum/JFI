@@ -1,6 +1,7 @@
 package EME_EnvURL;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -92,7 +93,7 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();

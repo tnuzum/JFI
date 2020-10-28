@@ -1,6 +1,7 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -74,7 +75,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 			startTime1 = rm.BookApptWith2Resources(clubName1, productCategory, appointmentToBook1, resourceName1,
 					resourceName2);
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 			int appointmentsCount = d.getMyAppts().size();

@@ -2,6 +2,7 @@ package GridNodeTests;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
@@ -94,7 +95,7 @@ public class loginPageTest_FF extends base {
 		LoginPO l = new LoginPO(driver);
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='Username-error']")));
 		Assert.assertEquals(l.getusernameRequiredMessage().getText(), "Username is required");
 		log.info("Username Required Message Confirmed");
@@ -111,7 +112,7 @@ public class loginPageTest_FF extends base {
 		log.info("Password Entered");
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='loginForm']/form/div[1]/ul/li")));
 		WebElement wait2 = l.getcredentialsErrorMessage();
 		while (wait2.getText().isBlank()) {

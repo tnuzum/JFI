@@ -1,6 +1,7 @@
 package EME_EnvURL;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -136,7 +137,7 @@ public class MakeApptTest extends base {
 		Thread.sleep(3000);
 
 		WebElement st1 = ap.getSelectTimeMorningButton();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(st1));
 		while (!st1.isEnabled())// while button is NOT(!) enabled
 		{
@@ -148,7 +149,7 @@ public class MakeApptTest extends base {
 //					{
 //					Thread.sleep(200);
 //					}
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait1.until(ExpectedConditions.elementToBeClickable(st2));
 		ap.getSelectTime1stAvailable().click();
 		WebElement p1 = ap.getPopup1BookButton();
@@ -165,7 +166,7 @@ public class MakeApptTest extends base {
 //		CartPO co = new CartPO(driver);
 //		co.getCheckoutButton().click();
 //		rm.useNewCard();
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
+//		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'swal2-success')]")));
 
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked!");
@@ -177,7 +178,7 @@ public class MakeApptTest extends base {
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
 		// rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//appointmentswidget/div/div[2]/div[1]/div/div/a/div/div[2]/span/strong")));
 		Assert.assertFalse(d.getMyApptsAppt1Title().getText().isBlank());
@@ -193,7 +194,7 @@ public class MakeApptTest extends base {
 //			Thread.sleep(200);
 		}
 		d.getMyApptsEditButton().click();
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");

@@ -2,6 +2,7 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -88,7 +89,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			d.getMyClassesScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -126,7 +127,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -209,8 +211,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 			}
 			PM.getPaymentButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
-			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -257,7 +260,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -306,7 +310,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			d.getMyClassesScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();
@@ -374,7 +378,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			}
 			PM.getPaymentButton().click();
 
-			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
@@ -419,7 +424,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -469,7 +475,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			d.getMyClassesScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();
@@ -560,7 +566,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 				Thread.sleep(1000);
 			}
 			PM.getPaymentButton().click();
-			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			Thread.sleep(2000);
 			// Verifies the success message
@@ -608,7 +615,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 
 		}
@@ -660,7 +668,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 					Thread.sleep(1000);
 					System.out.println("Sleeping for 1 second");
 				}
-				WebDriverWait wait = new WebDriverWait(driver, 60);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
 				d.getMyClassesClass1GearButton().click();
 
@@ -687,7 +695,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			catch (java.lang.AssertionError ae) {
 				System.out.println("assertion error");
 				ae.printStackTrace();
-				log.error(ae.getMessage(), ae);ae. printStackTrace();
+				log.error(ae.getMessage(), ae);
+				ae.printStackTrace();
 				Assert.fail(ae.getMessage());
 			}
 

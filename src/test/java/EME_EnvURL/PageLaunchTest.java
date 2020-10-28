@@ -1,6 +1,7 @@
 package EME_EnvURL;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -160,7 +161,7 @@ public class PageLaunchTest extends base {
 	@Test(priority = 60)
 	public void PrivacyPolicyLinkTest() throws InterruptedException {
 		rw.waitForDashboardLoaded();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
 		log.info("element is clickable");
 		System.out.println("element is clickable");
