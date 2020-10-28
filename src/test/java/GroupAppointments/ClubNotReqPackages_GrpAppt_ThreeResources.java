@@ -1,6 +1,7 @@
 package GroupAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -68,7 +69,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 
 			rm.catchErrorMessage();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
 			Select se = new Select(ap.getclubs());
@@ -186,7 +187,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 //					{
 //					Thread.sleep(200);
 //					}
-			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait1.until(ExpectedConditions.elementToBeClickable(st2));
 			startTime = st2.getText();
 			System.out.println(startTime);
@@ -290,7 +291,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 		try {
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 20);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 			int appointmentsCount = d.getMyAppts().size();
@@ -323,7 +324,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 	public void CancelAppointment() throws IOException, InterruptedException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			appointmentsCount = d.getMyAppts().size();
 

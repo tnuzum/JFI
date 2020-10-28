@@ -2,6 +2,7 @@ package Unenroll;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -78,7 +79,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 			d.getMyCoursesEventsScheduleButton().click();
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -239,7 +240,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 
 			d.getMyCoursesEventsScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -323,7 +324,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 				System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
 			}
 
-			WebDriverWait wait1 = new WebDriverWait(driver, 50);
+			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
@@ -356,7 +357,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 			cp.getUnenrollListview().click();
 			Thread.sleep(1000);
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), CourseNameDisplayed));
@@ -411,7 +412,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 
 			CalendarPO cp = new CalendarPO(driver);
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
@@ -500,7 +501,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), CourseNameDisplayed));

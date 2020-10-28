@@ -50,24 +50,18 @@ public class base {
 
 	public WebDriver initializeDriver() throws IOException {
 
-		DesiredCapabilities dcch = DesiredCapabilities.chrome();
-		dcch.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-		dcch.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-		dcch.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
-		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
-
 		prop = new Properties();
 //		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
 		FileInputStream fis = new FileInputStream(
 				System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
 
 		prop.load(fis);
-		// String browserName = prop.getProperty("browser");
-		String browserName = System.getProperty("browser");
+		String browserName = prop.getProperty("browser");
+		// String browserName = System.getProperty("browser");
 		System.out.println(browserName);
 
-		// String testEnvironment = prop.getProperty("test_environment");
-		String testEnvironment = System.getProperty("test_environment");
+		String testEnvironment = prop.getProperty("test_environment");
+		// String testEnvironment = System.getProperty("test_environment");
 		System.out.println(testEnvironment);
 
 		if (testEnvironment.equals("grid")) {
@@ -137,7 +131,12 @@ public class base {
 					ChromeOptions co = new ChromeOptions();
 					co.addArguments("--start-maximized");
 					// co.addArguments("--window-size=1920, 1080");
-					co.merge(dcch);
+
+					co.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+					co.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+					co.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+					co.setCapability("chrome.switches", Arrays.asList("--incognito"));
+
 					System.setProperty("webdriver.chrome.driver",
 							projectPath + "\\src\\main\\java\\webDrivers\\chromedriver.exe");
 					if (browserName.contains("headless")) {

@@ -1,6 +1,7 @@
 package GroupAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -52,7 +53,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			rm.activeMemberLogin("ccmember", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO p = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			p.getMyApptsScheduleButton().click();
 			Thread.sleep(2000);
@@ -185,11 +186,13 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			rm.returnToDashboard();
 			rm.memberLogout();
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}

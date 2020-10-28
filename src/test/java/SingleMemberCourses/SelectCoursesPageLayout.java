@@ -2,6 +2,7 @@ package SingleMemberCourses;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Calendar;
 
 import org.apache.logging.log4j.LogManager;
@@ -64,7 +65,7 @@ public class SelectCoursesPageLayout extends base {
 
 		d.getMyCoursesEventsScheduleButton().click();
 
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 	}
@@ -140,7 +141,7 @@ public class SelectCoursesPageLayout extends base {
 	@Test(priority = 8)
 	public void VerifyVirtualCourseIndicator() throws IOException, InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		c.getCourseFilter().click();
@@ -198,7 +199,7 @@ public class SelectCoursesPageLayout extends base {
 
 		d.getMyCoursesEventsScheduleButton().click();
 
-		wait = new WebDriverWait(driver, 30);
+		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		c.getCourseFilter().click();

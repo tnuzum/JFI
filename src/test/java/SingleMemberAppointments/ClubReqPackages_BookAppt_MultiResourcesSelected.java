@@ -1,6 +1,7 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -69,7 +70,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 
 			rm.catchErrorMessage();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
 			Select s = new Select(ap.getclubs());
@@ -358,7 +359,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 		try {
 			// rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 			int appointmentsCount = d.getMyAppts().size();
@@ -397,7 +398,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesSelected extends base {
 			rm.ApptCheckinInCOG("Auto, apptmember3", appointmentToBook, "apptmember3", "1"); // Check In the Member
 			// to the
 			// appointment
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			DashboardPO d = new DashboardPO(driver);
 
 			appointmentsCount = d.getMyAppts().size();

@@ -1,6 +1,7 @@
 package FamilyAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -233,7 +234,7 @@ public class SelectMemberDropdownValidations extends base {
 			Thread.sleep(2000);
 
 			rm.calendarTomorrowClick();
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			for (int i = 0; i < ap.getApptBox().size(); i++) {
 				String bookName = ap.getApptBox().get(i).getText();
@@ -282,7 +283,8 @@ public class SelectMemberDropdownValidations extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

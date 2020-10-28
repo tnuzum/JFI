@@ -1,6 +1,7 @@
 package Demo;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -63,7 +64,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		rm.activeMemberLogin("demo", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
 		p.getMyApptsScheduleButton().click();
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		Select s = new Select(ap.getclubs());
@@ -398,7 +399,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		Thread.sleep(3000);
 
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		int appointmentsCount = d.getMyAppts().size();
 		for (int k = 0; k < appointmentsCount; k++) {

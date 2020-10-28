@@ -173,6 +173,7 @@ public class DashBoard_Layout extends base {
 	}
 
 //			@AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();

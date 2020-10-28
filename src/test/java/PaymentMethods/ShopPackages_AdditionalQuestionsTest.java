@@ -1,6 +1,7 @@
 package PaymentMethods;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -67,7 +68,7 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 				System.out.println("Waiting for the packages to be displayed");
 			}
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
 			wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
 			sp.getKeyWord().sendKeys("Service V");
@@ -175,7 +176,8 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -207,7 +209,8 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
