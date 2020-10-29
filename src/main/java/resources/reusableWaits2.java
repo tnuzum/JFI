@@ -2,6 +2,7 @@ package resources;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -42,7 +43,7 @@ public class reusableWaits2 extends base {
 		 */
 
 		// Check 1: wait for MEMBER NAME element
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
 		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//memberinfo//h3[@class = 'no-margins']")));
 //		System.out.println(DateTime+" INFO: MEMBER NAME Element is now present");
@@ -90,7 +91,7 @@ public class reusableWaits2 extends base {
 
 	public String waitForDashboardLoaded1() throws InterruptedException {
 		// Check 1: wait for MEMBER NAME element
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/h3")));
 //			wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h3[@class='no-margins']")));
@@ -104,7 +105,7 @@ public class reusableWaits2 extends base {
 			wait2.getText();
 		}
 		// Check 3: wait for TOTAL CHARGES element
-		WebDriverWait wait3 = new WebDriverWait(driver, 10);
+		WebDriverWait wait3 = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait3.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2")));
 //			System.out.println(DateTime+" INFO: TOTAL CHARGES Element is now present");
@@ -122,7 +123,7 @@ public class reusableWaits2 extends base {
 
 	public String waitForFamilyCount() throws InterruptedException {
 		// Check 1: wait for member name element
-		WebDriverWait wait1 = new WebDriverWait(driver, 10);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait1.until(ExpectedConditions
 				.presenceOfElementLocated(By.xpath("//div[@class='homeComponent']//familymembercount//div//div//h2")));
 //		System.out.println(DateTime+" INFO: Element is now present");
@@ -140,7 +141,7 @@ public class reusableWaits2 extends base {
 
 	public String waitForPaymentSubmitButton() throws InterruptedException {
 		// Check 1: wait for member name element
-		WebDriverWait wait1 = new WebDriverWait(driver, 10);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@type='submit']")));
 //		System.out.println(DateTime+" INFO: Element is now present");
 		// Check 2: wait for member name element to not be blank
@@ -156,7 +157,7 @@ public class reusableWaits2 extends base {
 	}
 
 	public String waitForLoginLoginButton() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
 //			System.out.println(DateTime+" INFO: Element is now present");
 		LoginPO l = new LoginPO(driver);
@@ -207,7 +208,7 @@ public class reusableWaits2 extends base {
 
 		int count = driver.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count; i++) {
-			WebDriverWait wait = new WebDriverWait(driver, 20);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 			wait.until(ExpectedConditions.elementToBeClickable(driver.findElements(By.tagName("a")).get(i)));
 		}
 		return null;
@@ -217,7 +218,7 @@ public class reusableWaits2 extends base {
 	public String DashboardlinksToBeClickable() {
 
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait1 = new WebDriverWait(driver, 30);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyAccountAccountHistory()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyApptsScheduleButton()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyClassesScheduleButton()));
@@ -231,7 +232,7 @@ public class reusableWaits2 extends base {
 	public Object waitForSelectATimeToOpen() {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		try {
 			wait.until(ExpectedConditions.attributeContains(ap.getSelectATimeDrawer(), "ng-reflect-opened", "true"));

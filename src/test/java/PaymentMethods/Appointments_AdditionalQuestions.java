@@ -1,6 +1,7 @@
 package PaymentMethods;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -72,7 +73,7 @@ public class Appointments_AdditionalQuestions extends base {
 
 			rm.catchErrorMessage();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			Select s = new Select(ap.getclubs());
 			List<WebElement> Clubs = s.getOptions();
@@ -268,7 +269,8 @@ public class Appointments_AdditionalQuestions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -297,7 +299,7 @@ public class Appointments_AdditionalQuestions extends base {
 			rm.activeMemberLogin("aqmember", "Testing1!");
 
 			rw.waitForDashboardLoaded();
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 			appointmentsCount = d.getMyAppts().size();
@@ -472,7 +474,8 @@ public class Appointments_AdditionalQuestions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -500,7 +503,7 @@ public class Appointments_AdditionalQuestions extends base {
 		try {
 			rm.ApptCheckinInCOG("Auto, AQMember", appointmentToBook, "aqmember", "2");
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			for (int k = 0; k < appointmentsCount; k++) {
 				if (d.getMyAppts().get(k).getText().contains(dayAfter))
@@ -621,7 +624,8 @@ public class Appointments_AdditionalQuestions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -654,7 +658,8 @@ public class Appointments_AdditionalQuestions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

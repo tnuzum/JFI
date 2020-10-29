@@ -2,6 +2,7 @@ package Unenroll;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -76,7 +77,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			d.getMyClassesScheduleButton().click();
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();
@@ -235,7 +236,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			d.getMyClassesScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();
@@ -309,7 +310,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			rm.activeMemberLogin("standbyhoh", "Testing1!");
 			rm.myClassClickToUnenroll(ClassToEnroll);
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));
@@ -364,7 +365,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			CalendarPO cp = new CalendarPO(driver);
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
@@ -456,7 +457,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			rm.myClassClickToUnenroll(ClassNameDisplayed);
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), ClassNameDisplayed));

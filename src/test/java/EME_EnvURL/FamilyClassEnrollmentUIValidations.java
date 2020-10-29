@@ -1,6 +1,7 @@
 package EME_EnvURL;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -100,7 +101,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -166,7 +167,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		Thread.sleep(2000);
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);

@@ -2,6 +2,7 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -76,7 +77,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -96,7 +97,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -139,7 +141,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -158,7 +160,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -201,7 +204,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -220,7 +223,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -264,7 +268,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -283,7 +287,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -326,7 +331,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
@@ -367,7 +372,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -411,7 +417,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectYesterdayDate();
@@ -430,7 +436,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -474,7 +481,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -493,7 +500,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -537,7 +545,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -560,7 +568,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -607,7 +616,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, 50);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();

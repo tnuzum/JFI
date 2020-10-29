@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -67,7 +68,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 
 			d.getMyAccountPayNow().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -116,7 +117,8 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -140,9 +142,10 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 		finally {
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				p.getPopupConfirmationButton().click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 
 			d.getBreadcrumbDashboard().click();
@@ -154,7 +157,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[1]")));
 			while (d.getMyAccountLastPaymentDate().getText().equalsIgnoreCase("Last Payment:")) {
@@ -170,7 +173,8 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

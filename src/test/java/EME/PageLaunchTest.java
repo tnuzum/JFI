@@ -2,6 +2,7 @@ package EME;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -400,7 +401,7 @@ public class PageLaunchTest extends base {
 	public void PrivacyPolicyLinkTest() throws InterruptedException, IOException {
 		try {
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
 			log.info("element is clickable");
 			System.out.println("element is clickable");

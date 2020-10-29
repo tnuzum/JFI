@@ -2,6 +2,7 @@ package FamilyMemberClasses;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -99,7 +100,7 @@ public class FamilyStandbyInClassTest extends base {
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();
@@ -347,7 +348,8 @@ public class FamilyStandbyInClassTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -381,7 +383,8 @@ public class FamilyStandbyInClassTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -411,7 +414,8 @@ public class FamilyStandbyInClassTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 

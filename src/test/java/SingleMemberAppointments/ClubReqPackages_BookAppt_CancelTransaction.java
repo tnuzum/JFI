@@ -1,6 +1,7 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -64,7 +65,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 			p.getMyApptsScheduleButton().click();
 			Thread.sleep(2000);
 			rm.catchErrorMessage();
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
 			Select s = new Select(ap.getclubs());
@@ -178,7 +179,9 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 			System.out.println("popupSize = " + ap.getPopup1().size());
 			log.info("popupSize = " + ap.getPopup1().size());
 
-			while (ap.getPopup1().size() == 0)
+			int k = 0;
+
+			while (ap.getPopup1().size() == 0 && k < 2)
 
 			{
 				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
@@ -195,6 +198,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 				Thread.sleep(1000);
 
 				ap.getPopup1().size();
+				k++;
 
 			}
 

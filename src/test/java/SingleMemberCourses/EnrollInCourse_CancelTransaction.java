@@ -1,6 +1,7 @@
 package SingleMemberCourses;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -68,7 +69,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		rm.SelectCourseStartMonth(CourseStartMonth);
@@ -100,7 +101,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 //		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());

@@ -2,6 +2,7 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -89,7 +90,7 @@ public class ShopAndPurchasePackages extends base {
 				System.out.println("Waiting for the packages to be displayed");
 			}
 
-			WebDriverWait wait = new WebDriverWait(driver, 12);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
 			wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
 			wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
 
@@ -158,7 +159,7 @@ public class ShopAndPurchasePackages extends base {
 
 		}
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 		Thread.sleep(3000);
 		Assert.assertEquals("ServiceOA", PP.getPackageName().getText());
@@ -227,7 +228,7 @@ public class ShopAndPurchasePackages extends base {
 	@Test(priority = 6, description = "Payment Method is OnAccount")
 	public void PurchaseOnAccount() throws InterruptedException, IOException {
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
 		try {
 
@@ -387,7 +388,7 @@ public class ShopAndPurchasePackages extends base {
 			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
@@ -587,7 +588,7 @@ public class ShopAndPurchasePackages extends base {
 
 			d.getMenuShopPackages().click();
 
-			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 //	wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 
 			while (!sp.getPackagesList().isDisplayed()) {
@@ -631,7 +632,7 @@ public class ShopAndPurchasePackages extends base {
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 			Assert.assertTrue(PM.getCloseButton().isDisplayed());
@@ -812,7 +813,7 @@ public class ShopAndPurchasePackages extends base {
 
 			d.getMenuShopPackages().click();
 
-			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 
 			while (!sp.getPackagesList().isDisplayed()) {
@@ -897,7 +898,7 @@ public class ShopAndPurchasePackages extends base {
 
 			d.getMenuShopPackages().click();
 
-			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 
 			while (!sp.getPackagesList().isDisplayed()) {
@@ -982,7 +983,7 @@ public class ShopAndPurchasePackages extends base {
 
 			d.getMenuShopPackages().click();
 
-			WebDriverWait wait1 = new WebDriverWait(driver, 30);
+			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
 //		wait1.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 
 			while (!sp.getPackagesList().isDisplayed()) {

@@ -1,6 +1,7 @@
 package GroupAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -70,7 +71,7 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 			startTime1 = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook1, resourceName1,
 					resourceName2, "Robert");
 
-			WebDriverWait wait = new WebDriverWait(driver, 30);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 			int appointmentsCount = d.getMyAppts().size();
@@ -278,11 +279,13 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 			}
 			rw.waitForDashboardLoaded();
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -295,11 +298,13 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 
 			rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}

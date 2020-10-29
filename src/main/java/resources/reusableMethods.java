@@ -3,6 +3,7 @@ package resources;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -205,7 +206,7 @@ public class reusableMethods extends base {
 
 	public String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		Thread.sleep(1000);
 		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
 		while (leftMenuOpen.equals("false")) {
@@ -242,7 +243,7 @@ public class reusableMethods extends base {
 					System.out.println("Sleeping for 1 second");
 				}
 
-				WebDriverWait wait = new WebDriverWait(driver, 60);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 				wait.until(ExpectedConditions
 						.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-header')]")));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
@@ -312,7 +313,7 @@ public class reusableMethods extends base {
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 				Thread.sleep(500);
 			}
-			WebDriverWait wait1 = new WebDriverWait(driver, 50);
+			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			Actions a = new Actions(driver);
@@ -340,7 +341,7 @@ public class reusableMethods extends base {
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, 60);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
 			u.getUnenrollNoRefund().click();
@@ -443,7 +444,7 @@ public class reusableMethods extends base {
 		PP.getMyPackagesButton().click();
 		int IntUnitCount = 0;
 		Thread.sleep(3000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[@class = 'dropdown-item']")));
 		int packagesCount = PP.getPackagesList().size();
 		for (int j = 0; j < packagesCount; j++) {
@@ -475,7 +476,7 @@ public class reusableMethods extends base {
 		}
 		d.getMenuPackages().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ibox")));
 		Thread.sleep(3000);
 
@@ -1108,7 +1109,7 @@ public class reusableMethods extends base {
 			throws IOException, InterruptedException {
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
@@ -1166,7 +1167,7 @@ public class reusableMethods extends base {
 			throws IOException, InterruptedException {
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
@@ -1214,8 +1215,9 @@ public class reusableMethods extends base {
 
 	public String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2) throws IOException, InterruptedException {
+
 		// DashboardPO p = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		String startTime = null;
 		// p.getMyApptsScheduleButton().click();
 
@@ -1346,7 +1348,9 @@ public class reusableMethods extends base {
 		System.out.println("RMpopupSize = " + ap.getPopup1().size());
 		log.info("RMpopupSize = " + ap.getPopup1().size());
 
-		while (ap.getPopup1().size() == 0)
+		int k = 0;
+
+		while (ap.getPopup1().size() == 0 && k < 2)
 
 		{
 
@@ -1389,6 +1393,7 @@ public class reusableMethods extends base {
 			Thread.sleep(2000);
 
 			ap.getPopup1().size();
+			k++;
 		}
 
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
@@ -1439,12 +1444,14 @@ public class reusableMethods extends base {
 		this.catchErrorMessage();
 		rw.waitForDashboardLoaded();
 		return startTime;
+
 	}
 
 	public String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2, String groupMember) throws IOException, InterruptedException {
+
 		// DashboardPO p = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		String startTime = null;
 		// p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -1598,7 +1605,9 @@ public class reusableMethods extends base {
 		System.out.println("RMpopupSize = " + ap.getPopup1().size());
 		log.info("RMpopupSize = " + ap.getPopup1().size());
 
-		while (ap.getPopup1().size() == 0)
+		int k = 0;
+
+		while (ap.getPopup1().size() == 0 && k < 2)
 
 		{
 			if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
@@ -1640,6 +1649,7 @@ public class reusableMethods extends base {
 			Thread.sleep(2000);
 
 			ap.getPopup1().size();
+			k++;
 		}
 
 		if (ap.getPopup1Content().getText().contains("This appointment requires a package purchase.")) {
@@ -1695,6 +1705,7 @@ public class reusableMethods extends base {
 		this.catchErrorMessage();
 		rw.waitForDashboardLoaded();
 		return startTime;
+
 	}
 
 	public String openSideMenuIfNotOpenedAlready() {
@@ -1852,7 +1863,7 @@ public class reusableMethods extends base {
 		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
+			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
@@ -1943,7 +1954,7 @@ public class reusableMethods extends base {
 
 		d.getMyClassesScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		this.SelectTomorrowDate();
@@ -2042,7 +2053,7 @@ public class reusableMethods extends base {
 
 		d.getMyCoursesEventsScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		this.SelectCourseStartMonth(CourseStartMonth);
@@ -2140,7 +2151,7 @@ public class reusableMethods extends base {
 			if (d.getClassInfoSections().get(i).getText().contains(classEnrolled.toUpperCase())) {
 
 				d.getMyClassesClass1GearButtons().get(i).click();
-				WebDriverWait wait = new WebDriverWait(driver, 30);
+				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
 				d.getmyClassesUnenrollButtons().get(i).click();
@@ -2168,7 +2179,7 @@ public class reusableMethods extends base {
 			Thread.sleep(500);
 		}
 
-		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 		d.getMenuMyCalendar().click();
@@ -2203,7 +2214,7 @@ public class reusableMethods extends base {
 
 		d.getMyClassesScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		this.SelectTomorrowDate();
@@ -2341,7 +2352,7 @@ public class reusableMethods extends base {
 
 		d.getMyCoursesEventsScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		this.SelectCourseStartMonth(CourseStartMonth);
@@ -2484,7 +2495,7 @@ public class reusableMethods extends base {
 			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
 		}
 
-		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 		d.getMenuMyCalendar().click();
@@ -2536,7 +2547,7 @@ public class reusableMethods extends base {
 			d.getmenuMyActivitiesSubMenu().getAttribute("style");
 		}
 
-		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 		d.getMenuMyCalendar().click();
@@ -2608,7 +2619,7 @@ public class reusableMethods extends base {
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -2650,7 +2661,7 @@ public class reusableMethods extends base {
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
@@ -2703,7 +2714,7 @@ public class reusableMethods extends base {
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
