@@ -175,31 +175,32 @@
 			<version>6.9.0</version>
 			<!--version>2.5.3</version -->
 		</dependency>
-		<!-- <dependency>
+		
+		
+		 <dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>3.141.59</version>
-		</dependency> -->
+		</dependency> 
 		
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
-		<dependency>
+		<!--dependency>
     		<groupId>org.seleniumhq.selenium</groupId>
     		<artifactId>selenium-java</artifactId>
     		<version>4.0.0-alpha-6</version>
-		</dependency>
+		</dependency-->
 		
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-server</artifactId>
 			<version>3.141.59</version>
-		</dependency> -->
+		</dependency> 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-server -->
-		<dependency>
+		<!--dependency>
     		<groupId>org.seleniumhq.selenium</groupId>
     		<artifactId>selenium-server</artifactId>
     		<version>4.0.0-alpha-2</version>
-		</dependency>
-		
+		</dependency-->
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
@@ -256,11 +257,20 @@
 			<artifactId>ngwebdriver</artifactId>
 			<version>1.1.5</version>
 		</dependency>
-		<dependency>
+		
+		<!--dependency>
   		<groupId>com.google.guava</groupId>
   		<artifactId>guava</artifactId>
   		<version>23.0</version>
-	</dependency>
+	</dependency-->
+		
+	<!-- https://mvnrepository.com/artifact/io.netty/netty-all -->
+<!--dependency>
+    <groupId>io.netty</groupId>
+    <artifactId>netty-all</artifactId>
+    <version>4.1.53.Final</version>
+</dependency-->
+
 
 	</dependencies>
 	<build>
