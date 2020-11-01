@@ -243,6 +243,7 @@ public class base {
 				+ "screenshot.png";
 		FileUtils.copyFile(src, new File(destinationFile));
 		return destinationFile;
+
 	}
 
 }
