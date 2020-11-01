@@ -58,7 +58,8 @@ public class PageLaunchTest_MSEdge extends base {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setBrowserName("MicrosoftEdge");
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
+		// System.setProperty("webdriver.edge.driver",
+		// "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
 
 		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 
@@ -177,7 +178,7 @@ public class PageLaunchTest_MSEdge extends base {
 	@Test(priority = 60)
 	public void PrivacyPolicyLinkTest() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
 		log.info("element is clickable");
 		System.out.println("element is clickable");

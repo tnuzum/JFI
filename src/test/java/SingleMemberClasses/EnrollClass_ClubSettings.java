@@ -62,7 +62,7 @@ public class EnrollClass_ClubSettings extends base {
 
 		d.getMyCoursesEventsScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 		Assert.assertTrue(driver.findElements(By.className("column2")).size() > 0);
 
@@ -85,7 +85,7 @@ public class EnrollClass_ClubSettings extends base {
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();

@@ -88,7 +88,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();
@@ -154,7 +154,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -222,7 +222,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -291,7 +291,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -359,7 +359,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCalendarIcon().click();
@@ -450,7 +450,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectYesterdayDate();
@@ -519,7 +519,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 		Thread.sleep(2000);
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();
@@ -588,7 +588,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -661,7 +661,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();

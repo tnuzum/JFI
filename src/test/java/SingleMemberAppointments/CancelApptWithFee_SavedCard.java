@@ -69,7 +69,7 @@ public class CancelApptWithFee_SavedCard extends base {
 
 			rm.catchErrorMessage();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
 			Select s = new Select(ap.getclubs());
@@ -266,7 +266,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		try {
 			// rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 
@@ -316,7 +316,7 @@ public class CancelApptWithFee_SavedCard extends base {
 //					Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);
 
-						WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+						WebDriverWait wait = new WebDriverWait(driver, 30);
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
@@ -325,7 +325,7 @@ public class CancelApptWithFee_SavedCard extends base {
 					}
 				}
 			}
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 			Thread.sleep(2000);
 			AppointmentsPO ap = new AppointmentsPO(driver);
@@ -388,7 +388,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		try {
 
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			for (int k = 0; k < appointmentsCount; k++) {
 				if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))

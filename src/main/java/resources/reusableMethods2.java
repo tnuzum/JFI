@@ -206,7 +206,7 @@ public class reusableMethods2 extends base {
 
 	public String returnToDashboard() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		Thread.sleep(1000);
 		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
 		while (leftMenuOpen.equals("false")) {
@@ -243,7 +243,7 @@ public class reusableMethods2 extends base {
 					System.out.println("Sleeping for 1 second");
 				}
 
-				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+				WebDriverWait wait = new WebDriverWait(driver, 60);
 				wait.until(ExpectedConditions
 						.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-header')]")));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
@@ -313,7 +313,7 @@ public class reusableMethods2 extends base {
 			while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
 				Thread.sleep(500);
 			}
-			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
+			WebDriverWait wait1 = new WebDriverWait(driver, 50);
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			Actions a = new Actions(driver);
@@ -341,7 +341,7 @@ public class reusableMethods2 extends base {
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
 			u.getUnenrollNoRefund().click();
@@ -473,7 +473,7 @@ public class reusableMethods2 extends base {
 		}
 		d.getMenuPackages().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ibox")));
 		Thread.sleep(3000);
 
@@ -1106,7 +1106,7 @@ public class reusableMethods2 extends base {
 			throws IOException, InterruptedException {
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
@@ -1164,7 +1164,7 @@ public class reusableMethods2 extends base {
 			throws IOException, InterruptedException {
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
@@ -1213,7 +1213,7 @@ public class reusableMethods2 extends base {
 	public String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2) throws IOException, InterruptedException {
 		// DashboardPO p = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
 		// p.getMyApptsScheduleButton().click();
 
@@ -1437,7 +1437,7 @@ public class reusableMethods2 extends base {
 	public String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2, String groupMember) throws IOException, InterruptedException {
 		// DashboardPO p = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
 		// p.getMyApptsScheduleButton().click();
 		Thread.sleep(2000);
@@ -1841,7 +1841,7 @@ public class reusableMethods2 extends base {
 		if (classtext.contains("cal-out-month")) {
 			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
@@ -1932,7 +1932,7 @@ public class reusableMethods2 extends base {
 
 		d.getMyClassesScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		this.SelectTomorrowDate();
@@ -2031,7 +2031,7 @@ public class reusableMethods2 extends base {
 
 		d.getMyCoursesEventsScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		this.SelectCourseStartMonth(CourseStartMonth);
@@ -2129,7 +2129,7 @@ public class reusableMethods2 extends base {
 			if (d.getClassInfoSections().get(i).getText().contains(classEnrolled.toUpperCase())) {
 
 				d.getMyClassesClass1GearButtons().get(i).click();
-				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+				WebDriverWait wait = new WebDriverWait(driver, 30);
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
 				d.getmyClassesUnenrollButtons().get(i).click();
@@ -2157,7 +2157,7 @@ public class reusableMethods2 extends base {
 			Thread.sleep(500);
 		}
 
-		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 		d.getMenuMyCalendar().click();
@@ -2192,7 +2192,7 @@ public class reusableMethods2 extends base {
 
 		d.getMyClassesScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		this.SelectTomorrowDate();
@@ -2330,7 +2330,7 @@ public class reusableMethods2 extends base {
 
 		d.getMyCoursesEventsScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		this.SelectCourseStartMonth(CourseStartMonth);
@@ -2473,7 +2473,7 @@ public class reusableMethods2 extends base {
 			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
 		}
 
-		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 		d.getMenuMyCalendar().click();
@@ -2525,7 +2525,7 @@ public class reusableMethods2 extends base {
 			d.getmenuMyActivitiesSubMenu().getAttribute("style");
 		}
 
-		WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 		d.getMenuMyCalendar().click();
@@ -2597,7 +2597,7 @@ public class reusableMethods2 extends base {
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -2639,7 +2639,7 @@ public class reusableMethods2 extends base {
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());
@@ -2692,7 +2692,7 @@ public class reusableMethods2 extends base {
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 
 		}
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
 		Assert.assertTrue(PM.getCloseButton().isDisplayed());

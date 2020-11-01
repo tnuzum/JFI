@@ -93,7 +93,7 @@ public class FamilyEnrollmentInCourse_Demo extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		c.getCourseFilter().click();

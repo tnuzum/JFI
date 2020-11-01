@@ -130,7 +130,7 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 			rm.calendarTomorrowClick();
 
 			WebElement st1 = ap.getSelectTimeMorningButton();
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.elementToBeClickable(st1));
 			while (!st1.isEnabled())// while button is NOT(!) enabled
 			{
@@ -142,7 +142,7 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 //					{
 //					Thread.sleep(200);
 //					}
-			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait1 = new WebDriverWait(driver, 30);
 			wait1.until(ExpectedConditions.elementToBeClickable(st2));
 			startTime = st2.getText();
 			System.out.println(startTime);
@@ -229,7 +229,7 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 		try {
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+			WebDriverWait wait = new WebDriverWait(driver, 20);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 			int appointmentsCount = d.getMyAppts().size();
@@ -263,7 +263,7 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 	public void CancelAppointment() throws IOException, InterruptedException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			appointmentsCount = d.getMyAppts().size();
 

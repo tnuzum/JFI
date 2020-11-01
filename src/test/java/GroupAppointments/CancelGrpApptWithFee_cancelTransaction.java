@@ -79,7 +79,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 
 			rm.catchErrorMessage();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
 			Select s = new Select(ap.getclubs());
@@ -285,7 +285,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 		try {
 			// rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 			appointmentsCount = d.getMyAppts().size();
@@ -320,7 +320,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 		try {
 
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			for (int k = 0; k < appointmentsCount; k++) {
 				if (d.getMyAppts().get(k).getText().contains(tomorrowsDate))

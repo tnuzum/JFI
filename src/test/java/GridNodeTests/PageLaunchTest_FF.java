@@ -179,7 +179,7 @@ public class PageLaunchTest_FF extends base {
 	@Test(priority = 60)
 	public void PrivacyPolicyLinkTest() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
 		log.info("element is clickable");
 		System.out.println("element is clickable");

@@ -102,7 +102,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		rm.SelectCourseStartMonth(CourseStartMonth);
@@ -170,7 +170,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		Thread.sleep(2000);
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);

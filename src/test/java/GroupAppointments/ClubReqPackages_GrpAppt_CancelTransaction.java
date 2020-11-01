@@ -69,7 +69,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 
 			rm.catchErrorMessage();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
 			Select s = new Select(ap.getclubs());
