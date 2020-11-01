@@ -62,12 +62,12 @@ public class base {
 				System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
 
 		prop.load(fis);
-		// String browserName = prop.getProperty("browser");
-		String browserName = System.getProperty("browser");
+		String browserName = prop.getProperty("browser");
+		// String browserName = System.getProperty("browser");
 		System.out.println(browserName);
 
-		// String testEnvironment = prop.getProperty("test_environment");
-		String testEnvironment = System.getProperty("test_environment");
+		String testEnvironment = prop.getProperty("test_environment");
+		// String testEnvironment = System.getProperty("test_environment");
 		System.out.println(testEnvironment);
 
 		if (testEnvironment.equals("grid")) {
