@@ -54,7 +54,7 @@ public class ClassDetailsPopupUIValidation extends base {
 
 		d.getMyClassesScheduleButton().click();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		rm.SelectTomorrowDate();

@@ -267,7 +267,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 			d.getMyAccountPayNow().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;

@@ -53,7 +53,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			rm.activeMemberLogin("ccmember", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO p = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			p.getMyApptsScheduleButton().click();
 			Thread.sleep(2000);

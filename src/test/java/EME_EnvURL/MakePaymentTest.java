@@ -54,7 +54,7 @@ public class MakePaymentTest extends base {
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		d.getMyAccountPayNow().click();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -88,7 +88,7 @@ public class MakePaymentTest extends base {
 	@Test(priority = 2, description = "Confirming payment is applied", dependsOnMethods = { "MakePayment" })
 	public void ConfirmPaymentApplied() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[1]")));
 		while (d.getMyAccountLastPaymentDate().getText().equalsIgnoreCase("Last Payment:")) {

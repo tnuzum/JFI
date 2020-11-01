@@ -74,7 +74,7 @@ public class EnrollCourse_ClubSettings extends base {
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		rm.SelectClassOrCourseToEnroll("CANNOTBEENROLLEDCOURSE");

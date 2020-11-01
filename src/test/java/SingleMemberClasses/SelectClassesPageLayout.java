@@ -66,7 +66,7 @@ public class SelectClassesPageLayout extends base {
 		rw.waitForDashboardLoaded();
 		d.getMyClassesScheduleButton().click();
 
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 	}
@@ -174,7 +174,7 @@ public class SelectClassesPageLayout extends base {
 
 		rm.SelectTomorrowDate();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCourseFilter().click();
@@ -234,7 +234,7 @@ public class SelectClassesPageLayout extends base {
 
 		rm.SelectTomorrowDate();
 
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 		c.getCourseFilter().click();

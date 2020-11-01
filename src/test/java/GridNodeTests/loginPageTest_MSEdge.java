@@ -36,7 +36,8 @@ public class loginPageTest_MSEdge extends base {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setBrowserName("MicrosoftEdge");
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
+		// System.setProperty("webdriver.edge.driver",
+		// "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
@@ -93,7 +94,7 @@ public class loginPageTest_MSEdge extends base {
 		LoginPO l = new LoginPO(driver);
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='Username-error']")));
 		Assert.assertEquals(l.getusernameRequiredMessage().getText(), "Username is required");
 		log.info("Username Required Message Confirmed");
@@ -110,7 +111,7 @@ public class loginPageTest_MSEdge extends base {
 		log.info("Password Entered");
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='loginForm']/form/div[1]/ul/li")));
 		WebElement wait2 = l.getcredentialsErrorMessage();
 		while (wait2.getText().isBlank()) {
@@ -121,6 +122,7 @@ public class loginPageTest_MSEdge extends base {
 
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), wrongCredentialsMsg);
 		log.info("Error Message Title Verified");
+		System.out.println("Error Message Title Verified");
 	}
 
 //	@AfterTest

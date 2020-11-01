@@ -106,7 +106,7 @@ public class MakeGroupApptTest extends base {
 		}
 
 		ap.getPopup1BookButton().click();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class,'swal2-success')]")));
 		Thread.sleep(1000);
 		Assert.assertEquals(ap.getPopup2Title().getText(), "Booked!");
@@ -117,7 +117,7 @@ public class MakeGroupApptTest extends base {
 	public void ConfirmAppointmentIsScheduled() throws IOException, InterruptedException {
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//appointmentswidget/div/div[2]/div[1]/div/a/div/div[2]/span/strong")));
 		Assert.assertFalse(d.getMyApptsAppt1Title().getText().isBlank());
@@ -133,7 +133,7 @@ public class MakeGroupApptTest extends base {
 //			Thread.sleep(200);
 		}
 		d.getMyApptsEditButton().click();
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");

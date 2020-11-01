@@ -12,6 +12,7 @@
 			<class name="GridNodeTests.loginPageTest_MSEdge" />
 			<class name="GridNodeTests.PageLaunchTest_MSEdge" />
 			<class name="GridNodeTests.loginPageTest_Chrome" />
+			<class name="GridNodeTests.PageLaunchTest_Chrome" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

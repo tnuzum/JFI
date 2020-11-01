@@ -83,7 +83,7 @@ public class PayBalance_NewCard_CheckAgrmntWithBadFOP extends base {
 
 			d.getMyAccountPayNow().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -213,7 +213,7 @@ public class PayBalance_NewCard_CheckAgrmntWithBadFOP extends base {
 	public void ConfirmPaymentApplied() throws InterruptedException, IOException {
 		try {
 			DashboardPO d = new DashboardPO(driver);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/small[1]")));
 			while (d.getMyAccountLastPaymentDate().getText().equalsIgnoreCase("Last Payment:")) {

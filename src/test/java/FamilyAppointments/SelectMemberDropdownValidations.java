@@ -234,7 +234,7 @@ public class SelectMemberDropdownValidations extends base {
 			Thread.sleep(2000);
 
 			rm.calendarTomorrowClick();
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			for (int i = 0; i < ap.getApptBox().size(); i++) {
 				String bookName = ap.getApptBox().get(i).getText();

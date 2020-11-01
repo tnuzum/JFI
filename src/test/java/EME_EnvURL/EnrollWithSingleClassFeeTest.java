@@ -89,7 +89,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			d.getMyClassesScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
@@ -211,7 +211,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			}
 			PM.getPaymentButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
@@ -310,7 +310,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			d.getMyClassesScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();
@@ -475,7 +475,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			d.getMyClassesScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			rm.SelectTomorrowDate();
@@ -668,7 +668,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 					Thread.sleep(1000);
 					System.out.println("Sleeping for 1 second");
 				}
-				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+				WebDriverWait wait = new WebDriverWait(driver, 60);
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
 				d.getMyClassesClass1GearButton().click();
 

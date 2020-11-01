@@ -68,7 +68,7 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 				System.out.println("Waiting for the packages to be displayed");
 			}
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
 			wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
 			sp.getKeyWord().sendKeys("Service V");

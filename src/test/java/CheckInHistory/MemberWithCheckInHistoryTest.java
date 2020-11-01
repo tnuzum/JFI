@@ -49,7 +49,7 @@ public class MemberWithCheckInHistoryTest extends base {
 		d = new DashboardPO(driver);
 		chp = new CheckInHistoryPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait = new WebDriverWait(driver, 30);
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());

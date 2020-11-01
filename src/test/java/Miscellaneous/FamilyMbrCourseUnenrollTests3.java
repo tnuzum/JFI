@@ -107,7 +107,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll1, "Unenrollmbr1");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll1));
@@ -172,7 +172,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll2, "Unenrollmbr2_1");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll2));
@@ -262,7 +262,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll3, "Unenrollmbr3");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll3));
@@ -344,7 +344,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 			rm.enrollFamilyMbrInCourse(courseToEnroll4, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
 					"Unenrollmbr4");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll4, "Unenrollmbr4");
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -431,7 +431,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll5, "Unenrollmbr5");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll5));
@@ -498,7 +498,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll6, "Unenrollmbr6_1");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll6));
@@ -571,7 +571,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll7, "Unenrollmbr7");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll7));
@@ -635,7 +635,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll8, "Unenrollmbr8");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll8));
@@ -698,7 +698,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll9, "Unenrollmbr9");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll9));
@@ -761,7 +761,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll10, "Unenrollmbr10");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll10));
@@ -852,7 +852,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll10_1, "Unenrollmbr11");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll10_1));
@@ -943,7 +943,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll11, "Unenrollmbr12");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll11));
@@ -1037,7 +1037,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll12, "Unenrollmbr13_1");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll12));
@@ -1107,7 +1107,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll13, "Unenrollmbr14");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll13));
@@ -1171,7 +1171,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll14, "Unenrollmbr15");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll14));
@@ -1260,7 +1260,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll15, "Unenrollmbr16");
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 
 			UnenrollPO u = new UnenrollPO(driver);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll15));
@@ -1326,7 +1326,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			d.getMyCoursesEventsScheduleButton().click();
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -1530,7 +1530,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			UnenrollPO u = new UnenrollPO(driver);
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll17));
 
 			Assert.assertTrue(u.getCanNotCancelFMsg().getText().contains(cannotCancelMsg));

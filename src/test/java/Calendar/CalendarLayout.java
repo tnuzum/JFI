@@ -109,7 +109,7 @@ public class CalendarLayout extends base {
 				System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
 			}
 
-			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
+			WebDriverWait wait1 = new WebDriverWait(driver, 50);
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
@@ -160,7 +160,7 @@ public class CalendarLayout extends base {
 
 				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1).click();
 
-				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+				WebDriverWait wait = new WebDriverWait(driver, 50);
 				wait.until(ExpectedConditions.presenceOfElementLocated(
 						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
@@ -175,7 +175,7 @@ public class CalendarLayout extends base {
 
 			cp.getUnenrollListview().click();
 			Thread.sleep(1000);
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll));
 
 			Assert.assertEquals(u.getPageHeader().getText(), "Unenroll");
@@ -248,7 +248,7 @@ public class CalendarLayout extends base {
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll));
 
 			u.getUnenrollButton().click();
@@ -308,7 +308,7 @@ public class CalendarLayout extends base {
 				System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
 			}
 
-			WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(50));
+			WebDriverWait wait1 = new WebDriverWait(driver, 50);
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
@@ -324,7 +324,7 @@ public class CalendarLayout extends base {
 
 				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1).click();
 
-				WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+				WebDriverWait wait = new WebDriverWait(driver, 50);
 				wait.until(ExpectedConditions.presenceOfElementLocated(
 						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
@@ -337,7 +337,7 @@ public class CalendarLayout extends base {
 			cp.getUnenrollListview().click();
 			Thread.sleep(1000);
 
-			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll));
 
 			Assert.assertEquals(u.getPageHeader().getText(), "Unenroll");
