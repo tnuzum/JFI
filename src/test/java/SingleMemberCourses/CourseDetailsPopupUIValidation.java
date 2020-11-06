@@ -23,7 +23,8 @@ public class CourseDetailsPopupUIValidation extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String CourseToEnroll = "COURSENEEDSPUNCHES";
 	private static String CourseNameDisplayed = "CourseNeedsPunches";
-	private static String CourseStartMonth = "Dec";
+	private static String CourseStartMonth = "Jun";
+	private static int CourseStartYear = 2021;
 	private static DashboardPO d;
 	private static ClassSignUpPO c;
 
@@ -60,6 +61,10 @@ public class CourseDetailsPopupUIValidation extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -71,7 +76,7 @@ public class CourseDetailsPopupUIValidation extends base {
 		Assert.assertEquals(c.getClasslabel().getText(), CourseNameDisplayed);
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Course Instructor: Andrea"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Class Length: 60 min"));
-		Assert.assertTrue(c.getDetailsPopup().getText().contains("Date: 12/21/2020 - 12/31/2020"));
+		Assert.assertTrue(c.getDetailsPopup().getText().contains("Date: 06/21/2021 - 06/30/2021"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Time: 11:00 AM"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Days: MON, WED, THU, FRI"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("- COURSE DESCRIPTION -"));

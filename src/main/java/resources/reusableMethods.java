@@ -216,7 +216,7 @@ public class reusableMethods extends base {
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 		d.getDashboardButton().click();
 //		d.getBreadcrumbDashboard().click();
-		rw.waitForDashboardLoaded();
+		rw.waitForDashboardLoaded1();
 		return null;
 	}
 
@@ -224,6 +224,16 @@ public class reusableMethods extends base {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		try {
 			driver.findElement(by);
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	public boolean isWebElementPresent(WebElement E) {
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		try {
+			E.isDisplayed();
 			return true;
 		} catch (NoSuchElementException e) {
 			return false;
@@ -614,6 +624,34 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public Object SelectCourseStartYear(int CourseStartYear) throws InterruptedException {
+
+		SimpleDateFormat df = new SimpleDateFormat("YYYY");
+		Calendar today = Calendar.getInstance();
+		String currentYear = df.format(today.getTime());
+
+		int intcurrentYear = Integer.parseInt(currentYear);
+
+		ClassSignUpPO c = new ClassSignUpPO(driver);
+		String year = c.getYear().getText();
+
+		int intYear = Integer.parseInt(year);
+
+		while (intYear != CourseStartYear) {
+			if (intcurrentYear < CourseStartYear) {
+				c.getYearRightButton().click();
+				year = c.getYear().getText();
+			} else {
+				c.getYearLeftButton().click();
+				year = c.getYear().getText();
+
+			}
+			intYear = Integer.parseInt(year);
+		}
+
+		return null;
+	}
+
 	public Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) {
 		int ClassOrCourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 		for (int j = 0; j < ClassOrCourseCount; j++) {
@@ -851,6 +889,43 @@ public class reusableMethods extends base {
 
 	}
 
+	public Object VerifyFOPNotSavedInCOG(String barcodeId, String clubName, String fopNumber)
+			throws InterruptedException {
+
+		this.loginCOG(clubName);
+		WebElement BackOfficeTile = driver.findElement(By.xpath("(//div[@class='tile'])[2]"));
+		int count = BackOfficeTile.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count; i++) {
+			// System.out.println(BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("MemberManagement")) {
+				Thread.sleep(1000);
+				BackOfficeTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.id("txt_barcodeId")).sendKeys(barcodeId);
+
+		driver.findElement(By.id("btn_search")).click();
+		driver.findElement(By.xpath("//i[@class='fa fa-cogs fa-2x']")).click();
+		Thread.sleep(2000);
+
+		int fopCount = driver.findElements(By.xpath("//section[@id='divPaymentSection'] //tr")).size();
+		System.out.println(fopCount);
+		for (int i = 3; i < fopCount; i++) {
+			WebElement FOPRow = driver.findElements(By.xpath("//section[@id='divPaymentSection'] //tr")).get(i);
+			List<WebElement> FOPRowSections = FOPRow.findElements(By.tagName("td"));
+			Assert.assertTrue(!FOPRowSections.get(2).getText().equals(fopNumber));
+		}
+
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		// driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
+
+		return null;
+
+	}
+
 	public Object deleteStandbyCourseInCOG(String className, String classSellClub, String memberName1,
 			String memberName2) throws InterruptedException {
 
@@ -871,7 +946,9 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Dec");
+		monthDropdown.selectByVisibleText("Jun");
+		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
+		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
 		int dateCount = Dates.size();
 		for (int j = 0; j < dateCount; j++) {
@@ -1063,11 +1140,13 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Dec");
+		monthDropdown.selectByVisibleText("Feb");
+		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
+		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
 		int dateCount = Dates.size();
 		for (int j = 0; j < dateCount; j++) {
-			if (Dates.get(j).getText().contains("15")) {
+			if (Dates.get(j).getText().contains("10")) {
 				Dates.get(j).click();
 				break;
 			}
@@ -2044,7 +2123,7 @@ public class reusableMethods extends base {
 	}
 
 	public Object enrollInCourse(String courseToEnroll, String paymentOption, String payMethod, String courseFee,
-			String CourseStartMonth) throws InterruptedException {
+			String CourseStartMonth, int CourseStartYear) throws InterruptedException {
 
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -2054,6 +2133,10 @@ public class reusableMethods extends base {
 		d.getMyCoursesEventsScheduleButton().click();
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		this.SelectCourseStartYear(CourseStartYear);
+
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		this.SelectCourseStartMonth(CourseStartMonth);
@@ -2343,7 +2426,8 @@ public class reusableMethods extends base {
 	}
 
 	public Object enrollFamilyMbrInCourse(String courseToEnroll, String paymentOption, String payMethod,
-			String courseFee, String CourseStartMonth, String familyMbrName) throws InterruptedException {
+			String courseFee, String CourseStartMonth, String familyMbrName, int CourseStartYear)
+			throws InterruptedException {
 
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
@@ -2353,6 +2437,10 @@ public class reusableMethods extends base {
 		d.getMyCoursesEventsScheduleButton().click();
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		this.SelectCourseStartYear(CourseStartYear);
+
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		this.SelectCourseStartMonth(CourseStartMonth);

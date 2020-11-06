@@ -28,6 +28,8 @@ public class ClassSignUpPO {
 	By dayHeader = By.xpath("//div[@class='col-xs-6']");
 	By dateHeader = By.xpath("//div[@class='col-xs-6 text-right']");
 	By year = By.xpath("//span[contains(@class, 'btn-white')]");
+	By yearLeftButton = By.xpath("//i[contains(@class, 'fa-chevron-double-left')]");
+	By yearRightButton = By.xpath("//i[contains(@class, 'fa-chevron-double-right')]");
 	By selectCoursesButton = By.xpath("//input[@id='rbcourses']");
 	By firstAvailClassButton = By.xpath("//div[@id='classes']/div/div[2]/div[1]/div/div");
 	By firstAvailClassNextDayButton = By.xpath("//div[@id='classes']/div[2]/div[2]/div[1]/div/div/div");
@@ -363,5 +365,13 @@ public class ClassSignUpPO {
 
 	public WebElement getVirtualReview() {
 		return driver.findElement(virtualReview);
+	}
+
+	public WebElement getYearLeftButton() {
+		return driver.findElement(yearLeftButton);
+	}
+
+	public WebElement getYearRightButton() {
+		return driver.findElement(yearRightButton);
 	}
 }

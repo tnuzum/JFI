@@ -34,9 +34,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
-	private static String CourseStartMonth = "Dec";
-	private static String dsiredMonthYear = "December 2020";
-	private static String courseDate = "Date: 12/21/2020";
+	private static String CourseStartMonth = "Jun";
+	private static int CourseStartYear = 2021;
+	private static String dsiredMonthYear = "June 2021";
+	private static String courseDate = "Date: 06/21/2021";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
@@ -93,6 +94,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -312,6 +317,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+			rm.SelectCourseStartYear(CourseStartYear);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 			rm.SelectCourseStartMonth(CourseStartMonth);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -486,6 +495,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);

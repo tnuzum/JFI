@@ -23,10 +23,11 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class EnrollCourseMemberAndItemRestrictions extends base {
-	private static String CourseStartYear = "2019";
+	private static int CourseStartYear = 2019;
+	private static int CourseStartYear1 = 2021;
 	private static String CourseStartMonth1 = "Jan";
-	private static String CourseStartMonth2 = "Dec";
-	private static String dsiredMonthYear = "December 2020";
+	private static String CourseStartMonth2 = "Jun";
+	private static String dsiredMonthYear = "June 2021";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
@@ -75,6 +76,9 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		rm.SelectCourseStartYear(CourseStartYear1);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		rm.SelectCourseStartMonth(CourseStartMonth2);
@@ -140,6 +144,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		rm.SelectCourseStartYear(CourseStartYear1);
+
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		rm.SelectCourseStartMonth(CourseStartMonth2);
@@ -330,6 +338,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear1);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -394,11 +406,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-		String year = c.getYear().getText();
-		while (!year.contains(CourseStartYear)) {
-			driver.findElement(By.xpath("//i[contains(@class, 'double-left')]")).click();
-			year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
-		}
+
+		rm.SelectCourseStartYear(CourseStartYear);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -528,6 +537,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear1);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -601,6 +614,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear1);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -634,6 +651,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			}
 
 		}
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		rm.SelectCourseStartYear(CourseStartYear1);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 

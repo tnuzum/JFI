@@ -47,9 +47,9 @@ public class CourseUnenrollTests extends base {
 	private static String courseToEnroll16 = "UnenrollCourse16";
 	private static String courseToEnroll17 = "UnenrollCourse17";
 
-	private static String CourseStartMonth = "Nov";
-	private static String dsiredMonthYear = "November 2020";
-
+	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "February 2021";
+	private static int CourseStartYear = 2021;
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Course Fee";
 	// private static String paymentOption3 = "Buy Day Pass";
@@ -115,7 +115,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr1", "Testing1!");
-			rm.enrollInCourse(courseToEnroll1, paymentOption2, payMethod1, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll1, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -125,7 +126,7 @@ public class CourseUnenrollTests extends base {
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll1));
 
 			Assert.assertEquals("Course", u.getType().getText());
-			Assert.assertEquals("11/15/2020", u.getStartDate().getText());
+			Assert.assertEquals("02/10/2021", u.getStartDate().getText());
 			Assert.assertEquals("7:00 AM", u.getStartTime().getText());
 			Assert.assertEquals("30 min", u.getDuration().getText());
 			Assert.assertEquals("Max Gibbs", u.getInstructor().getText());
@@ -185,7 +186,7 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr2_1", "Testing1!");
-			rm.enrollInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth, CourseStartYear);
 			int unitsBefore = rm.getPackageUnits("Day Pass");
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
@@ -275,7 +276,7 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr3", "Testing1!");
-			rm.enrollInCourse(courseToEnroll3, "", "", "Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll3, "", "", "Free", CourseStartMonth, CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -358,7 +359,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr4", "Testing1!");
-			rm.enrollInCourse(courseToEnroll4, paymentOption2, payMethod2, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll4, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -442,7 +444,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr5", "Testing1!");
-			rm.enrollInCourse(courseToEnroll5, paymentOption2, payMethod1, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll5, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -506,7 +509,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr6_1", "Testing1!");
-			rm.enrollInCourse(courseToEnroll6, paymentOption1, "", "Free With Punch", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll6, paymentOption1, "", "Free With Punch", CourseStartMonth,
+					CourseStartYear);
 
 			int unitsBefore = rm.getPackageUnits("Day Pass");
 
@@ -577,7 +581,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr7", "Testing1!");
-			rm.enrollInCourse(courseToEnroll7, paymentOption2, payMethod2, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll7, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -640,7 +645,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr8", "Testing1!");
-			rm.enrollInCourse(courseToEnroll8, paymentOption2, payMethod1, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll8, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -702,7 +708,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr9", "Testing1!");
-			rm.enrollInCourse(courseToEnroll9, paymentOption1, "", "Free With Punch", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll9, paymentOption1, "", "Free With Punch", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -764,7 +771,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr10", "Testing1!");
-			rm.enrollInCourse(courseToEnroll10, paymentOption2, payMethod2, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll10, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -854,7 +862,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr11", "Testing1!");
-			rm.enrollInCourse(courseToEnroll10_1, paymentOption2, payMethod2, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll10_1, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -944,7 +953,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr12", "Testing1!");
-			rm.enrollInCourse(courseToEnroll11, paymentOption2, payMethod1, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll11, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -1035,7 +1045,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr13_1", "Testing1!");
-			rm.enrollInCourse(courseToEnroll12, paymentOption1, "", "Free With Punch", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll12, paymentOption1, "", "Free With Punch", CourseStartMonth,
+					CourseStartYear);
 
 			int unitsBefore = rm.getPackageUnits("Day Pass");
 
@@ -1106,7 +1117,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr14", "Testing1!");
-			rm.enrollInCourse(courseToEnroll13, paymentOption2, payMethod1, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll13, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -1169,7 +1181,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr15", "Testing1!");
-			rm.enrollInCourse(courseToEnroll14, paymentOption2, payMethod1, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll14, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -1259,7 +1272,7 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr16", "Testing1!");
-			rm.enrollInCourse(courseToEnroll15, "", "", "Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll15, "", "", "Free", CourseStartMonth, CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -1335,6 +1348,10 @@ public class CourseUnenrollTests extends base {
 			d.getMyCoursesEventsScheduleButton().click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -1492,7 +1509,8 @@ public class CourseUnenrollTests extends base {
 		try {
 
 			rm.activeMemberLogin("unenrollmbr18", "Testing1!");
-			rm.enrollInCourse(courseToEnroll17, paymentOption2, payMethod1, "Not Free", CourseStartMonth);
+			rm.enrollInCourse(courseToEnroll17, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
