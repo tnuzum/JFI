@@ -30,8 +30,9 @@ import resources.reusableWaits;
 
 public class UnenrollStandbyCourse extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Nov";
-	private static String dsiredMonthYear = "November 2020";
+	private static String CourseStartMonth = "Feb";
+	private static int CourseStartYear = 2021;
+	private static String dsiredMonthYear = "February 2021";
 	private static String CourseToEnroll = "UNENRLLSTNDBYCOURSE";
 	private static String CourseNameDisplayed = "UnenrllStndByCourse";
 	private static String YesCancelFee = "Course Cancellation Fee";
@@ -81,6 +82,10 @@ public class UnenrollStandbyCourse extends base {
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 

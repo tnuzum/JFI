@@ -127,7 +127,7 @@ public class EmailConfirmations {
 			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Location: Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Course Name: Free Course Auto"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email4,
-					"Course Time: Every Monday, Wednesday, Thursday, Friday between 12/21/2020 and 12/31/2020 from 4:30 PM to 5:30 PM"));
+					"Course Time: Every Monday, Wednesday, Thursday, Friday between 06/21/2021 and 06/30/2021 from 4:30 PM to 5:30 PM"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
