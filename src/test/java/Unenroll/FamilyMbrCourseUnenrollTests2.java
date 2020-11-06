@@ -35,9 +35,9 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 	private static String courseToEnroll15 = "UnenrollCourse15";
 	private static String courseToEnroll16 = "UnenrollCourse16";
 	private static String courseToEnroll17 = "UnenrollCourse17";
-
-	private static String CourseStartMonth = "Nov";
-	private static String dsiredMonthYear = "November 2020";
+	private static int CourseStartYear = 2021;
+	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "February 2021";
 
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Course Fee";
@@ -93,7 +93,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll10_1, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
-					"Unenrollmbr11");
+					"Unenrollmbr11", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll10_1, "Unenrollmbr11");
 
@@ -192,7 +192,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll11, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr12");
+					"Unenrollmbr12", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll11, "Unenrollmbr12");
 
@@ -293,7 +293,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll12, paymentOption1, "", "Free With Punch", CourseStartMonth,
-					"Unenrollmbr13_1");
+					"Unenrollmbr13_1", CourseStartYear);
 
 			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr13_1");
 
@@ -365,7 +365,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll13, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr14");
+					"Unenrollmbr14", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll13, "Unenrollmbr14");
 
@@ -437,7 +437,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll14, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr15");
+					"Unenrollmbr15", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll14, "Unenrollmbr15");
 
@@ -536,7 +536,8 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 
 		try {
 
-			rm.enrollFamilyMbrInCourse(courseToEnroll15, "", "", "Free", CourseStartMonth, "Unenrollmbr16");
+			rm.enrollFamilyMbrInCourse(courseToEnroll15, "", "", "Free", CourseStartMonth, "Unenrollmbr16",
+					CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll15, "Unenrollmbr16");
 
@@ -615,6 +616,10 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 			d.getMyCoursesEventsScheduleButton().click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -825,7 +830,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll17, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr18");
+					"Unenrollmbr18", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll17, "Unenrollmbr18");
 

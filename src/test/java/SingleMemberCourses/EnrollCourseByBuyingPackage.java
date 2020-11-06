@@ -37,12 +37,13 @@ public class EnrollCourseByBuyingPackage extends base {
 	private static String CourseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String buyPackageName = "Buy Day Pass";
 	private static String packageName = "Day Pass";
-	private static String CourseStartMonth = "Dec";
-	private static String dsiredMonthYear = "December 2020";
+	private static String CourseStartMonth = "Jun";
+	private static int CourseStartYear = 2021;
+	private static String dsiredMonthYear = "June 2021";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $10.00/per";
 	private static String classCostInUnits = "Course Cost: 2 Unit(s) - Your Current Unit Value Is ";
-	private static String CourseStartDate = "Date: 12/21/2020";
+	private static String CourseStartDate = "Date: 06/21/2021";
 	private static int unitCount = 0;
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
@@ -101,6 +102,10 @@ public class EnrollCourseByBuyingPackage extends base {
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -337,6 +342,10 @@ public class EnrollCourseByBuyingPackage extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+			rm.SelectCourseStartYear(CourseStartYear);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 			rm.SelectCourseStartMonth(CourseStartMonth);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -517,6 +526,10 @@ public class EnrollCourseByBuyingPackage extends base {
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);

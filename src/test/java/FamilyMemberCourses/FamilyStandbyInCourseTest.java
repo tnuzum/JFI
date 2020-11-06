@@ -31,8 +31,9 @@ import resources.reusableWaits;
 
 public class FamilyStandbyInCourseTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String dsiredMonthYear = "December 2020";
-	private static String CourseStartMonth = "Dec";
+	private static String dsiredMonthYear = "June 2021";
+	private static String CourseStartMonth = "Jun";
+	private static int CourseStartYear = 2021;
 	private static String courseToEnroll = "DEMO STANDBY COURSE";
 	private static String courseNameDisplayed = "Demo Standby Course";
 	private static String courseTimeDisplayed = "Start Time: 4:00 PM";
@@ -102,6 +103,10 @@ public class FamilyStandbyInCourseTest extends base {
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -410,7 +415,7 @@ public class FamilyStandbyInCourseTest extends base {
 		}
 	}
 
-	@Test(priority = 3, dependsOnMethods = { "FamilyMemberEnrollment" })
+	@Test(priority = 3)
 	public void FamilyMemberDeleteStandby() throws InterruptedException, IOException {
 		try {
 			rm.deleteStandbyCourseInCOG(courseNameDisplayed, "Jonas Sports-Plex", member5, member6);

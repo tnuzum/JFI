@@ -29,8 +29,9 @@ import resources.reusableWaits;
 
 public class FamilyMemberCourseEnrollment2 extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Dec";
-	private static String dsiredMonthYear = "December 2020";
+	private static int CourseStartYear = 2021;
+	private static String CourseStartMonth = "Jun";
+	private static String dsiredMonthYear = "June 2021";
 	private static String courseToEnroll = "COURSEFREEWITHSERVICED";
 	private static String courseNameDisplayed = "CourseFreeWithServiceD";
 	private static String courseTimeDisplayed = "Start Time: 6:30 PM";
@@ -82,6 +83,10 @@ public class FamilyMemberCourseEnrollment2 extends base {
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);

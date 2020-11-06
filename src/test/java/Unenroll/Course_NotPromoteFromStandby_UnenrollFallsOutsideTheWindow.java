@@ -30,11 +30,11 @@ import resources.reusableWaits;
 
 public class Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Dec";
-	private static String dsiredMonthYear = "December 2020";
+	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "February 2021";
 	private static String CourseToEnroll = "STANDBYPROMONOCOURSE";
 	private static String CourseNameDisplayed = "StandbyPromoNoCourse";
-
+	private static int CourseStartYear = 2021;
 	private static String YesRefundOnAccount = "This credit will be placed on your on account and be applied to your outstanding invoice.";
 	private static String YesRefundOATaxInfo = "Plus applicable taxes.";
 	private static String NoRefund = "This Course is non refundable";
@@ -80,6 +80,10 @@ public class Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow extends 
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -241,6 +245,10 @@ public class Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow extends 
 			d.getMyCoursesEventsScheduleButton().click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);

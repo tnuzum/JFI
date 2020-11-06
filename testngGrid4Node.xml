@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="Grid4 Testing" parallel="tests" thread-count="3" preserve-order="true" verbose="2">
+
+	<listeners>
+		<listener class-name="EME.listeners" />
+		<!--listener class-name = "resources.ExtentReporterNG"/ -->
+	</listeners>
+	
+	<test  name="Firefox Test" parallel="none" preserve-order="true" group-by-instances="true">
+	
+		<parameter name="Browser" value="firefox"/>
+		
+		<classes>
+			<class name="EME_Browser.loginPageTest_Browser" />
+			<!--class name="EME_Browser.PageLaunchTest_Browser" /-->
+			<class name="EME_Browser.DashBoard_Layout_Browser" />
+			
+		</classes>
+		
+	</test> 
+	
+	<test  name="Chrome Test" parallel="none" preserve-order="true" group-by-instances="true">
+	
+		<parameter name="Browser" value="chrome"/>
+		
+		<classes>
+			
+			<class name="EME_Browser.loginPageTest_Browser" />
+			<!--class name="EME_Browser.PageLaunchTest_Browser" /-->  
+			<class name="EME_Browser.DashBoard_Layout_Browser" />
+			
+		</classes>
+	</test>
+	
+	<test  name="Edge Test" parallel="none" preserve-order="true" group-by-instances="true">
+		<parameter name="Browser" value="MicrosoftEdge"/>
+		
+		<classes>
+		
+			<class name="EME_Browser.loginPageTest_Browser" />
+			<!--class name="EME_Browser.PageLaunchTest_Browser" /--> 
+			<class name="EME_Browser.DashBoard_Layout_Browser" />
+		
+		</classes>
+	</test>
+</suite> <!-- Suite -->
