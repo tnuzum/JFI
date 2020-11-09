@@ -1,11 +1,15 @@
 package EME_Browser;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -27,10 +31,33 @@ public class loginPageTest_Browser extends base2 {
 	public void initialize(String Browser) throws IOException, InterruptedException {
 
 		try {
-			driver = initializeDriver(Browser);
+
+			log.info(Browser + " Browser: Running Tests on Selenium Grid");
+
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setBrowserName(Browser); // dc.setPlatform(Platform.WINDOWS);
+
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
+
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().deleteAllCookies();
+			driver.manage().window().maximize();
+
+			// driver = initializeDriver(Browser);
 		} catch (java.lang.NullPointerException npe) {
 
-			driver = initializeDriver(Browser);
+			log.info(Browser + " Browser: Running Tests on Selenium Grid");
+
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setBrowserName(Browser); // dc.setPlatform(Platform.WINDOWS);
+
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
+
+			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			driver.manage().deleteAllCookies();
+			driver.manage().window().maximize();
+
+			// driver = initializeDriver(Browser);
 
 			System.out.println("driver initialized again");
 			log.error("driver initialized again");

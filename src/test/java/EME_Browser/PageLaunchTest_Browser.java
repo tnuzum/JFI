@@ -2,13 +2,17 @@ package EME_Browser;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -54,7 +58,19 @@ public class PageLaunchTest_Browser extends base2 {
 	@BeforeClass
 	@Parameters({ "Browser" })
 	public void initialize(String Browser) throws IOException, InterruptedException {
-		driver = initializeDriver(Browser);
+
+		log.info(Browser + " Browser: Running Tests on Selenium Grid");
+
+		DesiredCapabilities dc = new DesiredCapabilities();
+		dc.setBrowserName(Browser); // dc.setPlatform(Platform.WINDOWS);
+
+		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
+
+		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+
+		// driver = initializeDriver(Browser);
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		d = new DashboardPO(driver);
