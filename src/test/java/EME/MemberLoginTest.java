@@ -71,13 +71,18 @@ public class MemberLoginTest extends base {
 		rm.memberLogout();
 	}
 
-	@Test(priority = 25, description = "Login Active Adult No Family Member")
+	@Test(priority = 25, description = "Login Active HOH No Family Member")
 	public void activeMember4Login() throws InterruptedException {
 		rm.activeMember4Login();
 		rw.waitForFamilyCount();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember4_fullname"));
-		Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "0");
+		// Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "0");// This is no
+		// more Valid as per PBI 171296
+		Assert.assertEquals(false,
+				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));// as per
+																												// PBI
+																												// 171296
 		rm.memberLogout();
 	}
 
