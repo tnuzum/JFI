@@ -212,7 +212,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 
 			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "true");
 
-			wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getPaymentButton()));
 
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			executor.executeScript("arguments[0].scrollIntoView(true);", ap.getPaymentButton());
@@ -384,7 +384,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 
 			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "true");
 
-			wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getPaymentButton()));
 
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
 			executor.executeScript("arguments[0].scrollIntoView(true);", ap.getPaymentButton());
@@ -738,7 +738,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 
 			Assert.assertTrue(PM.getSigPadInOut().getAttribute("style").contains("1"));
 
-			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "false");
+			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), null);
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {

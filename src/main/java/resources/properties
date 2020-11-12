@@ -1,6 +1,6 @@
 test_environment = local
-browser = Chrome
-browser1 = Firefox
+browser1 = Chrome
+browser = Firefox
 browser2 = Edge
 browser3 = Safari
 EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236

@@ -181,7 +181,7 @@ public class PayBalance_SaveCardQuestNotPresentForMember extends base {
 
 	}
 
-	@Test(priority = 3, description = "Verify Freeze Member Can Add CC as the setting is true for Freeze member", enabled = true)
+	@Test(priority = 3, description = "Verify Freeze Member Can Add CC as the setting is true for Freeze member", enabled = false)
 	public void VerifyFreezeMemberCanAddCC() throws InterruptedException, IOException {
 		try {
 
