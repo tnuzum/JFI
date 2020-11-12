@@ -230,12 +230,13 @@ public class reusableMethods extends base {
 		}
 	}
 
-	public boolean isWebElementPresent(WebElement E) {
+	public boolean isWebElementPresent(List<WebElement> E) {
 		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-		try {
-			E.isDisplayed();
+		int elementCount = E.size();
+		if (elementCount > 0) {
 			return true;
-		} catch (NoSuchElementException e) {
+
+		} else {
 			return false;
 		}
 	}

@@ -1,4 +1,4 @@
-package ManagePaymentMethods;
+package ManagePaymentMethods_FreezeStatus;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -23,10 +22,10 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
+public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "Robert Auto";
+	private static String memberName = "Robert1 Auto";
 	private static String agreementWithBadFOP = "Athletic Platinum";
 
 	public reusableWaits rw;
@@ -36,7 +35,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	public static ManagePayMethodsPO mp;
 	public static BreadcrumbTrailPO bt;
 
-	public Bug167495_AddACHCheckingVsSavingsFiltering() {
+	public Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -70,8 +69,8 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	public void CheckingVsSavings() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin("rauto", "Testing1!");
-			rw.waitForDashboardLoaded();
+			rm.activeMemberLogin("rauto1", "Testing1!");
+
 			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuMyAccount().click();
@@ -108,9 +107,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 				}
 			}
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getSavingsradio());
-			Thread.sleep(1000);
+
 			mp.getSavingsradio().click();
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
@@ -132,9 +129,6 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
 
-			Thread.sleep(1000);
-
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getIAgreeCheckboxACH());
 			Thread.sleep(1000);
 			mp.getIAgreeCheckboxACH().click();
 			Thread.sleep(1000);
@@ -179,15 +173,10 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	public void EditCheckingVsSavings() throws InterruptedException, IOException {
 
 		try {
-
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			int FopCount = mp.getCardNumbers().size();
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("USBankLast4Digits"))) {
-
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
-					Thread.sleep(1000);
 					mp.getEditPaymentMethodsButton().get(i).click();
 					break;
 				}
@@ -207,9 +196,6 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			}
 			Assert.assertTrue(mp.getNoThanks().size() > 0);
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
-
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getEditCheckingRadio());
-			Thread.sleep(1000);
 
 			mp.getEditCheckingRadio().click(); // Checking Account
 
@@ -232,8 +218,6 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 				}
 			}
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getIAgreeCheckboxEditACH());
-			Thread.sleep(1000);
 
 			mp.getIAgreeCheckboxEditACH().click();
 			Thread.sleep(1000);
@@ -284,7 +268,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	public void deleteACHInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1141112", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "Yes",
+			rm.deleteFOPInCOG("1147806", "Jonas Health and Wellness", prop.getProperty("USBankLast4Digits"), "Yes",
 					agreementWithBadFOP);
 
 		} catch (java.lang.AssertionError ae) {

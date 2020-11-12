@@ -1,8 +1,7 @@
-package ManagePaymentMethods;
+package ManagePaymentMethods_FreezeStatus;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,25 +17,24 @@ import org.testng.annotations.Test;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.ManagePayMethodsPO;
-import pageObjects.PaymentPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
+public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "Robert Auto";
-	private static String agreementWithBadFOP = "Athletic Platinum";
+	private static String memberName = "AgreementMembr1 Auto";
+	private static String agreement = "Balance Weight Loss 12 Week";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
+
 	public static DashboardPO d;
-	public static PaymentPO p;
 	public static ManagePayMethodsPO mp;
 	public static BreadcrumbTrailPO bt;
 
-	public Bug167495_AddACHCheckingVsSavingsFiltering() {
+	public CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -50,7 +48,6 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 		rw.setDriver(driver);
 
 		d = new DashboardPO(driver);
-		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
 
@@ -66,12 +63,12 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 	}
 
-	@Test(priority = 1, description = "Verify that No Thanks is displayed for Savings Filter")
-	public void CheckingVsSavings() throws InterruptedException, IOException {
+	@Test(priority = 1, description = "Adding a new Credit Card and linking the card to agreement")
+	public void AddNewCard_SelectAgreement() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin("rauto", "Testing1!");
-			rw.waitForDashboardLoaded();
+			rm.activeMemberLogin("agrmntmbr1", "Testing1!");
+
 			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuMyAccount().click();
@@ -82,67 +79,62 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(2000);
 
-			mp.getBankAccountLink().click();
+			mp.getNameOnCard().sendKeys(memberName);
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", mp.getCardNumber());
+			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
+			mp.getExpireMonth().sendKeys("04");
+			mp.getExpireYear().sendKeys("22");
+			mp.getHouseAcctNoRadioButton().get(1).click();
+			mp.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
 
-			mp.getAccountHolder().sendKeys(memberName);
-			Assert.assertTrue(mp.getUSBankRadio().isSelected());
+			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
+			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
+			Assert.assertTrue(mp.getLabelText1().get(1).isDisplayed());
 
-			mp.getUSRoutingNumber().sendKeys(prop.getProperty("USBankRoutingNumber"));
-			mp.getUSAccountNumber().sendKeys(prop.getProperty("USBankAcctNumber"));
-
-			Assert.assertTrue(mp.getCheckingRadio().isSelected()); // Checking Account
+			Assert.assertTrue(!mp.getAddCCButton().isEnabled());
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
+				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
 
-				ArrayList<String> agreementLabels = new ArrayList<String>();
+					jse.executeScript("arguments[0].scrollIntoView();", mp.getAgreementCheckBox().get(i));
 
-				agreementLabels.add(mp.getAgreementLabel().get(i).getText());
+					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
+//					getScreenshot(testName + "agreementclicked", driver);
 
-				Assert.assertTrue(agreementLabels.contains(agreementWithBadFOP));
-
-				if (mp.getAgreementLabel().get(i).getText().contains(agreementWithBadFOP)) {
-
-					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
 					break;
 
 				}
 			}
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getSavingsradio());
+			Thread.sleep(2000);
+
+			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+					false);
+
 			Thread.sleep(1000);
-			mp.getSavingsradio().click();
+			mp.getIAgreeCheckbox().click();
+			Thread.sleep(2000);
 
-			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
+			Assert.assertTrue(mp.getAddCCButton().isEnabled());
 
-				ArrayList<String> agreementLabels = new ArrayList<String>();
+			mp.getAddCCButton().click();
 
-				agreementLabels.add(mp.getAgreementLabel().get(i).getText());
-
-				Assert.assertFalse(agreementLabels.contains(agreementWithBadFOP));
-
-			}
-
-			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
-
-			Assert.assertTrue(mp.getNoThanks().size() > 0);
-			mp.getNoThanks().get(0).click();
+			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
+			Thread.sleep(1000);
+			mp.getPopupConfirmationButton().click();
+			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
-			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
+			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
 
 			Thread.sleep(1000);
 
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getIAgreeCheckboxACH());
-			Thread.sleep(1000);
-			mp.getIAgreeCheckboxACH().click();
-			Thread.sleep(1000);
-
-			mp.getAddBankAcctButton().click();
+			mp.getAddCCButton().click();
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
-			Assert.assertEquals("BANK ACCOUNT ADDED", mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
 			mp.getPopupConfirmationButton().click();
 
 			Thread.sleep(3000);
@@ -175,67 +167,57 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 	}
 
-	@Test(priority = 2, description = "Verify that No Thanks is displayed for Savings Filter on Edit")
-	public void EditCheckingVsSavings() throws InterruptedException, IOException {
+	@Test(priority = 2, description = "Editing  a Credit Card ")
+	public void EditCard() throws InterruptedException, IOException {
 
 		try {
-
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			int FopCount = mp.getCardNumbers().size();
 			for (int i = 0; i < FopCount; i++) {
 
-				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("USBankLast4Digits"))) {
-
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
-					Thread.sleep(1000);
+				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("CCLast4Digits"))) {
 					mp.getEditPaymentMethodsButton().get(i).click();
 					break;
 				}
 			}
 			Thread.sleep(1000);
+			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Card"));
 
-			Assert.assertTrue(mp.getEditSavingsRadio().isSelected());
+			String text = mp.getEditNameOnCard().getAttribute("ng-reflect-model");
+			System.out.println(text);
 
-			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
+			Assert.assertEquals(text, memberName);
 
-				ArrayList<String> agreementLabels = new ArrayList<String>();
+			mp.getHouseAcctNoRadioButton().get(0).click();
+			mp.getInClubPurchaseNoRadio().click();
+			Thread.sleep(3000);
 
-				agreementLabels.add(mp.getAgreementLabel().get(i).getText());
+			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
+			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
-				Assert.assertFalse(agreementLabels.contains(agreementWithBadFOP));
-
-			}
-			Assert.assertTrue(mp.getNoThanks().size() > 0);
-			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
-
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getEditCheckingRadio());
-			Thread.sleep(1000);
-
-			mp.getEditCheckingRadio().click(); // Checking Account
-
-			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
-					false);
+			Assert.assertTrue(!mp.getSaveChangesButtonCC().isEnabled());
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
-
-				ArrayList<String> agreementLabels = new ArrayList<String>();
-
-				agreementLabels.add(mp.getAgreementLabel().get(i).getText());
-
-				Assert.assertTrue(agreementLabels.contains(agreementWithBadFOP));
-
-				if (mp.getAgreementLabel().get(i).getText().contains(agreementWithBadFOP)) {
-
+				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
 					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
-
 					break;
 
 				}
 			}
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getIAgreeCheckboxEditACH());
-			Thread.sleep(1000);
 
-			mp.getIAgreeCheckboxEditACH().click();
+			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
+					false);
+
+			Thread.sleep(1000);
+			mp.getEditIAgreeCheckbox().click();
+			Thread.sleep(2000);
+
+			Assert.assertTrue(mp.getSaveChangesButtonCC().isEnabled());
+
+			mp.getSaveChangesButtonCC().click();
+
+			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
+			Thread.sleep(1000);
+			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
@@ -244,13 +226,14 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 			Thread.sleep(1000);
 
-			mp.getSaveChangeButton().click();
+			mp.getSaveChangesButtonCC().click();
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
-			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("CARD UPDATED", mp.getPopupConfirmation1().getText());
 			mp.getPopupConfirmationButton().click();
 
-			Thread.sleep(1000);
+			Thread.sleep(3000);
+
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
@@ -281,11 +264,10 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	}
 
 	@Test(priority = 3, description = "Delete the Card in COG")
-	public void deleteACHInCOG() throws InterruptedException, IOException {
+	public void deleteCardInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.deleteFOPInCOG("1141112", "Jonas Sports-Plex", prop.getProperty("USBankLast4Digits"), "Yes",
-					agreementWithBadFOP);
+			rm.deleteFOPInCOG("1147809", "Jonas Health and Wellness", "1111", "Yes", agreement);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -313,6 +295,8 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			// Assert.fail(eci.getMessage());
 		}
 	}
+
+//	@AfterTest
 
 	@AfterClass
 	public void teardown() throws InterruptedException {

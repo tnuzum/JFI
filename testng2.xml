@@ -12,45 +12,48 @@
 
 		<classes>
 
+		<class
+				name="PayBalance.PayBalance_NewCard_CheckAgrmntWithBadFOP" />
+			<class name="PayBalance.PayBalance_NewCard_HasAgreement_NoSave" />
+			<class name="PayBalance.PayBalance_NewCard_NoAgreement_NoSave" />
 			<class
-				name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ResourceNotSelected" />
-			<class
-				name="SingleMemberAppointments.ClubNotReqPackages_BookAppt_ThreeResources" />
-			<class
-				name="SingleMemberAppointments.ClubReqPackages_BookAppt_CancelTransaction" />
-			<class
-				name="SingleMemberAppointments.ClubReqPackages_BookAppt_MultiResourcesNotSelected" />
-			<class
-				name="SingleMemberAppointments.ClubReqPackages_BookAppt_MultiResourcesPartiallySelected" />
-			<class
-				name="SingleMemberAppointments.ClubReqPackages_BookAppt_MultiResourcesSelected" />
-			<class
-				name="SingleMemberAppointments.ClubReqPackages_BookAppt_NonMSS" />
-			<class
-				name="SingleMemberAppointments.ClubReqPackages_BookAppt_SingleResource_NotSelected" />
-			<class
-				name="SingleMemberAppointments.ClubReqPackages_BookAppt_SingleResource_Selected" />
-			<class
-				name="SingleMemberAppointments.ClubReqPackages_BookAppt_FreeAppointment" />
+				name="PayBalance.PayBalance_NewCard_UnCheckAgrmntWithBadFOP" />
+			<class name="PayBalance.PayBalance_StoredCard" />
+			<class name="PayBalance.PayBalance_NewCard_LinkAgreement" />
+			<class name="PayBalance.PayBalance_NewCard_HasAgreement" />
+			<class name="PayBalance.PayBalance_NewCard_NoAgreement" />
 
 			<class
-				name="SingleMemberAppointments.CancelApptWithFee_NewCard" />
+				name="ManagePaymentMethods.NoAgreement_AddCanadianBankSavingsAcct" />
 			<class
-				name="SingleMemberAppointments.CancelApptWithFee_OnAccount" />
+				name="ManagePaymentMethods.ManagepaymntMethods_AdditionalQuestionsTest" />
 			<class
-				name="SingleMemberAppointments.CancelApptWithFee_SavedCard" />
+				name="ManagePaymentMethods.CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard" />
 			<class
-				name="SingleMemberAppointments.CancelApptWithFee_cancelTransaction" />
-
+				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditCreditCard" />
 			<class
-				name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_NoPackage" />
+				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditCanadianBankSavingsAcct" />
 			<class
-				name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage" />
+				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct" />
 			<class
-				name="FamilyAppointments.HOH_BookAppointmentForSelf_NoFamilyMember" />
-			<class name="FamilyAppointments.HOH_BookAppointmentForSelf" />
-			<class name="FamilyAppointments.NonHOH_BookAppointmentForSelf" />
-
+				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditUSBankCheckingAcct" />
+			<class name="ManagePaymentMethods.MyAgreementsLayout" />
+			<class name="ManagePaymentMethods.VerifyMessageTest" />
+			<class
+				name="ManagePaymentMethods.CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard" />
+			<class
+				name="ManagePaymentMethods.CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct" />
+			<class name="ManagePaymentMethods.NoAgreement_AddCreditCard" />
+			<class
+				name="ManagePaymentMethods.CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct" />
+			<class
+				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditCanadianBankCheckingAcct" />
+			<class
+				name="ManagePaymentMethods.NoAgreement_AddUSBankCheckingAcct" />
+			<class
+				name="ManagePaymentMethods.CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard" />
+			<class
+				name="ManagePaymentMethods.Bug167495_AddACHCheckingVsSavingsFiltering" />
 		</classes>
 	</test>
 

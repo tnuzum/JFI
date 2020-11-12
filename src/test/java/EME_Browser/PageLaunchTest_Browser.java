@@ -76,7 +76,8 @@ public class PageLaunchTest_Browser extends base2 {
 		d = new DashboardPO(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		getEMEURL();
+		System.out.println(Browser);
+		driver.get("https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236");
 		rm.activeMemberLogin("rauto", "Testing1!");
 
 	}

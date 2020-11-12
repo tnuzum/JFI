@@ -200,6 +200,40 @@ public class PayBalance_NewCard_HasAgreement_NoSave extends base {
 		}
 	}
 
+	@Test(priority = 3, description = "Verify Card is not saved in COG", enabled = true)
+	public void VerifyCardNotSavedInCOG() throws InterruptedException, IOException {
+		try {
+
+			rm.VerifyFOPNotSavedInCOG("1141114", "Jonas Sports-Plex", "1111");
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+	}
+
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
