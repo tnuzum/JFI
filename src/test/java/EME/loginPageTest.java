@@ -1,7 +1,6 @@
 package EME;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -83,7 +82,7 @@ public class loginPageTest extends base {
 		log.info("Password Required Message Confirmed");
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4, enabled = false)
 	public void wrongCredentialsMessages() throws InterruptedException {
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("invalid_username"));
