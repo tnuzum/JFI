@@ -2,6 +2,7 @@ package GridNodeTests;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -57,7 +58,8 @@ public class PageLaunchTest_MSEdge extends base {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setBrowserName("MicrosoftEdge");
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
+		// System.setProperty("webdriver.edge.driver",
+		// "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
 
 		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 

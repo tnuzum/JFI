@@ -138,6 +138,14 @@ public class base {
 					co.addArguments("--start-maximized");
 					// co.addArguments("--window-size=1920, 1080");
 					co.merge(dcch);
+
+					/*
+					 * co.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+					 * co.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+					 * co.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION,
+					 * true); co.setCapability("chrome.switches", Arrays.asList("--incognito"));
+					 */
+
 					System.setProperty("webdriver.chrome.driver",
 							projectPath + "\\src\\main\\java\\webDrivers\\chromedriver.exe");
 					if (browserName.contains("headless")) {
@@ -235,6 +243,7 @@ public class base {
 				+ "screenshot.png";
 		FileUtils.copyFile(src, new File(destinationFile));
 		return destinationFile;
+
 	}
 
 }

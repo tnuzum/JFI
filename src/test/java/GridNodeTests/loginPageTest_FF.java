@@ -2,6 +2,7 @@ package GridNodeTests;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
@@ -37,7 +38,8 @@ public class loginPageTest_FF extends base {
 		dc.setPlatform(Platform.WINDOWS);
 		// dc.setCapability(FirefoxDriver.BINARY, "C:\\Program Files\\Mozilla
 		// Firefox\\firefox.exe");
-		System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
+		// System.setProperty("webdriver.gecko.driver",
+		// "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);

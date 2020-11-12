@@ -1,20 +1,24 @@
-package EME_EnvURL;
+package GridNodeTests;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
@@ -33,13 +37,15 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class PageLaunchTest extends base {
+public class PageLaunchTest_Chrome extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
+	private static String EMELoginPage = "https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236";
+
+	private static DashboardPO d;
 	public reusableWaits rw;
 	public reusableMethods rm;
-	private static DashboardPO d;
 
-	public PageLaunchTest() {
+	public PageLaunchTest_Chrome() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -47,17 +53,28 @@ public class PageLaunchTest extends base {
 
 //	@BeforeTest
 	@BeforeClass
-	@Parameters({ "EMELoginPage" })
-	public void initialize(String EMELoginPage) throws InterruptedException, IOException {
-//		public void initialize() throws InterruptedException, IOException {
-		driver = initializeDriver();
+	public void initialize() throws IOException, InterruptedException {
+		log.info("Firefox Browser: Running Tests on Selenium Grid");
+		DesiredCapabilities dc = new DesiredCapabilities();
+		dc.setBrowserName("chrome");
+		dc.setPlatform(Platform.WINDOWS);
+		// dc.setCapability(FirefoxDriver.BINARY, "C:\\Program Files\\Mozilla
+		// Firefox\\firefox.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
+
+		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
+
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		d = new DashboardPO(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
-		// String EMELoginPage = prop.getProperty("EMELoginPage");
+		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(EMELoginPage);
-		rm.activeMember1Login();
+		rm.activeMemberLogin("rauto", "Testing1!");
 		rw.waitForDashboardLoaded();
 	}
 
@@ -129,12 +146,13 @@ public class PageLaunchTest extends base {
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		Assert.assertEquals(a.getPageHeader().getText(), "Appointments");
 		log.info("Appointments Page Header Verified");
-		rm.returnToDashboard();
-		rw.waitForDashboardLoaded();
+		rm.memberLogout();
+
 	}
 
 	@Test(priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException {
+		rm.activeMemberLogin("rauto", "Testing1!");
 		rw.waitForDashboardLoaded();
 		d.getMyFamilyManageButton().click();
 		ManageFamilyPO a = new ManageFamilyPO(driver);
@@ -145,7 +163,7 @@ public class PageLaunchTest extends base {
 		Assert.assertEquals(a.getPageHeader().getText(), "Manage Family");
 		log.info("Manage Family Page Header Verified");
 		rm.returnToDashboard();
-		rw.waitForDashboardLoaded();
+
 	}
 
 	@Test(priority = 55)
@@ -155,12 +173,12 @@ public class PageLaunchTest extends base {
 		Assert.assertEquals(a.getPageHeader().getText(), "Manage Profile");
 		log.info("Manage Profile Page Header Verified");
 		rm.returnToDashboard();
-		rw.waitForDashboardLoaded();
+
 	}
 
 	@Test(priority = 60)
 	public void PrivacyPolicyLinkTest() throws InterruptedException {
-		rw.waitForDashboardLoaded();
+
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(d.getPrivacyPolicyLink()));
 		log.info("element is clickable");
