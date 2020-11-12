@@ -2,6 +2,7 @@ package GridNodeTests;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
@@ -35,7 +36,8 @@ public class loginPageTest_MSEdge extends base {
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setBrowserName("MicrosoftEdge");
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
+		// System.setProperty("webdriver.edge.driver",
+		// "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
@@ -120,6 +122,7 @@ public class loginPageTest_MSEdge extends base {
 
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), wrongCredentialsMsg);
 		log.info("Error Message Title Verified");
+		System.out.println("Error Message Title Verified");
 	}
 
 //	@AfterTest
