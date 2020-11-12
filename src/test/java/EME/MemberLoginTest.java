@@ -77,7 +77,8 @@ public class MemberLoginTest extends base {
 		rw.waitForFamilyCount();
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember4_fullname"));
-		Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "0");
+		Assert.assertEquals(false,
+				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
 		rm.memberLogout();
 	}
 

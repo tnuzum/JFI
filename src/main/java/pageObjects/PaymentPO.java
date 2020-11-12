@@ -78,6 +78,7 @@ public class PaymentPO {
 	By inClubQuestion = By.xpath("//label[contains(text(),'Would you like to use this card at the club?')]");
 	By additionalQuestionPopupTitle = By.xpath("//h1[@class='modal-title text-center']");
 	By additionalQuestionPopupClose = By.xpath("//button[@class='btn btn-primary btn-outline']");
+	By sigPadInOut = By.id("SignaturePadPaymentMethods");
 
 // CONSTRUCTOR
 
@@ -312,6 +313,22 @@ public class PaymentPO {
 
 	public WebElement getAdditionalQuestionPopupClose() {
 		return driver.findElement(additionalQuestionPopupClose);
+	}
+
+	public List<WebElement> getSaveCardQuestions() {
+		return driver.findElements(saveCardQuestion);
+	}
+
+	public List<WebElement> getOnAccountQuestions() {
+		return driver.findElements(onAccountCardQuestion);
+	}
+
+	public List<WebElement> getInClubQuestions() {
+		return driver.findElements(inClubQuestion);
+	}
+
+	public WebElement getSigPadInOut() {
+		return driver.findElement(sigPadInOut);
 	}
 
 }

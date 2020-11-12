@@ -42,12 +42,13 @@ public class DashBoard_Layout_Browser extends base2 {
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 
-		driver = initializeDriver(Browser);
+//		driver = initializeDriver(Browser);
 		rm.setDriver(driver);
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		getEMEURL();
+		System.out.println(Browser);
+		driver.get("https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236");
 		rm.activeMemberLogin("rauto", "Testing1!"); // Login to EME
 
 	}

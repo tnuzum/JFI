@@ -1,4 +1,4 @@
-package ManagePaymentMethods;
+package ManagePaymentMethods_FreezeStatus;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -22,10 +22,10 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class MyAgreementsLayout extends base {
+public class MyAgreementsLayout_FreezeMbr extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "FopMember Auto";
+	private static String memberName = "FopMember1 Auto";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -34,7 +34,7 @@ public class MyAgreementsLayout extends base {
 
 	public static ManagePayMethodsPO mp;
 
-	public MyAgreementsLayout() {
+	public MyAgreementsLayout_FreezeMbr() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -66,8 +66,8 @@ public class MyAgreementsLayout extends base {
 	public void AddNewCard_AgreementLayout() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin("fopmbr", "Testing1!");
-			rw.waitForDashboardLoaded();
+			rm.activeMemberLogin("fopmbr1", "Testing1!");
+
 			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuMyAccount().click();
@@ -84,12 +84,7 @@ public class MyAgreementsLayout extends base {
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
 			mp.getExpireMonth().sendKeys("04");
 			mp.getExpireYear().sendKeys("22");
-			Thread.sleep(1000);
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getHouseAcctNoRadioButton().get(1));
-			Thread.sleep(1000);
 			mp.getHouseAcctNoRadioButton().get(1).click();
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getInClubPurchaseNoRadio());
-			Thread.sleep(1000);
 			mp.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
 
@@ -97,8 +92,7 @@ public class MyAgreementsLayout extends base {
 			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
 
 			int m = 0;
-			System.out.println(mp.getAgreementInfoDiv().size());
-			for (int i = 2; i < mp.getAgreementInfoDiv().size(); i++) {
+			for (int i = 4; i < mp.getAgreementInfoDiv().size(); i++) {
 				System.out.println(mp.getAgreementInfoDiv().get(i).getText());
 				if (!mp.getAgreementInfoDiv().get(i).getText().contains("No issues detected")) {
 
@@ -108,8 +102,6 @@ public class MyAgreementsLayout extends base {
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
 
-					jse.executeScript("arguments[0].scrollIntoView();", AgreementCheckbox);
-
 					AgreementCheckbox.click();
 
 					Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
@@ -117,7 +109,7 @@ public class MyAgreementsLayout extends base {
 
 			}
 
-			for (int j = 2; j < mp.getAgreementInfoDiv().size(); j++) {
+			for (int j = 4; j < mp.getAgreementInfoDiv().size(); j++) {
 
 				System.out.println(mp.getAgreementInfoDiv().get(j).getText());
 
@@ -129,9 +121,6 @@ public class MyAgreementsLayout extends base {
 				}
 			}
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
-
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getIAgreeCheckbox());
-			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -185,9 +174,7 @@ public class MyAgreementsLayout extends base {
 			 * 
 			 * } d.getMenuManagePmntMethods().click(); Thread.sleep(2000);
 			 */
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getBankAccountLink());
-			Thread.sleep(1000);
+
 			mp.getBankAccountLink().click();
 			Thread.sleep(1000);
 
@@ -204,8 +191,8 @@ public class MyAgreementsLayout extends base {
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			int m = 0;
-			for (int i = 0; i < mp.getAgreementInfoDiv().size() - 3; i++) {
-				System.out.println(mp.getAgreementInfoDiv().get(i).getText());
+			for (int i = 0; i < mp.getAgreementInfoDiv().size() - 4; i++) {
+				// System.out.println(mp.getAgreementInfoDiv().get(i).getText());
 
 				if (!mp.getAgreementInfoDiv().get(i).getText().contains("No issues detected")) {
 
@@ -213,9 +200,6 @@ public class MyAgreementsLayout extends base {
 					WebElement AgreementCheckbox = mp.getAgreementDiv().get(i).findElement(By.tagName("input"));
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
-
-					jse.executeScript("arguments[0].scrollIntoView();", AgreementCheckbox);
-					Thread.sleep(1000);
 
 					AgreementCheckbox.click();
 
@@ -225,9 +209,9 @@ public class MyAgreementsLayout extends base {
 
 			}
 
-			for (int j = 0; j < mp.getAgreementInfoDiv().size() - 3; j++) {
+			for (int j = 0; j < mp.getAgreementInfoDiv().size() - 4; j++) {
 
-				System.out.println(mp.getAgreementInfoDiv().get(j).getText());
+				// System.out.println(mp.getAgreementInfoDiv().get(j).getText());
 				if (mp.getAgreementInfoDiv().get(j).getText().contains("No issues detected")) {
 
 					WebElement AgreementCheckbox1 = mp.getAgreementDiv().get(j).findElement(By.tagName("input"));
@@ -315,10 +299,6 @@ public class MyAgreementsLayout extends base {
 					if (isDisabled.equals("false"))
 
 					{
-						Thread.sleep(1000);
-						JavascriptExecutor jse = (JavascriptExecutor) driver;
-						jse.executeScript("arguments[0].scrollIntoView();", AgreementCheckbox);
-						Thread.sleep(1000);
 						AgreementCheckbox.click();
 						m++;
 						Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
@@ -351,10 +331,6 @@ public class MyAgreementsLayout extends base {
 			Assert.assertTrue(!mp.getSaveChangesButtonCC().isEnabled());
 
 			BreadcrumbTrailPO bt = new BreadcrumbTrailPO(driver);
-
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView();", bt.getBreadcrumb2());
-			Thread.sleep(1000);
 			bt.getBreadcrumb2().click();
 			Thread.sleep(2000);
 		}
@@ -384,7 +360,7 @@ public class MyAgreementsLayout extends base {
 			int FopCount = mp.getCardNumbers().size();
 			for (int i = 0; i < FopCount; i++) {
 
-				if (mp.getCardNumbers().get(i).getText().contains("7899")) {
+				if (mp.getCardNumbers().get(i).getText().contains("6789")) {
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
@@ -424,9 +400,6 @@ public class MyAgreementsLayout extends base {
 					if (isDisabled.equals("false"))
 
 					{
-						JavascriptExecutor jse = (JavascriptExecutor) driver;
-						jse.executeScript("arguments[0].scrollIntoView();", AgreementCheckbox);
-						Thread.sleep(1000);
 						AgreementCheckbox.click();
 						m++;
 						Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
@@ -480,7 +453,7 @@ public class MyAgreementsLayout extends base {
 
 //	@AfterTest
 
-	@AfterClass(enabled = true)
+	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.close();
 		driver = null;
