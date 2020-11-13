@@ -74,7 +74,7 @@ public class MemberLoginTest extends base {
 	@Test(priority = 25, description = "Login Active HOH No Family Member")
 	public void activeMember4Login() throws InterruptedException {
 		rm.activeMember4Login();
-		rw.waitForFamilyCount();
+
 		DashboardPO d = new DashboardPO(driver);
 		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember4_fullname"));
 		// Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "0");// This is no
