@@ -443,7 +443,9 @@ public class ShopAndPurchasePackages extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					JavascriptExecutor jse = (JavascriptExecutor) driver;
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -635,7 +637,8 @@ public class ShopAndPurchasePackages extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -653,13 +656,13 @@ public class ShopAndPurchasePackages extends base {
 //				System.out.println(PM.getNameOnCardField().getAttribute("value"));
 			Assert.assertEquals(prop.getProperty("activeMember8_fullname"),
 					PM.getNameOnCardField().getAttribute("value"));
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", PM.getCardNumberField());
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
 			PM.getExpirationYear().sendKeys("22");
 			PM.getSecurityCode().sendKeys("123");
-			PM.getCheckBox().click();
+			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}

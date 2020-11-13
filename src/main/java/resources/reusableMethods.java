@@ -455,7 +455,8 @@ public class reusableMethods extends base {
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
 		// Note the package units
-		PP.getMyPackagesButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", PP.getMyPackagesButton());
 		int IntUnitCount = 0;
 		Thread.sleep(3000);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -468,7 +469,7 @@ public class reusableMethods extends base {
 				String[] unitCount = PP.getUnitsCount().get(j).getText().split(" ");
 				String formattedUnitCount = unitCount[0].trim();
 				IntUnitCount = Integer.parseInt(formattedUnitCount);
-				PP.getMyPackagesButton().click();
+				jse.executeScript("arguments[0].click();", PP.getMyPackagesButton());
 				break;
 			}
 		}
