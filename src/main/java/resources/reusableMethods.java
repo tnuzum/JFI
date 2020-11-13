@@ -2352,6 +2352,7 @@ public class reusableMethods extends base {
 			if (fml.getText().contains(familyMbrName)) {
 
 				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				Thread.sleep(2000);
 				fml.click(); // Selects the member
 
 				break;
