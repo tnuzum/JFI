@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -83,7 +82,9 @@ public class PayBalance_StoredCard extends base {
 				variable++;
 			}
 			p.getCustomAmountInput().sendKeys("5.00");
-			Thread.sleep(300);
+			Thread.sleep(3000);
+
+			jse.executeScript("arguments[0].scrollIntoView();", p.getPayWithThisMethodButton1());
 
 			p.getPayWithThisMethodButton1().click();
 

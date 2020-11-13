@@ -2,7 +2,6 @@ package ShopPackages;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -271,7 +270,8 @@ public class ShopAndPurchasePackages extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -470,7 +470,8 @@ public class ShopAndPurchasePackages extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -664,7 +665,8 @@ public class ShopAndPurchasePackages extends base {
 			}
 
 			// Clicks on the Pay button without signature
-			PM.getPaymentButton().click();
+
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			System.out.println(PM.getPopupContent().getText());
 			Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 			PM.getPopupOk().click();
@@ -691,7 +693,8 @@ public class ShopAndPurchasePackages extends base {
 			// Verifies the Pay button contains the total amount
 			Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt2));
 			// Clicks the Pay button
-			PM.getPaymentButton().click();
+
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
@@ -1068,6 +1071,7 @@ public class ShopAndPurchasePackages extends base {
 			// Noting down the Package Units before purchasing
 			int IntUnitCountBefore3 = 0;
 			int IntUnitCountAfter3 = 0;
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
 
@@ -1121,7 +1125,9 @@ public class ShopAndPurchasePackages extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("5454")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
 					break;
 				}
 			}
@@ -1141,7 +1147,8 @@ public class ShopAndPurchasePackages extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
