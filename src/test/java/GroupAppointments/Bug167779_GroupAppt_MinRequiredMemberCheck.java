@@ -1,7 +1,6 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -125,7 +124,8 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "3");
 			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "5");
 			ap.getGroupMemberSearchInput().sendKeys("auto");
-			ap.getGroupMemberSearchButton().click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(2000);
 
@@ -196,7 +196,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			{
 				System.out.println("Waiting for available times");
 			}
-			ap.getSelectTimeMorningButton().click();
+			jse.executeScript("arguments[0].click();", st1);
 			WebElement st2 = ap.getSelectTime1stAvailable();
 //					while (!st2.isEnabled())//while button is NOT(!) enabled
 //					{
@@ -207,7 +207,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			startTime = st2.getText();
 			System.out.println(startTime);
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 			WebElement p1 = ap.getPopup1BookButton();
@@ -249,7 +249,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			{
 				System.out.println("Waiting for available times");
 			}
-			ap.getSelectTimeMorningButton().click();
+			jse.executeScript("arguments[0].click();", st1);
 			st2 = ap.getSelectTime1stAvailable();
 //					
 			wait1.until(ExpectedConditions.elementToBeClickable(st2));
@@ -379,7 +379,9 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			{
 //			Thread.sleep(200);
 			}
-			a.getEditApptProceedButton().click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", a.getEditApptProceedButton());
+
 			Thread.sleep(1000);
 			boolean result1 = rw.popupMessageYesButton();
 			if (result1 == true) {
