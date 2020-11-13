@@ -3,7 +3,6 @@ package resources;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -214,7 +213,9 @@ public class reusableMethods extends base {
 			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
-		d.getDashboardButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", d.getDashboardButton());
+
 //		d.getBreadcrumbDashboard().click();
 		rw.waitForDashboardLoaded1();
 		return null;
@@ -329,7 +330,7 @@ public class reusableMethods extends base {
 
 			Actions a = new Actions(driver);
 			a.click(d.getMenuMyCalendar()).build().perform();
-			// JavascriptExecutor jse = (JavascriptExecutor) driver;
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			// jse.executeScript("arguments[0].click();", d.getMenuMyCalendar());
 			// d.getMenuMyCalendar().click();
 			log.info("Menu My Calendar clicked");
@@ -345,10 +346,12 @@ public class reusableMethods extends base {
 			}
 			Thread.sleep(1000);
 
+			jse.executeScript("arguments[0].scrollIntoView();", cp.getCalDayBadge());
+			Thread.sleep(1000);
 			cp.getCalDayBadge().click();
+			jse.executeScript("arguments[0].scrollIntoView();", cp.getCalEventTitle());
 			Thread.sleep(1000);
 			cp.getCalEventTitle().click();
-			Thread.sleep(1000);
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
@@ -477,6 +480,8 @@ public class reusableMethods extends base {
 		DashboardPO d = new DashboardPO(driver);
 		PackagesPO pp = new PackagesPO(driver);
 
+		JavascriptExecutor jse = ((JavascriptExecutor) driver);
+
 		this.openSideMenuIfNotOpenedAlready();
 
 		// Note the package units
@@ -500,7 +505,7 @@ public class reusableMethods extends base {
 
 				for (int k = 0; k < Packages.size(); k++) {
 					if (Packages.get(k).getText().contains(packageName)) {
-						JavascriptExecutor jse = ((JavascriptExecutor) driver);
+
 						jse.executeScript("arguments[0].scrollIntoView();", Packages.get(k));
 						Thread.sleep(1000);
 						String[] text = Packages.get(k).getText().split("\n");
@@ -513,7 +518,8 @@ public class reusableMethods extends base {
 				break;
 			}
 		}
-		d.getMenuMyAccount().click();
+		jse.executeScript("arguments[0].click();", d.getMenuMyAccount());
+
 		this.returnToDashboard();
 
 		return IntUnitCount;
@@ -664,9 +670,13 @@ public class reusableMethods extends base {
 				jse.executeScript("arguments[0].scrollIntoView();",
 						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
 
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific
-																									// Course
+				jse.executeScript("arguments[0].click();",
+						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
+
+				// driver.findElements(By.xpath("//div[contains(@class,
+				// 'column2')]")).get(j).click(); // Click on the
+				// specific
+				// Course
 				break;
 			}
 		}
@@ -1920,7 +1930,11 @@ public class reusableMethods extends base {
 
 		// Actions a = new Actions(driver);
 		// a.click(ap.getCalendarTomorrow()).build().perform();
-		ap.getCalendarTomorrow().findElement(By.tagName("span")).click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView();", ap.getCalendarTomorrow().findElement(By.tagName("span")));
+		jse.executeScript("arguments[0].click();", ap.getCalendarTomorrow().findElement(By.tagName("span")));
+		// ap.getCalendarTomorrow().findElement(By.tagName("span")).click();
+
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 
@@ -2062,8 +2076,8 @@ public class reusableMethods extends base {
 				}
 			}
 		}
-
-		c.getContinueButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 		Thread.sleep(5000);
 		if (!classFee.equalsIgnoreCase("Free")) {
@@ -2081,7 +2095,6 @@ public class reusableMethods extends base {
 						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 								.contains("5454")) {
 
-							JavascriptExecutor jse = (JavascriptExecutor) driver;
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
@@ -2096,7 +2109,8 @@ public class reusableMethods extends base {
 				while (!PM.getPaymentButton().isEnabled()) {
 					Thread.sleep(1000);
 				}
-				PM.getPaymentButton().click();
+
+				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			}
 		}
@@ -2165,8 +2179,8 @@ public class reusableMethods extends base {
 				}
 			}
 		}
-
-		c.getContinueButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 		Thread.sleep(5000);
 		if (!courseFee.equalsIgnoreCase("Free")) {
@@ -2184,7 +2198,6 @@ public class reusableMethods extends base {
 						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 								.contains("5454")) {
 
-							JavascriptExecutor jse = (JavascriptExecutor) driver;
 							jse.executeScript("arguments[0].scrollIntoView();",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
@@ -2199,7 +2212,8 @@ public class reusableMethods extends base {
 				while (!PM.getPaymentButton().isEnabled()) {
 					Thread.sleep(1000);
 				}
-				PM.getPaymentButton().click();
+
+				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			}
 		}
@@ -2366,8 +2380,7 @@ public class reusableMethods extends base {
 				}
 			}
 		}
-
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 		Thread.sleep(5000);
 		if (!classFee.equalsIgnoreCase("Free")) {
@@ -2399,7 +2412,7 @@ public class reusableMethods extends base {
 				while (!PM.getPaymentButton().isEnabled()) {
 					Thread.sleep(1000);
 				}
-				PM.getPaymentButton().click();
+				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			}
 		}
@@ -2507,7 +2520,7 @@ public class reusableMethods extends base {
 			}
 		}
 
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 		Thread.sleep(5000);
 		if (!courseFee.equalsIgnoreCase("Free")) {
@@ -2539,7 +2552,8 @@ public class reusableMethods extends base {
 				while (!PM.getPaymentButton().isEnabled()) {
 					Thread.sleep(1000);
 				}
-				PM.getPaymentButton().click();
+
+				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			}
 		}

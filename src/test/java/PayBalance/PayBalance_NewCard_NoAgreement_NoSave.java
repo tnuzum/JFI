@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -29,7 +28,7 @@ import resources.reusableWaits;
 public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "Robert Auto";
+	private static String memberName = "Adam Auto";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -63,7 +62,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
-			rm.activeMemberLogin("rauto", "Testing1!");
+			rm.activeMemberLogin("aauto", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			d.getMyAccountPayNow().click();
@@ -101,6 +100,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 			p.getExpireMonth().sendKeys("04");
 			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
+			jse.executeScript("arguments[0].scrollIntoView();", p.getSaveCardNoRadio());
 			Thread.sleep(1000);
 			p.getSaveCardNoRadio().click();
 			Thread.sleep(1000);
@@ -147,7 +147,9 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 				System.out.println("popup was present");
 				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
-
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].scrollIntoView();", d.getBreadcrumbDashboard());
+			Thread.sleep(1000);
 			d.getBreadcrumbDashboard().click();
 		}
 
@@ -204,7 +206,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 	public void VerifyCardNotSavedInCOG() throws InterruptedException, IOException {
 		try {
 
-			rm.VerifyFOPNotSavedInCOG("1141112", "Jonas Sports-Plex", "1111");
+			rm.VerifyFOPNotSavedInCOG("G179", "Jonas Sports-Plex", "1111");
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

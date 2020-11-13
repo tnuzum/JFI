@@ -1,7 +1,6 @@
 package FamilyMemberCourses;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -247,7 +246,9 @@ public class FamilyMemberCourseEnrollment extends base {
 					Assert.assertTrue(paymentOptions.contains(buyPackageName));
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains(buyPackageName)) {
-							Labels.get(j).click();
+
+							((JavascriptExecutor) driver).executeScript("arguments[0].click();", Labels.get(j));
+
 							break;
 						}
 					}
@@ -270,7 +271,8 @@ public class FamilyMemberCourseEnrollment extends base {
 				}
 
 			}
-			c.getContinueButton().click();
+
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", c.getContinueButton());
 
 			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 
@@ -308,7 +310,8 @@ public class FamilyMemberCourseEnrollment extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					((JavascriptExecutor) driver).executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -333,7 +336,7 @@ public class FamilyMemberCourseEnrollment extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", PM.getPaymentButton());
 			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			// Verifies the success message
