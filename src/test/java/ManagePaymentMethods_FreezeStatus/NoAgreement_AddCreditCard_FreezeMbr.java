@@ -24,6 +24,7 @@ public class NoAgreement_AddCreditCard_FreezeMbr extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "Paymember1 Auto";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -40,6 +41,9 @@ public class NoAgreement_AddCreditCard_FreezeMbr extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+
+		jse = (JavascriptExecutor) driver;
+
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -71,31 +75,34 @@ public class NoAgreement_AddCreditCard_FreezeMbr extends base {
 			Thread.sleep(2000);
 
 			mp.getNameOnCard().sendKeys(memberName);
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys("4111111111111111");
 			mp.getExpireMonth().sendKeys("04");
 			mp.getExpireYear().sendKeys("22");
 			Thread.sleep(500);
-			mp.getHouseAcctNoRadioButton().get(1).click();
+			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(1));
 			Thread.sleep(500);
-			mp.getInClubPurchaseNoRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//span[contains(text(),'My Agreements')]")), false);
 
 			Thread.sleep(1000);
-			mp.getIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckbox());
 			Thread.sleep(2000);
 
 			Assert.assertTrue(mp.getAddCCButton().isEnabled());
 
-			mp.getAddCCButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddCCButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -103,14 +110,11 @@ public class NoAgreement_AddCreditCard_FreezeMbr extends base {
 
 			Thread.sleep(1000);
 
-			mp.getAddCCButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddCCButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
 			mp.getPopupConfirmationButton().click();
-
-			Thread.sleep(3000);
-			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

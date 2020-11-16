@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -27,7 +28,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 	private static String testName = null;
 	private static String memberName = "Robert1 Auto";
 	private static String agreementWithBadFOP = "Athletic Platinum";
-
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
@@ -52,6 +53,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -108,7 +110,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 				}
 			}
 
-			mp.getSavingsradio().click();
+			jse.executeScript("arguments[0].click();", mp.getSavingsradio());
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 
@@ -123,17 +125,17 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
 
 			Assert.assertTrue(mp.getNoThanks().size() > 0);
-			mp.getNoThanks().get(0).click();
+			jse.executeScript("arguments[0].click();", mp.getNoThanks().get(0));
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
 
 			Thread.sleep(1000);
-			mp.getIAgreeCheckboxACH().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxACH());
 			Thread.sleep(1000);
 
-			mp.getAddBankAcctButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddBankAcctButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT ADDED", mp.getPopupConfirmation1().getText());
@@ -177,7 +179,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("USBankLast4Digits"))) {
-					mp.getEditPaymentMethodsButton().get(i).click();
+					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
 			}

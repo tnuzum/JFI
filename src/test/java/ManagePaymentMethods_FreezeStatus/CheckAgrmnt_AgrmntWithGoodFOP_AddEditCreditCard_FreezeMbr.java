@@ -26,6 +26,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 	private static String testName = null;
 	private static String memberName = "AgreementMembr1 Auto";
 	private static String agreement = "Balance Weight Loss 12 Week";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -50,6 +51,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -85,8 +87,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
 			mp.getExpireMonth().sendKeys("04");
 			mp.getExpireYear().sendKeys("22");
-			mp.getHouseAcctNoRadioButton().get(1).click();
-			mp.getInClubPurchaseNoRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(1));
+			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
@@ -113,17 +115,20 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 					false);
 
 			Thread.sleep(1000);
-			mp.getIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckbox());
 			Thread.sleep(2000);
 
 			Assert.assertTrue(mp.getAddCCButton().isEnabled());
 
-			mp.getAddCCButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddCCButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -131,7 +136,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 
 			Thread.sleep(1000);
 
-			mp.getAddCCButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddCCButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
@@ -175,7 +180,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("CCLast4Digits"))) {
-					mp.getEditPaymentMethodsButton().get(i).click();
+					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
 			}
@@ -187,8 +192,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 
 			Assert.assertEquals(text, memberName);
 
-			mp.getHouseAcctNoRadioButton().get(0).click();
-			mp.getInClubPurchaseNoRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(0));
+			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(3000);
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
@@ -208,17 +213,20 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 					false);
 
 			Thread.sleep(1000);
-			mp.getEditIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", mp.getEditIAgreeCheckbox());
 			Thread.sleep(2000);
 
 			Assert.assertTrue(mp.getSaveChangesButtonCC().isEnabled());
 
-			mp.getSaveChangesButtonCC().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangesButtonCC());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -226,7 +234,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 
 			Thread.sleep(1000);
 
-			mp.getSaveChangesButtonCC().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangesButtonCC());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("CARD UPDATED", mp.getPopupConfirmation1().getText());
