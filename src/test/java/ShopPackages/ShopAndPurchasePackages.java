@@ -863,9 +863,10 @@ public class ShopAndPurchasePackages extends base {
 			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < count; i++) {
 				String label = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText();
+				System.out.println(label);
 				Labels.add(label);
 			}
-			Assert.assertFalse(Labels.contains(" On Account"));
+			Assert.assertFalse(Labels.contains("On Account"));
 			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {

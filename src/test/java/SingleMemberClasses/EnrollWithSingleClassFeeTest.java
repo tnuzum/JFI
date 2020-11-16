@@ -2,7 +2,6 @@ package SingleMemberClasses;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -339,7 +338,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 					break;
 				}
 			}
-
+			Thread.sleep(2000);
 			c.getContinueButton().click();
 
 			Thread.sleep(3000);

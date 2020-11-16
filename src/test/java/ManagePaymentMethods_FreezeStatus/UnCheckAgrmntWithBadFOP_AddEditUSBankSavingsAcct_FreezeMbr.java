@@ -26,6 +26,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 	private static String testName = null;
 	private static String memberName = "BadFopMbr1 Auto";
 	private static String agreement = "Balance Weight Loss 12 Week";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -50,6 +51,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -79,7 +81,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(2000);
 
-			mp.getBankAccountLink().click();
+			jse.executeScript("arguments[0].click();", mp.getBankAccountLink());
 			Thread.sleep(1000);
 
 			mp.getAccountHolder().sendKeys(memberName);
@@ -88,7 +90,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 			mp.getUSRoutingNumber().sendKeys(prop.getProperty("USBankRoutingNumber"));
 			mp.getUSAccountNumber().sendKeys(prop.getProperty("USBankAcctNumber"));
 
-			mp.getSavingsradio().click();
+			jse.executeScript("arguments[0].click();", mp.getSavingsradio());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
 
@@ -100,7 +102,6 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
 
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getAgreementCheckBox().get(i));
 
 					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
@@ -111,21 +112,24 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 			Thread.sleep(2000);
 			Assert.assertTrue(mp.getSlideDownBox().isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
-			mp.getAreYouSure().click();
+			jse.executeScript("arguments[0].click();", mp.getAreYouSure());
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
-			mp.getIAgreeCheckboxACH().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxACH());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getAddBankAcctButton().isEnabled());
 
-			mp.getAddBankAcctButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddBankAcctButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -133,7 +137,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 
 			Thread.sleep(1000);
 
-			mp.getAddBankAcctButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddBankAcctButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT ADDED", mp.getPopupConfirmation1().getText());
@@ -177,7 +181,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("USBankLast4Digits"))) {
-					mp.getEditPaymentMethodsButton().get(i).click();
+					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
 			}
@@ -212,17 +216,20 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
-			mp.getIAgreeCheckboxEditACH().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxEditACH());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getSaveChangeButton().isEnabled());
 
-			mp.getSaveChangeButton().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -230,7 +237,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 
 			Thread.sleep(1000);
 
-			mp.getSaveChangeButton().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());

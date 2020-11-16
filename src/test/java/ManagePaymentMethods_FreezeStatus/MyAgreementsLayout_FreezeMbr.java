@@ -26,6 +26,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "FopMember1 Auto";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -46,6 +47,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
@@ -79,20 +81,20 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			Thread.sleep(3000);
 
 			mp.getNameOnCard().sendKeys(memberName);
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
 			mp.getExpireMonth().sendKeys("04");
 			mp.getExpireYear().sendKeys("22");
-			mp.getHouseAcctNoRadioButton().get(1).click();
-			mp.getInClubPurchaseNoRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(1));
+			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
 
 			int m = 0;
-			for (int i = 4; i < mp.getAgreementInfoDiv().size(); i++) {
+			for (int i = 2; i < mp.getAgreementInfoDiv().size(); i++) {
 				System.out.println(mp.getAgreementInfoDiv().get(i).getText());
 				if (!mp.getAgreementInfoDiv().get(i).getText().contains("No issues detected")) {
 
@@ -102,14 +104,14 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
 
-					AgreementCheckbox.click();
+					jse.executeScript("arguments[0].click();", AgreementCheckbox);
 
 					Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
 				}
 
 			}
 
-			for (int j = 4; j < mp.getAgreementInfoDiv().size(); j++) {
+			for (int j = 2; j < mp.getAgreementInfoDiv().size(); j++) {
 
 				System.out.println(mp.getAgreementInfoDiv().get(j).getText());
 
@@ -122,13 +124,16 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			}
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
+			Thread.sleep(2000);
+
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
 
 			Thread.sleep(1000);
 
-			mp.getIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckbox());
 
 			Assert.assertTrue(!mp.getAddCCButton().isEnabled());
 			// rm.returnToDashboard();
@@ -175,7 +180,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			 * } d.getMenuManagePmntMethods().click(); Thread.sleep(2000);
 			 */
 
-			mp.getBankAccountLink().click();
+			jse.executeScript("arguments[0].click();", mp.getBankAccountLink());
 			Thread.sleep(1000);
 
 			mp.getAccountHolder().sendKeys(memberName);
@@ -191,8 +196,8 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			int m = 0;
-			for (int i = 0; i < mp.getAgreementInfoDiv().size() - 4; i++) {
-				// System.out.println(mp.getAgreementInfoDiv().get(i).getText());
+			for (int i = 0; i < mp.getAgreementInfoDiv().size() - 3; i++) {
+				System.out.println(mp.getAgreementInfoDiv().get(i).getText());
 
 				if (!mp.getAgreementInfoDiv().get(i).getText().contains("No issues detected")) {
 
@@ -201,7 +206,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
 
-					AgreementCheckbox.click();
+					jse.executeScript("arguments[0].click();", AgreementCheckbox);
 
 					Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
 
@@ -209,7 +214,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 			}
 
-			for (int j = 0; j < mp.getAgreementInfoDiv().size() - 4; j++) {
+			for (int j = 0; j < mp.getAgreementInfoDiv().size() - 3; j++) {
 
 				// System.out.println(mp.getAgreementInfoDiv().get(j).getText());
 				if (mp.getAgreementInfoDiv().get(j).getText().contains("No issues detected")) {
@@ -220,6 +225,9 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 				}
 			}
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -266,7 +274,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains("5454")) {
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
@@ -299,7 +307,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 					if (isDisabled.equals("false"))
 
 					{
-						AgreementCheckbox.click();
+						jse.executeScript("arguments[0].click();", AgreementCheckbox);
 						m++;
 						Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
 					}
@@ -320,18 +328,25 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			}
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
+
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
 
 			Thread.sleep(1000);
 
-			mp.getEditIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", mp.getEditIAgreeCheckbox());
+			Thread.sleep(2000);
 
 			Assert.assertTrue(!mp.getSaveChangesButtonCC().isEnabled());
 
 			BreadcrumbTrailPO bt = new BreadcrumbTrailPO(driver);
+			jse.executeScript("arguments[0].scrollIntoView(true);", bt.getBreadcrumb2());
+			Thread.sleep(1000);
 			bt.getBreadcrumb2().click();
+			;
 			Thread.sleep(2000);
 		}
 
@@ -361,7 +376,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains("6789")) {
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 
@@ -400,7 +415,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 					if (isDisabled.equals("false"))
 
 					{
-						AgreementCheckbox.click();
+						jse.executeScript("arguments[0].click();", AgreementCheckbox);
 						m++;
 						Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
 					}
@@ -421,6 +436,9 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 				}
 			}
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
