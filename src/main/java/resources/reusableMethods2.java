@@ -487,7 +487,7 @@ public class reusableMethods2 extends base {
 				for (int k = 0; k < Packages.size(); k++) {
 					if (Packages.get(k).getText().contains(packageName)) {
 						JavascriptExecutor jse = ((JavascriptExecutor) driver);
-						jse.executeScript("arguments[0].scrollIntoView();", Packages.get(k));
+						jse.executeScript("arguments[0].scrollIntoView(true);", Packages.get(k));
 						Thread.sleep(1000);
 						String[] text = Packages.get(k).getText().split("\n");
 						String unitCount = text[2];
@@ -619,7 +619,7 @@ public class reusableMethods2 extends base {
 
 			if (ClassOrCourseName.contains(ClassOrCourseToEnroll)) {
 				JavascriptExecutor jse = ((JavascriptExecutor) driver);
-				jse.executeScript("arguments[0].scrollIntoView();",
+				jse.executeScript("arguments[0].scrollIntoView(true);",
 						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
 
 				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
@@ -787,7 +787,7 @@ public class reusableMethods2 extends base {
 
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-					jse.executeScript("arguments[0].scrollIntoView();",
+					jse.executeScript("arguments[0].scrollIntoView(true);",
 							driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1));
 
 					jse.executeScript("arguments[0].click();",
@@ -1980,7 +1980,7 @@ public class reusableMethods2 extends base {
 								.contains("5454")) {
 
 							JavascriptExecutor jse = (JavascriptExecutor) driver;
-							jse.executeScript("arguments[0].scrollIntoView();",
+							jse.executeScript("arguments[0].scrollIntoView(true);",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 							jse.executeScript("arguments[0].click();",
@@ -2079,7 +2079,7 @@ public class reusableMethods2 extends base {
 								.contains("5454")) {
 
 							JavascriptExecutor jse = (JavascriptExecutor) driver;
-							jse.executeScript("arguments[0].scrollIntoView();",
+							jse.executeScript("arguments[0].scrollIntoView(true);",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 							jse.executeScript("arguments[0].click();",
@@ -2216,7 +2216,7 @@ public class reusableMethods2 extends base {
 			WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 			if (fmc.isSelected()) {
-				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 				fml.click(); // de-selects the hoh
 				break;
 			}
@@ -2230,7 +2230,7 @@ public class reusableMethods2 extends base {
 
 			if (fml.getText().contains(familyMbrName)) {
 
-				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 				fml.click(); // Selects the member
 
 				break;
@@ -2240,12 +2240,12 @@ public class reusableMethods2 extends base {
 
 		Thread.sleep(2000);
 		if (c.getPopupSignUpButton().isEnabled()) {
-			jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
 
 			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 
 		} else {
-			jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButton());
 			actions.moveToElement(c.getPopupCancelButton()).click().perform();
 			Assert.fail("SignUp button not available");
 
@@ -2279,7 +2279,7 @@ public class reusableMethods2 extends base {
 						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 								.contains("5454")) {
 
-							jse.executeScript("arguments[0].scrollIntoView();",
+							jse.executeScript("arguments[0].scrollIntoView(true);",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 							jse.executeScript("arguments[0].click();",
@@ -2353,7 +2353,7 @@ public class reusableMethods2 extends base {
 			WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 			if (fmc.isSelected()) {
-				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 				fml.click(); // de-selects the hoh
 				break;
 			}
@@ -2366,7 +2366,7 @@ public class reusableMethods2 extends base {
 			// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 			if (fml.getText().contains(familyMbrName)) {
-				jse.executeScript("arguments[0].scrollIntoView();", fml);
+				jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 				fml.click(); // Selects the member
 				break;
 			}
@@ -2375,12 +2375,12 @@ public class reusableMethods2 extends base {
 
 		Thread.sleep(2000);
 		if (c.getPopupSignupButtonCourse().isEnabled()) {
-			jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignupButtonCourse());
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 
 			actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 
 		} else {
-			jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButtonCourse());
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 			Assert.fail("SignUp button not available");
 
@@ -2414,7 +2414,7 @@ public class reusableMethods2 extends base {
 						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 								.contains("5454")) {
 
-							jse.executeScript("arguments[0].scrollIntoView();",
+							jse.executeScript("arguments[0].scrollIntoView(true);",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 							jse.executeScript("arguments[0].click();",
@@ -2605,7 +2605,7 @@ public class reusableMethods2 extends base {
 			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
 
 				JavascriptExecutor jse = (JavascriptExecutor) driver;
-				jse.executeScript("arguments[0].scrollIntoView();",
+				jse.executeScript("arguments[0].scrollIntoView(true);",
 						PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
 				jse.executeScript("arguments[0].click();",

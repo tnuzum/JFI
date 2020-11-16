@@ -100,7 +100,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 			p.getExpireMonth().sendKeys("04");
 			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
-			jse.executeScript("arguments[0].scrollIntoView();", p.getSaveCardNoRadio());
+			jse.executeScript("arguments[0].scrollIntoView(true);", p.getSaveCardNoRadio());
 			Thread.sleep(1000);
 			p.getSaveCardNoRadio().click();
 			Thread.sleep(1000);
@@ -148,7 +148,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView();", d.getBreadcrumbDashboard());
+			jse.executeScript("arguments[0].scrollIntoView(true);", d.getBreadcrumbDashboard());
 			Thread.sleep(1000);
 			d.getBreadcrumbDashboard().click();
 		}

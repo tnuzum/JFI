@@ -1,7 +1,6 @@
 package PaymentMethods;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -33,6 +32,7 @@ public class Appointments_AdditionalQuestions extends base {
 	private static String startTime1;
 	private static String startTime2 = "12:15 PM";
 	private static int appointmentsCount = 1;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -54,6 +54,7 @@ public class Appointments_AdditionalQuestions extends base {
 		d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 		PM = new PaymentMethodsPO(driver);
 		ap = new AppointmentsPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -159,7 +160,7 @@ public class Appointments_AdditionalQuestions extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime1 = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
@@ -186,7 +187,7 @@ public class Appointments_AdditionalQuestions extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -205,31 +206,31 @@ public class Appointments_AdditionalQuestions extends base {
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
-			PM.getMoreInfoSaveCard().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoSaveCard());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Save Card For Use On Site");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getOnAccountQuestion().isDisplayed());
-			PM.getMoreInfoOnAccount().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoOnAccount());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getInClubQuestion().isDisplayed());
-			PM.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoUseInPos());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
-			PM.getSaveCardYes().click();
-			PM.getHouseAcctNo().click();
-			PM.getInClubPurchaseNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardYes());
+			jse.executeScript("arguments[0].click();", PM.getHouseAcctNo());
+			jse.executeScript("arguments[0].click();", PM.getInClubPurchaseNo());
 
-			PM.getCheckBox().click();
+			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			Thread.sleep(1000);
 
 			while (!ap.getPaymentButton().isEnabled()) {
@@ -237,12 +238,14 @@ public class Appointments_AdditionalQuestions extends base {
 			}
 
 			// Clicks on the Pay button without signature
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 			Thread.sleep(1000);
 
 			System.out.println(PM.getPopupContent().getText());
 			Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 			PM.getPopupOk().click();
+			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getSigPadInOut());
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
@@ -251,7 +254,7 @@ public class Appointments_AdditionalQuestions extends base {
 
 			// Click the Pay button
 
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 			rw.waitForAcceptButton();
 
 			// rw.waitForAcceptButton();
@@ -353,7 +356,7 @@ public class Appointments_AdditionalQuestions extends base {
 			}
 
 			// AftrnunSlot.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", AftrnunSlot);
 			Thread.sleep(1000);
 			WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(0)
@@ -392,7 +395,7 @@ public class Appointments_AdditionalQuestions extends base {
 
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -410,31 +413,31 @@ public class Appointments_AdditionalQuestions extends base {
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
 
-			PM.getMoreInfoSaveCard().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoSaveCard());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Save Card For Use On Site");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getOnAccountQuestion().isDisplayed());
-			PM.getMoreInfoOnAccount().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoOnAccount());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getInClubQuestion().isDisplayed());
-			PM.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoUseInPos());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
-			PM.getSaveCardYes().click();
-			PM.getHouseAcctNo().click();
-			PM.getInClubPurchaseNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardYes());
+			jse.executeScript("arguments[0].click();", PM.getHouseAcctNo());
+			jse.executeScript("arguments[0].click();", PM.getInClubPurchaseNo());
 
-			PM.getCheckBox().click();
+			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			Thread.sleep(1000);
 
 			while (!ap.getPaymentButton().isEnabled()) {
@@ -442,21 +445,22 @@ public class Appointments_AdditionalQuestions extends base {
 			}
 
 			// Clicks on the Pay button without signature
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 			Thread.sleep(1000);
 
 			System.out.println(PM.getPopupContent().getText());
 			Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 			PM.getPopupOk().click();
 			Thread.sleep(1000);
-
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getSignaturePad());
+			Thread.sleep(1000);
 			Actions a = new Actions(driver);
 			a.moveToElement(PM.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
 			// Click the Pay button
 
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 			rw.waitForAcceptButton();
 
 			// rw.waitForAcceptButton();
@@ -543,7 +547,7 @@ public class Appointments_AdditionalQuestions extends base {
 
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -561,31 +565,31 @@ public class Appointments_AdditionalQuestions extends base {
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
 
-			PM.getMoreInfoSaveCard().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoSaveCard());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Save Card For Use On Site");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getOnAccountQuestion().isDisplayed());
-			PM.getMoreInfoOnAccount().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoOnAccount());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getInClubQuestion().isDisplayed());
-			PM.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoUseInPos());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
-			PM.getSaveCardYes().click();
-			PM.getHouseAcctNo().click();
-			PM.getInClubPurchaseNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardYes());
+			jse.executeScript("arguments[0].click();", PM.getHouseAcctNo());
+			jse.executeScript("arguments[0].click();", PM.getInClubPurchaseNo());
 
-			PM.getCheckBox().click();
+			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			Thread.sleep(1000);
 
 			while (!PM.getPaymentButton().isEnabled()) {
@@ -593,7 +597,7 @@ public class Appointments_AdditionalQuestions extends base {
 			}
 
 			// Clicks on the Pay button without signature
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			Thread.sleep(1000);
 
 			System.out.println(PM.getPopupContent().getText());
@@ -601,13 +605,15 @@ public class Appointments_AdditionalQuestions extends base {
 			PM.getPopupOk().click();
 			Thread.sleep(1000);
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getSignaturePad());
+			Thread.sleep(1000);
 			Actions a = new Actions(driver);
 			a.moveToElement(PM.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
 			// Click the Pay button
 
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			rw.waitForAcceptButton();
 
 			// rw.waitForAcceptButton();

@@ -109,7 +109,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 				}
 			}
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getSavingsradio());
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSavingsradio());
 			Thread.sleep(1000);
 			mp.getSavingsradio().click();
 
@@ -134,7 +134,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 			Thread.sleep(1000);
 
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getIAgreeCheckboxACH());
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getIAgreeCheckboxACH());
 			Thread.sleep(1000);
 			mp.getIAgreeCheckboxACH().click();
 			Thread.sleep(1000);
@@ -186,7 +186,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("USBankLast4Digits"))) {
 
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					Thread.sleep(1000);
 					mp.getEditPaymentMethodsButton().get(i).click();
 					break;
@@ -208,7 +208,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			Assert.assertTrue(mp.getNoThanks().size() > 0);
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
 
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getEditCheckingRadio());
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditCheckingRadio());
 			Thread.sleep(1000);
 
 			mp.getEditCheckingRadio().click(); // Checking Account
@@ -232,7 +232,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 				}
 			}
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getIAgreeCheckboxEditACH());
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getIAgreeCheckboxEditACH());
 			Thread.sleep(1000);
 
 			mp.getIAgreeCheckboxEditACH().click();

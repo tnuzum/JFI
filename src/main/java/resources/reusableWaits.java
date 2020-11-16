@@ -1,6 +1,5 @@
 package resources;
 
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -244,7 +243,7 @@ public class reusableWaits extends base {
 	public Object waitForSelectATimeToOpen() {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 
 		try {
 			wait.until(ExpectedConditions.attributeContains(ap.getSelectATimeDrawer(), "ng-reflect-opened", "true"));

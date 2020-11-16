@@ -1359,7 +1359,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 				WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fmc.isSelected()) {
-					jse.executeScript("arguments[0].scrollIntoView();", fml);
+					jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 					fml.click(); // de-selects the hoh
 					break;
 				}
@@ -1372,7 +1372,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 				// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fml.getText().contains("Unenrollmbr17")) {
-					jse.executeScript("arguments[0].scrollIntoView();", fml);
+					jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 					fml.click(); // Selects the member
 					break;
 				}
@@ -1381,12 +1381,12 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
-				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignupButtonCourse());
+				jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 
 				actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 
 			} else {
-				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButtonCourse());
+				jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 				actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 				Assert.fail("SignUp button not available");
 

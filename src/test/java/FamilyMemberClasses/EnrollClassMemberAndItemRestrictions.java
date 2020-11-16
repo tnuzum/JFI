@@ -610,7 +610,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			softAssertion.assertAll();
 
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButton());
 
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupCancelButton()).click().perform();
@@ -674,7 +674,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		// ((JavascriptExecutor) driver)
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupSignUpButton().getLocation().x + ")");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 //		c.getPopupSignUpButton().click();
@@ -718,7 +718,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupCancelButton().getLocation().x + ")");
 
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButton());
 
 		actions.moveToElement(c.getPopupCancelButton()).click().perform();
 //		c.getPopupCancelButton().click();

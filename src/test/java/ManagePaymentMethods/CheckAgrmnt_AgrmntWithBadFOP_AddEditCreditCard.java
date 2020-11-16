@@ -119,7 +119,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getSignaturePad().get(1));
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
 			Thread.sleep(1000);
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -172,7 +172,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("CCLast4Digits"))) {
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
@@ -196,7 +196,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
 
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getAgreementCheckBox().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getAgreementCheckBox().get(i));
 					Assert.assertTrue(mp.getAgreementCheckBox().get(i).isSelected());
 //					getScreenshot(testName + "agreementclicked", driver);
 					break;

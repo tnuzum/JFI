@@ -191,7 +191,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct_FreezeMbr 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getAgreementCheckBox().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getAgreementCheckBox().get(i));
 
 					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
 					;
