@@ -31,6 +31,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 	private static String startTime1;
 	private static String startTime2 = "12:15 PM";
 	private static int appointmentsCount = 1;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -52,6 +53,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 		d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 		PM = new PaymentMethodsPO(driver);
 		ap = new AppointmentsPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -157,7 +159,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime1 = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
@@ -184,7 +186,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -215,9 +217,9 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPaymentButton()));
 
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", ap.getPaymentButton());
+			executor.executeScript("arguments[0].click();", ap.getPaymentButton());
 
-			ap.getPaymentButton().click();
+			// ap.getPaymentButton().click();
 			rw.waitForAcceptButton();
 
 			// rw.waitForAcceptButton();
@@ -319,7 +321,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			}
 
 			// AftrnunSlot.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", AftrnunSlot);
 			Thread.sleep(1000);
 			WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(0)
@@ -358,7 +360,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -386,12 +388,10 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPaymentButton()));
 
-			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", ap.getPaymentButton());
-
 			// Click the Pay button
-
-			ap.getPaymentButton().click();
+			JavascriptExecutor executor = (JavascriptExecutor) driver;
+			executor.executeScript("arguments[0].click();", ap.getPaymentButton());
+//			ap.getPaymentButton().click();
 			rw.waitForAcceptButton();
 
 			// rw.waitForAcceptButton();
@@ -478,7 +478,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -507,9 +507,9 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
 
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", PM.getPaymentButton());
+			executor.executeScript("arguments[0].click();", PM.getPaymentButton());
 
-			PM.getPaymentButton().click();
+			// PM.getPaymentButton().click();
 
 			rw.waitForAcceptButton();
 
@@ -685,7 +685,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime1 = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
@@ -712,7 +712,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");

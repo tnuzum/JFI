@@ -127,7 +127,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			}
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 

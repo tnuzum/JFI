@@ -589,7 +589,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			// .executeScript("window.scrollTo(0," +
 			// c.getPopupCancelButtonCourse().getLocation().x + ")");
 
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
 					c.getPopupCancelButtonCourse());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
@@ -628,7 +628,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		// ((JavascriptExecutor) driver)
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupSignupButtonCourse().getLocation().x + ")");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignupButtonCourse());
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 		c.getPopupSignupButtonCourse().click();
@@ -675,7 +675,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		// ((JavascriptExecutor) driver)
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupCancelButtonCourse().getLocation().x + ")");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButtonCourse());
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 
 		actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 //		c.getPopupCancelButtonCourse().click();

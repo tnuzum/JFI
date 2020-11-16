@@ -267,7 +267,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 				if (mp.getCardNumbers().get(i).getText().contains("5454")) {
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
@@ -362,7 +362,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 				if (mp.getCardNumbers().get(i).getText().contains("6789")) {
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 
 					break;

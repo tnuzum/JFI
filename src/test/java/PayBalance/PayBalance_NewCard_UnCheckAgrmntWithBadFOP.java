@@ -120,7 +120,7 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 
 					// jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
-					jse.executeScript("arguments[0].scrollIntoView();", p.getAgreementCheckBox().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", p.getAgreementCheckBox().get(i));
 
 					jse.executeScript("arguments[0].click();", p.getAgreementCheckBox().get(i));
 //					getScreenshot(testName + "agreementclicked", driver);

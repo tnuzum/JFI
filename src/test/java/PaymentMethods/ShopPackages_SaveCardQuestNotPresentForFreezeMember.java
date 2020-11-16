@@ -29,6 +29,7 @@ public class ShopPackages_SaveCardQuestNotPresentForFreezeMember extends base {
 	public static PaymentMethodsPO PM;
 	public static ShopPackagesPO sp;
 	private static PurchaseConfirmationPO PP;
+	private static JavascriptExecutor jse;
 
 	public ShopPackages_SaveCardQuestNotPresentForFreezeMember() {
 		rw = new reusableWaits();
@@ -45,6 +46,7 @@ public class ShopPackages_SaveCardQuestNotPresentForFreezeMember extends base {
 		PM = new PaymentMethodsPO(driver);
 		sp = new ShopPackagesPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -78,7 +80,7 @@ public class ShopPackages_SaveCardQuestNotPresentForFreezeMember extends base {
 				if (sp.getPackageNames().get(i).getText().equals("Service V"))
 
 				{
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 
@@ -94,7 +96,7 @@ public class ShopPackages_SaveCardQuestNotPresentForFreezeMember extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -125,9 +127,9 @@ public class ShopPackages_SaveCardQuestNotPresentForFreezeMember extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
 
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", PM.getPaymentButton());
+			executor.executeScript("arguments[0].click();", PM.getPaymentButton());
 
-			PM.getPaymentButton().click();
+			// PM.getPaymentButton().click();
 
 			rw.waitForAcceptButton();
 			// rw.waitForAcceptButton();
@@ -228,7 +230,7 @@ public class ShopPackages_SaveCardQuestNotPresentForFreezeMember extends base {
 				if (sp.getPackageNames().get(i).getText().equals("Service V"))
 
 				{
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 
@@ -244,7 +246,7 @@ public class ShopPackages_SaveCardQuestNotPresentForFreezeMember extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -270,16 +272,16 @@ public class ShopPackages_SaveCardQuestNotPresentForFreezeMember extends base {
 
 			Assert.assertTrue(PM.getSigPadInOut().getAttribute("style").contains("1"));
 
-			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "false");
+			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), null);
 
-			PM.getSaveCardNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 
 			wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
 
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", PM.getPaymentButton());
+			executor.executeScript("arguments[0].click();", PM.getPaymentButton());
 
-			PM.getPaymentButton().click();
+			// PM.getPaymentButton().click();
 
 			rw.waitForAcceptButton();
 			// rw.waitForAcceptButton();

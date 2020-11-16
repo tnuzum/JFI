@@ -248,7 +248,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 				fml.click(); // Selects the member
 
 		}
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 		// c.getPopupSignUpButton().click();

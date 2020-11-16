@@ -324,7 +324,7 @@ public class EnrollInFreeClassTest extends base {
 					break;
 				}
 			}
-
+Thread.sleep(1000);
 			c.getContinueButton().click();
 			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));

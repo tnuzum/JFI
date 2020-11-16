@@ -85,10 +85,10 @@ public class MyAgreementsLayout extends base {
 			mp.getExpireMonth().sendKeys("04");
 			mp.getExpireYear().sendKeys("22");
 			Thread.sleep(1000);
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getHouseAcctNoRadioButton().get(1));
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getHouseAcctNoRadioButton().get(1));
 			Thread.sleep(1000);
 			mp.getHouseAcctNoRadioButton().get(1).click();
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getInClubPurchaseNoRadio());
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 			mp.getInClubPurchaseNoRadio().click();
 			Thread.sleep(1000);
@@ -108,7 +108,7 @@ public class MyAgreementsLayout extends base {
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
 
-					jse.executeScript("arguments[0].scrollIntoView();", AgreementCheckbox);
+					jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 
 					AgreementCheckbox.click();
 
@@ -130,7 +130,7 @@ public class MyAgreementsLayout extends base {
 			}
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
 
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getIAgreeCheckbox());
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getIAgreeCheckbox());
 			Thread.sleep(1000);
 
 			Actions a = new Actions(driver);
@@ -186,7 +186,7 @@ public class MyAgreementsLayout extends base {
 			 * } d.getMenuManagePmntMethods().click(); Thread.sleep(2000);
 			 */
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView();", mp.getBankAccountLink());
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getBankAccountLink());
 			Thread.sleep(1000);
 			mp.getBankAccountLink().click();
 			Thread.sleep(1000);
@@ -214,7 +214,7 @@ public class MyAgreementsLayout extends base {
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
 
-					jse.executeScript("arguments[0].scrollIntoView();", AgreementCheckbox);
+					jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 					Thread.sleep(1000);
 
 					AgreementCheckbox.click();
@@ -283,7 +283,7 @@ public class MyAgreementsLayout extends base {
 
 				if (mp.getCardNumbers().get(i).getText().contains("5454")) {
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
@@ -317,7 +317,7 @@ public class MyAgreementsLayout extends base {
 					{
 						Thread.sleep(1000);
 						JavascriptExecutor jse = (JavascriptExecutor) driver;
-						jse.executeScript("arguments[0].scrollIntoView();", AgreementCheckbox);
+						jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 						Thread.sleep(1000);
 						AgreementCheckbox.click();
 						m++;
@@ -353,7 +353,7 @@ public class MyAgreementsLayout extends base {
 			BreadcrumbTrailPO bt = new BreadcrumbTrailPO(driver);
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView();", bt.getBreadcrumb2());
+			jse.executeScript("arguments[0].scrollIntoView(true);", bt.getBreadcrumb2());
 			Thread.sleep(1000);
 			bt.getBreadcrumb2().click();
 			Thread.sleep(2000);
@@ -386,7 +386,7 @@ public class MyAgreementsLayout extends base {
 
 				if (mp.getCardNumbers().get(i).getText().contains("7899")) {
 					JavascriptExecutor jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 
 					break;
@@ -425,7 +425,7 @@ public class MyAgreementsLayout extends base {
 
 					{
 						JavascriptExecutor jse = (JavascriptExecutor) driver;
-						jse.executeScript("arguments[0].scrollIntoView();", AgreementCheckbox);
+						jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 						Thread.sleep(1000);
 						AgreementCheckbox.click();
 						m++;

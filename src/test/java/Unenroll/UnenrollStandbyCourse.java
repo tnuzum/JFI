@@ -137,7 +137,7 @@ public class UnenrollStandbyCourse extends base {
 
 			}
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 

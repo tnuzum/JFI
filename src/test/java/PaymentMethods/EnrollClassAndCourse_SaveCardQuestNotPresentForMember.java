@@ -38,6 +38,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 	public static ShopPackagesPO sp;
 	private static PurchaseConfirmationPO PP;
 	private static ClassSignUpPO c;
+	private static JavascriptExecutor jse;
 
 	public EnrollClassAndCourse_SaveCardQuestNotPresentForMember() {
 		rw = new reusableWaits();
@@ -55,6 +56,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 		sp = new ShopPackagesPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		c = new ClassSignUpPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -89,10 +91,10 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
-				c.getPopupSignupButtonCourse().click();
+				jse.executeScript("arguments[0].click();", c.getPopupSignupButtonCourse());
 
 			} else {
-				c.getPopupCancelButtonCourse().click();
+				jse.executeScript("arguments[0].click();", c.getPopupCancelButtonCourse());
 				Assert.fail("SignUp button not available");
 
 			}
@@ -107,7 +109,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())
@@ -117,7 +119,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -145,9 +147,9 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "true");
 
-			d.getBreadcrumbDashboard().click();
+			jse.executeScript("arguments[0].click();", d.getBreadcrumbDashboard());
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -163,10 +165,10 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 			Thread.sleep(2000);
 
 			if (c.getPopupSignUpButton().isEnabled()) {
-				c.getPopupSignUpButton().click();
+				jse.executeScript("arguments[0].click();", c.getPopupSignUpButton());
 
 			} else {
-				c.getPopupCancelButton().click();
+				jse.executeScript("arguments[0].click();", c.getPopupCancelButton());
 				Assert.fail("SignUp button not available");
 
 			}
@@ -181,7 +183,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(5000);
 
@@ -192,7 +194,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -222,10 +224,9 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
 
-			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", PM.getPaymentButton());
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
-			PM.getPaymentButton().click();
+			// PM.getPaymentButton().click();
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -327,10 +328,10 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
-				c.getPopupSignupButtonCourse().click();
+				jse.executeScript("arguments[0].click();", c.getPopupSignupButtonCourse());
 
 			} else {
-				c.getPopupCancelButtonCourse().click();
+				jse.executeScript("arguments[0].click();", c.getPopupCancelButtonCourse());
 				Assert.fail("SignUp button not available");
 
 			}
@@ -345,7 +346,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())
@@ -383,9 +384,9 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "true");
 
-			d.getBreadcrumbDashboard().click();
+			jse.executeScript("arguments[0].click();", d.getBreadcrumbDashboard());
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -401,10 +402,10 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 			Thread.sleep(2000);
 
 			if (c.getPopupSignUpButton().isEnabled()) {
-				c.getPopupSignUpButton().click();
+				jse.executeScript("arguments[0].click();", c.getPopupSignUpButton());
 
 			} else {
-				c.getPopupCancelButton().click();
+				jse.executeScript("arguments[0].click();", c.getPopupCancelButton());
 				Assert.fail("SignUp button not available");
 
 			}
@@ -419,7 +420,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(5000);
 
@@ -430,7 +431,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -458,14 +459,14 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "false");
 
-			PM.getSaveCardNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 
 			wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
 
 			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", PM.getPaymentButton());
+			executor.executeScript("arguments[0].click();", PM.getPaymentButton());
 
-			PM.getPaymentButton().click();
+			// PM.getPaymentButton().click();
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));

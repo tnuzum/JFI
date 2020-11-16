@@ -184,7 +184,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 
 			}
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
 					c.getPopupSignupButtonCourse());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();

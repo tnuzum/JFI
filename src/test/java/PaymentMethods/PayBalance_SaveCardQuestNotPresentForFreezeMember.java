@@ -29,6 +29,7 @@ public class PayBalance_SaveCardQuestNotPresentForFreezeMember extends base {
 	public static DashboardPO d;
 	public static PaymentPO p;
 	public static ManagePayMethodsPO mp;
+	private static JavascriptExecutor jse;
 
 	public PayBalance_SaveCardQuestNotPresentForFreezeMember() {
 		rw = new reusableWaits();
@@ -44,6 +45,7 @@ public class PayBalance_SaveCardQuestNotPresentForFreezeMember extends base {
 		d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -62,7 +64,6 @@ public class PayBalance_SaveCardQuestNotPresentForFreezeMember extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 
 			Thread.sleep(1000);
@@ -103,10 +104,9 @@ public class PayBalance_SaveCardQuestNotPresentForFreezeMember extends base {
 
 			wait.until(ExpectedConditions.elementToBeClickable(p.getSubmitButton()));
 
-			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", p.getSubmitButton());
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 
-			p.getSubmitButton().click();
+			// p.getSubmitButton().click();
 
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
@@ -190,7 +190,6 @@ public class PayBalance_SaveCardQuestNotPresentForFreezeMember extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 
 			Thread.sleep(1000);
@@ -227,14 +226,16 @@ public class PayBalance_SaveCardQuestNotPresentForFreezeMember extends base {
 
 			Assert.assertTrue(p.getSigPadInOut().getAttribute("style").contains("1"));
 
-			Assert.assertEquals(p.getIAgreeCheckbox().getAttribute("disabled"), "false");
+			Assert.assertEquals(p.getIAgreeCheckbox().getAttribute("disabled"), null);
+
+			jse.executeScript("arguments[0].click();", p.getSaveCardNoRadio());
+			Thread.sleep(1000);
 
 			wait.until(ExpectedConditions.elementToBeClickable(p.getSubmitButton()));
 
-			JavascriptExecutor executor = (JavascriptExecutor) driver;
-			executor.executeScript("arguments[0].scrollIntoView(true);", p.getSubmitButton());
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 
-			p.getSubmitButton().click();
+			// p.getSubmitButton().click();
 
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
