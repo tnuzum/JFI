@@ -2,7 +2,6 @@ package Calendar;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.Calendar;
 
 import org.apache.logging.log4j.LogManager;
@@ -139,9 +138,6 @@ public class CalendarLayout extends base {
 
 			Assert.assertTrue(cp.getApplyFiltersLink().isDisplayed());
 
-			Assert.assertTrue(cp.getMonthButton().isDisplayed());
-			Assert.assertTrue(cp.getWeekButton().isDisplayed());
-
 			Assert.assertTrue(cp.getCalendarViewLink().isDisplayed());
 			Assert.assertTrue(cp.getCalendarListViewLink().isDisplayed());
 			Assert.assertTrue(cp.getCalendarHistoryLink().isDisplayed());
@@ -186,6 +182,9 @@ public class CalendarLayout extends base {
 			cp.getCalendarViewLink().click();
 			Thread.sleep(1000);
 			Assert.assertTrue(cp.getCalendar().isDisplayed());
+
+			Assert.assertTrue(cp.getMonthButton().isDisplayed());
+			Assert.assertTrue(cp.getWeekButton().isDisplayed());
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -315,7 +314,7 @@ public class CalendarLayout extends base {
 			wait1.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
-			cp.getCalendarListViewLink().click();
+//			cp.getCalendarListViewLink().click();
 			Thread.sleep(1000);
 
 			Calendar calendar = Calendar.getInstance();

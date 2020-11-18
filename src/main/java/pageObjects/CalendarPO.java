@@ -37,9 +37,9 @@ public class CalendarPO {
 	By calendar = By.xpath("//div[@ng-reflect-ng-switch = 'month']");
 	By calendarList = By.xpath("//div[@class= 'panel panel-default m-t-md ng-star-inserted']");
 	By calendarHistory = By.xpath("//div[@class= 'panel panel-default m-t-md ng-star-inserted']");
-	By calendarViewLink = By.xpath("//li[@class = 'nav-item']/a");
-	By calendarListViewLink = By.xpath("//li[@class = 'nav-item']/a");
-	By calendarHistoryLink = By.xpath("//li[@class = 'nav-item']/a");
+	By calendarViewLink = By.xpath("//li[contains(@class , 'nav-item')]/a");
+	By calendarListViewLink = By.xpath("//li[contains(@class , 'nav-item')]/a");
+	By calendarHistoryLink = By.xpath("//li[contains(@class , 'nav-item')]/a");
 	By monthButton = By.xpath("//div[@id='monthViewBtn']");
 	By weekButton = By.xpath("//div[contains(text(), 'Week')]");
 	By clubDropdown = By.xpath("//div[contains(@class,'row-box p-sm')]//select[@name='clubs']");
@@ -162,11 +162,11 @@ public class CalendarPO {
 	}
 
 	public WebElement getCalendarViewLink() {
-		return driver.findElements(calendarViewLink).get(0);
+		return driver.findElements(calendarViewLink).get(1);
 	}
 
 	public WebElement getCalendarListViewLink() {
-		return driver.findElements(calendarListViewLink).get(1);
+		return driver.findElements(calendarListViewLink).get(0);
 	}
 
 	public WebElement getCalendarHistoryLink() {
