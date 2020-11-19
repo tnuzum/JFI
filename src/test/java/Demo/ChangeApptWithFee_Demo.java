@@ -337,7 +337,7 @@ public class ChangeApptWithFee_Demo extends base {
 
 	/*
 	 * @AfterClass public void teardown() throws InterruptedException {
-	 * driver.close(); driver = null; }
+	 * driver.quit(); driver = null; }
 	 */
 
 }

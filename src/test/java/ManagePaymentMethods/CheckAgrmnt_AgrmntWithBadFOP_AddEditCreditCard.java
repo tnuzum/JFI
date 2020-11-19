@@ -299,7 +299,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

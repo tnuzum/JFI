@@ -380,7 +380,7 @@ public class ChangeApptWithFee_MemberHasPackages_AdditionalResources extends bas
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

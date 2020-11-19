@@ -376,7 +376,7 @@ public class FamilyEnrollmentInCourse_Demo extends base {
 	 * "Testing1!"; return data; } // @AfterTest
 	 * 
 	 * @AfterClass public void teardown() throws InterruptedException {
-	 * driver.close(); driver = null; }
+	 * driver.quit(); driver = null; }
 	 */
 
 }

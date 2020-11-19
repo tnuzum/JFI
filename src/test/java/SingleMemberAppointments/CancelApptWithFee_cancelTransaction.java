@@ -502,7 +502,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -201,7 +201,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

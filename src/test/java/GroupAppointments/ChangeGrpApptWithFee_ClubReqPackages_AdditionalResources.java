@@ -437,7 +437,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

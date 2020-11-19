@@ -499,7 +499,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

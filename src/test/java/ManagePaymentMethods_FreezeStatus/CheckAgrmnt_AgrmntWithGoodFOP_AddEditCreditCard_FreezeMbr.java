@@ -308,7 +308,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends b
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

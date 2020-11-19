@@ -306,7 +306,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -357,7 +357,7 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

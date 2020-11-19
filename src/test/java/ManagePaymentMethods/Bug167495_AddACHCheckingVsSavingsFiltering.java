@@ -28,7 +28,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	private static String testName = null;
 	private static String memberName = "Robert Auto";
 	private static String agreementWithBadFOP = "Athletic Platinum";
-
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
@@ -53,6 +53,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -108,7 +109,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 				}
 			}
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSavingsradio());
 			Thread.sleep(1000);
 			mp.getSavingsradio().click();
@@ -180,7 +181,6 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 		try {
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			int FopCount = mp.getCardNumbers().size();
 			for (int i = 0; i < FopCount; i++) {
 
@@ -316,7 +316,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

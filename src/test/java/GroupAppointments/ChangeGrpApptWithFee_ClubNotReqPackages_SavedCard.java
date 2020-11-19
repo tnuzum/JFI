@@ -395,7 +395,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_SavedCard extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -482,7 +482,7 @@ public class MyAgreementsLayout extends base {
 
 	@AfterClass(enabled = true)
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -147,7 +147,7 @@ public class MemberWithCheckInHistoryTest extends base {
 
 	@AfterTest
 	public void teardown() {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

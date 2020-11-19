@@ -17,6 +17,9 @@ public class CalendarPO {
 	By monthYear = By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]");
 	By leftArrow = By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][1]");
 	By rightArrow = By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][3]");
+	By monthYearListView = By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]");
+	By leftArrowListView = By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][1]");
+	By rightArrowListView = By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][3]");
 	By calDayBadge = By.xpath("//span[contains(@class, 'cal-day-badge')]");
 	By calEventTitle = By.xpath("//span[contains(@class, 'cal-event-title')]");
 	By classDetailPopup = By.xpath("//div[@class='modal-content']");
@@ -75,6 +78,18 @@ public class CalendarPO {
 
 	public WebElement getRightArrow() {
 		return driver.findElement(rightArrow);
+	}
+
+	public WebElement getMonthYearListView() {
+		return driver.findElement(monthYearListView);
+	}
+
+	public WebElement getLeftArrowListView() {
+		return driver.findElement(leftArrowListView);
+	}
+
+	public WebElement getRightArrowListView() {
+		return driver.findElement(rightArrowListView);
 	}
 
 	public WebElement getCalDayBadge() {

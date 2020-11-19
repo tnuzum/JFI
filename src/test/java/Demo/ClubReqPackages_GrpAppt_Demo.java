@@ -503,7 +503,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 	// @AfterTest
 	/*
 	 * @AfterClass public void teardown() throws InterruptedException {
-	 * driver.close(); driver = null; }
+	 * driver.quit(); driver = null; }
 	 */
 
 }

@@ -389,7 +389,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_ToGrpAppt extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

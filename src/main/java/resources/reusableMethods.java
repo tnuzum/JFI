@@ -336,7 +336,7 @@ public class reusableMethods extends base {
 			log.info("Menu My Calendar clicked");
 			System.out.println("Menu My Calendar clicked");
 			wait1.until(ExpectedConditions.presenceOfElementLocated(
-					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 			cp.getCalendarViewLink().click();
 			String monthYear = cp.getMonthYear().getText();
@@ -2269,6 +2269,8 @@ public class reusableMethods extends base {
 
 	public Object myCourseClickToUnenroll(String dsiredMonthYear) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
 
@@ -2286,7 +2288,7 @@ public class reusableMethods extends base {
 
 		d.getMenuMyCalendar().click();
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
-				By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 		cp.getCalendarViewLink().click();
 		String monthYear = cp.getMonthYear().getText();
 		while (!monthYear.equals(dsiredMonthYear)) {
@@ -2299,7 +2301,10 @@ public class reusableMethods extends base {
 		Thread.sleep(1000);
 		cp.getCalDayBadges().get(1).click();
 		Thread.sleep(1000);
+		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
+		Thread.sleep(1000);
 		cp.getCalEventTitle().click();
+
 		Thread.sleep(1000);
 		cp.getUnEnrollBtn().click();
 		Thread.sleep(1000);
@@ -2588,7 +2593,7 @@ public class reusableMethods extends base {
 
 	public Object familyClassClickToUnenroll(String classEnrolled, String enrolledMemberName)
 			throws InterruptedException {
-
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
 
@@ -2609,7 +2614,7 @@ public class reusableMethods extends base {
 
 		d.getMenuMyCalendar().click();
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
-				By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 		cp.getCalendarViewLink().click();
 
@@ -2626,6 +2631,8 @@ public class reusableMethods extends base {
 
 			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
 
+				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+				Thread.sleep(1000);
 				cp.getCalEventTitles().get(i).click();
 				break;
 			}
@@ -2643,7 +2650,7 @@ public class reusableMethods extends base {
 
 	public Object familyCourseClickToUnenroll(String dsiredMonthYear, String classEnrolled, String enrolledMemberName)
 			throws InterruptedException {
-
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
 
@@ -2663,7 +2670,7 @@ public class reusableMethods extends base {
 
 		d.getMenuMyCalendar().click();
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
-				By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 		cp.getCalendarViewLink().click();
 
@@ -2687,6 +2694,8 @@ public class reusableMethods extends base {
 
 			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
 
+				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+				Thread.sleep(1000);
 				cp.getCalEventTitles().get(i).click();
 				break;
 			}

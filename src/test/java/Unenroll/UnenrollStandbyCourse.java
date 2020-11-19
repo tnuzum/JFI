@@ -2,7 +2,6 @@ package Unenroll;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -46,6 +45,8 @@ public class UnenrollStandbyCourse extends base {
 
 	private static String testName = null;
 
+	private static JavascriptExecutor jse;
+
 	public reusableWaits rw;
 	public reusableMethods rm;
 
@@ -61,6 +62,7 @@ public class UnenrollStandbyCourse extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
 	}
@@ -109,7 +111,7 @@ public class UnenrollStandbyCourse extends base {
 				String CourseName = w.getText();
 
 				if (CourseName.contains(CourseToEnroll)) {
-					w.click(); // Click on the specific Class
+					jse.executeScript("arguments[0].click();", w);// Click on the specific Class
 					break;
 				}
 			}
@@ -169,21 +171,21 @@ public class UnenrollStandbyCourse extends base {
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Course Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(3000);
 
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 			rw.waitForAcceptButton();
@@ -256,32 +258,30 @@ public class UnenrollStandbyCourse extends base {
 
 			d.getMenuMyCalendar().click();
 			wait1.until(ExpectedConditions.presenceOfElementLocated(
-					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
-			String monthYear = cp.getMonthYear().getText();
+			String monthYear = cp.getMonthYearListView().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
-				cp.getRightArrow().click();
+				cp.getRightArrowListView().click();
 				wait1.until(ExpectedConditions.presenceOfElementLocated(
 						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
-				monthYear = cp.getMonthYear().getText();
+				monthYear = cp.getMonthYearListView().getText();
 			}
 
-			Thread.sleep(1000);
-
-			cp.getCalendarListViewLink().click();
 			Thread.sleep(1000);
 
 			int count = cp.getMemberSections().size();
 
 			for (int i = 0; i < count; i++) {
 				if (cp.getMemberSections().get(i).getText().contains("HOH")) {
-					cp.getMemberSections().get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							cp.getMemberSections().get(i).findElement(By.tagName("i")));
 					break;
 				}
 
 			}
 
-			cp.getUnenrollListview().click();
+			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
 			Thread.sleep(1000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -298,7 +298,7 @@ public class UnenrollStandbyCourse extends base {
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$9.00"));
 			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
-			u.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", u.getPaymentButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -345,7 +345,9 @@ public class UnenrollStandbyCourse extends base {
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.presenceOfElementLocated(
-					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
+
+			cp.getCalendarViewLink().click();
 
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
@@ -363,6 +365,8 @@ public class UnenrollStandbyCourse extends base {
 
 				if (cp.getCalEventTitles().get(i).getText().contains(CourseNameDisplayed)) {
 
+					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+					Thread.sleep(1000);
 					cp.getCalEventTitles().get(i).click();
 					break;
 				}
@@ -383,6 +387,10 @@ public class UnenrollStandbyCourse extends base {
 			Assert.assertTrue(u.getStanbyHeader().isDisplayed());
 
 			Assert.assertEquals(u.getStanbyUnenrollText().getText(), standbyUnenrollText);
+
+			rm.returnToDashboard();
+
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -408,8 +416,7 @@ public class UnenrollStandbyCourse extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
-		} finally {
-			rm.memberLogout();
+
 		}
 	}
 
@@ -432,7 +439,7 @@ public class UnenrollStandbyCourse extends base {
 
 			Assert.assertEquals(u.getStanbyUnenrollText().getText(), standbyUnenrollText);
 
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -443,6 +450,7 @@ public class UnenrollStandbyCourse extends base {
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -468,8 +476,7 @@ public class UnenrollStandbyCourse extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		} finally {
-			rm.memberLogout();
+
 		}
 	}
 
@@ -477,7 +484,7 @@ public class UnenrollStandbyCourse extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

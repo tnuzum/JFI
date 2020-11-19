@@ -115,7 +115,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

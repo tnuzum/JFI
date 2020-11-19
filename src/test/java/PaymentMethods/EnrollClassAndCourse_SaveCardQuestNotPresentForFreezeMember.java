@@ -420,7 +420,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

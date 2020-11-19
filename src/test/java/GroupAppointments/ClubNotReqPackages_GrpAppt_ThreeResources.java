@@ -1,7 +1,6 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -230,6 +229,8 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 
 			ap.getPopup1BookButton().click();
 
+			Thread.sleep(1000);
+
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 			Assert.assertEquals("Appointments", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -387,7 +388,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

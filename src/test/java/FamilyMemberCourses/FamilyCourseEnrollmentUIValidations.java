@@ -371,7 +371,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

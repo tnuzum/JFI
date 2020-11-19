@@ -434,7 +434,7 @@ public class FamilyMemberCourseEnrollment extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 
