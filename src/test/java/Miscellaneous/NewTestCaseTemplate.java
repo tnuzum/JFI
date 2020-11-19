@@ -39,7 +39,7 @@ private static Logger log =LogManager.getLogger(base.class.getName());
 	@AfterTest
 		public void teardown() throws InterruptedException
 		{
-			driver.close();
+			driver.quit();
 			driver=null;
 		}
 	

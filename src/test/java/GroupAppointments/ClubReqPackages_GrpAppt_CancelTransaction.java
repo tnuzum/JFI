@@ -337,7 +337,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

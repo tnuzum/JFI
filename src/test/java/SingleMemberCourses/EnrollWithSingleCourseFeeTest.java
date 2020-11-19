@@ -692,7 +692,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 			d.getMenuMyCalendar().click();
 			wait1.until(ExpectedConditions.presenceOfElementLocated(
-					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 			cp.getCalendarViewLink().click();
 
@@ -758,7 +758,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

@@ -298,7 +298,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard_FreezeMbr extends ba
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

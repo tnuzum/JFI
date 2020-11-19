@@ -61,7 +61,7 @@ public class ValidateMember extends base {
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		Thread.sleep(3000);
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

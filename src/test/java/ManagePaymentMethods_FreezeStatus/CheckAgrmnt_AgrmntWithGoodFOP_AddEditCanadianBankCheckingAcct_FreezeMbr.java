@@ -317,7 +317,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct_Freez
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

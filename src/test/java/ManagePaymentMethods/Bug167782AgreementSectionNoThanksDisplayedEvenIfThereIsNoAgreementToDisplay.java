@@ -273,7 +273,7 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

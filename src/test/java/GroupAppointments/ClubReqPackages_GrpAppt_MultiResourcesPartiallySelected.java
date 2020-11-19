@@ -527,7 +527,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 	// @AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

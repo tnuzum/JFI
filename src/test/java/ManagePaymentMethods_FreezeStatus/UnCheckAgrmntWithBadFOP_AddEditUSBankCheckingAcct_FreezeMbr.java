@@ -311,7 +311,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankCheckingAcct_FreezeMbr extends
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -372,7 +372,7 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

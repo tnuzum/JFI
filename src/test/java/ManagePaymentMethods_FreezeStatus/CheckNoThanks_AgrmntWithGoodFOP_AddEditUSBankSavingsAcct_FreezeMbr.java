@@ -304,7 +304,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct_FreezeMbr 
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

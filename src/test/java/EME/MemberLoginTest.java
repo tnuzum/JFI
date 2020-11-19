@@ -144,7 +144,7 @@ public class MemberLoginTest extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

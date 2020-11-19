@@ -377,7 +377,7 @@ public class ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt extends base
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -459,7 +459,7 @@ public class ClubReqPackages_BookAppt_SingleResource_NotSelected extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

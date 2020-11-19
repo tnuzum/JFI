@@ -37,7 +37,7 @@ public class ExampleTest extends base{
 		
 		
 		Thread.sleep(10000);		
-		driver.close();
+		driver.quit();
 		driver=null;		
 
 		}

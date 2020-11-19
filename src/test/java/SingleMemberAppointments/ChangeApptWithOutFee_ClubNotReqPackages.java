@@ -294,7 +294,7 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -7,6 +7,7 @@ import java.util.Calendar;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,6 +41,8 @@ public class CalendarLayout extends base {
 	private static CalendarPO cp;
 	private static BreadcrumbTrailPO BT;
 	private static UnenrollPO u;
+
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -76,6 +79,7 @@ public class CalendarLayout extends base {
 		cp = new CalendarPO(driver);
 		BT = new BreadcrumbTrailPO(driver);
 		u = new UnenrollPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -113,7 +117,7 @@ public class CalendarLayout extends base {
 
 			d.getMenuMyCalendar().click();
 			wait1.until(ExpectedConditions.presenceOfElementLocated(
-					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 			Assert.assertEquals("My Calendar", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -158,24 +162,26 @@ public class CalendarLayout extends base {
 
 				WebDriverWait wait = new WebDriverWait(driver, 50);
 				wait.until(ExpectedConditions.presenceOfElementLocated(
-						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+						By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 				Thread.sleep(1000);
 
 			}
 			Assert.assertTrue(cp.getMemberClassDetails().isDisplayed());
-			cp.getClassGearButton().click();
+			jse.executeScript("arguments[0].click();", cp.getClassGearButton());
 
 			Assert.assertTrue(cp.getAddToCalButtonListView().isDisplayed());
 			Assert.assertTrue(cp.getUnenrollListview().isDisplayed());
 
-			cp.getUnenrollListview().click();
+			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
+
 			Thread.sleep(1000);
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll));
 
 			Assert.assertEquals(u.getPageHeader().getText(), "Unenroll");
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
+			// jse.executeScript("arguments[0].click();", u.getCancelButton());
 			u.getCancelButton().click();
 			Thread.sleep(1000);
 
@@ -219,14 +225,18 @@ public class CalendarLayout extends base {
 
 			rm.MyActivitiesTomorrowClick();
 
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			int eventCount = cp.getCalEventTitles().size();
+			System.out.println(eventCount);
 
 			for (int i = 0; i < eventCount; i++) {
+				System.out.println(cp.getCalEventTitles().get(i).getText());
 
 				if (cp.getCalEventTitles().get(i).getText().contains(classToEnroll)) {
 
+					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+					Thread.sleep(1000);
 					cp.getCalEventTitles().get(i).click();
 					break;
 				}
@@ -250,7 +260,7 @@ public class CalendarLayout extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), classToEnroll));
 
-			u.getUnenrollButton().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollButton());
 			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
 
@@ -311,8 +321,9 @@ public class CalendarLayout extends base {
 			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
 
 			d.getMenuMyCalendar().click();
+
 			wait1.until(ExpectedConditions.presenceOfElementLocated(
-					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 //			cp.getCalendarListViewLink().click();
 			Thread.sleep(1000);
@@ -325,7 +336,7 @@ public class CalendarLayout extends base {
 
 				WebDriverWait wait = new WebDriverWait(driver, 50);
 				wait.until(ExpectedConditions.presenceOfElementLocated(
-						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+						By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 				Thread.sleep(1000);
 
@@ -389,7 +400,7 @@ public class CalendarLayout extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

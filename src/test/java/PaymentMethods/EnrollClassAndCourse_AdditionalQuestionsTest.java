@@ -375,7 +375,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

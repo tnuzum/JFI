@@ -2,7 +2,6 @@ package Unenroll;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -40,6 +39,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 	private static String member2 = "Standbypromo1";
 	private static String member5 = "Standbyhoh";
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -56,6 +56,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
 	}
@@ -99,7 +100,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 				String ClassName = w.getText();
 
 				if (ClassName.contains(ClassToEnroll)) {
-					w.click(); // Click on the specific Class
+					jse.executeScript("arguments[0].click();", w); // Click on the specific Class
 					break;
 				}
 			}
@@ -166,14 +167,14 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(3000);
 
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 			rw.waitForAcceptButton();
@@ -195,6 +196,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 				}
 
 			}
+			rw.waitForDashboardLoaded();
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
@@ -265,7 +267,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			Assert.assertTrue(PP.getClassIsFull().getText().contains("Class is full"));
 			Assert.assertTrue(PP.getStandbyQuestion().getText().contains("Would you like to be placed on Standby?"));
 
-			PP.getGoOnStndby().click();
+			jse.executeScript("arguments[0].click();", PP.getGoOnStndby());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -367,7 +369,9 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.presenceOfElementLocated(
-					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
+
+			cp.getCalendarViewLink().click();
 
 			rm.MyActivitiesTomorrowClick();
 
@@ -377,6 +381,8 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 				if (cp.getCalEventTitles().get(i).getText().contains(ClassNameDisplayed)) {
 
+					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+					Thread.sleep(1000);
 					cp.getCalEventTitles().get(i).click();
 					break;
 				}
@@ -398,7 +404,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$10.00"));
 			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
-			u.getUnenrollButton().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -409,6 +415,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -434,8 +441,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			Assert.fail(eci.getMessage());
-		} finally {
-			rm.memberLogout();
+
 		}
 	}
 
@@ -469,7 +475,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$10.00"));
 			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
-			u.getUnenrollButton().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -480,6 +486,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
 			u.getUnenrollConfirmYesButton().click();
 			Thread.sleep(2000);
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -505,8 +512,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		} finally {
-			rm.memberLogout();
+
 		}
 	}
 
@@ -514,7 +520,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

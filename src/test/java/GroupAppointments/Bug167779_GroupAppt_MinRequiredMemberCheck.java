@@ -416,7 +416,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -105,7 +105,7 @@ public class EnrollClass_ClubSettings extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

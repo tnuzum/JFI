@@ -98,7 +98,7 @@ public class ScheduleCourseTest extends base {
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		Thread.sleep(5000);
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

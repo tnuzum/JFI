@@ -358,7 +358,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_OnAccount extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

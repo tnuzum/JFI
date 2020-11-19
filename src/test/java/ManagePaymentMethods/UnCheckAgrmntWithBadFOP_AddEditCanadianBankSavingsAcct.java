@@ -307,7 +307,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCanadianBankSavingsAcct extends base
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

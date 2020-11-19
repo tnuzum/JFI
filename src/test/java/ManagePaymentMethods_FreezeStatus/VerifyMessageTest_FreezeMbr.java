@@ -59,7 +59,7 @@ public class VerifyMessageTest_FreezeMbr extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

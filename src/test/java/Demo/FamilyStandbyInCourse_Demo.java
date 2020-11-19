@@ -450,7 +450,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

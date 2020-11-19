@@ -292,7 +292,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

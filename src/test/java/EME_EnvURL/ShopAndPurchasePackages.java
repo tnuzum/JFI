@@ -1051,7 +1051,7 @@ public class ShopAndPurchasePackages extends base {
 
 	public void teardown() throws InterruptedException {
 
-		driver.close();
+		driver.quit();
 		driver = null;
 
 	}

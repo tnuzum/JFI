@@ -90,7 +90,7 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 
