@@ -1,11 +1,11 @@
 package SingleMemberCourses;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -30,6 +30,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String CourseStartMonth = "Jun";
 	private static int CourseStartYear = 2021;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -46,6 +47,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -163,7 +165,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 
 		// Click the Pay button
 
-		PM.getCancelButton().click();
+		jse.executeScript("arguments[0].click();", PM.getCancelButton());
 
 		Assert.assertEquals(c.getPageHeader().getText(), "Select Courses / Events");
 
