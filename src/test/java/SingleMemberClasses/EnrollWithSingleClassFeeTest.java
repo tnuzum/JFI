@@ -39,6 +39,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 	private static PurchaseConfirmationPO PP;
 	private static ThankYouPO TY;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -65,6 +66,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PM = new PaymentMethodsPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -157,7 +159,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 						break;
 					}
 				}
-				c.getContinueButton().click();
+				jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 				Thread.sleep(2000);
 				rm.ReviewSectionValidation("Fee(s)");
@@ -206,7 +208,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			rw.waitForAcceptButton();
@@ -339,7 +341,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				}
 			}
 			Thread.sleep(2000);
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(3000);
 
@@ -354,7 +356,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -372,7 +375,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			// rw.waitForAcceptButton();
 			rw.waitForAcceptButton();
@@ -505,7 +508,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(5000);
 
@@ -516,7 +519,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -545,7 +548,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getSecurityCode().sendKeys("123");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
-			PM.getSaveCardNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 			Thread.sleep(1000);
 			Assert.assertTrue(PM.getPaymentButton().isEnabled());
 
@@ -561,7 +564,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			rw.waitForAcceptButton();
 			// rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));

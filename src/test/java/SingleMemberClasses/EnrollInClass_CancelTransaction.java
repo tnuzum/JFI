@@ -1,11 +1,11 @@
 package SingleMemberClasses;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -27,6 +27,7 @@ public class EnrollInClass_CancelTransaction extends base {
 	private static String classNameDisplayed = "Barre Combat Fusion";
 	private static String classTimeDisplayed = "Start Time: 5:00 PM";
 	private static String classInstructorDisplayed = "Class Instructor: Andrea";
+	private static JavascriptExecutor jse;
 
 	public reusableMethods rm;
 
@@ -40,6 +41,7 @@ public class EnrollInClass_CancelTransaction extends base {
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
 		rm.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -105,8 +107,9 @@ public class EnrollInClass_CancelTransaction extends base {
 			String className = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
 
 			if (className.contains(classToEnroll)) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific class
+				jse.executeScript("arguments[0].click();",
+						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)); // Click on the
+				// specific class
 				break;
 			}
 		}
@@ -159,7 +162,7 @@ public class EnrollInClass_CancelTransaction extends base {
 
 		// Click the Cancel button
 
-		PM.getCancelButton().click();
+		jse.executeScript("arguments[0].click();", PM.getCancelButton());
 
 		Assert.assertEquals(c.getPageHeader().getText(), "Select Classes");
 

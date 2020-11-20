@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -31,6 +30,7 @@ public class PayBalance_NewCard_HasAgreement extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "AgreementMember Auto";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -47,6 +47,8 @@ public class PayBalance_NewCard_HasAgreement extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
+
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -73,7 +75,6 @@ public class PayBalance_NewCard_HasAgreement extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 
 			Thread.sleep(500);
@@ -95,15 +96,15 @@ public class PayBalance_NewCard_HasAgreement extends base {
 			rm.OpenNewcardFormIfNotOpenInFirstAttempt();
 
 			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
-			// JavascriptExecutor jse = (JavascriptExecutor) driver;
+			//
 			jse.executeScript("arguments[0].click();", p.getCardNumber());
 			p.getCardNumber().sendKeys("4111111111111111");
 			p.getExpireMonth().sendKeys("04");
 			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
-			p.getSaveCardYesRadio().click();
-			p.getHouseAcctNoRadioButton().click();
-			p.getInClubPurchaseNoRadio().click();
+			jse.executeScript("arguments[0].click();", p.getSaveCardYesRadio());
+			jse.executeScript("arguments[0].click();", p.getHouseAcctNoRadioButton());
+			jse.executeScript("arguments[0].click();", p.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
@@ -112,34 +113,37 @@ public class PayBalance_NewCard_HasAgreement extends base {
 
 			Assert.assertTrue(!p.getSubmitButton().isEnabled());
 
-			p.getFirstAgreement().click();
+			jse.executeScript("arguments[0].click();", p.getFirstAgreement());
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A Selection is Required')]")),
 					false);
 
 			Thread.sleep(1000);
-			p.getIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", p.getIAgreeCheckbox());
 			Thread.sleep(2000);
 
 			Assert.assertTrue(p.getSubmitButton().isEnabled());
 
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 
 			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			p.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", p.getSignaturePad());
+			Thread.sleep(2000);
+
 			Actions a = new Actions(driver);
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
-			p.getNoThanks().click();
+			jse.executeScript("arguments[0].click();", p.getNoThanks());
 			Thread.sleep(1000);
 
 //			p.getSaveCardNoRadio().click();
 			Thread.sleep(1000);
 
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
 			rw.waitForAcceptButton();
@@ -184,7 +188,7 @@ public class PayBalance_NewCard_HasAgreement extends base {
 				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 
-			d.getBreadcrumbDashboard().click();
+			rm.returnToDashboard();
 		}
 
 	}

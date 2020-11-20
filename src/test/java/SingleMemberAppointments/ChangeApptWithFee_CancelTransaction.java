@@ -1,7 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -73,6 +72,7 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 	@Test(priority = 1)
 	public void ChangeAppointmentCancelTransaction() throws IOException, InterruptedException {
 		try {
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("apptmember6", "Testing1!");
 
 			rw.waitForDashboardLoaded();
@@ -213,7 +213,7 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 					}
 
 					// AftrnunSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 
@@ -287,13 +287,14 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
 			// Click the Cancel button
-			ap.getCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getCancelButton());
 			Thread.sleep(2000);
 
 			Boolean ApptCheckout = rm.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));

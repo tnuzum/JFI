@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -103,15 +102,15 @@ public class PayBalance_NewCard_NoAgreement extends base {
 			p.getExpireMonth().sendKeys("04");
 			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
-			p.getSaveCardYesRadio().click();
-			p.getHouseAcctNoRadioButton().click();
-			p.getInClubPurchaseNoRadio().click();
-			p.getIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", p.getSaveCardYesRadio());
+			jse.executeScript("arguments[0].click();", p.getHouseAcctNoRadioButton());
+			jse.executeScript("arguments[0].click();", p.getInClubPurchaseNoRadio());
+			jse.executeScript("arguments[0].click();", p.getIAgreeCheckbox());
 			Thread.sleep(2000);
 
 			Assert.assertTrue(p.getSubmitButton().isEnabled());
 
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 
 			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
 
@@ -119,13 +118,16 @@ public class PayBalance_NewCard_NoAgreement extends base {
 			p.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", p.getSignaturePad());
+			Thread.sleep(2000);
+
 			Actions a = new Actions(driver);
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
 			// p.getSaveCardNoRadio().click();
 			Thread.sleep(1000);
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
 			rw.waitForAcceptButton();
@@ -169,7 +171,7 @@ public class PayBalance_NewCard_NoAgreement extends base {
 				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 
-			d.getBreadcrumbDashboard().click();
+			rm.returnToDashboard();
 		}
 
 	}

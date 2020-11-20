@@ -36,6 +36,7 @@ public class ShopAndPurchasePackages extends base {
 	private static ThankYouPO TY;
 	private static AcctHistoryPO ahp;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -73,6 +74,7 @@ public class ShopAndPurchasePackages extends base {
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
 		ahp = new AcctHistoryPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -163,7 +165,7 @@ public class ShopAndPurchasePackages extends base {
 			if (sp.getPackageNames().get(i).getText().contains("ServiceOA"))
 
 			{
-				sp.getPurchaseButtons().get(i).click();
+				jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 				break;
 			}
 
@@ -270,7 +272,7 @@ public class ShopAndPurchasePackages extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
@@ -421,7 +423,7 @@ public class ShopAndPurchasePackages extends base {
 				if (sp.getPackageNames().get(i).getText().equals("ServiceCC"))
 
 				{
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 
@@ -443,7 +445,6 @@ public class ShopAndPurchasePackages extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
 					jse.executeScript("arguments[0].click();",
 							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
@@ -472,7 +473,7 @@ public class ShopAndPurchasePackages extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
@@ -620,7 +621,7 @@ public class ShopAndPurchasePackages extends base {
 				if (sp.getPackageNames().get(i).getText().equals("ServiceNC"))
 
 				{
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 
@@ -637,7 +638,6 @@ public class ShopAndPurchasePackages extends base {
 				;
 			}
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
@@ -674,7 +674,7 @@ public class ShopAndPurchasePackages extends base {
 			Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 			PM.getPopupOk().click();
 			Thread.sleep(1000);
-			PM.getSaveCardNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 
 			// Noting down the total amount
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
@@ -849,7 +849,7 @@ public class ShopAndPurchasePackages extends base {
 				if (sp.getPackageNames().get(i).getText().equals("ServiceNC"))
 
 				{
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 
@@ -935,7 +935,7 @@ public class ShopAndPurchasePackages extends base {
 				if (sp.getPackageNames().get(i).getText().equals("ServiceNC"))
 
 				{
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 
@@ -1020,7 +1020,7 @@ public class ShopAndPurchasePackages extends base {
 				if (sp.getPackageNames().get(i).getText().equals("ServiceNC"))
 
 				{
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 
@@ -1075,7 +1075,6 @@ public class ShopAndPurchasePackages extends base {
 			// Noting down the Package Units before purchasing
 			int IntUnitCountBefore3 = 0;
 			int IntUnitCountAfter3 = 0;
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
 
@@ -1107,7 +1106,7 @@ public class ShopAndPurchasePackages extends base {
 					Select s = new Select(SelectDropdown);
 					s.selectByVisibleText("4 - $10.00/per");
 					Thread.sleep(1000);
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 
