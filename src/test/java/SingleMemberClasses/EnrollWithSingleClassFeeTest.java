@@ -538,7 +538,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
 			Assert.assertEquals(prop.getProperty("activeMember8_fullname"),
 					PM.getNameOnCardField().getAttribute("value"));
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", PM.getCardNumberField());
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");

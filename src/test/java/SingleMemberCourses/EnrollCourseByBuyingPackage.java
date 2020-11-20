@@ -52,6 +52,7 @@ public class EnrollCourseByBuyingPackage extends base {
 	private static PurchaseConfirmationPO PP;
 	private static ThankYouPO TY;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -78,6 +79,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		PM = new PaymentMethodsPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
+		jse = (JavascriptExecutor) driver;
 	}
 
 	@BeforeMethod
@@ -172,7 +174,8 @@ public class EnrollCourseByBuyingPackage extends base {
 				int radioButtonCount = driver.findElements(By.tagName("label")).size();
 				for (int i = 0; i < radioButtonCount; i++) {
 					if (driver.findElements(By.tagName("label")).get(i).getText().equals(buyPackageName)) {
-						driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();",
+								driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 						break;
 					}
 				}
@@ -183,7 +186,7 @@ public class EnrollCourseByBuyingPackage extends base {
 				defaultSelection = s.getFirstSelectedOption().getText().trim();
 				Assert.assertEquals(defaultSelection, unitsToBeSelected);
 
-				c.getContinueButton().click();
+				jse.executeScript("arguments[0].click();", c.getContinueButton());
 				Thread.sleep(2000);
 				rm.ReviewSectionValidation("Package(s)");
 
@@ -231,7 +234,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			rw.waitForAcceptButton();
@@ -387,7 +390,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			defaultSelection = s.getFirstSelectedOption().getText().trim();
 			Assert.assertEquals(defaultSelection, unitsToBeSelected);
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(3000);
 
@@ -402,7 +405,8 @@ public class EnrollCourseByBuyingPackage extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -420,7 +424,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -572,7 +576,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			defaultSelection = s.getFirstSelectedOption().getText().trim();
 			Assert.assertEquals(defaultSelection, unitsToBeSelected);
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
 
@@ -585,7 +589,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -614,17 +618,17 @@ public class EnrollCourseByBuyingPackage extends base {
 			PM.getSecurityCode().sendKeys("123");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 
-			PM.getCheckBox().click();
+			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
 			// Clicks on the Pay button without signature
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			System.out.println(PM.getPopupContent().getText());
 			Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 			PM.getPopupOk().click();
 			Thread.sleep(1000);
-			PM.getSaveCardNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 			Thread.sleep(1000);
 			wait.until(ExpectedConditions.elementToBeClickable(PM.getPaymentButton()));
 			Assert.assertTrue(PM.getPaymentButton().isEnabled());
@@ -641,7 +645,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -759,7 +763,10 @@ public class EnrollCourseByBuyingPackage extends base {
 			}
 
 			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+			Thread.sleep(1000);
 			cp.getCalDayBadge().click();
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
 			Thread.sleep(1000);
 			cp.getCalEventTitle().click();
 			Thread.sleep(1000);

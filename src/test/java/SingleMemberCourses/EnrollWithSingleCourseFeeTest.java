@@ -44,6 +44,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	private static PurchaseConfirmationPO PP;
 	private static ThankYouPO TY;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -69,7 +70,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		PM = new PaymentMethodsPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
-
+		jse = (JavascriptExecutor) driver;
 	}
 
 	@BeforeMethod
@@ -209,7 +210,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			rw.waitForAcceptButton();
@@ -350,7 +351,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(3000);
 
@@ -369,10 +370,11 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			for (int i = 0; i < count; i++) {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].scrollIntoView(true);",
 							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -390,7 +392,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -524,12 +526,13 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(5000);
 
@@ -540,7 +543,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -559,7 +562,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
 			Assert.assertEquals(prop.getProperty("activeMember8_fullname"),
 					PM.getNameOnCardField().getAttribute("value"));
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", PM.getCardNumberField());
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
@@ -569,7 +572,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getSecurityCode().sendKeys("123");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
-			PM.getSaveCardNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 			Thread.sleep(1000);
 			Assert.assertTrue(PM.getPaymentButton().isEnabled());
 
@@ -585,7 +588,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -704,7 +707,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				monthYear = cp.getMonthYear().getText();
 			}
 			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+			Thread.sleep(1000);
 			cp.getCalDayBadge().click();
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
 			Thread.sleep(1000);
 			cp.getCalEventTitle().click();
 			Thread.sleep(1000);
