@@ -1203,6 +1203,7 @@ public class reusableMethods extends base {
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
@@ -1242,7 +1243,7 @@ public class reusableMethods extends base {
 		{
 //			Thread.sleep(200);
 		}
-		a.getEditApptProceedButton().click();
+		jse.executeScript("arguments[0].click();", a.getEditApptProceedButton());
 		Thread.sleep(1000);
 		boolean result1 = rw.popupMessageYesButton();
 		if (result1 == true) {
@@ -1543,6 +1544,8 @@ public class reusableMethods extends base {
 	public String BookGrpApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2, String groupMember) throws IOException, InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
@@ -1613,7 +1616,7 @@ public class reusableMethods extends base {
 		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
 		ap.getGroupMemberSearchInput().sendKeys("auto");
-		ap.getGroupMemberSearchButton().click();
+		jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 		Thread.sleep(2000);
 
@@ -1675,7 +1678,7 @@ public class reusableMethods extends base {
 				}
 
 				// MorningSlot.click();
-				JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 				jse.executeScript("arguments[0].click();", MorningSlot);
 
 				MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
@@ -1689,7 +1692,7 @@ public class reusableMethods extends base {
 				wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
 				startTime = firstAvailableTimeMorning.getText();
 				System.out.println(startTime);
-				firstAvailableTimeMorning.click();
+				jse.executeScript("arguments[0].click();", firstAvailableTimeMorning);
 				break;
 			}
 		}
@@ -1721,7 +1724,7 @@ public class reusableMethods extends base {
 					}
 
 					// MorningSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", MorningSlot);
 
 					MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
@@ -1735,7 +1738,7 @@ public class reusableMethods extends base {
 					wait.until(ExpectedConditions.elementToBeClickable(firstAvailableTimeMorning));
 					startTime = firstAvailableTimeMorning.getText();
 					System.out.println(startTime);
-					firstAvailableTimeMorning.click();
+					jse.executeScript("arguments[0].click();", firstAvailableTimeMorning);
 					break;
 				}
 			}
@@ -1769,7 +1772,8 @@ public class reusableMethods extends base {
 			}
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-			ap.getPaymentButton().click();
+
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 			System.out.println("clicked");
 		} else {
 			ap.getPopup1BookButton().click();
@@ -1995,7 +1999,9 @@ public class reusableMethods extends base {
 
 		// Actions a = new Actions(driver);
 		// a.click(ap.getCalendarTomorrow()).build().perform();
-		ap.getCalendarDayAfterTomorrow().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", ap.getCalendarDayAfterTomorrow());
+		jse.executeScript("arguments[0].click();", ap.getCalendarDayAfterTomorrow());
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 
@@ -2763,6 +2769,7 @@ public class reusableMethods extends base {
 	}
 
 	public Object selectNewcardToPay(String memberName) throws InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
@@ -2773,7 +2780,7 @@ public class reusableMethods extends base {
 
 		}
 
-		PM.getNewCardButton().click();
+		jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 		Thread.sleep(3000);
 
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -2798,23 +2805,24 @@ public class reusableMethods extends base {
 		PM.getExpirationMonth().sendKeys("04");
 		PM.getExpirationYear().sendKeys("22");
 		PM.getSecurityCode().sendKeys("123");
-		PM.getCheckBox().click();
+		jse.executeScript("arguments[0].click();", PM.getCheckBox());
 		while (!PM.getPaymentButton().isEnabled()) {
 			Thread.sleep(1000);
 		}
 
 		// Clicks on the Pay button without signature
-		PM.getPaymentButton().click();
+		jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 		System.out.println(PM.getPopupContent().getText());
 		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
-		PM.getSaveCardNo().click();
+		jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 		Thread.sleep(1000);
 		return null;
 	}
 
 	public Object selectNewcardToRefund(String memberName) throws InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		UnenrollPO u = new UnenrollPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -2826,7 +2834,7 @@ public class reusableMethods extends base {
 
 		}
 
-		u.getNewCardButton().click();
+		jse.executeScript("arguments[0].click();", u.getNewCardButton());
 		Thread.sleep(5000);
 
 		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -2851,18 +2859,18 @@ public class reusableMethods extends base {
 		PM.getExpirationMonth().sendKeys("04");
 		PM.getExpirationYear().sendKeys("22");
 		PM.getSecurityCode().sendKeys("123");
-		PM.getCheckBox().click();
+		jse.executeScript("arguments[0].click();", PM.getCheckBox());
 		while (!u.getRefundButton().isEnabled()) {
 			Thread.sleep(1000);
 		}
 
 		// Clicks on the Pay button without signature
-		u.getRefundButton().click();
+		jse.executeScript("arguments[0].click();", u.getRefundButton());
 		System.out.println(PM.getPopupContent().getText());
 		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 		PM.getPopupOk().click();
 		Thread.sleep(1000);
-		PM.getSaveCardNo().click();
+		jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 		Thread.sleep(1000);
 		return null;
 	}

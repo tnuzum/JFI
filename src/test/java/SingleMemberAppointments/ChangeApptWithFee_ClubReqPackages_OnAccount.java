@@ -1,7 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -63,6 +62,7 @@ public class ChangeApptWithFee_ClubReqPackages_OnAccount extends base {
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
 		try {
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("apptmember11", "Testing1!");
 
 			rw.waitForDashboardLoaded();
@@ -214,7 +214,7 @@ public class ChangeApptWithFee_ClubReqPackages_OnAccount extends base {
 					}
 
 					// AftrnunSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
@@ -317,7 +317,7 @@ public class ChangeApptWithFee_ClubReqPackages_OnAccount extends base {
 			while (!ap.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 
 			rw.waitForAcceptButton();
 

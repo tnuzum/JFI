@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -30,6 +29,7 @@ public class PayBalance_NewCard_HasAgreement_NoSave extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "Debbie Auto";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -46,6 +46,7 @@ public class PayBalance_NewCard_HasAgreement_NoSave extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -72,7 +73,6 @@ public class PayBalance_NewCard_HasAgreement_NoSave extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 
 			Thread.sleep(500);
@@ -94,17 +94,17 @@ public class PayBalance_NewCard_HasAgreement_NoSave extends base {
 			rm.OpenNewcardFormIfNotOpenInFirstAttempt();
 
 			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
-			// JavascriptExecutor jse = (JavascriptExecutor) driver;
+			//
 			jse.executeScript("arguments[0].click();", p.getCardNumber());
 			p.getCardNumber().sendKeys("4111111111111111");
 			p.getExpireMonth().sendKeys("04");
 			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
 			Thread.sleep(1000);
-			p.getSaveCardNoRadio().click();
+			jse.executeScript("arguments[0].click();", p.getSaveCardNoRadio());
 			Thread.sleep(1000);
 
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
 			rw.waitForAcceptButton();
@@ -148,7 +148,7 @@ public class PayBalance_NewCard_HasAgreement_NoSave extends base {
 				System.out.println("popup was present");
 			}
 
-			d.getBreadcrumbDashboard().click();
+			rm.returnToDashboard();
 		}
 
 	}

@@ -1,7 +1,6 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -64,6 +63,8 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_NewCard extends base {
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
 		try {
+
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("apptmember8", "Testing1!");
 
 			rw.waitForDashboardLoaded();
@@ -170,7 +171,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_NewCard extends base {
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
 			ap.getGroupMemberSearchInput().sendKeys("auto");
-			ap.getGroupMemberSearchButton().click();
+			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(2000);
 
@@ -225,7 +226,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_NewCard extends base {
 					}
 
 					// AftrnunSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
@@ -303,7 +304,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_NewCard extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(1000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -326,23 +327,23 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_NewCard extends base {
 			PM.getExpirationYear().sendKeys("22");
 			PM.getSecurityCode().sendKeys("123");
 			Thread.sleep(1000);
-			PM.getCheckBox().click();
+			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			while (!ap.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 			System.out.println(PM.getPopupContent().getText());
 			Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 			PM.getPopupOk().click();
 			Thread.sleep(1000);
-			PM.getSaveCardNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 			Thread.sleep(1000);
 
 			// Click the Pay button
 			while (!ap.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 
 			rw.waitForAcceptButton();
 

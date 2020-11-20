@@ -2,7 +2,6 @@ package Unenroll;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -55,6 +54,8 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 
 	private static String testName = null;
 
+	private static JavascriptExecutor jse;
+
 	public reusableWaits rw;
 	public reusableMethods rm;
 
@@ -70,6 +71,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -132,7 +134,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 
 			rm.selectSavedcard();
 
-			u.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", u.getPaymentButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -231,7 +233,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 
 			rm.selectSavedcard();
 
-			u.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", u.getPaymentButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -306,7 +308,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
@@ -383,7 +385,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -481,7 +483,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 			Thread.sleep(3000);
 			rm.selectNewcardToPay("UnenrollHoh2 Auto");
 
-			u.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", u.getPaymentButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -637,7 +639,6 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 				Thread.sleep(500);
 			}
 
-			JavascriptExecutor jse = ((JavascriptExecutor) driver);
 			int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
 			for (int i = 0; i < fmlyMbrcount; i++) {
@@ -683,12 +684,12 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(5000);
 			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
@@ -699,7 +700,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -765,7 +766,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 			Thread.sleep(3000);
 			rm.selectNewcardToRefund("UnenrollHoh2 Auto");
 
-			u.getRefundButton().click();
+			jse.executeScript("arguments[0].click();", u.getRefundButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -801,16 +802,14 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		}
-
-		finally {
-
+		} finally {
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
 			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
 				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
+
 			}
 			rm.returnToDashboard();
 		}
@@ -866,7 +865,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 
 //	@AfterTest
 
-	@AfterClass
+	@AfterClass(enabled = true)
 	public void teardown() throws InterruptedException {
 		driver.quit();
 		driver = null;

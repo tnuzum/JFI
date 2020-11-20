@@ -102,9 +102,9 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 			p.getCVC().sendKeys("123");
 			jse.executeScript("arguments[0].scrollIntoView(true);", p.getSaveCardNoRadio());
 			Thread.sleep(1000);
-			p.getSaveCardNoRadio().click();
+			jse.executeScript("arguments[0].click();", p.getSaveCardNoRadio());
 			Thread.sleep(1000);
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
 			rw.waitForAcceptButton();
@@ -147,10 +147,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 				System.out.println("popup was present");
 				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].scrollIntoView(true);", d.getBreadcrumbDashboard());
-			Thread.sleep(1000);
-			d.getBreadcrumbDashboard().click();
+			rm.returnToDashboard();
 		}
 
 	}

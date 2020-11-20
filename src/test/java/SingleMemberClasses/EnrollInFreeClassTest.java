@@ -2,11 +2,11 @@ package SingleMemberClasses;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -31,6 +31,7 @@ public class EnrollInFreeClassTest extends base {
 	private static ClassSignUpPO c;
 	private static ThankYouPO TY;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -55,6 +56,7 @@ public class EnrollInFreeClassTest extends base {
 		BT = new BreadcrumbTrailPO(driver);
 		c = new ClassSignUpPO(driver);
 		TY = new ThankYouPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -324,8 +326,8 @@ public class EnrollInFreeClassTest extends base {
 					break;
 				}
 			}
-Thread.sleep(1000);
-			c.getContinueButton().click();
+			Thread.sleep(1000);
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
@@ -465,7 +467,7 @@ Thread.sleep(1000);
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
