@@ -2,7 +2,6 @@ package FamilyMemberCourses;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -603,6 +602,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 9, description = "Validating that the course cannnot be enrolled due to Scheduling Conflict")
 	public void CourseSchedulingConflict() throws IOException, InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		rm.activeMemberLogin("hoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 
@@ -628,12 +629,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		// ((JavascriptExecutor) driver)
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupSignupButtonCourse().getLocation().x + ")");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
+		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
@@ -675,7 +676,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		// ((JavascriptExecutor) driver)
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupCancelButtonCourse().getLocation().x + ")");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
+		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 
 		actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 //		c.getPopupCancelButtonCourse().click();

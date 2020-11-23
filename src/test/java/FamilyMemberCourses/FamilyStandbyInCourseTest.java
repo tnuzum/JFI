@@ -2,7 +2,6 @@ package FamilyMemberCourses;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -59,6 +58,7 @@ public class FamilyStandbyInCourseTest extends base {
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -75,6 +75,7 @@ public class FamilyStandbyInCourseTest extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
 	}
@@ -161,7 +162,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 					}
 
-					w.click(); // Click on the specific course
+					jse.executeScript("arguments[0].click();", w); // Click on the specific course
 					break;
 				}
 			}
@@ -195,8 +196,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 			}
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-					c.getPopupSignupButtonCourse());
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 			Thread.sleep(2000);
@@ -237,7 +237,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Course Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}
@@ -254,7 +254,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 
@@ -287,7 +287,8 @@ public class FamilyStandbyInCourseTest extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -305,7 +306,7 @@ public class FamilyStandbyInCourseTest extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
