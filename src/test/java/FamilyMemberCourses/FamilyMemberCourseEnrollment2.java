@@ -43,6 +43,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 	private static String member1Rate = "Free";
 	private static String member2 = "HOH2";
 	private static String member2Rate = "$65.00";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -59,6 +60,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -131,7 +133,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 
 					wait.until(ExpectedConditions
 							.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'mat-drawer-backdrop')]")));
-					w.click(); // Click on the specific course
+					jse.executeScript("arguments[0].click();", w); // Click on the specific course
 					break;
 				}
 			}
@@ -158,8 +160,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 					Assert.assertTrue(fmc.isSelected());
 
 			}
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupSignupButtonCourse().getLocation().x + ")");
+			jse.executeScript("window.scrollTo(0," + c.getPopupSignupButtonCourse().getLocation().x + ")");
 			c.getPopupSignupButtonCourse().click();
 
 			while (c.getClassName().getText().isBlank()) {
@@ -178,7 +179,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Course Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}
@@ -194,7 +195,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 				}
 
 			}
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 
@@ -222,7 +223,8 @@ public class FamilyMemberCourseEnrollment2 extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -241,13 +243,13 @@ public class FamilyMemberCourseEnrollment2 extends base {
 
 			{
 				Thread.sleep(1000);
-				;
+
 			}
 
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
