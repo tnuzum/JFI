@@ -1,7 +1,6 @@
 package FamilyMemberClasses;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -60,6 +59,7 @@ public class FamilyMemberClassEnrollment extends base {
 	private static String member7Rate = "Not Eligible";
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -76,6 +76,7 @@ public class FamilyMemberClassEnrollment extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -162,7 +163,7 @@ public class FamilyMemberClassEnrollment extends base {
 
 					}
 
-					w.click(); // Click on the specific class
+					jse.executeScript("arguments[0].click();", w); // Click on the specific class
 					break;
 
 				}
@@ -198,7 +199,7 @@ public class FamilyMemberClassEnrollment extends base {
 
 			}
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 
@@ -219,7 +220,7 @@ public class FamilyMemberClassEnrollment extends base {
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Single Class Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}
@@ -242,7 +243,7 @@ public class FamilyMemberClassEnrollment extends base {
 					Assert.assertTrue(paymentOptions.contains(buyPackageName));
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains(buyPackageName)) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}
@@ -266,7 +267,7 @@ public class FamilyMemberClassEnrollment extends base {
 				}
 
 			}
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 
@@ -312,10 +313,10 @@ public class FamilyMemberClassEnrollment extends base {
 
 			{
 				Thread.sleep(1000);
-				;
+
 			}
 
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
