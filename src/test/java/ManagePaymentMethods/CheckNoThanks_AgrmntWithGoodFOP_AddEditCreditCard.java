@@ -26,6 +26,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 	private static String testName = null;
 	private static String memberName = "AgreementMember Auto";
 	private static String agreement = "Balance Weight Loss 12 Week";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -50,6 +51,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -80,13 +82,13 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			Thread.sleep(2000);
 
 			mp.getNameOnCard().sendKeys(memberName);
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
 			mp.getExpireMonth().sendKeys("04");
 			mp.getExpireYear().sendKeys("22");
-			mp.getHouseAcctNoRadioButton().get(1).click();
-			mp.getInClubPurchaseNoRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(1));
+			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
@@ -95,24 +97,27 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 			Assert.assertTrue(!mp.getAddCCButton().isEnabled());
 
-			mp.getNoThanks().get(1).click();
+			jse.executeScript("arguments[0].click();", mp.getNoThanks().get(1));
 			Thread.sleep(2000);
 
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
 			Thread.sleep(1000);
-			mp.getIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckbox());
 			Thread.sleep(2000);
 
 			Assert.assertTrue(mp.getAddCCButton().isEnabled());
 
-			mp.getAddCCButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddCCButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -120,7 +125,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 			Thread.sleep(1000);
 
-			mp.getAddCCButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddCCButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
@@ -132,7 +137,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -163,7 +169,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("CCLast4Digits"))) {
-					mp.getEditPaymentMethodsButton().get(i).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
 			}
@@ -174,8 +181,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 			Assert.assertEquals(text, memberName);
 
-			mp.getHouseAcctNoRadioButton().get(0).click();
-			mp.getInClubPurchaseNoRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(0));
+			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
@@ -188,7 +195,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getAgreementCheckBox().get(i));
 
 					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
@@ -201,17 +208,20 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 					false);
 
 			Thread.sleep(1000);
-			mp.getEditIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", mp.getEditIAgreeCheckbox());
 			Thread.sleep(2000);
 
 			Assert.assertTrue(mp.getSaveChangesButtonCC().isEnabled());
 
-			mp.getSaveChangesButtonCC().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangesButtonCC());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -219,7 +229,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 
 			Thread.sleep(1000);
 
-			mp.getSaveChangesButtonCC().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangesButtonCC());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("CARD UPDATED", mp.getPopupConfirmation1().getText());
@@ -233,7 +243,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -265,7 +276,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

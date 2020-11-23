@@ -26,7 +26,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 	private static String testName = null;
 	private static String memberName = "AgreementMember Auto";
 	private static String agreement = "Balance Weight Loss 12 Week";
-
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
@@ -49,6 +49,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -87,7 +88,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 			mp.getUSRoutingNumber().sendKeys(prop.getProperty("USBankRoutingNumber"));
 			mp.getUSAccountNumber().sendKeys(prop.getProperty("USBankAcctNumber"));
 
-			mp.getSavingsradio().click();
+			jse.executeScript("arguments[0].click();", mp.getSavingsradio());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
 
@@ -97,21 +98,24 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 
 			Assert.assertTrue(!mp.getAddBankAcctButton().isEnabled());
 
-			mp.getNoThanks().get(0).click();
+			jse.executeScript("arguments[0].click();", mp.getNoThanks().get(0));
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
-			mp.getIAgreeCheckboxACH().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxACH());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getAddBankAcctButton().isEnabled());
 
-			mp.getAddBankAcctButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddBankAcctButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -119,7 +123,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 
 			Thread.sleep(1000);
 
-			mp.getAddBankAcctButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddBankAcctButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT ADDED", mp.getPopupConfirmation1().getText());
@@ -131,7 +135,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -162,7 +167,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("USBankLast4Digits"))) {
-					mp.getEditPaymentMethodsButton().get(i).click();
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
 			}
@@ -193,7 +199,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getAgreementCheckBox().get(i));
 
 					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
-					;
+
 					break;
 
 				}
@@ -202,17 +208,20 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
-			mp.getIAgreeCheckboxEditACH().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxEditACH());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getSaveChangeButton().isEnabled());
 
-			mp.getSaveChangeButton().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -220,7 +229,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 
 			Thread.sleep(1000);
 
-			mp.getSaveChangeButton().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
@@ -233,7 +242,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -266,7 +276,8 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct extends ba
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

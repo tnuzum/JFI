@@ -26,7 +26,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 	private static String testName = null;
 	private static String memberName = "BadFopMbr Auto";
 	private static String agreement = "Balance Weight Loss 12 Week";
-
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 
@@ -52,6 +52,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -82,7 +83,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 			Thread.sleep(2000);
 
 			mp.getNameOnCard().sendKeys(memberName);
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys("4111111111111111");
 			mp.getExpireMonth().sendKeys("04");
@@ -167,7 +168,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 	public void EditCard() throws InterruptedException, IOException {
 
 		try {
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			int FopCount = mp.getCardNumbers().size();
 			for (int i = 0; i < FopCount; i++) {
 

@@ -26,7 +26,7 @@ public class MyAgreementsLayout extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "FopMember Auto";
-
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 
@@ -49,7 +49,7 @@ public class MyAgreementsLayout extends base {
 
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
-
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -79,7 +79,7 @@ public class MyAgreementsLayout extends base {
 			Thread.sleep(3000);
 
 			mp.getNameOnCard().sendKeys(memberName);
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
 			mp.getExpireMonth().sendKeys("04");
@@ -185,7 +185,7 @@ public class MyAgreementsLayout extends base {
 			 * 
 			 * } d.getMenuManagePmntMethods().click(); Thread.sleep(2000);
 			 */
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getBankAccountLink());
 			Thread.sleep(1000);
 			mp.getBankAccountLink().click();
@@ -282,7 +282,7 @@ public class MyAgreementsLayout extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains("5454")) {
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
@@ -316,7 +316,7 @@ public class MyAgreementsLayout extends base {
 
 					{
 						Thread.sleep(1000);
-						JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 						jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 						Thread.sleep(1000);
 						AgreementCheckbox.click();
@@ -352,7 +352,6 @@ public class MyAgreementsLayout extends base {
 
 			BreadcrumbTrailPO bt = new BreadcrumbTrailPO(driver);
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].scrollIntoView(true);", bt.getBreadcrumb2());
 			Thread.sleep(1000);
 			bt.getBreadcrumb2().click();
@@ -385,7 +384,7 @@ public class MyAgreementsLayout extends base {
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains("7899")) {
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 
@@ -424,7 +423,7 @@ public class MyAgreementsLayout extends base {
 					if (isDisabled.equals("false"))
 
 					{
-						JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 						jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 						Thread.sleep(1000);
 						AgreementCheckbox.click();
