@@ -1959,6 +1959,7 @@ public class reusableMethods extends base {
 	public Object MyActivitiesTomorrowClick() throws InterruptedException {
 
 		CalendarPO cp = new CalendarPO(driver);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		String classtext = cp.getCalendarTomorrow().getAttribute("class");
 
@@ -1972,6 +1973,10 @@ public class reusableMethods extends base {
 			Thread.sleep(1000);
 		}
 
+		jse.executeScript("arguments[0].scrollIntoView(true);",
+				cp.getCalendarTomorrow().findElement(By.tagName("span")));
+
+		Thread.sleep(3000);
 		cp.getCalendarTomorrow().findElement(By.tagName("span")).click();
 
 		Thread.sleep(1000);
@@ -2623,6 +2628,7 @@ public class reusableMethods extends base {
 				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 		cp.getCalendarViewLink().click();
+		Thread.sleep(1000);
 
 		this.MyActivitiesTomorrowClick();
 
