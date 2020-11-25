@@ -361,7 +361,7 @@ public class ShopAndPurchasePackages extends base {
 					.getText().contains(FormatTotalAmt));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(2000);
-
+			rm.memberLogout();
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -386,10 +386,7 @@ public class ShopAndPurchasePackages extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			//// Assert.fail(eci.getMessage());
-		}
 
-		finally {
-			rm.memberLogout();
 		}
 	}
 
@@ -559,6 +556,7 @@ public class ShopAndPurchasePackages extends base {
 					.getText().contains(FormatTotalAmt1));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(2000);
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -584,8 +582,7 @@ public class ShopAndPurchasePackages extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		} finally {
-			rm.memberLogout();
+
 		}
 
 	}
@@ -785,7 +782,7 @@ public class ShopAndPurchasePackages extends base {
 					.getText().contains(FormatTotalAmt2));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
 			Thread.sleep(2000);
-
+			rm.memberLogout();
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -810,8 +807,7 @@ public class ShopAndPurchasePackages extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		} finally {
-			rm.memberLogout();
+
 		}
 
 	}
@@ -868,7 +864,7 @@ public class ShopAndPurchasePackages extends base {
 			}
 			Assert.assertFalse(Labels.contains("On Account"));
 			Thread.sleep(2000);
-
+			rm.memberLogout();
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -893,10 +889,7 @@ public class ShopAndPurchasePackages extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		}
 
-		finally {
-			rm.memberLogout();
 		}
 
 	}
@@ -953,7 +946,7 @@ public class ShopAndPurchasePackages extends base {
 			}
 			Assert.assertFalse(Labels.contains("card"));
 			Thread.sleep(2000);
-
+			rm.memberLogout();
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
@@ -978,10 +971,7 @@ public class ShopAndPurchasePackages extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		}
 
-		finally {
-			rm.memberLogout();
 		}
 
 	}
@@ -1032,6 +1022,7 @@ public class ShopAndPurchasePackages extends base {
 			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			Assert.assertEquals(0, count);
 			Thread.sleep(2000);
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -1057,10 +1048,7 @@ public class ShopAndPurchasePackages extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		}
 
-		finally {
-			rm.memberLogout();
 		}
 
 	}
@@ -1182,6 +1170,7 @@ public class ShopAndPurchasePackages extends base {
 			// Verifies the package units is now incremented by one unit
 			IntUnitCountBefore3 = IntUnitCountBefore3 + 4;
 			Assert.assertEquals(IntUnitCountBefore3, IntUnitCountAfter3); // verifies the unit count of the Package
+			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -1207,8 +1196,7 @@ public class ShopAndPurchasePackages extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
-		} finally {
-			rm.memberLogout();
+
 		}
 
 	}

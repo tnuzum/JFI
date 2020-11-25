@@ -127,6 +127,9 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 			Assert.assertTrue(mp.getNoThanks().size() > 0);
 			jse.executeScript("arguments[0].click();", mp.getNoThanks().get(0));
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
+
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
@@ -221,8 +224,11 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 				}
 			}
 
-			mp.getIAgreeCheckboxEditACH().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxEditACH());
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -230,7 +236,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 
 			Thread.sleep(1000);
 
-			mp.getSaveChangeButton().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
