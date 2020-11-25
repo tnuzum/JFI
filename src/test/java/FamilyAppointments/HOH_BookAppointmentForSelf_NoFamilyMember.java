@@ -89,7 +89,7 @@ public class HOH_BookAppointmentForSelf_NoFamilyMember extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

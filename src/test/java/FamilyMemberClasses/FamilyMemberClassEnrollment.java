@@ -59,6 +59,7 @@ public class FamilyMemberClassEnrollment extends base {
 	private static String member7Rate = "Not Eligible";
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -75,6 +76,7 @@ public class FamilyMemberClassEnrollment extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -82,313 +84,342 @@ public class FamilyMemberClassEnrollment extends base {
 
 	@Test(priority = 1, description = "Family Member Enrollment")
 	public void FamilyMemberEnrollment() throws IOException, InterruptedException {
-		rm.activeMemberLogin("hoh", "Testing1!");
-		// rm.unenrollFromClass();
-		// Thread.sleep(2000);
-		// rm.returnToDashboard();
-		rw.waitForDashboardLoaded();
-		DashboardPO d = new DashboardPO(driver);
-		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
+		try {
+			rm.activeMemberLogin("hoh", "Testing1!");
+			// rm.unenrollFromClass();
+			// Thread.sleep(2000);
+			// rm.returnToDashboard();
+			rw.waitForDashboardLoaded();
+			DashboardPO d = new DashboardPO(driver);
+			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-		int IntPackageCountBefore = 0;
-		int IntPackageCountAfter = 0;
+			int IntPackageCountBefore = 0;
+			int IntPackageCountAfter = 0;
 
-		// Note the package units before enrolling the member with existing Package
-		IntPackageCountBefore = rm.getPackageUnitsForMember(packageName, member6);
+			// Note the package units before enrolling the member with existing Package
+			IntPackageCountBefore = rm.getPackageUnitsForMember(packageName, member6);
 
-		int unitCount = rm.getPackageUnitsForMember(packageName, member5);
-		System.out.println("Before " + IntPackageCountBefore);
+			int unitCount = rm.getPackageUnitsForMember(packageName, member5);
+			System.out.println("Before " + IntPackageCountBefore);
 
-		d.getMyClassesScheduleButton().click();
+			d.getMyClassesScheduleButton().click();
 
-		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
+			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
 
-		ClassSignUpPO c = new ClassSignUpPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+			ClassSignUpPO c = new ClassSignUpPO(driver);
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		rm.SelectTomorrowDate();
+			rm.SelectTomorrowDate();
 
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
-		c.getCourseFilter().click();
-		c.getCourseKeyword().click();
-		c.getSearchField().sendKeys("family");
-		Thread.sleep(2000);
-		c.getClassApplyFilters().click();
-		Thread.sleep(2000);
-
-		int ClassCount = c.getClassTable().size();
-		for (int j = 0; j < ClassCount; j++) {
-
-			WebElement w = c.getClassTable().get(j);
-			WebElement w1 = c.getClassTimeAndDuration().get(j);
-			String className = w.getText();
-			String classTimeAndDuration = w1.getText();
-
-			if (className.contains(classToEnroll))
-
-			{
-				Assert.assertTrue(className.contains(classInstructorDisplayedOnSearchScreen));
-				Assert.assertTrue(classTimeAndDuration.contains(classTimeDisplayedOnSearchScreen));
-				Assert.assertTrue(classTimeAndDuration.contains(classDuration));
-
-				List<WebElement> getMemberRate = w.findElements(By.className("ng-star-inserted"));
-
-				int count = getMemberRate.size();
-
-				for (int k = 0; k < count; k++) {
-
-					if (getMemberRate.get(k).getText().contains(member1))
-						Assert.assertTrue(getMemberRate.get(k).getText().contains(member1Rate));
-					if (getMemberRate.get(k).getText().contains(member2))
-						Assert.assertTrue(getMemberRate.get(k).getText().contains(member2Rate));
-					if (getMemberRate.get(k).getText().contains(member3))
-						Assert.assertTrue(getMemberRate.get(k).getText().contains(member3Rate));
-					if (getMemberRate.get(k).getText().contains(member4))
-						Assert.assertTrue(getMemberRate.get(k).getText().contains(member4Rate));
-					if (getMemberRate.get(k).getText().contains(member5))
-						Assert.assertTrue(getMemberRate.get(k).getText().contains(member5Rate));
-					if (getMemberRate.get(k).getText().contains(member6))
-						Assert.assertTrue(getMemberRate.get(k).getText().contains(member6Rate));
-					if (getMemberRate.get(k).getText().contains(member7))
-						Assert.assertTrue(getMemberRate.get(k).getText().contains(member7Rate));
-					if (getMemberRate.get(k).getText().contains(member8))
-						Assert.assertTrue(getMemberRate.get(k).getText().contains(member8Rate));
-
-				}
-
-				w.click(); // Click on the specific class
-				break;
-
-			}
-
-		}
-
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
-		while (c.getClasslabel().getText().isBlank()) {
-			Thread.sleep(500);
-		}
-
-		Assert.assertEquals(c.getClasslabel().getText(), classNameDisplayed); // Verifies the class name
-		int count = c.getFmlyMemberLabel().size();
-
-		// Selects the other eligible members
-		for (int i = 0; i < count; i++) {
-
-			WebElement fml = c.getFmlyMemberLabel().get(i);
-			WebElement fmc = c.getFmlyMemberCheckBox().get(i);
-
-			if (fml.getText().contains(member2))
-				fml.click(); // Selects the member
-
-			if (fml.getText().contains(member3))
-				fml.click(); // Selects the member
-
-			if (fml.getText().contains(member5))
-				Assert.assertTrue(fmc.isSelected());
-
-			if (fml.getText().contains(member6))
-				fml.click(); // Selects the member
-
-		}
-		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
-		Actions actions = new Actions(driver);
-		actions.moveToElement(c.getPopupSignUpButton()).click().perform();
-
-		while (c.getClassName().getText().isBlank()) {
-			Thread.sleep(500);
-		}
-
-		Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
-		Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
-		Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
-		Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
-
-		for (int i = 0; i < c.getMemberSections().size(); i++) {
-			String paymentOptions = c.getMemberSections().get(i).getText();
-			List<WebElement> Labels = c.getMemberSections().get(i).findElements(By.tagName("label"));
-
-			if (c.getMemberSections().get(i).getText().contains(member2)) {
-
-				for (int j = 0; j < Labels.size(); j++) {
-					if (Labels.get(j).getText().contains("Pay Single Class Fee")) {
-						Labels.get(j).click();
-						break;
-					}
-				}
-
-			}
-
-			if (c.getMemberSections().get(i).getText().contains(member3)) {
-
-				Assert.assertTrue(paymentOptions.contains("Free")); // Class is free for this member
-				for (int j = 0; j < Labels.size(); j++) {
-					if (Labels.get(j).getText().contains("Free"))
-						Assert.assertTrue(Labels.get(j).isEnabled());
-				}
-			}
-
-			if (c.getMemberSections().get(i).getText().contains(member5)) // This member has all the payment options
-			{
-				Assert.assertTrue(paymentOptions.contains("Use Existing Package"));
-				Assert.assertTrue(paymentOptions.contains("Pay Single Class Fee"));
-				Assert.assertTrue(paymentOptions.contains(buyPackageName));
-				for (int j = 0; j < Labels.size(); j++) {
-					if (Labels.get(j).getText().contains(buyPackageName)) {
-						Labels.get(j).click();
-						break;
-					}
-				}
-
-				Assert.assertTrue(paymentOptions.contains(classCostInUnits + unitCount));
-				WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
-				Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
-				defaultSelection = s.getFirstSelectedOption().getText().trim();
-				Assert.assertEquals(defaultSelection, unitsToBeSelected);
-			}
-
-			if (c.getMemberSections().get(i).getText().contains(member6)) // This member has all the payment options
-			{
-				Assert.assertTrue(paymentOptions.contains("Use Existing Package"));
-				Assert.assertTrue(paymentOptions.contains("Pay Single Class Fee"));
-				Assert.assertTrue(paymentOptions.contains(buyPackageName));
-				for (int j = 0; j < Labels.size(); j++) {
-					if (Labels.get(j).getText().contains("Use Existing Package"))
-						Assert.assertTrue(Labels.get(j).isEnabled());
-				}
-			}
-
-		}
-		c.getContinueButton().click();
-
-		PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
-
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-
-		while (c.getClassName().getText().isBlank()) {
-			Thread.sleep(500);
-		}
-
-		System.out.println(pp.getMemberfeesSection().size());
-		for (int i = 0; i < pp.getMemberfeesSection().size(); i++) {
-			String text = pp.getMemberfeesSection().get(i).getText();
-
-			if (text.contains(member2))
-				Assert.assertTrue(text.contains("Single Class Fee $9.00"));
-
-			if (text.contains(member3))
-				Assert.assertTrue(text.contains("Single Class Fee Free"));
-
-			if (text.contains(member5)) {
-				Assert.assertTrue(text.contains("Day Pass"));
-				Assert.assertTrue(text.contains("Package Unit(s): 2 X $10.00"));
-			}
-
-			if (text.contains(member6)) {
-				Assert.assertTrue(text.contains("Day Pass"));
-				Assert.assertTrue(text.contains("Unit(s) deducted for this class: 2"));
-			}
-
-		}
-
-		while (pp.getClassesReviewtotalAmount().getText().isBlank()) {
-			Thread.sleep(500);
-		}
-
-		String totalAmount = pp.getClassesReviewtotalAmount().getText();
-
-		Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmount)); // Verifies the Pay button contains
-																					// the total amount
-
-		while (!PM.getOnAccountAndSavedCards().isDisplayed())
-
-		{
-			Thread.sleep(1000);
-			;
-		}
-
-		PM.getPaymentButton().click();
-		wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
-		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
-		Assert.assertEquals("Success", c.getPopupMessage().getText());
-		c.getPopupClose().click();
-		Thread.sleep(1000);
-		ThankYouPO TY = new ThankYouPO(driver);
-
-		// Verifies the text on Thank You page and the links to navigate to Dashboard
-		// and other pages are displayed
-		rm.ThankYouPageValidations();
-
-		// Note down the Receipt number
-		String receiptNumber = TY.getReceiptNumber().getText();
-
-		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
-		TY.getPrintReceiptButton().click();
-		Thread.sleep(2000);
-		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-
-		// Verifies the buttons on Print Receipt Popup
-		rm.ReceiptPopupValidations();
-
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(1000);
-
-		// Navigate to Dashboard
-		int count1 = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < count1; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-			{
-				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
-				break;
-			}
-
-		}
-		rw.waitForDashboardLoaded();
-		// Verifies the link navigates to the right page
-		Assert.assertEquals("Dashboard", driver.getTitle());
-		Thread.sleep(1000);
-		DashboardPO dp = new DashboardPO(driver);
-		wait.until(
-				ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-		dp.getMyAccountAccountHistory().click();
-
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
-
-		while (!ahp.getReceiptNumberTable().isDisplayed()) {
+			c.getCourseFilter().click();
+			c.getCourseKeyword().click();
+			c.getSearchField().sendKeys("family");
 			Thread.sleep(2000);
-			System.out.println("waiting");
+			c.getClassApplyFilters().click();
+			Thread.sleep(2000);
+
+			int ClassCount = c.getClassTable().size();
+			for (int j = 0; j < ClassCount; j++) {
+
+				WebElement w = c.getClassTable().get(j);
+				WebElement w1 = c.getClassTimeAndDuration().get(j);
+				String className = w.getText();
+				String classTimeAndDuration = w1.getText();
+
+				if (className.contains(classToEnroll))
+
+				{
+					Assert.assertTrue(className.contains(classInstructorDisplayedOnSearchScreen));
+					Assert.assertTrue(classTimeAndDuration.contains(classTimeDisplayedOnSearchScreen));
+					Assert.assertTrue(classTimeAndDuration.contains(classDuration));
+
+					List<WebElement> getMemberRate = w.findElements(By.className("ng-star-inserted"));
+
+					int count = getMemberRate.size();
+
+					for (int k = 0; k < count; k++) {
+
+						if (getMemberRate.get(k).getText().contains(member1))
+							Assert.assertTrue(getMemberRate.get(k).getText().contains(member1Rate));
+						if (getMemberRate.get(k).getText().contains(member2))
+							Assert.assertTrue(getMemberRate.get(k).getText().contains(member2Rate));
+						if (getMemberRate.get(k).getText().contains(member3))
+							Assert.assertTrue(getMemberRate.get(k).getText().contains(member3Rate));
+						if (getMemberRate.get(k).getText().contains(member4))
+							Assert.assertTrue(getMemberRate.get(k).getText().contains(member4Rate));
+						if (getMemberRate.get(k).getText().contains(member5))
+							Assert.assertTrue(getMemberRate.get(k).getText().contains(member5Rate));
+						if (getMemberRate.get(k).getText().contains(member6))
+							Assert.assertTrue(getMemberRate.get(k).getText().contains(member6Rate));
+						if (getMemberRate.get(k).getText().contains(member7))
+							Assert.assertTrue(getMemberRate.get(k).getText().contains(member7Rate));
+						if (getMemberRate.get(k).getText().contains(member8))
+							Assert.assertTrue(getMemberRate.get(k).getText().contains(member8Rate));
+
+					}
+
+					jse.executeScript("arguments[0].click();", w); // Click on the specific class
+					break;
+
+				}
+
+			}
+
+			wait.until(
+					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+			while (c.getClasslabel().getText().isBlank()) {
+				Thread.sleep(500);
+			}
+
+			Assert.assertEquals(c.getClasslabel().getText(), classNameDisplayed); // Verifies the class name
+			int count = c.getFmlyMemberLabel().size();
+
+			// Selects the other eligible members
+			for (int i = 0; i < count; i++) {
+
+				WebElement fml = c.getFmlyMemberLabel().get(i);
+				WebElement fmc = c.getFmlyMemberCheckBox().get(i);
+
+				if (fml.getText().contains(member2))
+					fml.click(); // Selects the member
+
+				if (fml.getText().contains(member3))
+					fml.click(); // Selects the member
+
+				if (fml.getText().contains(member5))
+					Assert.assertTrue(fmc.isSelected());
+
+				if (fml.getText().contains(member6))
+					fml.click(); // Selects the member
+
+			}
+			Thread.sleep(2000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
+			Actions actions = new Actions(driver);
+			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
+
+			while (c.getClassName().getText().isBlank()) {
+				Thread.sleep(500);
+			}
+
+			Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
+			Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
+			Assert.assertEquals(classInstructorDisplayed, c.getClassInstructor().getText());
+			Assert.assertEquals("Date: " + tomorrowsDate, c.getClassDate().getText());
+
+			for (int i = 0; i < c.getMemberSections().size(); i++) {
+				String paymentOptions = c.getMemberSections().get(i).getText();
+				List<WebElement> Labels = c.getMemberSections().get(i).findElements(By.tagName("label"));
+
+				if (c.getMemberSections().get(i).getText().contains(member2)) {
+
+					for (int j = 0; j < Labels.size(); j++) {
+						if (Labels.get(j).getText().contains("Pay Single Class Fee")) {
+							jse.executeScript("arguments[0].click();", Labels.get(j));
+							break;
+						}
+					}
+
+				}
+
+				if (c.getMemberSections().get(i).getText().contains(member3)) {
+
+					Assert.assertTrue(paymentOptions.contains("Free")); // Class is free for this member
+					for (int j = 0; j < Labels.size(); j++) {
+						if (Labels.get(j).getText().contains("Free"))
+							Assert.assertTrue(Labels.get(j).isEnabled());
+					}
+				}
+
+				if (c.getMemberSections().get(i).getText().contains(member5)) // This member has all the payment options
+				{
+					Assert.assertTrue(paymentOptions.contains("Use Existing Package"));
+					Assert.assertTrue(paymentOptions.contains("Pay Single Class Fee"));
+					Assert.assertTrue(paymentOptions.contains(buyPackageName));
+					for (int j = 0; j < Labels.size(); j++) {
+						if (Labels.get(j).getText().contains(buyPackageName)) {
+							jse.executeScript("arguments[0].click();", Labels.get(j));
+							break;
+						}
+					}
+
+					Assert.assertTrue(paymentOptions.contains(classCostInUnits + unitCount));
+					WebElement W = driver.findElement(By.xpath("//div[@class='ibox-content']"));
+					Select s = new Select(W.findElement(By.xpath("//select[contains(@class, 'form-control')]")));
+					defaultSelection = s.getFirstSelectedOption().getText().trim();
+					Assert.assertEquals(defaultSelection, unitsToBeSelected);
+				}
+
+				if (c.getMemberSections().get(i).getText().contains(member6)) // This member has all the payment options
+				{
+					Assert.assertTrue(paymentOptions.contains("Use Existing Package"));
+					Assert.assertTrue(paymentOptions.contains("Pay Single Class Fee"));
+					Assert.assertTrue(paymentOptions.contains(buyPackageName));
+					for (int j = 0; j < Labels.size(); j++) {
+						if (Labels.get(j).getText().contains("Use Existing Package"))
+							Assert.assertTrue(Labels.get(j).isEnabled());
+					}
+				}
+
+			}
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
+
+			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
+
+			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+			while (c.getClassName().getText().isBlank()) {
+				Thread.sleep(500);
+			}
+
+			System.out.println(pp.getMemberfeesSection().size());
+			for (int i = 0; i < pp.getMemberfeesSection().size(); i++) {
+				String text = pp.getMemberfeesSection().get(i).getText();
+
+				if (text.contains(member2))
+					Assert.assertTrue(text.contains("Single Class Fee $9.00"));
+
+				if (text.contains(member3))
+					Assert.assertTrue(text.contains("Single Class Fee Free"));
+
+				if (text.contains(member5)) {
+					Assert.assertTrue(text.contains("Day Pass"));
+					Assert.assertTrue(text.contains("Package Unit(s): 2 X $10.00"));
+				}
+
+				if (text.contains(member6)) {
+					Assert.assertTrue(text.contains("Day Pass"));
+					Assert.assertTrue(text.contains("Unit(s) deducted for this class: 2"));
+				}
+
+			}
+
+			while (pp.getClassesReviewtotalAmount().getText().isBlank()) {
+				Thread.sleep(500);
+			}
+
+			String totalAmount = pp.getClassesReviewtotalAmount().getText();
+
+			Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmount)); // Verifies the Pay button
+																						// contains
+																						// the total amount
+
+			while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+			{
+				Thread.sleep(1000);
+
+			}
+
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
+			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
+			Assert.assertEquals("Success", c.getPopupMessage().getText());
+			c.getPopupClose().click();
+			Thread.sleep(1000);
+			ThankYouPO TY = new ThankYouPO(driver);
+
+			// Verifies the text on Thank You page and the links to navigate to Dashboard
+			// and other pages are displayed
+			rm.ThankYouPageValidations();
+
+			// Note down the Receipt number
+			String receiptNumber = TY.getReceiptNumber().getText();
+
+			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
+			TY.getPrintReceiptButton().click();
+			Thread.sleep(2000);
+			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+
+			// Verifies the buttons on Print Receipt Popup
+			rm.ReceiptPopupValidations();
+
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			Thread.sleep(1000);
+
+			// Navigate to Dashboard
+			int count1 = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count1; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+				{
+					// rw.linksToBeClickable();
+					driver.findElements(By.tagName("a")).get(i).click();
+					break;
+				}
+
+			}
+			rw.waitForDashboardLoaded();
+			// Verifies the link navigates to the right page
+			Assert.assertEquals("Dashboard", driver.getTitle());
+			Thread.sleep(1000);
+			DashboardPO dp = new DashboardPO(driver);
+			wait.until(ExpectedConditions
+					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
+			dp.getMyAccountAccountHistory().click();
+
+			AcctHistoryPO ahp = new AcctHistoryPO(driver);
+
+			while (!ahp.getReceiptNumberTable().isDisplayed()) {
+				Thread.sleep(2000);
+				System.out.println("waiting");
+			}
+
+			// Clicks on the Receiptnumber in Account History
+
+			ahp.getSearchField().sendKeys(receiptNumber);
+
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
+			ahp.getReceiptNumber().click();
+			Thread.sleep(1000);
+			// Verifies the Invoice amount
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
+					.getText().contains(totalAmount));
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			Thread.sleep(1000);
+			rm.returnToDashboard();
+
+			// Note the package units after enrolling the member with existing package
+			IntPackageCountAfter = rm.getPackageUnitsForMember(packageName, member6);
+			System.out.println("After " + IntPackageCountAfter);
+
+			// Verifies the package units is now decremented by two units
+			IntPackageCountBefore = IntPackageCountBefore - 2;
+			Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter);
+			rm.unenrollFromClass();
+			rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 
-		// Clicks on the Receiptnumber in Account History
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
 
-		ahp.getSearchField().sendKeys(receiptNumber);
-
-		Thread.sleep(2000);
-		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-		ahp.getReceiptNumber().click();
-		Thread.sleep(1000);
-		// Verifies the Invoice amount
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
-				.contains(totalAmount));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-		Thread.sleep(1000);
-		rm.returnToDashboard();
-
-		// Note the package units after enrolling the member with existing package
-		IntPackageCountAfter = rm.getPackageUnitsForMember(packageName, member6);
-		System.out.println("After " + IntPackageCountAfter);
-
-		// Verifies the package units is now decremented by two units
-		IntPackageCountBefore = IntPackageCountBefore - 2;
-		Assert.assertEquals(IntPackageCountBefore, IntPackageCountAfter);
-		rm.unenrollFromClass();
-		rm.memberLogout();
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 	}
 
 	@Test(dataProvider = "getData", dependsOnMethods = { "FamilyMemberEnrollment" })
@@ -415,7 +446,7 @@ public class FamilyMemberClassEnrollment extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

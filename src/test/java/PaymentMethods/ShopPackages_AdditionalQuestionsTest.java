@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -29,6 +30,7 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 	public static PaymentMethodsPO PM;
 	public static ShopPackagesPO sp;
 	private static PurchaseConfirmationPO PP;
+	private static JavascriptExecutor jse;
 
 	public ShopPackages_AdditionalQuestionsTest() {
 		rw = new reusableWaits();
@@ -45,6 +47,8 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 		PM = new PaymentMethodsPO(driver);
 		sp = new ShopPackagesPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
+
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -94,7 +98,7 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -113,31 +117,31 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
-			PM.getMoreInfoSaveCard().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoSaveCard());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Save Card For Use On Site");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getOnAccountQuestion().isDisplayed());
-			PM.getMoreInfoOnAccount().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoOnAccount());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getInClubQuestion().isDisplayed());
-			PM.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoUseInPos());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
-			PM.getSaveCardYes().click();
-			PM.getHouseAcctNo().click();
-			PM.getInClubPurchaseNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardYes());
+			jse.executeScript("arguments[0].click();", PM.getHouseAcctNo());
+			jse.executeScript("arguments[0].click();", PM.getInClubPurchaseNo());
 
-			PM.getCheckBox().click();
+			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			Thread.sleep(1000);
 
 			while (!PM.getPaymentButton().isEnabled()) {
@@ -145,13 +149,15 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 			}
 
 			// Clicks on the Pay button without signature
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			Thread.sleep(1000);
 
 			System.out.println(PM.getPopupContent().getText());
 			Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 			PM.getPopupOk().click();
 			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getSigPadInOut());
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(PM.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
@@ -175,7 +181,8 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -207,7 +214,8 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -233,7 +241,7 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

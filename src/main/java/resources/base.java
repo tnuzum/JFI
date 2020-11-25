@@ -45,7 +45,8 @@ public class base {
 	public static String COGLoginPage = null;
 	public static String EMELoginPage = null;
 
-	String projectPath = System.getenv("EME_HOME");
+	// String projectPath = System.getenv("EME_HOME");
+	String projectPath = System.getProperty("user.dir");
 
 	public WebDriver initializeDriver() throws IOException {
 
@@ -56,7 +57,7 @@ public class base {
 		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
 		prop = new Properties();
-//		FileInputStream fis=new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
+//		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
 		FileInputStream fis = new FileInputStream(
 				System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
 
@@ -75,7 +76,7 @@ public class base {
 				DesiredCapabilities dc = new DesiredCapabilities();
 				dc.setBrowserName("chrome");
 				dc.setPlatform(Platform.WINDOWS);
-				System.setProperty("webdriver.chrome.driver", "c:\\WebDrivers\\chromedriver.exe");
+				System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\chromedriver.exe");
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}
 			if (browserName.equals("Firefox")) {
@@ -88,7 +89,7 @@ public class base {
 				dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				FirefoxOptions fo = new FirefoxOptions();
 				fo.merge(dc);
-				System.setProperty("webdriver.gecko.driver", "c:\\WebDrivers\\geckodriver.exe");
+				System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\geckodriver.exe");
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}
 			if (browserName.equals("Edge")) {
@@ -96,6 +97,7 @@ public class base {
 				DesiredCapabilities dc = new DesiredCapabilities();
 				dc.setBrowserName("MicrosoftEdge");
 				dc.setPlatform(Platform.WINDOWS);
+				System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}
 
@@ -127,13 +129,25 @@ public class base {
 			 */
 		} else {
 			if (testEnvironment.equals("local")) {
+
+				System.out.println("projectPath = " + projectPath);
+
 				if (browserName.contains("Chrome")) {
 					log.info("Chrome Browser: Running Tests on local machine");
 					ChromeOptions co = new ChromeOptions();
 					co.addArguments("--start-maximized");
 					// co.addArguments("--window-size=1920, 1080");
 					co.merge(dcch);
-					System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
+
+					/*
+					 * co.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+					 * co.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+					 * co.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION,
+					 * true); co.setCapability("chrome.switches", Arrays.asList("--incognito"));
+					 */
+
+					System.setProperty("webdriver.chrome.driver",
+							projectPath + "\\src\\main\\java\\webDrivers\\chromedriver.exe");
 					if (browserName.contains("headless")) {
 						co.addArguments("--headless");
 					}
@@ -141,19 +155,30 @@ public class base {
 				}
 				if (browserName.equals("Firefox")) {
 					log.info("Firefox Browser: Running Tests on local machine");
-					System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
-					driver = new FirefoxDriver();
+					DesiredCapabilities dc = new DesiredCapabilities();
+					dc.setBrowserName("firefox");
+					dc.setPlatform(Platform.WINDOWS);
+					dc.acceptInsecureCerts();
+					dc.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+					dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+					FirefoxOptions fo = new FirefoxOptions();
+					fo.merge(dc);
+					System.setProperty("webdriver.gecko.driver",
+							projectPath + "\\src\\main\\java\\webDrivers\\geckodriver.exe");
+					driver = new FirefoxDriver(fo);
 				}
 				if (browserName.equals("Edge")) {
+
 					log.info("Edge Browser: Running Tests on local machine");
-					System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\webdrivers\\msedgedriver.exe");
+					System.setProperty("webdriver.edge.driver",
+							projectPath + "\\src\\main\\java\\webDrivers\\msedgedriver.exe");
 					driver = new EdgeDriver();
 				}
 				if (browserName.equals("IE")) {
 					log.info("IE Browser: Running Tests on local machine");
 					InternetExplorerOptions options = new InternetExplorerOptions();
 					System.setProperty("webdriver.ie.driver",
-							"C:\\Automation\\libs\\webdrivers\\MicrosoftWebDriver.exe");
+							projectPath + "\\src\\main\\java\\webdrivers\\IEDriverServer.exe");
 					options.setCapability("ignoreZoomSetting", true);
 					driver = new InternetExplorerDriver(options);
 				}
@@ -218,6 +243,7 @@ public class base {
 				+ "screenshot.png";
 		FileUtils.copyFile(src, new File(destinationFile));
 		return destinationFile;
+
 	}
 
 }

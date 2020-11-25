@@ -2,6 +2,7 @@ package Miscellaneous;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -1348,7 +1349,7 @@ public class FamilyMbrClassUnenrollTests3 extends base {
 				WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fmc.isSelected()) {
-					jse.executeScript("arguments[0].scrollIntoView();", fml);
+					jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 					fml.click(); // de-selects the hoh
 					break;
 				}
@@ -1361,7 +1362,7 @@ public class FamilyMbrClassUnenrollTests3 extends base {
 				// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fml.getText().contains("Unenrollmbr17")) {
-					jse.executeScript("arguments[0].scrollIntoView();", fml);
+					jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 					fml.click(); // Selects the member
 					break;
 				}
@@ -1370,12 +1371,12 @@ public class FamilyMbrClassUnenrollTests3 extends base {
 
 			Thread.sleep(2000);
 			if (c.getPopupSignUpButton().isEnabled()) {
-				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+				jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
 
 				actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 
 			} else {
-				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButton());
+				jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButton());
 				actions.moveToElement(c.getPopupCancelButton()).click().perform();
 				Assert.fail("SignUp button not available");
 
@@ -1561,7 +1562,7 @@ public class FamilyMbrClassUnenrollTests3 extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

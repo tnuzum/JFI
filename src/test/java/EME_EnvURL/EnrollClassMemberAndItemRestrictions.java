@@ -2,6 +2,7 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -96,7 +97,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -158,7 +160,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -220,7 +223,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -283,7 +287,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -367,7 +372,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -430,7 +436,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -493,7 +500,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -560,7 +568,8 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -676,7 +685,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -28,8 +28,9 @@ public class EnrollInCourse_CancelTransaction extends base {
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
-	private static String CourseStartMonth = "Dec";
-	private static String dsiredMonthYear = "December 2020";
+	private static String CourseStartMonth = "Jun";
+	private static int CourseStartYear = 2021;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -46,6 +47,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -69,6 +71,10 @@ public class EnrollInCourse_CancelTransaction extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		rm.SelectCourseStartYear(CourseStartYear);
+
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		rm.SelectCourseStartMonth(CourseStartMonth);
@@ -103,31 +109,15 @@ public class EnrollInCourse_CancelTransaction extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-//		System.out.println(driver.findElement(By.xpath("//label[@id='dec']")).getText());
-//		driver.findElement(By.xpath("//label[@id='dec']")).click();
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
-		int monthCount = MonthNames.findElements(By.tagName("label")).size();
-		for (int i = 0; i < monthCount; i++) {
-			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
-			if (monthName.equals(CourseStartMonth)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
-				break;
-			}
-
-		}
+		rm.SelectCourseStartYear(CourseStartYear);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-		int courseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
-		for (int j = 0; j < courseCount; j++) {
-			String courseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).getText();
+		rm.SelectCourseStartMonth(CourseStartMonth);
 
-			if (courseName.contains(courseToEnroll)) {
-				driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j).click(); // Click on the
-																									// specific course
-				break;
-			}
-		}
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		rm.SelectClassOrCourseToEnroll(courseToEnroll);
 
 		Thread.sleep(2000);
 		c.getPopupSignupButtonCourse().click();
@@ -175,7 +165,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 
 		// Click the Pay button
 
-		PM.getCancelButton().click();
+		jse.executeScript("arguments[0].click();", PM.getCancelButton());
 
 		Assert.assertEquals(c.getPageHeader().getText(), "Select Courses / Events");
 
@@ -186,7 +176,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

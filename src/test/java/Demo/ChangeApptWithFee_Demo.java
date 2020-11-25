@@ -1,6 +1,7 @@
 package Demo;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -336,7 +337,7 @@ public class ChangeApptWithFee_Demo extends base {
 
 	/*
 	 * @AfterClass public void teardown() throws InterruptedException {
-	 * driver.close(); driver = null; }
+	 * driver.quit(); driver = null; }
 	 */
 
 }

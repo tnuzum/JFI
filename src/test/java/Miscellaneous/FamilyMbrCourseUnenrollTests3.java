@@ -2,6 +2,7 @@ package Miscellaneous;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -47,7 +48,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 	private static String CourseStartMonth = "Nov";
 	private static String dsiredMonthYear = "November 2020";
-
+	private static int CourseStartYear = 2021;
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Course Fee";
 	// private static String paymentOption3 = "Buy Day Pass";
@@ -102,7 +103,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll1, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr1");
+					"Unenrollmbr1", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll1, "Unenrollmbr1");
 
@@ -165,7 +166,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth,
-					"Unenrollmbr2_1");
+					"Unenrollmbr2_1", CourseStartYear);
 
 			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr2_1");
 
@@ -257,7 +258,8 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 		try {
 
-			rm.enrollFamilyMbrInCourse(courseToEnroll3, "", "", "Free", CourseStartMonth, "Unenrollmbr3");
+			rm.enrollFamilyMbrInCourse(courseToEnroll3, "", "", "Free", CourseStartMonth, "Unenrollmbr3",
+					CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll3, "Unenrollmbr3");
 
@@ -341,7 +343,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll4, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
-					"Unenrollmbr4");
+					"Unenrollmbr4", CourseStartYear);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -426,7 +428,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll5, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr5");
+					"Unenrollmbr5", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll5, "Unenrollmbr5");
 
@@ -491,7 +493,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll6, paymentOption1, "", "Free With Punch", CourseStartMonth,
-					"Unenrollmbr6_1");
+					"Unenrollmbr6_1", CourseStartYear);
 
 			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr6_1");
 
@@ -566,7 +568,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll7, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
-					"Unenrollmbr7");
+					"Unenrollmbr7", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll7, "Unenrollmbr7");
 
@@ -630,7 +632,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll8, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr8");
+					"Unenrollmbr8", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll8, "Unenrollmbr8");
 
@@ -693,7 +695,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll9, paymentOption1, "", "Free With Punch", CourseStartMonth,
-					"Unenrollmbr9");
+					"Unenrollmbr9", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll9, "Unenrollmbr9");
 
@@ -756,7 +758,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll10, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
-					"Unenrollmbr10");
+					"Unenrollmbr10", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll10, "Unenrollmbr10");
 
@@ -847,7 +849,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll10_1, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
-					"Unenrollmbr11");
+					"Unenrollmbr11", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll10_1, "Unenrollmbr11");
 
@@ -938,7 +940,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll11, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr12");
+					"Unenrollmbr12", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll11, "Unenrollmbr12");
 
@@ -1030,7 +1032,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll12, paymentOption1, "", "Free With Punch", CourseStartMonth,
-					"Unenrollmbr13_1");
+					"Unenrollmbr13_1", CourseStartYear);
 
 			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr13_1");
 
@@ -1102,7 +1104,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll13, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr14");
+					"Unenrollmbr14", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll13, "Unenrollmbr14");
 
@@ -1166,7 +1168,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll14, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr15");
+					"Unenrollmbr15", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll14, "Unenrollmbr15");
 
@@ -1255,7 +1257,8 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 		try {
 
-			rm.enrollFamilyMbrInCourse(courseToEnroll15, "", "", "Free", CourseStartMonth, "Unenrollmbr16");
+			rm.enrollFamilyMbrInCourse(courseToEnroll15, "", "", "Free", CourseStartMonth, "Unenrollmbr16",
+					CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll15, "Unenrollmbr16");
 
@@ -1356,7 +1359,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 				WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fmc.isSelected()) {
-					jse.executeScript("arguments[0].scrollIntoView();", fml);
+					jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 					fml.click(); // de-selects the hoh
 					break;
 				}
@@ -1369,7 +1372,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 				// WebElement fmc = c.getFmlyMemberCheckBox().get(i);
 
 				if (fml.getText().contains("Unenrollmbr17")) {
-					jse.executeScript("arguments[0].scrollIntoView();", fml);
+					jse.executeScript("arguments[0].scrollIntoView(true);", fml);
 					fml.click(); // Selects the member
 					break;
 				}
@@ -1378,12 +1381,12 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
-				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupSignupButtonCourse());
+				jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 
 				actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 
 			} else {
-				jse.executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButtonCourse());
+				jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 				actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 				Assert.fail("SignUp button not available");
 
@@ -1523,7 +1526,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll17, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr18");
+					"Unenrollmbr18", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll17, "Unenrollmbr18");
 
@@ -1570,7 +1573,7 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

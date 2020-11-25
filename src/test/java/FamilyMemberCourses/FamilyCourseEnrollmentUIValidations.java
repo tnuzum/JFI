@@ -28,7 +28,8 @@ import resources.reusableWaits;
 
 public class FamilyCourseEnrollmentUIValidations extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Dec";
+	private static String CourseStartMonth = "Jun";
+	private static int CourseStartYear = 2021;
 	private static String courseToEnroll = "FAMILYENROLLCOURSE";
 	private static String courseNameDisplayed = "FamilyEnrollCourse";
 	private static String courseTimeDisplayed = "Start Time: 3:00 PM";
@@ -58,6 +59,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
 	private static int unitCount = 0;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -74,6 +76,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -99,6 +102,10 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		rm.SelectCourseStartYear(CourseStartYear);
+
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		rm.SelectCourseStartMonth(CourseStartMonth);
@@ -236,7 +243,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 
 		}
 		Thread.sleep(2000);
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignupButtonCourse());
+		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 		Thread.sleep(2000);
@@ -264,7 +271,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 
 				for (int j = 0; j < Labels.size(); j++) {
 					if (Labels.get(j).getText().contains("Pay Course Fee")) {
-						Labels.get(j).click();
+						jse.executeScript("arguments[0].click();", Labels.get(j));
 						break;
 					}
 				}
@@ -286,7 +293,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 				Assert.assertTrue(paymentOptions.contains(buyPackageName));
 				for (int j = 0; j < Labels.size(); j++) {
 					if (Labels.get(j).getText().contains(buyPackageName)) {
-						Labels.get(j).click();
+						jse.executeScript("arguments[0].click();", Labels.get(j));
 						break;
 					}
 				}
@@ -309,7 +316,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 			}
 
 		}
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		Thread.sleep(2000);
 
 	}
@@ -365,7 +372,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

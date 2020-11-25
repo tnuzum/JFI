@@ -28,7 +28,7 @@ import resources.reusableWaits;
 public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
-	private static String memberName = "Robert Auto";
+	private static String memberName = "Adam Auto";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -62,7 +62,7 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
-			rm.activeMemberLogin("rauto", "Testing1!");
+			rm.activeMemberLogin("aauto", "Testing1!");
 			rw.waitForDashboardLoaded();
 
 			d.getMyAccountPayNow().click();
@@ -100,10 +100,11 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 			p.getExpireMonth().sendKeys("04");
 			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
+			jse.executeScript("arguments[0].scrollIntoView(true);", p.getSaveCardNoRadio());
 			Thread.sleep(1000);
-			p.getSaveCardNoRadio().click();
+			jse.executeScript("arguments[0].click();", p.getSaveCardNoRadio());
 			Thread.sleep(1000);
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
 			rw.waitForAcceptButton();
@@ -116,7 +117,8 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -140,12 +142,12 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 		finally {
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				p.getPopupConfirmationButton().click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
-
-			d.getBreadcrumbDashboard().click();
+			rm.returnToDashboard();
 		}
 
 	}
@@ -170,7 +172,8 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -196,10 +199,43 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 		}
 	}
 
+	@Test(priority = 3, description = "Verify Card is not saved in COG", enabled = true)
+	public void VerifyCardNotSavedInCOG() throws InterruptedException, IOException {
+		try {
+
+			rm.VerifyFOPNotSavedInCOG("G179", "Jonas Sports-Plex", "1111");
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+	}
+
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

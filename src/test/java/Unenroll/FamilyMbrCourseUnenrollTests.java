@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -29,17 +30,9 @@ public class FamilyMbrCourseUnenrollTests extends base {
 	private static String courseToEnroll8 = "UnenrollCourse8";
 	private static String courseToEnroll9 = "UnenrollCourse9";
 	private static String courseToEnroll10 = "UnenrollCourse10";
-	private static String courseToEnroll10_1 = "UnenrollCourse10_1";
-	private static String courseToEnroll11 = "UnenrollCourse11";
-	private static String courseToEnroll12 = "UnenrollCourse12";
-	private static String courseToEnroll13 = "UnenrollCourse13";
-	private static String courseToEnroll14 = "UnenrollCourse14";
-	private static String courseToEnroll15 = "UnenrollCourse15";
-	private static String courseToEnroll16 = "UnenrollCourse16";
-	private static String courseToEnroll17 = "UnenrollCourse17";
-
-	private static String CourseStartMonth = "Nov";
-	private static String dsiredMonthYear = "November 2020";
+	private static int CourseStartYear = 2021;
+	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "February 2021";
 
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Course Fee";
@@ -58,6 +51,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 	private static String cannotCancelMsg = "We apologize, this course is not eligible for unenrollment.";
 
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -74,6 +68,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -95,7 +90,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll1, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr1");
+					"Unenrollmbr1", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll1, "Unenrollmbr1");
 
@@ -111,7 +106,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
-			u.getUnenrollButton().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -151,9 +146,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -165,7 +161,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth,
-					"Unenrollmbr2_1");
+					"Unenrollmbr2_1", CourseStartYear);
 
 			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr2_1");
 
@@ -205,7 +201,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
-			u.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", u.getPaymentButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -251,9 +247,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -264,7 +261,8 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 		try {
 
-			rm.enrollFamilyMbrInCourse(courseToEnroll3, "", "", "Free", CourseStartMonth, "Unenrollmbr3");
+			rm.enrollFamilyMbrInCourse(courseToEnroll3, "", "", "Free", CourseStartMonth, "Unenrollmbr3",
+					CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll3, "Unenrollmbr3");
 
@@ -301,7 +299,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getPaymentButton().getText().contains(FormatTotalAmt));
 
-			u.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", u.getPaymentButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -341,9 +339,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -355,7 +354,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll4, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
-					"Unenrollmbr4");
+					"Unenrollmbr4", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll4, "Unenrollmbr4");
 
@@ -391,7 +390,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getRefundButton().getText().contains(FormatTotalAmt));
 
-			u.getRefundButton().click();
+			jse.executeScript("arguments[0].click();", u.getRefundButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -433,9 +432,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -447,7 +447,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll5, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr5");
+					"Unenrollmbr5", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll5, "Unenrollmbr5");
 
@@ -463,7 +463,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
-			u.getUnenrollButton().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -505,9 +505,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -519,7 +520,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll6, paymentOption1, "", "Free With Punch", CourseStartMonth,
-					"Unenrollmbr6_1");
+					"Unenrollmbr6_1", CourseStartYear);
 
 			int unitsBefore = rm.getPackageUnitsForMember("Day Pass", "Unenrollmbr6_1");
 
@@ -537,7 +538,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -587,9 +588,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -601,7 +603,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll7, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
-					"Unenrollmbr7");
+					"Unenrollmbr7", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll7, "Unenrollmbr7");
 
@@ -615,7 +617,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -657,9 +659,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -672,7 +675,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll8, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-					"Unenrollmbr8");
+					"Unenrollmbr8", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll8, "Unenrollmbr8");
 
@@ -686,7 +689,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -728,9 +731,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -742,7 +746,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll9, paymentOption1, "", "Free With Punch", CourseStartMonth,
-					"Unenrollmbr9");
+					"Unenrollmbr9", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll9, "Unenrollmbr9");
 
@@ -756,7 +760,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -798,9 +802,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.returnToDashboard();
 		}
@@ -812,7 +817,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 		try {
 
 			rm.enrollFamilyMbrInCourse(courseToEnroll10, paymentOption2, payMethod2, "Not Free", CourseStartMonth,
-					"Unenrollmbr10");
+					"Unenrollmbr10", CourseStartYear);
 
 			rm.familyCourseClickToUnenroll(dsiredMonthYear, courseToEnroll10, "Unenrollmbr10");
 
@@ -854,7 +859,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			rm.selectSavedcard();
 
-			u.getRefundButton().click();
+			jse.executeScript("arguments[0].click();", u.getRefundButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -896,9 +901,10 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.memberLogout();
 		}
@@ -908,7 +914,7 @@ public class FamilyMbrCourseUnenrollTests extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

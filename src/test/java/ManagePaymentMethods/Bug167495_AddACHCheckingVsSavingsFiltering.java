@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -27,7 +28,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	private static String testName = null;
 	private static String memberName = "Robert Auto";
 	private static String agreementWithBadFOP = "Athletic Platinum";
-
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
@@ -52,6 +53,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -108,6 +110,8 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 				}
 			}
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSavingsradio());
+			Thread.sleep(1000);
 			mp.getSavingsradio().click();
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
@@ -130,6 +134,9 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 					.release().build().perform();
 
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getIAgreeCheckboxACH());
+			Thread.sleep(1000);
 			mp.getIAgreeCheckboxACH().click();
 			Thread.sleep(1000);
 
@@ -145,7 +152,8 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -172,10 +180,14 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 	public void EditCheckingVsSavings() throws InterruptedException, IOException {
 
 		try {
+
 			int FopCount = mp.getCardNumbers().size();
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("USBankLast4Digits"))) {
+
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
+					Thread.sleep(1000);
 					mp.getEditPaymentMethodsButton().get(i).click();
 					break;
 				}
@@ -195,6 +207,9 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			}
 			Assert.assertTrue(mp.getNoThanks().size() > 0);
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditCheckingRadio());
+			Thread.sleep(1000);
 
 			mp.getEditCheckingRadio().click(); // Checking Account
 
@@ -217,6 +232,8 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 				}
 			}
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getIAgreeCheckboxEditACH());
+			Thread.sleep(1000);
 
 			mp.getIAgreeCheckboxEditACH().click();
 			Thread.sleep(1000);
@@ -240,7 +257,8 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -273,7 +291,8 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -297,7 +316,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -2,6 +2,7 @@ package GridNodeTests;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
@@ -34,8 +35,10 @@ public class loginPageTest_Chrome extends base {
 		log.info("Chrome Browser: Running Tests on Selenium Grid");
 		DesiredCapabilities dc = new DesiredCapabilities();
 		dc.setBrowserName("chrome");
+
 		dc.setPlatform(Platform.WINDOWS);
-		System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
+		// System.setProperty("webdriver.chrome.driver",
+		// "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
@@ -120,12 +123,13 @@ public class loginPageTest_Chrome extends base {
 
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), wrongCredentialsMsg);
 		log.info("Error Message Title Verified");
+		System.out.println("Error Message Title Verified");
 	}
 
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

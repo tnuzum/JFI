@@ -57,6 +57,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
 	private static int unitCount = 0;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -88,6 +89,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -166,7 +168,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 
 				}
 
-				w.click(); // Click on the specific class
+				jse.executeScript("arguments[0].click();", w); // Click on the specific class
 				break;
 			}
 		}
@@ -247,7 +249,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 				fml.click(); // Selects the member
 
 		}
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignUpButton());
+		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignUpButton());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 		// c.getPopupSignUpButton().click();
@@ -277,7 +279,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 
 				for (int j = 0; j < Labels.size(); j++) {
 					if (Labels.get(j).getText().contains("Pay Single Class Fee")) {
-						Labels.get(j).click();
+						jse.executeScript("arguments[0].click();", Labels.get(j));
 						break;
 					}
 				}
@@ -299,7 +301,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 				Assert.assertTrue(paymentOptions.contains(buyPackageName));
 				for (int j = 0; j < Labels.size(); j++) {
 					if (Labels.get(j).getText().contains(buyPackageName)) {
-						Labels.get(j).click();
+						jse.executeScript("arguments[0].click();", Labels.get(j));
 						break;
 					}
 				}
@@ -323,7 +325,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 			}
 
 		}
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		Thread.sleep(2000);
 
 	}
@@ -379,7 +381,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

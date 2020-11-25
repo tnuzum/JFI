@@ -31,8 +31,9 @@ import resources.reusableWaits;
 
 public class FamilyStandbyInCourseTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String dsiredMonthYear = "December 2020";
-	private static String CourseStartMonth = "Dec";
+	private static String dsiredMonthYear = "June 2021";
+	private static String CourseStartMonth = "Jun";
+	private static int CourseStartYear = 2021;
 	private static String courseToEnroll = "DEMO STANDBY COURSE";
 	private static String courseNameDisplayed = "Demo Standby Course";
 	private static String courseTimeDisplayed = "Start Time: 4:00 PM";
@@ -57,6 +58,7 @@ public class FamilyStandbyInCourseTest extends base {
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -73,6 +75,7 @@ public class FamilyStandbyInCourseTest extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
 	}
@@ -102,6 +105,10 @@ public class FamilyStandbyInCourseTest extends base {
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -155,7 +162,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 					}
 
-					w.click(); // Click on the specific course
+					jse.executeScript("arguments[0].click();", w); // Click on the specific course
 					break;
 				}
 			}
@@ -189,8 +196,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 			}
 			Thread.sleep(2000);
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",
-					c.getPopupSignupButtonCourse());
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 			Thread.sleep(2000);
@@ -231,7 +237,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Course Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}
@@ -248,7 +254,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 
@@ -281,7 +287,8 @@ public class FamilyStandbyInCourseTest extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -299,7 +306,7 @@ public class FamilyStandbyInCourseTest extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -351,7 +358,8 @@ public class FamilyStandbyInCourseTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -386,7 +394,8 @@ public class FamilyStandbyInCourseTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -408,7 +417,7 @@ public class FamilyStandbyInCourseTest extends base {
 		}
 	}
 
-	@Test(priority = 3, dependsOnMethods = { "FamilyMemberEnrollment" })
+	@Test(priority = 3)
 	public void FamilyMemberDeleteStandby() throws InterruptedException, IOException {
 		try {
 			rm.deleteStandbyCourseInCOG(courseNameDisplayed, "Jonas Sports-Plex", member5, member6);
@@ -416,7 +425,8 @@ public class FamilyStandbyInCourseTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -453,7 +463,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

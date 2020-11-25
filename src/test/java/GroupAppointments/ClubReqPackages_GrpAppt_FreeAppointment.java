@@ -1,6 +1,7 @@
 package GroupAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -201,7 +202,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 //					Thread.sleep(200);
 //					}
 
-			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -210,28 +211,27 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 			System.out.println("popupSize = " + ap.getPopup1().size());
 			log.info("popupSize = " + ap.getPopup1().size());
+			int k = 0;
 
-			while (ap.getPopup1().size() == 0)
+			while (ap.getPopup1().size() == 0 && k < 2)
 
 			{
+				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
+					ap.getCloseButton().click();
+				}
 				rm.calendarTomorrowClick();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st1));
-				while (!st1.isEnabled())// while button is NOT(!) enabled
-				{
-					System.out.println("Waiting for available times");
-				}
+				ap.getSelectTimeMorningButton().click();
 
-				st1.click();
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
+				startTime = ap.getSelectTime1stAvailable().getText();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st2));
-				startTime = st2.getText();
-				// st2.click();
-
-				jse.executeScript("arguments[0].click();", st2);
+				jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
 				Thread.sleep(1000);
 
 				ap.getPopup1().size();
+				k++;
+
 			}
 
 			System.out.println(ap.getPopup1Content().getText());
@@ -287,9 +287,10 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				ap.getPopup2OKButton().click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.memberLogout();
 		}
@@ -444,7 +445,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 //					Thread.sleep(200);
 //					}
 
-			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -455,27 +456,27 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			System.out.println("popupSize = " + ap.getPopup1().size());
 			log.info("popupSize = " + ap.getPopup1().size());
 
-			while (ap.getPopup1().size() == 0)
+			int k = 0;
+
+			while (ap.getPopup1().size() == 0 && k < 2)
 
 			{
+				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
+					ap.getCloseButton().click();
+				}
 				rm.calendarTomorrowClick();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st1));
-				while (!st1.isEnabled())// while button is NOT(!) enabled
-				{
-					System.out.println("Waiting for available times");
-				}
+				ap.getSelectTimeMorningButton().click();
 
-				st1.click();
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
+				startTime = ap.getSelectTime1stAvailable().getText();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st2));
-				startTime = st2.getText();
-				// st2.click();
-
-				jse.executeScript("arguments[0].click();", st2);
+				jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
 				Thread.sleep(1000);
 
 				ap.getPopup1().size();
+				k++;
+
 			}
 
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubName));
@@ -543,9 +544,10 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				ap.getPopup2OKButton().click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 			rm.memberLogout();
 		}
@@ -555,7 +557,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 	// @AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

@@ -29,6 +29,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 	public static DashboardPO d;
 	public static PaymentPO p;
 	public static ManagePayMethodsPO mp;
+	private static JavascriptExecutor jse;
 
 	public ManagepaymntMethods_AdditionalQuestionsTest() {
 		rw = new reusableWaits();
@@ -44,6 +45,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 		d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 		p = new PaymentPO(driver);
 		mp = new ManagePayMethodsPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -70,13 +72,13 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(1).isDisplayed());
 			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
-			p.getMoreInfoOnAccount().get(1).click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoOnAccount().get(1));
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(1000);
 			Assert.assertTrue(p.getInClubQuestion().isDisplayed());
-			p.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoUseInPos());
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			p.getAdditionalQuestionPopupClose().click();
@@ -86,7 +88,8 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -125,13 +128,13 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
-			p.getMoreInfoOnAccount().get(0).click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoOnAccount().get(0));
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(1000);
 			Assert.assertTrue(p.getInClubQuestion().isDisplayed());
-			p.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoUseInPos());
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			p.getAdditionalQuestionPopupClose().click();
@@ -142,7 +145,8 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -173,7 +177,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			Thread.sleep(1000);
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 			Assert.assertTrue(p.getOnAccountBankQuestion().isDisplayed());
-			p.getMoreInfoOnAccount().get(0).click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoOnAccount().get(0));
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
@@ -183,7 +187,8 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -222,7 +227,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 			Assert.assertTrue(p.getOnAccountBankQuestion().isDisplayed());
-			p.getMoreInfoOnAccount().get(0).click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoOnAccount().get(0));
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
@@ -233,7 +238,8 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -290,21 +296,21 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 
 			Assert.assertTrue(p.getSaveCardQuestion().isDisplayed());
-			p.getMoreInfoSaveCard().click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoSaveCard());
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "Save Card For Use On Site");
 			p.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(1000);
 
 			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
-			p.getMoreInfoOnAccount().get(0).click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoOnAccount().get(0));
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			p.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(1000);
 
 			Assert.assertTrue(p.getInClubQuestion().isDisplayed());
-			p.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", p.getMoreInfoUseInPos());
 			Thread.sleep(1000);
 			Assert.assertEquals(p.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			p.getAdditionalQuestionPopupClose().click();
@@ -317,7 +323,8 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -342,7 +349,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

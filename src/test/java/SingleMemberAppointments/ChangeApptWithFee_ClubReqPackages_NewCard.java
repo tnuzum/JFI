@@ -1,6 +1,7 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -439,7 +440,7 @@ public class ChangeApptWithFee_ClubReqPackages_NewCard extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

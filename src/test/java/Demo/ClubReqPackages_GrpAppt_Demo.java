@@ -1,6 +1,7 @@
 package Demo;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -191,7 +192,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 //					Thread.sleep(200);
 //					}
 
-		wait.until(ExpectedConditions.elementToBeClickable(st2));
+		wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 		startTime = st2.getText();
 		st2.click();
 		Thread.sleep(1000);
@@ -202,25 +203,22 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		while (ap.getPopup1().size() == 0)
 
 		{
+			if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
+				ap.getCloseButton().click();
+			}
 			rm.calendarTomorrowClick();
 
-			wait.until(ExpectedConditions.elementToBeClickable(st1));
-			while (!st1.isEnabled())// while button is NOT(!) enabled
-			{
-				System.out.println("Waiting for available times");
-			}
+			ap.getSelectTimeMorningButton().click();
 
-			st1.click();
-
-			wait.until(ExpectedConditions.elementToBeClickable(st2));
-			startTime = st2.getText();
-			// st2.click();
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
+			startTime = ap.getSelectTime1stAvailable().getText();
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", st2);
+			jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
 			Thread.sleep(1000);
 
 			ap.getPopup1().size();
+
 		}
 
 		Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
@@ -505,7 +503,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 	// @AfterTest
 	/*
 	 * @AfterClass public void teardown() throws InterruptedException {
-	 * driver.close(); driver = null; }
+	 * driver.quit(); driver = null; }
 	 */
 
 }

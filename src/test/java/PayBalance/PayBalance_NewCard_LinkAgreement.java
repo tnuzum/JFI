@@ -32,6 +32,8 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 	private static String memberName = "AgreementMember Auto";
 	private static String agreement = "Balance Weight Loss 12 Week";
 
+	private static JavascriptExecutor jse;
+
 	public reusableWaits rw;
 	public reusableMethods rm;
 
@@ -47,6 +49,7 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -73,7 +76,6 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 
 			Thread.sleep(500);
@@ -95,15 +97,15 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 			rm.OpenNewcardFormIfNotOpenInFirstAttempt();
 
 			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
-			// JavascriptExecutor jse = (JavascriptExecutor) driver;
+			//
 			jse.executeScript("arguments[0].click();", p.getCardNumber());
 			p.getCardNumber().sendKeys("4111111111111111");
 			p.getExpireMonth().sendKeys("04");
 			p.getExpireYear().sendKeys("22");
 			p.getCVC().sendKeys("123");
-			p.getSaveCardYesRadio().click();
-			p.getHouseAcctNoRadioButton().click();
-			p.getInClubPurchaseNoRadio().click();
+			jse.executeScript("arguments[0].click();", p.getSaveCardYesRadio());
+			jse.executeScript("arguments[0].click();", p.getHouseAcctNoRadioButton());
+			jse.executeScript("arguments[0].click();", p.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 
 			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
@@ -114,24 +116,28 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 
 			for (int i = 0; i < p.getAgreementLabel().size(); i++) {
 				if (p.getAgreementLabel().get(i).getText().contains(agreement)) {
-					p.getAgreementCheckBox().get(i).click();
+					jse.executeScript("arguments[0].click();", p.getAgreementCheckBox().get(i));
 				}
 			}
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A Selection is Required')]")),
 					false);
 
 			Thread.sleep(1000);
-			p.getIAgreeCheckbox().click();
+			jse.executeScript("arguments[0].click();", p.getIAgreeCheckbox());
 			Thread.sleep(2000);
 
 			Assert.assertTrue(p.getSubmitButton().isEnabled());
 
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 
 			Assert.assertTrue(p.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			p.getPopupConfirmationButton().click();
+
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", p.getSignaturePad());
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(p.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
@@ -144,7 +150,7 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 			 */
 			Thread.sleep(1000);
 
-			p.getSubmitButton().click();
+			jse.executeScript("arguments[0].click();", p.getSubmitButton());
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
 			rw.waitForAcceptButton();
@@ -158,7 +164,8 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -182,12 +189,13 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 		finally {
 			boolean popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 
-			if (popup == true) {
+			while (popup == true) {
 				p.getPopupConfirmationButton().click();
 				System.out.println("popup was present");
+				popup = rm.isElementPresent(By.xpath("//div[@class='swal2-actions']/button[1]"));
 			}
 
-			d.getBreadcrumbDashboard().click();
+			rm.returnToDashboard();
 		}
 
 	}
@@ -213,7 +221,8 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -249,7 +258,8 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -274,7 +284,7 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

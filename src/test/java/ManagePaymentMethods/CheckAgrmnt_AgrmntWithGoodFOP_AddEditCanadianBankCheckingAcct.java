@@ -26,7 +26,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 	private static String testName = null;
 	private static String memberName = "AgreementMember Auto";
 	private static String agreement = "Balance Weight Loss 12 Week";
-
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
@@ -49,6 +49,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -100,8 +101,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
-					jse.executeScript("arguments[0].scrollIntoView();", mp.getAgreementCheckBox().get(i));
+
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getAgreementCheckBox().get(i));
 
 					jse.executeScript("arguments[0].click();", mp.getAgreementCheckBox().get(i));
 					break;
@@ -113,6 +114,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 					false);
 
 			mp.getIAgreeCheckboxACH().click();
+
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getAddBankAcctButton().isEnabled());
@@ -131,6 +133,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			Thread.sleep(2000);
 
 			mp.getAddBankAcctButton().click();
+
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT ADDED", mp.getPopupConfirmation1().getText());
@@ -142,7 +145,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -173,7 +177,9 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			for (int i = 0; i < FopCount; i++) {
 
 				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("CanadianBankLast4Digits"))) {
-					mp.getEditPaymentMethodsButton().get(i).click();
+
+					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
+					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
 				}
 			}
@@ -204,6 +210,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
 			Assert.assertTrue(!mp.getSaveChangeButton().isEnabled());
+			Thread.sleep(1000);
 
 			for (int i = 0; i < mp.getAgreementLabel().size(); i++) {
 				if (mp.getAgreementLabel().get(i).getText().contains(agreement)) {
@@ -215,17 +222,21 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
-			mp.getIAgreeCheckboxEditACH().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxEditACH());
+
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getSaveChangeButton().isEnabled());
 
-			mp.getSaveChangeButton().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
-			mp.getPopupConfirmationButton().click();
+			jse.executeScript("arguments[0].click();", mp.getPopupConfirmationButton());
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -233,7 +244,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 
 			Thread.sleep(1000);
 
-			mp.getSaveChangeButton().click();
+			jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
@@ -246,7 +257,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -280,7 +292,8 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -306,7 +319,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

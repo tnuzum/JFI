@@ -168,7 +168,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 //					Thread.sleep(200);
 //					}
 
-			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
@@ -178,27 +178,27 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 			System.out.println("popupSize = " + ap.getPopup1().size());
 			log.info("popupSize = " + ap.getPopup1().size());
 
-			while (ap.getPopup1().size() == 0)
+			int k = 0;
+
+			while (ap.getPopup1().size() == 0 && k < 2)
 
 			{
+				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
+					ap.getCloseButton().click();
+				}
 				rm.calendarTomorrowClick();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st1));
-				while (!st1.isEnabled())// while button is NOT(!) enabled
-				{
-					System.out.println("Waiting for available times");
-				}
+				ap.getSelectTimeMorningButton().click();
 
-				st1.click();
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
+				startTime = ap.getSelectTime1stAvailable().getText();
 
-				wait.until(ExpectedConditions.elementToBeClickable(st2));
-				startTime = st2.getText();
-				// st2.click();
-
-				jse.executeScript("arguments[0].click();", st2);
+				jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
 				Thread.sleep(1000);
 
 				ap.getPopup1().size();
+				k++;
+
 			}
 
 			Assert.assertTrue(ap.getPopup1Content().getText().contains(clubNameDisplayed));
@@ -274,14 +274,15 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
 			// Click the Cancel button
 
-			ap.getCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getCancelButton());
 			Thread.sleep(2000);
 			Boolean ApptCheckout = rm.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
 
@@ -306,7 +307,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

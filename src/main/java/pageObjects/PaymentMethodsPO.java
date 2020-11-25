@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -47,7 +49,9 @@ public class PaymentMethodsPO {
 	By additionalQuestionPopupClose = By
 			.xpath("//button[@class='btn btn-primary btn-outline'][contains(text(),'close')]");
 	By signaturePad = By.xpath("//div[@class='m-signature-pad--body']");
+//	By signaturePad = By.xpath("//signature-pad[@class='at-paymethods-signaturepad']");
 	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase text')]");
+	By sigPadInOut = By.id("SignaturePadPaymentMethods");
 
 // CONSTRUCTOR
 
@@ -156,12 +160,24 @@ public class PaymentMethodsPO {
 		return driver.findElement(saveCardQuestion);
 	}
 
+	public List<WebElement> getSaveCardQuestions() {
+		return driver.findElements(saveCardQuestion);
+	}
+
 	public WebElement getOnAccountQuestion() {
 		return driver.findElement(onAccountQuestion);
 	}
 
+	public List<WebElement> getOnAccountQuestions() {
+		return driver.findElements(onAccountQuestion);
+	}
+
 	public WebElement getInClubQuestion() {
 		return driver.findElement(inClubQuestion);
+	}
+
+	public List<WebElement> getInClubQuestions() {
+		return driver.findElements(inClubQuestion);
 	}
 
 	public WebElement getAdditionalQuestionPopupTitle() {
@@ -174,6 +190,10 @@ public class PaymentMethodsPO {
 
 	public WebElement getSignaturePad() {
 		return driver.findElement(signaturePad);
+	}
+
+	public WebElement getSigPadInOut() {
+		return driver.findElement(sigPadInOut);
 	}
 
 	public WebElement getTotalAmount() {

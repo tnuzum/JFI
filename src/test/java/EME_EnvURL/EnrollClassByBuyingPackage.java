@@ -2,6 +2,7 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -133,7 +134,8 @@ public class EnrollClassByBuyingPackage extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -229,7 +231,8 @@ public class EnrollClassByBuyingPackage extends base {
 			PM.getPaymentButton().click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
-			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -276,7 +279,8 @@ public class EnrollClassByBuyingPackage extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -412,7 +416,8 @@ public class EnrollClassByBuyingPackage extends base {
 			}
 			PM.getPaymentButton().click();
 
-			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
@@ -456,7 +461,8 @@ public class EnrollClassByBuyingPackage extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -630,7 +636,8 @@ public class EnrollClassByBuyingPackage extends base {
 			PM.getPaymentButton().click();
 			System.out.println("Element clicked");
 
-			rw.waitForAcceptButton();wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
@@ -675,7 +682,8 @@ public class EnrollClassByBuyingPackage extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 
 		}
@@ -754,7 +762,8 @@ public class EnrollClassByBuyingPackage extends base {
 			catch (java.lang.AssertionError ae) {
 				System.out.println("assertion error");
 				ae.printStackTrace();
-				log.error(ae.getMessage(), ae);ae. printStackTrace();
+				log.error(ae.getMessage(), ae);
+				ae.printStackTrace();
 				Assert.fail(ae.getMessage());
 			}
 
@@ -786,7 +795,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

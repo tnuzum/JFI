@@ -22,10 +22,11 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class EnrollCourseMemberAndItemRestrictions extends base {
-	private static String CourseStartYear = "2019";
+	private static int CourseStartYear = 2019;
+	private static int CourseStartYear1 = 2021;
 	private static String CourseStartMonth1 = "Jan";
-	private static String CourseStartMonth2 = "Dec";
-	private static String dsiredMonthYear = "December 2020";
+	private static String CourseStartMonth2 = "Jun";
+	private static String dsiredMonthYear = "June 2021";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
@@ -76,6 +77,9 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear1);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -93,7 +97,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -140,6 +145,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear1);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -157,7 +166,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -217,7 +227,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -278,7 +289,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -325,6 +337,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear1);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -342,7 +358,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -388,11 +405,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-		String year = c.getYear().getText();
-		while (!year.contains(CourseStartYear)) {
-			driver.findElement(By.xpath("//i[contains(@class, 'double-left')]")).click();
-			year = driver.findElement(By.xpath("//span[contains(@class, 'btn-white')]")).getText();
-		}
+
+		rm.SelectCourseStartYear(CourseStartYear);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -413,7 +427,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -473,7 +488,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -520,6 +536,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear1);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -540,7 +560,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			Assert.fail(ae.getMessage());
 		}
 
@@ -567,7 +588,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			// .executeScript("window.scrollTo(0," +
 			// c.getPopupCancelButtonCourse().getLocation().x + ")");
 
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();",
+			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
 					c.getPopupCancelButtonCourse());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
@@ -581,6 +602,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 9, description = "Validating that the course cannnot be enrolled due to Scheduling Conflict")
 	public void CourseSchedulingConflict() throws IOException, InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		rm.activeMemberLogin("hoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 
@@ -590,6 +613,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
 
 		WebDriverWait wait = new WebDriverWait(driver, 50);
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+		rm.SelectCourseStartYear(CourseStartYear1);
+
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		rm.SelectCourseStartMonth(CourseStartMonth2);
@@ -602,12 +629,12 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		// ((JavascriptExecutor) driver)
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupSignupButtonCourse().getLocation().x + ")");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupSignupButtonCourse());
+		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
@@ -628,6 +655,10 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
+		rm.SelectCourseStartYear(CourseStartYear1);
+
+		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
 		rm.SelectCourseStartMonth(CourseStartMonth2);
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -645,7 +676,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		// ((JavascriptExecutor) driver)
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupCancelButtonCourse().getLocation().x + ")");
-		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", c.getPopupCancelButtonCourse());
+		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 
 		actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 //		c.getPopupCancelButtonCourse().click();
@@ -658,7 +689,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 	// @AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

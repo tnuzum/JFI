@@ -1,6 +1,7 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -192,12 +193,38 @@ public class CancelApptWithFee_cancelTransaction extends base {
 //					Thread.sleep(200);
 //					}
 
-			wait.until(ExpectedConditions.elementToBeClickable(st2));
+			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
+
+			System.out.println("popupSize = " + ap.getPopup1().size());
+			log.info("popupSize = " + ap.getPopup1().size());
+
+			int k = 0;
+
+			while (ap.getPopup1().size() == 0 && k < 2)
+
+			{
+				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
+					ap.getCloseButton().click();
+				}
+				rm.calendarTomorrowClick();
+
+				ap.getSelectTimeMorningButton().click();
+
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
+				startTime = ap.getSelectTime1stAvailable().getText();
+
+				jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
+				Thread.sleep(1000);
+
+				ap.getPopup1().size();
+				k++;
+
+			}
 
 			ap.getPopup1BookButton().click();
 
@@ -225,11 +252,13 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			rw.waitForDashboardLoaded();
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -259,11 +288,13 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			}
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -454,11 +485,13 @@ public class CancelApptWithFee_cancelTransaction extends base {
 			rm.memberLogout();
 
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not booked");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -469,7 +502,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

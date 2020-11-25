@@ -1,6 +1,7 @@
 package EME;
 
 import java.io.IOException;
+import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,11 +9,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import junit.framework.Assert;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.UnenrollPO;
@@ -97,7 +98,7 @@ public class ScheduleCourseTest extends base {
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		Thread.sleep(5000);
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

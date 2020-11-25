@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Suite">
-<listeners>
+	<listeners>
 		<listener class-name="EME.listeners" />
-		<!--listener class-name = "resources.ExtentReporterNG"/-->
+		<!--listener class-name = "resources.ExtentReporterNG"/ -->
 	</listeners>
-  <test thread-count="5" name="Grid Node Test">
-    <classes>
-       <class name="GridNodeTests.loginPageTest_FF"/>
-      <class name="GridNodeTests.PageLaunchTest_FF"/>
-      <class name="GridNodeTests.loginPageTest_MSEdge"/>
-      <class name="GridNodeTests.PageLaunchTest_MSEdge"/>
-       <class name="GridNodeTests.loginPageTest_Chrome"/>
-    </classes>
-  </test> <!-- Test -->
+	<test thread-count="5" name="Grid Node Test">
+		<classes>
+			<class name="GridNodeTests.loginPageTest_FF" />
+			<class name="GridNodeTests.PageLaunchTest_FF" />
+			<class name="GridNodeTests.loginPageTest_MSEdge" />
+			<class name="GridNodeTests.PageLaunchTest_MSEdge" />
+			<class name="GridNodeTests.loginPageTest_Chrome" />
+			<class name="GridNodeTests.PageLaunchTest_Chrome" />
+		</classes>
+	</test> <!-- Test -->
 </suite> <!-- Suite -->

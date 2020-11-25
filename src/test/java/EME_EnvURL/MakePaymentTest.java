@@ -3,6 +3,7 @@ package EME_EnvURL;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -103,7 +104,7 @@ public class MakePaymentTest extends base {
 //	@AfterTest
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

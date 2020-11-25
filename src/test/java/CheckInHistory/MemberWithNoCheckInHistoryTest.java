@@ -2,6 +2,7 @@ package CheckInHistory;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Calendar;
 import java.util.List;
 
@@ -150,7 +151,7 @@ public class MemberWithNoCheckInHistoryTest extends base {
 
 	@AfterTest
 	public void teardown() {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 }

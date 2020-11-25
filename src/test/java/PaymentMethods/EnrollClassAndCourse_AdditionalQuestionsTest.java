@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -28,7 +29,8 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	private static String classNameDisplayed = "Barre Combat Fusion";
 	private static String courseToEnroll = "FEECOURSE";
 	private static String courseNameDisplayed = "FeeCourse";
-	private static String CourseStartMonth = "Dec";
+	private static String CourseStartMonth = "Jun";
+	private static int CourseStartYear = 2021;
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
@@ -36,6 +38,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	public static ShopPackagesPO sp;
 	private static PurchaseConfirmationPO PP;
 	private static ClassSignUpPO c;
+	private static JavascriptExecutor jse;
 
 	public EnrollClassAndCourse_AdditionalQuestionsTest() {
 		rw = new reusableWaits();
@@ -53,6 +56,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 		sp = new ShopPackagesPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		c = new ClassSignUpPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -69,6 +73,10 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			d.getMyCoursesEventsScheduleButton().click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			rm.SelectCourseStartMonth(CourseStartMonth);
@@ -107,7 +115,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -126,21 +134,21 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
-			PM.getMoreInfoSaveCard().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoSaveCard());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Save Card For Use On Site");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getOnAccountQuestion().isDisplayed());
-			PM.getMoreInfoOnAccount().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoOnAccount());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getInClubQuestion().isDisplayed());
-			PM.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoUseInPos());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			PM.getAdditionalQuestionPopupClose().click();
@@ -151,7 +159,8 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -221,7 +230,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -240,31 +249,31 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
-			PM.getMoreInfoSaveCard().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoSaveCard());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Save Card For Use On Site");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getOnAccountQuestion().isDisplayed());
-			PM.getMoreInfoOnAccount().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoOnAccount());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "On Account Charges");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
 			Assert.assertTrue(PM.getInClubQuestion().isDisplayed());
-			PM.getMoreInfoUseInPos().click();
+			jse.executeScript("arguments[0].click();", PM.getMoreInfoUseInPos());
 			Thread.sleep(500);
 			Assert.assertEquals(PM.getAdditionalQuestionPopupTitle().getText(), "Card On File");
 			PM.getAdditionalQuestionPopupClose().click();
 			Thread.sleep(500);
 
-			PM.getSaveCardYes().click();
-			PM.getHouseAcctNo().click();
-			PM.getInClubPurchaseNo().click();
+			jse.executeScript("arguments[0].click();", PM.getSaveCardYes());
+			jse.executeScript("arguments[0].click();", PM.getHouseAcctNo());
+			jse.executeScript("arguments[0].click();", PM.getInClubPurchaseNo());
 
-			PM.getCheckBox().click();
+			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			Thread.sleep(1000);
 
 			while (!PM.getPaymentButton().isEnabled()) {
@@ -272,19 +281,21 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			}
 
 			// Clicks on the Pay button without signature
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 			Thread.sleep(1000);
 
 			System.out.println(PM.getPopupContent().getText());
 			Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
 			PM.getPopupOk().click();
 			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getSigPadInOut());
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(PM.getSignaturePad()).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 					.build().perform();
 
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
@@ -302,7 +313,8 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -335,7 +347,8 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -362,7 +375,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

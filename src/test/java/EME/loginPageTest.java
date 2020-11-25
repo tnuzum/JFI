@@ -82,7 +82,7 @@ public class loginPageTest extends base {
 		log.info("Password Required Message Confirmed");
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4, enabled = true)
 	public void wrongCredentialsMessages() throws InterruptedException {
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(prop.getProperty("invalid_username"));
@@ -108,7 +108,7 @@ public class loginPageTest extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 

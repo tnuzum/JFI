@@ -63,6 +63,8 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
 		try {
+
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("apptmember8", "Testing1!");
 
 			rw.waitForDashboardLoaded();
@@ -226,7 +228,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 					}
 
 					// AftrnunSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
@@ -316,7 +318,8 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -325,7 +328,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 			while (!ap.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 
 			rw.waitForAcceptButton();
 
@@ -369,11 +372,13 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 			}
 			rw.waitForDashboardLoaded();
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -386,11 +391,13 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 
 			rm.ConfirmAndCancelAppointmentNoFee(dayAfter, startTime2, appointmentToBook2);
 		} catch (Exception e) {
-			log.error(e.getMessage(), e);e.printStackTrace();
+			log.error(e.getMessage(), e);
+			e.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		} catch (java.lang.AssertionError ae) {
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			log.error("Appointment is not changed");
 			getScreenshot(this.getClass().getSimpleName(), driver);
 		}
@@ -400,7 +407,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 
