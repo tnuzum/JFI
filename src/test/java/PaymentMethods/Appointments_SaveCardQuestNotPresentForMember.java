@@ -739,6 +739,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			Assert.assertTrue(PM.getSigPadInOut().getAttribute("style").contains("1"));
 
 			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), null);
+
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {

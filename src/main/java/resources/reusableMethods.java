@@ -197,7 +197,10 @@ public class reusableMethods extends base {
 	public String memberLogout() throws InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
 		// Actions a = new Actions(driver);
-		d.getLogoutButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", d.getLogoutButton());
+		Thread.sleep(1000);
+		jse.executeScript("arguments[0].click();", d.getLogoutButton());
 		// a.moveToElement(d.getLogoutButton()).click().build().perform();
 		rw.waitForLoginLoginButton();
 		return null;
@@ -339,6 +342,7 @@ public class reusableMethods extends base {
 					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 			cp.getCalendarViewLink().click();
+			Thread.sleep(1000);
 			String monthYear = cp.getMonthYear().getText();
 			while (!monthYear.equals(dsiredMonthYear)) {
 				cp.getRightArrow().click();
@@ -1977,7 +1981,14 @@ public class reusableMethods extends base {
 				cp.getCalendarTomorrow().findElement(By.tagName("span")));
 
 		Thread.sleep(3000);
-		cp.getCalendarTomorrow().findElement(By.tagName("span")).click();
+
+		/*
+		 * jse.executeScript("arguments[0].click();",
+		 * cp.getCalendarTomorrow().findElement(By.tagName("span")));
+		 */
+
+		Actions a = new Actions(driver);
+		a.moveToElement(cp.getCalendarTomorrow().findElement(By.tagName("span"))).click().build().perform();
 
 		Thread.sleep(1000);
 
@@ -2301,6 +2312,7 @@ public class reusableMethods extends base {
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 		cp.getCalendarViewLink().click();
+		Thread.sleep(1000);
 		String monthYear = cp.getMonthYear().getText();
 		while (!monthYear.equals(dsiredMonthYear)) {
 			cp.getRightArrow().click();
@@ -2685,6 +2697,7 @@ public class reusableMethods extends base {
 				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 		cp.getCalendarViewLink().click();
+		Thread.sleep(1000);
 
 		String monthYear = cp.getMonthYear().getText();
 		while (!monthYear.equals(dsiredMonthYear)) {

@@ -372,6 +372,7 @@ public class Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends ba
 					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 			cp.getCalendarViewLink().click();
+			Thread.sleep(1000);
 
 			rm.MyActivitiesTomorrowClick();
 
