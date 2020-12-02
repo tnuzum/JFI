@@ -1,7 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -421,25 +420,11 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
 			a.getEditApptCancelButton().click();
-			WebElement wait2 = a.getEditApptProceedButton();
-			while (!wait2.isEnabled())// while button is NOT(!) enabled
-			{
-//			Thread.sleep(200);
-			}
-			a.getEditApptProceedButton().click();
 			Thread.sleep(1000);
-			boolean result1 = rw.popupMessageYesButton();
-			if (result1 == true) {
-//				Thread.sleep(500);	
-			}
 			a.getEditApptCancelYesButton().click();
-//			boolean result2 = rw.popupMessageYesButton();
-//			if (result2 == true)
-//			{
-//				Thread.sleep(500);	
-//			}
-//		a.getEditApptCanceledOKButton().click();
-//		rw.waitForDashboardLoaded();
+			Thread.sleep(2000);
+			rw.waitForAcceptButton();
+			a.getPopup2OKButton().click();
 			Thread.sleep(2000);
 			Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 			rm.memberLogout();
