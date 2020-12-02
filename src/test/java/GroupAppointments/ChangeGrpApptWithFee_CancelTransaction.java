@@ -9,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -79,6 +78,8 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
+			AppointmentsPO ap = new AppointmentsPO(driver);
+
 			d.getMyApptsScheduleButton().click();
 			Thread.sleep(2000);
 
@@ -89,153 +90,10 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
-			int appointmentsCount = d.getMyAppts().size();
 
-			for (int i = 0; i < appointmentsCount; i++) {
-				if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
+			rm.ValidatechangeAppointmentScreen(startTime1, appointmentToBook1);
 
-				{
-
-					if (d.getMyAppts().get(i).getText().contains(startTime1)) {
-
-						Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook1.toUpperCase()));
-						wait.until(ExpectedConditions
-								.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-						d.getMyAppts().get(i).findElement(By.tagName("i")).click();
-
-						WebElement EditButton = d.getEditButton().get(i);
-
-						wait.until(ExpectedConditions.visibilityOf(EditButton));
-						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
-
-						EditButton.click();
-						break;
-					}
-				}
-			}
-
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
-			Thread.sleep(2000);
-			AppointmentsPO ap = new AppointmentsPO(driver);
-			ap.getEditApptChangeButton().click();
-			Thread.sleep(1000);
-
-			Assert.assertTrue(
-					ap.getChangeFeeSection().getText().contains("If you proceed, you will be charged a Change Fee of"));
-
-			Assert.assertTrue(ap.getChangeFeeSection().getText().contains(
-					" This will remove other participants from your appointment. You will need to add them again when you select your new appointment."));
-
-			ap.getEditApptProceedButton1().click();
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
-
-			/*
-			 * Select se = new Select(ap.getclubs()); List<WebElement> Clubs =
-			 * se.getOptions();
-			 * 
-			 * while (!ap.getclubs().isEnabled()) {
-			 * System.out.println("Waiting for Clubs drop down to not be blank"); }
-			 * 
-			 * int count0 = Clubs.size(); System.out.println("1 " + count0);
-			 * 
-			 * for (int i = 0; i < count0; i++) { String category = Clubs.get(i).getText();
-			 * 
-			 * if (category.equals(clubName)) { se.selectByVisibleText(category); break; } }
-			 * Thread.sleep(2000);
-			 * 
-			 * WebElement bic = ap.getBookableItemCategory();
-			 * 
-			 * Select s = new Select(bic); List<WebElement> ProductCategories =
-			 * s.getOptions();
-			 * 
-			 * int count = ProductCategories.size(); System.out.println(count);
-			 * 
-			 * for (int i = 0; i < count; i++) { String category =
-			 * ProductCategories.get(i).getText();
-			 * 
-			 * if (category.equals(productCategory)) { s.selectByVisibleText(category);
-			 * break; } }
-			 */
-
-			Select s1 = new Select(ap.getBookableItem());
-			Thread.sleep(2000);
-			List<WebElement> Products = s1.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook2)) {
-					s1.selectByVisibleText(product);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
-
-			Thread.sleep(1000);
-			Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
-			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
-			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-			ap.getGroupMemberSearchInput().sendKeys("auto");
-			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
-
-			Thread.sleep(2000);
-
-			int memberCount = ap.getGroupPopupAddButtons().size();
-			for (int i = 0; i < memberCount; i++)
-
-			{
-				String text = ap.getGroupPopupMembers().get(i).getText();
-				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Robert")) {
-					wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-					ap.getGroupPopupAddButtons().get(i).click();
-					break;
-				}
-			}
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
-			WebElement rt = ap.getResourceType();
-
-			Select s2 = new Select(rt);
-			Thread.sleep(2000);
-			List<WebElement> Resources = s2.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName3)) {
-					s2.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
+			rm.makeNewGrpAppointmentSelections("Robert", appointmentToBook2, resourceName3);
 
 			rm.calendarDayAfterTomorrowClick();
 
