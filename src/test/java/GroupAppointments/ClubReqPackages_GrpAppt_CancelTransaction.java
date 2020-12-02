@@ -1,7 +1,6 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -35,6 +34,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 	private static String mbrDiscntPricing = "$5.56";
 	private static String startTime;
 	private static String unitsToBeSelected = "1 - $5.40/per";
+	private static JavascriptExecutor jse;
 
 	public reusableMethods rm;
 	public reusableWaits rw;
@@ -52,6 +52,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -202,7 +203,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
 

@@ -1,8 +1,6 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -33,6 +30,7 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 	private static String appointmentToBook = "PT Group Appt Two Resources";
 	private static String clubNameDisplayed = "Club: Jonas Fitness";
 	private static String clubAndMemberSpecifiPrice = "$7.00";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -49,6 +47,7 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -69,104 +68,10 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select se = new Select(ap.getclubs());
-			List<WebElement> Clubs = se.getOptions();
+			rm.selectClub(clubName);
+			rm.selectProductCategory(productCategory);
+			rm.makeNewGrpAppointmentSelections("Daisy", appointmentToBook, resourceName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
-
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					se.selectByVisibleText(club);
-					break;
-				}
-			}
-			Thread.sleep(2000);
-			WebElement bic = ap.getBookableItemCategory();
-
-			Select s = new Select(bic);
-			List<WebElement> ProductCategories = s.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println(count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s1 = new Select(ap.getBookableItem());
-			Thread.sleep(2000);
-			List<WebElement> Products = s1.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook)) {
-					s1.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
-			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
-			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-			ap.getGroupMemberSearchInput().sendKeys("auto");
-			ap.getGroupMemberSearchButton().click();
-
-			Thread.sleep(2000);
-
-			int memberCount = ap.getGroupPopupAddButtons().size();
-			for (int i = 0; i < memberCount; i++)
-
-			{
-				String text = ap.getGroupPopupMembers().get(i).getText();
-				System.out.println(text);
-				if (ap.getGroupPopupMembers().get(i).getText().contains("Daisy")) {
-					wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-					ap.getGroupPopupAddButtons().get(i).click();
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			Select s2 = new Select(rt);
-			Thread.sleep(2000);
-			List<WebElement> Resources = s2.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName)) {
-					s2.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
 			rm.calendarTomorrowClick();
 
 			WebElement st1 = ap.getSelectTimeMorningButton();
@@ -187,7 +92,7 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 			startTime = st2.getText();
 			System.out.println(startTime);
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
@@ -334,25 +239,11 @@ public class ClubNotReqPackages_GrpAppt_ResourceNotSelected extends base {
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
 			a.getEditApptCancelButton().click();
-			WebElement wait2 = a.getEditApptProceedButton();
-			while (!wait2.isEnabled())// while button is NOT(!) enabled
-			{
-//			Thread.sleep(200);
-			}
-			a.getEditApptProceedButton().click();
 			Thread.sleep(1000);
-			boolean result1 = rw.popupMessageYesButton();
-			if (result1 == true) {
-//				Thread.sleep(500);	
-			}
 			a.getEditApptCancelYesButton().click();
-//			boolean result2 = rw.popupMessageYesButton();
-//			if (result2 == true)
-//			{
-//				Thread.sleep(500);	
-//			}
-//		a.getEditApptCanceledOKButton().click();
-//		rw.waitForDashboardLoaded();
+			Thread.sleep(2000);
+			rw.waitForAcceptButton();
+			a.getPopup2OKButton().click();
 			Thread.sleep(2000);
 			Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 			rm.memberLogout();
