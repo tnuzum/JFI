@@ -1,8 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -39,6 +36,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 	private static String resourceName2 = "PT Smith, Andrew";
 	private static String resourceName3 = "FitExpert2";
 	private static String clubNameDisplayed = "Club: Studio Jonas";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 
@@ -58,6 +56,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -79,93 +78,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
+			rm.selectProductCategory(productCategory);
 
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(2000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s2 = new Select(ap.getBookableItem());
-			// Thread.sleep(2000);
-
-			while (!ap.getBookableItem().isEnabled()) {
-				System.out.println("Waiting for Product drop down to not be blank");
-			}
-			List<WebElement> Products = s2.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook1)) {
-					s2.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			while (!rt.isEnabled())// while button is NOT(!) enabled
-			{
-				System.out.println("Waiting for Resource drop down to not be blank");
-			}
-			Select s3 = new Select(rt);
-//		Thread.sleep(2000);
-			List<WebElement> Resources = s3.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName1)) {
-					s3.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
+			rm.makeNewAppointmentSelections(appointmentToBook1, resourceName1);
 
 			rm.calendarTomorrowClick();
 
@@ -189,7 +106,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
@@ -290,94 +207,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
+			rm.selectProductCategory(productCategory);
 
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(2000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s2 = new Select(ap.getBookableItem());
-			// Thread.sleep(2000);
-
-			while (!ap.getBookableItem().isEnabled()) {
-				System.out.println("Waiting for Product drop down to not be blank");
-			}
-			List<WebElement> Products = s2.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook2)) {
-					s2.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			while (!rt.isEnabled())// while button is NOT(!) enabled
-			{
-				System.out.println("Waiting for Resource drop down to not be blank");
-			}
-			Select s3 = new Select(rt);
-//		Thread.sleep(2000);
-			List<WebElement> Resources = s3.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName2)) {
-					s3.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
-
+			rm.makeNewAppointmentSelections(appointmentToBook2, resourceName2);
 			rm.calendarTomorrowClick();
 
 			Assert.assertEquals(ap.getBooksNames().getText(), resourceName2);
@@ -400,7 +234,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
 
@@ -501,93 +335,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
+			rm.selectProductCategory(productCategory);
 
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(2000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s2 = new Select(ap.getBookableItem());
-			// Thread.sleep(2000);
-
-			while (!ap.getBookableItem().isEnabled()) {
-				System.out.println("Waiting for Product drop down to not be blank");
-			}
-			List<WebElement> Products = s2.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook5)) {
-					s2.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			while (!rt.isEnabled())// while button is NOT(!) enabled
-			{
-				System.out.println("Waiting for Resource drop down to not be blank");
-			}
-			Select s3 = new Select(rt);
-//		Thread.sleep(2000);
-			List<WebElement> Resources = s3.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName3)) {
-					s3.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
+			rm.makeNewAppointmentSelections(appointmentToBook5, resourceName3);
 
 			rm.calendarTomorrowClick();
 
@@ -611,7 +363,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
@@ -726,95 +478,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
+			rm.selectProductCategory(productCategory);
 
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(2000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s2 = new Select(ap.getBookableItem());
-			// Thread.sleep(2000);
-
-			while (!ap.getBookableItem().isEnabled()) {
-				System.out.println("Waiting for Product drop down to not be blank");
-			}
-			List<WebElement> Products = s2.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook3)) {
-					s2.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			while (!rt.isEnabled())// while button is NOT(!) enabled
-			{
-				System.out.println("Waiting for Resource drop down to not be blank");
-			}
-			Select s3 = new Select(rt);
-//		Thread.sleep(2000);
-			List<WebElement> Resources = s3.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName1)) {
-					s3.selectByVisibleText(resource);
-					break;
-				}
-			}
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
-
+			rm.makeNewAppointmentSelections(appointmentToBook3, resourceName1);
 			rm.calendarTomorrowClick();
 
 			Assert.assertEquals(ap.getBooksNames().getText(), resourceName1);
@@ -837,7 +505,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
 
@@ -886,94 +554,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
+			rm.selectProductCategory(productCategory);
 
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(3000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s2 = new Select(ap.getBookableItem());
-			// Thread.sleep(2000);
-
-			while (!ap.getBookableItem().isEnabled()) {
-				System.out.println("Waiting for Product drop down to not be blank");
-			}
-			List<WebElement> Products = s2.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook4)) {
-					s2.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			while (!rt.isEnabled())// while button is NOT(!) enabled
-			{
-				System.out.println("Waiting for Resource drop down to not be blank");
-			}
-			Select s3 = new Select(rt);
-//		Thread.sleep(2000);
-			List<WebElement> Resources = s3.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName2)) {
-					s3.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
-
+			rm.makeNewAppointmentSelections(appointmentToBook4, resourceName2);
 			rm.calendarTomorrowClick();
 
 			Assert.assertEquals(ap.getBooksNames().getText(), resourceName2);
@@ -996,7 +581,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
 
@@ -1046,94 +631,11 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
+			rm.selectProductCategory(productCategory);
 
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(2000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s2 = new Select(ap.getBookableItem());
-			// Thread.sleep(2000);
-
-			while (!ap.getBookableItem().isEnabled()) {
-				System.out.println("Waiting for Product drop down to not be blank");
-			}
-			List<WebElement> Products = s2.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook6)) {
-					s2.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			while (!rt.isEnabled())// while button is NOT(!) enabled
-			{
-				System.out.println("Waiting for Resource drop down to not be blank");
-			}
-			Select s3 = new Select(rt);
-//		Thread.sleep(2000);
-			List<WebElement> Resources = s3.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName3)) {
-					s3.selectByVisibleText(resource);
-					break;
-				}
-			}
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
+			rm.makeNewAppointmentSelections(appointmentToBook6, resourceName3);
 
 			rm.calendarTomorrowClick();
 
@@ -1157,7 +659,7 @@ public class ClubReqPackages_BookAppt_FreeAppointment extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
 
