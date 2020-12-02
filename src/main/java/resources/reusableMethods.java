@@ -1207,7 +1207,7 @@ public class reusableMethods extends base {
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 				By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
 		int appointmentsCount = d.getMyAppts().size();
@@ -1242,19 +1242,11 @@ public class reusableMethods extends base {
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
 		a.getEditApptCancelButton().click();
-		WebElement wait2 = a.getEditApptProceedButton();
-		while (!wait2.isEnabled())// while button is NOT(!) enabled
-		{
-//			Thread.sleep(200);
-		}
-		jse.executeScript("arguments[0].click();", a.getEditApptProceedButton());
 		Thread.sleep(1000);
-		boolean result1 = rw.popupMessageYesButton();
-		if (result1 == true) {
-//				Thread.sleep(500);	
-		}
 		a.getEditApptCancelYesButton().click();
-//		
+		Thread.sleep(2000);
+		rw.waitForAcceptButton();
+		a.getPopup2OKButton().click();
 		Thread.sleep(2000);
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 
@@ -1313,6 +1305,7 @@ public class reusableMethods extends base {
 
 	public String BookApptWith2Resources(String clubName, String productCategory, String appointmentToBook,
 			String resourceName1, String resourceName2) throws IOException, InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
@@ -1404,13 +1397,14 @@ public class reusableMethods extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
+		this.calendarTomorrowClick();
+
 		List<WebElement> TimeSlots;
 		WebElement MorningSlot;
 		WebElement MorningAvailableTimeContainer;
 		List<WebElement> MorningAvailableTimes;
 		WebElement firstAvailableTimeMorning;
 
-		this.calendarTomorrowClick();
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
 			if (bookName.contains(resourceName2)) {
@@ -1423,7 +1417,7 @@ public class reusableMethods extends base {
 				}
 
 				// MorningSlot.click();
-				JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 				jse.executeScript("arguments[0].click();", MorningSlot);
 
 				MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
@@ -1470,7 +1464,7 @@ public class reusableMethods extends base {
 					}
 
 					// MorningSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", MorningSlot);
 
 					MorningAvailableTimeContainer = ap.getTimeSlotContainers().get(i).findElement(By.id("tab-1-0"));
@@ -1515,7 +1509,7 @@ public class reusableMethods extends base {
 			}
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 		} else {
 			ap.getPopup1BookButton().click();
 		}
@@ -1615,7 +1609,15 @@ public class reusableMethods extends base {
 			}
 		}
 
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
+
 		Thread.sleep(1000);
+
 		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
@@ -1636,6 +1638,13 @@ public class reusableMethods extends base {
 				break;
 			}
 		}
+
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
 
 		WebElement rt = ap.getResourceType();
 
@@ -1662,13 +1671,13 @@ public class reusableMethods extends base {
 		System.out.println("came out of the loop");
 		Thread.sleep(2000);
 
+		this.calendarTomorrowClick();
+
 		List<WebElement> TimeSlots;
 		WebElement MorningSlot;
 		WebElement MorningAvailableTimeContainer;
 		List<WebElement> MorningAvailableTimes;
 		WebElement firstAvailableTimeMorning;
-
-		this.calendarTomorrowClick();
 
 		for (int i = 0; i < ap.getApptBox().size(); i++) {
 			String bookName = ap.getApptBox().get(i).getText();
@@ -1833,6 +1842,7 @@ public class reusableMethods extends base {
 		while (selectATimeOpen.equals("false") && i < 20) {
 
 			Element.findElement(By.tagName("span")).click();
+			;
 			log.info("calendar date was clicked again");
 			System.out.println("calendar date was clicked again");
 			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
@@ -1840,8 +1850,6 @@ public class reusableMethods extends base {
 			System.out.println(i);
 			log.info(i);
 		}
-
-		System.out.println(i);
 
 		return null;
 
@@ -1923,13 +1931,14 @@ public class reusableMethods extends base {
 	}
 
 	public Object calendarTomorrowClick() throws InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		String classtext = ap.getCalendarTomorrow().getAttribute("class");
 
 		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -1939,13 +1948,13 @@ public class reusableMethods extends base {
 			System.out.println("came out of the loop");
 		}
 
-		// Actions a = new Actions(driver);
-		// a.click(ap.getCalendarTomorrow()).build().perform();
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);",
 				ap.getCalendarTomorrow().findElement(By.tagName("span")));
-		jse.executeScript("arguments[0].click();", ap.getCalendarTomorrow().findElement(By.tagName("span")));
-		// ap.getCalendarTomorrow().findElement(By.tagName("span")).click();
+
+		Thread.sleep(1000);
+
+		Actions a = new Actions(driver);
+		a.click(ap.getCalendarTomorrow().findElement(By.tagName("span"))).build().perform();
 
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
@@ -1980,12 +1989,7 @@ public class reusableMethods extends base {
 		jse.executeScript("arguments[0].scrollIntoView(true);",
 				cp.getCalendarTomorrow().findElement(By.tagName("span")));
 
-		Thread.sleep(3000);
-
-		/*
-		 * jse.executeScript("arguments[0].click();",
-		 * cp.getCalendarTomorrow().findElement(By.tagName("span")));
-		 */
+		Thread.sleep(2000);
 
 		Actions a = new Actions(driver);
 		a.moveToElement(cp.getCalendarTomorrow().findElement(By.tagName("span"))).click().build().perform();
@@ -1997,13 +2001,14 @@ public class reusableMethods extends base {
 	}
 
 	public Object calendarDayAfterTomorrowClick() throws InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
 
 		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -2015,9 +2020,14 @@ public class reusableMethods extends base {
 
 		// Actions a = new Actions(driver);
 		// a.click(ap.getCalendarTomorrow()).build().perform();
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		jse.executeScript("arguments[0].scrollIntoView(true);", ap.getCalendarDayAfterTomorrow());
-		jse.executeScript("arguments[0].click();", ap.getCalendarDayAfterTomorrow());
+
+		Thread.sleep(1000);
+
+		Actions a = new Actions(driver);
+		a.click(ap.getCalendarDayAfterTomorrow().findElement(By.tagName("span"))).build().perform();
+
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 
@@ -2033,12 +2043,14 @@ public class reusableMethods extends base {
 
 	public Object calendarTwoDaysDayAfterClick() throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
 		String classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
 
 		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -2048,9 +2060,13 @@ public class reusableMethods extends base {
 			System.out.println("came out of the loop");
 		}
 
-		// Actions a = new Actions(driver);
-		// a.click(ap.getCalendarTomorrow()).build().perform();
-		ap.getCalendarTwodaysAfter().click();
+		jse.executeScript("arguments[0].scrollIntoView(true);", ap.getCalendarTwodaysAfter());
+
+		Thread.sleep(1000);
+
+		Actions a = new Actions(driver);
+		a.click(ap.getCalendarTwodaysAfter().findElement(By.tagName("span"))).build().perform();
+
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 
@@ -2891,6 +2907,249 @@ public class reusableMethods extends base {
 		Thread.sleep(1000);
 		jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 		Thread.sleep(1000);
+		return null;
+	}
+
+	public Object ValidatechangeAppointmentScreen(String startTime1, String appointmentToBook1)
+			throws InterruptedException {
+		DashboardPO d = new DashboardPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		int appointmentsCount = d.getMyAppts().size();
+
+		for (int i = 0; i < appointmentsCount; i++) {
+			if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
+
+			{
+
+				if (d.getMyAppts().get(i).getText().contains(startTime1)) {
+
+					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook1.toUpperCase()));
+					wait.until(ExpectedConditions
+							.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
+					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+
+					WebElement EditButton = d.getEditButton().get(i);
+
+					wait.until(ExpectedConditions.visibilityOf(EditButton));
+					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
+
+					EditButton.click();
+					break;
+				}
+			}
+		}
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+		ap.getEditApptChangeButton().click();
+		Thread.sleep(1000);
+		Assert.assertTrue(
+				ap.getChangeFeeSection().getText().contains("If you proceed, you will be charged a Change Fee of"));
+
+		Assert.assertTrue(ap.getChangeFeeSection().getText().contains(
+				" This will remove other participants from your appointment. You will need to add them again when you select your new appointment."));
+
+		ap.getEditApptProceedButton1().click();
+
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
+		return null;
+	}
+
+	public Object makeNewGrpAppointmentSelections(String participant, String appointmentToBook2, String resourceName3)
+			throws InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		Select s1 = new Select(ap.getBookableItem());
+		Thread.sleep(2000);
+		List<WebElement> Products = s1.getOptions();
+
+		int count1 = Products.size();
+		System.out.println(count1);
+
+		for (int j = 0; j < count1; j++) {
+			String product = Products.get(j).getText();
+
+			if (product.equals(appointmentToBook2)) {
+				s1.selectByVisibleText(product);
+				break;
+			}
+		}
+
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
+
+		Thread.sleep(1000);
+		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
+		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
+		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
+		ap.getGroupMemberSearchInput().sendKeys("auto");
+		jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
+
+		Thread.sleep(2000);
+
+		int memberCount = ap.getGroupPopupAddButtons().size();
+		for (int i = 0; i < memberCount; i++)
+
+		{
+			String text = ap.getGroupPopupMembers().get(i).getText();
+			System.out.println(text);
+			if (ap.getGroupPopupMembers().get(i).getText().contains(participant)) {
+				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+				ap.getGroupPopupAddButtons().get(i).click();
+				break;
+			}
+		}
+
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
+
+		WebElement rt = ap.getResourceType();
+
+		Select s2 = new Select(rt);
+		Thread.sleep(2000);
+		List<WebElement> Resources = s2.getOptions();
+
+		int count2 = Resources.size();
+		System.out.println(count2);
+
+		for (int k = 0; k < count2; k++) {
+			String resource = Resources.get(k).getText();
+
+			if (resource.equals(resourceName3)) {
+				s2.selectByVisibleText(resource);
+				break;
+			}
+		}
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
+
+		return null;
+	}
+
+	public Object makeNewAppointmentSelections(String appointmentToBook2, String resourceName3)
+			throws InterruptedException {
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		Select s1 = new Select(ap.getBookableItem());
+		Thread.sleep(2000);
+		List<WebElement> Products = s1.getOptions();
+
+		int count1 = Products.size();
+		System.out.println(count1);
+
+		for (int j = 0; j < count1; j++) {
+			String product = Products.get(j).getText();
+
+			if (product.equals(appointmentToBook2)) {
+				s1.selectByVisibleText(product);
+				break;
+			}
+		}
+
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
+
+		WebElement rt = ap.getResourceType();
+
+		Select s2 = new Select(rt);
+		Thread.sleep(2000);
+		List<WebElement> Resources = s2.getOptions();
+
+		int count2 = Resources.size();
+		System.out.println(count2);
+
+		for (int k = 0; k < count2; k++) {
+			String resource = Resources.get(k).getText();
+
+			if (resource.equals(resourceName3)) {
+				s2.selectByVisibleText(resource);
+				break;
+			}
+		}
+		while (ap.getloadingAvailabilityMessage().size() != 0) {
+			System.out.println("waiting1");
+			Thread.sleep(1000);
+		}
+
+		System.out.println("came out of the loop");
+
+		return null;
+	}
+
+	public Object selectClub(String clubName) throws InterruptedException {
+		AppointmentsPO ap = new AppointmentsPO(driver);
+		Select se = new Select(ap.getclubs());
+		List<WebElement> Clubs = se.getOptions();
+		int x = 0;
+		while (!ap.getclubs().isEnabled() && x < 100) {
+			System.out.println("Waiting for Clubs drop down to not be blank");
+			x++;
+		}
+
+		int count0 = Clubs.size();
+		System.out.println("1 " + count0);
+
+		for (int i = 0; i < count0; i++) {
+			String club = Clubs.get(i).getText();
+
+			if (club.equals(clubName)) {
+				se.selectByVisibleText(club);
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		return null;
+	}
+
+	public Object selectProductCategory(String productCategory) {
+		AppointmentsPO ap = new AppointmentsPO(driver);
+		WebElement bic = ap.getBookableItemCategory();
+
+		Select s = new Select(bic);
+		List<WebElement> ProductCategories = s.getOptions();
+
+		int count = ProductCategories.size();
+		System.out.println(count);
+
+		for (int i = 0; i < count; i++) {
+			String category = ProductCategories.get(i).getText();
+
+			if (category.equals(productCategory)) {
+				s.selectByVisibleText(category);
+				break;
+			}
+		}
 		return null;
 	}
 
