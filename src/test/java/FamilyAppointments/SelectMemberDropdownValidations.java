@@ -1,7 +1,6 @@
 package FamilyAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -207,7 +206,15 @@ public class SelectMemberDropdownValidations extends base {
 					break;
 				}
 			}
+
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
 			Thread.sleep(2000);
+
 			WebElement rt = ap.getResourceType();
 
 			Select s4 = new Select(rt);

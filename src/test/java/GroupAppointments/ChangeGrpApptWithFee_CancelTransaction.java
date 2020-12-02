@@ -1,7 +1,6 @@
 package GroupAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -38,6 +37,7 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 	private static String participant2 = "Auto, Robert";
 	private static String startTime1;
 	private static String startTime2;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -66,6 +66,7 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 		}
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -118,10 +119,13 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 			AppointmentsPO ap = new AppointmentsPO(driver);
 			ap.getEditApptChangeButton().click();
 			Thread.sleep(1000);
+
 			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("There is a fee for changing this appointment."));
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
+					ap.getChangeFeeSection().getText().contains("If you proceed, you will be charged a Change Fee of"));
+
+			Assert.assertTrue(ap.getChangeFeeSection().getText().contains(
+					" This will remove other participants from your appointment. You will need to add them again when you select your new appointment."));
+
 			ap.getEditApptProceedButton1().click();
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
@@ -174,13 +178,19 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 					break;
 				}
 			}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
 
 			Thread.sleep(1000);
 			Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
 			ap.getGroupMemberSearchInput().sendKeys("auto");
-			ap.getGroupMemberSearchButton().click();
+			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(2000);
 
@@ -197,6 +207,12 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 				}
 			}
 
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
+
+			System.out.println("came out of the loop");
 			WebElement rt = ap.getResourceType();
 
 			Select s2 = new Select(rt);
@@ -235,7 +251,7 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 					}
 
 					// AftrnunSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
@@ -310,13 +326,14 @@ public class ChangeGrpApptWithFee_CancelTransaction extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
 			// Click the Cancel button
-			ap.getCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getCancelButton());
 			Thread.sleep(2000);
 
 			Boolean ApptCheckout = rm.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));

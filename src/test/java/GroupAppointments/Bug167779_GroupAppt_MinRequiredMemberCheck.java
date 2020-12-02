@@ -30,6 +30,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String resourceName = "PT.Smith, Andrew-Grp";
 	private static String appointmentToBook = "PT Group-ReqMinMbr>1";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -46,6 +47,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -124,7 +126,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "3");
 			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "5");
 			ap.getGroupMemberSearchInput().sendKeys("auto");
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(2000);
@@ -165,7 +167,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			Assert.assertFalse(ap.getCalendarToday().getAttribute("class").contains("appointmentAvailable-cell"));
 
 			ap.getGroupMemberSearchInput().sendKeys("Adam Auto");
-			ap.getGroupMemberSearchButton().click();
+			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 			Thread.sleep(2000);
 			ap.getGroupPopupAddButtons().get(0).click();
 
@@ -185,7 +187,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			ap.getCloseButton().click();
 			// delete a group member after the calendar loads
 
-			ap.getDeleteMember().get(0).click();
+			jse.executeScript("arguments[0].click();", ap.getDeleteMember().get(0));
 
 			rm.calendarTomorrowClick();
 
@@ -229,7 +231,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 
 			// Add another member again to meet the minimum number of members required
 			ap.getGroupMemberSearchInput().sendKeys("Susan Auto");
-			ap.getGroupMemberSearchButton().click();
+			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 			Thread.sleep(2000);
 
 			ap.getGroupPopupAddButtons().get(0).click();
@@ -374,27 +376,10 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
 			a.getEditApptCancelButton().click();
-			WebElement wait2 = a.getEditApptProceedButton();
-			while (!wait2.isEnabled())// while button is NOT(!) enabled
-			{
-//			Thread.sleep(200);
-			}
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", a.getEditApptProceedButton());
 
-			Thread.sleep(1000);
-			boolean result1 = rw.popupMessageYesButton();
-			if (result1 == true) {
-//				Thread.sleep(500);	
-			}
 			a.getEditApptCancelYesButton().click();
-//			boolean result2 = rw.popupMessageYesButton();
-//			if (result2 == true)
-//			{
-//				Thread.sleep(500);	
-//			}
-//		a.getEditApptCanceledOKButton().click();
-//		rw.waitForDashboardLoaded();
+			rw.waitForAcceptButton();
+			a.getPopup2OKButton().click();
 			Thread.sleep(2000);
 			Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 			rm.memberLogout();

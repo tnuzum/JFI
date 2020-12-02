@@ -90,18 +90,20 @@ public class AppointmentsPO {
 	By forMember = By.xpath("//div[@class = 'text-right ']/span[2]");
 
 	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
-	By editApptChangeButton = By.xpath("//button[contains(text(), 'change')]");
-	By editApptCancelButton = By.xpath("//*[text()='cancel']"); // By.cssSelector("#button-cancel"); stopped working in
-																// 7.28
+	By editApptChangeButton = By.xpath("//button[contains(text(),'change appointment')]");
+	By editApptCancelButton = By.xpath("//button[contains(text(),'cancel appointment')]"); // By.cssSelector("#button-cancel");
+																							// stopped working in
+	// 7.28
 	By editApptProceedButton = By.xpath("//*[text()='proceed with cancel']"); // By.xpath("//div[@id='show-hide-cancel']/div/div/a");
 																				// stopped working in 7.28
-	By editApptProceedButton1 = By.xpath("//*[text()='proceed with change']");
+	By editApptProceedButton1 = By.xpath("//a[contains(text(),'proceed with change')]");
 	By editApptCancelYesButton = By.cssSelector("button[class*='confirm']");
 	By editApptCancelNoButton = By.cssSelector("button[class*='cancel']");
 	By editApptCanceledMessage = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[1]/h2[1]");
 	By editApptCanceledOKButton = By.cssSelector("button[class*='confirm']");
-	By cancelFeeSection = By.xpath("//div[contains(@class,'alert-danger')]");
-	By noFeeSection = By.xpath("//div[contains(@class,'alert-success')]");
+	By cancelFeeSection = By.xpath("//div[contains(@class,'unenroll-cancel-fees-fee')]");
+	By changeFeeSection = By.xpath("//div[contains(@class,'unenroll-change-fees-fee')]");
+	By noFeeSection = By.xpath("//div[contains(@class,'at-edit-appointment-change-no-restrictions-no-fees')]");
 	By deleteMember = By.xpath("//button[contains(@class, 'delete-user')]");
 
 	// CONSTRUCTOR
@@ -369,6 +371,10 @@ public class AppointmentsPO {
 
 	public WebElement getCancelFeeSection() {
 		return driver.findElement(cancelFeeSection);
+	}
+
+	public WebElement getChangeFeeSection() {
+		return driver.findElement(changeFeeSection);
 	}
 
 	public WebElement getNoFeeSection() {
