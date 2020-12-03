@@ -1,4 +1,4 @@
-package ManagePaymentMethods_TerminateStatus;
+package ManagePaymentMethods_TerminateStatus1;
 
 import java.io.IOException;
 
@@ -15,14 +15,14 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class EditCCandACH_forTerminatedMembers extends base {
+public class EditCCandACH_forTerminatedMembers1 extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
 	public static DashboardPO d;
 	public static ManagePayMethodsPO mp;
 
-	public EditCCandACH_forTerminatedMembers() {
+	public EditCCandACH_forTerminatedMembers1() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
