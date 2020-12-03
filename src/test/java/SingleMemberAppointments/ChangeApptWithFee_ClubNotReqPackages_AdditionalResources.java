@@ -79,9 +79,11 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
+
 			rm.ValidatechangeAppointmentScreen(startTime1, appointmentToBook1);
 
 			rm.makeNewAppointmentSelections(appointmentToBook2, resourceName3);
+
 			rm.calendarDayAfterTomorrowClick();
 
 			for (int m = 0; m < ap.getApptBox().size(); m++) {

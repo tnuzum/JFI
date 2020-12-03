@@ -160,7 +160,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 
 				}
 
-				w.click(); // Click on the specific course
+				jse.executeScript("arguments[0].click();", w); // Click on the specific course
 				break;
 			}
 		}

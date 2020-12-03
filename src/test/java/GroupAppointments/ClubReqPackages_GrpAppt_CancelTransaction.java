@@ -73,45 +73,9 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
-
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(2000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
+			rm.selectProductCategory(productCategory);
 
 			Select s2 = new Select(ap.getBookableItem());
 			// Thread.sleep(2000);
@@ -143,7 +107,7 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
 			ap.getGroupMemberSearchInput().sendKeys("auto");
-			ap.getGroupMemberSearchButton().click();
+			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(3000);
 
@@ -160,22 +124,6 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 				}
 			}
 
-			/*
-			 * WebElement rt = ap.getResourceType();
-			 * 
-			 * while (!rt.isEnabled())// while button is NOT(!) enabled {
-			 * System.out.println("Waiting for Resource drop down to not be blank"); }
-			 * Select s3 = new Select(rt); // Thread.sleep(2000); List<WebElement> Resources
-			 * = s3.getOptions();
-			 * 
-			 * int count2 = Resources.size(); System.out.println(count2);
-			 * 
-			 * for (int k = 0; k < count2; k++) { String resource =
-			 * Resources.get(k).getText();
-			 * 
-			 * if (resource.equals(resourceName)) { s3.selectByVisibleText(resource); break;
-			 * } }
-			 */
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
@@ -308,14 +256,15 @@ public class ClubReqPackages_GrpAppt_CancelTransaction extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
 			// Click the Cancel button
 
-			ap.getCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getCancelButton());
 			Thread.sleep(2000);
 			Boolean ApptCheckout = rm.isElementPresent(By.xpath("//div[@class='row ng-star-inserted']"));
 

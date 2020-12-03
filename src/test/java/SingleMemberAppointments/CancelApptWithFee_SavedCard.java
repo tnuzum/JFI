@@ -248,10 +248,8 @@ public class CancelApptWithFee_SavedCard extends base {
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
 			ap.getEditApptCancelButton().click();
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("There is a fee for cancelling this appointment."));
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
+
+			Assert.assertTrue(ap.getCancelFeeSection().getText().contains("Appointment Cancellation Fee"));
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 
@@ -271,14 +269,15 @@ public class CancelApptWithFee_SavedCard extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
 			// Click the Cancel button
 
-			PM.getCancelButton().click();
+			jse.executeScript("arguments[0].click();", PM.getCancelButton());
 			Thread.sleep(2000);
 			rw.waitForDashboardLoaded();
 
