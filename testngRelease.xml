@@ -11,17 +11,17 @@
 		<!--parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224"/ -->
 
 		<!-- URL for Current/ -->
-		<!--parameter name = "EMELoginPage" value="https://ourclublogin.test-jfisoftware.com:8909/account/login/101"/ -->
+		<parameter name = "EMELoginPage" value="https://ourclublogin.test-jfisoftware.com:8909/account/login/101"/>
 
 		<!-- URL for Cert Future/ -->
-		<parameter name="EMELoginPage"
-			value="https://futurecert.ourclublogin.com/Account/Login/22" />
+		<!--parameter name="EMELoginPage"
+			value="https://futurecert.ourclublogin.com/Account/Login/22" /-->
 
 		<!-- URL for Prod Future/ -->
 		<!--parameter name = "EMELoginPage" value="https://future.ourclublogin.com/Account/Login?ReturnUrl=%2f510306"/ -->
 
 		<!-- URL for Prod Current/ -->
-		<!--parameter name = "EMELoginPage" value="https://www.ourclublogin.com/Account/Login?ReturnUrl=%2f510223"/ -->
+		<!--parameter name = "EMELoginPage" value="https://www.ourclublogin.com/Account/Login?ReturnUrl=%2f510223"/-->
 
 		<classes>
 			<class name="EME_EnvURL.loginPageTest" />

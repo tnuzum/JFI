@@ -84,6 +84,8 @@ public class ManagePayMethodsPO {
 	By editNameOnCard = By.xpath("//input[contains(@class, 'at-managepayments-editcc-input-name')]");
 	By editIAgreeCheckbox = By.xpath("//input[contains(@class, 'at-managepayments-editcc-tandc')]");
 	By saveChangesButtonCC = By.xpath("//button[contains(@class, 'at-managepayments-editcc-button-save')]");
+	By editExpiremonth = By.xpath("//input[contains(@class, 'at-managepayments-editcc-input-expmonth')]");
+	By editExpireyear = By.xpath("//input[contains(@class, 'at-managepayments-editcc-input-expyear')]");
 
 // CONSTRUCTOR
 
@@ -350,5 +352,13 @@ public class ManagePayMethodsPO {
 
 	public WebElement getSaveChangesButtonCC() {
 		return driver.findElement(saveChangesButtonCC);
+	}
+
+	public WebElement geteditExpiremonth() {
+		return driver.findElement(editExpiremonth);
+	}
+
+	public WebElement geteditExpireyear() {
+		return driver.findElement(editExpireyear);
 	}
 }
