@@ -2949,8 +2949,11 @@ public class reusableMethods extends base {
 		Assert.assertTrue(
 				ap.getChangeFeeSection().getText().contains("If you proceed, you will be charged a Change Fee of"));
 
-		Assert.assertTrue(ap.getChangeFeeSection().getText().contains(
-				" This will remove other participants from your appointment. You will need to add them again when you select your new appointment."));
+		if (appointmentToBook1.contains("Grp")) {
+
+			Assert.assertTrue(ap.getChangeFeeSection().getText().contains(
+					" This will remove other participants from your appointment. You will need to add them again when you select your new appointment."));
+		}
 
 		ap.getEditApptProceedButton1().click();
 

@@ -1,7 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -39,6 +38,7 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 	private static String unitsToBeSelected = "1 - $10.00/per";
 	private static String startTime1;
 	private static String startTime2;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -55,6 +55,7 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -120,84 +121,11 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 			System.out.println("came out of the loop");
 			Thread.sleep(2000);
 
-			Select se = new Select(ap.getclubs());
-			List<WebElement> Clubs = se.getOptions();
+			rm.selectClub(clubName2);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
+			rm.selectProductCategory(productCategory);
 
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String category = Clubs.get(i).getText();
-
-				if (category.equals(clubName2)) {
-					se.selectByVisibleText(category);
-					break;
-				}
-			}
-			Thread.sleep(2000);
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Select s = new Select(bic);
-			List<WebElement> ProductCategories = s.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println(count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s1 = new Select(ap.getBookableItem());
-			Thread.sleep(2000);
-			List<WebElement> Products = s1.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook2)) {
-					s1.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			Select s2 = new Select(rt);
-			Thread.sleep(2000);
-			List<WebElement> Resources = s2.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName3)) {
-					s2.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
+			rm.makeNewAppointmentSelections(appointmentToBook2, resourceName3);
 
 			rm.calendarDayAfterTomorrowClick();
 
@@ -213,7 +141,7 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 					}
 
 					// AftrnunSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
@@ -327,7 +255,7 @@ public class ChangeApptWithOutFee_ClubReqPackages extends base {
 			while (!ap.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 
 			rw.waitForAcceptButton();
 
