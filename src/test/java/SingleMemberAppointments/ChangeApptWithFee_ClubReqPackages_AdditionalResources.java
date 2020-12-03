@@ -1,7 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -10,7 +9,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -40,6 +38,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 	private static String unitsToBeSelected = "1 - $5.00/per";
 	private static String startTime1;
 	private static String startTime2;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -56,6 +55,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -78,128 +78,15 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
 					By.xpath("//appointmentswidget//div[@class = 'class-table-container']")));
-			int appointmentsCount = d.getMyAppts().size();
 
-			for (int i = 0; i < appointmentsCount; i++) {
-				if (d.getMyAppts().get(i).getText().contains(tomorrowsDate))
-
-				{
-
-					if (d.getMyAppts().get(i).getText().contains(startTime1)) {
-
-						Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook1.toUpperCase()));
-						wait.until(ExpectedConditions
-								.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-						d.getMyAppts().get(i).findElement(By.tagName("i")).click();
-
-						WebElement EditButton = d.getEditButton().get(i);
-
-						wait.until(ExpectedConditions.visibilityOf(EditButton));
-						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
-
-						EditButton.click();
-						break;
-					}
-				}
-			}
-
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
-			Thread.sleep(2000);
 			AppointmentsPO ap = new AppointmentsPO(driver);
-			ap.getEditApptChangeButton().click();
-			Thread.sleep(1000);
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("There is a fee for changing this appointment."));
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
-			ap.getEditApptProceedButton1().click();
+			rm.ValidatechangeAppointmentScreen(startTime1, appointmentToBook1);
 
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
+			rm.selectClub(clubName2);
 
-			System.out.println("came out of the loop");
-			Thread.sleep(2000);
+			rm.selectProductCategory(productCategory);
 
-			Select se = new Select(ap.getclubs());
-			List<WebElement> Clubs = se.getOptions();
-
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
-
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName2)) {
-					se.selectByVisibleText(club);
-					break;
-				}
-			}
-			Thread.sleep(2000);
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Select s = new Select(bic);
-			List<WebElement> ProductCategories = s.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println(count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s1 = new Select(ap.getBookableItem());
-			Thread.sleep(2000);
-			List<WebElement> Products = s1.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook2)) {
-					s1.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			Select s2 = new Select(rt);
-			Thread.sleep(2000);
-			List<WebElement> Resources = s2.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName3)) {
-					s2.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
+			rm.makeNewAppointmentSelections(appointmentToBook2, resourceName3);
 
 			rm.calendarDayAfterTomorrowClick();
 
@@ -215,7 +102,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 					}
 
 					// AftrnunSlot.click();
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
@@ -325,7 +212,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 			while (!ap.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 
 			rw.waitForAcceptButton();
 
