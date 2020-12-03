@@ -90,7 +90,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 
 			rm.selectProductCategory(productCategory);
 
-			rm.makeNewGrpAppointmentSelections("Robert", appointmentToBook2, resourceName3);
+			rm.makeNewGrpAppointmentSelections("Adam", appointmentToBook2, resourceName3);
 
 			rm.calendarDayAfterTomorrowClick();
 

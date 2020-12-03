@@ -1831,7 +1831,7 @@ public class reusableMethods extends base {
 
 	}
 
-	public String OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(WebElement Element) {
+	public String OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(WebElement Element) throws InterruptedException {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -1842,7 +1842,7 @@ public class reusableMethods extends base {
 		while (selectATimeOpen.equals("false") && i < 20) {
 
 			Element.findElement(By.tagName("span")).click();
-			;
+			Thread.sleep(2000);
 			log.info("calendar date was clicked again");
 			System.out.println("calendar date was clicked again");
 			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
@@ -2017,7 +2017,7 @@ public class reusableMethods extends base {
 
 			System.out.println("came out of the loop");
 		}
-
+		Thread.sleep(2000);
 		// Actions a = new Actions(driver);
 		// a.click(ap.getCalendarTomorrow()).build().perform();
 
@@ -2031,7 +2031,7 @@ public class reusableMethods extends base {
 		System.out.println("Calendar date clicked for " + this.getClass().getSimpleName());
 		log.info("Calendar Date Clicked for " + this.getClass().getSimpleName());
 
-		Thread.sleep(1000);
+		Thread.sleep(3000);
 
 		rw.waitForSelectATimeToOpen();
 
@@ -3105,6 +3105,7 @@ public class reusableMethods extends base {
 		}
 
 		System.out.println("came out of the loop");
+		Thread.sleep(1000);
 
 		return null;
 	}
