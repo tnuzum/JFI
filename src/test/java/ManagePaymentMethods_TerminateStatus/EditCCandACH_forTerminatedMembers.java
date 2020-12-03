@@ -50,10 +50,10 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		mp.getEditNameOnCard().sendKeys("Seem");
 		Thread.sleep(2000);
 		mp.geteditExpiremonth().clear();
-		mp.geteditExpiremonth().sendKeys("11");
+		mp.geteditExpiremonth().sendKeys("10");
 		Thread.sleep(2000);
 		mp.geteditExpireyear().clear();
-		mp.geteditExpireyear().sendKeys("27");
+		mp.geteditExpireyear().sendKeys("25");
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -68,9 +68,10 @@ public class EditCCandACH_forTerminatedMembers extends base {
 
 		rw.waitForAcceptButton();
 		System.out.println(mp.getPopupConfirmation1().getText());
-		// Assert.assertEquals("CARD ADDED", mp.getPopupConfirmation1().getText());
+		Assert.assertEquals("CARD UPDATED", mp.getPopupConfirmation1().getText());
 
 		mp.getPopupConfirmationButton().click();
+		Thread.sleep(2000);
 
 	}
 
@@ -84,7 +85,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		mp.getEditAccountHolder().clear();
 		mp.getEditAccountHolder().sendKeys("Seema1");
 		mp.getEditUSRoutingNumber().clear();
-		mp.getEditUSRoutingNumber().sendKeys("322271627");
+		mp.getEditUSRoutingNumber().sendKeys(prop.getProperty("USBankRoutingNumber"));
 
 		jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
 		Thread.sleep(2000);
@@ -95,10 +96,18 @@ public class EditCCandACH_forTerminatedMembers extends base {
 
 		mp.getIAgreeCheckboxEditACH().click();
 		mp.getSaveChangeButton().click();
-		// Assert.assertEquals("BANK ACCOUNT ADDED",
-		// mp.getPopupConfirmation1().getText());
+		rw.waitForAcceptButton();
+		Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
 		System.out.println(mp.getPopupConfirmation1().getText());
 		mp.getPopupConfirmationButton().click();
+
+	}
+
+	@Test(priority = 3, description = "Deleting CC and ACH for terminated members")
+	public void DeleteFOPsFromCOG() throws IOException, InterruptedException {
+
+		rm.deleteFOPInCOG("1147810", "Jonas Health and Wellness", "1111", "No", "");
+		rm.deleteFOPInCOG("1147810", "Jonas Health and Wellness", "3210", "No", "");
 
 	}
 

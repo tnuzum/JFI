@@ -55,8 +55,8 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 		// mp.getBankAccountLink().click();
 		mp.getAccountHolder().sendKeys("Seema");
 		// mp.getUSBankRadio().click();
-		mp.getUSRoutingNumber().sendKeys("322271627");
-		mp.getUSAccountNumber().sendKeys("1234567");
+		mp.getUSRoutingNumber().sendKeys(prop.getProperty("USBankRoutingNumber"));
+		mp.getUSAccountNumber().sendKeys(prop.getProperty("USBankAcctNumber"));
 		// mp.getCheckingRadio().click();
 		// mp.getSavingsradio().click();
 
@@ -67,9 +67,11 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 				.build().perform();
 		mp.getIAgreeCheckboxACH().click();
 		mp.getAddBankAcctButton().click();
-		// Assert.assertEquals("BANK ACCOUNT ADDED",
-		// mp.getPopupConfirmation1().getText());
-		System.out.println(mp.getPopupConfirmation1().getText());
+		// System.out.println(mp.getPopupConfirmation1().getText());
+		Thread.sleep(2000);
+		Assert.assertEquals("BANK ACCOUNT ADDED", mp.getPopupConfirmation1().getText());
+		// System.out.println(mp.getPopupConfirmation1().getText());
+
 		mp.getPopupConfirmationButton().click();
 
 	}
@@ -82,7 +84,7 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 		d.getMenuMyAccount().click();
 		d.getMenuManagePmntMethods().click();
 		mp.getNameOnCard().sendKeys("Seema");
-		mp.getCardNumber().sendKeys("5454545454545454");
+		mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
 		Thread.sleep(2000);
 		mp.getExpireMonth().sendKeys("12");
 		Thread.sleep(2000);
@@ -101,9 +103,11 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 
 		rw.waitForAcceptButton();
 		System.out.println(mp.getPopupConfirmation1().getText());
+
 		Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
 
 		mp.getPopupConfirmationButton().click();
+		Thread.sleep(2000);
 
 	}
 
