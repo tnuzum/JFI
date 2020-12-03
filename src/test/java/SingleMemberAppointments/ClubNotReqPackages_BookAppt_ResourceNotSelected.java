@@ -1,8 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -27,7 +24,10 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String startTime;
 	private static int appointmentsCount;
+	private static String productCategory = "Personal Training";
+	private static String resourceName = "PT.Smith, Andrew";
 	private static String appointmentToBook = "PT 60 Mins";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -57,6 +57,7 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -70,62 +71,10 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 			p.getMyApptsScheduleButton().click();
 			Thread.sleep(2000);
 			AppointmentsPO ap = new AppointmentsPO(driver);
-			WebElement bic = ap.getBookableItemCategory();
 
-			Select s = new Select(bic);
-			List<WebElement> ProductCategories = s.getOptions();
+			rm.selectProductCategory(productCategory);
 
-			int count = ProductCategories.size();
-			System.out.println(count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals("Personal Training")) {
-					s.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s1 = new Select(ap.getBookableItem());
-			Thread.sleep(2000);
-			List<WebElement> Products = s1.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook)) {
-					s1.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			Select s2 = new Select(rt);
-			Thread.sleep(2000);
-			List<WebElement> Resources = s2.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals("PT.Smith, Andrew")) {
-					s2.selectByVisibleText(resource);
-					break;
-				}
-			}
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
+			rm.makeNewAppointmentSelections(appointmentToBook, resourceName);
 
 			rm.calendarTomorrowClick();
 
@@ -147,7 +96,7 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 			startTime = st2.getText();
 			System.out.println(startTime);
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
 
@@ -293,25 +242,11 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
 			a.getEditApptCancelButton().click();
-			WebElement wait2 = a.getEditApptProceedButton();
-			while (!wait2.isEnabled())// while button is NOT(!) enabled
-			{
-//			Thread.sleep(200);
-			}
-			a.getEditApptProceedButton().click();
 			Thread.sleep(1000);
-			boolean result1 = rw.popupMessageYesButton();
-			if (result1 == true) {
-//				Thread.sleep(500);	
-			}
 			a.getEditApptCancelYesButton().click();
-//			boolean result2 = rw.popupMessageYesButton();
-//			if (result2 == true)
-//			{
-//				Thread.sleep(500);	
-//			}
-//		a.getEditApptCanceledOKButton().click();
-//		rw.waitForDashboardLoaded();
+			Thread.sleep(2000);
+			rw.waitForAcceptButton();
+			a.getPopup2OKButton().click();
 			Thread.sleep(2000);
 			Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 			rm.memberLogout();

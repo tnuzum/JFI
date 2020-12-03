@@ -1,7 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -36,6 +35,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 	private static String startTime;
 	private static int appointmentsCount;
 	private static String unitsToBeSelected = "1 - $5.00/per";
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -52,6 +52,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -73,45 +74,9 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
-
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(2000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
+			rm.selectProductCategory(productCategory);
 
 			Select s2 = new Select(ap.getBookableItem());
 			// Thread.sleep(2000);
@@ -161,7 +126,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(2000);
 
@@ -258,7 +223,7 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 			while (!ap.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			ap.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", ap.getPaymentButton());
 
 			rw.waitForAcceptButton();
 
@@ -405,25 +370,11 @@ public class ClubReqPackages_BookAppt_SingleResource_Selected extends base {
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
 			a.getEditApptCancelButton().click();
-			WebElement wait2 = a.getEditApptProceedButton();
-			while (!wait2.isEnabled())// while button is NOT(!) enabled
-			{
-//			Thread.sleep(200);
-			}
-			a.getEditApptProceedButton().click();
 			Thread.sleep(1000);
-			boolean result1 = rw.popupMessageYesButton();
-			if (result1 == true) {
-//				Thread.sleep(500);	
-			}
 			a.getEditApptCancelYesButton().click();
-//			boolean result2 = rw.popupMessageYesButton();
-//			if (result2 == true)
-//			{
-//				Thread.sleep(500);	
-//			}
-//		a.getEditApptCanceledOKButton().click();
-//		rw.waitForDashboardLoaded();
+			Thread.sleep(2000);
+			rw.waitForAcceptButton();
+			a.getPopup2OKButton().click();
 			Thread.sleep(2000);
 			Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
 			rm.memberLogout();

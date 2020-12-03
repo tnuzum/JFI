@@ -86,7 +86,6 @@ public class ManagePayMethodsPO {
 	By saveChangesButtonCC = By.xpath("//button[contains(@class, 'at-managepayments-editcc-button-save')]");
 	By editExpiremonth = By.xpath("//input[contains(@class, 'at-managepayments-editcc-input-expmonth')]");
 	By editExpireyear = By.xpath("//input[contains(@class, 'at-managepayments-editcc-input-expyear')]");
-	// By CCAdded = By.xpath("//button[contains(text(),'OK')]");
 
 // CONSTRUCTOR
 
@@ -362,5 +361,4 @@ public class ManagePayMethodsPO {
 	public WebElement geteditExpireyear() {
 		return driver.findElement(editExpireyear);
 	}
-
 }

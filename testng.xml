@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="EME - E2E Testing" parallel="tests" thread-count="11"
+<suite name="EME - E2E Testing" parallel="tests" thread-count="12"
 	preserve-order="true" verbose="3">
 	<listeners>
 		<listener class-name="EME.listeners" />
@@ -22,6 +22,14 @@
 			<class
 				name="PaymentMethods.EnrollClassAndCourse_AdditionalQuestionsTest" />
 			<class name="PaymentMethods.Appointments_AdditionalQuestions" />
+			<class name="PaymentMethods.Appointments_SaveCardQuestNotPresentForMember"/>
+			<class name="PaymentMethods.EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember"/>
+			<class name="PaymentMethods.EnrollClassAndCourse_SaveCardQuestNotPresentForMember"/>
+			<class name="PaymentMethods.PayBalance_SaveCardQuestNotPresentForFreezeMember"/>
+			<class name="PaymentMethods.PayBalance_SaveCardQuestNotPresentForMember"/>
+			<class name="PaymentMethods.ShopPackages_SaveCardQuestNotPresentForFreezeMember"/>
+			<class name="PaymentMethods.ShopPackages_SaveCardQuestNotPresentForMember"/>
+			
 
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
@@ -244,7 +252,7 @@
 
 
 		</classes>
-	</test>
+	</test> 
 
 	<test name="Family Classes Courses" parallel="none"
 		preserve-order="true" group-by-instances="true">
@@ -364,7 +372,7 @@
 			<class
 				name="Unenroll.Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow" />
 			<class
-				name="Unenroll.Course_NotPromoteFromStandby_UnenrollFallsOutsideTheWindow" />
+				name="Unenroll.Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow" />
 			<class
 				name="Unenroll.Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow" />
 			<class
@@ -374,6 +382,46 @@
 
 		</classes>
 	</test>
+	
+	<test name="Manage Payment Methods for Freeze status Member"
+		parallel="none" preserve-order="true" group-by-instances="true">
+		<classes>
+
+			
+			<class
+				name="ManagePaymentMethods_FreezeStatus.NoAgreement_AddCanadianBankSavingsAcct_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.ManagepaymntMethods_AdditionalQuestionsTest_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.UnCheckAgrmntWithBadFOP_AddEditCreditCard_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.UnCheckAgrmntWithBadFOP_AddEditCanadianBankSavingsAcct_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.UnCheckAgrmntWithBadFOP_AddEditUSBankCheckingAcct_FreezeMbr" />
+			<class name="ManagePaymentMethods_FreezeStatus.MyAgreementsLayout_FreezeMbr" />
+			<class name="ManagePaymentMethods_FreezeStatus.VerifyMessageTest_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct_FreezeMbr" />
+			<class name="ManagePaymentMethods_FreezeStatus.NoAgreement_AddCreditCard_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.CheckNoThanks_AgrmntWithGoodFOP_AddEditUSBankSavingsAcct_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.UnCheckAgrmntWithBadFOP_AddEditCanadianBankCheckingAcct_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.NoAgreement_AddUSBankCheckingAcct_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr" />
+			<class
+				name="ManagePaymentMethods_FreezeStatus.Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr" />
+		</classes>
+	</test>
+	
 	<!-- When adding new test tag, include this test tag name in the POM.xml 
 		to be inclued in test execution through maven/jenkins -->
 </suite>

@@ -1,8 +1,6 @@
 package SingleMemberAppointments;
 
 import java.io.IOException;
-import java.time.Duration;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,7 +8,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -35,6 +32,7 @@ public class CancelApptWithFee_SavedCard extends base {
 	private static String clubSpecifiPrice = "$5.00";
 	private static String startTime;
 	private static int appointmentsCount;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -51,6 +49,7 @@ public class CancelApptWithFee_SavedCard extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -72,94 +71,11 @@ public class CancelApptWithFee_SavedCard extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 
-			Select s = new Select(ap.getclubs());
-			List<WebElement> Clubs = s.getOptions();
+			rm.selectClub(clubName);
 
-			int x = 0;
-			while (!ap.getclubs().isEnabled() && x < 100) {
-				System.out.println("Waiting for Clubs drop down to not be blank");
-				x++;
-			}
+			rm.selectProductCategory(productCategory);
 
-			int count0 = Clubs.size();
-			System.out.println("1 " + count0);
-
-			for (int i = 0; i < count0; i++) {
-				String club = Clubs.get(i).getText();
-
-				if (club.equals(clubName)) {
-					s.selectByVisibleText(club);
-					break;
-				}
-			}
-
-			WebElement bic = ap.getBookableItemCategory();
-
-			Thread.sleep(2000);
-
-			Select s1 = new Select(bic);
-			List<WebElement> ProductCategories = s1.getOptions();
-
-			int count = ProductCategories.size();
-			System.out.println("2 " + count);
-
-			for (int i = 0; i < count; i++) {
-				String category = ProductCategories.get(i).getText();
-
-				if (category.equals(productCategory)) {
-					s1.selectByVisibleText(category);
-					break;
-				}
-			}
-
-			Select s2 = new Select(ap.getBookableItem());
-			// Thread.sleep(2000);
-
-			while (!ap.getBookableItem().isEnabled()) {
-				System.out.println("Waiting for Product drop down to not be blank");
-			}
-			List<WebElement> Products = s2.getOptions();
-
-			int count1 = Products.size();
-			System.out.println(count1);
-
-			for (int j = 0; j < count1; j++) {
-				String product = Products.get(j).getText();
-
-				if (product.equals(appointmentToBook)) {
-					s2.selectByVisibleText(product);
-					break;
-				}
-			}
-
-			WebElement rt = ap.getResourceType();
-
-			while (!rt.isEnabled())// while button is NOT(!) enabled
-			{
-				System.out.println("Waiting for Resource drop down to not be blank");
-			}
-			Select s3 = new Select(rt);
-//		Thread.sleep(2000);
-			List<WebElement> Resources = s3.getOptions();
-
-			int count2 = Resources.size();
-			System.out.println(count2);
-
-			for (int k = 0; k < count2; k++) {
-				String resource = Resources.get(k).getText();
-
-				if (resource.equals(resourceName)) {
-					s3.selectByVisibleText(resource);
-					break;
-				}
-			}
-
-			while (ap.getloadingAvailabilityMessage().size() != 0) {
-				System.out.println("waiting1");
-				Thread.sleep(1000);
-			}
-
-			System.out.println("came out of the loop");
+			rm.makeNewAppointmentSelections(appointmentToBook, resourceName);
 
 			rm.calendarTomorrowClick();
 
@@ -180,7 +96,7 @@ public class CancelApptWithFee_SavedCard extends base {
 
 			startTime = st2.getText();
 			// st2.click();
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", st2);
 			Thread.sleep(1000);
 
@@ -332,10 +248,8 @@ public class CancelApptWithFee_SavedCard extends base {
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
 			ap.getEditApptCancelButton().click();
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("There is a fee for cancelling this appointment."));
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
+
+			Assert.assertTrue(ap.getCancelFeeSection().getText().contains("Appointment Cancellation Fee"));
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 
@@ -355,14 +269,15 @@ public class CancelApptWithFee_SavedCard extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
 			// Click the Cancel button
 
-			PM.getCancelButton().click();
+			jse.executeScript("arguments[0].click();", PM.getCancelButton());
 			Thread.sleep(2000);
 			rw.waitForDashboardLoaded();
 
@@ -417,10 +332,8 @@ public class CancelApptWithFee_SavedCard extends base {
 			AppointmentsPO ap = new AppointmentsPO(driver);
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 			ap.getEditApptCancelButton().click();
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("There is a fee for cancelling this appointment."));
-			Assert.assertTrue(
-					ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
+
+			Assert.assertTrue(ap.getCancelFeeSection().getText().contains("Appointment Cancellation Fee"));
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 			Thread.sleep(1000);
@@ -448,7 +361,8 @@ public class CancelApptWithFee_SavedCard extends base {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 						.contains("1111")) {
 
-					PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();",
+							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -457,7 +371,7 @@ public class CancelApptWithFee_SavedCard extends base {
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
-			PM.getPaymentButton().click();
+			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			rw.waitForAcceptButton();
 
