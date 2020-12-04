@@ -140,9 +140,19 @@ public class PageLaunchTest_Chrome extends base {
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 //		log.info("Appointments Page Header Verified");
 //		d.getDashboardButton().click();
-		d.getMenuMyActivies().click();// Accessing from left pane menu
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click(); // Accessing from left pane menu
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuBookAppointment()));
 
 		d.getMenuBookAppointment().click();
+
 // The pageHeader changed in 7.28
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		Assert.assertEquals(a.getPageHeader().getText(), "Appointments");
