@@ -80,8 +80,8 @@ public class PageLaunchTest_MSEdge extends base {
 
 	@Test(priority = 20)
 	public void MyPackagesButtonTest() throws InterruptedException {
-		d.getMyPackagesButton().click();
-		d.getMyPackagesShopPackages().click();
+		jse.executeScript("arguments[0].click();", d.getMyPackagesButton());
+		jse.executeScript("arguments[0].click();", d.getMyPackagesShopPackages());
 		ShopPackagesPO p = new ShopPackagesPO(driver);
 		Assert.assertEquals(p.getPageHeader().getText(), "Shop Packages");
 		log.info("Shop Packages Page Header Verified");
