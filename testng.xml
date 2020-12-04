@@ -419,6 +419,8 @@
 				name="ManagePaymentMethods_FreezeStatus.CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr" />
 			<class
 				name="ManagePaymentMethods_FreezeStatus.Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr" />
+				<class name = "ManagePaymentMethods_TerminateStatus.AddCCandACH_ForTerminatedMembers"/>
+				<class name = "ManagePaymentMethods_TerminateStatus.EditCCandACH_forTerminatedMembers"/>
 		</classes>
 	</test>
 	

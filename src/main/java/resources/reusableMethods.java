@@ -2963,6 +2963,7 @@ public class reusableMethods extends base {
 		}
 
 		System.out.println("came out of the loop");
+		Thread.sleep(3000);
 		return null;
 	}
 
@@ -3048,7 +3049,7 @@ public class reusableMethods extends base {
 		}
 
 		System.out.println("came out of the loop");
-
+		Thread.sleep(3000);
 		return null;
 	}
 
@@ -3105,7 +3106,7 @@ public class reusableMethods extends base {
 		}
 
 		System.out.println("came out of the loop");
-		Thread.sleep(2000);
+		Thread.sleep(3000);
 
 		return null;
 	}
