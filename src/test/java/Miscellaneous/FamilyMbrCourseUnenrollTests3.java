@@ -2,7 +2,6 @@ package Miscellaneous;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -1326,7 +1325,8 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -1350,7 +1350,6 @@ public class FamilyMbrCourseUnenrollTests3 extends base {
 				Thread.sleep(500);
 			}
 
-			JavascriptExecutor jse = ((JavascriptExecutor) driver);
 			int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
 			for (int i = 0; i < fmlyMbrcount; i++) {

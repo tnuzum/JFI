@@ -70,7 +70,7 @@ public class ChangeGrpApptWithFee_MemberHasPackages_AdditionalResources extends 
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 			AppointmentsPO ap = new AppointmentsPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			// Book an appointment and get the start time for the appointment

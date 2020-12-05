@@ -1,7 +1,6 @@
 package Demo;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -62,10 +61,10 @@ public class ChangeApptWithFee_Demo extends base {
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
 		rm.activeMemberLogin("demo", "Testing1!");
-
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
-		d.getMyApptsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 
 		// Book an appointment and get the start time for the appointment
@@ -170,7 +169,7 @@ public class ChangeApptWithFee_Demo extends base {
 				}
 
 				// AftrnunSlot.click();
-				JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 				jse.executeScript("arguments[0].click();", AftrnunSlot);
 
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)

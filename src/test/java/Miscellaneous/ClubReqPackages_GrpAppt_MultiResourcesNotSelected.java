@@ -1,7 +1,6 @@
 package Miscellaneous;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -69,7 +68,8 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 
 		rm.catchErrorMessage();
@@ -234,7 +234,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 				wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 				startTime = st2.getText();
 				// st2.click();
-				JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 				jse.executeScript("arguments[0].click();", st2);
 				Thread.sleep(2000);
 				log.info("St2 Clicked for " + this.getClass().getSimpleName());

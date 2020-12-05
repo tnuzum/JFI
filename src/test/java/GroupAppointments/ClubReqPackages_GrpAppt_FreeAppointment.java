@@ -64,7 +64,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			rm.activeMemberLogin("freemember", "Testing1!");
 			rw.waitForDashboardLoaded();
 
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();
@@ -202,7 +202,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			rm.activeMemberLogin("freemember", "Testing1!");
 			rw.waitForDashboardLoaded();
 
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();

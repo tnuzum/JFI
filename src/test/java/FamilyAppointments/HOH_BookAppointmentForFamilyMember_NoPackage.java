@@ -3,6 +3,7 @@ package FamilyAppointments;
 import java.io.IOException;
 import java.util.List;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
@@ -64,10 +65,10 @@ public class HOH_BookAppointmentForFamilyMember_NoPackage extends base {
 
 		try {
 			rm.activeMemberLogin("appthoh", "Testing1!");
-
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			Select s = new Select(ap.getSelectMember());

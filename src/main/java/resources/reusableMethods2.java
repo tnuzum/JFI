@@ -3,7 +3,6 @@ package resources;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -1215,7 +1214,7 @@ public class reusableMethods2 extends base {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
-		// p.getMyApptsScheduleButton().click();
+		// jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Thread.sleep(2000);
@@ -1439,7 +1438,7 @@ public class reusableMethods2 extends base {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
-		// p.getMyApptsScheduleButton().click();
+		// jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 
 		this.catchErrorMessage();
@@ -1930,7 +1929,9 @@ public class reusableMethods2 extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyClassesScheduleButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -1979,7 +1980,6 @@ public class reusableMethods2 extends base {
 						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 								.contains("5454")) {
 
-							JavascriptExecutor jse = (JavascriptExecutor) driver;
 							jse.executeScript("arguments[0].scrollIntoView(true);",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
@@ -2029,7 +2029,8 @@ public class reusableMethods2 extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyCoursesEventsScheduleButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -2078,7 +2079,6 @@ public class reusableMethods2 extends base {
 						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 								.contains("5454")) {
 
-							JavascriptExecutor jse = (JavascriptExecutor) driver;
 							jse.executeScript("arguments[0].scrollIntoView(true);",
 									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 
@@ -2189,8 +2189,9 @@ public class reusableMethods2 extends base {
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -2206,7 +2207,6 @@ public class reusableMethods2 extends base {
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
-		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
@@ -2328,7 +2328,8 @@ public class reusableMethods2 extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyCoursesEventsScheduleButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -2344,7 +2345,7 @@ public class reusableMethods2 extends base {
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
-		JavascriptExecutor jse = ((JavascriptExecutor) driver);
+
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
 		for (int i = 0; i < fmlyMbrcount; i++) {

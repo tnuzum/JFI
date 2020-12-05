@@ -71,7 +71,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			rm.activeMemberLogin("freezemember2", "Testing1!"); // Login to EME
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -141,7 +141,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 			jse.executeScript("arguments[0].scrollIntoView(true);", d.getBreadcrumbDashboard());
 			jse.executeScript("arguments[0].click();", d.getBreadcrumbDashboard());
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -297,7 +297,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			rm.activeMemberLogin("bauto", "Testing1!"); // Login to EME
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 			wait = new WebDriverWait(driver, 30);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));

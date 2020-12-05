@@ -2,7 +2,6 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,6 +31,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -57,6 +57,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		d = new DashboardPO(driver);
 		BT = new BreadcrumbTrailPO(driver);
 		c = new ClassSignUpPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -72,7 +73,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("freezemember", "Testing1!");
 		rw.waitForDashboardLoaded1();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -136,7 +137,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("terminate", "Testing1!");
 		rw.waitForDashboardLoaded1();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -199,7 +200,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("feemember", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -263,7 +264,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("feemember", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -326,7 +327,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("feemember", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -412,7 +413,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("feemember", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -475,7 +476,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("outpermtdhrs", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -540,7 +541,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("hoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -611,7 +612,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("hoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		softAssertion.assertEquals("Select Classes", BT.getPageHeader().getText());
 		softAssertion.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		softAssertion.assertEquals("Select Classes", BT.getBreadcrumb2().getText());

@@ -61,7 +61,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 		try {
 			rm.activeMemberLogin("emailmember", "Testing1!");
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 
 			Thread.sleep(2000);
 
