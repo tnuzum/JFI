@@ -2,12 +2,12 @@ package SingleMemberClasses;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Calendar;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -38,6 +38,7 @@ public class SelectClassesPageLayout extends base {
 	private static String day;
 	private static String date;
 	private static WebDriverWait wait;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -60,11 +61,12 @@ public class SelectClassesPageLayout extends base {
 		BT = new BreadcrumbTrailPO(driver);
 		d = new DashboardPO(driver);
 		c = new ClassSignUpPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		getEMEURL();
 		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		rw.waitForDashboardLoaded();
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -230,7 +232,7 @@ public class SelectClassesPageLayout extends base {
 	public void VerifyVirtualClassIndicatorIsNotPresentForNonVirtualClassWithOverrideURLs()
 			throws IOException, InterruptedException {
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		rm.SelectTomorrowDate();
 

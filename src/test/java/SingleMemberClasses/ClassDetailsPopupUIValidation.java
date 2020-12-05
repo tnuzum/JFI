@@ -1,11 +1,11 @@
 package SingleMemberClasses;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -24,6 +24,7 @@ public class ClassDetailsPopupUIValidation extends base {
 	private static String classNameDisplayed = "ClassNeedsPunches";
 	private static DashboardPO d;
 	private static ClassSignUpPO c;
+	private static JavascriptExecutor jse;
 
 	public reusableMethods rm;
 
@@ -45,6 +46,7 @@ public class ClassDetailsPopupUIValidation extends base {
 
 		d = new DashboardPO(driver);
 		c = new ClassSignUpPO(driver);
+		jse = (JavascriptExecutor) driver;
 	}
 
 	@Test(priority = 1, description = "Ui validations")
@@ -52,7 +54,7 @@ public class ClassDetailsPopupUIValidation extends base {
 
 		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));

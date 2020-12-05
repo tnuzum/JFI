@@ -36,6 +36,7 @@ public class SelectCoursesPageLayout extends base {
 	private static SimpleDateFormat df3;
 	private static Calendar today;
 	private static WebDriverWait wait;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -58,12 +59,13 @@ public class SelectCoursesPageLayout extends base {
 		BT = new BreadcrumbTrailPO(driver);
 		d = new DashboardPO(driver);
 		c = new ClassSignUpPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		getEMEURL();
 		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -197,7 +199,7 @@ public class SelectCoursesPageLayout extends base {
 	public void VerifyVirtualClassIndicatorIsNotPresentForNonVirtualClassWithOverrideURLs()
 			throws IOException, InterruptedException {
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));

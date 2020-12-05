@@ -75,7 +75,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -236,7 +236,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));

@@ -342,7 +342,7 @@ public class CalendarLayout extends base {
 
 			}
 
-			cp.getClassGearButton().click();
+			jse.executeScript("arguments[0].click();", cp.getClassGearButton());
 
 			cp.getUnenrollListview().click();
 			Thread.sleep(1000);

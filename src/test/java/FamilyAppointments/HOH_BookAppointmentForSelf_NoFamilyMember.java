@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -45,11 +46,11 @@ public class HOH_BookAppointmentForSelf_NoFamilyMember extends base {
 	@Test
 	public void BookAppointmentForself_HohWithMoFamily() throws InterruptedException, IOException {
 		try {
-
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("apptmember10", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
@@ -64,7 +65,8 @@ public class HOH_BookAppointmentForSelf_NoFamilyMember extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

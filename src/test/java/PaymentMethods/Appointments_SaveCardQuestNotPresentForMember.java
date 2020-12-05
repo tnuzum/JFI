@@ -68,7 +68,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			rw.waitForDashboardLoaded();
 
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();
@@ -594,7 +594,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			rw.waitForDashboardLoaded();
 
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();

@@ -2,7 +2,6 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,6 +44,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	private static PurchaseConfirmationPO PP;
 	private static ThankYouPO TY;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -73,6 +73,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		PM = new PaymentMethodsPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -91,7 +92,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 //		Thread.sleep(2000);
 //		rm.returnToDashboard();
 			rw.waitForDashboardLoaded();
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -308,7 +309,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Thread.sleep(2000);
 			rm.returnToDashboard();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -482,7 +483,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Thread.sleep(1000);
 			rm.returnToDashboard();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());

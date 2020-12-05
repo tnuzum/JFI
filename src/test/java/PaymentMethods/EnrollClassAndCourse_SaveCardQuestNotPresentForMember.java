@@ -71,7 +71,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 			rm.activeMemberLogin("CannotAddCC", "Testing1!"); // Login to EME
 			rw.waitForDashboardLoaded();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -308,7 +308,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			rm.activeMemberLogin("freezemember3", "Testing1!"); // Login to EME as Freeze status member
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));

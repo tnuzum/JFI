@@ -68,7 +68,7 @@ public class ClubNotReqPackages_BookAppt_ResourceNotSelected extends base {
 		try {
 			rm.activeMemberLogin("apptmember10", "Testing1!");
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 

@@ -1310,7 +1310,7 @@ public class reusableMethods extends base {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
-		// p.getMyApptsScheduleButton().click();
+		// jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Thread.sleep(2000);
@@ -1547,7 +1547,7 @@ public class reusableMethods extends base {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
-		// p.getMyApptsScheduleButton().click();
+		// jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 
 		this.catchErrorMessage();
@@ -2083,12 +2083,13 @@ public class reusableMethods extends base {
 	public Object enrollInClass(String classToEnroll, String paymentOption, String payMethod, String classFee)
 			throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -2118,7 +2119,7 @@ public class reusableMethods extends base {
 				}
 			}
 		}
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 		Thread.sleep(5000);
@@ -2182,12 +2183,13 @@ public class reusableMethods extends base {
 	public Object enrollInCourse(String courseToEnroll, String paymentOption, String payMethod, String courseFee,
 			String CourseStartMonth, int CourseStartYear) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -2221,7 +2223,7 @@ public class reusableMethods extends base {
 				}
 			}
 		}
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 		Thread.sleep(5000);
@@ -2354,12 +2356,14 @@ public class reusableMethods extends base {
 	public Object enrollFamilyMbrInClass(String classToEnroll, String paymentOption, String payMethod, String classFee,
 			String familyMbrName) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -2375,7 +2379,6 @@ public class reusableMethods extends base {
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
-		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
@@ -2493,12 +2496,13 @@ public class reusableMethods extends base {
 			String courseFee, String CourseStartMonth, String familyMbrName, int CourseStartYear)
 			throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -2518,7 +2522,7 @@ public class reusableMethods extends base {
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
-		JavascriptExecutor jse = ((JavascriptExecutor) driver);
+
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
 		for (int i = 0; i < fmlyMbrcount; i++) {
@@ -2912,6 +2916,8 @@ public class reusableMethods extends base {
 
 	public Object ValidatechangeAppointmentScreen(String startTime1, String appointmentToBook1)
 			throws InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -2944,7 +2950,7 @@ public class reusableMethods extends base {
 		Thread.sleep(2000);
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
-		ap.getEditApptChangeButton().click();
+		jse.executeScript("arguments[0].click();", ap.getEditApptChangeButton());
 		Thread.sleep(1000);
 		Assert.assertTrue(
 				ap.getChangeFeeSection().getText().contains("If you proceed, you will be charged a Change Fee of"));

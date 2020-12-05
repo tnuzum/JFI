@@ -97,7 +97,7 @@ public class EnrollCourseByBuyingPackage extends base {
 //		Thread.sleep(2000);
 //		rm.returnToDashboard();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -336,7 +336,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			unitCount = rm.getPackageUnitsForMember(packageName, "ccmember");
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -523,7 +523,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			unitCount = rm.getPackageUnitsForMember(packageName, "ncmember");
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());

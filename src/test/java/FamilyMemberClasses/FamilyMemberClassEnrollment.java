@@ -102,7 +102,7 @@ public class FamilyMemberClassEnrollment extends base {
 			int unitCount = rm.getPackageUnitsForMember(packageName, member5);
 			System.out.println("Before " + IntPackageCountBefore);
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());

@@ -134,7 +134,7 @@ public class PageLaunchTest_Chrome extends base {
 
 	@Test(priority = 45)
 	public void ScheduleApptsButtonTest() throws InterruptedException {
-//		d.getMyApptsScheduleButton().click();//Accessing from Dashboard
+//		jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());//Accessing from Dashboard
 //			rm.catchErrorMessage();
 		AppointmentsPO a = new AppointmentsPO(driver);
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");

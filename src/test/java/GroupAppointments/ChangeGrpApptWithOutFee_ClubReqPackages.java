@@ -69,7 +69,7 @@ public class ChangeGrpApptWithOutFee_ClubReqPackages extends base {
 
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			// Book an appointment and get the start time for the appointment

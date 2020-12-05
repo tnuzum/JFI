@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -37,6 +38,7 @@ public class SelectMemberDropdownValidations extends base {
 	private static List<WebElement> Clubs;
 	private static List<WebElement> ProductCategories;
 	private static AppointmentsPO ap;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -52,6 +54,7 @@ public class SelectMemberDropdownValidations extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -66,7 +69,7 @@ public class SelectMemberDropdownValidations extends base {
 		rm.activeMemberLogin("appthoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 
 		Assert.assertTrue(ap.getSelectMember().isDisplayed());
@@ -82,7 +85,7 @@ public class SelectMemberDropdownValidations extends base {
 		rm.activeMemberLogin("apptmember10", "Testing1!");
 		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
 		Assert.assertEquals(SelectMemberDropdownPresent, false);
@@ -98,7 +101,7 @@ public class SelectMemberDropdownValidations extends base {
 		rm.activeMemberLogin("fmlyapptmbr", "Testing1!");
 		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
 		Assert.assertEquals(SelectMemberDropdownPresent, false);
@@ -115,7 +118,7 @@ public class SelectMemberDropdownValidations extends base {
 		rm.activeMemberLogin("noccmember", "Testing1!");
 		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
 		Assert.assertEquals(SelectMemberDropdownPresent, false);
@@ -132,7 +135,7 @@ public class SelectMemberDropdownValidations extends base {
 		rm.activeMemberLogin("appthoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 
 		Assert.assertTrue(ap.getSelectMember().isDisplayed());

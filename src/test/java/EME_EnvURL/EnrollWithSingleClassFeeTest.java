@@ -2,7 +2,6 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,6 +43,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 	public reusableWaits rw;
 	public reusableMethods rm;
+	private static JavascriptExecutor jse;
 
 	public EnrollWithSingleClassFeeTest() {
 		rw = new reusableWaits();
@@ -69,6 +69,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 		PM = new PaymentMethodsPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -87,7 +88,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -308,7 +309,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -473,7 +474,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -539,7 +540,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 //		System.out.println(PM.getNameOnCardField().getAttribute("value"));
 			Assert.assertEquals(prop.getProperty("activeMember8_fullname"),
 					PM.getNameOnCardField().getAttribute("value"));
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", PM.getCardNumberField());
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");

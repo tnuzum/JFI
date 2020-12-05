@@ -120,7 +120,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest_FreezeMbr extends base 
 
 			for (int i = 0; i < storedCardCount; i++) {
 				if (p.getStoredCards().get(i).getText().contains("5454")) {
-					p.getStoredCards().get(i).findElement(By.tagName("a")).click();
+					jse.executeScript("arguments[0].click();", p.getStoredCards().get(i).findElement(By.tagName("a")));
 					break;
 				}
 
@@ -173,7 +173,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest_FreezeMbr extends base 
 	public void verifyAdditionalQuestionOnAddACH() throws InterruptedException, IOException {
 		try {
 
-			mp.getBankAccountLink().click();
+			jse.executeScript("arguments[0].click();", mp.getBankAccountLink());
 			Thread.sleep(1000);
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 			Assert.assertTrue(p.getOnAccountBankQuestion().isDisplayed());

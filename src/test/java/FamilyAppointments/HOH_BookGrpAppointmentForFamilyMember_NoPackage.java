@@ -3,6 +3,7 @@ package FamilyAppointments;
 import java.io.IOException;
 import java.util.List;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterClass;
@@ -61,10 +62,11 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 	public void BookGrpAppointmentForFamilyMember() throws InterruptedException, IOException {
 		try {
 
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("appthoh", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			Select s = new Select(ap.getSelectMember());
@@ -90,7 +92,8 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

@@ -45,6 +45,7 @@ public class PageLaunchTest_Browser extends base2 {
 	private static DashboardPO d;
 	public reusableWaits rw;
 	public reusableMethods rm;
+	private static JavascriptExecutor jse;
 
 	private static String testName = null;
 
@@ -74,6 +75,7 @@ public class PageLaunchTest_Browser extends base2 {
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		d = new DashboardPO(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println(Browser);
@@ -236,7 +238,7 @@ public class PageLaunchTest_Browser extends base2 {
 	@Test(priority = 40)
 	public void ScheduleClassesButtonTest() throws InterruptedException, IOException {
 		try {
-			d.getMyClassesScheduleButton().click();// Accessing from Dashboard
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());// Accessing from Dashboard
 			ClassSignUpPO cs = new ClassSignUpPO(driver);
 			Assert.assertEquals(cs.getPageHeader().getText(), "Select Classes");
 			log.info("Select Classes Page Header Verified");
@@ -287,7 +289,7 @@ public class PageLaunchTest_Browser extends base2 {
 	@Test(priority = 45)
 	public void ScheduleApptsButtonTest() throws InterruptedException, IOException {
 		try {
-//		d.getMyApptsScheduleButton().click();//Accessing from Dashboard
+//		jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());//Accessing from Dashboard
 //			rm.catchErrorMessage();
 			AppointmentsPO a = new AppointmentsPO(driver);
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
@@ -425,7 +427,6 @@ public class PageLaunchTest_Browser extends base2 {
 			log.info("element is clickable");
 			System.out.println("element is clickable");
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", d.getPrivacyPolicyLink());
 			/*
 			 * Actions a = new Actions(driver);

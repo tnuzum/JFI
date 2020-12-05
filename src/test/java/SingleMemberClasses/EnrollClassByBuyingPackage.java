@@ -93,7 +93,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -327,7 +327,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 			unitCount = rm.getPackageUnitsForMember(packageName, "ccmember");
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -500,7 +500,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 			unitCount = rm.getPackageUnitsForMember(packageName, "ncmember");
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));

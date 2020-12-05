@@ -70,7 +70,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	@Test(priority = 1)
 	public void verifyAdditionalQuestionsOnEnrollCourseWithNewCard() throws InterruptedException, IOException {
 		try {
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -187,7 +187,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	public void verifyAdditionalQuestionsOnEnrollClassWithNewCard() throws InterruptedException, IOException {
 		try {
 			rm.unenrollFromClass();
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));

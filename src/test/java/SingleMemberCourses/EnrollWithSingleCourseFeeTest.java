@@ -88,7 +88,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 //		Thread.sleep(2000);
 //		rm.returnToDashboard();
 			rw.waitForDashboardLoaded();
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -308,7 +308,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Thread.sleep(2000);
 			rm.returnToDashboard();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -489,7 +489,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Thread.sleep(1000);
 			rm.returnToDashboard();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
