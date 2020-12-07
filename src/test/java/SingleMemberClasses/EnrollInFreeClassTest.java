@@ -282,6 +282,7 @@ public class EnrollInFreeClassTest extends base {
 			IntPackageCountBefore = rm.getPackageUnits("ServiceNC");
 
 			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
+			// d.getMyClassesScheduleButton().click();
 			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());

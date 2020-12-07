@@ -509,6 +509,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			}
 
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
+			// c.getContinueButton().click();
 
 			Thread.sleep(5000);
 
@@ -520,6 +521,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			}
 
 			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
+			// PM.getNewCardButton().click();
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");

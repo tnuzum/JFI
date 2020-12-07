@@ -82,7 +82,7 @@ public class ShopPackages_AdditionalQuestionsTest extends base {
 				if (sp.getPackageNames().get(i).getText().equals("Service V"))
 
 				{
-					sp.getPurchaseButtons().get(i).click();
+					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
 				}
 

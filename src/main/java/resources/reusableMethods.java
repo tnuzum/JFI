@@ -1204,6 +1204,7 @@ public class reusableMethods extends base {
 
 	public Object ConfirmAndCancelAppointmentNoFee(String Date, String startTime, String appointmentToBook)
 			throws IOException, InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1241,7 +1242,7 @@ public class reusableMethods extends base {
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
-		a.getEditApptCancelButton().click();
+		jse.executeScript("arguments[0].click();", a.getEditApptCancelButton());
 		Thread.sleep(1000);
 		a.getEditApptCancelYesButton().click();
 		Thread.sleep(2000);
@@ -2729,7 +2730,7 @@ public class reusableMethods extends base {
 
 		Thread.sleep(1000);
 
-		cp.getCalDayBadge().click();
+		jse.executeScript("arguments[0].click();", cp.getCalDayBadge());
 
 		Thread.sleep(1000);
 

@@ -328,7 +328,7 @@ public class PageLaunchTest extends base {
 	public void ManageFamilyButtonTest() throws InterruptedException, IOException {
 		try {
 			rm.activeMember1Login();
-			d.getMyFamilyManageButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyFamilyManageButton());
 			ManageFamilyPO a = new ManageFamilyPO(driver);
 			WebElement w = a.getPageHeader();
 			while (!w.getText().equals("Manage Family")) {
