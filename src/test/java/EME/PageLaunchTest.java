@@ -369,7 +369,7 @@ public class PageLaunchTest extends base {
 	@Test(priority = 55)
 	public void EditMyInfoButtonTest() throws InterruptedException, IOException {
 		try {
-			d.getMyInfoEditButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyInfoEditButton());
 			ManageProfilePO a = new ManageProfilePO(driver);
 			Assert.assertEquals(a.getPageHeader().getText(), "Manage Profile");
 			log.info("Manage Profile Page Header Verified");
@@ -464,7 +464,7 @@ public class PageLaunchTest extends base {
 	@Test(priority = 65)
 	public void ForgotUsernameButtonTest() throws InterruptedException, IOException {
 		try {
-			d.getLogoutButton().click();
+			jse.executeScript("arguments[0].click();", d.getLogoutButton());
 			Thread.sleep(2000);
 			LoginPO l = new LoginPO(driver);
 			l.getForgotUsername().click();
