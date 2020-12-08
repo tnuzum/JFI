@@ -184,7 +184,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 
 			rm.calendarTomorrowClick();
 
-			ap.getCloseButton().click();
+			jse.executeScript("arguments[0].click();", ap.getCloseButton());
 			// delete a group member after the calendar loads
 
 			jse.executeScript("arguments[0].click();", ap.getDeleteMember().get(0));

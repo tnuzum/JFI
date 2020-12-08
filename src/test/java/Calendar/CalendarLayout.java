@@ -182,7 +182,7 @@ public class CalendarLayout extends base {
 			Assert.assertEquals(u.getPageHeader().getText(), "Unenroll");
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
 			// jse.executeScript("arguments[0].click();", u.getCancelButton());
-			u.getCancelButton().click();
+			jse.executeScript("arguments[0].click();", u.getCancelButton());
 			Thread.sleep(1000);
 
 			cp.getCalendarViewLink().click();
@@ -344,7 +344,7 @@ public class CalendarLayout extends base {
 
 			jse.executeScript("arguments[0].click();", cp.getClassGearButton());
 
-			cp.getUnenrollListview().click();
+			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
 			Thread.sleep(1000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);

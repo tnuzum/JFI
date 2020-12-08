@@ -246,7 +246,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -336,7 +336,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -410,7 +411,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -603,7 +604,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -671,7 +672,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				}
 				WebDriverWait wait = new WebDriverWait(driver, 60);
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
-				d.getMyClassesClass1GearButton().click();
+				jse.executeScript("arguments[0].click();", d.getMyClassesClass1GearButton());
 
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
@@ -680,7 +681,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				UnenrollPO u = new UnenrollPO(driver);
 				wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-				u.getUnenrollNoRefund().click();
+				jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 				Thread.sleep(1000);
 				rw.waitForAcceptButton();
 				u.getUnenrollConfirmYesButton().click();

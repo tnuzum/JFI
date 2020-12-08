@@ -154,7 +154,7 @@ public class CancelApptWithFee_NewCard extends base {
 			Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 			Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 
-			ap.getbookButton().click();
+			jse.executeScript("arguments[0].click();", ap.getbookButton());
 
 			rw.waitForAcceptButton();
 

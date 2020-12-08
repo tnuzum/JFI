@@ -207,16 +207,17 @@ public class reusableMethods extends base {
 	}
 
 	public String returnToDashboard() throws InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		Thread.sleep(1000);
 		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
 		while (leftMenuOpen.equals("false")) {
-			d.getMenuButton().click();
+			jse.executeScript("arguments[0].click();", d.getMenuButton());
 			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		jse.executeScript("arguments[0].click();", d.getDashboardButton());
 
 //		d.getBreadcrumbDashboard().click();
@@ -247,6 +248,7 @@ public class reusableMethods extends base {
 
 	public String unenrollFromClass() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		boolean enrolled = this.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 //		System.out.println(enrolled);
@@ -262,16 +264,16 @@ public class reusableMethods extends base {
 				wait.until(ExpectedConditions
 						.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-header')]")));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
-				d.getMyClassesClass1GearButton().click();
+				jse.executeScript("arguments[0].click();", d.getMyClassesClass1GearButton());
 
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-				d.getmyClassesUnenrollButton().click();
+				jse.executeScript("arguments[0].click();", d.getmyClassesUnenrollButton());
 				Thread.sleep(1000);
 				UnenrollPO u = new UnenrollPO(driver);
 				wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-				u.getUnenrollNoRefund().click();
+				jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 				Thread.sleep(1000);
 				rw.waitForAcceptButton();
 				u.getUnenrollConfirmYesButton().click();
@@ -1448,7 +1450,7 @@ public class reusableMethods extends base {
 		{
 
 			if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
-				ap.getCloseButton().click();
+				jse.executeScript("arguments[0].click();", ap.getCloseButton());
 			}
 
 			this.calendarTomorrowClick();
@@ -1916,13 +1918,13 @@ public class reusableMethods extends base {
 	}
 
 	public String OpenNewcardFormIfNotOpenInFirstAttempt() {
-
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		PaymentPO p = new PaymentPO(driver);
 
 		String ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
 
 		while (ariaExpanded.equals("false")) {
-			p.getSelectPaymentNewCardButton().click();
+			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			log.error("NewCard Button was clicked again");
 			System.out.println("NewCard Button was clicked again");
 			ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
@@ -2287,13 +2289,15 @@ public class reusableMethods extends base {
 
 	public Object myClassClickToUnenroll(String classEnrolled) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		DashboardPO d = new DashboardPO(driver);
 		int count = d.getClassInfoSections().size();
 		for (int i = 0; i < count; i++) {
 
 			if (d.getClassInfoSections().get(i).getText().contains(classEnrolled.toUpperCase())) {
 
-				d.getMyClassesClass1GearButtons().get(i).click();
+				jse.executeScript("arguments[0].click();", d.getMyClassesClass1GearButtons().get(i));
 				WebDriverWait wait = new WebDriverWait(driver, 30);
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
@@ -2341,7 +2345,7 @@ public class reusableMethods extends base {
 		}
 
 		Thread.sleep(1000);
-		cp.getCalDayBadges().get(1).click();
+		jse.executeScript("arguments[0].click();", cp.getCalDayBadges().get(1));
 		Thread.sleep(1000);
 		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
 		Thread.sleep(1000);

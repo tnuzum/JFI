@@ -110,7 +110,7 @@ public class MyAgreementsLayout extends base {
 
 					jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 
-					AgreementCheckbox.click();
+					jse.executeScript("arguments[0].click();", AgreementCheckbox);
 
 					Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
 				}

@@ -219,7 +219,7 @@ public class FamilyStandbyInClassTest extends base {
 
 			}
 
-			c.getRestOnStandby().click();
+			jse.executeScript("arguments[0].click();", c.getRestOnStandby());
 
 			for (int i = 0; i < c.getMemberSections().size(); i++) {
 				String paymentOptions = c.getMemberSections().get(i).getText();
