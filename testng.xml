@@ -29,7 +29,8 @@
 			<class name="PaymentMethods.PayBalance_SaveCardQuestNotPresentForMember"/>
 			<class name="PaymentMethods.ShopPackages_SaveCardQuestNotPresentForFreezeMember"/>
 			<class name="PaymentMethods.ShopPackages_SaveCardQuestNotPresentForMember"/>
-			
+			<class name="PaymentMethods.PayBalance_SaveCardQuestNotPresentForTerminateMember"/>
+			<class name="PaymentMethods.PayBalance_SaveCardQuestPresentForTerminateMember"/>
 
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
