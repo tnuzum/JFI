@@ -154,7 +154,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 			Assert.assertTrue(ap.getGroup().getText().contains(participant2));
 			Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 
-			ap.getbookButton().click();
+			jse.executeScript("arguments[0].click();", ap.getbookButton());
 
 			rw.waitForAcceptButton();
 

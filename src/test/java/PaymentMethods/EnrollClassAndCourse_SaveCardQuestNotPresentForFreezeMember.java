@@ -100,7 +100,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())

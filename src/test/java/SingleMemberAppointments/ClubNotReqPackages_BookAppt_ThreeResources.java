@@ -148,7 +148,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 			Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 			Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 
-			ap.getbookButton().click();
+			jse.executeScript("arguments[0].click();", ap.getbookButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));

@@ -153,7 +153,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 					ap.getAdditionalResources().get(n).click();
 			}
 
-			ap.getbookButton().click();
+			jse.executeScript("arguments[0].click();", ap.getbookButton());
 
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));

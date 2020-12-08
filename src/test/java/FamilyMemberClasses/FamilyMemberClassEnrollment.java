@@ -376,7 +376,7 @@ public class FamilyMemberClassEnrollment extends base {
 
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 			// Verifies the Invoice amount
 			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))

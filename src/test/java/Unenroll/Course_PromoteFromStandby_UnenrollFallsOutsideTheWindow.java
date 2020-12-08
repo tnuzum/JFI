@@ -167,7 +167,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Course Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}

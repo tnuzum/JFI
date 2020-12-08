@@ -467,7 +467,7 @@ public class PageLaunchTest extends base {
 			jse.executeScript("arguments[0].click();", d.getLogoutButton());
 			Thread.sleep(2000);
 			LoginPO l = new LoginPO(driver);
-			l.getForgotUsername().click();
+			jse.executeScript("arguments[0].click();", l.getForgotUsername());
 
 			ForgotUsernamePO fu = new ForgotUsernamePO(driver);
 			WebElement w = fu.getPageHeader();
@@ -509,7 +509,7 @@ public class PageLaunchTest extends base {
 	public void ForgotPasswordButtonTest() throws InterruptedException, IOException {
 		try {
 			LoginPO l = new LoginPO(driver);
-			l.getForgotPassword().click();
+			jse.executeScript("arguments[0].click();", l.getForgotPassword());
 			ForgotPasswordPO fp = new ForgotPasswordPO(driver);
 			WebElement w = fp.getPageHeader();
 			while (!w.isDisplayed()) {

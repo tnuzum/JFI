@@ -160,7 +160,7 @@ public class Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends ba
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Single Class Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}

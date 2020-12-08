@@ -105,7 +105,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())
@@ -219,7 +219,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(5000);
 
