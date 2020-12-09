@@ -366,7 +366,7 @@ public class reusableMethods extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
@@ -2301,7 +2301,7 @@ public class reusableMethods extends base {
 				WebDriverWait wait = new WebDriverWait(driver, 30);
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
-				d.getmyClassesUnenrollButtons().get(i).click();
+				jse.executeScript("arguments[0].click();", d.getmyClassesUnenrollButtons().get(i));
 				Thread.sleep(1000);
 				break;
 

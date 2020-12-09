@@ -186,7 +186,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCanadianBankCheckingAcct extends bas
 				}
 			}
 			Thread.sleep(1000);
-			mp.getEditCanadianBankRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getEditCanadianBankRadio());
 			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Bank Account"));
 			String text = mp.getEditAccountHolder().getAttribute("ng-reflect-model");
 			System.out.println(text);

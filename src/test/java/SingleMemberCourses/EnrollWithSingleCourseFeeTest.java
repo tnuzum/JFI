@@ -409,7 +409,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			String receiptNumber2 = TY.getReceiptNumber().getText();
 
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
-			TY.getPrintReceiptButton().click();
+			jse.executeScript("arguments[0].click();", TY.getPrintReceiptButton());
 			Thread.sleep(2000);
 			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
 			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber2));
