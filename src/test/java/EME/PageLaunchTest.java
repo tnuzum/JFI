@@ -477,6 +477,7 @@ public class PageLaunchTest extends base {
 			Assert.assertEquals(fu.getPageHeader().getText(), "Forgot your Username?");
 			log.info("Forgot Username Page Header Verified");
 			jse.executeScript("arguments[0].click();", fu.getCancelButton());
+			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
