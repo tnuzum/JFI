@@ -322,7 +322,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$10.00"));
 			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
-			u.getUnenrollButton().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();

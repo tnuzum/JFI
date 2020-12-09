@@ -435,7 +435,8 @@ public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends b
 						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 				monthYear = cp.getMonthYear().getText();
 			}
-
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+			Thread.sleep(1000);
 			cp.getCalDayBadge().click();
 
 			int eventCount = cp.getCalEventTitles().size();

@@ -2345,7 +2345,9 @@ public class reusableMethods extends base {
 		}
 
 		Thread.sleep(1000);
-		jse.executeScript("arguments[0].click();", cp.getCalDayBadges().get(1));
+		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadges().get(1));
+		Thread.sleep(1000);
+		cp.getCalDayBadges().get(1).click();
 		Thread.sleep(1000);
 		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
 		Thread.sleep(1000);
