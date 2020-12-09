@@ -202,7 +202,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 
 			Assert.assertTrue(mp.getEditCheckingRadio().isSelected());
 
-			mp.getEditSavingsRadio1().click();
+			jse.executeScript("arguments[0].click();", mp.getEditSavingsRadio1());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
 

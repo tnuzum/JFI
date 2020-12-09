@@ -84,7 +84,7 @@ public class PayBalance_StoredCard extends base {
 
 //			jse.executeScript("arguments[0].scrollIntoView(true);", p.getPayWithThisMethodButton1());
 
-			jse.executeScript("arguments[0].click();", p.getPayWithThisMethodButton1());
+			p.getPayWithThisMethodButton1().click();
 
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
