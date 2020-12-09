@@ -355,7 +355,7 @@ public class CalendarLayout extends base {
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Thread.sleep(1000);
 
-			u.getUnenrollButton().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollButton());
 			rw.waitForAcceptButton();
 
 			u.getUnenrollConfirmYesButton().click();
