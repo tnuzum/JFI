@@ -384,7 +384,8 @@ public class Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends ba
 
 					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 					Thread.sleep(1000);
-					cp.getCalEventTitles().get(i).click();
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 					break;
 				}
 			}

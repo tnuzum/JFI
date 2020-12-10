@@ -534,9 +534,9 @@ public class reusableMethods extends base {
 		return IntUnitCount;
 	}
 
-	public Object ThankYouPageValidations() {
+	public Object ThankYouPageValidations() throws InterruptedException {
 		ThankYouPO TY = new ThankYouPO(driver);
-
+		Thread.sleep(1000);
 		// Verifies the text on Thank You page and Print Receipt Popup
 		Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
 		Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
@@ -1226,14 +1226,14 @@ public class reusableMethods extends base {
 
 					wait.until(ExpectedConditions
 							.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();", d.getMyAppts().get(i).findElement(By.tagName("i")));
 
 					WebElement EditButton = d.getEditButton().get(i);
 
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-					EditButton.click();
+					jse.executeScript("arguments[0].click();", EditButton);
 					break;
 				}
 			}
@@ -2684,7 +2684,8 @@ public class reusableMethods extends base {
 
 				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 				Thread.sleep(1000);
-				cp.getCalEventTitles().get(i).click();
+				Actions a = new Actions(driver);
+				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 				break;
 			}
 		}
@@ -2748,7 +2749,8 @@ public class reusableMethods extends base {
 
 				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 				Thread.sleep(1000);
-				cp.getCalEventTitles().get(i).click();
+				Actions a = new Actions(driver);
+				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 				break;
 			}
 		}
@@ -2940,14 +2942,14 @@ public class reusableMethods extends base {
 					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook1.toUpperCase()));
 					wait.until(ExpectedConditions
 							.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();", d.getMyAppts().get(i).findElement(By.tagName("i")));
 
 					WebElement EditButton = d.getEditButton().get(i);
 
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-					EditButton.click();
+					jse.executeScript("arguments[0].click();", EditButton);
 					break;
 				}
 			}
@@ -2968,7 +2970,7 @@ public class reusableMethods extends base {
 					" This will remove other participants from your appointment. You will need to add them again when you select your new appointment."));
 		}
 
-		ap.getEditApptProceedButton1().click();
+		jse.executeScript("arguments[0].click();", ap.getEditApptProceedButton1());
 
 		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");

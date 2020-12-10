@@ -365,7 +365,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -375,7 +375,7 @@ public class Bug167779_GroupAppt_MinRequiredMemberCheck extends base {
 			AppointmentsPO a = new AppointmentsPO(driver);
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
-			a.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", a.getEditApptCancelButton());
 
 			a.getEditApptCancelYesButton().click();
 			rw.waitForAcceptButton();

@@ -236,7 +236,7 @@ public class CancelApptWithFee_SavedCard extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -247,7 +247,7 @@ public class CancelApptWithFee_SavedCard extends base {
 			AppointmentsPO ap = new AppointmentsPO(driver);
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
-			ap.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptCancelButton());
 
 			Assert.assertTrue(ap.getCancelFeeSection().getText().contains("Appointment Cancellation Fee"));
 
@@ -313,7 +313,7 @@ public class CancelApptWithFee_SavedCard extends base {
 					if (d.getMyAppts().get(k).getText().contains(startTime)) {
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 //					Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);
@@ -321,7 +321,7 @@ public class CancelApptWithFee_SavedCard extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -331,7 +331,7 @@ public class CancelApptWithFee_SavedCard extends base {
 			Thread.sleep(2000);
 			AppointmentsPO ap = new AppointmentsPO(driver);
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
-			ap.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptCancelButton());
 
 			Assert.assertTrue(ap.getCancelFeeSection().getText().contains("Appointment Cancellation Fee"));
 

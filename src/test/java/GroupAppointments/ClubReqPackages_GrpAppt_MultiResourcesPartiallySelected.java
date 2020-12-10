@@ -268,7 +268,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 			ahp.getSearchField().sendKeys(receiptNumber);
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 
 			/*
@@ -372,7 +372,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -382,7 +382,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 			AppointmentsPO a = new AppointmentsPO(driver);
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
-			a.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", a.getEditApptCancelButton());
 			Thread.sleep(1000);
 			a.getEditApptCancelYesButton().click();
 			Thread.sleep(2000);

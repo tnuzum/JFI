@@ -289,7 +289,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -298,9 +298,9 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 			Thread.sleep(2000);
 
-			ap.getEditApptChangeButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptChangeButton());
 			Thread.sleep(1000);
-			ap.getEditApptProceedButton1().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptProceedButton1());
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -456,7 +456,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}

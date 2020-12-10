@@ -537,7 +537,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
 
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -616,7 +616,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -687,7 +687,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -757,7 +757,7 @@ public class FamilyMbrClassUnenrollTests extends base {
 
 			Assert.assertTrue(u.getCancelButton().isDisplayed());
 			Assert.assertTrue(u.getUnenrollNoRefund().isDisplayed());
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
