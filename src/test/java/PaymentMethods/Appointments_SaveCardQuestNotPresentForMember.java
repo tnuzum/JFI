@@ -337,7 +337,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
 			startTime2 = secondAvailableTimeAfternoon.getText();
 			System.out.println(startTime2);
-			secondAvailableTimeAfternoon.click();
+			jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
 
 			Thread.sleep(2000);
 
@@ -448,7 +448,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 					if (d.getMyAppts().get(k).getText().contains(startTime2)) {
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 //					Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);

@@ -156,7 +156,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -290,7 +290,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 				{
 
 					if (d.getMyAppts().get(k).getText().contains(startTime)) {
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 //					Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);
@@ -379,7 +379,7 @@ public class CancelApptWithFee_cancelTransaction extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

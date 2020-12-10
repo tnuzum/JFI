@@ -135,7 +135,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 
 			for (int n = 0; n < additionalResourcesCount; n++) {
 				if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
-					ap.getAdditionalResources().get(n).click();
+					jse.executeScript("arguments[0].click();", ap.getAdditionalResources().get(n));
 			}
 
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
@@ -164,7 +164,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -240,7 +240,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 					if (d.getMyAppts().get(k).getText().contains(startTime)) {
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 //				Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);
