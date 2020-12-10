@@ -409,7 +409,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 				if (d.getMyAppts().get(k).getText().contains(startTime)) {
 					wait.until(ExpectedConditions
 							.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-					jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
+					d.getMyAppts().get(k).findElement(By.tagName("i")).click();
 
 //					Thread.sleep(5000);
 					WebElement EditButton = d.getEditButton().get(k);
@@ -487,7 +487,8 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 
 			{
 				// rw.linksToBeClickable();
-				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
+				driver.findElements(By.tagName("a")).get(i).click();
+				;
 				break;
 			}
 
