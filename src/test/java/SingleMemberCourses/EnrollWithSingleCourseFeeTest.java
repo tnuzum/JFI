@@ -721,7 +721,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
