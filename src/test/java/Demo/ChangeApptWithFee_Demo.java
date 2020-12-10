@@ -102,11 +102,11 @@ public class ChangeApptWithFee_Demo extends base {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
-		ap.getEditApptChangeButton().click();
+		jse.executeScript("arguments[0].click();", ap.getEditApptChangeButton());
 		Thread.sleep(1000);
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("There is a fee for changing this appointment."));
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
-		ap.getEditApptProceedButton1().click();
+		jse.executeScript("arguments[0].click();", ap.getEditApptProceedButton1());
 
 		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
@@ -310,7 +310,7 @@ public class ChangeApptWithFee_Demo extends base {
 		ahp.getSearchField().sendKeys(receiptNumber);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-		ahp.getReceiptNumber().click();
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 		Thread.sleep(1000);
 
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page

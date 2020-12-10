@@ -294,7 +294,7 @@ public class ClubReqPackages_GrpAppt_FreeAppointment extends base {
 			Assert.assertEquals(ap.getAppointmentTime().getText(), "Start Time: " + startTime);
 			Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 
-			ap.getbookButton().click();
+			jse.executeScript("arguments[0].click();", ap.getbookButton());
 
 			rw.waitForAcceptButton();
 

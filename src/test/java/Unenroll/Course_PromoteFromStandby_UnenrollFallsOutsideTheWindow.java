@@ -448,7 +448,8 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 
 					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 					Thread.sleep(1000);
-					cp.getCalEventTitles().get(i).click();
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 					break;
 				}
 			}

@@ -183,7 +183,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 
 			for (int n = 0; n < additionalResourcesCount; n++) {
 				if (ap.getAdditionalResources().get(n).getText().contains(resourceName5))
-					ap.getAdditionalResources().get(n).click();
+					jse.executeScript("arguments[0].click();", ap.getAdditionalResources().get(n));
 			}
 			Thread.sleep(1000);
 
