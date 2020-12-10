@@ -115,7 +115,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 					wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
 					startTime2 = secondAvailableTimeAfternoon.getText();
 					System.out.println(startTime2);
-					secondAvailableTimeAfternoon.click();
+					jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
 					break;
 				}
 			}
@@ -156,7 +156,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 
 			for (int n = 0; n < additionalResourcesCount; n++) {
 				if (ap.getAdditionalResources().get(n).getText().contains(resourceName5))
-					ap.getAdditionalResources().get(n).click();
+					jse.executeScript("arguments[0].click();", ap.getAdditionalResources().get(n));
 			}
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
@@ -233,7 +233,7 @@ public class ChangeApptWithFee_ClubNotReqPackages_AdditionalResources extends ba
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

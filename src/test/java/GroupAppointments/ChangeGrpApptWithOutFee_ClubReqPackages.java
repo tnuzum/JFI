@@ -156,7 +156,7 @@ public class ChangeGrpApptWithOutFee_ClubReqPackages extends base {
 					wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
 					startTime2 = secondAvailableTimeAfternoon.getText();
 					System.out.println(startTime2);
-					secondAvailableTimeAfternoon.click();
+					jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
 					break;
 				}
 			}
@@ -293,7 +293,7 @@ public class ChangeGrpApptWithOutFee_ClubReqPackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

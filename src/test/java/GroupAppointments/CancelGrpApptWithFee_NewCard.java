@@ -140,7 +140,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 			for (int n = 0; n < additionalResourcesCount; n++) {
 				if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
-					ap.getAdditionalResources().get(n).click();
+					jse.executeScript("arguments[0].click();", ap.getAdditionalResources().get(n));
 			}
 
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
@@ -172,7 +172,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -365,7 +365,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

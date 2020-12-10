@@ -193,7 +193,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 
 			for (int n = 0; n < additionalResourcesCount; n++) {
 				if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
-					ap.getAdditionalResources().get(n).click();
+					jse.executeScript("arguments[0].click();", ap.getAdditionalResources().get(n));
 			}
 
 			// Noting down the total amount
@@ -296,7 +296,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -427,7 +427,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 					if (d.getMyAppts().get(k).getText().contains(startTime)) {
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 						WebElement EditButton = d.getEditButton().get(k);
 
