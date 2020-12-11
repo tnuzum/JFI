@@ -438,6 +438,8 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 				monthYear = cp.getMonthYear().getText();
 			}
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+			Thread.sleep(1000);
 			cp.getCalDayBadge().click();
 
 			int eventCount = cp.getCalEventTitles().size();

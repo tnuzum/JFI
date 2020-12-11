@@ -467,7 +467,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			AppointmentsPO ap = new AppointmentsPO(driver);
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
-			ap.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptCancelButton());
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 			Thread.sleep(4000);
