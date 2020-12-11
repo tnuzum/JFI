@@ -378,15 +378,15 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 			PM.getExpirationYear().sendKeys("22");
 			PM.getSecurityCode().sendKeys("123");
 
-			Assert.assertEquals(rm.isWebElementPresent(PM.getSaveCardQuestions()), false);
+			Assert.assertEquals(rm.isWebElementPresent(PM.getSaveCardQuestions()), true);
 
-			Assert.assertEquals(rm.isWebElementPresent(PM.getOnAccountQuestions()), false);
+			Assert.assertEquals(rm.isWebElementPresent(PM.getOnAccountQuestions()), true);
 
-			Assert.assertEquals(rm.isWebElementPresent(PM.getInClubQuestions()), false);
+			Assert.assertEquals(rm.isWebElementPresent(PM.getInClubQuestions()), true);
 
-			Assert.assertTrue(PM.getSigPadInOut().getAttribute("style").contains("0"));
+			Assert.assertTrue(PM.getSigPadInOut().getAttribute("style").contains("1"));
 
-			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "true");
+			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), null);
 
 			jse.executeScript("arguments[0].click();", d.getBreadcrumbDashboard());
 
@@ -461,7 +461,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			Assert.assertTrue(PM.getSigPadInOut().getAttribute("style").contains("1"));
 
-			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), "false");
+			Assert.assertEquals(PM.getCheckBox().getAttribute("disabled"), null);
 
 			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 
