@@ -95,7 +95,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 		Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
 		Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());
 
-		c.getCancelLink().click();
+		jse.executeScript("arguments[0].click();", c.getCancelLink());
 
 		Assert.assertEquals(c.getPageHeader().getText(), "Select Courses / Events");
 	}
@@ -139,7 +139,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 			}
 		}
 
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		Thread.sleep(2000);
 		rm.ReviewSectionValidation("Fee(s)");
 

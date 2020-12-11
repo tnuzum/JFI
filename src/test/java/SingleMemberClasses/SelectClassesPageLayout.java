@@ -200,7 +200,7 @@ public class SelectClassesPageLayout extends base {
 			{
 				Assert.assertTrue(classTimeAndDuration.contains("Virtual"));
 				Assert.assertTrue(c.getVirtualClassSearch().isDisplayed());
-				w.click(); // Click on the specific class
+				jse.executeScript("arguments[0].click();", w); // Click on the specific class
 				break;
 			}
 		}
@@ -219,7 +219,7 @@ public class SelectClassesPageLayout extends base {
 		Assert.assertTrue(c.getVirtualRates().isDisplayed());
 		Assert.assertEquals(c.getVirtualRates().getText().trim(), "Virtual Class");
 
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		Thread.sleep(2000);
 
 		Assert.assertTrue(c.getVirtualReview().isDisplayed());
@@ -261,7 +261,7 @@ public class SelectClassesPageLayout extends base {
 				Assert.assertFalse(classTimeAndDuration.contains("Virtual"));
 				Assert.assertFalse(
 						rm.isElementPresent(By.xpath("//small[contains(@class, 'at-class-search-virtual')]")));
-				w.click(); // Click on the specific class
+				jse.executeScript("arguments[0].click();", w); // Click on the specific class
 				break;
 			}
 		}
@@ -278,7 +278,7 @@ public class SelectClassesPageLayout extends base {
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-rates-virtual')]")));
 
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		Thread.sleep(2000);
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-review-virtual')]")));
