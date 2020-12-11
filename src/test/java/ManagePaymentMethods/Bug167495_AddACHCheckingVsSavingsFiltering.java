@@ -129,6 +129,9 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering extends base {
 			Assert.assertTrue(mp.getNoThanks().size() > 0);
 			jse.executeScript("arguments[0].click();", mp.getNoThanks().get(0));
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(1000);
+
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
