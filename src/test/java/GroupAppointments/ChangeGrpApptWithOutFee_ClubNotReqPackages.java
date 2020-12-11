@@ -87,7 +87,7 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 						Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook1.toUpperCase()));
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-						d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(i).findElement(By.tagName("i")));
 
 						WebElement EditButton = d.getEditButton().get(i);
 

@@ -360,6 +360,7 @@ public class reusableMethods extends base {
 			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
 			Thread.sleep(1000);
 			cp.getCalEventTitle().click();
+			Thread.sleep(1000);
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
