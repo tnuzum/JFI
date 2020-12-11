@@ -351,7 +351,7 @@ public class EnrollInFreeCourseTest extends base {
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Use Existing Package")) {
 					Assert.assertTrue(driver.findElements(By.tagName("label")).get(i).isEnabled());
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}

@@ -358,7 +358,7 @@ public class UnenrollStandbyCourse extends base {
 				monthYear = cp.getMonthYear().getText();
 			}
 
-			jse.executeScript("arguments[0].click();", cp.getCalDayBadge());
+			cp.getCalDayBadge().click();
 
 			int eventCount = cp.getCalEventTitles().size();
 

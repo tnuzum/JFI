@@ -26,9 +26,13 @@ import resources.reusableWaits;
 public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll = "BARRE COMBAT FUSION";
+	private static String classToEnroll1 = "FREEZEMEMBERCLASS";
 	private static String classNameDisplayed = "Barre Combat Fusion";
+	private static String classNameDisplayed1 = "FreezeMemberClass";
 	private static String courseToEnroll = "FEECOURSE";
 	private static String courseNameDisplayed = "FeeCourse";
+	private static String courseToEnroll1 = "FREEZEMEMBERCOURSE";
+	private static String courseNameDisplayed1 = "FreezeMemberCourse";
 	private static String CourseStartMonth = "Jun";
 	private static int CourseStartYear = 2021;
 	public reusableWaits rw;
@@ -104,7 +108,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -124,7 +128,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
@@ -178,7 +182,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 			radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -199,7 +203,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
@@ -322,9 +326,9 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			Select s = new Select(c.getCourseClubDropdown());
-			s.selectByVisibleText("Jonas Sports-Plex");
+			s.selectByVisibleText("Studio Jonas");
 
-			rm.SelectClassOrCourseToEnroll(courseToEnroll);
+			rm.SelectClassOrCourseToEnroll(courseToEnroll1);
 
 			Thread.sleep(2000);
 			if (c.getPopupSignupButtonCourse().isEnabled()) {
@@ -336,12 +340,12 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			}
 			Thread.sleep(1000);
-			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), courseNameDisplayed));
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), courseNameDisplayed1));
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -356,12 +360,12 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 				;
 			}
 
-			PM.getNewCardButton().click();
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
@@ -395,9 +399,9 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
 			s = new Select(c.getClassClubDropdown());
-			s.selectByVisibleText("Jonas Sports-Plex");
+			s.selectByVisibleText("Studio Jonas");
 
-			rm.SelectClassOrCourseToEnroll(classToEnroll);
+			rm.SelectClassOrCourseToEnroll(classToEnroll1);
 
 			Thread.sleep(2000);
 
@@ -410,12 +414,12 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			}
 			Thread.sleep(2000);
-			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), classNameDisplayed));
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), classNameDisplayed1));
 
 			radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -436,7 +440,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
