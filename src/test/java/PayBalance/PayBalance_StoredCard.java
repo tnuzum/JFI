@@ -83,7 +83,8 @@ public class PayBalance_StoredCard extends base {
 			p.getCustomAmountInput().sendKeys("5.00");
 			Thread.sleep(3000);
 
-//			jse.executeScript("arguments[0].scrollIntoView(true);", p.getPayWithThisMethodButton1());
+			jse.executeScript("arguments[0].scrollIntoView(true);", p.getPayWithThisMethodButton1());
+			Thread.sleep(1000);
 			Actions a = new Actions(driver);
 			a.moveToElement(p.getPayWithThisMethodButton1()).click().build().perform();
 			rw.waitForAcceptButton();

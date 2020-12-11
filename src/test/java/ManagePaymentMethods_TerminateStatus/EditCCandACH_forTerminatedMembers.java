@@ -80,7 +80,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(1));
-		mp.getEditPaymentMethodsButton().get(1).click();
+		jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(1));
 		mp.getEditAccountHolder().clear();
 		mp.getEditAccountHolder().sendKeys("Seema1");
 		mp.getEditUSRoutingNumber().clear();
