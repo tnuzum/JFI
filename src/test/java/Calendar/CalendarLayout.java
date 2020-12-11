@@ -70,9 +70,6 @@ public class CalendarLayout extends base {
 
 		}
 
-		log.info("Driver Initialized for " + this.getClass().getSimpleName());
-		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 
