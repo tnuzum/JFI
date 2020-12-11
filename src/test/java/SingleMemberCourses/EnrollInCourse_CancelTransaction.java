@@ -134,7 +134,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i = 0; i < radioButtonCount; i++) {
 			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-				driver.findElements(By.tagName("label")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 				break;
 			}
 		}
