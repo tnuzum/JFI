@@ -163,7 +163,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 						break;
 					}
 				}
-				jse.executeScript("arguments[0].scrollIntoView(true);", c.getContinueButton());
+				jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 				Thread.sleep(2000);
 				rm.ReviewSectionValidation("Fee(s)");

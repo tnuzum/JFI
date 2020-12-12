@@ -250,6 +250,7 @@
 				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages" />
 			<class
 				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages" />
+				<class name="EME.EmailConfirmations" />
 
 
 		</classes>
@@ -378,7 +379,7 @@
 				name="Unenroll.Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow" />
 			<class
 				name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow" />
-			<class name="EME.EmailConfirmations" />
+			
 
 
 		</classes>
