@@ -360,6 +360,7 @@ public class reusableMethods2 extends base {
 			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
 			Thread.sleep(1000);
 			cp.getCalEventTitle().click();
+			Thread.sleep(1000);
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
@@ -1320,85 +1321,12 @@ public class reusableMethods2 extends base {
 
 		this.catchErrorMessage();
 
-		Select se = new Select(ap.getclubs());
-		List<WebElement> Clubs = se.getOptions();
-
-		int x = 0;
-		while (!ap.getclubs().isEnabled() && x < 100) {
-			System.out.println("Waiting for Clubs drop down to not be blank");
-			x++;
-		}
-
-		int count0 = Clubs.size();
-		System.out.println("1 " + count0);
-
-		for (int i = 0; i < count0; i++) {
-			String club = Clubs.get(i).getText();
-
-			if (club.equals(clubName)) {
-				se.selectByVisibleText(club);
-				break;
-			}
-		}
+		this.selectClub(clubName);
 		Thread.sleep(2000);
 
-		WebElement bic = ap.getBookableItemCategory();
+		this.selectProductCategory(productCategory);
 
-		Select s = new Select(bic);
-		List<WebElement> ProductCategories = s.getOptions();
-
-		int count = ProductCategories.size();
-		System.out.println(count);
-
-		for (int i = 0; i < count; i++) {
-			String category = ProductCategories.get(i).getText();
-
-			if (category.equals(productCategory)) {
-				s.selectByVisibleText(category);
-				break;
-			}
-		}
-
-		Select s1 = new Select(ap.getBookableItem());
-		Thread.sleep(2000);
-		List<WebElement> Products = s1.getOptions();
-
-		int count1 = Products.size();
-		System.out.println(count1);
-
-		for (int j = 0; j < count1; j++) {
-			String product = Products.get(j).getText();
-
-			if (product.equals(appointmentToBook)) {
-				s1.selectByVisibleText(product);
-				break;
-			}
-		}
-
-		WebElement rt = ap.getResourceType();
-
-		Select s2 = new Select(rt);
-		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
-
-		int count2 = Resources.size();
-		System.out.println(count2);
-
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
-
-			if (resource.equals(resourceName1)) {
-				s2.selectByVisibleText(resource);
-				break;
-			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-		Thread.sleep(2000);
+		this.makeNewAppointmentSelections(appointmentToBook, resourceName1);
 
 		this.calendarTomorrowClick();
 
@@ -1557,122 +1485,12 @@ public class reusableMethods2 extends base {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		Select se = new Select(ap.getclubs());
-		List<WebElement> Clubs = se.getOptions();
-
-		int x = 0;
-		while (!ap.getclubs().isEnabled() && x < 100) {
-			System.out.println("Waiting for Clubs drop down to not be blank");
-			x++;
-		}
-
-		int count0 = Clubs.size();
-		System.out.println("1 " + count0);
-
-		for (int i = 0; i < count0; i++) {
-			String club = Clubs.get(i).getText();
-
-			if (club.equals(clubName)) {
-				se.selectByVisibleText(club);
-				break;
-			}
-		}
+		this.selectClub(clubName);
 		Thread.sleep(2000);
 
-		WebElement bic = ap.getBookableItemCategory();
+		this.selectProductCategory(productCategory);
 
-		Select s = new Select(bic);
-		List<WebElement> ProductCategories = s.getOptions();
-
-		int count = ProductCategories.size();
-		System.out.println(count);
-
-		for (int i = 0; i < count; i++) {
-			String category = ProductCategories.get(i).getText();
-
-			if (category.equals(productCategory)) {
-				s.selectByVisibleText(category);
-				break;
-			}
-		}
-
-		Select s1 = new Select(ap.getBookableItem());
-		Thread.sleep(2000);
-		List<WebElement> Products = s1.getOptions();
-
-		int count1 = Products.size();
-		System.out.println(count1);
-
-		for (int j = 0; j < count1; j++) {
-			String product = Products.get(j).getText();
-
-			if (product.equals(appointmentToBook)) {
-				s1.selectByVisibleText(product);
-				break;
-			}
-		}
-
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-
-		Thread.sleep(1000);
-
-		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
-		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
-		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-		ap.getGroupMemberSearchInput().sendKeys("auto");
-		jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
-
-		Thread.sleep(2000);
-
-		int memberCount = ap.getGroupPopupAddButtons().size();
-		for (int i = 0; i < memberCount; i++)
-
-		{
-			String text = ap.getGroupPopupMembers().get(i).getText();
-			System.out.println(text);
-			if (ap.getGroupPopupMembers().get(i).getText().contains(groupMember)) {
-				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-				ap.getGroupPopupAddButtons().get(i).click();
-				break;
-			}
-		}
-
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-
-		WebElement rt = ap.getResourceType();
-
-		Select s2 = new Select(rt);
-		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
-
-		int count2 = Resources.size();
-		System.out.println(count2);
-
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
-
-			if (resource.equals(resourceName1)) {
-				s2.selectByVisibleText(resource);
-				break;
-			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-		Thread.sleep(2000);
+		this.makeNewGrpAppointmentSelections(groupMember, appointmentToBook, resourceName1);
 
 		this.calendarTomorrowClick();
 
@@ -1711,7 +1529,9 @@ public class reusableMethods2 extends base {
 				jse.executeScript("arguments[0].click();", firstAvailableTimeMorning);
 				break;
 			}
+
 		}
+
 		Thread.sleep(2000);
 
 		System.out.println("RMpopupSize = " + ap.getPopup1().size());
@@ -2117,7 +1937,8 @@ public class reusableMethods2 extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -2221,7 +2042,8 @@ public class reusableMethods2 extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -2435,7 +2257,8 @@ public class reusableMethods2 extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -2575,7 +2398,8 @@ public class reusableMethods2 extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -3047,27 +2871,31 @@ public class reusableMethods2 extends base {
 
 		Select s2 = new Select(rt);
 		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
+		if (!s2.getFirstSelectedOption().getText().equals("No Selection Required")) {
+			List<WebElement> Resources = s2.getOptions();
 
-		int count2 = Resources.size();
-		System.out.println(count2);
+			int count2 = Resources.size();
+			System.out.println(count2);
 
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
+			for (int k = 0; k < count2; k++) {
+				String resource = Resources.get(k).getText();
 
-			if (resource.equals(resourceName3)) {
-				s2.selectByVisibleText(resource);
-				break;
+				if (resource.equals(resourceName3)) {
+					s2.selectByVisibleText(resource);
+					break;
+				}
 			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
 
-		System.out.println("came out of the loop");
-		Thread.sleep(3000);
+			System.out.println("came out of the loop");
+			Thread.sleep(3000);
+
+		}
 		return null;
+
 	}
 
 	public Object makeNewAppointmentSelections(String appointmentToBook2, String resourceName3)
@@ -3104,26 +2932,29 @@ public class reusableMethods2 extends base {
 
 		Select s2 = new Select(rt);
 		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
 
-		int count2 = Resources.size();
-		System.out.println(count2);
+		if (!s2.getFirstSelectedOption().getText().equals("No Selection Required")) {
+			List<WebElement> Resources = s2.getOptions();
 
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
+			int count2 = Resources.size();
+			System.out.println(count2);
 
-			if (resource.equals(resourceName3)) {
-				s2.selectByVisibleText(resource);
-				break;
+			for (int k = 0; k < count2; k++) {
+				String resource = Resources.get(k).getText();
+
+				if (resource.equals(resourceName3)) {
+					s2.selectByVisibleText(resource);
+					break;
+				}
 			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
 
-		System.out.println("came out of the loop");
-		Thread.sleep(3000);
+			System.out.println("came out of the loop");
+			Thread.sleep(3000);
+		}
 
 		return null;
 	}
