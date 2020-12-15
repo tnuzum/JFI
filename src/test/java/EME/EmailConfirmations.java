@@ -266,7 +266,7 @@ public class EmailConfirmations {
 
 	}
 
-	@Test(priority = 10, description = "Verifies the Group Appointment Cancellation email")
+	@Test(priority = 10, description = "Verifies the Standby Promotion email")
 	public void StandbyPromotionEmailConfirmation() {
 		try {
 			int mailCount = emailUtils.getMessagesBySubject("Standby Notification – You're Enrolled", true, 20).length;
