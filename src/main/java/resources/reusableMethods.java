@@ -2867,27 +2867,31 @@ public class reusableMethods extends base {
 
 		Select s2 = new Select(rt);
 		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
+		if (!s2.getFirstSelectedOption().getText().equals("No Selection Required")) {
+			List<WebElement> Resources = s2.getOptions();
 
-		int count2 = Resources.size();
-		System.out.println(count2);
+			int count2 = Resources.size();
+			System.out.println(count2);
 
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
+			for (int k = 0; k < count2; k++) {
+				String resource = Resources.get(k).getText();
 
-			if (resource.equals(resourceName3)) {
-				s2.selectByVisibleText(resource);
-				break;
+				if (resource.equals(resourceName3)) {
+					s2.selectByVisibleText(resource);
+					break;
+				}
 			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
 
-		System.out.println("came out of the loop");
-		Thread.sleep(3000);
+			System.out.println("came out of the loop");
+			Thread.sleep(3000);
+
+		}
 		return null;
+
 	}
 
 	public Object makeNewAppointmentSelections(String appointmentToBook2, String resourceName3)
@@ -2924,26 +2928,29 @@ public class reusableMethods extends base {
 
 		Select s2 = new Select(rt);
 		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
 
-		int count2 = Resources.size();
-		System.out.println(count2);
+		if (!s2.getFirstSelectedOption().getText().equals("No Selection Required")) {
+			List<WebElement> Resources = s2.getOptions();
 
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
+			int count2 = Resources.size();
+			System.out.println(count2);
 
-			if (resource.equals(resourceName3)) {
-				s2.selectByVisibleText(resource);
-				break;
+			for (int k = 0; k < count2; k++) {
+				String resource = Resources.get(k).getText();
+
+				if (resource.equals(resourceName3)) {
+					s2.selectByVisibleText(resource);
+					break;
+				}
 			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
 
-		System.out.println("came out of the loop");
-		Thread.sleep(3000);
+			System.out.println("came out of the loop");
+			Thread.sleep(3000);
+		}
 
 		return null;
 	}
