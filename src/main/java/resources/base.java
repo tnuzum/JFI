@@ -208,7 +208,7 @@ public class base {
 		Date date2 = new Date();
 		ssTime = dateFormat2.format(date2);
 
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 
