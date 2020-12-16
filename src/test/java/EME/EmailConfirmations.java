@@ -10,7 +10,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-public class EmailConfirmations {
+import resources.base;
+
+public class EmailConfirmations extends base {
 	private static EmailUtils emailUtils;
 
 	@BeforeClass
@@ -22,11 +24,18 @@ public class EmailConfirmations {
 			e.printStackTrace();
 			// Assert.fail(e.getMessage());
 			// You have been successfully enrolled in the following class.
+
+			log.info("EmailConfirmations started");
+			System.out.println("EmailConfirmations started");
 		}
 	}
 
 	@Test(priority = 1, description = "confirms the number of unread emails")
 	public void numberOfUnreadMails() throws MessagingException {
+
+		log.info("numberOfUnreadMails started");
+		System.out.println("numberOfUnreadMails started");
+
 		int count = emailUtils.getNumberOfUnreadMessages();
 		System.out.println(count);
 		Assert.assertTrue(count > 0);
@@ -35,6 +44,10 @@ public class EmailConfirmations {
 	@Test(priority = 2, description = "Verifies the Class Enrollment confirmation email")
 	public void ClassEnrollmentConfirmation() {
 		try {
+
+			log.info("ClassEnrollmentConfirmation started");
+			System.out.println("ClassEnrollmentConfirmation started");
+
 			Message email1 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email1));
@@ -63,6 +76,10 @@ public class EmailConfirmations {
 	@Test(priority = 3, description = "Verifies the Class Unenrollment confirmation email")
 	public void ClassUnenrollmentConfirmation() {
 		try {
+
+			log.info("ClassUnenrollmentConfirmation started");
+			System.out.println("ClassUnenrollmentConfirmation started");
+
 			Message email2 = emailUtils.getMessagesBySubject("Free Class Auto - Unenrollment Notification", true,
 					20)[0];
 
@@ -93,6 +110,10 @@ public class EmailConfirmations {
 	@Test(priority = 4, description = "Verifies the Course Enrollment confirmation email")
 	public void CourseEnrollmentConfirmation() {
 		try {
+
+			log.info("CourseEnrollmentConfirmation started");
+			System.out.println("CourseEnrollmentConfirmation started");
+
 			Message email3 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 20)[0];
 
 			System.out.println(emailUtils.getMessageContent(email3));
@@ -114,6 +135,9 @@ public class EmailConfirmations {
 	@Test(priority = 5, description = "Verifies the Course Unenrollment confirmation email")
 	public void CourseUnenrollmentConfirmation() {
 		try {
+			log.info("CourseUnenrollmentConfirmation started");
+			System.out.println("CourseUnenrollmentConfirmation started");
+
 			Message email4 = emailUtils.getMessagesBySubject("Free Course Auto - Unenrollment Notification", true,
 					20)[0];
 
@@ -139,6 +163,10 @@ public class EmailConfirmations {
 	@Test(priority = 6, description = "Verifies the Appointment Booking confirmation email")
 	public void BookAppointmentConfirmation() {
 		try {
+
+			log.info("BookAppointmentConfirmation started");
+			System.out.println("BookAppointmentConfirmation started");
+
 			Message email5 = emailUtils.getMessagesBySubject("Appointment Confirmation for Auto, Emailmember", true,
 					20)[0];
 
@@ -172,6 +200,10 @@ public class EmailConfirmations {
 	@Test(priority = 7, description = "Verifies the Appointment Cancellation email")
 	public void CancelApointmentConfirmation() {
 		try {
+
+			log.info("CancelApointmentConfirmation started");
+			System.out.println("CancelApointmentConfirmation started");
+
 			Message email6 = emailUtils.getMessagesBySubject(
 					"Cancellation of Appointment Confirmation for Auto, Emailmember", true, 20)[0];
 
@@ -203,6 +235,10 @@ public class EmailConfirmations {
 	@Test(priority = 8, description = "Verifies the Group Appointment Confirmation email")
 	public void BookGroupAppointmentConfirmation() {
 		try {
+
+			log.info("BookGroupAppointmentConfirmation started");
+			System.out.println("BookGroupAppointmentConfirmation started");
+
 			Message email7 = emailUtils.getMessagesBySubject("Appointment Confirmation for Auto, Emailmember2", true,
 					20)[0];
 
@@ -238,6 +274,9 @@ public class EmailConfirmations {
 	@Test(priority = 9, description = "Verifies the Group Appointment Cancellation email")
 	public void CancelGroupApointmentConfirmation() {
 		try {
+			log.info("CancelGroupApointmentConfirmation started");
+			System.out.println("CancelGroupApointmentConfirmation started");
+
 			Message email8 = emailUtils.getMessagesBySubject(
 					"Cancellation of Appointment Confirmation for Auto, Emailmember2", true, 20)[0];
 
@@ -269,6 +308,9 @@ public class EmailConfirmations {
 	@Test(priority = 10, description = "Verifies the Standby Promotion email")
 	public void StandbyPromotionEmailConfirmation() {
 		try {
+			log.info("StandbyPromotionEmailConfirmation started");
+			System.out.println("StandbyPromotionEmailConfirmation started");
+
 			int mailCount = emailUtils.getMessagesBySubject("Standby Notification – You're Enrolled", true, 20).length;
 
 			Assert.assertEquals(mailCount, 4);
@@ -282,6 +324,10 @@ public class EmailConfirmations {
 
 	@Test(priority = 11, description = "Verifies the Group Appointment Cancellation email")
 	public void markAsReadTheRest() throws MessagingException {
+
+		log.info("markAsReadTheRest started");
+		System.out.println("markAsReadTheRest started");
+
 		System.out.println(emailUtils.getNumberOfUnreadMessages());
 
 		Message[] messages = emailUtils.getMessages(emailUtils.getNumberOfUnreadMessages() - 1);
