@@ -322,7 +322,7 @@ public class EmailConfirmations extends base {
 
 	}
 
-	@Test(priority = 11, description = "Verifies the Group Appointment Cancellation email")
+	@Test(priority = 11, description = "Marks the rest as read")
 	public void markAsReadTheRest() throws MessagingException {
 
 		log.info("markAsReadTheRest started");
