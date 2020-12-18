@@ -75,7 +75,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -160,7 +160,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Single Class Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}
@@ -236,7 +236,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -322,7 +322,7 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 			Assert.assertTrue(u.getRefundOAAmnt().getText().contains("$10.00"));
 			Assert.assertTrue(u.getRefundOATaxInfo().getText().contains(YesRefundOATaxInfo));
 
-			u.getUnenrollButton().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollButton());
 
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
@@ -384,7 +384,8 @@ public class Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base
 
 					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 					Thread.sleep(1000);
-					cp.getCalEventTitles().get(i).click();
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 					break;
 				}
 			}

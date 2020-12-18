@@ -40,12 +40,13 @@ public class EditCCandACH_forTerminatedMembers extends base {
 
 	@Test(priority = 1, description = "Editing payment method for Terminated member")
 	public void EditCC_ForTerminatedMembers() throws IOException, InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		rm.activeMemberLogin("Seema", "June@123");
 		rm.openSideMenuIfNotOpenedAlready();
 		Assert.assertTrue(d.getMenuMyAccount().isDisplayed());
 		d.getMenuMyAccount().click();
 		d.getMenuManagePmntMethods().click();
-		mp.getEditPaymentMethodsButton().get(0).click();
+		jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(0));
 		mp.getEditNameOnCard().clear();
 		mp.getEditNameOnCard().sendKeys("Seem");
 		Thread.sleep(2000);
@@ -55,16 +56,14 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		mp.geteditExpireyear().clear();
 		mp.geteditExpireyear().sendKeys("25");
 
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-
 		jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
 		Thread.sleep(2000);
 		Actions a = new Actions(driver);
 		a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10).release()
 				.build().perform();
 		Thread.sleep(2000);
-		mp.getEditIAgreeCheckbox().click();
-		mp.getSaveChangesButtonCC().click();
+		jse.executeScript("arguments[0].click();", mp.getEditIAgreeCheckbox());
+		jse.executeScript("arguments[0].click();", mp.getSaveChangesButtonCC());
 
 		rw.waitForAcceptButton();
 		System.out.println(mp.getPopupConfirmation1().getText());
@@ -81,7 +80,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(1));
-		mp.getEditPaymentMethodsButton().get(1).click();
+		jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(1));
 		mp.getEditAccountHolder().clear();
 		mp.getEditAccountHolder().sendKeys("Seema1");
 		mp.getEditUSRoutingNumber().clear();
@@ -94,8 +93,8 @@ public class EditCCandACH_forTerminatedMembers extends base {
 				.build().perform();
 		Thread.sleep(2000);
 
-		mp.getIAgreeCheckboxEditACH().click();
-		mp.getSaveChangeButton().click();
+		jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxEditACH());
+		jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 		rw.waitForAcceptButton();
 		Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
 		System.out.println(mp.getPopupConfirmation1().getText());

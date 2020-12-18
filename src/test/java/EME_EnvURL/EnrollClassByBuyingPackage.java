@@ -2,11 +2,11 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -48,6 +48,7 @@ public class EnrollClassByBuyingPackage extends base {
 	private static PurchaseConfirmationPO PP;
 	private static ThankYouPO TY;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -76,6 +77,7 @@ public class EnrollClassByBuyingPackage extends base {
 		PM = new PaymentMethodsPO(driver);
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -94,7 +96,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -265,7 +267,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -328,7 +330,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 			unitCount = rm.getPackageUnitsForMember(packageName, "ccmember");
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -447,7 +449,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -511,7 +513,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 			unitCount = rm.getPackageUnitsForMember(packageName, "ncmember");
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -668,7 +670,7 @@ public class EnrollClassByBuyingPackage extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

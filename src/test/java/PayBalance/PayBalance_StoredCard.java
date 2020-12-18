@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -72,8 +73,6 @@ public class PayBalance_StoredCard extends base {
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
-//  	Thread.sleep(5000);
-//  	p.getAmountRadioButton3().click();
 
 			Thread.sleep(500);
 			int variable = 1;
@@ -85,9 +84,9 @@ public class PayBalance_StoredCard extends base {
 			Thread.sleep(3000);
 
 			jse.executeScript("arguments[0].scrollIntoView(true);", p.getPayWithThisMethodButton1());
-
-			p.getPayWithThisMethodButton1().click();
-
+			Thread.sleep(1000);
+			Actions a = new Actions(driver);
+			a.moveToElement(p.getPayWithThisMethodButton1()).click().build().perform();
 			rw.waitForAcceptButton();
 			p.getPopupConfirmationButton().click();
 			rw.waitForAcceptButton();

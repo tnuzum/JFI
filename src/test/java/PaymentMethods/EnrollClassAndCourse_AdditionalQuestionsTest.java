@@ -70,7 +70,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	@Test(priority = 1)
 	public void verifyAdditionalQuestionsOnEnrollCourseWithNewCard() throws InterruptedException, IOException {
 		try {
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -100,12 +100,12 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())
@@ -120,7 +120,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
@@ -187,7 +187,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	public void verifyAdditionalQuestionsOnEnrollClassWithNewCard() throws InterruptedException, IOException {
 		try {
 			rm.unenrollFromClass();
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -214,12 +214,12 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(5000);
 
@@ -235,7 +235,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 

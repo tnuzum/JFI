@@ -73,7 +73,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 			rw.waitForDashboardLoaded();
 
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();
@@ -156,7 +156,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -226,7 +226,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 					if (d.getMyAppts().get(k).getText().contains(startTime)) {
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 //					Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);
@@ -234,7 +234,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -245,7 +245,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 			AppointmentsPO ap = new AppointmentsPO(driver);
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
-			ap.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptCancelButton());
 			Assert.assertTrue(ap.getCancelFeeSection().getText().contains("Appointment Cancellation Fee"));
 			Assert.assertTrue(ap.getCancelFeeSection().getText()
 					.contains("This will cancel the appointment for all participants."));
@@ -289,7 +289,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 				{
 
 					if (d.getMyAppts().get(k).getText().contains(startTime)) {
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 //					Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);
@@ -297,7 +297,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -307,7 +307,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 			Thread.sleep(2000);
 
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
-			ap.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptCancelButton());
 
 			Thread.sleep(3000);
 
@@ -381,7 +381,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

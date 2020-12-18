@@ -83,7 +83,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCanadianBankSavingsAcct extends base
 			Thread.sleep(1000);
 
 			mp.getAccountHolder().sendKeys(memberName);
-			mp.getCanadianBankRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getCanadianBankRadio());
 
 			mp.getCanadaRoutingOne().sendKeys(prop.getProperty("CanadaBankRoutingNumberOne"));
 			mp.getCanadaRoutingTwo().sendKeys(prop.getProperty("CanadaBankRoutingNumberTwo"));

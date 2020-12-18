@@ -36,6 +36,7 @@ public class SelectCoursesPageLayout extends base {
 	private static SimpleDateFormat df3;
 	private static Calendar today;
 	private static WebDriverWait wait;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -58,12 +59,13 @@ public class SelectCoursesPageLayout extends base {
 		BT = new BreadcrumbTrailPO(driver);
 		d = new DashboardPO(driver);
 		c = new ClassSignUpPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		getEMEURL();
 		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -165,7 +167,7 @@ public class SelectCoursesPageLayout extends base {
 			{
 				Assert.assertTrue(classTimeAndDuration.contains("Virtual"));
 				Assert.assertTrue(c.getVirtualCourseSearch().isDisplayed());
-				w.click(); // Click on the specific class
+				jse.executeScript("arguments[0].click();", w); // Click on the specific class
 				break;
 			}
 		}
@@ -184,7 +186,7 @@ public class SelectCoursesPageLayout extends base {
 		Assert.assertTrue(c.getVirtualRates().isDisplayed());
 		Assert.assertEquals(c.getVirtualRates().getText().trim(), "Virtual Course");
 
-		c.getContinueButton().click();
+		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		Thread.sleep(2000);
 
 		Assert.assertTrue(c.getVirtualReview().isDisplayed());
@@ -197,7 +199,7 @@ public class SelectCoursesPageLayout extends base {
 	public void VerifyVirtualClassIndicatorIsNotPresentForNonVirtualClassWithOverrideURLs()
 			throws IOException, InterruptedException {
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -224,7 +226,7 @@ public class SelectCoursesPageLayout extends base {
 				Assert.assertFalse(classTimeAndDuration.contains("Virtual"));
 				Assert.assertFalse(
 						rm.isElementPresent(By.xpath("//small[contains(@class, 'at-course-search-virtual')]")));
-				w.click(); // Click on the specific class
+				jse.executeScript("arguments[0].click();", w); // Click on the specific class
 				break;
 			}
 		}
@@ -241,7 +243,6 @@ public class SelectCoursesPageLayout extends base {
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]")));
 
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		Thread.sleep(2000);
 

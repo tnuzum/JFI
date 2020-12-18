@@ -1,7 +1,6 @@
 package Demo;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -63,7 +62,8 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 	public void ScheduleAppointment() throws IOException, InterruptedException {
 		rm.activeMemberLogin("demo", "Testing1!");
 		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
@@ -213,7 +213,6 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getSelectTime1stAvailable()));
 			startTime = ap.getSelectTime1stAvailable().getText();
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", ap.getSelectTime1stAvailable());
 			Thread.sleep(1000);
 
@@ -374,7 +373,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -489,6 +488,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 			{
 				// rw.linksToBeClickable();
 				driver.findElements(By.tagName("a")).get(i).click();
+				;
 				break;
 			}
 

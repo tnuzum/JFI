@@ -2,7 +2,6 @@ package EME;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -41,6 +40,8 @@ public class PageLaunchTest extends base {
 	public reusableWaits rw;
 	public reusableMethods rm;
 
+	private static JavascriptExecutor jse;
+
 	private static String testName = null;
 
 	public PageLaunchTest() {
@@ -55,6 +56,7 @@ public class PageLaunchTest extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		d = new DashboardPO(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -217,7 +219,7 @@ public class PageLaunchTest extends base {
 	@Test(priority = 40)
 	public void ScheduleClassesButtonTest() throws InterruptedException, IOException {
 		try {
-			d.getMyClassesScheduleButton().click();// Accessing from Dashboard
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());// Accessing from Dashboard
 			ClassSignUpPO cs = new ClassSignUpPO(driver);
 			Assert.assertEquals(cs.getPageHeader().getText(), "Select Classes");
 			log.info("Select Classes Page Header Verified");
@@ -268,7 +270,7 @@ public class PageLaunchTest extends base {
 	@Test(priority = 45)
 	public void ScheduleApptsButtonTest() throws InterruptedException, IOException {
 		try {
-//		d.getMyApptsScheduleButton().click();//Accessing from Dashboard
+//		jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());//Accessing from Dashboard
 //			rm.catchErrorMessage();
 			AppointmentsPO a = new AppointmentsPO(driver);
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
@@ -283,6 +285,10 @@ public class PageLaunchTest extends base {
 				d.getmenuMyActivitiesSubMenu().getAttribute("style");
 				System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
 			}
+
+			WebDriverWait wait1 = new WebDriverWait(driver, 50);
+			wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuBookAppointment()));
+
 			d.getMenuBookAppointment().click();
 // The pageHeader changed in 7.28
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
@@ -322,7 +328,7 @@ public class PageLaunchTest extends base {
 	public void ManageFamilyButtonTest() throws InterruptedException, IOException {
 		try {
 			rm.activeMember1Login();
-			d.getMyFamilyManageButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyFamilyManageButton());
 			ManageFamilyPO a = new ManageFamilyPO(driver);
 			WebElement w = a.getPageHeader();
 			while (!w.getText().equals("Manage Family")) {
@@ -363,7 +369,7 @@ public class PageLaunchTest extends base {
 	@Test(priority = 55)
 	public void EditMyInfoButtonTest() throws InterruptedException, IOException {
 		try {
-			d.getMyInfoEditButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyInfoEditButton());
 			ManageProfilePO a = new ManageProfilePO(driver);
 			Assert.assertEquals(a.getPageHeader().getText(), "Manage Profile");
 			log.info("Manage Profile Page Header Verified");
@@ -406,7 +412,6 @@ public class PageLaunchTest extends base {
 			log.info("element is clickable");
 			System.out.println("element is clickable");
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", d.getPrivacyPolicyLink());
 			/*
 			 * Actions a = new Actions(driver);
@@ -459,10 +464,10 @@ public class PageLaunchTest extends base {
 	@Test(priority = 65)
 	public void ForgotUsernameButtonTest() throws InterruptedException, IOException {
 		try {
-			d.getLogoutButton().click();
+			jse.executeScript("arguments[0].click();", d.getLogoutButton());
 			Thread.sleep(2000);
 			LoginPO l = new LoginPO(driver);
-			l.getForgotUsername().click();
+			jse.executeScript("arguments[0].click();", l.getForgotUsername());
 
 			ForgotUsernamePO fu = new ForgotUsernamePO(driver);
 			WebElement w = fu.getPageHeader();
@@ -471,7 +476,8 @@ public class PageLaunchTest extends base {
 			}
 			Assert.assertEquals(fu.getPageHeader().getText(), "Forgot your Username?");
 			log.info("Forgot Username Page Header Verified");
-			fu.getCancelButton().click();
+			jse.executeScript("arguments[0].click();", fu.getCancelButton());
+			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -504,7 +510,7 @@ public class PageLaunchTest extends base {
 	public void ForgotPasswordButtonTest() throws InterruptedException, IOException {
 		try {
 			LoginPO l = new LoginPO(driver);
-			l.getForgotPassword().click();
+			jse.executeScript("arguments[0].click();", l.getForgotPassword());
 			ForgotPasswordPO fp = new ForgotPasswordPO(driver);
 			WebElement w = fp.getPageHeader();
 			while (!w.isDisplayed()) {

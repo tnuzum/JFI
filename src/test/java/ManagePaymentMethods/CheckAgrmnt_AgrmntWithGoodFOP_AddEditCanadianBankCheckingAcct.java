@@ -83,7 +83,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			Thread.sleep(1000);
 
 			mp.getAccountHolder().sendKeys(memberName);
-			mp.getCanadianBankRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getCanadianBankRadio());
 
 			mp.getCanadaRoutingOne().sendKeys(prop.getProperty("CanadaBankRoutingNumberOne"));
 			mp.getCanadaRoutingTwo().sendKeys(prop.getProperty("CanadaBankRoutingNumberTwo"));
@@ -184,7 +184,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 				}
 			}
 			Thread.sleep(1000);
-			mp.getEditCanadianBankRadio().click();
+			jse.executeScript("arguments[0].click();", mp.getEditCanadianBankRadio());
 			Thread.sleep(1000);
 			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Bank Account"));
 			String text = mp.getEditAccountHolder().getAttribute("ng-reflect-model");
@@ -202,7 +202,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 
 			Assert.assertTrue(mp.getEditCheckingRadio().isSelected());
 
-			mp.getEditSavingsRadio1().click();
+			jse.executeScript("arguments[0].click();", mp.getEditSavingsRadio1());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
 

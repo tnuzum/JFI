@@ -31,6 +31,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -54,6 +55,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		d = new DashboardPO(driver);
 		BT = new BreadcrumbTrailPO(driver);
 		c = new ClassSignUpPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -69,7 +71,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("freezemember", "Testing1!");
 		rw.waitForDashboardLoaded1();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -121,8 +123,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+			jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
 			c.getPopupCancelButtonCourse().click();
 			Thread.sleep(1000);
 
@@ -137,7 +138,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("terminate", "Testing1!");
 		rw.waitForDashboardLoaded1();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -190,8 +191,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+			jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -206,7 +206,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("feemember", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -251,8 +251,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+			jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
 
 			c.getPopupCancelButtonCourse().click();
 
@@ -268,7 +267,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("feemember", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -313,8 +312,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+			jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
 			c.getPopupCancelButtonCourse().click();
 			Thread.sleep(1000);
 			rm.memberLogout();
@@ -328,7 +326,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("feemember", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -382,8 +380,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+			jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -398,7 +395,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("feemember", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -451,8 +448,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+			jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -467,7 +463,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("outpermtdhrs", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -512,8 +508,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			((JavascriptExecutor) driver)
-					.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+			jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
 			c.getPopupCancelButtonCourse().click();
 
 			Thread.sleep(1000);
@@ -528,7 +523,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("hoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -584,12 +579,11 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			// ((JavascriptExecutor) driver)
+			// jse
 			// .executeScript("window.scrollTo(0," +
 			// c.getPopupCancelButtonCourse().getLocation().x + ")");
 
-			((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
-					c.getPopupCancelButtonCourse());
+			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 			Actions actions = new Actions(driver);
 			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 //			c.getPopupCancelButtonCourse().click();
@@ -607,7 +601,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.activeMemberLogin("hoh", "Testing1!");
 		rw.waitForDashboardLoaded();
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -626,7 +620,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		rm.SelectClassOrCourseToEnroll("SCHEDULINGCONFLICTCOURSE");
 
 		Thread.sleep(2000);
-		// ((JavascriptExecutor) driver)
+		// jse
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupSignupButtonCourse().getLocation().x + ")");
 		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
@@ -647,7 +641,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -673,7 +667,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			}
 		}
 		Thread.sleep(1000);
-		// ((JavascriptExecutor) driver)
+		// jse
 		// .executeScript("window.scrollTo(0," +
 		// c.getPopupCancelButtonCourse().getLocation().x + ")");
 		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());

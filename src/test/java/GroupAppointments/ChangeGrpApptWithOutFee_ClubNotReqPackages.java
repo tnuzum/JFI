@@ -64,7 +64,7 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			// Book an appointment and get the start time for the appointment
@@ -87,14 +87,14 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 						Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook1.toUpperCase()));
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-						d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(i).findElement(By.tagName("i")));
 
 						WebElement EditButton = d.getEditButton().get(i);
 
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -103,12 +103,12 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 			Thread.sleep(2000);
 			AppointmentsPO ap = new AppointmentsPO(driver);
-			ap.getEditApptChangeButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptChangeButton());
 			Thread.sleep(1000);
 			Assert.assertTrue(
 					ap.getNoFeeSection().getText().contains("There are no fees for changing this appointment."));
 
-			ap.getEditApptProceedButton1().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptProceedButton1());
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -149,7 +149,7 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 					wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
 					startTime2 = secondAvailableTimeAfternoon.getText();
 					System.out.println(startTime2);
-					secondAvailableTimeAfternoon.click();
+					jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
 					break;
 				}
 			}
@@ -185,7 +185,7 @@ public class ChangeGrpApptWithOutFee_ClubNotReqPackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

@@ -67,7 +67,7 @@ public class CancelApptWithFee_NewCard extends base {
 			rw.waitForDashboardLoaded();
 
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();
@@ -141,7 +141,7 @@ public class CancelApptWithFee_NewCard extends base {
 
 			for (int n = 0; n < additionalResourcesCount; n++) {
 				if (ap.getAdditionalResources().get(n).getText().contains(additionalResourceName))
-					ap.getAdditionalResources().get(n).click();
+					jse.executeScript("arguments[0].click();", ap.getAdditionalResources().get(n));
 			}
 
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
@@ -154,7 +154,7 @@ public class CancelApptWithFee_NewCard extends base {
 			Assert.assertEquals(ap.getAppointmentName().getText(), appointmentToBook);
 			Assert.assertEquals("Date: " + tomorrowsDate, ap.getAppointmentDate().getText());
 
-			ap.getbookButton().click();
+			jse.executeScript("arguments[0].click();", ap.getbookButton());
 
 			rw.waitForAcceptButton();
 
@@ -172,7 +172,7 @@ public class CancelApptWithFee_NewCard extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -247,7 +247,7 @@ public class CancelApptWithFee_NewCard extends base {
 					if (d.getMyAppts().get(k).getText().contains(startTime)) {
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 //					Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);
@@ -255,7 +255,7 @@ public class CancelApptWithFee_NewCard extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -266,7 +266,7 @@ public class CancelApptWithFee_NewCard extends base {
 			AppointmentsPO ap = new AppointmentsPO(driver);
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
-			ap.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptCancelButton());
 
 			Assert.assertTrue(ap.getCancelFeeSection().getText().contains("Appointment Cancellation Fee"));
 
@@ -366,7 +366,7 @@ public class CancelApptWithFee_NewCard extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

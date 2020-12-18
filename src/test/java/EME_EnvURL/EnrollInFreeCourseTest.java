@@ -2,11 +2,11 @@ package EME_EnvURL;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -39,6 +39,7 @@ public class EnrollInFreeCourseTest extends base {
 
 	public reusableWaits rw;
 	public reusableMethods rm;
+	private static JavascriptExecutor jse;
 
 	public EnrollInFreeCourseTest() {
 		rw = new reusableWaits();
@@ -62,6 +63,7 @@ public class EnrollInFreeCourseTest extends base {
 		BT = new BreadcrumbTrailPO(driver);
 		c = new ClassSignUpPO(driver);
 		TY = new ThankYouPO(driver);
+		jse = (JavascriptExecutor) driver;
 	}
 
 	@BeforeMethod
@@ -80,7 +82,7 @@ public class EnrollInFreeCourseTest extends base {
 			// rm.returnToDashboard();
 			rw.waitForDashboardLoaded();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -152,7 +154,7 @@ public class EnrollInFreeCourseTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -294,7 +296,7 @@ public class EnrollInFreeCourseTest extends base {
 
 			IntPackageCountBefore = rm.getPackageUnits("ServiceOA");
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -368,7 +370,7 @@ public class EnrollInFreeCourseTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -440,7 +442,7 @@ public class EnrollInFreeCourseTest extends base {
 //	rm.returnToDashboard();
 			rw.waitForDashboardLoaded();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
@@ -508,7 +510,7 @@ public class EnrollInFreeCourseTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

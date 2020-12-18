@@ -81,7 +81,7 @@ public class UnenrollStandbyCourse extends base {
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -358,6 +358,8 @@ public class UnenrollStandbyCourse extends base {
 				monthYear = cp.getMonthYear().getText();
 			}
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+			Thread.sleep(1000);
 			cp.getCalDayBadge().click();
 
 			int eventCount = cp.getCalEventTitles().size();
@@ -368,7 +370,8 @@ public class UnenrollStandbyCourse extends base {
 
 					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 					Thread.sleep(1000);
-					cp.getCalEventTitles().get(i).click();
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 					break;
 				}
 			}

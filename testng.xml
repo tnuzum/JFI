@@ -29,7 +29,8 @@
 			<class name="PaymentMethods.PayBalance_SaveCardQuestNotPresentForMember"/>
 			<class name="PaymentMethods.ShopPackages_SaveCardQuestNotPresentForFreezeMember"/>
 			<class name="PaymentMethods.ShopPackages_SaveCardQuestNotPresentForMember"/>
-			
+			<class name="PaymentMethods.PayBalance_SaveCardQuestNotPresentForTerminateMember"/>
+			<class name="PaymentMethods.PayBalance_SaveCardQuestPresentForTerminateMember"/>
 
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
@@ -42,6 +43,8 @@
 			<class
 				name="SingleMemberCourses.CourseDetailsPopupUIValidation" />
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
+			
+			<class name="ManageFamily.ManageFamilyLayoutTest"/>
 
 
 		</classes>
@@ -249,6 +252,7 @@
 				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages" />
 			<class
 				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages" />
+				<class name="EME.EmailConfirmations" />
 
 
 		</classes>
@@ -377,7 +381,7 @@
 				name="Unenroll.Class_PromoteFromStandby_UnenrollFallsOutsideTheWindow" />
 			<class
 				name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow" />
-			<class name="EME.EmailConfirmations" />
+			
 
 
 		</classes>
@@ -419,6 +423,8 @@
 				name="ManagePaymentMethods_FreezeStatus.CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr" />
 			<class
 				name="ManagePaymentMethods_FreezeStatus.Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr" />
+				<class name = "ManagePaymentMethods_TerminateStatus.AddCCandACH_ForTerminatedMembers"/>
+				<class name = "ManagePaymentMethods_TerminateStatus.EditCCandACH_forTerminatedMembers"/>
 		</classes>
 	</test>
 	

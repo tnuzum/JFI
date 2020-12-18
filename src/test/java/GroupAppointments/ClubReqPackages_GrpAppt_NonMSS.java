@@ -57,7 +57,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			DashboardPO p = new DashboardPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();

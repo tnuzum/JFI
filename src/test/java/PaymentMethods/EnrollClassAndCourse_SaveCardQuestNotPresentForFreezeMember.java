@@ -71,7 +71,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			rm.activeMemberLogin("freezemember2", "Testing1!"); // Login to EME
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -95,12 +95,12 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 			radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			Thread.sleep(5000);
 
 			while (!PM.getNewCardButton().isDisplayed())
@@ -115,7 +115,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
@@ -141,7 +141,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 			jse.executeScript("arguments[0].scrollIntoView(true);", d.getBreadcrumbDashboard());
 			jse.executeScript("arguments[0].click();", d.getBreadcrumbDashboard());
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
@@ -167,7 +167,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 			radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -188,7 +188,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 
@@ -297,7 +297,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			rm.activeMemberLogin("bauto", "Testing1!"); // Login to EME
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 			wait = new WebDriverWait(driver, 30);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -324,7 +324,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 			radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -345,7 +345,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			while (opacity.contains("1")) {
-				PM.getNewCardButton().click();
+				jse.executeScript("arguments[0].click();", PM.getNewCardButton());
 				opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
 			}
 

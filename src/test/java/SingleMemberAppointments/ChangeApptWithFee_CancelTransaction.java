@@ -79,7 +79,7 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 			AppointmentsPO ap = new AppointmentsPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			// Book an appointment and get the start time for the appointment
@@ -125,7 +125,7 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 					wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
 					startTime2 = secondAvailableTimeAfternoon.getText();
 					System.out.println(startTime2);
-					secondAvailableTimeAfternoon.click();
+					jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
 					break;
 				}
 			}

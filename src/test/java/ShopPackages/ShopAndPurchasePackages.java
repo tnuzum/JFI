@@ -309,7 +309,7 @@ public class ShopAndPurchasePackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -345,7 +345,7 @@ public class ShopAndPurchasePackages extends base {
 
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 
 			// Verifies the amount in the receipt is the same as it was displayed on the
@@ -507,7 +507,7 @@ public class ShopAndPurchasePackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -540,7 +540,7 @@ public class ShopAndPurchasePackages extends base {
 
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 
 			// Verifies the amount in the receipt is the same as it was displayed on the
@@ -730,7 +730,7 @@ public class ShopAndPurchasePackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -768,7 +768,7 @@ public class ShopAndPurchasePackages extends base {
 			// .presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm
 			// hidden-xs']//a")));
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber4));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
@@ -1156,7 +1156,7 @@ public class ShopAndPurchasePackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

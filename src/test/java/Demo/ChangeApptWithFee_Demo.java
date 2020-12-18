@@ -1,7 +1,6 @@
 package Demo;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -62,10 +61,10 @@ public class ChangeApptWithFee_Demo extends base {
 	@Test(priority = 1)
 	public void ChangeAppointmentWithFee() throws IOException, InterruptedException {
 		rm.activeMemberLogin("demo", "Testing1!");
-
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
-		d.getMyApptsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 
 		// Book an appointment and get the start time for the appointment
@@ -103,11 +102,11 @@ public class ChangeApptWithFee_Demo extends base {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
-		ap.getEditApptChangeButton().click();
+		jse.executeScript("arguments[0].click();", ap.getEditApptChangeButton());
 		Thread.sleep(1000);
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("There is a fee for changing this appointment."));
 		Assert.assertTrue(ap.getCancelFeeSection().getText().contains("If you proceed, you will be charged a fee of:"));
-		ap.getEditApptProceedButton1().click();
+		jse.executeScript("arguments[0].click();", ap.getEditApptProceedButton1());
 
 		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
@@ -170,7 +169,7 @@ public class ChangeApptWithFee_Demo extends base {
 				}
 
 				// AftrnunSlot.click();
-				JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 				jse.executeScript("arguments[0].click();", AftrnunSlot);
 
 				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
@@ -186,7 +185,7 @@ public class ChangeApptWithFee_Demo extends base {
 				wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
 				startTime2 = secondAvailableTimeAfternoon.getText();
 				System.out.println(startTime2);
-				secondAvailableTimeAfternoon.click();
+				jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
 				break;
 			}
 		}
@@ -294,7 +293,7 @@ public class ChangeApptWithFee_Demo extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -311,7 +310,7 @@ public class ChangeApptWithFee_Demo extends base {
 		ahp.getSearchField().sendKeys(receiptNumber);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-		ahp.getReceiptNumber().click();
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 		Thread.sleep(1000);
 
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page

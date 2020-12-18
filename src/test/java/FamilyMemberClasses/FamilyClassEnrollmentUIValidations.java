@@ -84,9 +84,6 @@ public class FamilyClassEnrollmentUIValidations extends base {
 
 		}
 
-		log.info("Driver Initialized for " + this.getClass().getSimpleName());
-		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		jse = (JavascriptExecutor) driver;
@@ -107,7 +104,7 @@ public class FamilyClassEnrollmentUIValidations extends base {
 
 		unitCount = rm.getPackageUnitsForMember(packageName, member5);
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());

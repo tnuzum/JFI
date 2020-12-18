@@ -35,6 +35,7 @@ public class ShopAndPurchasePackages extends base {
 	private static ThankYouPO TY;
 	private static AcctHistoryPO ahp;
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -62,6 +63,7 @@ public class ShopAndPurchasePackages extends base {
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
 		ahp = new AcctHistoryPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -295,7 +297,7 @@ public class ShopAndPurchasePackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -331,7 +333,7 @@ public class ShopAndPurchasePackages extends base {
 
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 
 			// Verifies the amount in the receipt is the same as it was displayed on the
@@ -494,7 +496,7 @@ public class ShopAndPurchasePackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -527,7 +529,7 @@ public class ShopAndPurchasePackages extends base {
 
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 
 			// Verifies the amount in the receipt is the same as it was displayed on the
@@ -641,7 +643,7 @@ public class ShopAndPurchasePackages extends base {
 //				System.out.println(PM.getNameOnCardField().getAttribute("value"));
 			Assert.assertEquals(prop.getProperty("activeMember8_fullname"),
 					PM.getNameOnCardField().getAttribute("value"));
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 			jse.executeScript("arguments[0].click();", PM.getCardNumberField());
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
@@ -716,7 +718,7 @@ public class ShopAndPurchasePackages extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -754,7 +756,7 @@ public class ShopAndPurchasePackages extends base {
 			// .presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm
 			// hidden-xs']//a")));
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber4));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page

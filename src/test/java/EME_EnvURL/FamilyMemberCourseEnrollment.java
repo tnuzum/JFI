@@ -1,12 +1,12 @@
 package EME_EnvURL;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -104,7 +104,8 @@ public class FamilyMemberCourseEnrollment extends base {
 		System.out.println("Before " + IntPackageCountBefore);
 		int unitCount = rm.getPackageUnitsForMember(packageName, member5);
 
-		d.getMyCoursesEventsScheduleButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -166,7 +167,7 @@ public class FamilyMemberCourseEnrollment extends base {
 
 				}
 
-				w.click(); // Click on the specific course
+				jse.executeScript("arguments[0].click();", w); // Click on the specific course
 				break;
 			}
 		}
@@ -358,7 +359,7 @@ public class FamilyMemberCourseEnrollment extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -385,7 +386,7 @@ public class FamilyMemberCourseEnrollment extends base {
 
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
-		ahp.getReceiptNumber().click();
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 		Thread.sleep(1000);
 		// Verifies the amount in the receipt is the same as it was displayed on the
 		// Purchase Packages page

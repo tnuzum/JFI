@@ -78,7 +78,7 @@ public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends b
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -168,7 +168,7 @@ public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends b
 
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Pay Course Fee")) {
-							Labels.get(j).click();
+							jse.executeScript("arguments[0].click();", Labels.get(j));
 							break;
 						}
 					}
@@ -245,7 +245,7 @@ public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends b
 			ClassSignUpPO c = new ClassSignUpPO(driver);
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -435,7 +435,8 @@ public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends b
 						By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 				monthYear = cp.getMonthYear().getText();
 			}
-
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+			Thread.sleep(1000);
 			cp.getCalDayBadge().click();
 
 			int eventCount = cp.getCalEventTitles().size();
@@ -446,7 +447,8 @@ public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends b
 
 					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 					Thread.sleep(1000);
-					cp.getCalEventTitles().get(i).click();
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 					break;
 				}
 			}
