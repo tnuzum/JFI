@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -97,7 +98,8 @@ public class ManageFamilyLayoutTest extends base {
 	@Test(priority = 4)
 	public void verifyPayNowFunctionality() {
 
-		mfp.getPayNowButtons().get(1).click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", mfp.getPayNowButtons().get(1));
 		wait.until(ExpectedConditions.textToBePresentInElement(mfp.getPageHeader(), "Pay Balance"));
 
 		Select s = new Select(
