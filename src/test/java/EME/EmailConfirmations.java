@@ -232,7 +232,7 @@ public class EmailConfirmations extends base {
 
 	}
 
-	@Test(priority = 8, description = "Verifies the Group Appointment Confirmation email")
+	@Test(priority = 9, description = "Verifies the Group Appointment Confirmation email")
 	public void BookGroupAppointmentConfirmation() {
 		try {
 
@@ -271,7 +271,7 @@ public class EmailConfirmations extends base {
 
 	}
 
-	@Test(priority = 9, description = "Verifies the Group Appointment Cancellation email")
+	@Test(priority = 8, description = "Verifies the Group Appointment Cancellation email")
 	public void CancelGroupApointmentConfirmation() {
 		try {
 			log.info("CancelGroupApointmentConfirmation started");

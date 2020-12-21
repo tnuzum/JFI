@@ -23,7 +23,7 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class EnrollClassMemberAndItemRestrictions extends base {
-	private static String classStartMonth = "DEC";
+	private static String classStartMonthYear = "DEC 2022";
 	private static String classStartDate = "22";
 	public static SoftAssert softAssertion = new SoftAssert();
 	private static DashboardPO d;
@@ -365,7 +365,7 @@ public class EnrollClassMemberAndItemRestrictions extends base {
 		String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
 				.getText();
 
-		while (!monthName.contains(classStartMonth)) {
+		while (!monthName.contains(classStartMonthYear)) {
 			driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-next-button')]")).click();
 			;
 			monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
