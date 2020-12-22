@@ -108,6 +108,14 @@ public class EditCCandACH_forTerminatedMembers extends base {
 			// Assert.fail(eci.getMessage());
 		}
 
+		catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Element Click Intercepted");
+			iob.printStackTrace();
+			log.error(iob.getMessage(), iob);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 2, description = "Editing ACH for Terminated members")
@@ -164,6 +172,14 @@ public class EditCCandACH_forTerminatedMembers extends base {
 			// Assert.fail(eci.getMessage());
 		}
 
+		catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Element Click Intercepted");
+			iob.printStackTrace();
+			log.error(iob.getMessage(), iob);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 3, description = "Deleting CC and ACH for terminated members")
@@ -184,7 +200,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
 			ne.printStackTrace();
-			getScreenshot(testName, driver);
+
 			log.error(ne.getMessage(), ne);
 			// Assert.fail(ne.getMessage());
 		}
