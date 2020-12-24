@@ -88,6 +88,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 			getScreenshot(testName, driver);
 			log.error(ae.getMessage(), ae);
 			ae.printStackTrace();
+			rm.catchErrorMessage();
 			// Assert.fail(ae.getMessage());
 		}
 
