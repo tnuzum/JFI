@@ -430,6 +430,8 @@ public class PageLaunchTest_IE extends base {
 			log.info("element is clickable");
 			System.out.println("element is clickable");
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", d.getPrivacyPolicyLink());
+
 			jse.executeScript("arguments[0].click();", d.getPrivacyPolicyLink());
 			/*
 			 * Actions a = new Actions(driver);

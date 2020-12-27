@@ -412,11 +412,15 @@ public class PageLaunchTest extends base {
 			log.info("element is clickable");
 			System.out.println("element is clickable");
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", d.getPrivacyPolicyLink());
+
 			jse.executeScript("arguments[0].click();", d.getPrivacyPolicyLink());
+
 			/*
 			 * Actions a = new Actions(driver);
 			 * a.moveToElement(d.getPrivacyPolicyLink()).click().build().perform();
 			 */
+
 			log.info("element is clicked");
 			System.out.println("element is clicked");
 			Thread.sleep(3000);
