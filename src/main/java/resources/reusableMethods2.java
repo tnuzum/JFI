@@ -643,7 +643,7 @@ public class reusableMethods2 extends base {
 
 	public Object SelectCourseStartYear(int CourseStartYear) throws InterruptedException {
 
-		SimpleDateFormat df = new SimpleDateFormat("YYYY");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy");
 		Calendar today = Calendar.getInstance();
 		String currentYear = df.format(today.getTime());
 

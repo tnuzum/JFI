@@ -628,12 +628,14 @@ public class reusableMethods extends base {
 
 	public Object SelectCourseStartMonth(String CourseStartMonth) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
 		int monthCount = MonthNames.findElements(By.tagName("label")).size();
 		for (int i = 0; i < monthCount; i++) {
 			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
 			if (monthName.equals(CourseStartMonth)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
+				jse.executeScript("arguments[0].click();", MonthNames.findElements(By.tagName("label")).get(i));
 				break;
 			}
 
@@ -642,6 +644,8 @@ public class reusableMethods extends base {
 	}
 
 	public Object SelectCourseStartYear(int CourseStartYear) throws InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		SimpleDateFormat df = new SimpleDateFormat("yyyy");
 		Calendar today = Calendar.getInstance();
@@ -657,7 +661,7 @@ public class reusableMethods extends base {
 
 		while (intYear != CourseStartYear) {
 			if (intcurrentYear < CourseStartYear) {
-				c.getYearRightButton().click();
+				jse.executeScript("arguments[0].click();", c.getYearRightButton());
 				year = c.getYear().getText();
 			} else {
 				c.getYearLeftButton().click();
