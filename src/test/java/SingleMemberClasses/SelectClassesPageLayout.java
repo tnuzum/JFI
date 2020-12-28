@@ -106,7 +106,7 @@ public class SelectClassesPageLayout extends base {
 		Assert.assertEquals(c.getDayHeader().size(), 1);
 		Assert.assertEquals(c.getDayHeader().get(0).getText(), day);
 
-		df3 = new SimpleDateFormat("M/d/YY");
+		df3 = new SimpleDateFormat("M/d/yy");
 		date = df3.format(today.getTime());
 		Assert.assertEquals(c.getDateHeader().size(), 1);
 		Assert.assertEquals(c.getDateHeader().get(0).getText(), date);
