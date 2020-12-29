@@ -77,10 +77,12 @@ public class EditCCandACH_forTerminatedMembers extends base {
 			jse.executeScript("arguments[0].click();", mp.getSaveChangesButtonCC());
 
 			rw.waitForAcceptButton();
-			System.out.println(mp.getPopupConfirmation1().getText());
-			Assert.assertEquals("CARD UPDATED", mp.getPopupConfirmation1().getText());
-
+			String text = mp.getPopupConfirmation1().getText();
+			log.info(text);
+			System.out.println(text);
 			mp.getPopupConfirmationButton().click();
+			Assert.assertEquals("CARD UPDATED", text);
+
 			Thread.sleep(2000);
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -143,9 +145,12 @@ public class EditCCandACH_forTerminatedMembers extends base {
 			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxEditACH());
 			jse.executeScript("arguments[0].click();", mp.getSaveChangeButton());
 			rw.waitForAcceptButton();
-			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
-			System.out.println(mp.getPopupConfirmation1().getText());
+			String text = mp.getPopupConfirmation1().getText();
+			log.info(text);
+			System.out.println(text);
 			mp.getPopupConfirmationButton().click();
+
+			Assert.assertEquals("BANK ACCOUNT UPDATED", text);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
