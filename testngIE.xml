@@ -16,7 +16,7 @@
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
 			<class name="ManageFamily.ManageFamilyLayoutTest"/>
-			<class name="ShopPackages.ShopAndPurchasePackages" />
+			
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
