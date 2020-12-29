@@ -78,12 +78,12 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 					.release().build().perform();
 			mp.getIAgreeCheckboxACH().click();
 			mp.getAddBankAcctButton().click();
-			// System.out.println(mp.getPopupConfirmation1().getText());
-			Thread.sleep(2000);
-			Assert.assertEquals("BANK ACCOUNT ADDED", mp.getPopupConfirmation1().getText());
-			// System.out.println(mp.getPopupConfirmation1().getText());
-
+			rw.waitForAcceptButton();
+			String text = (mp.getPopupConfirmation1().getText());
+			log.info(text);
+			System.out.println(text);
 			mp.getPopupConfirmationButton().click();
+			Assert.assertEquals("BANK ACCOUNT ADDED", text);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -143,10 +143,11 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
-
-			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
-
+			String text = (mp.getPopupConfirmation1().getText());
+			log.info(text);
+			System.out.println(text);
 			mp.getPopupConfirmationButton().click();
+			Assert.assertEquals("CREDIT CARD ADDED", text);
 			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
