@@ -8,8 +8,8 @@
 	<test thread-count="5" name="Grid Node Test">
 		<classes>
 		
-		<class name= "GridNodeTests.loginPageTest_IE"/>
-			<class name= "GridNodeTests.PageLaunchTest_IE"/>
+		<!-- <class name= "GridNodeTests.loginPageTest_IE"/>
+			<class name= "GridNodeTests.PageLaunchTest_IE"/> -->
 			
 			<class name="GridNodeTests.loginPageTest_FF" />
 			<class name="GridNodeTests.PageLaunchTest_FF" />
