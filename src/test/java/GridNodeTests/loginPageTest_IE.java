@@ -31,11 +31,12 @@ public class loginPageTest_IE extends base {
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 
-		log.info("Edge Browser: Running Tests on Selenium Grid");
+		log.info("IE Browser: Running Tests on Selenium Grid");
 		// DesiredCapabilities dc = new DesiredCapabilities();
 		DesiredCapabilities dc = DesiredCapabilities.internetExplorer();
 		dc.setCapability("ignoreZoomSetting", true);
 		dc.setBrowserName("internet explorer");
+		dc.setVersion("11");
 		dc.setPlatform(Platform.WINDOWS);
 		// System.setProperty("webdriver.edge.driver",
 		// "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
