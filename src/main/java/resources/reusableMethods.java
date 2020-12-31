@@ -1805,7 +1805,7 @@ public class reusableMethods extends base {
 		String classtext = cp.getCalendarTomorrow().getAttribute("class");
 
 		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1).click();
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.presenceOfElementLocated(
