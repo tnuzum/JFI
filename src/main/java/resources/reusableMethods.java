@@ -1763,7 +1763,19 @@ public class reusableMethods extends base {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+		String classtext = null;
+
+		try {
+			classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+				classtext = ap.getCalendarTomorrow().getAttribute("class");
+			}
+		}
 
 		if (classtext.contains("cal-out-month")) {
 			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
@@ -1800,14 +1812,29 @@ public class reusableMethods extends base {
 	public Object MyActivitiesTomorrowClick() throws InterruptedException {
 
 		CalendarPO cp = new CalendarPO(driver);
+
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		String classtext = cp.getCalendarTomorrow().getAttribute("class");
+		String classtext = null;
+
+		try {
+			classtext = cp.getCalendarTomorrow().getAttribute("class");
+
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			jse.executeScript("arguments[0].click();",
+					driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1));
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+			classtext = cp.getCalendarTomorrow().getAttribute("class");
+		}
 
 		if (classtext.contains("cal-out-month")) {
-			driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1).click();
+			jse.executeScript("arguments[0].click();",
+					driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1));
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
@@ -1833,7 +1860,19 @@ public class reusableMethods extends base {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
+		String classtext = null;
+
+		try {
+			classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+				classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+			}
+		}
 
 		if (classtext.contains("cal-out-month")) {
 			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
@@ -1874,8 +1913,19 @@ public class reusableMethods extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
+		String classtext = null;
 
-		String classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+		try {
+			classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+				classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+			}
+		}
 
 		if (classtext.contains("cal-out-month")) {
 			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
