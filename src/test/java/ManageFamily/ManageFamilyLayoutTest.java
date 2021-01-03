@@ -96,7 +96,7 @@ public class ManageFamilyLayoutTest extends base {
 	}
 
 	@Test(priority = 4)
-	public void verifyPayNowFunctionality() {
+	public void verifyPayNowFunctionality() throws InterruptedException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", mfp.getPayNowButtons().get(1));
@@ -105,6 +105,7 @@ public class ManageFamilyLayoutTest extends base {
 		Select s = new Select(
 				driver.findElement(By.xpath("//select[contains(@class, 'at-paybalance-dropdown-user')]")));
 		Assert.assertEquals(s.getFirstSelectedOption().getText(), "FreeMember Auto");
+		rm.memberLogout();
 
 	}
 
