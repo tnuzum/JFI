@@ -3061,4 +3061,12 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public Object moveToElementAndClick(WebDriver driver, WebElement element) {
+
+		Actions a = new Actions(driver);
+		a.moveToElement(element).click().build().perform();
+
+		return null;
+	}
+
 }
