@@ -199,7 +199,8 @@ public class SelectCoursesPageLayout extends base {
 	public void VerifyVirtualClassIndicatorIsNotPresentForNonVirtualClassWithOverrideURLs()
 			throws IOException, InterruptedException {
 
-		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
+		// jse.executeScript("arguments[0].click();",
+		// d.getMyCoursesEventsScheduleButton());
 
 		wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -239,7 +240,7 @@ public class SelectCoursesPageLayout extends base {
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]")));
 
-		c.getPopupSignupButtonCourse().click();
+		rm.moveToElementAndClick(driver, c.getPopupSignupButtonCourse());
 		Thread.sleep(2000);
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]")));
