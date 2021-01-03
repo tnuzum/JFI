@@ -273,7 +273,7 @@ public class SelectClassesPageLayout extends base {
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]")));
 
-		c.getPopupSignUpButton().click();
+		rm.moveToElementAndClick(driver, c.getPopupSignUpButton());
 		Thread.sleep(2000);
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-rates-virtual')]")));
