@@ -447,7 +447,7 @@ public class reusableMethods extends base {
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
 			this.returnToDashboard();
-			Assert.assertFalse(e);
+//			Assert.assertFalse(e);
 		}
 		return null;
 	}
