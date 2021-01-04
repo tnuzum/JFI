@@ -121,7 +121,8 @@ public class EditCCandACH_forTerminatedMembers extends base {
 
 	}
 
-	@Test(priority = 2, description = "Editing ACH for Terminated members")
+	@Test(priority = 2, dependsOnMethods = {
+			"EditCC_ForTerminatedMembers" }, description = "Editing ACH for Terminated members")
 	public void EditACH_ForTerminatedMembers() throws IOException, InterruptedException {
 
 		try {
@@ -181,6 +182,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		catch (java.lang.IndexOutOfBoundsException iob) {
 			System.out.println("Element Click Intercepted");
 			iob.printStackTrace();
+			getScreenshot(testName, driver);
 			log.error(iob.getMessage(), iob);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
