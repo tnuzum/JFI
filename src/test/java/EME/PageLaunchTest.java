@@ -430,7 +430,7 @@ public class PageLaunchTest extends base {
 			String parentid = it.next();
 			String childid = it.next();
 			driver.switchTo().window(childid); // Switch to Privacy Policy window
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			System.out.println(driver.getTitle());
 			Assert.assertEquals(driver.getTitle(), "Privacy Policy - Jonas Fitness");
 			driver.switchTo().window(parentid); // Switch back to EME window
