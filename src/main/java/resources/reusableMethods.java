@@ -3069,4 +3069,22 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public Object scrollIntoViewAndClick(WebDriver driver, WebElement element) throws InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(1000);
+		jse.executeScript("arguments[0].click();", element);
+
+		return null;
+	}
+
+	public Object scrollIntoView(WebDriver driver, WebElement element) throws InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
+
+		return null;
+	}
+
 }
