@@ -442,13 +442,20 @@ public class reusableMethods extends base {
 
 	public String catchErrorMessage() throws InterruptedException {
 		boolean e = this.catchErrorMessagePrivate();
+
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
-			this.returnToDashboard();
+			e = this.catchErrorMessagePrivate();
+			if (e == false) {
+				this.returnToDashboard();
+			} else {
+				System.out.println("Error is not going away");
+			}
 //			Assert.assertFalse(e);
 		}
+
 		return null;
 	}
 
