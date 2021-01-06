@@ -57,17 +57,17 @@ public class base {
 		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
 		prop = new Properties();
-//		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
-		FileInputStream fis = new FileInputStream(
-				System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
+		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
+		// FileInputStream fis = new FileInputStream(System.getProperty("user.dir") +
+		// "\\src\\main\\java\\resources\\properties");
 
 		prop.load(fis);
-		// String browserName = prop.getProperty("browser");
-		String browserName = System.getProperty("browser");
+		String browserName = prop.getProperty("browser");
+		// String browserName = System.getProperty("browser");
 		System.out.println(browserName);
 
-		// String testEnvironment = prop.getProperty("test_environment");
-		String testEnvironment = System.getProperty("test_environment");
+		String testEnvironment = prop.getProperty("test_environment");
+		// String testEnvironment = System.getProperty("test_environment");
 		System.out.println(testEnvironment);
 
 		if (testEnvironment.equals("grid")) {
@@ -220,8 +220,8 @@ public class base {
 
 	public void getEMEURL() {
 
-		// String EMELoginPage = prop.getProperty("EMELoginPage");
-		String EMELoginPage = System.getProperty("EMELoginPage");
+		String EMELoginPage = prop.getProperty("EMELoginPage");
+		// String EMELoginPage = System.getProperty("EMELoginPage");
 		System.out.println(EMELoginPage);
 
 		driver.get(EMELoginPage);
@@ -229,8 +229,8 @@ public class base {
 
 	public void getCOGURL() {
 
-		// String COGLoginPage = prop.getProperty("COGLoginPage");
-		String COGLoginPage = System.getProperty("COGLoginPage");
+		String COGLoginPage = prop.getProperty("COGLoginPage");
+		// String COGLoginPage = System.getProperty("COGLoginPage");
 		System.out.println(COGLoginPage);
 
 		driver.get(COGLoginPage);

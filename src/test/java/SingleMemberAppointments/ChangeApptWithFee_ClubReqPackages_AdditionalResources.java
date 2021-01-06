@@ -68,7 +68,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			// Book an appointment and get the start time for the appointment
@@ -118,7 +118,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 					wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
 					startTime2 = secondAvailableTimeAfternoon.getText();
 					System.out.println(startTime2);
-					secondAvailableTimeAfternoon.click();
+					jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
 					break;
 				}
 			}
@@ -183,7 +183,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 
 			for (int n = 0; n < additionalResourcesCount; n++) {
 				if (ap.getAdditionalResources().get(n).getText().contains(resourceName5))
-					ap.getAdditionalResources().get(n).click();
+					jse.executeScript("arguments[0].click();", ap.getAdditionalResources().get(n));
 			}
 			Thread.sleep(1000);
 
@@ -249,7 +249,7 @@ public class ChangeApptWithFee_ClubReqPackages_AdditionalResources extends base 
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

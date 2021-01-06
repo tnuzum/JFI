@@ -120,7 +120,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 			for (int i = 0; i < storedCardCount; i++) {
 				if (p.getStoredCards().get(i).getText().contains("5454")) {
-					p.getStoredCards().get(i).findElement(By.tagName("a")).click();
+					jse.executeScript("arguments[0].click();", p.getStoredCards().get(i).findElement(By.tagName("a")));
 					break;
 				}
 
@@ -173,7 +173,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 	public void verifyAdditionalQuestionOnAddACH() throws InterruptedException, IOException {
 		try {
 
-			mp.getBankAccountLink().click();
+			jse.executeScript("arguments[0].click();", mp.getBankAccountLink());
 			Thread.sleep(1000);
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(0).isDisplayed());
 			Assert.assertTrue(p.getOnAccountBankQuestion().isDisplayed());
@@ -219,7 +219,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 
 			for (int i = 0; i < storedCardCount; i++) {
 				if (p.getStoredCards().get(i).getText().contains("6789")) {
-					p.getStoredCards().get(i).findElement(By.tagName("a")).click();
+					jse.executeScript("arguments[0].click();", p.getStoredCards().get(i).findElement(By.tagName("a")));
 					break;
 				}
 
@@ -266,7 +266,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest extends base {
 	public void verifyAdditionalQuestionsOnPayBalance() throws InterruptedException, IOException {
 		try {
 
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));

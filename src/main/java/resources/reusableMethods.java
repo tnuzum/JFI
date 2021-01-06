@@ -207,16 +207,17 @@ public class reusableMethods extends base {
 	}
 
 	public String returnToDashboard() throws InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		Thread.sleep(1000);
 		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
 		while (leftMenuOpen.equals("false")) {
-			d.getMenuButton().click();
+			jse.executeScript("arguments[0].click();", d.getMenuButton());
 			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		jse.executeScript("arguments[0].click();", d.getDashboardButton());
 
 //		d.getBreadcrumbDashboard().click();
@@ -247,6 +248,7 @@ public class reusableMethods extends base {
 
 	public String unenrollFromClass() throws IOException, InterruptedException {
 		DashboardPO d = new DashboardPO(driver);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		boolean enrolled = this.isElementPresent(By.xpath("//classeswidget//div[@class='class-table-container']"));
 //		System.out.println(enrolled);
@@ -262,16 +264,16 @@ public class reusableMethods extends base {
 				wait.until(ExpectedConditions
 						.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-header')]")));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
-				d.getMyClassesClass1GearButton().click();
+				jse.executeScript("arguments[0].click();", d.getMyClassesClass1GearButton());
 
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-				d.getmyClassesUnenrollButton().click();
+				jse.executeScript("arguments[0].click();", d.getmyClassesUnenrollButton());
 				Thread.sleep(1000);
 				UnenrollPO u = new UnenrollPO(driver);
 				wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-				u.getUnenrollNoRefund().click();
+				jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 				Thread.sleep(1000);
 				rw.waitForAcceptButton();
 				u.getUnenrollConfirmYesButton().click();
@@ -358,13 +360,14 @@ public class reusableMethods extends base {
 			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
 			Thread.sleep(1000);
 			cp.getCalEventTitle().click();
+			Thread.sleep(1000);
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();
@@ -532,9 +535,9 @@ public class reusableMethods extends base {
 		return IntUnitCount;
 	}
 
-	public Object ThankYouPageValidations() {
+	public Object ThankYouPageValidations() throws InterruptedException {
 		ThankYouPO TY = new ThankYouPO(driver);
-
+		Thread.sleep(1000);
 		// Verifies the text on Thank You page and Print Receipt Popup
 		Assert.assertEquals("THANK YOU FOR YOUR ORDER", (TY.getThankYouText().getText()));
 		Assert.assertTrue(TY.getsmallText().getText().contains("The receipt # for this transaction is:"));
@@ -1204,6 +1207,7 @@ public class reusableMethods extends base {
 
 	public Object ConfirmAndCancelAppointmentNoFee(String Date, String startTime, String appointmentToBook)
 			throws IOException, InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1223,14 +1227,14 @@ public class reusableMethods extends base {
 
 					wait.until(ExpectedConditions
 							.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();", d.getMyAppts().get(i).findElement(By.tagName("i")));
 
 					WebElement EditButton = d.getEditButton().get(i);
 
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-					EditButton.click();
+					jse.executeScript("arguments[0].click();", EditButton);
 					break;
 				}
 			}
@@ -1241,7 +1245,7 @@ public class reusableMethods extends base {
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
 		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
-		a.getEditApptCancelButton().click();
+		jse.executeScript("arguments[0].click();", a.getEditApptCancelButton());
 		Thread.sleep(1000);
 		a.getEditApptCancelYesButton().click();
 		Thread.sleep(2000);
@@ -1310,92 +1314,19 @@ public class reusableMethods extends base {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
-		// p.getMyApptsScheduleButton().click();
+		// jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Thread.sleep(2000);
 
 		this.catchErrorMessage();
 
-		Select se = new Select(ap.getclubs());
-		List<WebElement> Clubs = se.getOptions();
-
-		int x = 0;
-		while (!ap.getclubs().isEnabled() && x < 100) {
-			System.out.println("Waiting for Clubs drop down to not be blank");
-			x++;
-		}
-
-		int count0 = Clubs.size();
-		System.out.println("1 " + count0);
-
-		for (int i = 0; i < count0; i++) {
-			String club = Clubs.get(i).getText();
-
-			if (club.equals(clubName)) {
-				se.selectByVisibleText(club);
-				break;
-			}
-		}
+		this.selectClub(clubName);
 		Thread.sleep(2000);
 
-		WebElement bic = ap.getBookableItemCategory();
+		this.selectProductCategory(productCategory);
 
-		Select s = new Select(bic);
-		List<WebElement> ProductCategories = s.getOptions();
-
-		int count = ProductCategories.size();
-		System.out.println(count);
-
-		for (int i = 0; i < count; i++) {
-			String category = ProductCategories.get(i).getText();
-
-			if (category.equals(productCategory)) {
-				s.selectByVisibleText(category);
-				break;
-			}
-		}
-
-		Select s1 = new Select(ap.getBookableItem());
-		Thread.sleep(2000);
-		List<WebElement> Products = s1.getOptions();
-
-		int count1 = Products.size();
-		System.out.println(count1);
-
-		for (int j = 0; j < count1; j++) {
-			String product = Products.get(j).getText();
-
-			if (product.equals(appointmentToBook)) {
-				s1.selectByVisibleText(product);
-				break;
-			}
-		}
-
-		WebElement rt = ap.getResourceType();
-
-		Select s2 = new Select(rt);
-		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
-
-		int count2 = Resources.size();
-		System.out.println(count2);
-
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
-
-			if (resource.equals(resourceName1)) {
-				s2.selectByVisibleText(resource);
-				break;
-			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-		Thread.sleep(2000);
+		this.makeNewAppointmentSelections(appointmentToBook, resourceName1);
 
 		this.calendarTomorrowClick();
 
@@ -1447,7 +1378,7 @@ public class reusableMethods extends base {
 		{
 
 			if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
-				ap.getCloseButton().click();
+				jse.executeScript("arguments[0].click();", ap.getCloseButton());
 			}
 
 			this.calendarTomorrowClick();
@@ -1528,7 +1459,7 @@ public class reusableMethods extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -1547,129 +1478,19 @@ public class reusableMethods extends base {
 		// DashboardPO p = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		String startTime = null;
-		// p.getMyApptsScheduleButton().click();
+		// jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(2000);
 
 		this.catchErrorMessage();
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		Select se = new Select(ap.getclubs());
-		List<WebElement> Clubs = se.getOptions();
-
-		int x = 0;
-		while (!ap.getclubs().isEnabled() && x < 100) {
-			System.out.println("Waiting for Clubs drop down to not be blank");
-			x++;
-		}
-
-		int count0 = Clubs.size();
-		System.out.println("1 " + count0);
-
-		for (int i = 0; i < count0; i++) {
-			String club = Clubs.get(i).getText();
-
-			if (club.equals(clubName)) {
-				se.selectByVisibleText(club);
-				break;
-			}
-		}
+		this.selectClub(clubName);
 		Thread.sleep(2000);
 
-		WebElement bic = ap.getBookableItemCategory();
+		this.selectProductCategory(productCategory);
 
-		Select s = new Select(bic);
-		List<WebElement> ProductCategories = s.getOptions();
-
-		int count = ProductCategories.size();
-		System.out.println(count);
-
-		for (int i = 0; i < count; i++) {
-			String category = ProductCategories.get(i).getText();
-
-			if (category.equals(productCategory)) {
-				s.selectByVisibleText(category);
-				break;
-			}
-		}
-
-		Select s1 = new Select(ap.getBookableItem());
-		Thread.sleep(2000);
-		List<WebElement> Products = s1.getOptions();
-
-		int count1 = Products.size();
-		System.out.println(count1);
-
-		for (int j = 0; j < count1; j++) {
-			String product = Products.get(j).getText();
-
-			if (product.equals(appointmentToBook)) {
-				s1.selectByVisibleText(product);
-				break;
-			}
-		}
-
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-
-		Thread.sleep(1000);
-
-		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
-		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
-		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-		ap.getGroupMemberSearchInput().sendKeys("auto");
-		jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
-
-		Thread.sleep(2000);
-
-		int memberCount = ap.getGroupPopupAddButtons().size();
-		for (int i = 0; i < memberCount; i++)
-
-		{
-			String text = ap.getGroupPopupMembers().get(i).getText();
-			System.out.println(text);
-			if (ap.getGroupPopupMembers().get(i).getText().contains(groupMember)) {
-				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-				ap.getGroupPopupAddButtons().get(i).click();
-				break;
-			}
-		}
-
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-
-		WebElement rt = ap.getResourceType();
-
-		Select s2 = new Select(rt);
-		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
-
-		int count2 = Resources.size();
-		System.out.println(count2);
-
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
-
-			if (resource.equals(resourceName1)) {
-				s2.selectByVisibleText(resource);
-				break;
-			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
-
-		System.out.println("came out of the loop");
-		Thread.sleep(2000);
+		this.makeNewGrpAppointmentSelections(groupMember, appointmentToBook, resourceName1);
 
 		this.calendarTomorrowClick();
 
@@ -1708,7 +1529,9 @@ public class reusableMethods extends base {
 				jse.executeScript("arguments[0].click();", firstAvailableTimeMorning);
 				break;
 			}
+
 		}
+
 		Thread.sleep(2000);
 
 		System.out.println("RMpopupSize = " + ap.getPopup1().size());
@@ -1806,7 +1629,7 @@ public class reusableMethods extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -1915,13 +1738,13 @@ public class reusableMethods extends base {
 	}
 
 	public String OpenNewcardFormIfNotOpenInFirstAttempt() {
-
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		PaymentPO p = new PaymentPO(driver);
 
 		String ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
 
 		while (ariaExpanded.equals("false")) {
-			p.getSelectPaymentNewCardButton().click();
+			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			log.error("NewCard Button was clicked again");
 			System.out.println("NewCard Button was clicked again");
 			ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
@@ -2083,12 +1906,13 @@ public class reusableMethods extends base {
 	public Object enrollInClass(String classToEnroll, String paymentOption, String payMethod, String classFee)
 			throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -2113,12 +1937,13 @@ public class reusableMethods extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
 		}
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 		Thread.sleep(5000);
@@ -2169,7 +1994,7 @@ public class reusableMethods extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -2182,12 +2007,13 @@ public class reusableMethods extends base {
 	public Object enrollInCourse(String courseToEnroll, String paymentOption, String payMethod, String courseFee,
 			String CourseStartMonth, int CourseStartYear) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -2216,12 +2042,13 @@ public class reusableMethods extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
 		}
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 		Thread.sleep(5000);
@@ -2272,7 +2099,7 @@ public class reusableMethods extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -2284,17 +2111,19 @@ public class reusableMethods extends base {
 
 	public Object myClassClickToUnenroll(String classEnrolled) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		DashboardPO d = new DashboardPO(driver);
 		int count = d.getClassInfoSections().size();
 		for (int i = 0; i < count; i++) {
 
 			if (d.getClassInfoSections().get(i).getText().contains(classEnrolled.toUpperCase())) {
 
-				d.getMyClassesClass1GearButtons().get(i).click();
+				jse.executeScript("arguments[0].click();", d.getMyClassesClass1GearButtons().get(i));
 				WebDriverWait wait = new WebDriverWait(driver, 30);
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButtons().get(i)));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButtons().get(i)));
-				d.getmyClassesUnenrollButtons().get(i).click();
+				jse.executeScript("arguments[0].click();", d.getmyClassesUnenrollButtons().get(i));
 				Thread.sleep(1000);
 				break;
 
@@ -2338,6 +2167,8 @@ public class reusableMethods extends base {
 		}
 
 		Thread.sleep(1000);
+		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadges().get(1));
+		Thread.sleep(1000);
 		cp.getCalDayBadges().get(1).click();
 		Thread.sleep(1000);
 		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
@@ -2354,12 +2185,14 @@ public class reusableMethods extends base {
 	public Object enrollFamilyMbrInClass(String classToEnroll, String paymentOption, String payMethod, String classFee,
 			String familyMbrName) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -2375,7 +2208,6 @@ public class reusableMethods extends base {
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
-		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
@@ -2425,7 +2257,8 @@ public class reusableMethods extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -2479,7 +2312,7 @@ public class reusableMethods extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -2493,12 +2326,13 @@ public class reusableMethods extends base {
 			String courseFee, String CourseStartMonth, String familyMbrName, int CourseStartYear)
 			throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		ClassSignUpPO c = new ClassSignUpPO(driver);
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -2518,7 +2352,7 @@ public class reusableMethods extends base {
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
-		JavascriptExecutor jse = ((JavascriptExecutor) driver);
+
 		int fmlyMbrcount = c.getFmlyMemberLabel().size();
 
 		for (int i = 0; i < fmlyMbrcount; i++) {
@@ -2564,7 +2398,8 @@ public class reusableMethods extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(paymentOption)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -2620,7 +2455,7 @@ public class reusableMethods extends base {
 
 			{
 				// rw.linksToBeClickable();
-				driver.findElements(By.tagName("a")).get(i).click();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 				break;
 			}
 
@@ -2673,7 +2508,8 @@ public class reusableMethods extends base {
 
 				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 				Thread.sleep(1000);
-				cp.getCalEventTitles().get(i).click();
+				Actions a = new Actions(driver);
+				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 				break;
 			}
 		}
@@ -2725,6 +2561,8 @@ public class reusableMethods extends base {
 
 		Thread.sleep(1000);
 
+		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+		Thread.sleep(1000);
 		cp.getCalDayBadge().click();
 
 		Thread.sleep(1000);
@@ -2737,7 +2575,8 @@ public class reusableMethods extends base {
 
 				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 				Thread.sleep(1000);
-				cp.getCalEventTitles().get(i).click();
+				Actions a = new Actions(driver);
+				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 				break;
 			}
 		}
@@ -2912,6 +2751,8 @@ public class reusableMethods extends base {
 
 	public Object ValidatechangeAppointmentScreen(String startTime1, String appointmentToBook1)
 			throws InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
@@ -2927,14 +2768,14 @@ public class reusableMethods extends base {
 					Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook1.toUpperCase()));
 					wait.until(ExpectedConditions
 							.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-					d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();", d.getMyAppts().get(i).findElement(By.tagName("i")));
 
 					WebElement EditButton = d.getEditButton().get(i);
 
 					wait.until(ExpectedConditions.visibilityOf(EditButton));
 					wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-					EditButton.click();
+					jse.executeScript("arguments[0].click();", EditButton);
 					break;
 				}
 			}
@@ -2944,7 +2785,7 @@ public class reusableMethods extends base {
 		Thread.sleep(2000);
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
-		ap.getEditApptChangeButton().click();
+		jse.executeScript("arguments[0].click();", ap.getEditApptChangeButton());
 		Thread.sleep(1000);
 		Assert.assertTrue(
 				ap.getChangeFeeSection().getText().contains("If you proceed, you will be charged a Change Fee of"));
@@ -2955,7 +2796,7 @@ public class reusableMethods extends base {
 					" This will remove other participants from your appointment. You will need to add them again when you select your new appointment."));
 		}
 
-		ap.getEditApptProceedButton1().click();
+		jse.executeScript("arguments[0].click();", ap.getEditApptProceedButton1());
 
 		while (ap.getloadingAvailabilityMessage().size() != 0) {
 			System.out.println("waiting1");
@@ -2963,6 +2804,7 @@ public class reusableMethods extends base {
 		}
 
 		System.out.println("came out of the loop");
+		Thread.sleep(3000);
 		return null;
 	}
 
@@ -3029,27 +2871,31 @@ public class reusableMethods extends base {
 
 		Select s2 = new Select(rt);
 		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
+		if (!s2.getFirstSelectedOption().getText().equals("No Selection Required")) {
+			List<WebElement> Resources = s2.getOptions();
 
-		int count2 = Resources.size();
-		System.out.println(count2);
+			int count2 = Resources.size();
+			System.out.println(count2);
 
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
+			for (int k = 0; k < count2; k++) {
+				String resource = Resources.get(k).getText();
 
-			if (resource.equals(resourceName3)) {
-				s2.selectByVisibleText(resource);
-				break;
+				if (resource.equals(resourceName3)) {
+					s2.selectByVisibleText(resource);
+					break;
+				}
 			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
 
-		System.out.println("came out of the loop");
+			System.out.println("came out of the loop");
+			Thread.sleep(3000);
 
+		}
 		return null;
+
 	}
 
 	public Object makeNewAppointmentSelections(String appointmentToBook2, String resourceName3)
@@ -3086,26 +2932,29 @@ public class reusableMethods extends base {
 
 		Select s2 = new Select(rt);
 		Thread.sleep(2000);
-		List<WebElement> Resources = s2.getOptions();
 
-		int count2 = Resources.size();
-		System.out.println(count2);
+		if (!s2.getFirstSelectedOption().getText().equals("No Selection Required")) {
+			List<WebElement> Resources = s2.getOptions();
 
-		for (int k = 0; k < count2; k++) {
-			String resource = Resources.get(k).getText();
+			int count2 = Resources.size();
+			System.out.println(count2);
 
-			if (resource.equals(resourceName3)) {
-				s2.selectByVisibleText(resource);
-				break;
+			for (int k = 0; k < count2; k++) {
+				String resource = Resources.get(k).getText();
+
+				if (resource.equals(resourceName3)) {
+					s2.selectByVisibleText(resource);
+					break;
+				}
 			}
-		}
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
 
-		System.out.println("came out of the loop");
-		Thread.sleep(2000);
+			System.out.println("came out of the loop");
+			Thread.sleep(3000);
+		}
 
 		return null;
 	}

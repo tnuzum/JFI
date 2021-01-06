@@ -3,6 +3,7 @@ package EME;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -15,6 +16,7 @@ import resources.reusableMethods;
 public class DashBoard_Layout extends base {
 
 	public reusableMethods rm;
+	private static DashboardPO d;
 
 	public DashBoard_Layout() {
 		rm = new reusableMethods();
@@ -26,7 +28,7 @@ public class DashBoard_Layout extends base {
 	public void initialize() throws InterruptedException, IOException {
 		driver = initializeDriver();
 		rm.setDriver(driver);
-
+		d = new DashboardPO(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
@@ -36,8 +38,6 @@ public class DashBoard_Layout extends base {
 
 	@Test(priority = 1)
 	public void VerifyHeaderSectionPresent() throws IOException, InterruptedException {
-
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 
 		// Verify the header text value
 		Assert.assertTrue(d.getPageHeader().isDisplayed());
@@ -62,8 +62,6 @@ public class DashBoard_Layout extends base {
 	@Test(priority = 2)
 	public void VerifyMyAccountSection() {
 
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
-
 		// My Account Section
 
 		Assert.assertTrue(d.getMyAccountSectionLabel().isDisplayed());
@@ -77,8 +75,6 @@ public class DashBoard_Layout extends base {
 	@Test(priority = 3)
 	public void VerifyMyUpcomingAppointmentsSection() {
 
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
-
 		// My Upcoming Appointments Section
 		Assert.assertTrue(d.getMyApptsSectionLabel().isDisplayed());
 		String mApptsSectionLabel = d.getMyApptsSectionLabel().getText();
@@ -89,7 +85,6 @@ public class DashBoard_Layout extends base {
 	@Test(priority = 4)
 	public void VerifyMyUpcomingClassesSection() {
 
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 		// My Upcoming Classes Section
 		Assert.assertTrue(d.getMyClassesSectionLabel().isDisplayed());
 		String myClassesSectionLabel = d.getMyClassesSectionLabel().getText();
@@ -100,8 +95,6 @@ public class DashBoard_Layout extends base {
 	@Test(priority = 5)
 	public void VerifyMyUpcomingCoursesEventsSection() {
 
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
-
 		// My Upcoming Courses/Events Section
 		Assert.assertTrue(d.getMyCoursesEventsSectionLabel().isDisplayed());
 		String myCoursesSectionLabel = d.getMyCoursesEventsSectionLabel().getText();
@@ -111,8 +104,6 @@ public class DashBoard_Layout extends base {
 
 	@Test(priority = 6)
 	public void VerifyMyInfo() {
-
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 
 		// My Info Section
 		Assert.assertTrue(d.getMyInfoSectionLabel().isDisplayed());
@@ -127,8 +118,6 @@ public class DashBoard_Layout extends base {
 	@Test(priority = 7)
 	public void VerifyMyFamily() {
 
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
-
 		// My Family Section
 
 		Assert.assertTrue(d.getMyFamilySectionLabel().isDisplayed());
@@ -141,8 +130,6 @@ public class DashBoard_Layout extends base {
 	@Test(priority = 8)
 	public void VerifyVisitsSection() {
 
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
-
 		// Visits By Month Section
 		Assert.assertTrue(d.getMyVisitsSectionLabel().isDisplayed());
 		String visitsSectionLabel = d.getMyVisitsSectionLabel().getText();
@@ -151,8 +138,6 @@ public class DashBoard_Layout extends base {
 
 	@Test(priority = 9)
 	public void VerifyAdditionalLinksSection() {
-
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
 
 		// Additional Links
 		Assert.assertTrue(d.getAdditionalLinksSectionLabel().isDisplayed());
@@ -163,12 +148,20 @@ public class DashBoard_Layout extends base {
 	@Test(priority = 10)
 	public void VerifyPrinacyPolicyLinkPresent() {
 
-		DashboardPO d = new DashboardPO(driver); // Define the driver for Dash Board page Objects
-
 //			Privacy Policy Label and Link Present
 
 		Assert.assertTrue(d.getPrivacyAndSecurityLabel().isDisplayed());
 		Assert.assertTrue(d.getPrivacyPolicyLink().isDisplayed());
+
+	}
+
+	@Test(priority = 11)
+	public void VerifyHomeClubName() {
+
+//			Home club is verified
+		Select s = new Select(driver.findElement(By.tagName("select")));
+
+		Assert.assertTrue(s.getFirstSelectedOption().getText().equals("Jonas Sports-Plex"));
 
 	}
 

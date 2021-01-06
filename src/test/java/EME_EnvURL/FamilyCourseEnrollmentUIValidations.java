@@ -1,12 +1,12 @@
 package EME_EnvURL;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -59,6 +59,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 	private static String member8 = "Terminate";
 	private static String member8Rate = "Not Eligible";
 	private static int unitCount = 0;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -77,6 +78,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		// String EMELoginPage = prop.getProperty("EMELoginPage");
 		driver.get(EMELoginPage);
@@ -95,7 +97,7 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 
 		unitCount = rm.getPackageUnitsForMember(packageName, member5);
 
-		d.getMyCoursesEventsScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());

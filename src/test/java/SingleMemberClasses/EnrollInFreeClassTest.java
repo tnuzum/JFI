@@ -73,7 +73,7 @@ public class EnrollInFreeClassTest extends base {
 			rm.activeMemberLogin("emailmember", "Testing1!");
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -111,7 +111,7 @@ public class EnrollInFreeClassTest extends base {
 			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
 
-			c.getContinueButton().click();
+			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
@@ -144,7 +144,7 @@ public class EnrollInFreeClassTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -214,16 +214,16 @@ public class EnrollInFreeClassTest extends base {
 				}
 				WebDriverWait wait = new WebDriverWait(driver, 60);
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
-				d.getMyClassesClass1GearButton().click();
+				jse.executeScript("arguments[0].click();", d.getMyClassesClass1GearButton());
 
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-				d.getmyClassesUnenrollButton().click();
+				jse.executeScript("arguments[0].click();", d.getmyClassesUnenrollButton());
 				Thread.sleep(1000);
 				UnenrollPO u = new UnenrollPO(driver);
 				wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-				u.getUnenrollNoRefund().click();
+				jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 				Thread.sleep(1000);
 				rw.waitForAcceptButton();
 				u.getUnenrollConfirmYesButton().click();
@@ -281,7 +281,8 @@ public class EnrollInFreeClassTest extends base {
 
 			IntPackageCountBefore = rm.getPackageUnits("ServiceNC");
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
+			// d.getMyClassesScheduleButton().click();
 			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -322,7 +323,7 @@ public class EnrollInFreeClassTest extends base {
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Use Existing Package")) {
 					Assert.assertTrue(driver.findElements(By.tagName("label")).get(i).isEnabled());
-					driver.findElements(By.tagName("label")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -360,7 +361,7 @@ public class EnrollInFreeClassTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -428,7 +429,7 @@ public class EnrollInFreeClassTest extends base {
 			rm.activeMember3Login();
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 			Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());
@@ -500,7 +501,7 @@ public class EnrollInFreeClassTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

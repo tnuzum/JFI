@@ -1,11 +1,11 @@
 package EME_EnvURL;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -26,6 +26,7 @@ public class EnrollClass_ClubSettings extends base {
 
 	public reusableWaits rw;
 	public reusableMethods rm;
+	private static JavascriptExecutor jse;
 
 	public EnrollClass_ClubSettings() {
 		rw = new reusableWaits();
@@ -41,6 +42,7 @@ public class EnrollClass_ClubSettings extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		// String EMELoginPage = prop.getProperty("EMELoginPage");
 		driver.get(EMELoginPage);
@@ -67,7 +69,7 @@ public class EnrollClass_ClubSettings extends base {
 		rw.waitForDashboardLoaded();
 		DashboardPO d = new DashboardPO(driver);
 		BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
-		d.getMyClassesScheduleButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 		Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
 		Assert.assertEquals("Select Classes", BT.getBreadcrumb2().getText());

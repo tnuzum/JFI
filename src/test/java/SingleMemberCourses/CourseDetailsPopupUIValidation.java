@@ -1,11 +1,11 @@
 package SingleMemberCourses;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -56,7 +56,8 @@ public class CourseDetailsPopupUIValidation extends base {
 
 		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 
-		d.getMyCoursesEventsScheduleButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));

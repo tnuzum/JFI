@@ -2,7 +2,6 @@ package GridNodeTests;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -42,6 +41,7 @@ public class PageLaunchTest_Chrome extends base {
 	private static String EMELoginPage = "https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236";
 
 	private static DashboardPO d;
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 
@@ -71,6 +71,7 @@ public class PageLaunchTest_Chrome extends base {
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		d = new DashboardPO(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(EMELoginPage);
@@ -117,7 +118,7 @@ public class PageLaunchTest_Chrome extends base {
 
 	@Test(priority = 40)
 	public void ScheduleClassesButtonTest() throws InterruptedException {
-		d.getMyClassesScheduleButton().click();// Accessing from Dashboard
+		jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());// Accessing from Dashboard
 		ClassSignUpPO cs = new ClassSignUpPO(driver);
 		Assert.assertEquals(cs.getPageHeader().getText(), "Select Classes");
 		log.info("Select Classes Page Header Verified");
@@ -133,15 +134,25 @@ public class PageLaunchTest_Chrome extends base {
 
 	@Test(priority = 45)
 	public void ScheduleApptsButtonTest() throws InterruptedException {
-//		d.getMyApptsScheduleButton().click();//Accessing from Dashboard
+//		jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());//Accessing from Dashboard
 //			rm.catchErrorMessage();
 		AppointmentsPO a = new AppointmentsPO(driver);
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 //		log.info("Appointments Page Header Verified");
 //		d.getDashboardButton().click();
-		d.getMenuMyActivies().click();// Accessing from left pane menu
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click(); // Accessing from left pane menu
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuBookAppointment()));
 
 		d.getMenuBookAppointment().click();
+
 // The pageHeader changed in 7.28
 //		Assert.assertEquals(a.getPageHeader().getText(),"Appointments");
 		Assert.assertEquals(a.getPageHeader().getText(), "Appointments");
@@ -154,7 +165,7 @@ public class PageLaunchTest_Chrome extends base {
 	public void ManageFamilyButtonTest() throws InterruptedException {
 		rm.activeMemberLogin("rauto", "Testing1!");
 		rw.waitForDashboardLoaded();
-		d.getMyFamilyManageButton().click();
+		jse.executeScript("arguments[0].click();", d.getMyFamilyManageButton());
 		ManageFamilyPO a = new ManageFamilyPO(driver);
 		WebElement w = a.getPageHeader();
 		while (!w.getText().equals("Manage Family")) {

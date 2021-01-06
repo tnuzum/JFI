@@ -202,7 +202,7 @@ public class Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr extends base {
 			Assert.assertTrue(mp.getNoThanks().size() > 0);
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
 
-			mp.getEditCheckingRadio().click(); // Checking Account
+			jse.executeScript("arguments[0].click();", mp.getEditCheckingRadio()); // Checking Account
 
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);

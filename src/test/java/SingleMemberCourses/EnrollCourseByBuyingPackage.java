@@ -97,7 +97,7 @@ public class EnrollCourseByBuyingPackage extends base {
 //		Thread.sleep(2000);
 //		rm.returnToDashboard();
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -271,7 +271,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -336,7 +336,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			unitCount = rm.getPackageUnitsForMember(packageName, "ccmember");
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -379,7 +379,8 @@ public class EnrollCourseByBuyingPackage extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(buyPackageName)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -457,7 +458,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -523,7 +524,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			unitCount = rm.getPackageUnitsForMember(packageName, "ncmember");
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -565,7 +566,8 @@ public class EnrollCourseByBuyingPackage extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals(buyPackageName)) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -679,7 +681,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -777,7 +779,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-			u.getUnenrollNoRefund().click();
+			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 			Thread.sleep(1000);
 			rw.waitForAcceptButton();
 			u.getUnenrollConfirmYesButton().click();

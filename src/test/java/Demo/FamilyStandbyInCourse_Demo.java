@@ -2,12 +2,12 @@ package Demo;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -93,7 +93,8 @@ public class FamilyStandbyInCourse_Demo extends base {
 			DashboardPO d = new DashboardPO(driver);
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -327,7 +328,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

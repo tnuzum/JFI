@@ -94,9 +94,6 @@ public class CourseUnenrollTests extends base {
 
 		}
 
-		log.info("Driver Initialized for " + this.getClass().getSimpleName());
-		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		jse = (JavascriptExecutor) driver;
@@ -1313,7 +1310,7 @@ public class CourseUnenrollTests extends base {
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
@@ -1375,7 +1372,7 @@ public class CourseUnenrollTests extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

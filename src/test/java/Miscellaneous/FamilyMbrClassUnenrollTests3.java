@@ -2,7 +2,6 @@ package Miscellaneous;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -66,6 +65,7 @@ public class FamilyMbrClassUnenrollTests3 extends base {
 	private static String cannotCancelMsg = "We apologize, this class is not eligible for unenrollment.";
 
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -88,6 +88,7 @@ public class FamilyMbrClassUnenrollTests3 extends base {
 
 		rm.activeMemberLogin("unenrollhoh", "Testing1!");
 		rw.waitForDashboardLoaded();
+		jse = (JavascriptExecutor) driver;
 
 	}
 
@@ -1316,7 +1317,7 @@ public class FamilyMbrClassUnenrollTests3 extends base {
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 			PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));

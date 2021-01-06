@@ -1,11 +1,11 @@
 package EME;
 
 import java.io.IOException;
-import java.time.Duration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -48,7 +48,8 @@ public class MakeGroupApptTest extends base {
 	public void ScheduleAppointment() throws IOException, InterruptedException {
 		rm.activeMember1Login();
 		DashboardPO p = new DashboardPO(driver);
-		p.getMyApptsScheduleButton().click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 		Thread.sleep(5000);
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		while (ap.getBookableItemCategory().getText().isEmpty()) {

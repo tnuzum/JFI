@@ -2,12 +2,12 @@ package Demo;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.time.Duration;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -57,6 +57,7 @@ public class FamilyStandbyInClass_Demo extends base {
 
 	public reusableWaits rw;
 	public reusableMethods rm;
+	private static JavascriptExecutor jse;
 
 	public FamilyStandbyInClass_Demo() {
 		rw = new reusableWaits();
@@ -70,6 +71,7 @@ public class FamilyStandbyInClass_Demo extends base {
 		driver = initializeDriver();
 		rm.setDriver(driver);
 		rw.setDriver(driver);
+		jse = (JavascriptExecutor) driver;
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
 	}
@@ -91,7 +93,7 @@ public class FamilyStandbyInClass_Demo extends base {
 			DashboardPO d = new DashboardPO(driver);
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			Assert.assertEquals("Select Classes", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -325,7 +327,7 @@ public class FamilyStandbyInClass_Demo extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

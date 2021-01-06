@@ -63,7 +63,7 @@ public class ClubReqPackages_BookAppt_CancelTransaction extends base {
 			rm.activeMemberLogin("apptmember3", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 			rm.catchErrorMessage();
 			WebDriverWait wait = new WebDriverWait(driver, 30);

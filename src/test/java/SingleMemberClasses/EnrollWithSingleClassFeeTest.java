@@ -85,7 +85,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -155,7 +155,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 				int radioButtonCount = driver.findElements(By.tagName("label")).size();
 				for (int i = 0; i < radioButtonCount; i++) {
 					if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-						driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();",
+								driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 						break;
 					}
 				}
@@ -246,7 +247,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -306,7 +307,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -336,7 +337,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
@@ -410,7 +412,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -472,7 +474,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			rm.unenrollFromClass();
 
-			d.getMyClassesScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyClassesScheduleButton());
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
@@ -503,12 +505,14 @@ public class EnrollWithSingleClassFeeTest extends base {
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
 				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
 					break;
 				}
 			}
 
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
+			// c.getContinueButton().click();
 
 			Thread.sleep(5000);
 
@@ -520,6 +524,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			}
 
 			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
+			// PM.getNewCardButton().click();
 			Thread.sleep(3000);
 
 			String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
@@ -601,7 +606,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -669,16 +674,16 @@ public class EnrollWithSingleClassFeeTest extends base {
 				}
 				WebDriverWait wait = new WebDriverWait(driver, 60);
 				wait.until(ExpectedConditions.elementToBeClickable(d.getMyClassesClass1GearButton()));
-				d.getMyClassesClass1GearButton().click();
+				jse.executeScript("arguments[0].click();", d.getMyClassesClass1GearButton());
 
 				wait.until(ExpectedConditions.visibilityOf(d.getmyClassesUnenrollButton()));
 				wait.until(ExpectedConditions.elementToBeClickable(d.getmyClassesUnenrollButton()));
-				d.getmyClassesUnenrollButton().click();
+				jse.executeScript("arguments[0].click();", d.getmyClassesUnenrollButton());
 				Thread.sleep(1000);
 				UnenrollPO u = new UnenrollPO(driver);
 				wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 				wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
-				u.getUnenrollNoRefund().click();
+				jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
 				Thread.sleep(1000);
 				rw.waitForAcceptButton();
 				u.getUnenrollConfirmYesButton().click();

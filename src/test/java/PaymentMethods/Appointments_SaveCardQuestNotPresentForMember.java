@@ -68,7 +68,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			rw.waitForDashboardLoaded();
 
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();
@@ -282,14 +282,14 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 						Assert.assertTrue(d.getMyAppts().get(i).getText().contains(appointmentToBook.toUpperCase()));
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(i).findElement(By.tagName("i"))));
-						d.getMyAppts().get(i).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(i).findElement(By.tagName("i")));
 
 						WebElement EditButton = d.getEditButton().get(i);
 
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -298,9 +298,9 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
 			Thread.sleep(2000);
 
-			ap.getEditApptChangeButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptChangeButton());
 			Thread.sleep(1000);
-			ap.getEditApptProceedButton1().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptProceedButton1());
 
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
@@ -337,7 +337,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
 			startTime2 = secondAvailableTimeAfternoon.getText();
 			System.out.println(startTime2);
-			secondAvailableTimeAfternoon.click();
+			jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
 
 			Thread.sleep(2000);
 
@@ -448,7 +448,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 					if (d.getMyAppts().get(k).getText().contains(startTime2)) {
 						wait.until(ExpectedConditions
 								.elementToBeClickable(d.getMyAppts().get(k).findElement(By.tagName("i"))));
-						d.getMyAppts().get(k).findElement(By.tagName("i")).click();
+						jse.executeScript("arguments[0].click();", d.getMyAppts().get(k).findElement(By.tagName("i")));
 
 //					Thread.sleep(5000);
 						WebElement EditButton = d.getEditButton().get(k);
@@ -456,7 +456,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 						wait.until(ExpectedConditions.visibilityOf(EditButton));
 						wait.until(ExpectedConditions.elementToBeClickable(EditButton));
 
-						EditButton.click();
+						jse.executeScript("arguments[0].click();", EditButton);
 						break;
 					}
 				}
@@ -467,7 +467,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			AppointmentsPO ap = new AppointmentsPO(driver);
 			Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 			wait.until(ExpectedConditions.visibilityOf(ap.getEditApptCancelButton()));
-			ap.getEditApptCancelButton().click();
+			jse.executeScript("arguments[0].click();", ap.getEditApptCancelButton());
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
 			Thread.sleep(4000);
@@ -594,7 +594,7 @@ public class Appointments_SaveCardQuestNotPresentForMember extends base {
 			rw.waitForDashboardLoaded();
 
 			DashboardPO p = new DashboardPO(driver);
-			p.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			rm.catchErrorMessage();

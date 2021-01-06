@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -47,10 +48,10 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 		try {
 
 			rm.activeMemberLogin("kidapptmbr", "Testing1!");
-
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			startTime = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
@@ -65,7 +66,8 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

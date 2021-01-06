@@ -97,7 +97,7 @@ public class FamilyStandbyInCourseTest extends base {
 			DashboardPO d = new DashboardPO(driver);
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -227,7 +227,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 			}
 
-			c.getRestOnStandby().click();
+			jse.executeScript("arguments[0].click();", c.getRestOnStandby());
 
 			for (int i = 0; i < c.getMemberSections().size(); i++) {
 				String paymentOptions = c.getMemberSections().get(i).getText();
@@ -340,7 +340,7 @@ public class FamilyStandbyInCourseTest extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 

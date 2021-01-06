@@ -3,6 +3,7 @@ package FamilyAppointments;
 import java.io.IOException;
 
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -45,11 +46,11 @@ public class HOH_BookAppointmentForSelf extends base {
 	@Test
 	public void HohBookAppointmentForSelf() throws InterruptedException, IOException {
 		try {
-
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("appthoh", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
-			d.getMyApptsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
 			Thread.sleep(2000);
 
 			AppointmentsPO ap = new AppointmentsPO(driver);
@@ -66,7 +67,8 @@ public class HOH_BookAppointmentForSelf extends base {
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(this.getClass().getSimpleName(), driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

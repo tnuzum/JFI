@@ -77,7 +77,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 			DashboardPO d = new DashboardPO(driver);
 			BreadcrumbTrailPO BT = new BreadcrumbTrailPO(driver);
 
-			d.getMyCoursesEventsScheduleButton().click();
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
 			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
 			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
@@ -283,7 +283,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 
 				{
 					// rw.linksToBeClickable();
-					driver.findElements(By.tagName("a")).get(i).click();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
 					break;
 				}
 
@@ -310,7 +310,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
-			ahp.getReceiptNumber().click();
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 			Thread.sleep(1000);
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
