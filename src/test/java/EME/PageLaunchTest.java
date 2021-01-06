@@ -412,11 +412,15 @@ public class PageLaunchTest extends base {
 			log.info("element is clickable");
 			System.out.println("element is clickable");
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", d.getPrivacyPolicyLink());
+
 			jse.executeScript("arguments[0].click();", d.getPrivacyPolicyLink());
+
 			/*
 			 * Actions a = new Actions(driver);
 			 * a.moveToElement(d.getPrivacyPolicyLink()).click().build().perform();
 			 */
+
 			log.info("element is clicked");
 			System.out.println("element is clicked");
 			Thread.sleep(3000);
@@ -426,7 +430,7 @@ public class PageLaunchTest extends base {
 			String parentid = it.next();
 			String childid = it.next();
 			driver.switchTo().window(childid); // Switch to Privacy Policy window
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 			System.out.println(driver.getTitle());
 			Assert.assertEquals(driver.getTitle(), "Privacy Policy - Jonas Fitness");
 			driver.switchTo().window(parentid); // Switch back to EME window

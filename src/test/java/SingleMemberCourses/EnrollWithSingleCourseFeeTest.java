@@ -356,7 +356,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
 
 			Thread.sleep(3000);
-
+			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), courseNameDisplayed));
 			Assert.assertEquals(courseNameDisplayed, c.getClassName().getText());
 			Assert.assertEquals(courseTimeDisplayed, c.getClassStartTime().getText());
 			Assert.assertEquals(courseInstructorDisplayed, c.getCourseInstructor().getText());

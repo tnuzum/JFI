@@ -104,7 +104,7 @@ public class SelectCoursesPageLayout extends base {
 	@Test(priority = 3)
 	public void VerifyDefaultYearSelection() throws IOException, InterruptedException {
 
-		df2 = new SimpleDateFormat("YYYY");
+		df2 = new SimpleDateFormat("yyyy");
 		today = Calendar.getInstance();
 		String currentYear = df2.format(today.getTime());
 
@@ -115,7 +115,7 @@ public class SelectCoursesPageLayout extends base {
 	@Test(priority = 4)
 	public void VerifyCoursesReturnedForCurrentMonth() throws IOException, InterruptedException {
 
-		df3 = new SimpleDateFormat("MMM   YYYY");
+		df3 = new SimpleDateFormat("MMM   yyyy");
 		today = Calendar.getInstance();
 		String monthYear = df3.format(today.getTime()).toUpperCase();
 
@@ -180,7 +180,7 @@ public class SelectCoursesPageLayout extends base {
 		Assert.assertTrue(c.getVirtualDetails().isDisplayed());
 		Assert.assertEquals(c.getVirtualDetails().getText().trim(), "Virtual Course");
 
-		c.getPopupSignUpButton().click();
+		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
 
 		Assert.assertTrue(c.getVirtualRates().isDisplayed());
@@ -205,6 +205,7 @@ public class SelectCoursesPageLayout extends base {
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 		c.getCourseFilter().click();
+		Thread.sleep(1000);
 		c.getCourseKeyword().click();
 		Thread.sleep(2000);
 		c.getSearchField().sendKeys("VIRTUALTEST");
@@ -238,7 +239,7 @@ public class SelectCoursesPageLayout extends base {
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]")));
 
-		c.getPopupSignUpButton().click();
+		rm.moveToElementAndClick(driver, c.getPopupSignupButtonCourse());
 		Thread.sleep(2000);
 
 		Assert.assertFalse(rm.isElementPresent(By.xpath("//div[contains(@class, 'at-class-course-details-virtual')]")));

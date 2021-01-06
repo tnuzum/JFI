@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -95,14 +96,16 @@ public class ManageFamilyLayoutTest extends base {
 	}
 
 	@Test(priority = 4)
-	public void verifyPayNowFunctionality() {
+	public void verifyPayNowFunctionality() throws InterruptedException {
 
-		mfp.getPayNowButtons().get(1).click();
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", mfp.getPayNowButtons().get(1));
 		wait.until(ExpectedConditions.textToBePresentInElement(mfp.getPageHeader(), "Pay Balance"));
 
 		Select s = new Select(
 				driver.findElement(By.xpath("//select[contains(@class, 'at-paybalance-dropdown-user')]")));
 		Assert.assertEquals(s.getFirstSelectedOption().getText(), "FreeMember Auto");
+		rm.memberLogout();
 
 	}
 

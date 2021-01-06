@@ -3,6 +3,8 @@ browser = Chrome
 browser1 = Firefox
 browser2 = Edge
 browser3 = Safari
+browser4 = IE
+
 EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
 COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
 

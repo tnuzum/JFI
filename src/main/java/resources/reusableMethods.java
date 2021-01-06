@@ -442,13 +442,20 @@ public class reusableMethods extends base {
 
 	public String catchErrorMessage() throws InterruptedException {
 		boolean e = this.catchErrorMessagePrivate();
+
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
-			this.returnToDashboard();
-			Assert.assertFalse(e);
+			e = this.catchErrorMessagePrivate();
+			if (e == false) {
+				this.returnToDashboard();
+			} else {
+				System.out.println("Error is not going away");
+			}
+//			Assert.assertFalse(e);
 		}
+
 		return null;
 	}
 
@@ -628,12 +635,14 @@ public class reusableMethods extends base {
 
 	public Object SelectCourseStartMonth(String CourseStartMonth) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
 		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
 		int monthCount = MonthNames.findElements(By.tagName("label")).size();
 		for (int i = 0; i < monthCount; i++) {
 			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
 			if (monthName.equals(CourseStartMonth)) {
-				MonthNames.findElements(By.tagName("label")).get(i).click();
+				jse.executeScript("arguments[0].click();", MonthNames.findElements(By.tagName("label")).get(i));
 				break;
 			}
 
@@ -643,8 +652,11 @@ public class reusableMethods extends base {
 
 	public Object SelectCourseStartYear(int CourseStartYear) throws InterruptedException {
 
-		SimpleDateFormat df = new SimpleDateFormat("YYYY");
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+		SimpleDateFormat df = new SimpleDateFormat("yyyy");
 		Calendar today = Calendar.getInstance();
+		System.out.println(today.getTime());
 		String currentYear = df.format(today.getTime());
 
 		int intcurrentYear = Integer.parseInt(currentYear);
@@ -656,7 +668,7 @@ public class reusableMethods extends base {
 
 		while (intYear != CourseStartYear) {
 			if (intcurrentYear < CourseStartYear) {
-				c.getYearRightButton().click();
+				jse.executeScript("arguments[0].click();", c.getYearRightButton());
 				year = c.getYear().getText();
 			} else {
 				c.getYearLeftButton().click();
@@ -1758,7 +1770,19 @@ public class reusableMethods extends base {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		String classtext = ap.getCalendarTomorrow().getAttribute("class");
+		String classtext = null;
+
+		try {
+			classtext = ap.getCalendarTomorrow().getAttribute("class");
+
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+				classtext = ap.getCalendarTomorrow().getAttribute("class");
+			}
+		}
 
 		if (classtext.contains("cal-out-month")) {
 			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
@@ -1795,14 +1819,29 @@ public class reusableMethods extends base {
 	public Object MyActivitiesTomorrowClick() throws InterruptedException {
 
 		CalendarPO cp = new CalendarPO(driver);
+
+		WebDriverWait wait = new WebDriverWait(driver, 50);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		String classtext = cp.getCalendarTomorrow().getAttribute("class");
+		String classtext = null;
+
+		try {
+			classtext = cp.getCalendarTomorrow().getAttribute("class");
+
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			jse.executeScript("arguments[0].click();",
+					driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1));
+
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
+
+			classtext = cp.getCalendarTomorrow().getAttribute("class");
+		}
 
 		if (classtext.contains("cal-out-month")) {
-			driver.findElement(By.xpath("//i[contains(@class, 'right')]")).click();
+			jse.executeScript("arguments[0].click();",
+					driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1));
 
-			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.presenceOfElementLocated(
 					By.xpath("//div[@class = 'btn-group']//div[contains(@class, 'btn-white')][2]")));
 
@@ -1828,7 +1867,19 @@ public class reusableMethods extends base {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		String classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
+		String classtext = null;
+
+		try {
+			classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+				classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+			}
+		}
 
 		if (classtext.contains("cal-out-month")) {
 			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
@@ -1869,8 +1920,19 @@ public class reusableMethods extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
+		String classtext = null;
 
-		String classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+		try {
+			classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+				classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+			}
+		}
 
 		if (classtext.contains("cal-out-month")) {
 			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
@@ -3003,6 +3065,32 @@ public class reusableMethods extends base {
 				break;
 			}
 		}
+		return null;
+	}
+
+	public Object moveToElementAndClick(WebDriver driver, WebElement element) {
+
+		Actions a = new Actions(driver);
+		a.moveToElement(element).click().build().perform();
+
+		return null;
+	}
+
+	public Object scrollIntoViewAndClick(WebDriver driver, WebElement element) throws InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
+		Thread.sleep(1000);
+		jse.executeScript("arguments[0].click();", element);
+
+		return null;
+	}
+
+	public Object scrollIntoView(WebDriver driver, WebElement element) throws InterruptedException {
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
+
 		return null;
 	}
 

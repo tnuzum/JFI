@@ -156,7 +156,7 @@ public class CalendarLayout extends base {
 
 			if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
 
-				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1).click();
+				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(0).click();
 
 				WebDriverWait wait = new WebDriverWait(driver, 50);
 				wait.until(ExpectedConditions.presenceOfElementLocated(
@@ -181,7 +181,8 @@ public class CalendarLayout extends base {
 			Assert.assertTrue(u.getUnenrollButton().isDisplayed());
 			// jse.executeScript("arguments[0].click();", u.getCancelButton());
 			jse.executeScript("arguments[0].click();", u.getCancelButton());
-			Thread.sleep(1000);
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
 			cp.getCalendarViewLink().click();
 			Thread.sleep(1000);
@@ -331,7 +332,7 @@ public class CalendarLayout extends base {
 
 			if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
 
-				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(1).click();
+				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(0).click();
 
 				WebDriverWait wait = new WebDriverWait(driver, 50);
 				wait.until(ExpectedConditions.presenceOfElementLocated(
