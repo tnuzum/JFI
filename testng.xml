@@ -45,7 +45,7 @@
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
 			
 			<class name="ManageFamily.ManageFamilyLayoutTest"/>
-
+			<class name ="manageProfile.ChangeUserName"/>
 
 		</classes>
 	</test>
@@ -425,6 +425,7 @@
 				name="ManagePaymentMethods_FreezeStatus.Bug167495_AddACHCheckingVsSavingsFiltering_FreezeMbr" />
 				<class name = "ManagePaymentMethods_TerminateStatus.AddCCandACH_ForTerminatedMembers"/>
 				<class name = "ManagePaymentMethods_TerminateStatus.EditCCandACH_forTerminatedMembers"/>
+				
 		</classes>
 	</test>
 	

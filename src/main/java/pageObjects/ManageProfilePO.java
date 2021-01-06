@@ -25,6 +25,18 @@ public class ManageProfilePO {
 	By confirmNewUsernameInput = By
 			.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[2]/div[2]/input");
 
+	By menuDashboardButton = By.xpath("//a[contains(@class, 'at-mainnav-dashboard')]");
+	By myAccount1 = By.xpath("//mat-nav-list[@class='mat-nav-list']/mat-list-item[2]/div/span");
+	// By manageProfile1 = By.xpath("/a[contains(test(),'ManageProfile')]");
+	By manageProfile1 = By.xpath("//a[contains(@class, 'at-mainnav-manageprofile')]");
+	By userName1 = By.xpath(
+			"//body/mss-app[1]/layout[1]/div[2]/mat-sidenav-container[1]/mat-sidenav-content[1]/div[1]/div[1]/manageprofile[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/h3[1]");
+	By currentUSerName1 = By.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[1]/input");
+	By newUSerName1 = By.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[2]/div[1]/input");
+	By confirmUSerName1 = By.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[2]/div[2]/input");;
+	By changeUSerName1 = By.xpath("//button[contains(text(),'change username')]");
+	By saveUsernmae = By.xpath("//button[contains(text(),'OK')]");
+
 // CONSTRUCTOR
 
 	public ManageProfilePO(WebDriver driver) {
@@ -74,5 +86,41 @@ public class ManageProfilePO {
 
 	public WebElement getConfirmNewUsernameInput() {
 		return driver.findElement(confirmNewUsernameInput);
+	}
+
+	public WebElement getmenuDashboardButton() {
+		return driver.findElement(menuDashboardButton);
+	}
+
+	public WebElement getmyAccount() {
+		return driver.findElement(myAccount1);
+	}
+
+	public WebElement getmanageProfile() {
+		return driver.findElement(manageProfile1);
+	}
+
+	public WebElement getuserName() {
+		return driver.findElement(userName1);
+	}
+
+	public WebElement getcurrentUSerName() {
+		return driver.findElement(currentUSerName1);
+	}
+
+	public WebElement getnewUSerName() {
+		return driver.findElement(newUSerName1);
+	}
+
+	public WebElement getconfirmUSerName() {
+		return driver.findElement(confirmUSerName1);
+	}
+
+	public WebElement getchangeUSerName() {
+		return driver.findElement(changeUSerName1);
+	}
+
+	public WebElement getsaveUsernmae() {
+		return driver.findElement(saveUsernmae);
 	}
 }
