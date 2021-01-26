@@ -29,7 +29,7 @@ public class ChangeByHoh_PerAppointment_Group_NoFees_PkgReqd extends base {
 	private static String clubName1 = "Jonas Fitness";
 	private static String clubName2 = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
-	private static String appointmentToBook = "PerAptNoFees-Grp";
+	private static String appointmentToBook = "PerAptCancelFee-Grp";
 	private static String resourceName1 = "";
 	private static String resourceName2 = "Holmes, Jeff-Grp";
 	private static String startTime1 = null;

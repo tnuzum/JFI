@@ -210,7 +210,7 @@ public class ChangeByHoh_PerAppointment_Single_WithFees_NoPkg extends base {
 			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-//			Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $22.50"));
+			Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $22.50"));
 			Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $4.00"));
 
 			System.out.println(ap.getTotalAmount().getText());
