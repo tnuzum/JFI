@@ -16,21 +16,22 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class HOH_BookAppointmentForFamilyMember_PurchasePackage extends base {
-	private static String clubName = "Studio Jonas";
+public class CancelPerAppointmentAppointmentByHoh_Single_WithFees extends base {
+
+	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
-	private static String appointmentToBook = "PT 60 Mins-FamilyAppointment";
-	private static String resourceName1 = "PT Smith, Andrew";
-	private static String resourceName2 = "FitExpert1";
+	private static String appointmentToBook = "PerApptChngeFeeCncelFee";
+	private static String resourceName1 = "";
+	private static String resourceName2 = "Holmes, Jeff";
 	private static String startTime;
 	private static AppointmentsPO ap;
-	private static String familyMember = "Auto, Fmlyapptmbr";
-	private static String familyMemberFirstName = "Fmlyapptmbr";
+	private static String familyMember = "Auto, Kidapptmbr";
+	private static String familyMemberFirstName = "Kidapptmbr";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public HOH_BookAppointmentForFamilyMember_PurchasePackage() {
+	public CancelPerAppointmentAppointmentByHoh_Single_WithFees() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -38,7 +39,19 @@ public class HOH_BookAppointmentForFamilyMember_PurchasePackage extends base {
 
 	@BeforeClass
 	public void initialize() throws IOException {
-		driver = initializeDriver();
+		try {
+			driver = initializeDriver();
+		} catch (java.lang.NullPointerException npe) {
+
+			driver = initializeDriver();
+
+			System.out.println("driver initialized again");
+			log.error("driver initialized again");
+			npe.printStackTrace();
+			log.error(npe.getMessage(), npe);
+
+		}
+
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
@@ -50,11 +63,11 @@ public class HOH_BookAppointmentForFamilyMember_PurchasePackage extends base {
 	}
 
 	@Test
-	public void BookAppointmentForFamilyMemberWithPackage() throws InterruptedException, IOException {
+	public void BookAppointmentForFamilyMember() throws InterruptedException, IOException {
 
 		try {
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("appthoh", "Testing1!");
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
@@ -74,10 +87,8 @@ public class HOH_BookAppointmentForFamilyMember_PurchasePackage extends base {
 
 			startTime = rm.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 					resourceName2);
-			rm.memberLogout();
-			rm.ApptCheckinInCOG("Auto, Fmlyapptmbr", appointmentToBook, "appthoh", "1");
-			rm.cancelAppointmentFromListViewByHohNoFee(tomorrowsDate, startTime, appointmentToBook,
-					familyMemberFirstName);
+
+			rm.cancelAppointmentByHohWithFees(tomorrowsDate, startTime, appointmentToBook, familyMemberFirstName);
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
@@ -108,10 +119,9 @@ public class HOH_BookAppointmentForFamilyMember_PurchasePackage extends base {
 
 	}
 
-	@AfterClass
+	@AfterClass(enabled = true)
 	public void teardown() throws InterruptedException {
 		driver.quit();
 		driver = null;
 	}
-
 }
