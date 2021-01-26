@@ -24,6 +24,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 	private static String resourceName2 = "FitExpert1-Grp";
 	private static String startTime;
 	private static AppointmentsPO ap;
+	private static String familyMember = "Auto, Fmlyapptmbr";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -75,7 +76,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 			for (int i = 0; i < count; i++) {
 				String member = Members.get(i).getText();
 
-				if (member.equals("Auto, Fmlyapptmbr")) {
+				if (member.equals(familyMember)) {
 					s.selectByVisibleText(member);
 					break;
 				}
@@ -83,9 +84,8 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 
 			startTime = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 					resourceName2, "Donald");
-			rm.memberLogout();
-			rm.activeMemberLogin("fmlyapptmbr", "Testing1!");
-			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
+
+			rm.cancelAppointmentByHohNoFee(appointmentToBook, familyMember);
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {

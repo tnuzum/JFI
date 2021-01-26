@@ -276,12 +276,15 @@ public class UnenrollStandbyCourse extends base {
 				if (cp.getMemberSections().get(i).getText().contains("HOH")) {
 					jse.executeScript("arguments[0].click();",
 							cp.getMemberSections().get(i).findElement(By.tagName("i")));
+
+					jse.executeScript("arguments[0].click();",
+							cp.getMemberSections().get(i).findElements(By.tagName("a")).get(1));
 					break;
 				}
 
 			}
 
-			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
+//			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
 			Thread.sleep(1000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);

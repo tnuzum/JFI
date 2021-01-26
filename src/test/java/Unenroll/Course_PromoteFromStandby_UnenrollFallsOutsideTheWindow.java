@@ -360,12 +360,15 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 				if (cp.getMemberSections().get(i).getText().contains("StandbyHoh")) {
 					jse.executeScript("arguments[0].click();",
 							cp.getMemberSections().get(i).findElement(By.tagName("i")));
+
+					jse.executeScript("arguments[0].click();",
+							cp.getMemberSections().get(i).findElements(By.tagName("a")).get(1));
 					break;
 				}
 
 			}
 
-			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
+//			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
 			Thread.sleep(1000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);

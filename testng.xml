@@ -119,6 +119,9 @@
 				name="FamilyAppointments.HOH_BookAppointmentForSelf_NoFamilyMember" />
 			<class name="FamilyAppointments.HOH_BookAppointmentForSelf" />
 			<class name="FamilyAppointments.NonHOH_BookAppointmentForSelf" />
+			<class name="FamilyAppointments.CancelPerAppointmentAppointmentByHoh_Single_WithFees"/>
+			<class name="FamilyAppointments.CancelPerMemberAppointmentByHoh_Single_NoFee"/>
+			<class name="FamilyAppointments.CancelPerMemberAppointmentByHoh_Single_WithFees"/>
 
 		</classes>
 	</test>
@@ -181,6 +184,9 @@
 				name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf" />
 			<class
 				name="FamilyAppointments.SelectMemberDropdownValidations" />
+				<class name="FamilyAppointments.CancelPerAppointmentAppointmentByHoh_Group_WithFees"/>
+				<class name="FamilyAppointments.CancelPerMemberAppointmentByHoh_Group_NoFee"/>
+				<class name="FamilyAppointments.CancelPerMemberAppointmentByHoh_GroupWithSingleMbr_WithFees"/>
 
 			<class name="GroupAppointments.CancelGrpApptWithFee_NewCard" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_SavedCard" />
