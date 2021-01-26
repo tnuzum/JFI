@@ -167,6 +167,14 @@
 				name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_ToGrpAppt" />
 			<class
 				name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_ToGrpAppt" />
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Single_NoFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Single_NoFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Single_WithFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Single_WithFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_NoFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_NoFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_WithFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_WithFees_PkgReqd"/>
 
 		</classes>
 	</test>
@@ -258,6 +266,14 @@
 				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages" />
 			<class
 				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages" />
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Group_NoFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Group_NoFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Group_WithFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Group_WithFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Group_NoFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Group_NoFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_PkgReqd"/>
 				<class name="EME.EmailConfirmations" />
 
 

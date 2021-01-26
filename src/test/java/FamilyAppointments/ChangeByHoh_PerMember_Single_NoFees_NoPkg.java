@@ -209,7 +209,7 @@ public class ChangeByHoh_PerMember_Single_NoFees_NoPkg extends base {
 			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(startTime2));
 			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
 
-//			Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $22.50"));
+			Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $22.50"));
 
 			// Click the Book button
 			while (!ap.getbookButton().isEnabled()) {
