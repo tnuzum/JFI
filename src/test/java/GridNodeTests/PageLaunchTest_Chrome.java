@@ -179,7 +179,9 @@ public class PageLaunchTest_Chrome extends base {
 
 	@Test(priority = 55)
 	public void EditMyInfoButtonTest() throws InterruptedException {
-		d.getMyInfoEditButton().click();
+
+		jse.executeScript("arguments[0].click();", d.getMyInfoEditButton());
+
 		ManageProfilePO a = new ManageProfilePO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(), "Manage Profile");
 		log.info("Manage Profile Page Header Verified");
