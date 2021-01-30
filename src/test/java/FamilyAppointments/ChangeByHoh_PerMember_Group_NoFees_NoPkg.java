@@ -32,8 +32,8 @@ public class ChangeByHoh_PerMember_Group_NoFees_NoPkg extends base {
 	private static String startTime1 = null;
 	private static String startTime2;
 	private static AppointmentsPO ap;
-	private static String familyMember = "Auto, Kidapptmbr";
-	private static String familyMemberFirstName = "Kidapptmbr";
+	private static String familyMember = "Auto, Apptmbr1";
+	private static String familyMemberFirstName = "ApptMbr1";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -73,7 +73,7 @@ public class ChangeByHoh_PerMember_Group_NoFees_NoPkg extends base {
 	public void ChangeAppointmentForFamilyMember() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin("appthoh", "Testing1!");
+			rm.activeMemberLogin("appthoh1", "Testing1!");
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);

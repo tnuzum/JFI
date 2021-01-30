@@ -360,7 +360,7 @@ public class FamilyMemberClassEnrollment extends base {
 		DashboardPO dp = new DashboardPO(driver);
 		wait.until(
 				ExpectedConditions.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-		dp.getMyAccountAccountHistory().click();
+		jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
 

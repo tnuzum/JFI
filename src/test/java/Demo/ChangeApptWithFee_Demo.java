@@ -300,7 +300,7 @@ public class ChangeApptWithFee_Demo extends base {
 		}
 		rw.waitForDashboardLoaded();
 
-		d.getMyAccountAccountHistory().click();
+		jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
 
 		Thread.sleep(1000);

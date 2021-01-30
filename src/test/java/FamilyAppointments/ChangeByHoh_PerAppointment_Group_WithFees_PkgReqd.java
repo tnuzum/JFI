@@ -35,8 +35,8 @@ public class ChangeByHoh_PerAppointment_Group_WithFees_PkgReqd extends base {
 	private static String startTime1 = null;
 	private static String startTime2;
 	private static AppointmentsPO ap;
-	private static String familyMember = "Auto, Kidapptmbr";
-	private static String familyMemberFirstName = "Kidapptmbr";
+	private static String familyMember = "Auto, Apptmbr1";
+	private static String familyMemberFirstName = "ApptMbr1";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -76,7 +76,7 @@ public class ChangeByHoh_PerAppointment_Group_WithFees_PkgReqd extends base {
 	public void ChangeAppointmentForFamilyMember() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin("appthoh", "Testing1!");
+			rm.activeMemberLogin("appthoh1", "Testing1!");
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
@@ -288,7 +288,7 @@ public class ChangeByHoh_PerAppointment_Group_WithFees_PkgReqd extends base {
 			}
 			rw.waitForDashboardLoaded();
 			rm.memberLogout();
-			rm.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "appthoh", "1");
+			rm.ApptCheckinInCOG("Auto, Apptmbr1", appointmentToBook, "appthoh1", "1");
 
 			rm.cancelAppointmentFromListViewByHohNoFee(dayAfter, startTime2, appointmentToBook, familyMemberFirstName);
 

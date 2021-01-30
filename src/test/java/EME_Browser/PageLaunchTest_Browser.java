@@ -166,7 +166,7 @@ public class PageLaunchTest_Browser extends base2 {
 	@Test(priority = 30)
 	public void AcctHistoryButtonTest() throws InterruptedException, IOException {
 		try {
-			d.getMyAccountAccountHistory().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
 			AcctHistoryPO a = new AcctHistoryPO(driver);
 			Assert.assertEquals(a.getPageHeader().getText(), "Account History");
 			log.info("Account History Page Header Verified");
@@ -202,7 +202,7 @@ public class PageLaunchTest_Browser extends base2 {
 	@Test(priority = 35)
 	public void PayNowButtonTest() throws InterruptedException, IOException {
 		try {
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 			PaymentPO pb = new PaymentPO(driver);
 			Assert.assertEquals(pb.getPageHeader().getText(), "Pay Balance");
 			log.info("Pay Balance Page Header Verified");
