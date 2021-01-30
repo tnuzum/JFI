@@ -266,7 +266,7 @@ public class ManagepaymntMethods_AdditionalQuestionsTest_FreezeMbr extends base 
 	public void verifyAdditionalQuestionsOnPayBalance() throws InterruptedException, IOException {
 		try {
 
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));

@@ -3,7 +3,6 @@ package EME_EnvURL;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
@@ -50,14 +49,14 @@ public class MakePaymentTest extends base {
 
 	@Test(priority = 1, description = "Adding $1.00 to member's account")
 	public void MakePayment() throws InterruptedException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		rm.activeMemberLogin(prop.getProperty("activeMember6_username"), prop.getProperty("activeMember6_password"));
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
-		d.getMyAccountPayNow().click();
+		jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 //  	Thread.sleep(5000);
 //  	p.getAmountRadioButton3().click();
