@@ -34,8 +34,8 @@ public class ChangeByHoh_PerMember_Single_WithFees_NoPkg extends base {
 	private static String startTime1 = null;
 	private static String startTime2;
 	private static AppointmentsPO ap;
-	private static String familyMember = "Auto, Kidapptmbr";
-	private static String familyMemberFirstName = "Kidapptmbr";
+	private static String familyMember = "Auto, Fmlyapptmbr";
+	private static String familyMemberFirstName = "Fmlyapptmbr";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -210,14 +210,15 @@ public class ChangeByHoh_PerMember_Single_WithFees_NoPkg extends base {
 			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
 
 			wait.until(ExpectedConditions.textToBePresentInElement(ap.getTotalAmount(), "$"));
-			Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $22.50"));
-			Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $4.00"));
+			Assert.assertTrue(ap.getDueAtTimeOfService().getText().contains("DUE AT TIME OF SERVICE $63.00"));
+			Assert.assertTrue(ap.getChangeFee().getText().contains("CHANGE FEE $11.20"));
 
 			System.out.println(ap.getTotalAmount().getText());
 
 			String[] totalAmt = ap.getTotalAmount().getText().split(": ");
 			String FormatTotalAmt = totalAmt[1].trim();
 			System.out.println(FormatTotalAmt);
+			Assert.assertEquals("$11.44", FormatTotalAmt);
 			// Verifies the Pay button contains the total amount
 
 			Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));

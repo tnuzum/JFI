@@ -18,7 +18,6 @@ import org.testng.annotations.Test;
 import pageObjects.AppointmentsPO;
 import pageObjects.CalendarPO;
 import pageObjects.DashboardPO;
-import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -225,25 +224,6 @@ public class ChangeByHoh_PerAppointment_Group_NoFees_NoPkg extends base {
 			Assert.assertEquals(ap.getPopup2Title().getText(), "Booked");
 			ap.getPopup2OKButton().click();
 			Thread.sleep(1000);
-			ThankYouPO TY = new ThankYouPO(driver);
-
-//Verifies the text on Thank You page and the links to navigate to Dashboard and other pages are displayed
-			rm.ThankYouPageValidations();
-
-//Note down the Receipt number
-			String receiptNumber = TY.getReceiptNumber().getText();
-
-			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
-			TY.getPrintReceiptButton().click();
-			Thread.sleep(2000);
-			Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
-			Assert.assertTrue(TY.getReceiptHeader().getText().contains(receiptNumber));
-
-//Verifies the buttons on Print Receipt Popup
-			rm.ReceiptPopupValidations();
-
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
-			Thread.sleep(2000);
 
 //Navigate to Dashboard
 			int linkcount = driver.findElements(By.tagName("a")).size();

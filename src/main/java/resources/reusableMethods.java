@@ -2205,14 +2205,14 @@ public class reusableMethods extends base {
 		String classtext = null;
 
 		try {
-			classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+			classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
 
 		} catch (org.openqa.selenium.NoSuchElementException ne) {
 			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
-				classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+				classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
 			}
 		}
 

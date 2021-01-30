@@ -224,6 +224,7 @@ public class ChangeByHoh_PerAppointment_Group_NoFees_PkgReqd extends base {
 			String[] totalAmt = ap.getTotalAmount().getText().split(": ");
 			String FormatTotalAmt = totalAmt[1].trim();
 			System.out.println(FormatTotalAmt);
+			Assert.assertEquals(FormatTotalAmt, "$1.29");
 			// Verifies the Pay button contains the total amount
 
 			Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
@@ -287,7 +288,7 @@ public class ChangeByHoh_PerAppointment_Group_NoFees_PkgReqd extends base {
 			rm.memberLogout();
 			rm.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "appthoh", "1");
 
-			rm.cancelAppointmentFromListViewByHohNoFee(dayAfter, startTime2, appointmentToBook, familyMemberFirstName);
+			rm.cancelAppointmentByHohWithFees(dayAfter, startTime2, appointmentToBook, familyMemberFirstName);
 
 			rm.memberLogout();
 
