@@ -221,6 +221,7 @@ public class ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_PkgReqd extends b
 			String[] totalAmt = ap.getTotalAmount().getText().split(": ");
 			String FormatTotalAmt = totalAmt[1].trim();
 			System.out.println(FormatTotalAmt);
+			Assert.assertEquals("$5.40", FormatTotalAmt);
 			// Verifies the Pay button contains the total amount
 
 			Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));

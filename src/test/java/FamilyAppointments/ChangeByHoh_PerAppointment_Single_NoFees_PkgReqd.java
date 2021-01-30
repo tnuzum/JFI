@@ -29,7 +29,7 @@ public class ChangeByHoh_PerAppointment_Single_NoFees_PkgReqd extends base {
 	private static String clubName1 = "Jonas Fitness";
 	private static String clubName2 = "Studio Jonas";
 	private static String productCategory = "Personal Training";
-	private static String appointmentToBook = "PerAptCancelFee-Grp";
+	private static String appointmentToBook = "PerAptCancelFee";
 	private static String resourceName1 = "";
 	private static String resourceName2 = "Holmes, Jeff";
 	private static String startTime1 = null;
@@ -226,6 +226,8 @@ public class ChangeByHoh_PerAppointment_Single_NoFees_PkgReqd extends base {
 			System.out.println(FormatTotalAmt);
 			// Verifies the Pay button contains the total amount
 
+			Assert.assertEquals("$1.29", FormatTotalAmt);
+
 			Assert.assertTrue(ap.getPaymentButton().getText().contains(FormatTotalAmt));
 
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
@@ -287,7 +289,7 @@ public class ChangeByHoh_PerAppointment_Single_NoFees_PkgReqd extends base {
 			rm.memberLogout();
 			rm.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "appthoh", "1");
 
-			rm.cancelAppointmentFromListViewByHohNoFee(dayAfter, startTime2, appointmentToBook, familyMemberFirstName);
+			rm.cancelAppointmentByHohWithFees(dayAfter, startTime2, appointmentToBook, familyMemberFirstName);
 
 			rm.memberLogout();
 
