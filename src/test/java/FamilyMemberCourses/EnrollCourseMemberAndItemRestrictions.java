@@ -391,30 +391,31 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 	@Test(priority = 6, description = "Validating that the course cannnot be enrolled as the course time is passed")
 	public void CourseEnrollmentEnded() throws IOException, InterruptedException {
-
-		rm.activeMemberLogin("feemember", "Testing1!");
-		rw.waitForDashboardLoaded();
-
-		jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
-		Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
-		Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
-		Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
-
-		WebDriverWait wait = new WebDriverWait(driver, 50);
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-		rm.SelectCourseStartYear(CourseStartYear);
-
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-		rm.SelectCourseStartMonth(CourseStartMonth1);
-
-		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-		rm.SelectClassOrCourseToEnroll("COURSEENROLLMENTENDED");
-
-		Thread.sleep(1000);
 		try {
+
+			rm.activeMemberLogin("feemember", "Testing1!");
+			rw.waitForDashboardLoaded();
+
+			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
+			Assert.assertEquals("Select Courses / Events", BT.getPageHeader().getText());
+			Assert.assertEquals("Dashboard", BT.getBreadcrumb1().getText());
+			Assert.assertEquals("Select Courses / Events", BT.getBreadcrumb2().getText());
+
+			WebDriverWait wait = new WebDriverWait(driver, 50);
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartYear(CourseStartYear);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectCourseStartMonth(CourseStartMonth1);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+
+			rm.SelectClassOrCourseToEnroll("COURSEENROLLMENTENDED");
+
+			Thread.sleep(1000);
+
 			System.out.println(c.getPopUpErrorMessage().getText().trim());
 			Assert.assertEquals("The online enrollment window for this course has closed.",
 					c.getPopUpErrorMessage().getText().trim());
