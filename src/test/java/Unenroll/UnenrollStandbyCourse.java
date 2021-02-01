@@ -30,9 +30,9 @@ import resources.reusableWaits;
 
 public class UnenrollStandbyCourse extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Feb";
+	private static String CourseStartMonth = "May";
 	private static int CourseStartYear = 2021;
-	private static String dsiredMonthYear = "February 2021";
+	private static String dsiredMonthYear = "May 2021";
 	private static String CourseToEnroll = "UNENRLLSTNDBYCOURSE";
 	private static String CourseNameDisplayed = "UnenrllStndByCourse";
 	private static String YesCancelFee = "Course Cancellation Fee";
