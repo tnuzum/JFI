@@ -20,12 +20,12 @@ public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends base 
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-FamilyGrpAppointment";
-	private static String resourceName1 = "PT Smith, Andrew-Grp";
-	private static String resourceName2 = "FitExpert1-Grp";
+	private static String resourceName1 = "";
+	private static String resourceName2 = "T. Huff, Anthony";
 	private static String startTime;
 	private static AppointmentsPO ap;
-	private static String familyMember = "Auto, Kidapptmbr";
-	private static String familyMemberFirstName = "Kidapptmbr";
+	private static String familyMember = "Auto, Apptmbr1";
+	private static String familyMemberFirstName = "ApptMbr1";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -52,7 +52,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends base 
 	public void BookGrpAppointmentForFamilyMemberWithPackage() throws InterruptedException, IOException {
 		try {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			rm.activeMemberLogin("appthoh", "Testing1!");
+			rm.activeMemberLogin("appthoh1", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
@@ -73,7 +73,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends base 
 			startTime = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 					resourceName2, "Donald");
 			rm.memberLogout();
-			rm.ApptCheckinInCOG("Auto, Kidapptmbr", appointmentToBook, "appthoh", "1");
+			rm.ApptCheckinInCOG("Auto, Apptmbr1", appointmentToBook, "appthoh1", "1");
 			rm.cancelAppointmentFromListViewByHohNoFee(tomorrowsDate, startTime, appointmentToBook,
 					familyMemberFirstName);
 			rm.memberLogout();

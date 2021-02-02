@@ -24,8 +24,8 @@ public class CancelPerAppointmentAppointmentByHoh_Group_WithFees extends base {
 	private static String resourceName2 = "T. Huff, Anthony";
 	private static String startTime;
 	private static AppointmentsPO ap;
-	private static String familyMember = "Auto, Fmlyapptmbr";
-	private static String familyMemberFirstName = "Fmlyapptmbr";
+	private static String familyMember = "Auto, Apptmbr2";
+	private static String familyMemberFirstName = "ApptMbr2";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -65,7 +65,7 @@ public class CancelPerAppointmentAppointmentByHoh_Group_WithFees extends base {
 		try {
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			rm.activeMemberLogin("appthoh", "Testing1!");
+			rm.activeMemberLogin("appthoh1", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());

@@ -19,8 +19,8 @@ public class HOH_BookAppointmentForSelf extends base {
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-FamilyAppointment";
-	private static String resourceName1 = "PT.Smith, Andrew";
-	private static String resourceName2 = "FitExpert1";
+	private static String resourceName1 = "";
+	private static String resourceName2 = "PT.Ramakers, Tanya";
 	private static String startTime;
 
 	public reusableWaits rw;

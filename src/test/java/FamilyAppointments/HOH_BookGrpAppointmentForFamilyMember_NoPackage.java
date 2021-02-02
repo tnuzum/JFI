@@ -20,11 +20,11 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-FamilyGrpAppointment";
-	private static String resourceName1 = "PT.Smith, Andrew-Grp";
-	private static String resourceName2 = "FitExpert1-Grp";
+	private static String resourceName1 = "";
+	private static String resourceName2 = "T. Huff, Anthony";
 	private static String startTime;
 	private static AppointmentsPO ap;
-	private static String familyMember = "Auto, Fmlyapptmbr";
+	private static String familyMember = "Auto, Apptmbr2";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -64,7 +64,7 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 		try {
 
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			rm.activeMemberLogin("appthoh", "Testing1!");
+			rm.activeMemberLogin("appthoh1", "Testing1!");
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
 			jse.executeScript("arguments[0].click();", d.getMyApptsScheduleButton());
