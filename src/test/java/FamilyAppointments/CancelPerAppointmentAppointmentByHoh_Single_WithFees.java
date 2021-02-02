@@ -22,7 +22,7 @@ public class CancelPerAppointmentAppointmentByHoh_Single_WithFees extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PerApptChngeFeeCncelFee";
 	private static String resourceName1 = "";
-	private static String resourceName2 = "Holmes, Jeff";
+	private static String resourceName2 = "PT.Ramakers, Tanya";
 	private static String startTime;
 	private static AppointmentsPO ap;
 	private static String familyMember = "Auto, Kidapptmbr";

@@ -30,7 +30,7 @@ public class ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_NoPkg extends bas
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PerMemberChngeFeeCncelFee-Grp";
 	private static String resourceName1 = "";
-	private static String resourceName2 = "Holmes, Jeff-Grp";
+	private static String resourceName2 = "T. Huff, Anthony";
 	private static String startTime1 = null;
 	private static String startTime2;
 	private static AppointmentsPO ap;

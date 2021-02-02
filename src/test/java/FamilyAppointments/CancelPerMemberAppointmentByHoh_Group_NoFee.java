@@ -21,7 +21,7 @@ public class CancelPerMemberAppointmentByHoh_Group_NoFee extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PerMbrNoFees-Grp";
 	private static String resourceName1 = "";
-	private static String resourceName2 = "Holmes, Jeff-Grp";
+	private static String resourceName2 = "T. Huff, Anthony";
 	private static String startTime;
 	private static AppointmentsPO ap;
 	private static String familyMember = "Auto, Fmlyapptmbr";
