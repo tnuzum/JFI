@@ -86,7 +86,7 @@
 							<forkCount>1</forkCount>
 							<reuseForks>true</reuseForks>
 							<parallel>tests</parallel>
-							<threadCount>12</threadCount>
+							<threadCount>14</threadCount>
 							<printSummary>true</printSummary>
 
 							<!--properties> <property> <name>testnames</name> <value>EME - Navigation 
