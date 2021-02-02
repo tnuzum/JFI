@@ -31,7 +31,7 @@ public class ChangeByHoh_PerAppointment_Single_NoFees_PkgReqd extends base {
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PerAptCancelFee";
 	private static String resourceName1 = "";
-	private static String resourceName2 = "Holmes, Jeff";
+	private static String resourceName2 = "PT.Ramakers, Tanya";
 	private static String startTime1 = null;
 	private static String startTime2;
 	private static AppointmentsPO ap;

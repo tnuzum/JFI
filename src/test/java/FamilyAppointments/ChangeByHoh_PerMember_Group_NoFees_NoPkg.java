@@ -28,7 +28,7 @@ public class ChangeByHoh_PerMember_Group_NoFees_NoPkg extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PerMbrNoFees-Grp";
 	private static String resourceName1 = "";
-	private static String resourceName2 = "Holmes, Jeff-Grp";
+	private static String resourceName2 = "T. Huff, Anthony";
 	private static String startTime1 = null;
 	private static String startTime2;
 	private static AppointmentsPO ap;
