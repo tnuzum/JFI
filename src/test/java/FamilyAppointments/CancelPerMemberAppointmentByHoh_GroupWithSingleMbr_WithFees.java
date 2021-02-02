@@ -25,8 +25,8 @@ public class CancelPerMemberAppointmentByHoh_GroupWithSingleMbr_WithFees extends
 	private static String resourceName2 = "T. Huff, Anthony";
 	private static String startTime;
 	private static AppointmentsPO ap;
-	private static String familyMember = "Auto, Kidapptmbr";
-	private static String familyMemberFirstName = "Kidapptmbr";
+	private static String familyMember = "Auto, Apptmbr1";
+	private static String familyMemberFirstName = "ApptMbr1";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -66,7 +66,7 @@ public class CancelPerMemberAppointmentByHoh_GroupWithSingleMbr_WithFees extends
 	public void BookAppointmentForFamilyMember() throws InterruptedException, IOException {
 
 		try {
-			rm.activeMemberLogin("appthoh", "Testing1!");
+			rm.activeMemberLogin("appthoh1", "Testing1!");
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rw.waitForDashboardLoaded();
 			DashboardPO d = new DashboardPO(driver);
