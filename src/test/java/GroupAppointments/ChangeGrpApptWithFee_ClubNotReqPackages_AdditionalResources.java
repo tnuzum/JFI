@@ -27,15 +27,15 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training 1";
-	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
-	private static String appointmentToBook2 = "PT Grp-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1CA-Grp";
-	private static String resourceName5 = "PT.Shepard, EllianaCA-Grp";
+	private static String appointmentToBook1 = "PT Orientation";
+	private static String appointmentToBook2 = "PT Grp-ChangeWithFee";
+	private static String resourceName1 = "|Pool Small Indoor";
+	private static String resourceName2 = "PT.Shepard, EllianaCA-Grp";
 	private static String resourceName3 = "All Resources";
-	private static String resourceName4 = "FitExpert2CA-Grp";
-	private static String resourceName2 = "Holmes, JeffCA-Grp";
+	private static String resourceName4 = "|Pool Small Indoor";
+	private static String resourceName5 = "PT.Shepard, EllianaCA-Grp";
 	private static String appointmentPrice = "$90.00";
-	private static String participant2 = "Auto, Robert";
+	private static String participant2 = "Auto, James";
 	private static String startTime1;
 	private static String startTime2;
 	private static JavascriptExecutor jse;
@@ -75,7 +75,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 
 			// Book an appointment and get the start time for the appointment
 			startTime1 = rm.BookGrpApptWith2Resources(clubName, productCategory, appointmentToBook1, resourceName1,
-					resourceName2, "Robert");
+					resourceName2, "James");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -83,7 +83,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 
 			rm.ValidatechangeAppointmentScreen(startTime1, appointmentToBook1);
 
-			rm.makeNewGrpAppointmentSelections("Robert", appointmentToBook2, resourceName3);
+			rm.makeNewGrpAppointmentSelections("James", appointmentToBook2, resourceName3);
 
 			rm.calendarDayAfterTomorrowClick();
 

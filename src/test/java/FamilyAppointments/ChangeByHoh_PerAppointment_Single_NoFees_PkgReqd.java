@@ -180,7 +180,9 @@ public class ChangeByHoh_PerAppointment_Single_NoFees_PkgReqd extends base {
 				Thread.sleep(1000);
 			}
 			rm.selectClub(clubName2);
+			Thread.sleep(1000);
 			rm.selectProductCategory(productCategory);
+			Thread.sleep(1000);
 			rm.makeNewAppointmentSelections(appointmentToBook, "");
 			rm.calendarDayAfterTomorrowClick();
 

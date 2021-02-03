@@ -28,14 +28,14 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_ToSingleMbrAppt extends bas
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory1 = "Personal Training 1";
 	private static String productCategory2 = "Personal Training";
-	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
+	private static String appointmentToBook1 = "PT Orientation";
 	private static String appointmentToBook2 = "PT 60 Mins-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1CA-Grp";
-	private static String resourceName2 = "Holmes, JeffCA-Grp";
+	private static String resourceName1 = "|Pool Small Indoor";
+	private static String resourceName2 = "PT.Shepard, EllianaCA-Grp";
 	private static String resourceName3 = "FitExpert2CA";
 	private static String resourceName4 = "PT.Shepard, EllianaCA";
 	private static String appointmentPrice = "$90.00";
-	private static String participant2 = "Auto, Robert";
+	private static String participant2 = "Auto, James";
 	private static String startTime1;
 	private static String startTime2;
 	private static JavascriptExecutor jse;
@@ -74,7 +74,7 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_ToSingleMbrAppt extends bas
 
 			// Book an appointment and get the start time for the appointment
 			startTime1 = rm.BookGrpApptWith2Resources(clubName, productCategory1, appointmentToBook1, resourceName1,
-					resourceName2, "Robert");
+					resourceName2, "James");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
