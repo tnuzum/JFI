@@ -112,7 +112,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		}
 
 		catch (java.lang.IndexOutOfBoundsException iob) {
-			System.out.println("Element Click Intercepted");
+			System.out.println("Index Out Of Bounds");
 			iob.printStackTrace();
 			log.error(iob.getMessage(), iob);
 			rm.catchErrorMessage();
@@ -180,7 +180,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		}
 
 		catch (java.lang.IndexOutOfBoundsException iob) {
-			System.out.println("Element Click Intercepted");
+			System.out.println("Index Out Of Bounds");
 			iob.printStackTrace();
 			getScreenshot(testName, driver);
 			log.error(iob.getMessage(), iob);

@@ -682,25 +682,24 @@ public class reusableMethods extends base {
 	}
 
 	public Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) throws InterruptedException {
+
 		int ClassOrCourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+
 		for (int j = 0; j < ClassOrCourseCount; j++) {
 			String ClassOrCourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
 					.getText();
 
-			if (ClassOrCourseName.contains(ClassOrCourseToEnroll)) {
+			if (ClassOrCourseName.toLowerCase().contains(ClassOrCourseToEnroll.toLowerCase())) {
+
 				JavascriptExecutor jse = ((JavascriptExecutor) driver);
 				jse.executeScript("arguments[0].scrollIntoView(true);",
 						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
 
-				Thread.sleep(1000);
+				Thread.sleep(4000);
 
 				jse.executeScript("arguments[0].click();",
 						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
 
-				// driver.findElements(By.xpath("//div[contains(@class,
-				// 'column2')]")).get(j).click(); // Click on the
-				// specific
-				// Course
 				break;
 			}
 		}

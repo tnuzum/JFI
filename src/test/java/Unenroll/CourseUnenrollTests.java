@@ -125,7 +125,7 @@ public class CourseUnenrollTests extends base {
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll1));
 
 			Assert.assertEquals("Course", u.getType().getText());
-			Assert.assertEquals("02/10/2021", u.getStartDate().getText());
+			Assert.assertEquals("05/10/2021", u.getStartDate().getText());
 			Assert.assertEquals("7:00 AM", u.getStartTime().getText());
 			Assert.assertEquals("30 min", u.getDuration().getText());
 			Assert.assertEquals("Max Gibbs", u.getInstructor().getText());

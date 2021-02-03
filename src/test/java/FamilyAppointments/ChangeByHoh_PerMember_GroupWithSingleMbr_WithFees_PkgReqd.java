@@ -175,7 +175,9 @@ public class ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_PkgReqd extends b
 				Thread.sleep(1000);
 			}
 			rm.selectClub(clubName2);
+			Thread.sleep(1000);
 			rm.selectProductCategory(productCategory);
+			Thread.sleep(1000);
 			rm.makeNewGrpAppointmentSelections("none", appointmentToBook, "");
 			rm.calendarDayAfterTomorrowClick();
 
