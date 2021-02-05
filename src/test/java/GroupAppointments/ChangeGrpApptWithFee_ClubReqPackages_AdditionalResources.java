@@ -87,8 +87,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 			rm.ValidatechangeAppointmentScreen(startTime1, appointmentToBook1);
 
 			rm.selectClub(clubName2);
+			Thread.sleep(1000);
 
 			rm.selectProductCategory(productCategory);
+			Thread.sleep(1000);
 
 			rm.makeNewGrpAppointmentSelections("Adam", appointmentToBook2, resourceName3);
 

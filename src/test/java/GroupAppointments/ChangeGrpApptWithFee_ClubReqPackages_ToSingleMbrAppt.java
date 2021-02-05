@@ -85,8 +85,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt extends base {
 			rm.ValidatechangeAppointmentScreen(startTime1, appointmentToBook1);
 
 			rm.selectClub(clubName2);
+			Thread.sleep(1000);
 
 			rm.selectProductCategory(productCategory2);
+			Thread.sleep(1000);
 
 			rm.makeNewAppointmentSelections(appointmentToBook2, resourceName3);
 
