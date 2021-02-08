@@ -21,7 +21,7 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-FamilyGrpAppointment";
 	private static String resourceName1 = "";
-	private static String resourceName2 = "T. Huff, Anthony";
+	private static String resourceName2 = "T.Huff, Anthony";
 	private static String startTime;
 
 	public reusableWaits rw;

@@ -31,7 +31,7 @@ public class ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_PkgReqd extends b
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PerMbrChangeFee-Grp";
 	private static String resourceName1 = "";
-	private static String resourceName2 = "T. Huff, Anthony";
+	private static String resourceName2 = "T.Huff, Anthony";
 	private static String startTime1 = null;
 	private static String startTime2;
 	private static AppointmentsPO ap;
