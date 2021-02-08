@@ -22,7 +22,7 @@ public class CancelPerMemberAppointmentByHoh_GroupWithSingleMbr_WithFees extends
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PerMemberChngeFeeCncelFee-Grp";
 	private static String resourceName1 = "";
-	private static String resourceName2 = "T. Huff, Anthony";
+	private static String resourceName2 = "T.Huff, Anthony";
 	private static String startTime;
 	private static AppointmentsPO ap;
 	private static String familyMember = "Auto, Apptmbr1";
