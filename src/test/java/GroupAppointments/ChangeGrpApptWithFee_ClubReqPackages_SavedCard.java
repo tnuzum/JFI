@@ -109,7 +109,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_SavedCard extends base {
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
-							.findElement(By.id("tab-2-1"));
+							.findElement(By.id("tab-2-2"));
 					List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
 							.findElements(By.tagName("button"));
 					WebElement secondAvailableTimeAfternoon = AftrenoonAvailableTimes.get(1);
