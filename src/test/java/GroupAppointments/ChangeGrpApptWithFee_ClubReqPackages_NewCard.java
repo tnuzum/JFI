@@ -28,15 +28,15 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 	private static String clubName1 = "Jonas Fitness";
 	private static String clubName2 = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
-	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
-	private static String appointmentToBook2 = "PT Grp-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1CA-Grp";
-	private static String resourceName2 = "Holmes, JeffCA-Grp";
-	private static String resourceName3 = "FitExpert2CA-Grp";
-	private static String resourceName4 = "PT Smith, AndrewCA-Grp";
+	private static String appointmentToBook1 = "PT Orientation";
+	private static String appointmentToBook2 = "PT Grp-ChangeWithFee";
+	private static String resourceName1 = "|Pool Small Indoor";
+	private static String resourceName2 = "PT.Shepard, EllianaCA-Grp";
+	private static String resourceName3 = "|Pool Small Indoor";
+	private static String resourceName4 = "PT.Shepard, EllianaCA-Grp";
 	private static String unitsToBeSelected = "1 - $5.00/per";
 	private static String memberName = "ApptMember12 Auto";
-	private static String participant2 = "Auto, Robert";
+	private static String participant2 = "Auto, James";
 	private static String startTime1;
 	private static String startTime2;
 	private static JavascriptExecutor jse;
@@ -74,7 +74,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 
 			// Book an appointment and get the start time for the appointment
 			startTime1 = rm.BookGrpApptWith2Resources(clubName1, productCategory, appointmentToBook1, resourceName1,
-					resourceName2, "Robert");
+					resourceName2, "James");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -85,10 +85,12 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 			rm.ValidatechangeAppointmentScreen(startTime1, appointmentToBook1);
 
 			rm.selectClub(clubName2);
+			Thread.sleep(1000);
 
 			rm.selectProductCategory(productCategory);
+			Thread.sleep(1000);
 
-			rm.makeNewGrpAppointmentSelections("Robert", appointmentToBook2, resourceName3);
+			rm.makeNewGrpAppointmentSelections("James", appointmentToBook2, resourceName3);
 
 			rm.calendarDayAfterTomorrowClick();
 
@@ -108,7 +110,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_NewCard extends base {
 					jse.executeScript("arguments[0].click();", AftrnunSlot);
 					Thread.sleep(1000);
 					WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
-							.findElement(By.id("tab-2-1"));
+							.findElement(By.id("tab-2-2"));
 					List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
 							.findElements(By.tagName("button"));
 					WebElement secondAvailableTimeAfternoon = AftrenoonAvailableTimes.get(1);

@@ -29,15 +29,15 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 	private static String clubName1 = "Jonas Fitness";
 	private static String clubName2 = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
-	private static String appointmentToBook1 = "PT Grp-ChangeWithFee1";
-	private static String appointmentToBook2 = "PT Grp-ChangeWithFee2";
-	private static String resourceName1 = "FitExpert1CA-Grp";
-	private static String resourceName2 = "Holmes, JeffCA-Grp";
+	private static String appointmentToBook1 = "PT Orientation";
+	private static String appointmentToBook2 = "PT Grp-ChangeWithFee";
+	private static String resourceName1 = "|Pool Small Indoor";
+	private static String resourceName2 = "PT.Shepard, EllianaCA-Grp";
 	private static String resourceName3 = "All Resources";
-	private static String resourceName4 = "FitExpert2CA-Grp";
-	private static String resourceName5 = "PT Smith, AndrewCA-Grp";
+	private static String resourceName4 = "|Pool Small Indoor";
+	private static String resourceName5 = "PT.Shepard, EllianaCA-Grp";
 	private static String unitsToBeSelected = "1 - $5.00/per";
-	private static String participant2 = "Auto, Robert";
+	private static String participant2 = "Auto, James";
 	private static String participant3 = "Auto, Adam";
 	private static String startTime1;
 	private static String startTime2;
@@ -76,7 +76,7 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 
 			// Book an appointment and get the start time for the appointment
 			startTime1 = rm.BookGrpApptWith2Resources(clubName1, productCategory, appointmentToBook1, resourceName1,
-					resourceName2, "Robert");
+					resourceName2, "James");
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
@@ -87,8 +87,10 @@ public class ChangeGrpApptWithFee_ClubReqPackages_AdditionalResources extends ba
 			rm.ValidatechangeAppointmentScreen(startTime1, appointmentToBook1);
 
 			rm.selectClub(clubName2);
+			Thread.sleep(1000);
 
 			rm.selectProductCategory(productCategory);
+			Thread.sleep(1000);
 
 			rm.makeNewGrpAppointmentSelections("Adam", appointmentToBook2, resourceName3);
 

@@ -60,7 +60,7 @@ public class PayBalance_SaveCardQuestNotPresentForMember extends base {
 			rm.activeMemberLogin("cannotaddcc", "Testing1!"); // Login to EME
 			rw.waitForDashboardLoaded();
 
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
@@ -188,7 +188,7 @@ public class PayBalance_SaveCardQuestNotPresentForMember extends base {
 
 			rm.activeMemberLogin("freezemember3", "Testing1!"); // Login to EME as Freeze status member
 
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));

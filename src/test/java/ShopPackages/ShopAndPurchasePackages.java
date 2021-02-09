@@ -329,7 +329,7 @@ public class ShopAndPurchasePackages extends base {
 
 			wait.until(ExpectedConditions
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-			d.getMyAccountAccountHistory().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
 			Thread.sleep(3000);
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
@@ -596,6 +596,11 @@ public class ShopAndPurchasePackages extends base {
 			rw.waitForDashboardLoaded();
 			Thread.sleep(2000);
 
+			int IntUnitCountBefore2 = 0;
+			int IntUnitCountAfter2 = 0;
+
+			IntUnitCountBefore2 = rm.getPackageUnits("ServiceNC");
+
 			rm.openSideMenuIfNotOpenedAlready();
 
 			d.getMenuShopPackages().click();
@@ -681,10 +686,7 @@ public class ShopAndPurchasePackages extends base {
 //	System.out.println(FormatTotalAmt2);
 
 			// Noting down the Package Units before purchasing
-			int IntUnitCountBefore2 = 0;
-			int IntUnitCountAfter2 = 0;
 
-			IntUnitCountBefore2 = rm.getPackageUnits("ServiceNC");
 			// Click the Pay button
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);

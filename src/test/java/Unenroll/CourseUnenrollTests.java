@@ -47,8 +47,8 @@ public class CourseUnenrollTests extends base {
 	private static String courseToEnroll16 = "UnenrollCourse16";
 	private static String courseToEnroll17 = "UnenrollCourse17";
 
-	private static String CourseStartMonth = "Feb";
-	private static String dsiredMonthYear = "February 2021";
+	private static String CourseStartMonth = "May";
+	private static String dsiredMonthYear = "May 2021";
 	private static int CourseStartYear = 2021;
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Course Fee";
@@ -125,7 +125,7 @@ public class CourseUnenrollTests extends base {
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll1));
 
 			Assert.assertEquals("Course", u.getType().getText());
-			Assert.assertEquals("02/10/2021", u.getStartDate().getText());
+			Assert.assertEquals("05/10/2021", u.getStartDate().getText());
 			Assert.assertEquals("7:00 AM", u.getStartTime().getText());
 			Assert.assertEquals("30 min", u.getDuration().getText());
 			Assert.assertEquals("Max Gibbs", u.getInstructor().getText());

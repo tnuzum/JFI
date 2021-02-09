@@ -167,6 +167,32 @@ public class ChangeApptWithOutFee_ClubNotReqPackages extends base {
 
 			ap.getPopup1BookButton().click();
 
+			Thread.sleep(1000);
+
+			// as per changes that happened in PBI 166918
+
+			System.out.println(ap.getOldAppointmentBanner().getText());
+			System.out.println(ap.getNewAppointmentBanner().getText());
+
+			Assert.assertTrue(ap.getOldAppointmentBanner().isDisplayed());
+			Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains(clubName));
+			Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains("Old Appointment"));
+			Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains(appointmentToBook1));
+			Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains(startTime1));
+			Assert.assertTrue(ap.getOldAppointmentBanner().getText().contains(tomorrowsDate));
+
+			Assert.assertTrue(ap.getNewAppointmentBanner().isDisplayed());
+			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(clubName));
+			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains("New Appointment"));
+			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(appointmentToBook2));
+			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(startTime2));
+			Assert.assertTrue(ap.getNewAppointmentBanner().getText().contains(dayAfter));
+
+			while (!ap.getbookButton().isEnabled()) {
+				Thread.sleep(1000);
+			}
+			jse.executeScript("arguments[0].click();", ap.getbookButton());
+
 			rw.waitForAcceptButton();
 
 			wait.until(ExpectedConditions.elementToBeClickable(ap.getPopup2OKButton()));

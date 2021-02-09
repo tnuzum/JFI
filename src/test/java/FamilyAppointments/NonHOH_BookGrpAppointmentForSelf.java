@@ -20,8 +20,8 @@ public class NonHOH_BookGrpAppointmentForSelf extends base {
 	private static String clubName = "Studio Jonas";
 	private static String productCategory = "Personal Training 1";
 	private static String appointmentToBook = "PT 60 Mins-FamilyGrpAppointment";
-	private static String resourceName1 = "Holmes, Jeff-Grp";
-	private static String resourceName2 = "FitExpert1-Grp";
+	private static String resourceName1 = "";
+	private static String resourceName2 = "T.Huff, Anthony";
 	private static String startTime;
 
 	public reusableWaits rw;

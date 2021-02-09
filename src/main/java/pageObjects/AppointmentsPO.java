@@ -103,6 +103,7 @@ public class AppointmentsPO {
 	By editApptCanceledOKButton = By.cssSelector("button[class*='confirm']");
 	By cancelFeeSection = By.xpath("//div[contains(@class,'unenroll-cancel-fees-fee')]");
 	By changeFeeSection = By.xpath("//div[contains(@class,'unenroll-change-fees-fee')]");
+	By changeFeeSection1 = By.xpath("//div[contains(@class,'at-edit-appointment-change-no-restrictions-no-fees')]");
 	By noFeeSection = By.xpath("//div[contains(@class,'at-edit-appointment-change-no-restrictions-no-fees')]");
 	By deleteMember = By.xpath("//button[contains(@class, 'delete-user')]");
 
@@ -375,6 +376,10 @@ public class AppointmentsPO {
 
 	public WebElement getChangeFeeSection() {
 		return driver.findElement(changeFeeSection);
+	}
+
+	public WebElement getChangeFeeSection1() {
+		return driver.findElement(changeFeeSection1);
 	}
 
 	public WebElement getNoFeeSection() {

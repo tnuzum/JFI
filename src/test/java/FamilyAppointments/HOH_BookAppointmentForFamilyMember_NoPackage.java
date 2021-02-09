@@ -21,10 +21,12 @@ public class HOH_BookAppointmentForFamilyMember_NoPackage extends base {
 	private static String clubName = "Jonas Fitness";
 	private static String productCategory = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-FamilyAppointment";
-	private static String resourceName1 = "PT.Smith, Andrew";
-	private static String resourceName2 = "FitExpert1";
+	private static String resourceName1 = "";
+	private static String resourceName2 = "PT.Ramakers, Tanya";
 	private static String startTime;
 	private static AppointmentsPO ap;
+	private static String familyMember = "Auto, Kidapptmbr";
+	private static String familyMemberFirstName = "Kidapptmbr";
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -77,7 +79,7 @@ public class HOH_BookAppointmentForFamilyMember_NoPackage extends base {
 			for (int i = 0; i < count; i++) {
 				String member = Members.get(i).getText();
 
-				if (member.equals("Auto, Kidapptmbr")) {
+				if (member.equals(familyMember)) {
 					s.selectByVisibleText(member);
 					break;
 				}
@@ -85,9 +87,8 @@ public class HOH_BookAppointmentForFamilyMember_NoPackage extends base {
 
 			startTime = rm.BookApptWith2Resources(clubName, productCategory, appointmentToBook, resourceName1,
 					resourceName2);
-			rm.memberLogout();
-			rm.activeMemberLogin("kidapptmbr", "Testing1!");
-			rm.ConfirmAndCancelAppointmentNoFee(tomorrowsDate, startTime, appointmentToBook);
+			rm.cancelAppointmentFromListViewByHohNoFee(tomorrowsDate, startTime, appointmentToBook,
+					familyMemberFirstName);
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
@@ -118,7 +119,7 @@ public class HOH_BookAppointmentForFamilyMember_NoPackage extends base {
 
 	}
 
-	@AfterClass
+	@AfterClass(enabled = true)
 	public void teardown() throws InterruptedException {
 		driver.quit();
 		driver = null;

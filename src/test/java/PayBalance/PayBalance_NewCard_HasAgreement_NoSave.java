@@ -68,7 +68,7 @@ public class PayBalance_NewCard_HasAgreement_NoSave extends base {
 			rm.activeMemberLogin("dauto", "Testing1!");
 			rw.waitForDashboardLoaded();
 
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));

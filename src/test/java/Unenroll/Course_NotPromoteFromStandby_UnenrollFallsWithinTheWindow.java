@@ -30,8 +30,8 @@ import resources.reusableWaits;
 
 public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Feb";
-	private static String dsiredMonthYear = "February 2021";
+	private static String CourseStartMonth = "May";
+	private static String dsiredMonthYear = "May 2021";
 	private static String CourseToEnroll = "STANDBYPROMONOCOURSE";
 	private static String CourseNameDisplayed = "StandbyPromoNoCourse";
 	private static int CourseStartYear = 2021;
@@ -358,12 +358,16 @@ public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends b
 				if (cp.getMemberSections().get(i).getText().contains("StandbyHoh")) {
 					jse.executeScript("arguments[0].click();",
 							cp.getMemberSections().get(i).findElement(By.tagName("i")));
+
+					jse.executeScript("arguments[0].click();",
+							cp.getMemberSections().get(i).findElements(By.tagName("a")).get(1));
+
 					break;
 				}
 
 			}
 
-			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
+//			jse.executeScript("arguments[0].click();", cp.getUnenrollListview());
 			Thread.sleep(1000);
 
 			WebDriverWait wait = new WebDriverWait(driver, 30);

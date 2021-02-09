@@ -317,7 +317,7 @@ public class ShopAndPurchasePackages extends base {
 
 			wait.until(ExpectedConditions
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
-			d.getMyAccountAccountHistory().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
 			Thread.sleep(3000);
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {

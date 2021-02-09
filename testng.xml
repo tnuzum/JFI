@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="EME - E2E Testing" parallel="tests" thread-count="12"
+<suite name="EME - E2E Testing" parallel="tests" thread-count="15"
 	preserve-order="true" verbose="3">
 	<listeners>
 		<listener class-name="EME.listeners" />
@@ -110,16 +110,7 @@
 				name="SingleMemberAppointments.CancelApptWithFee_SavedCard" />
 			<class
 				name="SingleMemberAppointments.CancelApptWithFee_cancelTransaction" />
-
-			<class
-				name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_NoPackage" />
-			<class
-				name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage" />
-			<class
-				name="FamilyAppointments.HOH_BookAppointmentForSelf_NoFamilyMember" />
-			<class name="FamilyAppointments.HOH_BookAppointmentForSelf" />
-			<class name="FamilyAppointments.NonHOH_BookAppointmentForSelf" />
-
+		
 		</classes>
 	</test>
 
@@ -164,6 +155,7 @@
 				name="SingleMemberAppointments.ChangeApptWithFee_ClubReqPackages_ToGrpAppt" />
 			<class
 				name="SingleMemberAppointments.ChangeApptWithFee_MemberHasPackages_ToGrpAppt" />
+				
 
 		</classes>
 	</test>
@@ -171,16 +163,7 @@
 	<test name="Book And Cancel Group Appointments" parallel="none"
 		preserve-order="true" group-by-instances="true">
 
-		<classes>
-
-			<class
-				name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_NoPackage" />
-			<class
-				name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_PurchasePackage" />
-			<class
-				name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf" />
-			<class
-				name="FamilyAppointments.SelectMemberDropdownValidations" />
+		<classes>				
 
 			<class name="GroupAppointments.CancelGrpApptWithFee_NewCard" />
 			<class name="GroupAppointments.CancelGrpApptWithFee_SavedCard" />
@@ -211,13 +194,36 @@
 		</classes>
 	</test>
 
-	<test name="Change Group Appointments" parallel="none"
+		<test name="Change Group Appointments" parallel="none"
 		preserve-order="true" group-by-instances="true">
 
 		<classes>
 
 			<class
 				name="GroupAppointments.ChangeGrpApptWithFee_CancelTransaction" />
+			
+			<class
+				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_AdditionalResources" />
+			<class
+				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_NewCard" />
+			<class
+				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_OnAccount" />
+			<class
+				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_SavedCard" />
+			<class
+				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt" />
+			<class
+				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages" />
+			<class
+				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages" />
+
+		</classes>
+	</test> 
+	
+	<test name="Change Group Appointments_1" parallel="none"
+		preserve-order="true" group-by-instances="true">
+
+		<classes>
 			<class
 				name="GroupAppointments.ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources" />
 			<class
@@ -238,26 +244,10 @@
 				name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_SavedCard" />
 			<class
 				name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt" />
-			<class
-				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_AdditionalResources" />
-			<class
-				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_NewCard" />
-			<class
-				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_OnAccount" />
-			<class
-				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_SavedCard" />
-			<class
-				name="GroupAppointments.ChangeGrpApptWithFee_MemberHasPackages_ToSingleMbrAppt" />
-			<class
-				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubNotReqPackages" />
-			<class
-				name="GroupAppointments.ChangeGrpApptWithOutFee_ClubReqPackages" />
-				<class name="EME.EmailConfirmations" />
-
-
+				<!--class name="EME.EmailConfirmations" /-->
 		</classes>
-	</test> 
-
+	</test>
+	
 	<test name="Family Classes Courses" parallel="none"
 		preserve-order="true" group-by-instances="true">
 
@@ -429,6 +419,50 @@
 		</classes>
 	</test>
 	
+	<test name="Family Appointments Book, Change and Cancel - Single"
+		parallel="none" preserve-order="true" group-by-instances="true">
+		<classes>
+				<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_NoPackage" />
+				<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_PurchasePackage" />
+				<class name="FamilyAppointments.HOH_BookAppointmentForSelf_NoFamilyMember" />
+				<class name="FamilyAppointments.HOH_BookAppointmentForSelf" />
+				<class name="FamilyAppointments.NonHOH_BookAppointmentForSelf" />
+				<class name="FamilyAppointments.CancelPerAppointmentAppointmentByHoh_Single_WithFees"/>
+				<class name="FamilyAppointments.CancelPerMemberAppointmentByHoh_Single_NoFee"/>
+				<class name="FamilyAppointments.CancelPerMemberAppointmentByHoh_Single_WithFees"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Single_NoFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Single_NoFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Single_WithFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Single_WithFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_NoFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_NoFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_WithFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_WithFees_PkgReqd"/>
+				
+		</classes>
+	</test>
+	
+	<test name="Family Appointments Book, Change and Cancel - Group"
+		parallel="none" preserve-order="true" group-by-instances="true">
+		<classes>
+				<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_NoPackage" />
+				<class name="FamilyAppointments.HOH_BookGrpAppointmentForFamilyMember_PurchasePackage" />
+				<class name="FamilyAppointments.NonHOH_BookGrpAppointmentForSelf" />
+				<class name="FamilyAppointments.SelectMemberDropdownValidations" />
+				<class name="FamilyAppointments.CancelPerAppointmentAppointmentByHoh_Group_WithFees"/>
+				<class name="FamilyAppointments.CancelPerMemberAppointmentByHoh_Group_NoFee"/>
+				<class name="FamilyAppointments.CancelPerMemberAppointmentByHoh_GroupWithSingleMbr_WithFees"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Group_NoFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Group_NoFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Group_WithFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerAppointment_Group_WithFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Group_NoFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Group_NoFees_PkgReqd"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_NoPkg"/>
+				<class name = "FamilyAppointments.ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_PkgReqd"/>
+				
+		</classes>
+	</test>
 	<!-- When adding new test tag, include this test tag name in the POM.xml 
 		to be inclued in test execution through maven/jenkins -->
 </suite>
