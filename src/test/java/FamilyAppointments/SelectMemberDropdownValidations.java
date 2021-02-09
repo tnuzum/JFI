@@ -30,8 +30,8 @@ public class SelectMemberDropdownValidations extends base {
 	private static String productCategory1 = "Spa";
 	private static String productCategory2 = "Personal Training";
 	private static String appointmentToBook = "PT 60 Mins-FamilyAppointment";
-	private static String resourceName1 = "PT Smith, Andrew";
-	private static String resourceName2 = "FitExpert1";
+	private static String resourceName1 = "";
+	private static String resourceName2 = "PT.Ramakers, Tanya";
 	private static String familyMbrName = "Auto, Kidapptmbr";
 	private static Select se;
 	private static Select s2;

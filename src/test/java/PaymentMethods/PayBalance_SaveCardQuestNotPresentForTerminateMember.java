@@ -59,7 +59,7 @@ public class PayBalance_SaveCardQuestNotPresentForTerminateMember extends base {
 
 			rm.activeMemberLogin("terminate", "Testing1!"); // Login to EME
 
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));

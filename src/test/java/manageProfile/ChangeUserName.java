@@ -55,8 +55,10 @@ public class ChangeUserName extends base {
 		m.getcurrentUSerName().sendKeys("Seema");
 		m.getnewUSerName().sendKeys("Seema1");
 		m.getconfirmUSerName().sendKeys("Seema1");
-		m.getchangeUSerName().click();
-		m.getsaveUsernmae().click();
+		rm.scrollIntoViewAndClick(driver, m.getchangeUSerName());
+		rm.scrollIntoViewAndClick(driver, m.getsaveUsernmae());
+//		m.getchangeUSerName().click();
+//		m.getsaveUsernmae().click();
 
 		rm.memberLogout();
 	}
@@ -79,8 +81,10 @@ public class ChangeUserName extends base {
 		m.getcurrentUSerName().sendKeys("Seema1");
 		m.getnewUSerName().sendKeys("Seema");
 		m.getconfirmUSerName().sendKeys("Seema");
-		m.getchangeUSerName().click();
-		m.getsaveUsernmae().click();
+		rm.scrollIntoViewAndClick(driver, m.getchangeUSerName());
+		rm.scrollIntoViewAndClick(driver, m.getsaveUsernmae());
+//		m.getchangeUSerName().click();
+//		m.getsaveUsernmae().click();
 		rm.memberLogout();
 	}
 

@@ -56,6 +56,9 @@ public class CalendarPO {
 	By addToCalButtonListView = By.xpath("//button[contains(text(), 'ADD TO CALENDAR')]");
 	By unenrollListview = By.xpath("//a[contains(text(), 'UNENROLL')]");
 	By memberSections = By.xpath("//div[@class = 'ng-star-inserted'] ");
+	By editAppointmentListView = By.xpath("//a[contains(text(),'EDIT APPOINTMENT')]");
+	By editAppointmentButton = By.xpath("//div[contains(text(),'edit appointment')]");
+	// div[@class='panel panel-default ng-star-inserted']
 
 // CONSTRUCTOR
 
@@ -242,5 +245,13 @@ public class CalendarPO {
 
 	public WebElement getStatus() {
 		return driver.findElement(status);
+	}
+
+	public WebElement getEditAppointmentListView() {
+		return driver.findElement(editAppointmentListView);
+	}
+
+	public WebElement getEditAppointmentButton() {
+		return driver.findElement(editAppointmentButton);
 	}
 }

@@ -100,7 +100,7 @@ public class PageLaunchTest_Chrome extends base {
 
 	@Test(priority = 30)
 	public void AcctHistoryButtonTest() throws InterruptedException {
-		d.getMyAccountAccountHistory().click();
+		jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
 		AcctHistoryPO a = new AcctHistoryPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(), "Account History");
 		log.info("Account History Page Header Verified");
@@ -109,7 +109,7 @@ public class PageLaunchTest_Chrome extends base {
 
 	@Test(priority = 35)
 	public void PayNowButtonTest() throws InterruptedException {
-		d.getMyAccountPayNow().click();
+		jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 		PaymentPO pb = new PaymentPO(driver);
 		Assert.assertEquals(pb.getPageHeader().getText(), "Pay Balance");
 		log.info("Pay Balance Page Header Verified");
@@ -179,7 +179,9 @@ public class PageLaunchTest_Chrome extends base {
 
 	@Test(priority = 55)
 	public void EditMyInfoButtonTest() throws InterruptedException {
-		d.getMyInfoEditButton().click();
+
+		jse.executeScript("arguments[0].click();", d.getMyInfoEditButton());
+
 		ManageProfilePO a = new ManageProfilePO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(), "Manage Profile");
 		log.info("Manage Profile Page Header Verified");

@@ -681,24 +681,25 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) {
+	public Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) throws InterruptedException {
+
 		int ClassOrCourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
+
 		for (int j = 0; j < ClassOrCourseCount; j++) {
 			String ClassOrCourseName = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j)
 					.getText();
 
-			if (ClassOrCourseName.contains(ClassOrCourseToEnroll)) {
+			if (ClassOrCourseName.toLowerCase().contains(ClassOrCourseToEnroll.toLowerCase())) {
+
 				JavascriptExecutor jse = ((JavascriptExecutor) driver);
 				jse.executeScript("arguments[0].scrollIntoView(true);",
 						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
 
+				Thread.sleep(4000);
+
 				jse.executeScript("arguments[0].click();",
 						driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).get(j));
 
-				// driver.findElements(By.xpath("//div[contains(@class,
-				// 'column2')]")).get(j).click(); // Click on the
-				// specific
-				// Course
 				break;
 			}
 		}
@@ -1173,7 +1174,7 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Feb");
+		monthDropdown.selectByVisibleText("May");
 		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
 		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
@@ -1265,6 +1266,341 @@ public class reusableMethods extends base {
 		a.getPopup2OKButton().click();
 		Thread.sleep(2000);
 		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+
+		return null;
+	}
+
+	public Object cancelAppointmentByHohNoFee(String appointmentToBook, String familyMember)
+			throws IOException, InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
+
+		this.openSideMenuIfNotOpenedAlready();
+
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+		d.getMenuMyCalendar().click();
+		wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
+
+		cp.getCalendarViewLink().click();
+		Thread.sleep(1000);
+
+		this.MyActivitiesTomorrowClick();
+
+		/*
+		 * Thread.sleep(1000); cp.getCalDayBadge().click();
+		 */
+		Thread.sleep(1000);
+
+		int eventCount = cp.getCalEventTitles().size();
+
+		for (int i = 0; i < eventCount; i++) {
+
+			if (cp.getCalEventTitles().get(i).getText().contains(appointmentToBook)) {
+
+				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+				Thread.sleep(1000);
+				Actions a = new Actions(driver);
+				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
+				break;
+			}
+		}
+
+		Thread.sleep(1000);
+
+		Assert.assertTrue(cp.getClassName().getText().contains(appointmentToBook));
+		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(familyMember));
+		cp.getEditAppointmentButton().click();
+		Thread.sleep(1000);
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
+		AppointmentsPO a = new AppointmentsPO(driver);
+		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
+		jse.executeScript("arguments[0].click();", a.getEditApptCancelButton());
+		Thread.sleep(1000);
+		a.getEditApptCancelYesButton().click();
+		Thread.sleep(2000);
+		rw.waitForAcceptButton();
+		a.getPopup2OKButton().click();
+		Thread.sleep(2000);
+		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+
+		return null;
+	}
+
+	public Object cancelAppointmentFromListViewByHohNoFee(String Date, String startTime, String appointmentToBook,
+			String familyMember) throws IOException, InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
+
+		this.openSideMenuIfNotOpenedAlready();
+
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+		d.getMenuMyCalendar().click();
+		wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
+
+		Calendar calendar = Calendar.getInstance();
+
+		if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
+
+			driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(0).click();
+
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
+
+			Thread.sleep(1000);
+
+		}
+
+		int count = cp.getMemberSections().size();
+
+		for (int i = 0; i < count; i++) {
+			if (cp.getMemberSections().get(i).getText().contains(familyMember)) {
+
+				if (cp.getMemberSections().get(i).getText().contains(Date))
+
+				{
+
+					if (cp.getMemberSections().get(i).getText().contains(startTime)) {
+						jse.executeScript("arguments[0].click();",
+								cp.getMemberSections().get(i).findElement(By.tagName("i")));
+
+						jse.executeScript("arguments[0].click();",
+								cp.getMemberSections().get(i).findElements(By.tagName("a")).get(1));
+						break;
+					}
+				}
+
+			}
+
+		}
+
+		Thread.sleep(1000);
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
+		AppointmentsPO a = new AppointmentsPO(driver);
+		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
+		jse.executeScript("arguments[0].click();", a.getEditApptCancelButton());
+		Thread.sleep(1000);
+		a.getEditApptCancelYesButton().click();
+		Thread.sleep(2000);
+		rw.waitForAcceptButton();
+		a.getPopup2OKButton().click();
+		Thread.sleep(2000);
+		Assert.assertEquals(d.getPageHeader().getText(), "Dashboard");
+
+		return null;
+	}
+
+	public Object cancelAppointmentByHohWithFees(String Date, String startTime, String appointmentToBook,
+			String familyMember) throws IOException, InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		DashboardPO d = new DashboardPO(driver);
+		CalendarPO cp = new CalendarPO(driver);
+
+		this.openSideMenuIfNotOpenedAlready();
+
+		while (!d.getmenuMyActivitiesSubMenu().getAttribute("style").contains("1")) {
+
+			d.getMenuMyActivies().click();
+			Thread.sleep(1000);
+			d.getmenuMyActivitiesSubMenu().getAttribute("style");
+			System.out.println(d.getmenuMyActivitiesSubMenu().getAttribute("style"));
+		}
+
+		WebDriverWait wait1 = new WebDriverWait(driver, 50);
+		wait1.until(ExpectedConditions.elementToBeClickable(d.getMenuMyCalendar()));
+
+		d.getMenuMyCalendar().click();
+		wait1.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
+
+		Calendar calendar = Calendar.getInstance();
+
+		if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
+
+			driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(0).click();
+
+			wait1.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
+
+			Thread.sleep(1000);
+
+		}
+
+		int count = cp.getMemberSections().size();
+
+		for (int i = 0; i < count; i++) {
+			if (cp.getMemberSections().get(i).getText().contains(familyMember)) {
+
+				if (cp.getMemberSections().get(i).getText().contains(Date))
+
+				{
+
+					if (cp.getMemberSections().get(i).getText().contains(startTime)) {
+						jse.executeScript("arguments[0].click();",
+								cp.getMemberSections().get(i).findElement(By.tagName("i")));
+
+						jse.executeScript("arguments[0].click();",
+								cp.getMemberSections().get(i).findElements(By.tagName("a")).get(1));
+						break;
+					}
+				}
+
+			}
+
+		}
+
+		Thread.sleep(1000);
+
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		Thread.sleep(2000);
+		AppointmentsPO a = new AppointmentsPO(driver);
+		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
+		wait.until(ExpectedConditions.visibilityOf(a.getEditApptCancelButton()));
+		jse.executeScript("arguments[0].click();", a.getEditApptCancelButton());
+		Thread.sleep(1000);
+		Assert.assertTrue(a.getCancelFeeSection().getText().contains("Appointment Cancellation Fee"));
+
+		wait.until(ExpectedConditions.textToBePresentInElement(a.getTotalAmount(), "$"));
+		System.out.println(a.getTotalAmount().getText());
+		String[] totalAmt = a.getTotalAmount().getText().split(": ");
+		String FormatTotalAmt = totalAmt[1].trim();
+		System.out.println(FormatTotalAmt);
+
+		Thread.sleep(3000);
+
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+
+		while (!PM.getNewCardButton().isDisplayed())
+
+		{
+			Thread.sleep(1000);
+
+		}
+
+		jse.executeScript("arguments[0].click();", PM.getNewCardButton());
+		Thread.sleep(3000);
+
+		String opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+		while (opacity.contains("1")) {
+			jse.executeScript("arguments[0].click();", PM.getNewCardButton());
+			Thread.sleep(3000);
+			opacity = driver.findElement(By.id("show-saved")).getAttribute("style");
+
+		}
+
+		wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
+
+		Assert.assertTrue(PM.getCloseButton().isDisplayed());
+		System.out.println("Pay Button disabled:" + PM.getPaymentButton().getAttribute("disabled"));
+//		Assert.assertFalse(PM.getPaymentButton().isEnabled());
+
+//			System.out.println(PM.getNameOnCardField().getAttribute("value"));
+
+		PM.getCardNumberField().sendKeys("4111111111111111");
+		PM.getExpirationMonth().sendKeys("04");
+		PM.getExpirationYear().sendKeys("22");
+		PM.getSecurityCode().sendKeys("123");
+		jse.executeScript("arguments[0].click();", PM.getCheckBox());
+		while (!PM.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+
+		// Clicks on the Pay button without signature
+		jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+		System.out.println(PM.getPopupContent().getText());
+		Assert.assertTrue(PM.getPopupContent().getText().contains("A signature is required to continue."));
+		PM.getPopupOk().click();
+		Thread.sleep(1000);
+		jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
+		Thread.sleep(1000);
+
+		// Verifies the Pay button contains the total amount
+		Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
+		// Click the Pay button
+		while (!PM.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+		jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+
+		rw.waitForAcceptButton();
+
+		wait.until(ExpectedConditions.elementToBeClickable(a.getPopup2OKButton()));
+
+		// Verifies the success message
+		Assert.assertEquals(a.getPopup2Title().getText(), "Success");
+		Assert.assertTrue(a.getPopup2Content().getText().contains("Your appointment has been cancelled."));
+		a.getPopup2OKButton().click();
+		Thread.sleep(1000);
+		ThankYouPO TY = new ThankYouPO(driver);
+
+		// Verifies the text on Thank You page and the links to navigate to Dashboard
+		// and other pages are displayed
+		this.ThankYouPageValidations();
+
+		Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
+		TY.getPrintReceiptButton().click();
+		Thread.sleep(2000);
+		Assert.assertTrue(TY.getReceiptPopup().isDisplayed());
+
+		// Verifies the buttons on Print Receipt Popup
+		this.ReceiptPopupValidations();
+		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+				.contains(FormatTotalAmt));
+
+		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+		Thread.sleep(2000);
+
+		// Navigate to Dashboard
+		int linkcount = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < linkcount; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+			{
+				// rw.linksToBeClickable();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
+				break;
+			}
+
+		}
+		rw.waitForDashboardLoaded();
+		// Verifies the link navigates to the right page
+		Assert.assertEquals("Dashboard", driver.getTitle());
+		Thread.sleep(2000);
 
 		return null;
 	}
@@ -1870,14 +2206,14 @@ public class reusableMethods extends base {
 		String classtext = null;
 
 		try {
-			classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+			classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
 
 		} catch (org.openqa.selenium.NoSuchElementException ne) {
 			jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//i[contains(@class, 'right')]")));
 			while (ap.getloadingAvailabilityMessage().size() != 0) {
 				System.out.println("waiting1");
 				Thread.sleep(1000);
-				classtext = ap.getCalendarTwodaysAfter().getAttribute("class");
+				classtext = ap.getCalendarDayAfterTomorrow().getAttribute("class");
 			}
 		}
 
@@ -2904,30 +3240,34 @@ public class reusableMethods extends base {
 		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-		ap.getGroupMemberSearchInput().sendKeys("auto");
-		jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
-		Thread.sleep(2000);
+		if (!participant.equals("none")) {
+			ap.getGroupMemberSearchInput().sendKeys("auto");
+			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
-		int memberCount = ap.getGroupPopupAddButtons().size();
-		for (int i = 0; i < memberCount; i++)
+			Thread.sleep(2000);
 
-		{
-			String text = ap.getGroupPopupMembers().get(i).getText();
-			System.out.println(text);
-			if (ap.getGroupPopupMembers().get(i).getText().contains(participant)) {
-				wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
-				ap.getGroupPopupAddButtons().get(i).click();
-				break;
+			int memberCount = ap.getGroupPopupAddButtons().size();
+			for (int i = 0; i < memberCount; i++)
+
+			{
+				String text = ap.getGroupPopupMembers().get(i).getText();
+				System.out.println(text);
+				if (ap.getGroupPopupMembers().get(i).getText().contains(participant)) {
+					wait.until(ExpectedConditions.elementToBeClickable(ap.getGroupPopupAddButtons().get(i)));
+					ap.getGroupPopupAddButtons().get(i).click();
+					break;
+				}
 			}
-		}
 
-		while (ap.getloadingAvailabilityMessage().size() != 0) {
-			System.out.println("waiting1");
-			Thread.sleep(1000);
-		}
+			while (ap.getloadingAvailabilityMessage().size() != 0) {
+				System.out.println("waiting1");
+				Thread.sleep(1000);
+			}
 
-		System.out.println("came out of the loop");
+			System.out.println("came out of the loop");
+
+		}
 
 		WebElement rt = ap.getResourceType();
 
@@ -3092,6 +3432,49 @@ public class reusableMethods extends base {
 		jse.executeScript("arguments[0].scrollIntoView(true);", element);
 
 		return null;
+	}
+
+	public String selectAppointmentTime(String resourceName) throws InterruptedException {
+		String startTime = null;
+
+		AppointmentsPO ap = new AppointmentsPO(driver);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+		for (int m = 0; m < ap.getApptBox().size(); m++) {
+			String bookName = ap.getApptBox().get(m).getText();
+			if (bookName.contains(resourceName)) {
+				List<WebElement> TimeSlots = ap.getTimeSlotContainers().get(m).findElements(By.tagName("a"));
+				WebElement AftrnunSlot = TimeSlots.get(1);
+				wait.until(ExpectedConditions.elementToBeClickable(AftrnunSlot));
+				while (!AftrnunSlot.isEnabled())// while button is NOT(!) enabled
+				{
+					System.out.println("Waiting for available times");
+				}
+
+				// AftrnunSlot.click();
+
+				jse.executeScript("arguments[0].click();", AftrnunSlot);
+				Thread.sleep(1000);
+
+				WebElement AftrenoonAvailableTimeContainer = ap.getTimeSlotContainers().get(m)
+						.findElement(By.id("tab-2-0"));
+				List<WebElement> AftrenoonAvailableTimes = AftrenoonAvailableTimeContainer
+						.findElements(By.tagName("button"));
+				WebElement secondAvailableTimeAfternoon = AftrenoonAvailableTimes.get(1);
+//				while (!st2.isEnabled())//while button is NOT(!) enabled
+//				{
+//				Thread.sleep(200);
+//				}
+
+				wait.until(ExpectedConditions.elementToBeClickable(secondAvailableTimeAfternoon));
+				startTime = secondAvailableTimeAfternoon.getText();
+				System.out.println(startTime);
+				jse.executeScript("arguments[0].click();", secondAvailableTimeAfternoon);
+				break;
+			}
+		}
+		return startTime;
 	}
 
 }

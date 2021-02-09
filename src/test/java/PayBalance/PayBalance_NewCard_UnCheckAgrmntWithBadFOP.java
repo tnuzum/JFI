@@ -61,19 +61,20 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account and saving the card but not selecting the agreement with Bad FOP")
 	public void MakePaymentWithNewCard_SelectAreYouSure() throws InterruptedException, IOException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
+
 			rm.activeMemberLogin("badfopmbr", "Testing1!");
 			rw.waitForDashboardLoaded();
 
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 
 			Thread.sleep(500);

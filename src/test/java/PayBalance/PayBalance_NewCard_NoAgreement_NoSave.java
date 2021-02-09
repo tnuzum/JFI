@@ -59,18 +59,18 @@ public class PayBalance_NewCard_NoAgreement_NoSave extends base {
 
 	@Test(priority = 1, description = "Adding $5.00 to member's account and not saving the card and no agreement exists for the member")
 	public void MakePaymentWithNewCard() throws InterruptedException, IOException {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		PaymentPO p = new PaymentPO(driver);
 		try {
 			rm.activeMemberLogin("aauto", "Testing1!");
 			rw.waitForDashboardLoaded();
 
-			d.getMyAccountPayNow().click();
+			jse.executeScript("arguments[0].click();", d.getMyAccountPayNow());
 
 			WebDriverWait wait = new WebDriverWait(driver, 10);
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//h2[@class='text-center']")));
 
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", p.getAmountRadioButton3());
 //  	Thread.sleep(5000);
 //  	p.getAmountRadioButton3().click();
