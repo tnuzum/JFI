@@ -125,6 +125,8 @@ public class DashboardPO {
 
 	By privacyPolicyLink = By.linkText("Privacy Policy");
 	By privacyAndSecurityLabel = By.xpath("//h4[contains(text(),'Privacy & Security')]");
+	By showAllbutton = By.xpath("//button[contains(text(),'Show All')]");
+	By hideAllbutton = By.xpath("//button[contains(text(),'Hide All')]");
 
 // CONSTRUCTOR
 	public DashboardPO(WebDriver driver) {
@@ -410,6 +412,14 @@ public class DashboardPO {
 
 	public WebElement getPrivacyAndSecurityLabel() {
 		return driver.findElement(privacyAndSecurityLabel);
+	}
+
+	public WebElement getshowAllbutton() {
+		return driver.findElement(showAllbutton);
+	}
+
+	public WebElement gethideAllbutton() {
+		return driver.findElement(hideAllbutton);
 	}
 
 }
