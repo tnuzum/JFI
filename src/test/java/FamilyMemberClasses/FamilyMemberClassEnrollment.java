@@ -317,8 +317,9 @@ public class FamilyMemberClassEnrollment extends base {
 			}
 
 			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
-			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
-			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
+			rw.waitForAcceptButton();
+			// wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
+			// wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
 			c.getPopupClose().click();
 			Thread.sleep(1000);
