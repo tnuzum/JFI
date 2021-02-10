@@ -244,7 +244,7 @@
 				name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_SavedCard" />
 			<class
 				name="GroupAppointments.ChangeGrpApptWithFee_ClubReqPackages_ToSingleMbrAppt" />
-				<!--class name="EME.EmailConfirmations" /-->
+				
 		</classes>
 	</test>
 	
@@ -372,7 +372,7 @@
 			<class
 				name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow" />
 			
-
+			<class name="EME.EmailConfirmations" />
 
 		</classes>
 	</test>
