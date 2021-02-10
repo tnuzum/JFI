@@ -412,7 +412,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			Thread.sleep(2000);
+			Thread.sleep(3000);
 
 			rm.SelectClassOrCourseToEnroll("COURSEENROLLMENTENDED");
 
