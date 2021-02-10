@@ -82,6 +82,7 @@ public class messageCenter extends base {
 		Assert.assertEquals(driver.getTitle(), "Dashboard");
 		js.executeScript("window.scrollBy(0,500)");
 		Thread.sleep(2000);
+		Thread.sleep(500);
 		d.gethideAllbutton().click();
 
 	}
