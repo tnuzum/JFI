@@ -59,7 +59,7 @@ public class messageCenter extends base {
 					.findElements(By.xpath("//a[contains(@class, 'at-widget-externallink')]/parent::div")).get(i)
 					.getText();
 
-			if (messageName1.contains("Meesage for new club")) {
+			if (messageName1.contains("DoNot Delete/Change")) {
 				System.out.println(messageName1);
 
 				js.executeScript("arguments[0].click();",
@@ -82,7 +82,7 @@ public class messageCenter extends base {
 		Assert.assertEquals(driver.getTitle(), "Dashboard");
 		js.executeScript("window.scrollBy(0,500)");
 		Thread.sleep(2000);
-		Thread.sleep(500);
+
 		d.gethideAllbutton().click();
 
 	}
