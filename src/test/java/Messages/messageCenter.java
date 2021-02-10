@@ -59,7 +59,7 @@ public class messageCenter extends base {
 					.findElements(By.xpath("//a[contains(@class, 'at-widget-externallink')]/parent::div")).get(i)
 					.getText();
 
-			if (messageName1.contains("Meesage for new club")) {
+			if (messageName1.contains("DoNot Delete/Change")) {
 				System.out.println(messageName1);
 
 				js.executeScript("arguments[0].click();",
