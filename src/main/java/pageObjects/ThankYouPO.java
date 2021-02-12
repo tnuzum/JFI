@@ -25,7 +25,7 @@ public class ThankYouPO {
 	By viewCoursesEventsLink = By.xpath("//a[@href = '#/CourseList']");
 	By bookAppointmentsLink = By.xpath("//a[@href = '#/Appointments']");
 	By receiptNumber = By.tagName("strong");
-	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/h2");
+	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/div/h2");
 // CONSTRUCTOR
 
 	public ThankYouPO(WebDriver driver) {

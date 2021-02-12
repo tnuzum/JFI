@@ -387,7 +387,7 @@ public class CancelGrpApptWithFee_SavedCard extends base {
 			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
 					.getText().contains(FormatTotalAmt));
 
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 
 			// Navigate to Dashboard

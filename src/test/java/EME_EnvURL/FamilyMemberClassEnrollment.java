@@ -338,7 +338,7 @@ public class FamilyMemberClassEnrollment extends base {
 		// Verifies the buttons on Print Receipt Popup
 		rm.ReceiptPopupValidations();
 
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(1000);
 
 		// Navigate to Dashboard
@@ -380,7 +380,7 @@ public class FamilyMemberClassEnrollment extends base {
 		// Verifies the Invoice amount
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
 				.contains(totalAmount));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(1000);
 		rm.returnToDashboard();
 

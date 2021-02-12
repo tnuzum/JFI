@@ -6,6 +6,8 @@ import java.text.ParseException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -16,6 +18,7 @@ import org.testng.annotations.Test;
 import pageObjects.AcctHistoryPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
+import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -71,7 +74,7 @@ public class AccountHistoryTest extends base {
 
 	@Test(priority = 1)
 	public void verifyAcctSummaryBoxTest() throws InterruptedException, ParseException {
-
+		Thread.sleep(2000);
 		Assert.assertTrue(ahp.getAcctSummaryBox().isDisplayed());
 		Assert.assertTrue(ahp.getUnPaidInvoices().isDisplayed());
 		Assert.assertTrue(ahp.getCreditOnFile().isDisplayed());
@@ -86,6 +89,8 @@ public class AccountHistoryTest extends base {
 		System.out.println(ahp.getCreditOnFile().getText());
 		System.out.println(ahp.getBalance().getText());
 
+		// Remove extra characters from the string amount
+
 		String strUnPaidInvoices = ahp.getUnPaidInvoices().getText().replaceAll("[^\\d.]+", "");
 		String strCreditOnFile = ahp.getCreditOnFile().getText().replaceAll("[^\\d.]+", "");
 		String strBalance = ahp.getBalance().getText().replaceAll("[^\\d.]+", "");
@@ -94,6 +99,7 @@ public class AccountHistoryTest extends base {
 		System.out.println(strCreditOnFile);
 		System.out.println(strBalance);
 
+		// Format the string value to a float value
 		DecimalFormat parser = new DecimalFormat("#.##");
 
 		float unPaidInvoices = parser.parse(strUnPaidInvoices).floatValue();
@@ -164,7 +170,12 @@ public class AccountHistoryTest extends base {
 		for (int i = 0; i < count; i++) {
 			Assert.assertTrue(ahp.getReceiptNumbers().get(i).getText().contains(receiptNumber));
 		}
-
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
+		Thread.sleep(2000);
+		ThankYouPO TY = new ThankYouPO(driver);
+		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+		Thread.sleep(1000);
 		rm.memberLogout();
 
 	}
