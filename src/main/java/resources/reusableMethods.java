@@ -2047,7 +2047,35 @@ public class reusableMethods extends base {
 		for (int i = 0; i < dayCount; i++) {
 
 			if (element.get(i).getText().equals(todaysMDate)) {
-				Assert.assertTrue(element.get(i).getAttribute("class").contains("active"));
+				Assert.assertTrue(element.get(i).getAttribute("class").contains("selected"));
+				element.get(i).click();
+				break;
+			}
+		}
+		Thread.sleep(1000);
+		return null;
+	}
+
+	public Object verifyNextMonthLastDateIsSelectedByDefault(List<WebElement> element) throws InterruptedException {
+
+		SimpleDateFormat df1 = new SimpleDateFormat("MMM yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, 1);
+		String lastDate = Integer.toString(cal.getActualMaximum(Calendar.DATE));
+
+		String nextMonthYear = df1.format(cal.getTime());
+
+		String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
+				.getText();
+
+		Assert.assertTrue(monthName.contains(nextMonthYear.toUpperCase()));
+		Thread.sleep(1000);
+		int dayCount = element.size();
+
+		for (int i = 0; i < dayCount; i++) {
+
+			if (element.get(i).getText().equals(lastDate)) {
+				Assert.assertTrue(element.get(i).getAttribute("class").contains("selected"));
 				element.get(i).click();
 				break;
 			}
@@ -2059,28 +2087,18 @@ public class reusableMethods extends base {
 	public Object verifyFirstDateOfPreviousMonthIsSelectedByDefault(List<WebElement> element)
 			throws InterruptedException {
 
-		SimpleDateFormat df1 = new SimpleDateFormat("d");
+		SimpleDateFormat df1 = new SimpleDateFormat("MMM yyyy");
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
-		cal.set(Calendar.DATE, 1);
-		Date firstDateOfPreviousMonth = cal.getTime();
-		String date = df1.format(firstDateOfPreviousMonth);
+
+		String previousMonthYear = df1.format(cal.getTime());
+
+		String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
+				.getText();
 
 		Assert.assertTrue(element.get(0).getAttribute("class").contains("selected"));
 
-		element.get(0).click();
-
-		int dayCount = element.size();
-
-		for (int i = 0; i < dayCount; i++) {
-
-			if (element.get(i).getAttribute("class").contains("selected")) {
-
-				Assert.assertTrue(i == 0);
-				element.get(i).click();
-				break;
-			}
-		}
+		Assert.assertTrue(monthName.contains(previousMonthYear.toUpperCase()));
 
 		return null;
 	}

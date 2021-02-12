@@ -46,6 +46,8 @@
 			
 			<class name="ManageFamily.ManageFamilyLayoutTest"/>
 			<class name ="manageProfile.ChangeUserName"/>
+			
+			<class name ="Messages.messageCenter"/>
 
 		</classes>
 	</test>
