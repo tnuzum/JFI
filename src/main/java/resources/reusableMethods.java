@@ -567,11 +567,11 @@ public class reusableMethods extends base {
 
 		Assert.assertTrue(
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-				.getAttribute("type").equals("button"));
+//		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
+//				.getAttribute("type").equals("button"));
 		Assert.assertTrue(
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).isDisplayed());
+		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]"))
 				.getAttribute("type").equals("button"));
 		return null;
 	}
@@ -1579,10 +1579,10 @@ public class reusableMethods extends base {
 
 		// Verifies the buttons on Print Receipt Popup
 		this.ReceiptPopupValidations();
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
 				.contains(FormatTotalAmt));
 
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(2000);
 
 		// Navigate to Dashboard
@@ -2099,6 +2099,7 @@ public class reusableMethods extends base {
 		Assert.assertTrue(element.get(0).getAttribute("class").contains("selected"));
 
 		Assert.assertTrue(monthName.contains(previousMonthYear.toUpperCase()));
+		element.get(0).click();
 
 		return null;
 	}

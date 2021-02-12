@@ -261,7 +261,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			// Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
 
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(3000);
 
 			// Navigate to Dashboard
@@ -448,7 +448,7 @@ public class EnrollCourseByBuyingPackage extends base {
 
 			// Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(3000);
 
 			// Navigate to Select Classes
@@ -671,7 +671,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			// Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
 
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(3000);
 
 			// Navigate to Select Courses

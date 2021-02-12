@@ -27,8 +27,8 @@ public class AcctHistoryPO {
 	By columnNames = By.xpath("//div[@class = 'col-md-3']");
 	By descriptionColumn = By.xpath("//div[@class = 'col-md-6']");
 	By acctSummaryBox = By.xpath("//div[@class = 'row-box p-sm']");
-	By unPaidInvoices = By.xpath("//h2[@class = 'at-accounthistorysummary-unpaidinvoices']");
-	By creditOnFile = By.xpath("//h2[@class = 'at-accounthistorysummary-creditonfile']");
+	By unPaidInvoices = By.xpath("//h2[@class = 'at-accounthistorysummary-unpaidamount']");
+	By creditOnFile = By.xpath("//h2[@class = 'at-accounthistorysummary-creditamount']");
 	By balance = By.xpath("//h2[@class = 'at-accounthistorysummary-balance']");
 
 // CONSTRUCTOR
