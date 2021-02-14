@@ -48,6 +48,7 @@
 			<class name ="manageProfile.ChangeUserName"/>
 			
 			<class name ="Messages.messageCenter"/>
+			<class name ="AccountHistory.AccountHistoryTest"/>
 
 		</classes>
 	</test>
@@ -116,7 +117,7 @@
 		</classes>
 	</test>
 
-	<!--test name="Change Single Member Appointments" parallel="none"
+	<test name="Change Single Member Appointments" parallel="none"
 		preserve-order="true" group-by-instances="true">
 
 		<classes>
@@ -282,7 +283,7 @@
 
 
 		</classes>
-	</test-->
+	</test>
 
 	<test name="Pay Balance And Manage Payment Methods"
 		parallel="none" preserve-order="true" group-by-instances="true">
@@ -349,8 +350,8 @@
 		<classes>
 
 			<class name="Unenroll.CourseUnenrollTests" />
-			<!--class name="Unenroll.FamilyMbrCourseUnenrollTests" />
-			<class name="Unenroll.FamilyMbrCourseUnenrollTests2" /-->
+			<class name="Unenroll.FamilyMbrCourseUnenrollTests" />
+			<class name="Unenroll.FamilyMbrCourseUnenrollTests2" />
 
 
 
@@ -363,8 +364,8 @@
 		<classes>
 
 			<class name="Unenroll.ClassUnenrollTests" />
-			<!--class name="Unenroll.FamilyMbrClassUnenrollTests" />
-			<class name="Unenroll.FamilyMbrClassUnenrollTests2" /-->
+			<class name="Unenroll.FamilyMbrClassUnenrollTests" />
+			<class name="Unenroll.FamilyMbrClassUnenrollTests2" />
 			<class
 				name="Unenroll.Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow" />
 			<class
@@ -374,7 +375,7 @@
 			<class
 				name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow" />
 			
-			<!--class name="EME.EmailConfirmations" /-->
+			<class name="EME.EmailConfirmations" />
 
 		</classes>
 	</test>
@@ -421,7 +422,7 @@
 		</classes>
 	</test>
 	
-	<!--test name="Family Appointments Book, Change and Cancel - Single"
+	<test name="Family Appointments Book, Change and Cancel - Single"
 		parallel="none" preserve-order="true" group-by-instances="true">
 		<classes>
 				<class name="FamilyAppointments.HOH_BookAppointmentForFamilyMember_NoPackage" />
@@ -464,7 +465,7 @@
 				<class name = "FamilyAppointments.ChangeByHoh_PerMember_GroupWithSingleMbr_WithFees_PkgReqd"/>
 				
 		</classes>
-	</test-->
+	</test>
 	<!-- When adding new test tag, include this test tag name in the POM.xml 
 		to be inclued in test execution through maven/jenkins -->
 </suite>
