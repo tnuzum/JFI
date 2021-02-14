@@ -16,7 +16,7 @@ public class ClassSignUpPO {
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By selectDateThisWeekButton = By.xpath("//label[@id='date-week']");
 	By calendarIcon = By.cssSelector(".mat-datepicker-toggle");
-	By calendarDates = By.tagName("td");
+	By calendarDates = By.xpath("//div[contains(@class,'mat-calendar-body-cell-content')]");
 	By classClubDropdown = By.xpath("//div[contains(@class, 'row-box')]/div[2]/div[2]/div/select");
 	By courseClubDropdown = By.xpath("//div[contains(@class, 'row-box')]/div[3]/div[1]/div[1]/select");
 	By selectClassCategory = By.xpath("//div[contains(@class, 'row-box')]/div[2]/div[3]/select");
