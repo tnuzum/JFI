@@ -48,6 +48,7 @@
 			<class name ="manageProfile.ChangeUserName"/>
 			
 			<class name ="Messages.messageCenter"/>
+			<class name ="AccountHistory.AccountHistoryTest"/>
 
 		</classes>
 	</test>
