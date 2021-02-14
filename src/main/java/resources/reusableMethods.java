@@ -2047,6 +2047,7 @@ public class reusableMethods extends base {
 		for (int i = 0; i < dayCount; i++) {
 
 			if (element.get(i).getText().equals(todaysMDate)) {
+
 				Assert.assertTrue(element.get(i).getAttribute("class").contains("selected"));
 				element.get(i).click();
 				break;
@@ -2099,7 +2100,6 @@ public class reusableMethods extends base {
 		Assert.assertTrue(element.get(0).getAttribute("class").contains("selected"));
 
 		Assert.assertTrue(monthName.contains(previousMonthYear.toUpperCase()));
-		element.get(0).click();
 
 		return null;
 	}

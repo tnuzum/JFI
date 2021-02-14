@@ -134,6 +134,7 @@ public class AccountHistoryTest extends base {
 		ahp.getFirstCalendarIcon().click();
 		Thread.sleep(1000);
 		rm.verifyFirstDateOfPreviousMonthIsSelectedByDefault(ahp.getCalendarDates());
+		ahp.getCalendarDates().get(0).click();
 
 		Thread.sleep(2000);
 	}
