@@ -314,8 +314,8 @@ public class FamilyMemberCourseEnrollment2 extends base {
 			Thread.sleep(1000);
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
-//	System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
+//	System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
 					.getText().contains(totalAmount));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
