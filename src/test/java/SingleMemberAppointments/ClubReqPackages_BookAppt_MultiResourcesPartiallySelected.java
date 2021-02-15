@@ -220,7 +220,7 @@ public class ClubReqPackages_BookAppt_MultiResourcesPartiallySelected extends ba
 //Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
 
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 
 //Navigate to Dashboard

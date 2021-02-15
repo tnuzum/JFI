@@ -299,7 +299,7 @@ public class ShopAndPurchasePackages extends base {
 			// Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
 
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 
 			// Navigate to Dashboard
@@ -351,15 +351,15 @@ public class ShopAndPurchasePackages extends base {
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
 
-			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
 					.isBlank()) {
 				Thread.sleep(500);
 			}
 			System.out.println(
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
 					.getText().contains(FormatTotalAmt));
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 			rm.memberLogout();
 		} catch (java.lang.AssertionError ae) {
@@ -497,7 +497,7 @@ public class ShopAndPurchasePackages extends base {
 			// Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
 
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 
 			// Navigate to Select Classes
@@ -545,16 +545,16 @@ public class ShopAndPurchasePackages extends base {
 
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
-			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
 					.isBlank()) {
 				Thread.sleep(500);
 			}
 
 			System.out.println(
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
 					.getText().contains(FormatTotalAmt1));
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 			rm.memberLogout();
 
@@ -721,7 +721,7 @@ public class ShopAndPurchasePackages extends base {
 			// Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
 
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(3000);
 
 			// Navigate to Select Classes
@@ -774,15 +774,15 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(1000);
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
-			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
 					.isBlank()) {
 				Thread.sleep(500);
 			}
 			System.out.println(
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']"))
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
 					.getText().contains(FormatTotalAmt2));
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 			rm.memberLogout();
 		} catch (java.lang.AssertionError ae) {
@@ -1055,7 +1055,7 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 
-	@Test(priority = 0, description = "Buy Day Pass for Unenrollmbr9")
+	@Test(priority = 0, description = "Buy Day Pass for Unenrollmbr9", enabled = false)
 	public void PurchaseDayPass() throws InterruptedException, IOException {
 		try {
 			rm.activeMemberLogin("Unenrollmbr9", "Testing1!");

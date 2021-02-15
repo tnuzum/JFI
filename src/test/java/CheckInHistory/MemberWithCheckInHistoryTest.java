@@ -2,14 +2,11 @@ package CheckInHistory;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.util.Calendar;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -76,10 +73,9 @@ public class MemberWithCheckInHistoryTest extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(chp.getSecondCalendarIcon()));
 		chp.getSecondCalendarIcon().click();
-		List<WebElement> CalendarDates = driver
-				.findElements(By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td"));
+		Thread.sleep(1000);
 
-		rm.verifyCurrentDateIsSelectedByDefault(CalendarDates);
+		rm.verifyCurrentDateIsSelectedByDefault(chp.getCalendarDates());
 
 		Thread.sleep(2000);
 	}
@@ -89,8 +85,9 @@ public class MemberWithCheckInHistoryTest extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(chp.getFirstCalendarIcon()));
 		chp.getFirstCalendarIcon().click();
+		Thread.sleep(1000);
 
-		Assert.assertTrue(chp.getCalendarDates().get(0).getAttribute("class").contains("selected"));
+		rm.verifyFirstDateOfPreviousMonthIsSelectedByDefault(chp.getCalendarDates());
 
 		Thread.sleep(2000);
 	}

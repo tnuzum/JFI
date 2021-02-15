@@ -19,13 +19,13 @@ public class ThankYouPO {
 	By linksSection = By.xpath("//div[@class='rate-box']");
 	By whatNextText = By.xpath("//div[@class='rate-box']/h2");
 	By receiptPopupPrint = By.xpath("//button[contains(text(), 'PRINT')]");
-	By receiptPopupClose = By.xpath("//button[contains(text(), 'Close')]");
+	By receiptPopupClose = By.xpath("//button[contains(text(), 'CLOSE')]");
 	By dashBoardLink = By.xpath("//a[@href = '#/Home']");
 	By viewClassesLink = By.xpath("//a[@href = '#/ClassList']");
 	By viewCoursesEventsLink = By.xpath("//a[@href = '#/CourseList']");
 	By bookAppointmentsLink = By.xpath("//a[@href = '#/Appointments']");
 	By receiptNumber = By.tagName("strong");
-	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/h2");
+	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/div/h2");
 // CONSTRUCTOR
 
 	public ThankYouPO(WebDriver driver) {

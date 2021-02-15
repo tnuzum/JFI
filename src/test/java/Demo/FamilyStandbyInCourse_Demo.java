@@ -318,7 +318,7 @@ public class FamilyStandbyInCourse_Demo extends base {
 
 			// Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(3000);
 
 			// Navigate to Select Classes

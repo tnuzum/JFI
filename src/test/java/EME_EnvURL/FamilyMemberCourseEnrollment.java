@@ -349,7 +349,7 @@ public class FamilyMemberCourseEnrollment extends base {
 
 		// Verifies the buttons on Print Receipt Popup
 		rm.ReceiptPopupValidations();
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(3000);
 
 		// Navigate to Select Classes
@@ -390,10 +390,10 @@ public class FamilyMemberCourseEnrollment extends base {
 		Thread.sleep(1000);
 		// Verifies the amount in the receipt is the same as it was displayed on the
 		// Purchase Packages page
-//	System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+//	System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
+		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
 				.contains(totalAmount));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(2000);
 		rm.returnToDashboard();
 

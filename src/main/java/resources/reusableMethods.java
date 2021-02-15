@@ -567,11 +567,11 @@ public class reusableMethods extends base {
 
 		Assert.assertTrue(
 				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
-				.getAttribute("type").equals("button"));
+//		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'PRINT')]"))
+//				.getAttribute("type").equals("button"));
 		Assert.assertTrue(
-				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).isDisplayed());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]"))
+				TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).isDisplayed());
+		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]"))
 				.getAttribute("type").equals("button"));
 		return null;
 	}
@@ -1579,10 +1579,10 @@ public class reusableMethods extends base {
 
 		// Verifies the buttons on Print Receipt Popup
 		this.ReceiptPopupValidations();
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-6 text-right']")).getText()
+		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
 				.contains(FormatTotalAmt));
 
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'Close')]")).click();
+		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(2000);
 
 		// Navigate to Dashboard
@@ -2047,7 +2047,36 @@ public class reusableMethods extends base {
 		for (int i = 0; i < dayCount; i++) {
 
 			if (element.get(i).getText().equals(todaysMDate)) {
-				Assert.assertTrue(element.get(i).getAttribute("class").contains("active"));
+
+				Assert.assertTrue(element.get(i).getAttribute("class").contains("selected"));
+				element.get(i).click();
+				break;
+			}
+		}
+		Thread.sleep(1000);
+		return null;
+	}
+
+	public Object verifyNextMonthLastDateIsSelectedByDefault(List<WebElement> element) throws InterruptedException {
+
+		SimpleDateFormat df1 = new SimpleDateFormat("MMM yyyy");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.MONTH, 1);
+		String lastDate = Integer.toString(cal.getActualMaximum(Calendar.DATE));
+
+		String nextMonthYear = df1.format(cal.getTime());
+
+		String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
+				.getText();
+
+		Assert.assertTrue(monthName.contains(nextMonthYear.toUpperCase()));
+		Thread.sleep(1000);
+		int dayCount = element.size();
+
+		for (int i = 0; i < dayCount; i++) {
+
+			if (element.get(i).getText().equals(lastDate)) {
+				Assert.assertTrue(element.get(i).getAttribute("class").contains("selected"));
 				element.get(i).click();
 				break;
 			}
@@ -2059,28 +2088,18 @@ public class reusableMethods extends base {
 	public Object verifyFirstDateOfPreviousMonthIsSelectedByDefault(List<WebElement> element)
 			throws InterruptedException {
 
-		SimpleDateFormat df1 = new SimpleDateFormat("d");
+		SimpleDateFormat df1 = new SimpleDateFormat("MMM yyyy");
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.MONTH, -1);
-		cal.set(Calendar.DATE, 1);
-		Date firstDateOfPreviousMonth = cal.getTime();
-		String date = df1.format(firstDateOfPreviousMonth);
+
+		String previousMonthYear = df1.format(cal.getTime());
+
+		String monthName = driver.findElement(By.xpath("//button[contains(@class, 'mat-calendar-period-button')]"))
+				.getText();
 
 		Assert.assertTrue(element.get(0).getAttribute("class").contains("selected"));
 
-		element.get(0).click();
-
-		int dayCount = element.size();
-
-		for (int i = 0; i < dayCount; i++) {
-
-			if (element.get(i).getAttribute("class").contains("selected")) {
-
-				Assert.assertTrue(i == 0);
-				element.get(i).click();
-				break;
-			}
-		}
+		Assert.assertTrue(monthName.contains(previousMonthYear.toUpperCase()));
 
 		return null;
 	}
