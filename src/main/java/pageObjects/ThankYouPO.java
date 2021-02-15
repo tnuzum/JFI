@@ -19,7 +19,7 @@ public class ThankYouPO {
 	By linksSection = By.xpath("//div[@class='rate-box']");
 	By whatNextText = By.xpath("//div[@class='rate-box']/h2");
 	By receiptPopupPrint = By.xpath("//button[contains(text(), 'PRINT')]");
-	By receiptPopupClose = By.xpath("//button[contains(text(), 'Close')]");
+	By receiptPopupClose = By.xpath("//button[contains(text(), 'CLOSE')]");
 	By dashBoardLink = By.xpath("//a[@href = '#/Home']");
 	By viewClassesLink = By.xpath("//a[@href = '#/ClassList']");
 	By viewCoursesEventsLink = By.xpath("//a[@href = '#/CourseList']");
