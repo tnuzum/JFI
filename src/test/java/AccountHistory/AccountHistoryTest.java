@@ -85,19 +85,11 @@ public class AccountHistoryTest extends base {
 		Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Credit On File"));
 		Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Balance"));
 
-		System.out.println(ahp.getUnPaidInvoices().getText());
-		System.out.println(ahp.getCreditOnFile().getText());
-		System.out.println(ahp.getBalance().getText());
-
 		// Remove extra characters from the string amount
 
 		String strUnPaidInvoices = ahp.getUnPaidInvoices().getText().replaceAll("[^\\d.]+", "");
 		String strCreditOnFile = ahp.getCreditOnFile().getText().replaceAll("[^\\d.]+", "");
 		String strBalance = ahp.getBalance().getText().replaceAll("[^\\d.]+", "");
-
-		System.out.println(strUnPaidInvoices);
-		System.out.println(strCreditOnFile);
-		System.out.println(strBalance);
 
 		// Format the string value to a float value
 		DecimalFormat parser = new DecimalFormat("#.##");
@@ -110,7 +102,11 @@ public class AccountHistoryTest extends base {
 		System.out.println(creditOnFile);
 		System.out.println(balance);
 
-		Assert.assertEquals(Math.abs(unPaidInvoices - creditOnFile), Math.abs(balance));
+		System.out.println(Math.round(balance));
+
+		System.out.println(Math.round(Math.abs(unPaidInvoices - creditOnFile)));
+
+		Assert.assertEquals(Math.round(Math.abs(unPaidInvoices - creditOnFile)), Math.round(balance));
 	}
 
 	@Test(priority = 2, enabled = true)
@@ -174,6 +170,8 @@ public class AccountHistoryTest extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 		Thread.sleep(2000);
+		jse.executeScript("arguments[0].scrollIntoView(true);",
+				ahp.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 		ThankYouPO TY = new ThankYouPO(driver);
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(1000);

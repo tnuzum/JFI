@@ -321,7 +321,7 @@ public class ShopAndPurchasePackages extends base {
 
 			// Note the package units after purchase
 			IntUnitCountAfter = rm.getPackageUnits("ServiceOA");
-			System.out.println("Aftre: " + IntUnitCountAfter);
+			System.out.println("after: " + IntUnitCountAfter);
 
 			// Verifies the package units is now incremented by one unit
 			IntUnitCountBefore++;
@@ -346,7 +346,9 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
 			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-			Thread.sleep(1000);
+			Thread.sleep(3000);
+			jse.executeScript("arguments[0].scrollIntoView(true);",
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
@@ -359,6 +361,7 @@ public class ShopAndPurchasePackages extends base {
 					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
 			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
 					.getText().contains(FormatTotalAmt));
+			jse.executeScript("window.scrollBy(0,500)");
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 			rm.memberLogout();
@@ -540,9 +543,10 @@ public class ShopAndPurchasePackages extends base {
 
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
-			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-			Thread.sleep(1000);
-
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
+			Thread.sleep(3000);
+			jse.executeScript("arguments[0].scrollIntoView(true);",
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
 			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
@@ -554,6 +558,7 @@ public class ShopAndPurchasePackages extends base {
 					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
 			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
 					.getText().contains(FormatTotalAmt1));
+			jse.executeScript("window.scrollBy(0,500)");
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 			rm.memberLogout();
@@ -770,8 +775,10 @@ public class ShopAndPurchasePackages extends base {
 			// .presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm
 			// hidden-xs']//a")));
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber4));
-			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-			Thread.sleep(1000);
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
+			Thread.sleep(3000);
+			jse.executeScript("arguments[0].scrollIntoView(true);",
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
 			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
@@ -782,6 +789,7 @@ public class ShopAndPurchasePackages extends base {
 					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
 			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
 					.getText().contains(FormatTotalAmt2));
+			jse.executeScript("window.scrollBy(0,500)");
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 			rm.memberLogout();
@@ -1055,7 +1063,7 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 
-	@Test(priority = 0, description = "Buy Day Pass for Unenrollmbr9", enabled = false)
+	@Test(priority = 0, description = "Buy Day Pass for Unenrollmbr9", enabled = true)
 	public void PurchaseDayPass() throws InterruptedException, IOException {
 		try {
 			rm.activeMemberLogin("Unenrollmbr9", "Testing1!");

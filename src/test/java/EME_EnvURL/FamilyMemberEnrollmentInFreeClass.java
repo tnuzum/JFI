@@ -282,7 +282,10 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
 		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-		Thread.sleep(1000);
+		Thread.sleep(2000);
+
+		jse.executeScript("arguments[0].scrollIntoView(true);",
+				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 		// Verifies the Invoice amount is $0.00
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
 				.contains("$0.00"));
