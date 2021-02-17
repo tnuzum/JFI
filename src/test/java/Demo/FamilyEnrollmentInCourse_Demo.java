@@ -348,8 +348,10 @@ public class FamilyEnrollmentInCourse_Demo extends base {
 		ahp.getSearchField().sendKeys(receiptNumber2);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-		Thread.sleep(1000);
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
+		Thread.sleep(3000);
+		jse.executeScript("arguments[0].scrollIntoView(true);",
+				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 		// Verifies the amount in the receipt is the same as it was displayed on the
 		// Purchase Packages page
 //	System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());

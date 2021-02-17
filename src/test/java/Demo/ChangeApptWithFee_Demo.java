@@ -310,15 +310,17 @@ public class ChangeApptWithFee_Demo extends base {
 		ahp.getSearchField().sendKeys(receiptNumber);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-		Thread.sleep(1000);
-
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
+		Thread.sleep(3000);
+		jse.executeScript("arguments[0].scrollIntoView(true);",
+				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 
 		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText().isBlank()) {
 			Thread.sleep(500);
 		}
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
+		System.out
+				.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
 		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
 				.contains(FormatTotalAmt));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();

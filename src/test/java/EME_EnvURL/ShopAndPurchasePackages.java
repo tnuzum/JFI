@@ -334,7 +334,9 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
 			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-			Thread.sleep(1000);
+			Thread.sleep(2000);
+			jse.executeScript("arguments[0].scrollIntoView(true);",
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
@@ -529,9 +531,10 @@ public class ShopAndPurchasePackages extends base {
 
 			Thread.sleep(3000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
-			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-			Thread.sleep(1000);
-
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
+			Thread.sleep(2000);
+			jse.executeScript("arguments[0].scrollIntoView(true);",
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
 			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
@@ -756,8 +759,10 @@ public class ShopAndPurchasePackages extends base {
 			// .presenceOfElementLocated(By.xpath("//div[@class='col-md-3 hidden-sm
 			// hidden-xs']//a")));
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber4));
-			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-			Thread.sleep(1000);
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
+			Thread.sleep(2000);
+			jse.executeScript("arguments[0].scrollIntoView(true);",
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 			// Verifies the amount in the receipt is the same as it was displayed on the
 			// Purchase Packages page
 			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()

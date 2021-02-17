@@ -170,6 +170,8 @@ public class AccountHistoryTest extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 		Thread.sleep(2000);
+		jse.executeScript("arguments[0].scrollIntoView(true);",
+				ahp.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 		ThankYouPO TY = new ThankYouPO(driver);
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(1000);
