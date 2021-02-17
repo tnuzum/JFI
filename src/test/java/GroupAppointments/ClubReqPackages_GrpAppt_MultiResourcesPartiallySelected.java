@@ -270,7 +270,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
 			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-			Thread.sleep(1000);
+			Thread.sleep(3000);
+			jse.executeScript("arguments[0].scrollIntoView(true);",
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
 
 			/*
 			 * while (!ahp.getReceiptNumberTable().isDisplayed()) { Thread.sleep(2000);

@@ -15,7 +15,7 @@ public class ThankYouPO {
 	By thankYouText = By.xpath("//h1[@class='text-uppercase']");
 	By smallText = By.xpath("//div[@class='col-sm-12 p-lg']");
 	By printReceiptButton = By.xpath("//button[contains(text(), 'Print Receipt')]");
-	By receiptPopup = By.xpath("//div[@class='modal-content']");
+	By receiptPopup = By.id("printableInvoice");
 	By linksSection = By.xpath("//div[@class='rate-box']");
 	By whatNextText = By.xpath("//div[@class='rate-box']/h2");
 	By receiptPopupPrint = By.xpath("//button[contains(text(), 'PRINT')]");
