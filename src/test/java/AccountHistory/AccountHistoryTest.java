@@ -18,7 +18,6 @@ import org.testng.annotations.Test;
 import pageObjects.AcctHistoryPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
-import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -33,6 +32,7 @@ public class AccountHistoryTest extends base {
 	public static BreadcrumbTrailPO bt;
 	public static WebDriverWait wait;
 	static String receiptNumber;
+	private static JavascriptExecutor jse;
 
 	public AccountHistoryTest() {
 		rw = new reusableWaits();
@@ -50,6 +50,7 @@ public class AccountHistoryTest extends base {
 		ahp = new AcctHistoryPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
 		wait = new WebDriverWait(driver, 30);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -66,7 +67,7 @@ public class AccountHistoryTest extends base {
 			Thread.sleep(1000);
 		}
 		d.getMenuAccountHistory().click();
-		rm.catchErrorMessage();
+
 		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getPageHeader(), "Account History"));
 		Assert.assertEquals(bt.getBreadcrumb1().getText(), "Dashboard");
 		Assert.assertEquals(bt.getBreadcrumb2().getText(), "Account History");
@@ -114,7 +115,7 @@ public class AccountHistoryTest extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(ahp.getSecondCalendarIcon()));
 
-		ahp.getSecondCalendarIcon().click();
+		jse.executeScript("arguments[0].click();", ahp.getSecondCalendarIcon());
 		Thread.sleep(1000);
 
 		rm.verifyNextMonthLastDateIsSelectedByDefault(ahp.getCalendarDates());
@@ -127,7 +128,7 @@ public class AccountHistoryTest extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(ahp.getFirstCalendarIcon()));
 
-		ahp.getFirstCalendarIcon().click();
+		jse.executeScript("arguments[0].click();", ahp.getFirstCalendarIcon());
 		Thread.sleep(1000);
 		rm.verifyFirstDateOfPreviousMonthIsSelectedByDefault(ahp.getCalendarDates());
 		ahp.getCalendarDates().get(0).click();
@@ -172,8 +173,8 @@ public class AccountHistoryTest extends base {
 		Thread.sleep(2000);
 		jse.executeScript("arguments[0].scrollIntoView(true);",
 				ahp.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
-		ThankYouPO TY = new ThankYouPO(driver);
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+
+		ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(1000);
 		rm.memberLogout();
 

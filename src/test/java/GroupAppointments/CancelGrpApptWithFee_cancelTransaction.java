@@ -262,6 +262,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 			PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
 			Assert.assertTrue(PM.getPaymentButton().getText().contains(FormatTotalAmt));
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
 
 			int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < paymentMethodscount; i++) {
@@ -326,6 +327,7 @@ public class CancelGrpApptWithFee_cancelTransaction extends base {
 				Thread.sleep(1000);
 				;
 			}
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
 
 			paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < paymentMethodscount; i++) {
