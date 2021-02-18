@@ -180,6 +180,7 @@ public class ChangeApptWithFee_MemberHasPackages_AdditionalResources extends bas
 				Thread.sleep(1000);
 				;
 			}
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
 
 			int paymentMethodscount = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < paymentMethodscount; i++) {

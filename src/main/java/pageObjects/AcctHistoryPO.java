@@ -34,6 +34,18 @@ public class AcctHistoryPO {
 	By receiptPopupPrint = By.xpath("//button[contains(text(), 'PRINT')]");
 	By receiptPopupClose = By.xpath("//button[contains(text(), 'CLOSE')]");
 	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/div/h2");
+	By transactionDate = By.xpath("//div[@class = 'modal-content']//h2[contains(text(),'Transaction Date:')]");
+	By dataColumns = By.xpath("//div[@class = 'modal-content']//div[@class = 'col-md-4']");
+	By mediaHeadings = By.xpath("//div[@class = 'modal-content']//h2[@class ='media-heading']");
+	By invoiceAndCharges = By.xpath("//h2[contains(text(),'Invoice And Charges')]");
+	By duesResponsibleTo = By.xpath("//div[contains(text(),'Dues Responsible To:')]");
+	By lineItems = By.xpath("//div[@class = 'modal-content']//div[@class ='col-md-8']");
+	By itemPrices = By.xpath("//div[@class = 'modal-content']//div[@class ='col-md-4 text-right']");
+	By dueDates = By.xpath("//div[@class = 'modal-content']//div[@class ='col-md-2']");
+	By duesResponsibleParties = By.xpath("//div[@class = 'modal-content']//div[@class = 'col-md-6']");
+	By charges = By.xpath("//div[@class = 'modal-content']//div[@class ='col-md-6 text-right']");
+	By totalInvoiced = By.xpath("//div[@class = 'modal-content']//div[@class ='col-xs-12 text-right']");
+	By subTotal = By.xpath("//div[@class = 'modal-content']//div[@class ='row-box p-xs m-xs']//small");
 
 // CONSTRUCTOR
 
@@ -131,4 +143,53 @@ public class AcctHistoryPO {
 	public WebElement getReceiptHeader() {
 		return driver.findElement(receiptHeader);
 	}
+
+	public WebElement getTransactionDate() {
+		return driver.findElement(transactionDate);
+	}
+
+	public List<WebElement> getDataColumns() {
+		return driver.findElements(dataColumns);
+	}
+
+	public List<WebElement> getMediaHeadings() {
+		return driver.findElements(mediaHeadings);
+	}
+
+	public WebElement getInvoiceAndCharges() {
+		return driver.findElement(invoiceAndCharges);
+	}
+
+	public WebElement getDuesResponsibleTo() {
+		return driver.findElement(duesResponsibleTo);
+	}
+
+	public List<WebElement> getLineItems() {
+		return driver.findElements(lineItems);
+	}
+
+	public List<WebElement> getItemPrices() {
+		return driver.findElements(itemPrices);
+	}
+
+	public List<WebElement> getCharges() {
+		return driver.findElements(charges);
+	}
+
+	public List<WebElement> getDueDates() {
+		return driver.findElements(dueDates);
+	}
+
+	public List<WebElement> getDuesResponsibleParties() {
+		return driver.findElements(duesResponsibleParties);
+	}
+
+	public WebElement getTotalInvoiced() {
+		return driver.findElement(totalInvoiced);
+	}
+
+	public List<WebElement> getSubTotal() {
+		return driver.findElements(subTotal);
+	}
+
 }

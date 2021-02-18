@@ -282,6 +282,9 @@ public class FamilyStandbyInCourseTest extends base {
 
 			}
 
+			wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
+
 			int count1 = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < count1; i++) {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
@@ -291,10 +294,6 @@ public class FamilyStandbyInCourseTest extends base {
 							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
 					break;
 				}
-			}
-
-			while (pp.getClassesReviewtotalAmount().getText().isBlank()) {
-				Thread.sleep(500);
 			}
 
 			String totalAmount = pp.getClassesReviewtotalAmount().getText();
