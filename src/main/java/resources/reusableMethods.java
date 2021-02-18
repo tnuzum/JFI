@@ -3498,7 +3498,7 @@ public class reusableMethods extends base {
 		return startTime;
 	}
 
-	public String purchasePackage() throws InterruptedException {
+	public String purchasePackage(String packageToBuy) throws InterruptedException {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		DashboardPO d = new DashboardPO(driver);
@@ -3521,12 +3521,12 @@ public class reusableMethods extends base {
 
 //	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
 
-		sp.getKeyWord().sendKeys("PT - Demo");
+		sp.getKeyWord().sendKeys(packageToBuy);
 
 		for (int i = 0; i < sp.getPackageNames().size(); i++)
 
 		{
-			if (sp.getPackageNames().get(i).getText().equals("PT - Demo"))
+			if (sp.getPackageNames().get(i).getText().equals(packageToBuy))
 
 			{
 				jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
