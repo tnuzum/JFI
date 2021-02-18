@@ -73,7 +73,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			jse.executeScript("arguments[0].click();", d.getMyCoursesEventsScheduleButton());
 
-			wait = new WebDriverWait(driver, 30);
+			wait = new WebDriverWait(driver, 60);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
 			// rm.SelectCourseStartMonth(CourseStartMonth);

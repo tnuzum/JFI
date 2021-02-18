@@ -368,6 +368,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				Thread.sleep(1000);
 				;
 			}
+
+			wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
+
 			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < count; i++) {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()

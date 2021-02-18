@@ -430,6 +430,9 @@ public class ShopAndPurchasePackages extends base {
 				;
 			}
 
+			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
+
 			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < count; i++) {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
