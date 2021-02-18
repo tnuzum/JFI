@@ -20,7 +20,7 @@ import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class ReceiptLayoutTest extends base {
+public class ReceiptLayoutTestTemplate extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 
 	private static DashboardPO d;
@@ -32,7 +32,7 @@ public class ReceiptLayoutTest extends base {
 	static String receiptNumber;
 	public static SoftAssert softAssertion = new SoftAssert();
 
-	public ReceiptLayoutTest() {
+	public ReceiptLayoutTestTemplate() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -60,7 +60,7 @@ public class ReceiptLayoutTest extends base {
 	@Test(priority = 1, enabled = true)
 	public void verifyReceiptLayout() throws InterruptedException {
 
-		String receiptNumber = rm.purchasePackage();
+		String receiptNumber = rm.purchasePackage("PT - Demo");
 
 		rm.openSideMenuIfNotOpenedAlready();
 		d.getMenuMyAccount().click();

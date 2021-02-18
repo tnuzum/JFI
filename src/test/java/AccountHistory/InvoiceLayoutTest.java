@@ -62,7 +62,7 @@ public class InvoiceLayoutTest extends base {
 	@Test(priority = 1, enabled = true)
 	public void verifyInvoiceHeader() throws InterruptedException {
 
-		String receiptNumber = rm.purchasePackage();
+		String receiptNumber = rm.purchasePackage("PT - Demo");
 
 		rm.openSideMenuIfNotOpenedAlready();
 		d.getMenuMyAccount().click();
@@ -88,7 +88,7 @@ public class InvoiceLayoutTest extends base {
 
 		Assert.assertTrue(ahp.getTransactionDate().isDisplayed());
 		Assert.assertTrue(ahp.getDataColumns().get(0).getText().contains("Jonas Sports-Plex"));
-		Assert.assertTrue(ahp.getDataColumns().get(1).getText().contains("Kalle, Bhagya"));
+		Assert.assertTrue(ahp.getDataColumns().get(1).getText().contains("Auto, Aqmember"));
 		Assert.assertTrue(ahp.getDataColumns().get(2).getText().contains("Time:"));
 		Assert.assertTrue(ahp.getDataColumns().get(2).getText().contains("Employee:"));
 
