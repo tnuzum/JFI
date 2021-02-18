@@ -115,7 +115,8 @@ public class AccountHistoryTest extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(ahp.getSecondCalendarIcon()));
 
-		jse.executeScript("arguments[0].click();", ahp.getSecondCalendarIcon());
+		rm.moveToElementAndClick(driver, ahp.getSecondCalendarIcon());
+
 		Thread.sleep(1000);
 
 		rm.verifyNextMonthLastDateIsSelectedByDefault(ahp.getCalendarDates());
@@ -128,8 +129,9 @@ public class AccountHistoryTest extends base {
 
 		wait.until(ExpectedConditions.elementToBeClickable(ahp.getFirstCalendarIcon()));
 
-		jse.executeScript("arguments[0].click();", ahp.getFirstCalendarIcon());
+		rm.moveToElementAndClick(driver, ahp.getFirstCalendarIcon());
 		Thread.sleep(1000);
+
 		rm.verifyFirstDateOfPreviousMonthIsSelectedByDefault(ahp.getCalendarDates());
 		ahp.getCalendarDates().get(0).click();
 
@@ -171,8 +173,7 @@ public class AccountHistoryTest extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
 		Thread.sleep(2000);
-		jse.executeScript("arguments[0].scrollIntoView(true);",
-				ahp.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
+		jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
 
 		ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(1000);

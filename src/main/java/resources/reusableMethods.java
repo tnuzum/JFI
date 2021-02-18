@@ -21,6 +21,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.CalendarPO;
 import pageObjects.ClassSignUpPO;
@@ -31,6 +32,7 @@ import pageObjects.PackagesPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PaymentPO;
 import pageObjects.PurchaseConfirmationPO;
+import pageObjects.ShopPackagesPO;
 import pageObjects.ThankYouPO;
 import pageObjects.UnenrollPO;
 
@@ -3494,6 +3496,98 @@ public class reusableMethods extends base {
 			}
 		}
 		return startTime;
+	}
+
+	public String purchasePackage() throws InterruptedException {
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		DashboardPO d = new DashboardPO(driver);
+		ShopPackagesPO sp = new ShopPackagesPO(driver);
+		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
+		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
+		ThankYouPO TY = new ThankYouPO(driver);
+		AcctHistoryPO ahp = new AcctHistoryPO(driver);
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		this.openSideMenuIfNotOpenedAlready();
+
+		d.getMenuShopPackages().click();
+
+		while (!sp.getPackagesList().isDisplayed()) {
+			Thread.sleep(1000);
+			System.out.println("Waiting for the packages to be displayed");
+		}
+		wait.until(ExpectedConditions.visibilityOf(sp.getPackagesList()));
+		wait.until(ExpectedConditions.visibilityOf(sp.getWarningMsg()));
+
+//	wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class = 'row m-t-md']")));
+
+		sp.getKeyWord().sendKeys("PT - Demo");
+
+		for (int i = 0; i < sp.getPackageNames().size(); i++)
+
+		{
+			if (sp.getPackageNames().get(i).getText().equals("PT - Demo"))
+
+			{
+				jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
+				break;
+			}
+
+		}
+
+		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
+		Thread.sleep(3000);
+
+		while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+		{
+			Thread.sleep(1000);
+			;
+		}
+		jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
+
+		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+		for (int i = 0; i < count; i++) {
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().contains("5454")) {
+
+				jse.executeScript("arguments[0].click();",
+						PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+				break;
+			}
+		}
+
+		// Click the Pay button
+		while (!PM.getPaymentButton().isEnabled()) {
+			Thread.sleep(1000);
+		}
+
+		jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+
+		rw.waitForAcceptButton();
+		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+
+		// Verifies the success message
+		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+		PP.getPopupOKButton().click();
+		Thread.sleep(1000);
+
+		// Note down the Receipt number
+		String receiptNumber = TY.getReceiptNumber().getText();
+
+		// Navigate to Select Classes
+		int count1 = driver.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count1; i++) {
+			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dasshboard"))
+
+			{
+				// rw.linksToBeClickable();
+				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
+				break;
+			}
+
+		}
+
+		return receiptNumber;
 	}
 
 }

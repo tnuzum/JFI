@@ -54,8 +54,15 @@ public class InvoiceLayoutTest extends base {
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
-		rm.activeMemberLogin("bhagya", "111");
+		rm.activeMemberLogin("aqmember", "Testing1!");
 		rw.waitForDashboardLoaded();
+
+	}
+
+	@Test(priority = 1, enabled = true)
+	public void verifyInvoiceHeader() throws InterruptedException {
+
+		String receiptNumber = rm.purchasePackage();
 
 		rm.openSideMenuIfNotOpenedAlready();
 		d.getMenuMyAccount().click();
@@ -63,15 +70,14 @@ public class InvoiceLayoutTest extends base {
 			Thread.sleep(1000);
 		}
 		d.getMenuAccountHistory().click();
-	}
-
-	@Test(priority = 1, enabled = true)
-	public void verifyInvoiceHeader() throws InterruptedException {
 
 		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 
+		ahp.getSearchField().sendKeys(receiptNumber);
+		Thread.sleep(2000);
+
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
 		Thread.sleep(3000);
 		jse.executeScript("arguments[0].scrollIntoView(true);",
 				ahp.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));

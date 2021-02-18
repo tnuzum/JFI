@@ -50,6 +50,7 @@
 			<class name ="Messages.messageCenter"/>
 			<class name ="AccountHistory.AccountHistoryTest"/>
 			<class name ="AccountHistory.InvoiceLayoutTest"/>
+			<class name ="AccountHistory.ReceiptLayoutTest"/>
 
 		</classes>
 	</test>
