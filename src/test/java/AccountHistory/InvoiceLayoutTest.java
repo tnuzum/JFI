@@ -96,8 +96,6 @@ public class InvoiceLayoutTest extends base {
 
 			Assert.assertTrue(ahp.getInvoiceAndCharges().isDisplayed());
 
-			Assert.assertTrue(ahp.getDuesResponsibleTo().isDisplayed());
-
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
