@@ -60,124 +60,293 @@ public class AccountHistoryTest extends base {
 	}
 
 	@Test(priority = 0)
-	public void verifyBreadcrumbTest() throws InterruptedException {
-		rm.openSideMenuIfNotOpenedAlready();
-		d.getMenuMyAccount().click();
-		while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
-			Thread.sleep(1000);
-		}
-		d.getMenuAccountHistory().click();
+	public void verifyBreadcrumbTest() throws InterruptedException, IOException {
+		try {
+			rm.openSideMenuIfNotOpenedAlready();
+			d.getMenuMyAccount().click();
+			while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
+				Thread.sleep(1000);
+			}
+			d.getMenuAccountHistory().click();
 
-		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getPageHeader(), "Account History"));
-		Assert.assertEquals(bt.getBreadcrumb1().getText(), "Dashboard");
-		Assert.assertEquals(bt.getBreadcrumb2().getText(), "Account History");
+			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getPageHeader(), "Account History"));
+			Assert.assertEquals(bt.getBreadcrumb1().getText(), "Dashboard");
+			Assert.assertEquals(bt.getBreadcrumb2().getText(), "Account History");
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 1)
-	public void verifyAcctSummaryBoxTest() throws InterruptedException, ParseException {
-		Thread.sleep(2000);
-		Assert.assertTrue(ahp.getAcctSummaryBox().isDisplayed());
-		Assert.assertTrue(ahp.getUnPaidInvoices().isDisplayed());
-		Assert.assertTrue(ahp.getCreditOnFile().isDisplayed());
-		Assert.assertTrue(ahp.getBalance().isDisplayed());
+	public void verifyAcctSummaryBoxTest() throws InterruptedException, ParseException, IOException {
+		try {
+			Thread.sleep(2000);
+			Assert.assertTrue(ahp.getAcctSummaryBox().isDisplayed());
+			Assert.assertTrue(ahp.getUnPaidInvoices().isDisplayed());
+			Assert.assertTrue(ahp.getCreditOnFile().isDisplayed());
+			Assert.assertTrue(ahp.getBalance().isDisplayed());
 
-		Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Current Account Summary"));
-		Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Unpaid Invoices"));
-		Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Credit On File"));
-		Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Balance"));
+			Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Current Account Summary"));
+			Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Unpaid Invoices"));
+			Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Credit On File"));
+			Assert.assertTrue(ahp.getAcctSummaryBox().getText().contains("Balance"));
 
-		// Remove extra characters from the string amount
+			// Remove extra characters from the string amount
 
-		String strUnPaidInvoices = ahp.getUnPaidInvoices().getText().replaceAll("[^\\d.]+", "");
-		String strCreditOnFile = ahp.getCreditOnFile().getText().replaceAll("[^\\d.]+", "");
-		String strBalance = ahp.getBalance().getText().replaceAll("[^\\d.]+", "");
+			String strUnPaidInvoices = ahp.getUnPaidInvoices().getText().replaceAll("[^\\d.]+", "");
+			String strCreditOnFile = ahp.getCreditOnFile().getText().replaceAll("[^\\d.]+", "");
+			String strBalance = ahp.getBalance().getText().replaceAll("[^\\d.]+", "");
 
-		// Format the string value to a float value
-		DecimalFormat parser = new DecimalFormat("#.##");
+			// Format the string value to a float value
+			DecimalFormat parser = new DecimalFormat("#.##");
 
-		float unPaidInvoices = parser.parse(strUnPaidInvoices).floatValue();
-		float creditOnFile = parser.parse(strCreditOnFile).floatValue();
-		float balance = parser.parse(strBalance).floatValue();
+			float unPaidInvoices = parser.parse(strUnPaidInvoices).floatValue();
+			float creditOnFile = parser.parse(strCreditOnFile).floatValue();
+			float balance = parser.parse(strBalance).floatValue();
 
-		System.out.println(unPaidInvoices);
-		System.out.println(creditOnFile);
-		System.out.println(balance);
+			System.out.println(unPaidInvoices);
+			System.out.println(creditOnFile);
+			System.out.println(balance);
 
-		System.out.println(Math.round(balance));
+			System.out.println(Math.round(balance));
 
-		System.out.println(Math.round(Math.abs(unPaidInvoices - creditOnFile)));
+			System.out.println(Math.round(Math.abs(unPaidInvoices - creditOnFile)));
 
-		Assert.assertEquals(Math.round(Math.abs(unPaidInvoices - creditOnFile)), Math.round(balance));
+			Assert.assertEquals(Math.round(Math.abs(unPaidInvoices - creditOnFile)), Math.round(balance));
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 2, enabled = true)
-	public void verifyDefaultDateSelectionOnEndDateCalendarIconTest() throws InterruptedException {
+	public void verifyDefaultDateSelectionOnEndDateCalendarIconTest() throws InterruptedException, IOException {
+		try {
 
-		wait.until(ExpectedConditions.elementToBeClickable(ahp.getSecondCalendarIcon()));
+			wait.until(ExpectedConditions.elementToBeClickable(ahp.getSecondCalendarIcon()));
 
-		rm.moveToElementAndClick(driver, ahp.getSecondCalendarIcon());
+			rm.scrollIntoView(driver, ahp.getSecondCalendarIcon());
+			Thread.sleep(1000);
+			rm.moveToElementAndClick(driver, ahp.getSecondCalendarIcon());
 
-		Thread.sleep(1000);
+			Thread.sleep(1000);
 
-		rm.verifyNextMonthLastDateIsSelectedByDefault(ahp.getCalendarDates());
+			rm.verifyNextMonthLastDateIsSelectedByDefault(ahp.getCalendarDates());
 
-		Thread.sleep(2000);
+			Thread.sleep(1000);
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 3)
-	public void verifyDefaultDateSelectionOnStartDateCalendarIconTest() throws InterruptedException {
+	public void verifyDefaultDateSelectionOnStartDateCalendarIconTest() throws InterruptedException, IOException {
+		try {
 
-		wait.until(ExpectedConditions.elementToBeClickable(ahp.getFirstCalendarIcon()));
+			wait.until(ExpectedConditions.elementToBeClickable(ahp.getFirstCalendarIcon()));
 
-		rm.moveToElementAndClick(driver, ahp.getFirstCalendarIcon());
-		Thread.sleep(1000);
+			rm.scrollIntoView(driver, ahp.getFirstCalendarIcon());
+			Thread.sleep(100);
+			rm.moveToElementAndClick(driver, ahp.getFirstCalendarIcon());
 
-		rm.verifyFirstDateOfPreviousMonthIsSelectedByDefault(ahp.getCalendarDates());
-		ahp.getCalendarDates().get(0).click();
+			Thread.sleep(1000);
 
-		Thread.sleep(2000);
+			rm.verifyFirstDateOfPreviousMonthIsSelectedByDefault(ahp.getCalendarDates());
+			ahp.getCalendarDates().get(0).click();
+
+			Thread.sleep(1000);
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 4, enabled = true)
-	public void verifyAccountTransactionTable() throws InterruptedException {
+	public void verifyAccountTransactionTable() throws InterruptedException, IOException {
+		try {
 
-		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
+			wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 
-		Assert.assertTrue(ahp.getReceiptNumberTable().isDisplayed());
+			Assert.assertTrue(ahp.getReceiptNumberTable().isDisplayed());
 
-		Assert.assertTrue(ahp.getColumnNames().get(0).getText().contains("Due Date"));
-		Assert.assertTrue(ahp.getColumnNames().get(1).getText().contains("Transaction Date"));
-		Assert.assertTrue(ahp.getColumnNames().get(2).getText().contains("Payment"));
-		Assert.assertTrue(ahp.getColumnNames().get(3).getText().contains("Invoice Amount"));
-		Assert.assertTrue(ahp.getColumnNames().get(4).getText().contains("Balance"));
-		Assert.assertTrue(ahp.getColumnNames().get(5).getText().contains("Transaction ID. #"));
-		Assert.assertTrue(ahp.getDescriptionColumn().getText().contains("Description"));
+			Assert.assertTrue(ahp.getColumnNames().get(0).getText().contains("Due Date"));
+			Assert.assertTrue(ahp.getColumnNames().get(1).getText().contains("Transaction Date"));
+			Assert.assertTrue(ahp.getColumnNames().get(2).getText().contains("Payment"));
+			Assert.assertTrue(ahp.getColumnNames().get(3).getText().contains("Invoice Amount"));
+			Assert.assertTrue(ahp.getColumnNames().get(4).getText().contains("Balance"));
+			Assert.assertTrue(ahp.getColumnNames().get(5).getText().contains("Transaction ID. #"));
+			Assert.assertTrue(ahp.getDescriptionColumn().getText().contains("Description"));
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 5, enabled = true)
-	public void searchForAReceiptNumberTest() throws InterruptedException {
+	public void searchForAReceiptNumberTest() throws InterruptedException, IOException {
+		try {
 
-		receiptNumber = ahp.getReceiptNumber().getText().trim();
+			receiptNumber = ahp.getReceiptNumber().getText().trim();
 
-		ahp.getSearchField().sendKeys(receiptNumber);
+			ahp.getSearchField().sendKeys(receiptNumber);
 
-		Thread.sleep(2000);
+			Thread.sleep(2000);
 
-		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
+			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
 
-		int count = ahp.getReceiptNumbers().size();
+			int count = ahp.getReceiptNumbers().size();
 
-		for (int i = 0; i < count; i++) {
-			Assert.assertTrue(ahp.getReceiptNumbers().get(i).getText().contains(receiptNumber));
+			for (int i = 0; i < count; i++) {
+				Assert.assertTrue(ahp.getReceiptNumbers().get(i).getText().contains(receiptNumber));
+			}
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
+			Thread.sleep(2000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
+
+			ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+			Thread.sleep(1000);
+			rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
-		Thread.sleep(2000);
-		jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
 
-		ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
-		Thread.sleep(1000);
-		rm.memberLogout();
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 

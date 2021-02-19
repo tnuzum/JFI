@@ -160,7 +160,7 @@ public class EmailConfirmations extends base {
 
 	}
 
-	@Test(priority = 6, description = "Verifies the Appointment Booking confirmation email")
+	@Test(priority = 7, description = "Verifies the Appointment Booking confirmation email")
 	public void BookAppointmentConfirmation() {
 		try {
 
@@ -197,7 +197,7 @@ public class EmailConfirmations extends base {
 
 	}
 
-	@Test(priority = 7, description = "Verifies the Appointment Cancellation email")
+	@Test(priority = 6, description = "Verifies the Appointment Cancellation email")
 	public void CancelApointmentConfirmation() {
 		try {
 
