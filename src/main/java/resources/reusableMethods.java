@@ -21,7 +21,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.CalendarPO;
 import pageObjects.ClassSignUpPO;
@@ -3506,7 +3505,6 @@ public class reusableMethods extends base {
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);
 		ThankYouPO TY = new ThankYouPO(driver);
-		AcctHistoryPO ahp = new AcctHistoryPO(driver);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		this.openSideMenuIfNotOpenedAlready();
 

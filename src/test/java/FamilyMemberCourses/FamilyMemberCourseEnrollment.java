@@ -306,6 +306,13 @@ public class FamilyMemberCourseEnrollment extends base {
 
 			}
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
+
+			while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+			{
+				Thread.sleep(1000);
+
+			}
 			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
 
 			int count1 = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -325,13 +332,6 @@ public class FamilyMemberCourseEnrollment extends base {
 			Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmount)); // Verifies the Pay button
 																						// contains
 																						// the total amount
-
-			while (!PM.getOnAccountAndSavedCards().isDisplayed())
-
-			{
-				Thread.sleep(1000);
-
-			}
 
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);

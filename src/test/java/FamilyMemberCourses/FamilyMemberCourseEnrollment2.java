@@ -219,6 +219,13 @@ public class FamilyMemberCourseEnrollment2 extends base {
 			}
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
+
+			while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+			{
+				Thread.sleep(1000);
+
+			}
 			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
 
 			int count1 = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
