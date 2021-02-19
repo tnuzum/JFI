@@ -274,6 +274,7 @@ public class FamilyMemberCourseEnrollment extends base {
 			}
 
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
+			Thread.sleep(3000);
 
 			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 
