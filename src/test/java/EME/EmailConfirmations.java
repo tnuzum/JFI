@@ -324,24 +324,26 @@ public class EmailConfirmations extends base {
 	}
 
 	@Test(priority = 11, description = "Marks the rest as read")
-	public void markAsReadTheRest() throws MessagingException {
+	public void markAsReadTheRest() throws Exception {
 
 		log.info("markAsReadTheRest started***********");
 		System.out.println("markAsReadTheRest started***********");
 
 		System.out.println(emailUtils.getNumberOfUnreadMessages());
 
-		Message[] messages = emailUtils.getMessages(emailUtils.getNumberOfUnreadMessages() - 1);
+		Message[] messages = emailUtils.getMessages(20);
 		System.out.println(messages.length);
 
 		try {
 			for (int i = 0; i < count; i++) {
 				emailUtils.openEmail(messages[i]);
+				// emailUtils.getMessageContent(messages[i]);
 			}
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			// Assert.fail(e.getMessage());
+		} catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Index Out Of Bounds");
+			iob.printStackTrace();
+
 		}
 
 	}
