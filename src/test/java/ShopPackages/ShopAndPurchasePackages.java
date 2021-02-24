@@ -529,6 +529,7 @@ public class ShopAndPurchasePackages extends base {
 			IntUnitCountBefore1++;
 			Assert.assertEquals(IntUnitCountBefore1, IntUnitCountAfter1); // verifies the unit count of the Package
 
+			rm.openSideMenuIfNotOpenedAlready();
 			d.getMenuMyAccount().click();
 			Thread.sleep(1000);
 			d.getMenuAccountHistory().click();
