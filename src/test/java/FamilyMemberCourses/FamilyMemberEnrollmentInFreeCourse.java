@@ -226,7 +226,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 
 			}
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
-			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
+			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
 			c.getPopupClose().click();

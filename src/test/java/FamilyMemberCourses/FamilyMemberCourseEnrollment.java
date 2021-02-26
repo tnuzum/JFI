@@ -338,8 +338,8 @@ public class FamilyMemberCourseEnrollment extends base {
 				Thread.sleep(1000);
 			}
 			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
-			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
-			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
