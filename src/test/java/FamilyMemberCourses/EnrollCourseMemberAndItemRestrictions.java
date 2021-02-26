@@ -637,6 +637,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
+		rw.waitForAcceptButton();
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();
