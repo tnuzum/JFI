@@ -386,9 +386,14 @@ public class FamilyMemberCourseEnrollment extends base {
 			jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
 
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
+
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);
-				System.out.println("waiting");
+				System.out.println("waiting for account history to display");
 			}
 
 			// Clicks on the Receiptnumber in Account History
@@ -396,6 +401,7 @@ public class FamilyMemberCourseEnrollment extends base {
 			ahp.getSearchField().sendKeys(receiptNumber2);
 
 			Thread.sleep(2000);
+
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
 			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
 			Thread.sleep(3000);

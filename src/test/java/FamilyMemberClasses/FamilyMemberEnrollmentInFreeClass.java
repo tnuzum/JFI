@@ -282,6 +282,11 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 			jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
 
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 			wait.until(ExpectedConditions.presenceOfElementLocated(By.id("accountHistory")));
 
 			/*

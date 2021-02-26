@@ -70,6 +70,11 @@ public class ReceiptLayoutTestTemplate extends base {
 			}
 			d.getMenuAccountHistory().click();
 
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
+
 			wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 
 			ahp.getSearchField().sendKeys(receiptNumber);
