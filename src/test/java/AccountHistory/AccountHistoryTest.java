@@ -256,6 +256,10 @@ public class AccountHistoryTest extends base {
 	public void verifyAccountTransactionTable() throws InterruptedException, IOException {
 		try {
 
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 			wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 
 			Assert.assertTrue(ahp.getReceiptNumberTable().isDisplayed());

@@ -259,6 +259,11 @@ public class ClubReqPackages_GrpAppt_MultiResourcesPartiallySelected extends bas
 
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
 
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
+
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);
 				System.out.println("waiting");

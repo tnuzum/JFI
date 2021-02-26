@@ -330,6 +330,11 @@ public class ShopAndPurchasePackages extends base {
 			wait.until(ExpectedConditions
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 			Thread.sleep(3000);
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
@@ -534,6 +539,11 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(1000);
 			d.getMenuAccountHistory().click();
 			Thread.sleep(3000);
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);
@@ -761,6 +771,11 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(1000);
 			d.getMenuAccountHistory().click();
 			Thread.sleep(3000);
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);
