@@ -8,15 +8,13 @@
 	<test name="EME - Login And Page Navigation">
 		<classes>
 			<class name="EME.loginPageTest" />
-			<class name="EME.MemberLoginTest" />
-			<class name="EME.PageLaunchTest" />
+			<!--class name="EME.MemberLoginTest" />
+			<class name="EME.PageLaunchTest" /-->
 			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
 			<class name="PayBalance.PayBalance_StoredCard" />
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
-			<class name="ManageFamily.ManageFamilyLayoutTest"/>
-			
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
@@ -25,6 +23,7 @@
 			<class
 				name="SingleMemberCourses.CourseDetailsPopupUIValidation" />
 			<class name="ManagePaymentMethods.VerifyMessageTest" />
+			<class name="ManageFamily.ManageFamilyLayoutTest"/>
 		</classes>
 	</test>
 </suite>
