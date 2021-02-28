@@ -2,6 +2,7 @@ package resources;
 
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -476,7 +477,7 @@ public class reusableMethods extends base {
 		jse.executeScript("arguments[0].click();", PP.getMyPackagesButton());
 		int IntUnitCount = 0;
 		Thread.sleep(3000);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[@class = 'dropdown-item']")));
 		int packagesCount = PP.getPackagesList().size();
 		for (int j = 0; j < packagesCount; j++) {
@@ -1344,13 +1345,32 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object cancelAppointmentFromListViewByHohNoFee(String Date, String startTime, String appointmentToBook,
-			String familyMember) throws IOException, InterruptedException {
+	public Object cancelAppointmentFromListViewByHohNoFee(String date, String startTime, String appointmentToBook,
+			String familyMember) throws IOException, InterruptedException, ParseException {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
+
+		SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+
+		Calendar calendar = Calendar.getInstance();
+		int lastDateOfCurrentMonth = calendar.getActualMaximum(Calendar.DATE);
+		System.out.println(lastDateOfCurrentMonth);
+
+		calendar.add(Calendar.MONTH, 1);
+		calendar.set(Calendar.DATE, 1);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Date firstDateOfNextMonth = calendar.getTime();
+		System.out.println(firstDateOfNextMonth);
+
+		Date dt = df.parse(date);
+
+		System.out.println(dt);
 
 		this.openSideMenuIfNotOpenedAlready();
 
@@ -1369,9 +1389,8 @@ public class reusableMethods extends base {
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
-		Calendar calendar = Calendar.getInstance();
-
-		if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
+		if (calendar.get(Calendar.DATE) == lastDateOfCurrentMonth || dt.equals(firstDateOfNextMonth)
+				|| dt.after(firstDateOfNextMonth)) {
 
 			driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(0).click();
 
@@ -1387,7 +1406,7 @@ public class reusableMethods extends base {
 		for (int i = 0; i < count; i++) {
 			if (cp.getMemberSections().get(i).getText().contains(familyMember)) {
 
-				if (cp.getMemberSections().get(i).getText().contains(Date))
+				if (cp.getMemberSections().get(i).getText().contains(date))
 
 				{
 
@@ -1424,13 +1443,34 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object cancelAppointmentByHohWithFees(String Date, String startTime, String appointmentToBook,
-			String familyMember) throws IOException, InterruptedException {
+	public Object cancelAppointmentByHohWithFees(String date, String startTime, String appointmentToBook,
+			String familyMember) throws IOException, InterruptedException, ParseException {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
+
+		SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+
+		Calendar calendar = Calendar.getInstance();
+		int todaysDate = calendar.get(Calendar.DATE);
+		System.out.println(todaysDate);
+		int lastDateOfCurrentMonth = calendar.getActualMaximum(Calendar.DATE);
+		System.out.println(lastDateOfCurrentMonth);
+
+		calendar.add(Calendar.MONTH, 1);
+		calendar.set(Calendar.DATE, 1);
+		calendar.set(Calendar.HOUR_OF_DAY, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Date firstDateOfNextMonth = calendar.getTime();
+		System.out.println(firstDateOfNextMonth);
+
+		Date dt = df.parse(date);
+
+		System.out.println(dt);
 
 		this.openSideMenuIfNotOpenedAlready();
 
@@ -1449,9 +1489,8 @@ public class reusableMethods extends base {
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
 				By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][2]")));
 
-		Calendar calendar = Calendar.getInstance();
-
-		if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
+		if (calendar.get(Calendar.DATE) == lastDateOfCurrentMonth || dt.equals(firstDateOfNextMonth)
+				|| dt.after(firstDateOfNextMonth)) {
 
 			driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(0).click();
 
@@ -1467,7 +1506,7 @@ public class reusableMethods extends base {
 		for (int i = 0; i < count; i++) {
 			if (cp.getMemberSections().get(i).getText().contains(familyMember)) {
 
-				if (cp.getMemberSections().get(i).getText().contains(Date))
+				if (cp.getMemberSections().get(i).getText().contains(date))
 
 				{
 
