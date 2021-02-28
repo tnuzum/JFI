@@ -1092,6 +1092,10 @@ public class ShopAndPurchasePackages extends base {
 			int IntUnitCountBefore3 = 0;
 			int IntUnitCountAfter3 = 0;
 
+			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
+
+			System.out.println("Before: " + IntUnitCountBefore3);
+
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			rm.openSideMenuIfNotOpenedAlready();
 
@@ -1127,10 +1131,6 @@ public class ShopAndPurchasePackages extends base {
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 			Thread.sleep(3000);
 			Assert.assertEquals("Day Pass", PP.getPackageName().getText());
-
-			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
-
-			System.out.println("Before: " + IntUnitCountBefore3);
 
 			while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
