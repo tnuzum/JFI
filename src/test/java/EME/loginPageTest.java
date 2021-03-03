@@ -10,14 +10,23 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pageObjects.LoginPO;
 import resources.base;
+import resources.reusableMethods;
 
 public class loginPageTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
+	public reusableMethods rm;
+
+	public loginPageTest() {
+
+		rm = new reusableMethods();
+
+	}
 
 //	@BeforeTest
 	@BeforeClass
@@ -38,7 +47,7 @@ public class loginPageTest extends base {
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-
+		rm.setDriver(driver);
 		getEMEURL();
 	}
 
@@ -112,4 +121,11 @@ public class loginPageTest extends base {
 		driver = null;
 	}
 
+	@AfterSuite
+
+	public void deleteTempFolderFiles() {
+		System.out.println("after suite action");
+		rm.deleteTempFolderFiles();
+		System.out.println("files deleted");
+	}
 }
