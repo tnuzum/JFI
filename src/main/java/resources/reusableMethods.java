@@ -3964,7 +3964,7 @@ public class reusableMethods extends base {
 
 	public void deleteTempFolderFiles() {
 
-		String path = ("//C://Automation//Delete.bat");
+		String path = ("C:\\Automation\\Delete.bat");
 
 		try {
 			Runtime.getRuntime().exec(path);
