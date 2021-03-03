@@ -89,7 +89,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			mp.getExpireYear().sendKeys("22");
 			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(1));
 			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
-			Thread.sleep(1000);
+			Thread.sleep(3000);
 
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
