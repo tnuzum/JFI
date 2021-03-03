@@ -3962,4 +3962,17 @@ public class reusableMethods extends base {
 		return receiptNumber;
 	}
 
+	public void deleteTempFolderFiles() {
+
+		String path = ("//C://Automation//Delete.bat");
+
+		try {
+			Runtime.getRuntime().exec(path);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return;
+	}
+
 }
