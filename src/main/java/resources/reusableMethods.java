@@ -3409,12 +3409,14 @@ public class reusableMethods extends base {
 		return null;
 	}
 
-	public Object selectSavedcard() {
+	public Object selectSavedcard() throws InterruptedException {
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
+		Thread.sleep(2000);
 
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < count; i++) {
