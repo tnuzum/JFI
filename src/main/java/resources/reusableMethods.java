@@ -3908,6 +3908,7 @@ public class reusableMethods extends base {
 			}
 
 		}
+		Thread.sleep(3000);
 
 		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 		Thread.sleep(3000);
