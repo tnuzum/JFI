@@ -269,6 +269,13 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCreditCard extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
+		} catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Index Out Of Bounds");
+			iob.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(iob.getMessage(), iob);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
 		}
 	}
 
