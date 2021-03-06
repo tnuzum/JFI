@@ -136,7 +136,8 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -214,7 +215,8 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -235,6 +237,15 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			// Assert.fail(eci.getMessage());
 		}
 
+		catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Index Out Of Bounds");
+			iob.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(iob.getMessage(), iob);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
 	}
 
 	@Test(priority = 3, description = "Delete the Card in COG")
@@ -247,7 +258,8 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			System.out.println("assertion error");
 			ae.printStackTrace();
 			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);ae. printStackTrace();
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 

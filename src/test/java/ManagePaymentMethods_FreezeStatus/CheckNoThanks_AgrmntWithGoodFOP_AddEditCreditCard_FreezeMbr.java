@@ -263,6 +263,15 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		}
+
+		catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Index Out Of Bounds");
+			iob.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(iob.getMessage(), iob);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 	}
 
 	@Test(priority = 3, description = "Delete the Card in COG")
