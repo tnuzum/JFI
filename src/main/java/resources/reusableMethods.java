@@ -2745,6 +2745,13 @@ public class reusableMethods extends base {
 
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
+				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+				{
+					Thread.sleep(1000);
+					;
+				}
+
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
@@ -2849,6 +2856,13 @@ public class reusableMethods extends base {
 			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
 
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
+				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+				{
+					Thread.sleep(1000);
+					;
+				}
 
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
@@ -3064,6 +3078,13 @@ public class reusableMethods extends base {
 
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
+				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+				{
+					Thread.sleep(1000);
+					;
+				}
+
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
@@ -3205,6 +3226,12 @@ public class reusableMethods extends base {
 			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
 
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+				{
+					Thread.sleep(1000);
+					;
+				}
 
 				wait.until(
 						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
