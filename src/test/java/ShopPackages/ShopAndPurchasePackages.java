@@ -433,7 +433,7 @@ public class ShopAndPurchasePackages extends base {
 				}
 
 			}
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 			Thread.sleep(3000);
