@@ -2465,7 +2465,7 @@ public class reusableMethods extends base {
 
 		rw.waitForSelectATimeToOpen();
 
-		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTwodaysAfter());
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		return null;
 
@@ -2577,7 +2577,7 @@ public class reusableMethods extends base {
 
 		rw.waitForSelectATimeToOpen();
 
-		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTwodaysAfter());
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		return null;
 
