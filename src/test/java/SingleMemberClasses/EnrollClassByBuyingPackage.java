@@ -527,7 +527,7 @@ public class EnrollClassByBuyingPackage extends base {
 				// Assert.fail("SignUp button not available");
 
 			}
-			Thread.sleep(1000);
+			Thread.sleep(5000);
 			wait.until(ExpectedConditions.textToBePresentInElement(c.getClassName(), classNameDisplayed));
 			Assert.assertEquals(classNameDisplayed, c.getClassName().getText());
 			Assert.assertEquals(classTimeDisplayed, c.getClassStartTime().getText());
