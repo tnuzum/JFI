@@ -909,7 +909,7 @@ public class reusableMethods extends base {
 					|| FOPRowSections.get(1).getText().equals("Checking"))
 					&& FOPRowSections.get(2).getText().equals(fopNumber)) {
 				driver.findElements(By.xpath("//i[@class = 'fa fa-2x fa-times']")).get(i - 3).click();
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 				driver.findElement(By.xpath("//a[@id='btn_ConfirmDel']")).click();
 				break;
 			}
