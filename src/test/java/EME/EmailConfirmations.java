@@ -185,7 +185,7 @@ public class EmailConfirmations extends base {
 			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Your appointment has been booked= as follows:"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Club: Jonas Fitness"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Participant(s): Auto, Emailmember"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Books: PT.Shepard, Elli=ana; FitExpert2; |Gym"));
+			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Books: PT.Shepard, Ell=iana; FitExpert2; |Gym"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Description: PTServiceWith3Resourc=es"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Date: " + tomorrowsDayAndDate));
 			Assert.assertTrue(emailUtils.isTextInMessage(email5, "0 Hour  15 Minute"));
@@ -258,7 +258,7 @@ public class EmailConfirmations extends base {
 			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Club: Studio Jonas"));
 			Assert.assertTrue(
 					emailUtils.isTextInMessage(email7, "Participant(s): Auto, Apptmember13; Auto, Emailmember2"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Bo=oks: FitExpert1-Grp; Holmes, Jeff-Grp; |Gym-Grp"));
+			Assert.assertTrue(emailUtils.isTextInMessage(email7, "B=ooks: FitExpert1-Grp; Holmes, Jeff-Grp; |Gym-Grp"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Descript=ion: PT Group-ThreeResources"));
 			// Assert.assertTrue(emailUtils.isTextInMessage(email7, "Date: " +
 			// tomorrowsDayAndDate));
