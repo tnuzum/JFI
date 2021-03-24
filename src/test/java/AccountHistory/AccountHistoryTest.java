@@ -134,7 +134,10 @@ public class AccountHistoryTest extends base {
 			System.out.println(Math.round(balance));
 
 			System.out.println(Math.round(Math.abs(unPaidInvoices - creditOnFile)));
+			System.out.println(parser.format(Math.abs(unPaidInvoices - creditOnFile)));
 
+			Assert.assertEquals(parser.parse(parser.format(Math.abs(unPaidInvoices - creditOnFile))).floatValue(),
+					balance);
 			Assert.assertEquals(Math.round(Math.abs(unPaidInvoices - creditOnFile)), Math.round(balance));
 
 		} catch (java.lang.AssertionError ae) {
