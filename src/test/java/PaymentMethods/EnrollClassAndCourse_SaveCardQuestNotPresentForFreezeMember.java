@@ -195,7 +195,7 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForFreezeMember extends
 
 			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("show-newcard")), "style", "1"));
 
-			wait.until(ExpectedConditions.attributeToBe(PM.getPaymentButton(), "disabled", "true"));
+//			wait.until(ExpectedConditions.attributeToBe(PM.getPaymentButton(), "disabled", "true"));
 
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
