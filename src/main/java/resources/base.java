@@ -137,6 +137,9 @@ public class base {
 					log.info("Chrome Browser: Running Tests on local machine");
 					ChromeOptions co = new ChromeOptions();
 					co.addArguments("--start-maximized");
+					co.addArguments("–no-sandbox");
+					co.addArguments("–disable-dev-shm-usage");
+
 					// co.addArguments("--window-size=1920, 1080");
 					co.merge(dcch);
 
