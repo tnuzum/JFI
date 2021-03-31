@@ -44,7 +44,9 @@ public class NoAgreement_AddCanadianBankSavingsAcct_FreezeMbr extends base {
 	public void initialize() throws IOException, InterruptedException {
 
 		try {
+
 			driver = initializeDriver();
+
 		} catch (java.lang.NullPointerException npe) {
 
 			driver = initializeDriver();
@@ -53,6 +55,17 @@ public class NoAgreement_AddCanadianBankSavingsAcct_FreezeMbr extends base {
 			log.error("driver initialized again");
 			npe.printStackTrace();
 			log.error(npe.getMessage(), npe);
+
+		}
+
+		catch (org.openqa.selenium.WebDriverException we) {
+
+			driver = initializeDriver();
+
+			System.out.println("driver initialized again");
+			log.error("driver initialized again");
+			we.printStackTrace();
+			log.error(we.getMessage(), we);
 
 		}
 
