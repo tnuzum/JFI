@@ -93,7 +93,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct_Freez
 
 			Assert.assertTrue(mp.getCheckingRadio().isSelected());
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-
+			jse.executeScript("window.scrollBy(0,500)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
@@ -205,7 +205,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct_Freez
 			jse.executeScript("arguments[0].click();", mp.getEditSavingsRadio1());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-
+			jse.executeScript("window.scrollBy(0,500)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
@@ -273,6 +273,15 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct_Freez
 			eci.printStackTrace();
 			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Index Out Of Bounds");
+			iob.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(iob.getMessage(), iob);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		}

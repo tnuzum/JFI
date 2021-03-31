@@ -93,7 +93,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCanadianBankSavingsAcct extends base
 			jse.executeScript("arguments[0].click();", mp.getSavingsradio());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-
+			jse.executeScript("window.scrollBy(0,500)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
@@ -207,7 +207,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCanadianBankSavingsAcct extends base
 			Assert.assertTrue(mp.getEditSavingsRadio1().isSelected());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-
+			jse.executeScript("window.scrollBy(0,500)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
@@ -275,6 +275,15 @@ public class UnCheckAgrmntWithBadFOP_AddEditCanadianBankSavingsAcct extends base
 			eci.printStackTrace();
 			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Index Out Of Bounds");
+			iob.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(iob.getMessage(), iob);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		}

@@ -46,6 +46,7 @@ public class AcctHistoryPO {
 	By charges = By.xpath("//div[@class = 'modal-content']//div[@class ='col-md-6 text-right']");
 	By totalInvoiced = By.xpath("//div[@class = 'modal-content']//div[@class ='col-xs-12 text-right']");
 	By subTotal = By.xpath("//div[@class = 'modal-content']//div[@class ='row-box p-xs m-xs']//small");
+	By searchingAcctHistMessage = By.xpath("//div[@class = 'text-center']");
 
 // CONSTRUCTOR
 
@@ -190,6 +191,10 @@ public class AcctHistoryPO {
 
 	public List<WebElement> getSubTotal() {
 		return driver.findElements(subTotal);
+	}
+
+	public List<WebElement> getSearchingAcctHistMessage() {
+		return driver.findElements(searchingAcctHistMessage);
 	}
 
 }

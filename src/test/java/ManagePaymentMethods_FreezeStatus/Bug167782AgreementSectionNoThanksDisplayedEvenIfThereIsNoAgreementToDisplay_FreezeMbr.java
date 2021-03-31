@@ -5,6 +5,7 @@ import java.lang.reflect.Method;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -24,7 +25,7 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 	private static String testName = null;
 	private static String memberName = "1Bug167782 Auto";
 	private static String agreement = "Athletic Elite 12 Month_Chk";
-
+	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
@@ -48,6 +49,7 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 		d = new DashboardPO(driver);
 		mp = new ManagePayMethodsPO(driver);
 		bt = new BreadcrumbTrailPO(driver);
+		jse = (JavascriptExecutor) driver;
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
@@ -89,7 +91,7 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			Assert.assertTrue(mp.getCheckingRadio().isSelected());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-
+			jse.executeScript("window.scrollBy(0,500)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
@@ -186,7 +188,7 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			Assert.assertTrue(mp.getEditCheckingRadio().isSelected());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-
+			jse.executeScript("window.scrollBy(0,500)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
@@ -233,6 +235,15 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			eci.printStackTrace();
 			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Index Out Of Bounds");
+			iob.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(iob.getMessage(), iob);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		}
