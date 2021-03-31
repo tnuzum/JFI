@@ -156,7 +156,10 @@ public class CalendarLayout extends base {
 
 			if (calendar.get(Calendar.DATE) == calendar.getActualMaximum(Calendar.DATE)) {
 
-				driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(0).click();
+				jse.executeScript("arguments[0].click();",
+						driver.findElements(By.xpath("//i[contains(@class, 'right')]")).get(0));
+				// driver.findElements(By.xpath("//i[contains(@class,
+				// 'right')]")).get(0).click();
 
 				WebDriverWait wait = new WebDriverWait(driver, 50);
 				wait.until(ExpectedConditions.presenceOfElementLocated(
