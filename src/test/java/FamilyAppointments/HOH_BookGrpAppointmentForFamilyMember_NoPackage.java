@@ -39,7 +39,9 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 	public void initialize() throws IOException {
 
 		try {
+
 			driver = initializeDriver();
+
 		} catch (java.lang.NullPointerException npe) {
 
 			driver = initializeDriver();
@@ -50,6 +52,18 @@ public class HOH_BookGrpAppointmentForFamilyMember_NoPackage extends base {
 			log.error(npe.getMessage(), npe);
 
 		}
+
+		catch (org.openqa.selenium.WebDriverException we) {
+
+			driver = initializeDriver();
+
+			System.out.println("driver initialized again");
+			log.error("driver initialized again");
+			we.printStackTrace();
+			log.error(we.getMessage(), we);
+
+		}
+
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
