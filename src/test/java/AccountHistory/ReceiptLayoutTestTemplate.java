@@ -4,11 +4,11 @@ import java.io.IOException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.AfterClass;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -58,36 +58,68 @@ public class ReceiptLayoutTestTemplate extends base {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void verifyReceiptLayout() throws InterruptedException {
+	public void verifyReceiptLayout() throws InterruptedException, IOException {
+		try {
 
-		String receiptNumber = rm.purchasePackage("PT - Demo");
+			String receiptNumber = rm.purchasePackage("PT - Demo");
 
-		rm.openSideMenuIfNotOpenedAlready();
-		d.getMenuMyAccount().click();
-		while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
-			Thread.sleep(1000);
-		}
-		d.getMenuAccountHistory().click();
+			rm.openSideMenuIfNotOpenedAlready();
+			d.getMenuMyAccount().click();
+			while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
+				Thread.sleep(1000);
+			}
+			d.getMenuAccountHistory().click();
 
-		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 
-		ahp.getSearchField().sendKeys(receiptNumber);
-		Thread.sleep(2000);
+			wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 
-		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
-		Thread.sleep(3000);
-		jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
+			ahp.getSearchField().sendKeys(receiptNumber);
+			Thread.sleep(2000);
+
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
+			Thread.sleep(3000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
 
 // Add your assertions here//
 
-		ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
-		Thread.sleep(1000);
-		rm.memberLogout();
+			ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+			Thread.sleep(1000);
+			rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 
-	@AfterTest
+	@AfterClass
 	public void teardown() {
 		driver.quit();
 		driver = null;

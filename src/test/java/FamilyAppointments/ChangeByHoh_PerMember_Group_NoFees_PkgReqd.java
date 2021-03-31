@@ -1,6 +1,7 @@
 package FamilyAppointments;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -73,7 +74,7 @@ public class ChangeByHoh_PerMember_Group_NoFees_PkgReqd extends base {
 	}
 
 	@Test
-	public void ChangeAppointmentForFamilyMember() throws InterruptedException, IOException {
+	public void ChangeAppointmentForFamilyMember() throws InterruptedException, IOException, ParseException {
 
 		try {
 			rm.activeMemberLogin("appthoh1", "Testing1!");

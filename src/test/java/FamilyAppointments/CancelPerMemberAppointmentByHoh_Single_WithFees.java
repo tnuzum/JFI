@@ -1,6 +1,7 @@
 package FamilyAppointments;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -63,7 +64,7 @@ public class CancelPerMemberAppointmentByHoh_Single_WithFees extends base {
 	}
 
 	@Test
-	public void BookAppointmentForFamilyMember() throws InterruptedException, IOException {
+	public void BookAppointmentForFamilyMember() throws InterruptedException, IOException, ParseException {
 
 		try {
 			rm.activeMemberLogin("appthoh", "Testing1!");

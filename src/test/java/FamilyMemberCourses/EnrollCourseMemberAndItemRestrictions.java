@@ -404,11 +404,11 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			rm.SelectCourseStartYear(CourseStartYear);
+			rm.SelectCourseStartMonth(CourseStartMonth1);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
-			rm.SelectCourseStartMonth(CourseStartMonth1);
+			rm.SelectCourseStartYear(CourseStartYear);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -451,8 +451,13 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 		finally {
 			Thread.sleep(1000);
-			jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
-			c.getPopupCancelButtonCourse().click();
+
+			Boolean canSeeCancelBtn = rm.isElementPresent(By.xpath("//button[contains(text(),'cancel')]"));
+
+			if (canSeeCancelBtn == true) {
+				jse.executeScript("window.scrollTo(0," + c.getPopupCancelButtonCourse().getLocation().x + ")");
+				c.getPopupCancelButtonCourse().click();
+			}
 
 			Thread.sleep(1000);
 			rm.memberLogout();
@@ -632,6 +637,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
+		rw.waitForAcceptButton();
 		wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 		Assert.assertEquals("Success", c.getPopupMessage().getText());
 		c.getPopupClose().click();

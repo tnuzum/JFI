@@ -1,6 +1,7 @@
 package FamilyAppointments;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import org.openqa.selenium.JavascriptExecutor;
@@ -49,7 +50,8 @@ public class HOH_BookGrpAppointmentForFamilyMember_PurchasePackage extends base 
 	}
 
 	@Test
-	public void BookGrpAppointmentForFamilyMemberWithPackage() throws InterruptedException, IOException {
+	public void BookGrpAppointmentForFamilyMemberWithPackage()
+			throws InterruptedException, IOException, ParseException {
 		try {
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			rm.activeMemberLogin("appthoh1", "Testing1!");

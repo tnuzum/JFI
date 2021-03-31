@@ -423,7 +423,7 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 	@Test(priority = 4)
 	public void VerifyMemberIsPromotedToEnrolled() throws InterruptedException, IOException {
 		try {
-
+			Actions a = new Actions(driver);
 			CalendarPO cp = new CalendarPO(driver);
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -443,7 +443,8 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 
 			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
 			Thread.sleep(1000);
-			cp.getCalDayBadge().click();
+			a.moveToElement(cp.getCalDayBadge()).click().build().perform();
+			// jse.executeScript("arguments[0].click();", cp.getCalDayBadge());
 
 			int eventCount = cp.getCalEventTitles().size();
 
@@ -453,7 +454,6 @@ public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends bas
 
 					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
 					Thread.sleep(1000);
-					Actions a = new Actions(driver);
 					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
 					break;
 				}

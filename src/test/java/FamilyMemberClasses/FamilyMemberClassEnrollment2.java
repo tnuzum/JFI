@@ -229,7 +229,7 @@ public class FamilyMemberClassEnrollment2 extends base {
 			}
 
 			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
-			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
+			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			Assert.assertEquals("Success", c.getPopupMessage().getText());
 			c.getPopupClose().click();
@@ -276,6 +276,11 @@ public class FamilyMemberClassEnrollment2 extends base {
 			jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
 
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);

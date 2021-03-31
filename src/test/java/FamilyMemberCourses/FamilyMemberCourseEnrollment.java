@@ -274,6 +274,7 @@ public class FamilyMemberCourseEnrollment extends base {
 			}
 
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
+			Thread.sleep(3000);
 
 			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 
@@ -306,6 +307,13 @@ public class FamilyMemberCourseEnrollment extends base {
 
 			}
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
+
+			while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+			{
+				Thread.sleep(1000);
+
+			}
 			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
 
 			int count1 = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -326,19 +334,12 @@ public class FamilyMemberCourseEnrollment extends base {
 																						// contains
 																						// the total amount
 
-			while (!PM.getOnAccountAndSavedCards().isDisplayed())
-
-			{
-				Thread.sleep(1000);
-
-			}
-
 			while (!PM.getPaymentButton().isEnabled()) {
 				Thread.sleep(1000);
 			}
 			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
-			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
-			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
 			PP.getPopupOKButton().click();
@@ -385,9 +386,14 @@ public class FamilyMemberCourseEnrollment extends base {
 			jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
 
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
+
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);
-				System.out.println("waiting");
+				System.out.println("waiting for account history to display");
 			}
 
 			// Clicks on the Receiptnumber in Account History
@@ -395,6 +401,7 @@ public class FamilyMemberCourseEnrollment extends base {
 			ahp.getSearchField().sendKeys(receiptNumber2);
 
 			Thread.sleep(2000);
+
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber2));
 			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
 			Thread.sleep(3000);

@@ -196,6 +196,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 
 			}
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
+			Thread.sleep(3000);
 
 			PurchaseConfirmationPO pp = new PurchaseConfirmationPO(driver);
 
@@ -219,6 +220,13 @@ public class FamilyMemberCourseEnrollment2 extends base {
 			}
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getClassesReviewtotalAmount(), "$"));
+
+			while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+			{
+				Thread.sleep(1000);
+
+			}
 			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
 
 			int count1 = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -250,7 +258,7 @@ public class FamilyMemberCourseEnrollment2 extends base {
 			}
 			jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
-			wait.until(ExpectedConditions.visibilityOf(c.getPopupClose()));
+			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(c.getPopupClose()));
 			// Verifies the success message
 			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
@@ -297,6 +305,11 @@ public class FamilyMemberCourseEnrollment2 extends base {
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 			jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);

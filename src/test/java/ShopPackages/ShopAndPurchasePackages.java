@@ -330,6 +330,11 @@ public class ShopAndPurchasePackages extends base {
 			wait.until(ExpectedConditions
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 			Thread.sleep(3000);
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
@@ -428,6 +433,7 @@ public class ShopAndPurchasePackages extends base {
 				}
 
 			}
+			Thread.sleep(5000);
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 			Thread.sleep(3000);
@@ -528,10 +534,16 @@ public class ShopAndPurchasePackages extends base {
 			IntUnitCountBefore1++;
 			Assert.assertEquals(IntUnitCountBefore1, IntUnitCountAfter1); // verifies the unit count of the Package
 
+			rm.openSideMenuIfNotOpenedAlready();
 			d.getMenuMyAccount().click();
 			Thread.sleep(1000);
 			d.getMenuAccountHistory().click();
 			Thread.sleep(3000);
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);
@@ -759,6 +771,11 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(1000);
 			d.getMenuAccountHistory().click();
 			Thread.sleep(3000);
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
 
 			while (!ahp.getReceiptNumberTable().isDisplayed()) {
 				Thread.sleep(2000);
@@ -1075,6 +1092,10 @@ public class ShopAndPurchasePackages extends base {
 			int IntUnitCountBefore3 = 0;
 			int IntUnitCountAfter3 = 0;
 
+			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
+
+			System.out.println("Before: " + IntUnitCountBefore3);
+
 			WebDriverWait wait = new WebDriverWait(driver, 30);
 			rm.openSideMenuIfNotOpenedAlready();
 
@@ -1111,10 +1132,6 @@ public class ShopAndPurchasePackages extends base {
 			Thread.sleep(3000);
 			Assert.assertEquals("Day Pass", PP.getPackageName().getText());
 
-			IntUnitCountBefore3 = rm.getPackageUnits("Day Pass");
-
-			System.out.println("Before: " + IntUnitCountBefore3);
-
 			while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
 			{
@@ -1125,7 +1142,7 @@ public class ShopAndPurchasePackages extends base {
 			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < count; i++) {
 				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-						.contains("5454")) {
+						.contains("1111")) {
 
 					jse.executeScript("arguments[0].click();",
 							PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));

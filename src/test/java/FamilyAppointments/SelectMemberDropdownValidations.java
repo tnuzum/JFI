@@ -65,16 +65,42 @@ public class SelectMemberDropdownValidations extends base {
 	@Test(priority = 1)
 
 	public void VerifySelectMemberOptionIsPresentForHOH() throws InterruptedException, IOException {
+		try {
+			rm.activeMemberLogin("appthoh", "Testing1!");
+			rw.waitForDashboardLoaded();
+			DashboardPO p = new DashboardPO(driver);
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
+			Thread.sleep(2000);
 
-		rm.activeMemberLogin("appthoh", "Testing1!");
-		rw.waitForDashboardLoaded();
-		DashboardPO p = new DashboardPO(driver);
-		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
-		Thread.sleep(2000);
+			Assert.assertTrue(ap.getSelectMember().isDisplayed());
 
-		Assert.assertTrue(ap.getSelectMember().isDisplayed());
+			rm.memberLogout();
 
-		rm.memberLogout();
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 	}
 
 	@Test(priority = 2)
@@ -82,15 +108,43 @@ public class SelectMemberDropdownValidations extends base {
 	public void VerifySelectMemberOptionIsNotPresentForHOHWithNoFamilyMember()
 			throws InterruptedException, IOException {
 
-		rm.activeMemberLogin("apptmember10", "Testing1!");
-		rw.waitForDashboardLoaded();
-		DashboardPO p = new DashboardPO(driver);
-		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
-		Thread.sleep(2000);
-		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
-		Assert.assertEquals(SelectMemberDropdownPresent, false);
+		try {
 
-		rm.memberLogout();
+			rm.activeMemberLogin("apptmember10", "Testing1!");
+			rw.waitForDashboardLoaded();
+			DashboardPO p = new DashboardPO(driver);
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
+			Thread.sleep(2000);
+			boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
+			Assert.assertEquals(SelectMemberDropdownPresent, false);
+
+			rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 
@@ -98,15 +152,43 @@ public class SelectMemberDropdownValidations extends base {
 
 	public void VerifySelectMemberOptionIsNotPresentForNonHOH() throws InterruptedException, IOException {
 
-		rm.activeMemberLogin("fmlyapptmbr", "Testing1!");
-		rw.waitForDashboardLoaded();
-		DashboardPO p = new DashboardPO(driver);
-		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
-		Thread.sleep(2000);
-		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
-		Assert.assertEquals(SelectMemberDropdownPresent, false);
+		try {
 
-		rm.memberLogout();
+			rm.activeMemberLogin("fmlyapptmbr", "Testing1!");
+			rw.waitForDashboardLoaded();
+			DashboardPO p = new DashboardPO(driver);
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
+			Thread.sleep(3000);
+			boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
+			Assert.assertEquals(SelectMemberDropdownPresent, false);
+
+			rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 
@@ -115,15 +197,43 @@ public class SelectMemberDropdownValidations extends base {
 	public void VerifySelectMemberOptionIsNotPresentForHOHWhenClubDoesntAllow()
 			throws InterruptedException, IOException {
 
-		rm.activeMemberLogin("noccmember", "Testing1!");
-		rw.waitForDashboardLoaded();
-		DashboardPO p = new DashboardPO(driver);
-		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
-		Thread.sleep(2000);
-		boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
-		Assert.assertEquals(SelectMemberDropdownPresent, false);
+		try {
 
-		rm.memberLogout();
+			rm.activeMemberLogin("noccmember", "Testing1!");
+			rw.waitForDashboardLoaded();
+			DashboardPO p = new DashboardPO(driver);
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
+			Thread.sleep(3000);
+			boolean SelectMemberDropdownPresent = rm.isElementPresent(By.xpath("//select[@name='familySelect']"));
+			Assert.assertEquals(SelectMemberDropdownPresent, false);
+
+			rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 
@@ -132,33 +242,61 @@ public class SelectMemberDropdownValidations extends base {
 
 	public void VerifyOnlyAllowedClubsDisplayedForFamilyMember() throws InterruptedException, IOException {
 
-		rm.activeMemberLogin("appthoh", "Testing1!");
-		rw.waitForDashboardLoaded();
-		DashboardPO p = new DashboardPO(driver);
-		jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
-		Thread.sleep(2000);
+		try {
 
-		Assert.assertTrue(ap.getSelectMember().isDisplayed());
+			rm.activeMemberLogin("appthoh", "Testing1!");
+			rw.waitForDashboardLoaded();
+			DashboardPO p = new DashboardPO(driver);
+			jse.executeScript("arguments[0].click();", p.getMyApptsScheduleButton());
+			Thread.sleep(2000);
 
-		Select s = new Select(ap.getSelectMember());
-		List<WebElement> Members = s.getOptions();
-		int count = Members.size();
-		for (int i = 0; i < count; i++) {
-			String member = Members.get(i).getText();
+			Assert.assertTrue(ap.getSelectMember().isDisplayed());
 
-			if (member.equals(familyMbrName)) {
-				s.selectByVisibleText(member);
-				break;
+			Select s = new Select(ap.getSelectMember());
+			List<WebElement> Members = s.getOptions();
+			int count = Members.size();
+			for (int i = 0; i < count; i++) {
+				String member = Members.get(i).getText();
+
+				if (member.equals(familyMbrName)) {
+					s.selectByVisibleText(member);
+					break;
+				}
 			}
-		}
-		Thread.sleep(2000);
-		se = new Select(ap.getclubs());
-		Clubs = se.getOptions();
+			Thread.sleep(2000);
+			se = new Select(ap.getclubs());
+			Clubs = se.getOptions();
 
-		Assert.assertFalse(Clubs.contains(clubName1));
-		Assert.assertEquals(se.getFirstSelectedOption().getText(), clubName2);
+			Assert.assertFalse(Clubs.contains(clubName1));
+			Assert.assertEquals(se.getFirstSelectedOption().getText(), clubName2);
 
 //		rm.memberLogout();
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 
@@ -167,12 +305,39 @@ public class SelectMemberDropdownValidations extends base {
 
 	public void VerifyOnlyAllowedCategoriesDisplayedForFamilyMember() throws InterruptedException, IOException {
 
-		WebElement bic = ap.getBookableItemCategory();
+		try {
 
-		s2 = new Select(bic);
-		ProductCategories = s2.getOptions();
+			WebElement bic = ap.getBookableItemCategory();
 
-		Assert.assertFalse(ProductCategories.contains(productCategory1));
+			s2 = new Select(bic);
+			ProductCategories = s2.getOptions();
+
+			Assert.assertFalse(ProductCategories.contains(productCategory1));
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(this.getClass().getSimpleName(), driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
 
 	}
 

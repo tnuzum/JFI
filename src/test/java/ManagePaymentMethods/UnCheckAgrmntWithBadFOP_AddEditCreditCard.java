@@ -90,6 +90,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCreditCard extends base {
 			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
 
+			jse.executeScript("window.scrollBy(0,500)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
 
@@ -196,7 +197,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCreditCard extends base {
 			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(0));
 			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
-
+			jse.executeScript("window.scrollBy(0,500)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
@@ -268,6 +269,15 @@ public class UnCheckAgrmntWithBadFOP_AddEditCreditCard extends base {
 			eci.printStackTrace();
 			getScreenshot(testName, driver);
 			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+		catch (java.lang.IndexOutOfBoundsException iob) {
+			System.out.println("Index Out Of Bounds");
+			iob.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(iob.getMessage(), iob);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 		}
