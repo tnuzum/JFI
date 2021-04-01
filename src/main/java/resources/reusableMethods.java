@@ -367,6 +367,10 @@ public class reusableMethods extends base {
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
+			while (u.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for enrollment details to display");
+				Thread.sleep(1000);
+			}
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
 			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());

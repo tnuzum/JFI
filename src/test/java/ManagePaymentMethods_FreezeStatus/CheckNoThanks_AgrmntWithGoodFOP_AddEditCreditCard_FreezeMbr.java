@@ -90,7 +90,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends
 			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(1));
 			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(1).isDisplayed());
@@ -183,7 +183,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends
 			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(0));
 			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
