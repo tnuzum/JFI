@@ -113,7 +113,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
-			mp.getIAgreeCheckboxACH().click();
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getIAgreeCheckboxACH());
 
 			Thread.sleep(1000);
 
