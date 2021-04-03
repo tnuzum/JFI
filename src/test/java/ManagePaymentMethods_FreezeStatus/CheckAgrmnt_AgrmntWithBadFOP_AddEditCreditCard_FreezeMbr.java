@@ -219,6 +219,9 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard_FreezeMbr extends ba
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
 
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
+
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
 					.release().build().perform();
