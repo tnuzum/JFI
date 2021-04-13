@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -70,6 +72,7 @@ public class UnenrollPO {
 	By location = By.xpath("//small[contains(text(),'Location:')]//following-sibling::strong");
 	By category = By.xpath("//small[contains(text(),'Category:')]//following-sibling::strong");
 	By status = By.xpath("//small[contains(text(),'Status:')]//following-sibling::strong");
+	By searchingAcctHistMessage = By.xpath("//div[@class = 'text-center']");
 
 // CONSTRUCTOR
 
@@ -273,4 +276,9 @@ public class UnenrollPO {
 	public WebElement getStanbyUnenrollText() {
 		return driver.findElement(stanbyUnenrollText);
 	}
+
+	public List<WebElement> getSearchingAcctHistMessage() {
+		return driver.findElements(searchingAcctHistMessage);
+	}
+
 }

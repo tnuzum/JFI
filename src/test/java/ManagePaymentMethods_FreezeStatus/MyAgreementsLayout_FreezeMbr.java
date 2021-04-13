@@ -89,7 +89,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(1));
 			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
 
@@ -192,7 +192,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			Assert.assertTrue(mp.getCheckingRadio().isSelected());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			int m = 0;
@@ -287,7 +287,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
@@ -395,7 +395,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			Assert.assertEquals(text1, prop.getProperty("USBankRoutingNumber"));
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 

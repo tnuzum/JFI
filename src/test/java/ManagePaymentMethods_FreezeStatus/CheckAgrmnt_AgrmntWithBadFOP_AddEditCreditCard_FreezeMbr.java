@@ -91,7 +91,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard_FreezeMbr extends ba
 			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(1));
 			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(3000);
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(1).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(1).isDisplayed());
 
@@ -186,7 +186,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard_FreezeMbr extends ba
 			jse.executeScript("arguments[0].click();", mp.getHouseAcctNoRadioButton().get(0));
 			jse.executeScript("arguments[0].click();", mp.getInClubPurchaseNoRadio());
 			Thread.sleep(1000);
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
@@ -218,6 +218,9 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard_FreezeMbr extends ba
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)

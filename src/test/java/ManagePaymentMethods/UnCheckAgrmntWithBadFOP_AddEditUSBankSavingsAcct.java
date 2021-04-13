@@ -91,7 +91,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct extends base {
 			jse.executeScript("arguments[0].click();", mp.getSavingsradio());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
@@ -199,7 +199,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct extends base {
 			Assert.assertTrue(mp.getEditSavingsRadio().isSelected());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 

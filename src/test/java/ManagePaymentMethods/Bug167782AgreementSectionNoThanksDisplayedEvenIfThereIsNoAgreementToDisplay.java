@@ -91,7 +91,7 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			Assert.assertTrue(mp.getCheckingRadio().isSelected());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
@@ -188,7 +188,7 @@ public class Bug167782AgreementSectionNoThanksDisplayedEvenIfThereIsNoAgreementT
 			Assert.assertTrue(mp.getEditCheckingRadio().isSelected());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());

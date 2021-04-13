@@ -93,7 +93,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct_Freez
 
 			Assert.assertTrue(mp.getCheckingRadio().isSelected());
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
@@ -205,7 +205,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct_Freez
 			jse.executeScript("arguments[0].click();", mp.getEditSavingsRadio1());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 

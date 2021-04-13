@@ -92,7 +92,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 
 			Assert.assertTrue(mp.getCheckingRadio().isSelected());
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText1().get(0).isDisplayed());
@@ -113,18 +113,21 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A selection is required')]")),
 					false);
 
-			mp.getIAgreeCheckboxACH().click();
+			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckboxACH());
 
 			Thread.sleep(1000);
 
 			Assert.assertTrue(mp.getAddBankAcctButton().isEnabled());
 
-			mp.getAddBankAcctButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddBankAcctButton());
 
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
 			Thread.sleep(1000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
+			Thread.sleep(2000);
 
 			Actions a = new Actions(driver);
 			a.moveToElement(mp.getSignaturePad().get(0)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
@@ -132,7 +135,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 
 			Thread.sleep(2000);
 
-			mp.getAddBankAcctButton().click();
+			jse.executeScript("arguments[0].click();", mp.getAddBankAcctButton());
 
 			rw.waitForAcceptButton();
 			System.out.println(mp.getPopupConfirmation1().getText());
@@ -205,7 +208,7 @@ public class CheckAgrmnt_AgrmntWithGoodFOP_AddEditCanadianBankCheckingAcct exten
 			jse.executeScript("arguments[0].click();", mp.getEditSavingsRadio1());
 
 			Assert.assertTrue(mp.getHouseAcctNoRadioButton().get(0).isSelected());
-			jse.executeScript("window.scrollBy(0,500)");
+			jse.executeScript("window.scrollBy(0,1000)");
 			Assert.assertTrue(mp.getLinkAgreementsHeader().get(0).isDisplayed());
 			Assert.assertTrue(mp.getLabelText().get(0).isDisplayed());
 
