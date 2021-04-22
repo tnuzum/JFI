@@ -149,12 +149,12 @@ public class reusableWaits extends base {
 //		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
 //			System.out.println(DateTime+" INFO: Element is now present");
 
-		WebElement n = l.getLoginButton();
-		while (!n.isEnabled())// while button is NOT(!) enabled
-		{
-			Thread.sleep(500);
-//				System.out.println(DateTime+" INFO: waiting 500ms for element to be enabled");
-		}
+		/*
+		 * WebElement n = l.getLoginButton(); while (!n.isEnabled())// while button is
+		 * NOT(!) enabled { Thread.sleep(500); //
+		 * System.out.println(DateTime+" INFO: waiting 500ms for element to be enabled"
+		 * ); }
+		 */
 		return null;
 	}
 
