@@ -15,7 +15,7 @@
 
 		<!-- URL for Cert Future/ -->
 		<!--parameter name="EMELoginPage"
-			value="https://futurecert.ourclublogin.com/Account/Login/22" /-->
+			value="https://futurecert.ourclublogin.com/Login/22" /-->
 
 		<!-- URL for Prod Future/ -->
 		<!--parameter name = "EMELoginPage" value="https://future.ourclublogin.com/Account/Login?ReturnUrl=%2f510306"/ -->

@@ -1,6 +1,8 @@
 package resources;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -4003,6 +4005,41 @@ public class reusableMethods extends base {
 		try {
 			Runtime.getRuntime().exec(path);
 		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return;
+	}
+
+	public void runTerminalCommand(String command, String logText) {
+
+		String path = System.getProperty("user.dir");
+		String line;
+
+		try {
+
+			ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "cd \"" + path + "\" && " + command);
+			System.out.println("cd \"" + path + "\" && " + command);
+			Process p = builder.start();
+			Thread.sleep(15000);
+
+			BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			line = r.readLine();
+
+			while (true) {
+				line = r.readLine();
+
+				if (line.contains(logText)) {
+					Thread.sleep(5000);
+					System.out.println(line);
+					break;
+				}
+
+			}
+
+		} catch (Exception e)
+
+		{
 
 			e.printStackTrace();
 		}
