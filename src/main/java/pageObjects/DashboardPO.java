@@ -14,7 +14,7 @@ public class DashboardPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By menuButton = By.xpath("//nav[@class='navbar navbar-static-top']/div/a/i");
-	By myPackagesButton = By.xpath("//a[@class='at-topnavbar-mypackages']");
+	By myPackagesButton = By.xpath("//button[@class='at-topnavbar-mypackages']");
 	By myPackagesShopPackages = By.xpath("//a[contains(@class, 'at-topnavbar-shoppackages-button')]");
 	// By.linkText("Shop Packages");
 	By cartButton = By.xpath("//a[contains(text(),'Cart')]");
@@ -58,9 +58,9 @@ public class DashboardPO {
 
 	By myAccountSectionLabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[1]");
 //	By myAccountAccountHistoryButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[1]");
-	By myAccountAccountHistoryButton = By.xpath("//a[contains(@class,'at-widget-accounthistory')]");
+	By myAccountAccountHistoryButton = By.xpath("//button[contains(@class,'at-widget-accounthistory')]");
 //	By myAccountPayNowButton = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[3]/a[2]");
-	By myAccountPayNowButton = By.xpath("//a[contains(@class, 'at-widget-paynow')]");
+	By myAccountPayNowButton = By.xpath("//button[contains(@class, 'at-widget-paynow')]");
 	By myAccountBalance = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/h2");
 	By myAccountBalDuelabel = By.xpath("//div[@class='homeComponent']//memberbalance/div/div[2]/div/small");
 	By myAccountTotChargesAmount = By
@@ -79,7 +79,7 @@ public class DashboardPO {
 	By myInfoAddress1 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/div/small[1]");
 	By myInfoAddress2 = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[2]/div/div[2]/div/div/small[1]");
 //	By myInfoEditButton = By.xpath("//div[@class='homeComponent']//memberinfo/div/div[3]/a[1]");
-	By myInfoEditButton = By.xpath("//a[contains(@class, 'at-widget-editmyinfo')]");
+	By myInfoEditButton = By.xpath("//button[contains(@class, 'at-widget-editmyinfo')]");
 
 	By myApptsSectionLabel = By.xpath("//div[@class='homeComponent']//appointmentswidget/div/div[1]");
 
