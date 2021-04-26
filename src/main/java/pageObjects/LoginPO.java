@@ -10,8 +10,8 @@ public class LoginPO {
 
 // OBJECTS
 
-	By userName = By.id("Username"); // text input field
-	By userPassword = By.id("Password"); // text input field
+	By userName = By.name("username"); // text input field
+	By userPassword = By.name("password"); // text input field
 	By userNameLabel = By.xpath("//label[@for='Username']");
 	By userPasswordLabel = By.xpath("//label[@for='Password']");
 //	By loginButton = By.cssSelector("button[type='submit']");
