@@ -62,7 +62,7 @@ public class AppointmentsPO {
 	By apptBox = By.xpath("//div[contains(@class, 'appt-box')]");
 	By timeSlotContainers = By.xpath("//div[contains(@class, 'tabs-container')]");
 	By selectATimeDrawer = By.xpath("//mat-sidenav[contains(@class, 'mat-drawer-over')]");
-	By popup1 = By.xpath("//div[@class = 'swal2-popup swal2-modal swal2-show']");
+	By popup1 = By.xpath("//div[@class = 'swal2-popup swal2-modal swal2-icon-info swal2-show']");
 	// By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
@@ -91,7 +91,7 @@ public class AppointmentsPO {
 	By changeFee = By.xpath("//div[contains(@class, 'appointment-secondaryaction-changefee')]");
 	By forMember = By.xpath("//div[@class = 'text-right ']/span[2]");
 
-	By editApptPageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By editApptPageHeader = By.xpath("//div[@class='col-md-12']/h2");
 	By editApptChangeButton = By.xpath("//button[contains(text(),'change appointment')]");
 	By editApptCancelButton = By.xpath("//button[contains(text(),'cancel appointment')]"); // By.cssSelector("#button-cancel");
 																							// stopped working in

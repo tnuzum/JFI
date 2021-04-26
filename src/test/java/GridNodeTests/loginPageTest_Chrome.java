@@ -2,7 +2,6 @@ package GridNodeTests;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
