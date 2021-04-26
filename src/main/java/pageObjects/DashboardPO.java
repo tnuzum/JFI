@@ -22,7 +22,7 @@ public class DashboardPO {
 	By logoutButton = By.xpath("//a[@class='at-topnavbar-logout']");
 	// By.linkText("Log out");
 
-	By leftMenu = By.xpath("//div[@id = 'wrapper']/mat-sidenav-container/mat-sidenav");
+	By leftMenu = By.xpath("//mat-sidenav[contains(@class, 'mat-sidenav')]");
 	By menuDashboardButton = By.xpath("//a[contains(@class, 'at-mainnav-dashboard')]");
 	// By.xpath("//mat-nav-list[@class='mat-nav-list']/a[1]/div");
 	By menuMyActivies = By.xpath("//mat-nav-list[@class='mat-nav-list']/mat-list-item[1]/div/span");

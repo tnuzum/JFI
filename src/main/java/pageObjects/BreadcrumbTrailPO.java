@@ -12,9 +12,9 @@ public class BreadcrumbTrailPO {
 
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By breadcrumb1 = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][1]");
-	By breadcrumb2 = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][2]");
-	By breadcrumb3 = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][3]");
+	By breadcrumb1 = By.xpath("//li[contains(@class, 'breadcrumbs__item')][1]");
+	By breadcrumb2 = By.xpath("//li[contains(@class, 'breadcrumbs__item')][2]");
+	By breadcrumb3 = By.xpath("//li[contains(@class, 'breadcrumbs__item')][3]");
 	By breadcrumbConfirmation = By.xpath("//span[@class='ng-star-inserted']");
 
 // CONSTRUCTOR
