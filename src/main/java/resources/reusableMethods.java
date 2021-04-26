@@ -215,10 +215,10 @@ public class reusableMethods extends base {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		Thread.sleep(1000);
-		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-		while (leftMenuOpen.equals("false")) {
+		String leftMenuOpen = d.getLeftMenu().getAttribute("style");
+		while (leftMenuOpen.contains("hidden")) {
 			jse.executeScript("arguments[0].click();", d.getMenuButton());
-			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
+			leftMenuOpen = d.getLeftMenu().getAttribute("style");
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 
@@ -2052,11 +2052,11 @@ public class reusableMethods extends base {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("style");
 
 		int i = 0;
 
-		while (selectATimeOpen.equals("false") && i < 20) {
+		while (selectATimeOpen.contains("hidden") && i < 20) {
 
 			Element.findElement(By.tagName("span")).click();
 			Thread.sleep(2000);

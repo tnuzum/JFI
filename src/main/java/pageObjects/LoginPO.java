@@ -10,20 +10,19 @@ public class LoginPO {
 
 // OBJECTS
 
-	By userName = By.id("Username"); // text input field
-	By userPassword = By.id("Password"); // text input field
-	By userNameLabel = By.xpath("//label[@for='Username']");
-	By userPasswordLabel = By.xpath("//label[@for='Password']");
-//	By loginButton = By.cssSelector("button[type='submit']");
-	By loginButton = By.xpath("//button[contains(text(), 'Login')]");
-	By credentialsErrorMessage = By.xpath("//div[@id='loginForm']/form/div[1]/ul/li");
+	By userName = By.name("username"); // text input field
+	By userPassword = By.name("password"); // text input field
+	By userNameLabel = By.xpath("//label[@for='username']");
+	By userPasswordLabel = By.xpath("//label[@for='password']");
+	By loginButton = By.cssSelector("button[type='submit']");
+//	By loginButton = By.xpath("//button[contains(text(), 'Login')]");
+	By credentialsErrorMessage = By.tagName("li");
 	By usernameRequiredMessage = By.xpath("//span[@id='Username-error']");
 	By passwordRequiredMessage = By.xpath("//span[@id='Password-error']");
-	By ForgotUsername = By.xpath("//a[@onclick='ForgotUsername()']"); // link
-	By ForgotPassword = By.xpath("//a[@onclick='ForgotPassword()']"); // link
-	By RememberUsernameCheckbox = By.xpath("//input[@name='RememberUsername']");
-	By RememberUsernameLabel = By.xpath("//label[@for='RememberUsername']");
-
+	By ForgotUsername = By.xpath("//a[@href = '/forgotusername']"); // link
+	By ForgotPassword = By.xpath("//a[@href='/forgotpassword']"); // link
+	By RememberUsernameCheckbox = By.xpath("//input[contains(@class, 'at-login-remember-username')]");
+	By RememberUsernameLabel = By.xpath("//div[contains(@class, 'checkbox')]//label");
 // CONSTRUCTOR
 
 	public LoginPO(WebDriver driver) {
