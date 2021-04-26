@@ -1,4 +1,4 @@
-package EME_Browser;
+package GridNodeTests;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,78 +15,47 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import pageObjects.LoginPO;
 import resources.base;
-import resources.base2;
-import resources.reusableMethods;
 
-public class loginPageTest_Browser extends base2 {
+public class loginPageTest_Chrome2 extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String wrongCredentialsMsg = "WE APOLOGIZE... It seems the credentials you entered are different than what is in our system. Please try again, and if the problem persists, contact your club for additional help.";
 	private static String invalid_username = "tpowers";
 	private static String invalid_password = "Not@Password1";
+	private static String browser;
 
-	public reusableMethods rm;
-
-	public loginPageTest_Browser() {
-		rm = new reusableMethods();
-
-	}
-
-	@BeforeSuite
-	public void dockerUp() {
-		rm.runTerminalCommand("docker-compose up", "Registered a node");
-		System.out.println("docker is up");
-	}
-
-	@AfterSuite
-	public void dockerDown() throws InterruptedException {
-
-		rm.runTerminalCommand("docker-compose down", "Removing selenium-hub");
-		System.out.println("docker is down");
-	}
-
+//	@BeforeTest
 	@BeforeClass
-	@Parameters({ "Browser" })
-	public void initialize(String Browser) throws IOException, InterruptedException {
+	public void initialize() throws IOException, InterruptedException {
 
-		log.info(Browser + " Browser: Running Tests on Selenium Grid");
-		System.out.println(Browser);
+		log.info("Chrome Browser: Running Tests on Selenium Grid");
+		browser = "firefox";
 
 		DesiredCapabilities dc = new DesiredCapabilities();
-		dc.setBrowserName(Browser); // dc.setPlatform(Platform.WINDOWS);
-		System.out.println("capabilities set");
+
+		dc.setBrowserName(browser);
+
+		// dc.setPlatform(Platform.WINDOWS);
+
 		ChromeOptions chrome_options = new ChromeOptions();
 
 		chrome_options.addArguments("--no-sandbox");
 		chrome_options.addArguments("--headless");
 		chrome_options.addArguments("--disable-dev-shm-usage");
 		chrome_options.setExperimentalOption("useAutomationExtension", false);
-		System.out.println("going to driver");
-		try {
-			if (Browser.equals("chrome")) {
-				chrome_options.merge(dc);
-				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chrome_options);
-			} else {
-				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
-			}
+		System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
+//		chrome_options.merge(dc);
 
-			System.out.println("driver initialized");
-			log.error("driver initialized");
+		try {
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 
 		} catch (java.lang.NullPointerException npe) {
-			if (Browser.equals("chrome")) {
-				chrome_options.merge(dc);
-				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), chrome_options);
-			} else {
-				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
-			}
+
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 
 			System.out.println("driver initialized again");
 			log.error("driver initialized again");
@@ -97,9 +66,8 @@ public class loginPageTest_Browser extends base2 {
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
-		System.out.println(Browser);
 
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 
@@ -110,6 +78,7 @@ public class loginPageTest_Browser extends base2 {
 	public void pageTitle() throws IOException {
 		Assert.assertEquals(driver.getTitle(), "Log In | Empower M.E.");
 		log.info("Page Title Verified");
+		System.out.println("Page Title Verified " + browser);
 	}
 
 	@Test(priority = 2)
@@ -166,11 +135,11 @@ public class loginPageTest_Browser extends base2 {
 
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), wrongCredentialsMsg);
 		log.info("Error Message Title Verified");
+		System.out.println("Error Message Title Verified");
 	}
 
 //	@AfterTest
-
-	@AfterClass
+	@AfterClass(enabled = false)
 	public void teardown() throws InterruptedException {
 		driver.quit();
 		driver = null;

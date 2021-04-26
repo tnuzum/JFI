@@ -1,6 +1,8 @@
 package resources;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -213,10 +215,10 @@ public class reusableMethods extends base {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		Thread.sleep(1000);
-		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-		while (leftMenuOpen.equals("false")) {
+		String leftMenuOpen = d.getLeftMenu().getAttribute("style");
+		while (leftMenuOpen.contains("hidden")) {
 			jse.executeScript("arguments[0].click();", d.getMenuButton());
-			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
+			leftMenuOpen = d.getLeftMenu().getAttribute("style");
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 
@@ -2050,11 +2052,11 @@ public class reusableMethods extends base {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("style");
 
 		int i = 0;
 
-		while (selectATimeOpen.equals("false") && i < 20) {
+		while (selectATimeOpen.contains("hidden") && i < 20) {
 
 			Element.findElement(By.tagName("span")).click();
 			Thread.sleep(2000);
@@ -4003,6 +4005,41 @@ public class reusableMethods extends base {
 		try {
 			Runtime.getRuntime().exec(path);
 		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return;
+	}
+
+	public void runTerminalCommand(String command, String logText) {
+
+		String path = System.getProperty("user.dir");
+		String line;
+
+		try {
+
+			ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "cd \"" + path + "\" && " + command);
+			System.out.println("cd \"" + path + "\" && " + command);
+			Process p = builder.start();
+			Thread.sleep(15000);
+
+			BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			line = r.readLine();
+
+			while (true) {
+				line = r.readLine();
+
+				if (line.contains(logText)) {
+					Thread.sleep(5000);
+					System.out.println(line);
+					break;
+				}
+
+			}
+
+		} catch (Exception e)
+
+		{
 
 			e.printStackTrace();
 		}

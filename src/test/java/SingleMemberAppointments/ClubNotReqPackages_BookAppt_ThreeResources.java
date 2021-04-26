@@ -105,7 +105,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 			while (ap.getPopup1().size() == 0 && k < 2)
 
 			{
-				if (ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened").equals("true")) {
+				if (ap.getSelectATimeDrawer().getAttribute("style").contains("visible")) {
 					ap.getCloseButton().click();
 				}
 				rm.calendarTomorrowClick();
@@ -253,7 +253,7 @@ public class ClubNotReqPackages_BookAppt_ThreeResources extends base {
 					}
 				}
 			}
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 			Thread.sleep(2000);
 			AppointmentsPO a = new AppointmentsPO(driver);
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");

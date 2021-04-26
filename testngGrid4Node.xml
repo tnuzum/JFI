@@ -14,8 +14,8 @@
 		
 		<classes>
 			<class name="EME_Browser.loginPageTest_Browser" />
-			<!--class name="EME_Browser.PageLaunchTest_Browser" /-->
-			<class name="EME_Browser.DashBoard_Layout_Browser" />
+			<!--class name="EME_Browser.PageLaunchTest_Browser" />
+			<class name="EME_Browser.DashBoard_Layout_Browser" /-->
 			
 		</classes>
 		
@@ -28,21 +28,23 @@
 		<classes>
 			
 			<class name="EME_Browser.loginPageTest_Browser" />
-			<!--class name="EME_Browser.PageLaunchTest_Browser" /-->  
-			<class name="EME_Browser.DashBoard_Layout_Browser" />
+			<!--class name="EME_Browser.PageLaunchTest_Browser" />  
+			<class name="EME_Browser.DashBoard_Layout_Browser" /-->
 			
 		</classes>
 	</test>
 	
-	<test  name="Edge Test" parallel="none" preserve-order="true" group-by-instances="true">
-		<parameter name="Browser" value="MicrosoftEdge"/>
+	<!--test  name="Edge Test" parallel="none" preserve-order="true" group-by-instances="true">
+		<parameter name="Browser" value="edge"/>
 		
 		<classes>
 		
 			<class name="EME_Browser.loginPageTest_Browser" />
-			<!--class name="EME_Browser.PageLaunchTest_Browser" /--> 
+			<class name="EME_Browser.PageLaunchTest_Browser" /> 
 			<class name="EME_Browser.DashBoard_Layout_Browser" />
 		
 		</classes>
-	</test>
+	</test-->
+	
+	
 </suite> <!-- Suite -->
