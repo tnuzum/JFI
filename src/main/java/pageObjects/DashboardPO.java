@@ -19,7 +19,7 @@ public class DashboardPO {
 	// By.linkText("Shop Packages");
 	By cartButton = By.xpath("//a[contains(text(),'Cart')]");
 	// "//nav[@class='navbar navbar-static-top']/ul/li[2]/a");
-	By logoutButton = By.xpath("//a[@class='at-topnavbar-logout']");
+	By logoutButton = By.xpath("//button[contains(@class,'at-topnavbar-logout')]");
 	// By.linkText("Log out");
 
 	By leftMenu = By.xpath("//mat-sidenav[contains(@class, 'mat-sidenav')]");

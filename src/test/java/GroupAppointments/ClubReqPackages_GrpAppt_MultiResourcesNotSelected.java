@@ -290,17 +290,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			Thread.sleep(2000);
 
 //Navigate to Dashboard
-			int linkcount = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < linkcount; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 
-			}
 			rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
@@ -446,7 +438,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 					}
 				}
 			}
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 			Thread.sleep(2000);
 			AppointmentsPO a = new AppointmentsPO(driver);
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");

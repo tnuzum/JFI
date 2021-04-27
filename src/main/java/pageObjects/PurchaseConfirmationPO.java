@@ -21,9 +21,9 @@ public class PurchaseConfirmationPO {
 	By reviewLabel = By.xpath("//div[@class = 'rate-box']/h2");
 	By popupSuccessMessage = By.xpath("//div[@class='swal2-header']");
 	By popupOKButton = By.xpath("//div[@class='swal2-actions']/button[1]");
-	By myPackagesButton = By.xpath("//a[@class='at-topnavbar-mypackages']");
+	By myPackagesButton = By.xpath("//button[contains(@class,'at-topnavbar-mypackages')]");
 	By packagesList = By.xpath("//a[@class = 'dropdown-item']");
-	By unitsCount = By.xpath("//span[@class = 'pull-right text-muted']");
+	By unitsCount = By.xpath("//span[@class = 'float-right text-muted']");
 	By shopPackageTotalAmount = By.xpath("//h2[contains(@class,'at-shoppackage-text-total')]");
 	By classesReviewtotalAmount = By.xpath("//span[contains(@class,'At-classes-review-text-total')]");
 	By memberFeesSection = By.xpath("//div[@class = 'text-right']");
