@@ -14,9 +14,9 @@ public class AcctHistoryPO {
 
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By receiptNumbers = By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a");
-	By receiptNumber = By.xpath("//div[@class='col-md-3 hidden-sm hidden-xs']//a");
-	By receiptNumberTable = By.xpath("//div[contains(@class,'col-md-12')]");
+	By receiptNumbers = By.xpath("//div[@class = 'col-lg-3 d-none d-md-block']//a");
+	By receiptNumber = By.xpath("//div[@class = 'col-lg-3 d-none d-md-block']//a");
+	By receiptNumberTable = By.xpath("//div[contains(@class,'col-lg-12')]");
 	By searchField = By.xpath("//input[@placeholder='Search in table']");
 	By calendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle']");
 	By firstCalendarDates = By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td");

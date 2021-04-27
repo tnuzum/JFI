@@ -209,17 +209,9 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_OnAccount extends base {
 			Thread.sleep(2000);
 
 //Navigate to Dashboard
-			int linkcount = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < linkcount; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 
-			}
 			rw.waitForDashboardLoaded();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

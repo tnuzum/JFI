@@ -102,7 +102,7 @@ public class ClubReqPackages_GrpAppt_NonMSS extends base {
 			Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchInput().sendKeys("Daisy");
 			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(3000);

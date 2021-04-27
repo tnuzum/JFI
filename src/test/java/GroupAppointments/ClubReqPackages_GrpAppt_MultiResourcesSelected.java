@@ -108,7 +108,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 			Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 			Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 			Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchInput().sendKeys("Daisy");
 			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(3000);
@@ -297,17 +297,9 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 			Thread.sleep(2000);
 
 //Navigate to Dashboard
-			int linkcount = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < linkcount; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 
-			}
 			rw.waitForDashboardLoaded();
 //Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
@@ -346,7 +338,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
 			Thread.sleep(3000);
 			jse.executeScript("arguments[0].scrollIntoView(true);",
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
+					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
 			/*
 			 * while (!ahp.getReceiptNumberTable().isDisplayed()) { Thread.sleep(2000);
 			 * System.out.println("waiting"); } for (int k = 0; k <
@@ -359,14 +351,14 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 
 //Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
 
-			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
+			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
 					.isBlank()) {
 				Thread.sleep(500);
 			}
-			System.out.println(
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
-					.getText().contains(FormatTotalAmt));
+			System.out
+					.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+					.contains(FormatTotalAmt));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
 			rm.returnToDashboard();
@@ -449,7 +441,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesSelected extends base {
 					}
 				}
 			}
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 			Thread.sleep(2000);
 			AppointmentsPO a = new AppointmentsPO(driver);
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");

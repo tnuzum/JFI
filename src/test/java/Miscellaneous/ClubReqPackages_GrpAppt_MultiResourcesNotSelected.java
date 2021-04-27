@@ -138,7 +138,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-		ap.getGroupMemberSearchInput().sendKeys("auto");
+		ap.getGroupMemberSearchInput().sendKeys("Emailmember2");
 		ap.getGroupMemberSearchButton().click();
 
 		Thread.sleep(2000);
@@ -564,7 +564,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 				}
 			}
 		}
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");

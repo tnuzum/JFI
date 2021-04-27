@@ -1255,7 +1255,7 @@ public class reusableMethods2 extends base {
 			}
 		}
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -1328,7 +1328,7 @@ public class reusableMethods2 extends base {
 		cp.getEditAppointmentButton().click();
 		Thread.sleep(1000);
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -1426,7 +1426,7 @@ public class reusableMethods2 extends base {
 
 		Thread.sleep(1000);
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -1526,7 +1526,7 @@ public class reusableMethods2 extends base {
 
 		Thread.sleep(1000);
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -3573,7 +3573,7 @@ public class reusableMethods2 extends base {
 			}
 		}
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
@@ -3636,7 +3636,7 @@ public class reusableMethods2 extends base {
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
 
 		if (!participant.equals("none")) {
-			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchInput().sendKeys(participant);
 			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(2000);
