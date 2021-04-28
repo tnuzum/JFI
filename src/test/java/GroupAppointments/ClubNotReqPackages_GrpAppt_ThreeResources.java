@@ -17,6 +17,7 @@ import org.testng.annotations.Test;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
+import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
@@ -163,17 +164,9 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 			Thread.sleep(1000);
 
 			// Navigate to Dashboard
-			int linkcount = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < linkcount; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+			ThankYouPO TY = new ThankYouPO(driver);
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
 			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
@@ -255,7 +248,7 @@ public class ClubNotReqPackages_GrpAppt_ThreeResources extends base {
 					}
 				}
 			}
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 			Thread.sleep(2000);
 			AppointmentsPO a = new AppointmentsPO(driver);
 			Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");

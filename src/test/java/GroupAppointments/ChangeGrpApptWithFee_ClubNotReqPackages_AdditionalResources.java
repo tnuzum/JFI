@@ -257,17 +257,8 @@ public class ChangeGrpApptWithFee_ClubNotReqPackages_AdditionalResources extends
 			Thread.sleep(2000);
 
 //Navigate to Dashboard
-			int linkcount = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < linkcount; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
 			rw.waitForDashboardLoaded();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);

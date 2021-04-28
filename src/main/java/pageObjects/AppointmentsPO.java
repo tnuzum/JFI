@@ -32,8 +32,9 @@ public class AppointmentsPO {
 	By groupMemberSearchButton = By.xpath("//div[@id = 'group-activity'] //a[@class='btn btn-primary']");
 	By groupPopupAddButton1 = By.xpath("//appointmentmembersearch/div[2]/div[1]/a");// first add button
 	By groupPopupAddButton2 = By.xpath("//appointmentmembersearch/div[2]/div[2]/a");// second add button
-	By groupPopupMembers = By.xpath("//div[@class = 'modal-content'] //div[@class = 'ng-star-inserted']");
-	By groupPopupAddButtons = By.xpath("//div[@class = 'modal-content'] //div[@class = 'ng-star-inserted']/a");
+	By groupPopupMembers = By
+			.xpath("//mat-dialog-content[@class = 'mat-dialog-content']//div[@class = 'ng-star-inserted']");
+	By groupPopupAddButtons = By.xpath("//a[contains(text(), 'ADD')]");
 
 	By resourceType = By.xpath("(//select[@name='primaryResourceType'])");
 	By monthSelectBackButton = By.xpath("//div[@class='btn-group']/div[1]/i");
@@ -62,7 +63,7 @@ public class AppointmentsPO {
 	By apptBox = By.xpath("//div[contains(@class, 'appt-box')]");
 	By timeSlotContainers = By.xpath("//div[contains(@class, 'tabs-container')]");
 	By selectATimeDrawer = By.xpath("//mat-sidenav[contains(@class, 'mat-drawer-over')]");
-	By popup1 = By.xpath("//div[@class = 'swal2-popup swal2-modal swal2-icon-info swal2-show']");
+	By popup1 = By.xpath("//div[contains(@class , 'swal2-popup swal2-modal')]");
 	// By popup1BookButton = By.xpath("(//button[@type='button'][4]");
 	By popup1BookButton = By.xpath("//button[@class='swal2-confirm swal2-styled']");
 	By popup1CancelButton = By.xpath("//button[@class='swal2-cancel swal2-styled']");
@@ -81,7 +82,7 @@ public class AppointmentsPO {
 	By appointmentTime = By.xpath("//span[contains(@class, 'float')]/small[2]");
 	By appointmentDate = By.xpath("//span[contains(@class, 'float')]/small[3]");
 	By group = By.xpath("//span[contains(@class, 'float')]/small[4]");
-	By rateBox = By.xpath("//div[@class='col-md-12'] //div[@class = 'rate-box']");
+	By rateBox = By.xpath("//div[contains(@class,'col-md-8')] //div[@class = 'rate-box']");
 	By reviewSection = By.xpath("//div[@class='col-md-12']");
 	By totalAmount = By.xpath("//h2[@class='text-uppercase text-danger']");
 	By additionalResources = By.xpath("//div[@class = 'mat-radio-label-content']");

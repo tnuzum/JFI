@@ -127,7 +127,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		Assert.assertEquals(ap.getGroupApptsHeader().getText(), "Group Appointments");
 		Assert.assertEquals(ap.getGroupMinPersons().getText(), "1");
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
-		ap.getGroupMemberSearchInput().sendKeys("auto");
+		ap.getGroupMemberSearchInput().sendKeys("Daisy");
 		ap.getGroupMemberSearchButton().click();
 
 		Thread.sleep(2000);
@@ -423,7 +423,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 			}
 		}
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		AppointmentsPO ap = new AppointmentsPO(driver);
 		Assert.assertEquals(ap.getEditApptPageHeader().getText(), "Edit Appointment");
 		ap.getEditApptCancelButton().click();
