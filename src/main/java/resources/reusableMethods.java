@@ -563,10 +563,10 @@ public class reusableMethods extends base {
 				"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
 
 		// Verifies the links to navigate to Dashboard and other pages are displayed
-		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//div[@class = 'row']//a[@href = '/home']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//div[@class = 'row']//a[@href = '/ClassList']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//div[@class = 'row']//a[@href = '/CourseList']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//div[@class = 'row']//a[@href = '/Appointments']")));
 		return null;
 	}
 
@@ -1261,7 +1261,7 @@ public class reusableMethods extends base {
 			}
 		}
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -1334,7 +1334,7 @@ public class reusableMethods extends base {
 		cp.getEditAppointmentButton().click();
 		Thread.sleep(1000);
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -1432,7 +1432,7 @@ public class reusableMethods extends base {
 
 		Thread.sleep(1000);
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -1532,7 +1532,7 @@ public class reusableMethods extends base {
 
 		Thread.sleep(1000);
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 		AppointmentsPO a = new AppointmentsPO(driver);
 		Assert.assertEquals(a.getEditApptPageHeader().getText(), "Edit Appointment");
@@ -2039,10 +2039,10 @@ public class reusableMethods extends base {
 
 		DashboardPO d = new DashboardPO(driver);
 
-		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-		while (leftMenuOpen.equals("false")) {
+		String leftMenuOpen = d.getLeftMenu().getAttribute("style");
+		while (leftMenuOpen.contains("hidden")) {
 			d.getMenuButton().click();
-			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
+			leftMenuOpen = d.getLeftMenu().getAttribute("style");
 		}
 		return null;
 
@@ -3608,7 +3608,7 @@ public class reusableMethods extends base {
 			}
 		}
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-sm-12']/h2")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='col-md-12']/h2")));
 		Thread.sleep(2000);
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
@@ -3671,12 +3671,13 @@ public class reusableMethods extends base {
 		Assert.assertEquals(ap.getGroupMaxPersons().getText(), "2");
 
 		if (!participant.equals("none")) {
-			ap.getGroupMemberSearchInput().sendKeys("auto");
+			ap.getGroupMemberSearchInput().sendKeys(participant);
 			jse.executeScript("arguments[0].click();", ap.getGroupMemberSearchButton());
 
 			Thread.sleep(2000);
 
 			int memberCount = ap.getGroupPopupAddButtons().size();
+			System.out.println(memberCount);
 			for (int i = 0; i < memberCount; i++)
 
 			{
