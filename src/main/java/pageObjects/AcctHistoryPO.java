@@ -30,7 +30,11 @@ public class AcctHistoryPO {
 	By unPaidInvoices = By.xpath("//h2[@class = 'at-accounthistorysummary-unpaidamount']");
 	By creditOnFile = By.xpath("//h2[@class = 'at-accounthistorysummary-creditamount']");
 	By balance = By.xpath("//h2[@class = 'at-accounthistorysummary-balance']");
-	By receiptPopup = By.xpath("//div[@class='modal-content']");
+
+	// By receiptPopup = By.xpath("//div[@class='modal-content']");
+	// By receiptPopup = By.xpath("//body/div[2]/div[2]/div[1]/div[1]");
+	By receiptPopup = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]");
+
 	By receiptPopupPrint = By.xpath("//button[contains(text(), 'PRINT')]");
 	By receiptPopupClose = By.xpath("//button[contains(text(), 'CLOSE')]");
 	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/div/h2");
