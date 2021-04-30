@@ -290,9 +290,9 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 		Thread.sleep(2000);
 
 		jse.executeScript("arguments[0].scrollIntoView(true);",
-				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
+				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
 		// Verifies the Invoice amount is $0.00
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")).getText()
+		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
 				.contains("$0.00"));
 		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(1000);
