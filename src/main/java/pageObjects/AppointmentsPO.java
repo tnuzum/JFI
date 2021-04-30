@@ -84,7 +84,7 @@ public class AppointmentsPO {
 	By group = By.xpath("//span[contains(@class, 'float')]/small[4]");
 	By rateBox = By.xpath("//div[contains(@class,'col-md-8')] //div[@class = 'rate-box']");
 	By reviewSection = By.xpath("//div[@class='col-md-12']");
-	By totalAmount = By.xpath("//h2[@class='text-uppercase text-danger']");
+	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase text')]");
 	By additionalResources = By.xpath("//div[@class = 'mat-radio-label-content']");
 	By oldAppointmentBanner = By.xpath("//div[@class='widget widget-callout ng-star-inserted']");
 	By newAppointmentBanner = By.xpath("//div[@class='widget widget-callout']");
