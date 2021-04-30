@@ -27,8 +27,14 @@ public class DashboardPO {
 	// By.xpath("//mat-nav-list[@class='mat-nav-list']/a[1]/div");
 	By menuMyActivies = By.xpath("//mat-nav-list[@class='mat-nav-list']/mat-list-item[1]/div/span");
 	By menuMyActivitiesSubMenu = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[1]");
-	By menuMyAccount = By.xpath("//mat-nav-list[@class='mat-nav-list']/mat-list-item[2]/div/span");
-	By menuMyAccountSubMenu = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]");
+	// By menuMyAccount =
+	// By.xpath("//mat-nav-list[@class='mat-nav-list']/mat-list-item[2]/div/span");
+
+	By menuMyAccount = By.xpath("//span[contains(text(),'My Account')]");
+
+//	By menuMyAccountSubMenu = By.xpath("//mat-nav-list[@class='mat-nav-list']/div[2]");
+	By menuMyAccountSubMenu = By.xpath("//div[@class='matnav-submenu ng-trigger ng-trigger-slideInOut'][2]");
+
 	By menuShopPackages = By.xpath("//a[contains(@class, 'at-mainnav-shoppackage')]");
 	// By.xpath("//mat-nav-list[@class='mat-nav-list']/a[2]/div[1]/span");
 	By menuCart = By.xpath("//a[contains(@class, 'at-mainnav-cart')]");
