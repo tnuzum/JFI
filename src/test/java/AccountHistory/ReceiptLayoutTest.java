@@ -75,8 +75,37 @@ public class ReceiptLayoutTest extends base {
 
 		ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 		Thread.sleep(1000);
-		rm.memberLogout();
+		// rm.memberLogout();
 
+	}
+
+	@Test(priority = 2, enabled = true)
+	public void unappliedPaymentReceipt() throws InterruptedException {
+
+		/*
+		 * String receiptNumber = rm.purchasePackage("PT - Demo");
+		 * 
+		 * rm.openSideMenuIfNotOpenedAlready(); d.getMenuMyAccount().click(); while
+		 * (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
+		 * Thread.sleep(1000); } d.getMenuAccountHistory().click();
+		 * 
+		 * wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
+		 */
+		d.getDashboardButton().click();
+		d.getMyAccountAccountHistory().click();
+		ahp.getSearchField().sendKeys("206791");
+		Thread.sleep(2000);
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
+		Thread.sleep(3000);
+		jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
+
+		// Add your assertions here//
+
+		ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+		Thread.sleep(1000);
+		rm.memberLogout();
 	}
 
 	@AfterTest
