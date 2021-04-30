@@ -87,7 +87,7 @@ public class InvoiceLayoutTest extends base {
 			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
 			Thread.sleep(3000);
 			jse.executeScript("arguments[0].scrollIntoView(true);",
-					ahp.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']")));
+					ahp.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
 
 			Assert.assertTrue(ahp.getReceiptHeader().isDisplayed());
 			Assert.assertTrue(ahp.getReceiptPopupClose().isDisplayed());

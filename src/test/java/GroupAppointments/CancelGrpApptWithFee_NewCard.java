@@ -370,7 +370,7 @@ public class CancelGrpApptWithFee_NewCard extends base {
 
 			// Verifies the buttons on Print Receipt Popup
 			rm.ReceiptPopupValidations();
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-xs-12 text-right']"))
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']"))
 					.getText().contains(FormatTotalAmt));
 
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
