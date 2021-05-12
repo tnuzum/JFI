@@ -18,13 +18,21 @@ public class AcctHistoryPO {
 	By receiptNumber = By.xpath("//div[@class = 'col-lg-3 d-none d-md-block']//a");
 	By receiptNumberTable = By.xpath("//div[contains(@class,'col-lg-12')]");
 	By searchField = By.xpath("//input[@placeholder='Search in table']");
-	By calendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle']");
+	// By calendarIcons = By.xpath("//mat-datepicker-toggle[@class=
+	By dateRangestartDate = By.xpath("//input[@id='mat-input-8']");
+	By dateRangeendDate = By.xpath("//input[@id='mat-input-9']");
+	By FirstcalendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle ng-tns-c64-18']");
+	By SecondcalendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle ng-tns-c64-19']");
+	// input[@id='mat-input-8']
 	By firstCalendarDates = By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td");
 	By secondCalendarDates = By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td");
+
 	By calendarDates = By.xpath("//div[contains(@class,'mat-calendar-body-cell-content')]");
 	By rightCalendarArrow = By.xpath("//button[@class='mat-calendar-next-button mat-icon-button']");
 	By calendarMonthselected = By.xpath("//button[contains(@class, 'mat-calendar-period-button')]/span");
-	By columnNames = By.xpath("//div[@class = 'col-md-3']");
+	// By columnNames = By.xpath("//div[@class = 'col-md-3']");
+	By columnNames = By.xpath("//div[@class = 'col-lg-12']");
+
 	By descriptionColumn = By.xpath("//div[@class = 'col-md-6']");
 	By acctSummaryBox = By.xpath("//div[@class = 'row-box p-sm']");
 	By unPaidInvoices = By.xpath("//h2[@class = 'at-accounthistorysummary-unpaidamount']");
@@ -37,10 +45,24 @@ public class AcctHistoryPO {
 
 	By receiptPopupPrint = By.xpath("//button[contains(text(), 'PRINT')]");
 	By receiptPopupClose = By.xpath("//button[contains(text(), 'CLOSE')]");
-	By receiptHeader = By.xpath("//div[@class='modal-content'] //div[@class='modal-header']/div/h2");
-	By transactionDate = By.xpath("//div[@class = 'modal-content']//h2[contains(text(),'Transaction Date:')]");
-	By dataColumns = By.xpath("//div[@class = 'modal-content']//div[@class = 'col-md-4']");
-	By mediaHeadings = By.xpath("//div[@class = 'modal-content']//h2[@class ='media-heading']");
+	// By receiptHeader = By.xpath("//div[@class='modal-content']
+	// //div[@class='modal-header']/div/h2");
+
+	By receiptHeader = By.xpath("//mat-dialog-container[@id='mat-dialog-0']");
+	By transactionDate = By.xpath("//h2[contains(text(),'Transaction Date:')]");
+
+	// By dataColumns = By.xpath("//div[@class = 'modal-content']//div[@class =
+	// 'col-md-4']");
+	By dataColumns = By.xpath("//div[@class = 'row hidden-print']//div[@class ='col-lg-4']");
+	// row d-none d-md-block hidden-print
+	// By mediaHeadings = By.xpath("//div[@class = 'modal-content']//h2[@class
+	// ='media-heading']");
+	By adataColumns = By.xpath("//div[@class = 'col-lg-12']//div[@class ='col-lg-4']");
+
+	// By mediaHeadings = By.xpath("//div[@class = 'container-fluid no-padding
+	// ng-star-inserted']//h2[@class ='media-heading']");
+	By mediaHeadings = By.xpath("//div[@class = 'panel-body']//h2[@class ='media-heading']");
+
 	By invoiceAndCharges = By.xpath("//h2[contains(text(),'Invoice And Charges')]");
 	By duesResponsibleTo = By.xpath("//div[contains(text(),'Dues Responsible To:')]");
 	By lineItems = By.xpath("//div[@class = 'modal-content']//div[@class ='col-md-8']");
@@ -48,8 +70,14 @@ public class AcctHistoryPO {
 	By dueDates = By.xpath("//div[@class = 'modal-content']//div[@class ='col-md-2']");
 	By duesResponsibleParties = By.xpath("//div[@class = 'modal-content']//div[@class = 'col-md-6']");
 	By charges = By.xpath("//div[@class = 'modal-content']//div[@class ='col-md-6 text-right']");
-	By totalInvoiced = By.xpath("//div[@class = 'modal-content']//div[@class ='col-xs-12 text-right']");
-	By subTotal = By.xpath("//div[@class = 'modal-content']//div[@class ='row-box p-xs m-xs']//small");
+	// By totalInvoiced = By.xpath("//div[@class = 'modal-content']//div[@class
+	// ='col-xs-12 text-right']");
+	By totalInvoiced = By.xpath("//div[@class = 'row']//div[@class ='col-12 text-right']");
+//	By subTotal = By.xpath("//div[@class = 'modal-content']//div[@class ='row-box p-xs m-xs']//small");
+	// By subTotal = By.xpath("//div[@class = 'col-lg-4 text-right']//div[@class
+	// ='row-box p-xs m-xs']//small");
+
+	By subTotal = By.xpath("//div[@class = 'col-12']//div[@class ='row-box p-xs m-xs']//small");
 	By searchingAcctHistMessage = By.xpath("//div[@class = 'text-center']");
 
 // CONSTRUCTOR
@@ -81,11 +109,11 @@ public class AcctHistoryPO {
 	}
 
 	public WebElement getFirstCalendarIcon() {
-		return driver.findElements(calendarIcons).get(0);
+		return driver.findElement(FirstcalendarIcons);
 	}
 
 	public WebElement getSecondCalendarIcon() {
-		return driver.findElements(calendarIcons).get(1);
+		return driver.findElement(SecondcalendarIcons);
 	}
 
 	public List<WebElement> getFirstCalendarDates() {
@@ -157,6 +185,10 @@ public class AcctHistoryPO {
 		return driver.findElements(dataColumns);
 	}
 
+	public List<WebElement> getaDataColumns() {
+		return driver.findElements(adataColumns);
+	}
+
 	public List<WebElement> getMediaHeadings() {
 		return driver.findElements(mediaHeadings);
 	}
@@ -199,6 +231,14 @@ public class AcctHistoryPO {
 
 	public List<WebElement> getSearchingAcctHistMessage() {
 		return driver.findElements(searchingAcctHistMessage);
+	}
+
+	public List<WebElement> getdateRangestartDate() {
+		return driver.findElements(dateRangestartDate);
+	}
+
+	public List<WebElement> getdateRangeendDate() {
+		return driver.findElements(dateRangeendDate);
 	}
 
 }

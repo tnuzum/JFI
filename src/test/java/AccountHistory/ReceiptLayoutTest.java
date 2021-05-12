@@ -93,6 +93,7 @@ public class ReceiptLayoutTest extends base {
 		 */
 		d.getDashboardButton().click();
 		d.getMyAccountAccountHistory().click();
+
 		ahp.getSearchField().sendKeys("206791");
 		Thread.sleep(2000);
 
