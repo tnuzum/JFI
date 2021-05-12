@@ -134,9 +134,9 @@ public class InvoiceLayoutTest extends base {
 		try {
 
 			Assert.assertTrue(ahp.getMediaHeadings().get(0).getText().contains("We invoiced you for"));
-			Assert.assertTrue(ahp.getDataColumns().get(3).getText().contains("QTY"));
-			Assert.assertTrue(ahp.getDataColumns().get(4).getText().contains("Discount"));
-			Assert.assertTrue(ahp.getDataColumns().get(5).getText().contains("Charges"));
+			Assert.assertTrue(ahp.getaDataColumns().get(0).getText().contains("QTY"));
+			Assert.assertTrue(ahp.getaDataColumns().get(1).getText().contains("Discount"));
+			Assert.assertTrue(ahp.getaDataColumns().get(2).getText().contains("Charges"));
 
 			int count = ahp.getLineItems().size();
 
@@ -239,6 +239,7 @@ public class InvoiceLayoutTest extends base {
 
 			for (int n = 0; n < count5 - 6; n++) {
 				String[] text = ahp.getSubTotal().get(n).getText().split(":");
+				System.out.println(text);
 				String fText = text[0];
 				System.out.println(fText);
 				values.add(fText);
