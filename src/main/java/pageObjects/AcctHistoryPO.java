@@ -18,11 +18,13 @@ public class AcctHistoryPO {
 	By receiptNumber = By.xpath("//div[@class = 'col-lg-3 d-none d-md-block']//a");
 	By receiptNumberTable = By.xpath("//div[contains(@class,'col-lg-12')]");
 	By searchField = By.xpath("//input[@placeholder='Search in table']");
-	// By calendarIcons = By.xpath("//mat-datepicker-toggle[@class=
-	By dateRangestartDate = By.xpath("//input[@id='mat-input-8']");
-	By dateRangeendDate = By.xpath("//input[@id='mat-input-9']");
-	By FirstcalendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle ng-tns-c64-18']");
-	By SecondcalendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle ng-tns-c64-19']");
+	By calendarIcons = By.xpath("//mat-datepicker-toggle[contains(@class, 'mat-datepicker-toggle')]");
+//	By dateRangestartDate = By.xpath("//input[@id='mat-input-8']");
+	By dateRangestartDate = By.xpath("//input[contains(@class, 'daterange-start')]");
+//	By dateRangeendDate = By.xpath("//input[@id='mat-input-9']");
+	By dateRangeendDate = By.xpath("//input[contains(@class, 'daterange-end')]");
+//	By FirstcalendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle ng-tns-c64-18']");
+//	By SecondcalendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle ng-tns-c64-19']");
 	// input[@id='mat-input-8']
 	By firstCalendarDates = By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td");
 	By secondCalendarDates = By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td");
@@ -31,9 +33,9 @@ public class AcctHistoryPO {
 	By rightCalendarArrow = By.xpath("//button[@class='mat-calendar-next-button mat-icon-button']");
 	By calendarMonthselected = By.xpath("//button[contains(@class, 'mat-calendar-period-button')]/span");
 	// By columnNames = By.xpath("//div[@class = 'col-md-3']");
-	By columnNames = By.xpath("//div[@class = 'col-lg-12']");
+	By columnNames = By.xpath("//div[@class = 'col-lg-3']");
 
-	By descriptionColumn = By.xpath("//div[@class = 'col-md-6']");
+	By descriptionColumn = By.xpath("//div[@class = 'col-lg-6']");
 	By acctSummaryBox = By.xpath("//div[@class = 'row-box p-sm']");
 	By unPaidInvoices = By.xpath("//h2[@class = 'at-accounthistorysummary-unpaidamount']");
 	By creditOnFile = By.xpath("//h2[@class = 'at-accounthistorysummary-creditamount']");
@@ -109,11 +111,11 @@ public class AcctHistoryPO {
 	}
 
 	public WebElement getFirstCalendarIcon() {
-		return driver.findElement(FirstcalendarIcons);
+		return driver.findElements(calendarIcons).get(0);
 	}
 
 	public WebElement getSecondCalendarIcon() {
-		return driver.findElement(SecondcalendarIcons);
+		return driver.findElements(calendarIcons).get(1);
 	}
 
 	public List<WebElement> getFirstCalendarDates() {
