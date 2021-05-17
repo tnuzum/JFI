@@ -117,7 +117,7 @@ public class UnenrollStandbyCourse extends base {
 			}
 
 			wait.until(
-					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+					ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 			while (c.getClasslabel().getText().isBlank()) {
 				Thread.sleep(500);
 			}

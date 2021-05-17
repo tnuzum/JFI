@@ -143,7 +143,7 @@ public class EnrollInClass_CancelTransaction extends base {
 
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < count; i++) {
-			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().trim()
 					.contains(" On Account"))
 				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
 		}
