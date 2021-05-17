@@ -204,7 +204,7 @@ public class EnrollCourseByBuyingPackage extends base {
 		for (int i = 0; i < count; i++) {
 			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 					.contains(" On Account"))
-				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isEnabled());
 		}
 	}
 

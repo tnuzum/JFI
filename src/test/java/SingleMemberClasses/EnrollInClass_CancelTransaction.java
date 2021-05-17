@@ -145,7 +145,7 @@ public class EnrollInClass_CancelTransaction extends base {
 		for (int i = 0; i < count; i++) {
 			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().trim()
 					.contains(" On Account"))
-				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isEnabled());
 		}
 
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);

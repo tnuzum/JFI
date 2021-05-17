@@ -180,7 +180,7 @@ public class ClassUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr2", "Testing1!");
-			rm.enrollInClass(classToEnroll2, paymentOption1, "", "Not Free");
+//			rm.enrollInClass(classToEnroll2, paymentOption1, "", "Not Free");
 
 			int unitsBefore = rm.getPackageUnits("Day Pass");
 

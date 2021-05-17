@@ -50,7 +50,8 @@ public class PaymentMethodsPO {
 			.xpath("//button[@class='btn btn-primary btn-outline'][contains(text(),'close')]");
 	By signaturePad = By.xpath("//div[@class='m-signature-pad--body']");
 //	By signaturePad = By.xpath("//signature-pad[@class='at-paymethods-signaturepad']");
-	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase text')]");
+//	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase text')]");
+	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase')]");
 	By sigPadInOut = By.id("SignaturePadPaymentMethods");
 
 // CONSTRUCTOR

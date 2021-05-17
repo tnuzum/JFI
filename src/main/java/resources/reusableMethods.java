@@ -2778,7 +2778,7 @@ public class reusableMethods extends base {
 				}
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -3442,7 +3442,7 @@ public class reusableMethods extends base {
 
 		for (int i = 0; i < count; i++) {
 
-			paymethods.add(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText());
+			paymethods.add(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().trim());
 		}
 
 		Assert.assertTrue(paymethods.contains("On Account"));
@@ -3453,7 +3453,7 @@ public class reusableMethods extends base {
 					.contains(" On Account"))
 
 			{
-				Assert.assertTrue(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				Assert.assertTrue(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isEnabled());
 				break;
 			}
 		}
