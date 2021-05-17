@@ -160,8 +160,8 @@ public class FamilyStandbyInClassTest extends base {
 				}
 			}
 
-			wait.until(
-					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 			while (c.getClasslabel().getText().isBlank()) {
 				Thread.sleep(500);
 			}
@@ -326,17 +326,8 @@ public class FamilyStandbyInClassTest extends base {
 			Thread.sleep(3000);
 
 			// Navigate to Select Classes
-			int count2 = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count2; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
+			jse.executeScript("arguments[0].click();", TY.getViewClassesLink());
 
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Classes", driver.getTitle());

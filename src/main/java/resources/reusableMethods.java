@@ -174,8 +174,25 @@ public class reusableMethods extends base {
 		log.info("User name entered");
 		l.getuserPassword().sendKeys(password);
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded();
 		rw.waitForDashboardLoaded1();
 		return null;
+	}
+
+	public void enterDOBIfNeeded() {
+
+		LoginPO l = new LoginPO(driver);
+		int count = l.getDobMembers().size();
+		if (count > 0) {
+			for (int i = 0; i < count; i++) {
+				l.getDobInputFields().get(i).click();
+				driver.findElement(By.tagName("button"));
+				l.getDobInputFields().get(i).sendKeys("01/01/2000");
+			}
+			l.getContinueButton().click();
+		}
+
 	}
 
 	public String collectionsMember1Login() throws InterruptedException {
@@ -645,7 +662,7 @@ public class reusableMethods extends base {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-lg-9']"));
 		int monthCount = MonthNames.findElements(By.tagName("label")).size();
 		for (int i = 0; i < monthCount; i++) {
 			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
@@ -690,6 +707,8 @@ public class reusableMethods extends base {
 	}
 
 	public Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) throws InterruptedException {
+
+		Thread.sleep(2000);
 
 		int ClassOrCourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 

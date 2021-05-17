@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,6 +25,9 @@ public class LoginPO {
 	By ForgotPassword = By.xpath("//a[@href='/forgotpassword']"); // link
 	By RememberUsernameCheckbox = By.xpath("//input[contains(@class, 'at-login-remember-username')]");
 	By RememberUsernameLabel = By.xpath("//div[contains(@class, 'checkbox')]//label");
+	By dobMembers = By.xpath("//div[@class = 'col-10']");
+	By dobInputFields = By.xpath("//div[@class = 'col-10'] // input");
+	By continueButton = By.xpath("//button[contains(text(),'Continue')]");
 // CONSTRUCTOR
 
 	public LoginPO(WebDriver driver) {
@@ -78,4 +83,17 @@ public class LoginPO {
 	public WebElement getRememberUsernameCheckbox() {
 		return driver.findElement(RememberUsernameCheckbox);
 	}
+
+	public List<WebElement> getDobMembers() {
+		return driver.findElements(dobMembers);
+	}
+
+	public List<WebElement> getDobInputFields() {
+		return driver.findElements(dobInputFields);
+	}
+
+	public WebElement getContinueButton() {
+		return driver.findElement(continueButton);
+	}
+
 }

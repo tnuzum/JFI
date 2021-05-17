@@ -22,11 +22,15 @@ public class ClassSignUpPO {
 	By selectClassCategory = By.xpath("//div[contains(@class, 'row-box')]/div[2]/div[3]/select");
 	By selectCourseCategory = By.xpath("//div[contains(@class, 'row-box')]/div[3]/div[2]/select");
 	By dateSelection = By.xpath("//div[@class= 'col-md-4'][1]");
-	By dayOfButton = By.id("date-day");
-	By weekOfButton = By.id("date-week");
+//	By dayOfButton = By.id("date-day");
+	By dayOfButton = By.xpath("//input[@id = 'date-day']/parent::label");
+//	By weekOfButton = By.id("date-week");
+	By weekOfButton = By.xpath("//input[@id = 'date-week']/parent::label");
 	By monthHeader = By.xpath("//div[@class='panel-heading font-bold']");
-	By dayHeader = By.xpath("//div[@class='col-xs-6']");
-	By dateHeader = By.xpath("//div[@class='col-xs-6 text-right']");
+//	By dayHeader = By.xpath("//div[@class='col-xs-6']");
+	By dayHeader = By.xpath("//div[@class='col-6']");
+//	By dateHeader = By.xpath("//div[@class='col-xs-6 text-right']");
+	By dateHeader = By.xpath("//div[@class='col-6 text-right']");
 	By year = By.xpath("//span[contains(@class, 'btn-white')]");
 	By yearLeftButton = By.xpath("//i[contains(@class, 'fa-chevron-double-left')]");
 	By yearRightButton = By.xpath("//i[contains(@class, 'fa-chevron-double-right')]");
@@ -62,11 +66,12 @@ public class ClassSignUpPO {
 	By courseKeyword = By.xpath("//h5[contains(text(),'Keyword')]");
 	By searchField = By.xpath("//input[@type = 'text']");
 	By courseApplyFilters = By.xpath("//button[contains(text(),'Apply Filters')]");
-	By fmlyMemberLabel = By.xpath("//div[@class='modal-body'] //label");
-	By fmlyMemberCheckBox = By.xpath("//div[@class='modal-body'] //input");
+	By fmlyMemberLabel = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')] //label");
+	By fmlyMemberCheckBox = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')] //input");
 	By ratesOptions = By.xpath("//div[contains(@class, 'row-box')] //label");
 	By enrollingMemberNames = By.xpath("//div[@class = 'float-left']");
-	By detailsPopup = By.xpath("//div[@class='modal-body']");
+//	By detailsPopup = By.xpath("//div[@class='modal-body']");
+	By detailsPopup = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]"); // updated by Bhagya
 	By classTable = By.xpath("//div[@class='column2']");
 	By classTimeAndDuration = By.xpath("//div[@class='column2']/preceding-sibling::div[1]");
 	By classApplyFilters = By.xpath("//button[contains(text(), 'apply filters')]");

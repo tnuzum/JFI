@@ -87,7 +87,7 @@ public class SelectCoursesPageLayout extends base {
 		today = Calendar.getInstance();
 		String currentMonth = df1.format(today.getTime());
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-lg-9']"));
 		int monthCount = MonthNames.findElements(By.tagName("label")).size();
 		for (int i = 0; i < monthCount; i++) {
 			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
@@ -172,7 +172,8 @@ public class SelectCoursesPageLayout extends base {
 			}
 		}
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
@@ -232,7 +233,8 @@ public class SelectCoursesPageLayout extends base {
 			}
 		}
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}

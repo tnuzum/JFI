@@ -633,7 +633,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 			rm.SelectClassOrCourseToEnroll(classToEnroll16.toUpperCase());
 
 			wait.until(
-					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+					ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 
 			while (c.getClasslabel().getText().isBlank()) {
 				Thread.sleep(500);

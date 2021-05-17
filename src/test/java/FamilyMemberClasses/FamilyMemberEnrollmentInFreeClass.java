@@ -164,8 +164,8 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 				}
 			}
 
-			wait.until(
-					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 			while (c.getClasslabel().getText().isBlank()) {
 				Thread.sleep(500);
 			}
@@ -261,17 +261,7 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 			Thread.sleep(1000);
 
 			// Navigate to Dashboard
-			int count1 = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count1; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
@@ -304,8 +294,8 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 			jse.executeScript("arguments[0].scrollIntoView(true);",
 					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
 			// Verifies the Invoice amount is $0.00
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']"))
-					.getText().contains("$0.00"));
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+					.contains("$0.00"));
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(1000);
 			rm.returnToDashboard();
