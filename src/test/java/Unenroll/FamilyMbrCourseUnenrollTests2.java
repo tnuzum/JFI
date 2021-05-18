@@ -699,7 +699,7 @@ public class FamilyMbrCourseUnenrollTests2 extends base {
 
 			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 
 			rm.selectSavedcard();
 

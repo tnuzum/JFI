@@ -180,7 +180,7 @@ public class ClassUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr2", "Testing1!");
-//			rm.enrollInClass(classToEnroll2, paymentOption1, "", "Not Free");
+			rm.enrollInClass(classToEnroll2, paymentOption1, "", "Not Free");
 
 			int unitsBefore = rm.getPackageUnits("Day Pass");
 
@@ -1338,7 +1338,7 @@ public class ClassUnenrollTests extends base {
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
 			Thread.sleep(5000);
 			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 
 			rm.selectSavedcard();
 

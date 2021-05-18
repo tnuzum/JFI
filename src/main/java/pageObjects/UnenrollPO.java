@@ -28,38 +28,53 @@ public class UnenrollPO {
 	By paymentButton = By.xpath("//button[contains(text(), 'Pay')]");
 	By refundButton = By.xpath("//button[contains(text(), 'Refund')]");
 	By newCardButton = By.xpath("//span[contains( text(), 'Add New Card')]");
-	By onAccountAndSavedCards = By.xpath("//div[@class='radio no-padding']");
-	By classNameTitle = By.xpath("//div[@class='ibox-content']/h2");
+	By onAccountAndSavedCards = By.xpath("//div[contains(@class,'radio no-padding')]");
+	By classNameTitle = By.xpath("//div[contains(@class,'ibox-content')]/h2");
 
 	By refundHeader = By.xpath("//small[contains(text(),'Refund')]");
 
-	By refundOAInfo = By.xpath("//div[@class='rate-box unenroll-refund-on-account']");
-	By refundOAText = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/strong");
-	By refundOAAmnt = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/span");
-	By refundOATaxInfo = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/small");
+//	By refundOAInfo = By.xpath("//div[@class='rate-box unenroll-refund-on-account']");
+//	By refundOAText = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/strong");
+//	By refundOAAmnt = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/span");
+//	By refundOATaxInfo = By.xpath("//div[@class='rate-box unenroll-refund-on-account']/small");
+	By refundOAInfo = By.xpath("//div[contains(@class,'rate-box unenroll-refund-on-account')]");
+	By refundOAText = By.xpath("//div[contains(@class,'rate-box unenroll-refund-on-account')]/strong");
+	By refundOAAmnt = By.xpath("//div[contains(@class,'rate-box unenroll-refund-on-account')]/span");
+	By refundOATaxInfo = By.xpath("//div[contains(@class,'rate-box unenroll-refund-on-account')]/small");
 
-	By refundCCInfo = By.xpath("//div[@class='rate-box unenroll-refund-item-price']");
-	By refundCCText = By.xpath("//div[@class='rate-box unenroll-refund-item-price']/strong");
-	By refundCCAmnt = By.xpath("//div[@class='rate-box unenroll-refund-item-price']/span");
+//	By refundCCInfo = By.xpath("//div[@class='rate-box unenroll-refund-item-price']");
+//	By refundCCText = By.xpath("//div[@class='rate-box unenroll-refund-item-price']/strong");
+//	By refundCCAmnt = By.xpath("//div[@class='rate-box unenroll-refund-item-price']/span");
+	By refundCCInfo = By.xpath("//div[contains(@class,'rate-box unenroll-refund-item-price')]");
+	By refundCCText = By.xpath("//div[contains(@class,'rate-box unenroll-refund-item-price')]/strong");
+	By refundCCAmnt = By.xpath("//div[contains(@class,'rate-box unenroll-refund-item-price')]/span");
 
-	By refundUnitInfo = By.xpath("//div[@class='rate-box unenroll-refund-package-quantity']");
-	By refundUnitText = By.xpath("//div[@class='rate-box unenroll-refund-package-quantity']/strong");
-	By refundUnitNo = By.xpath("//div[@class='rate-box unenroll-refund-package-quantity']/span");
+//	By refundUnitInfo = By.xpath("//div[@class='rate-box unenroll-refund-package-quantity']");
+//	By refundUnitText = By.xpath("//div[@class='rate-box unenroll-refund-package-quantity']/strong");
+//	By refundUnitNo = By.xpath("//div[@class='rate-box unenroll-refund-package-quantity']/span");
+	By refundUnitInfo = By.xpath("//div[contains(@class,'rate-box unenroll-refund-package-quantity')]");
+	By refundUnitText = By.xpath("//div[contains(@class,'rate-box unenroll-refund-package-quantity')]/strong");
+	By refundUnitNo = By.xpath("//div[contains(@class,'rate-box unenroll-refund-package-quantity')]/span");
 
 	By cancelHeader = By.xpath("//small[contains(text(),'Cancel Fee')]");
-	By cancelInfo = By.xpath("//div[@class='rate-box unenroll-cancel-fee']");
-	By cancelText = By.xpath("//div[@class='rate-box unenroll-cancel-fee']/strong");
-	By cancelAmnt = By.xpath("//div[@class='rate-box unenroll-cancel-fee']/span");
+//	By cancelInfo = By.xpath("//div[@class='rate-box unenroll-cancel-fee']");
+//	By cancelText = By.xpath("//div[@class='rate-box unenroll-cancel-fee']/strong");
+//	By cancelAmnt = By.xpath("//div[@class='rate-box unenroll-cancel-fee']/span");
+	By cancelInfo = By.xpath("//div[contains(@class,'rate-box unenroll-cancel-fee')]");
+	By cancelText = By.xpath("//div[contains(@class,'rate-box unenroll-cancel-fee')]/strong");
+	By cancelAmnt = By.xpath("//div[contains(@class,'rate-box unenroll-cancel-fee')]/span");
 
+//	By stanbyUnenrollText = By
+//			.xpath("//div[@class ='rate-box text-danger unenroll-not-eligible-for-unenrollment']//strong");
 	By stanbyUnenrollText = By
-			.xpath("//div[@class='rate-box text-danger unenroll-not-eligible-for-unenrollment']//strong");
+			.xpath("//div[contains(@class,'rate-box text-danger unenroll-not-eligible-for-unenrollment')]//strong");
 
 	By stanbyHeader = By.xpath("//small[contains(text(),'On Standby')]");
 
 	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase')]");
 
-	By noRefund = By.xpath("//div[@class='rate-box unenroll-non-refundable']/strong");
-
+//	By noRefund = By.xpath("//div[@class='rate-box unenroll-non-refundable']/strong");
+	By noRefund = By.xpath("//div[contains(@class, 'rate-box unenroll-non-refundable')]/strong");
 	By canNotCancelMsg = By.xpath("//div[contains(@class, 'unenroll-not-eligible-for-unenrollment')]");
 
 	By type = By.xpath("//small[contains(text(),'Type:')]//following-sibling::strong");
