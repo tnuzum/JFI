@@ -12,7 +12,8 @@ public class UnenrollPO {
 
 // OBJECTS
 
-	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+//	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By unenrollButton = By.xpath("//button[contains(@class,'unenroll-btn-on-account-only')]");// button on Unenroll page
 	By unenrollNoRefund = By.xpath("//button[contains(@class,'unenroll-btn-no-refund')]");
 	By unenrollConfirmMessage1 = By.xpath("//h2[@id='swal2-title']");// displays "Unenrolled"

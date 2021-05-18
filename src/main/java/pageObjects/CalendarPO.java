@@ -22,7 +22,8 @@ public class CalendarPO {
 	By rightArrowListView = By.xpath("//div[@class = 'btn-group']//button[contains(@class, 'btn-white')][3]");
 	By calDayBadge = By.xpath("//span[contains(@class, 'cal-day-badge')]");
 	By calEventTitle = By.xpath("//span[contains(@class, 'cal-event-title')]");
-	By classDetailPopup = By.xpath("//div[@class='modal-content']");
+//	By classDetailPopup = By.xpath("//div[@class='modal-content']");
+	By classDetailPopup = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]");
 	By unEnrollBtn = By.xpath("//div[contains(text(), 'unenroll')]");
 	By cancelBtn = By.xpath("//div[contains(text(), 'cancel')]");
 	By addToCalendarBtn = By.xpath("//button[contains(text(), 'add to calendar')]");
@@ -52,7 +53,8 @@ public class CalendarPO {
 	By club = By.xpath("//mat-dialog-content[contains(@class, 'mat-dialog-content')]//small[5]");
 	By status = By.xpath("//mat-dialog-content[contains(@class, 'mat-dialog-content')]//small[6]");
 
-	By calendar = By.xpath("//div[@ng-reflect-ng-switch = 'month']");
+//	By calendar = By.xpath("//div[@ng-reflect-ng-switch = 'month']");
+	By calendar = By.xpath("//div[@class = 'cal-month-view']");
 	By calendarList = By.xpath("//div[@class= 'panel panel-default m-t-md ng-star-inserted']");
 	By calendarHistory = By.xpath("//div[@class= 'panel panel-default m-t-md ng-star-inserted']");
 	By calendarViewLink = By.xpath("//li[contains(@class , 'nav-item')]/a");
@@ -71,7 +73,8 @@ public class CalendarPO {
 	By selectFamilyLabel = By.xpath("//small[contains(text(),'SELECT FAMILY')]");
 	By applyFiltersLink = By.linkText("Apply Filters");
 	By memberClassDetails = By.xpath("//div[@class='column2']");
-	By classGearButton = By.xpath("//i[@class='fa fa-gear pull-right m-r-xs ng-star-inserted']");
+//	By classGearButton = By.xpath("//i[@class='fa fa-gear pull-right m-r-xs ng-star-inserted']");
+	By classGearButton = By.xpath("//i[@class='fa fa-gear pull-right']");
 	By addToCalButtonListView = By.xpath("//button[contains(text(), 'ADD TO CALENDAR')]");
 	By unenrollListview = By.xpath("//a[contains(text(), 'UNENROLL')]");
 	By memberSections = By.xpath("//div[@class = 'ng-star-inserted'] ");
