@@ -27,16 +27,31 @@ public class CalendarPO {
 	By cancelBtn = By.xpath("//div[contains(text(), 'cancel')]");
 	By addToCalendarBtn = By.xpath("//button[contains(text(), 'add to calendar')]");
 	By calendarTomorrow = By.xpath("(//mwl-calendar-month-cell[contains(@class,'future')])[1]");
-	By enrolledMemberName = By.xpath("//div[@class='modal-header']//div[@class='row text-center']//small[2]");
-	By classDate = By.xpath("//div[@class='modal-header']//div[@class='row text-center']//small[1]");
-	By className = By.xpath("//div[@class='modal-header']//div[@class='row text-center']//h1[1]");
-	By classTime = By.xpath("//div[@class='modal-header']//div[@class='row text-center']//h2[1]");
-	By category = By.xpath("//div[@class='modal-body']//small[1]");
-	By duration = By.xpath("//div[@class='modal-body']//small[2]");
-	By type = By.xpath("//div[@class='modal-body']//small[3]");
-	By instructor = By.xpath("//div[@class='modal-body']//small[4]");
-	By club = By.xpath("//div[@class='modal-body']//small[5]");
-	By status = By.xpath("//div[@class='modal-body']//small[6]");
+
+//	By enrolledMemberName = By.xpath("//div[@class='modal-header']//div[@class='row text-center']//small[2]");
+//	By classDate = By.xpath("//div[@class='modal-header']//div[@class='row text-center']//small[1]");
+//	By className = By.xpath("//div[@class='modal-header']//div[@class='row text-center']//h2[1]");
+//	By classTime = By.xpath("//div[@class='modal-header']//div[@class='row text-center']//h2[1]");
+
+	By enrolledMemberName = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]//small[2]");
+	By classDate = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]//small[1]");
+	By className = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]//h2[1]");
+	By classTime = By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]//h2[2]");
+
+//	By category = By.xpath("//div[@class='modal-body']//small[1]");
+//	By duration = By.xpath("//div[@class='modal-body']//small[2]");
+//	By type = By.xpath("//div[@class='modal-body']//small[3]");
+//	By instructor = By.xpath("//div[@class='modal-body']//small[4]");
+//	By club = By.xpath("//div[@class='modal-body']//small[5]");
+//	By status = By.xpath("//div[@class='modal-body']//small[6]");
+
+	By category = By.xpath("//mat-dialog-content[contains(@class, 'mat-dialog-content')]//small[1]");
+	By duration = By.xpath("//mat-dialog-content[contains(@class, 'mat-dialog-content')]//small[2]");
+	By type = By.xpath("//mat-dialog-content[contains(@class, 'mat-dialog-content')]//small[3]");
+	By instructor = By.xpath("//mat-dialog-content[contains(@class, 'mat-dialog-content')]//small[4]");
+	By club = By.xpath("//mat-dialog-content[contains(@class, 'mat-dialog-content')]//small[5]");
+	By status = By.xpath("//mat-dialog-content[contains(@class, 'mat-dialog-content')]//small[6]");
+
 	By calendar = By.xpath("//div[@ng-reflect-ng-switch = 'month']");
 	By calendarList = By.xpath("//div[@class= 'panel panel-default m-t-md ng-star-inserted']");
 	By calendarHistory = By.xpath("//div[@class= 'panel panel-default m-t-md ng-star-inserted']");
@@ -46,9 +61,13 @@ public class CalendarPO {
 	By monthButton = By.xpath("//div[@id='monthViewBtn']");
 	By weekButton = By.xpath("//div[contains(text(), 'Week')]");
 	By clubDropdown = By.xpath("//div[contains(@class,'row-box p-sm')]//select[@name='clubs']");
-	By additionalFilters = By.xpath("//a[@class='add-filters']//div");
-	By classCourseApptChkBoxes = By.xpath("//div[@class = 'checkbox checkbox-primary']");
-	By familyMemberNames = By.id("checkbox-colored-list");
+	By additionalFilters = By.xpath("//a[contains(@class,'add-filters')]//div");
+//	By classCourseApptChkBoxes = By.xpath("//div[contains(@class , 'checkbox checkbox-primary')]");
+//	By familyMemberNames = By.id("checkbox-colored-list");
+	By classCourseApptChkBoxes = By
+			.xpath("(//div[contains(@class, 'col-md-4')])[1]//div[contains(@class , 'checkbox checkbox-primary')]");
+	By familyMemberNames = By
+			.xpath("(//div[contains(@class, 'col-md-4')])[2]//div[contains(@class , 'checkbox checkbox-primary')]");
 	By selectFamilyLabel = By.xpath("//small[contains(text(),'SELECT FAMILY')]");
 	By applyFiltersLink = By.linkText("Apply Filters");
 	By memberClassDetails = By.xpath("//div[@class='column2']");

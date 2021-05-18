@@ -60,7 +60,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember1_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -72,7 +72,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember2_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -84,7 +84,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember3_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -96,7 +96,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember4_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -108,7 +108,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember5_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -120,7 +120,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember6_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -132,7 +132,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember7_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -144,7 +144,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember8_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -156,7 +156,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -168,7 +168,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -180,7 +180,7 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -197,12 +197,12 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(password);
 		l.getLoginButton().click();
 		Thread.sleep(1000);
-		this.enterDOBIfNeeded();
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded1();
 		return null;
 	}
 
-	public void enterDOBIfNeeded() {
+	public void enterDOBIfNeeded(String DOB) {
 
 		LoginPO l = new LoginPO(driver);
 		int count = l.getDobMembers().size();
@@ -210,7 +210,7 @@ public class reusableMethods extends base {
 			for (int i = 0; i < count; i++) {
 				l.getDobInputFields().get(i).click();
 				driver.findElement(By.tagName("button"));
-				l.getDobInputFields().get(i).sendKeys("01/01/2000");
+				l.getDobInputFields().get(i).sendKeys(DOB);
 			}
 			l.getContinueButton().click();
 		}
@@ -2912,7 +2912,7 @@ public class reusableMethods extends base {
 				}
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -3056,7 +3056,8 @@ public class reusableMethods extends base {
 
 		this.SelectClassOrCourseToEnroll(classToEnroll.toUpperCase());
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
@@ -3133,7 +3134,7 @@ public class reusableMethods extends base {
 				}
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -3207,7 +3208,8 @@ public class reusableMethods extends base {
 
 		this.SelectClassOrCourseToEnroll(courseToEnroll.toUpperCase());
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
@@ -3281,7 +3283,7 @@ public class reusableMethods extends base {
 				}
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
