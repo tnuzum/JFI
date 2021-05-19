@@ -157,9 +157,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 				int radioButtonCount = driver.findElements(By.tagName("label")).size();
 				for (int i = 0; i < radioButtonCount; i++) {
-					if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-						jse.executeScript("arguments[0].click();",
-								driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+					if (driver.findElements(By.tagName("label")).get(i).getText().trim().equals("Pay Course Fee")) {
+						jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 						break;
 					}
 				}
@@ -182,7 +181,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 		for (int i = 0; i < count; i++) {
 			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 					.contains(" On Account"))
-				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isEnabled());
 		}
 	}
 
@@ -242,17 +241,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Thread.sleep(3000);
 
 			// Navigate to Dashboard
-			int count = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
@@ -346,9 +335,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
-				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					jse.executeScript("arguments[0].click();",
-							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+				if (driver.findElements(By.tagName("label")).get(i).getText().trim().equals("Pay Course Fee")) {
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -426,20 +414,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Thread.sleep(3000);
 
 			// Navigate to Select Classes
-			int count1 = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count1; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getViewClassesLink());
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
-			Assert.assertEquals("Select Classes", driver.getTitle());
+//			Assert.assertEquals("Select Classes", driver.getTitle());
 
 			rm.returnToDashboard();
 			rm.unenrollFromCourse(dsiredMonthYear);
@@ -531,9 +509,8 @@ public class EnrollWithSingleCourseFeeTest extends base {
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
-				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
-					jse.executeScript("arguments[0].click();",
-							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+				if (driver.findElements(By.tagName("label")).get(i).getText().trim().equals("Pay Course Fee")) {
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -623,17 +600,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Thread.sleep(3000);
 
 			// Navigate to Select Courses
-			int count1 = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count1; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Courses / Events"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getViewCoursesEventsLink());
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Courses / Events", driver.getTitle());

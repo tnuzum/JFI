@@ -27,14 +27,14 @@ public class PaymentMethodsPO {
 	By expirationYear = By.xpath("//input[@name='ExpireYear']");
 	By securityCode = By.xpath("//input[@id='securityCode']");
 //	By saveCardNo = By.xpath("//label[@for = 'sc-no']");
-	By saveCardNo = By.xpath("//input[@id='sc-no']");
-	By saveCardYes = By.xpath("//input[@id='sc-yes']");
+	By saveCardNo = By.xpath("//input[contains(@id,'sc-no')]");
+	By saveCardYes = By.xpath("//input[contains(@id,'sc-yes')]");
 	By moreInfoSaveCard = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfosavecard')]/a");
-	By houseAcctNo = By.xpath("//input[@id='ac-no']");
-	By houseAcctYes = By.xpath("//input[@id='ac-yes']");
+	By houseAcctNo = By.xpath("//input[contains(@id,'ac-no')]");
+	By houseAcctYes = By.xpath("//input[contains(@id,'ac-yes')]");
 	By moreInfoOnAccount = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfoonaccount')]/a");
-	By inClubPurchaseNo = By.xpath("//input[@id='ic-no']");
-	By inClubPurchaseYes = By.xpath("//input[@id='ic-yes']");
+	By inClubPurchaseNo = By.xpath("//input[contains(@id,'ic-no')]");
+	By inClubPurchaseYes = By.xpath("//input[contains(@id,'ic-yes')]");
 	By moreInfoUseInPos = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfouseinpos')]/a");
 	By checkBox = By.id("checkTermsPaymentMethods");
 	By cancelButton = By.xpath("//button[contains(text(), 'Cancel')]");
@@ -50,7 +50,8 @@ public class PaymentMethodsPO {
 			.xpath("//button[@class='btn btn-primary btn-outline'][contains(text(),'close')]");
 	By signaturePad = By.xpath("//div[@class='m-signature-pad--body']");
 //	By signaturePad = By.xpath("//signature-pad[@class='at-paymethods-signaturepad']");
-	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase text')]");
+//	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase text')]");
+	By totalAmount = By.xpath("//h2[contains(@class,'text-uppercase')]");
 	By sigPadInOut = By.id("SignaturePadPaymentMethods");
 
 // CONSTRUCTOR

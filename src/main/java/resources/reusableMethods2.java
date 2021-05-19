@@ -2746,7 +2746,7 @@ public class reusableMethods2 extends base {
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -2851,7 +2851,7 @@ public class reusableMethods2 extends base {
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -3065,7 +3065,7 @@ public class reusableMethods2 extends base {
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -3207,7 +3207,7 @@ public class reusableMethods2 extends base {
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
