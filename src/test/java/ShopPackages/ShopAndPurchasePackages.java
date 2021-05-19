@@ -18,6 +18,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
+import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PurchaseConfirmationPO;
@@ -34,6 +35,7 @@ public class ShopAndPurchasePackages extends base {
 	private static PaymentMethodsPO PM;
 	private static PurchaseConfirmationPO PP;
 	private static ThankYouPO TY;
+	private static BreadcrumbTrailPO bt;
 	private static AcctHistoryPO ahp;
 	private static String testName = null;
 	private static JavascriptExecutor jse;
@@ -87,6 +89,7 @@ public class ShopAndPurchasePackages extends base {
 		PP = new PurchaseConfirmationPO(driver);
 		TY = new ThankYouPO(driver);
 		ahp = new AcctHistoryPO(driver);
+		bt = new BreadcrumbTrailPO(driver);
 		jse = (JavascriptExecutor) driver;
 
 	}
@@ -124,8 +127,8 @@ public class ShopAndPurchasePackages extends base {
 				Assert.assertEquals("Purchase", sp.getPurchaseButtons().get(i).getText());
 			}
 			Assert.assertEquals("Shop Packages", sp.getPageHeader().getText());
-			Assert.assertEquals("Dashboard", sp.getBreadcrumbDashboard().getText());
-			Assert.assertEquals("Shop", sp.getBreadcrumbShop().getText());
+			Assert.assertEquals("Dashboard", bt.getBreadcrumb1().getText()); // sp.getBreadcrumbDashboard().getText());
+			Assert.assertEquals("Shop", bt.getBreadcrumb2().getText()); // sp.getBreadcrumbShop().getText());
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -195,9 +198,9 @@ public class ShopAndPurchasePackages extends base {
 	public void PageLayoutValidation() throws IOException, InterruptedException {
 
 		try {
-			Assert.assertEquals("Dashboard", PP.getBreadcrumbDashboard().getText());
-			Assert.assertEquals("Shop", PP.getBreadcrumbShop().getText());
-			Assert.assertEquals("Confirm", PP.getBreadcrumbConfirm().getText());
+			Assert.assertEquals("Dashboard", bt.getBreadcrumb1().getText());
+			Assert.assertEquals("Shop", bt.getBreadcrumb2().getText());
+			Assert.assertEquals("Confirm", bt.getBreadcrumb3().getText());
 			Boolean ReviewLabelPresent = rm.isElementPresent(By.xpath("//div[@class = 'rate-box']/h2"));
 			Assert.assertTrue(ReviewLabelPresent);
 			Assert.assertEquals("Review", PP.getReviewLabel().getText());
@@ -375,10 +378,10 @@ public class ShopAndPurchasePackages extends base {
 					.isBlank()) {
 				Thread.sleep(500);
 			}
-			System.out.println(
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']"))
-					.getText().contains(FormatTotalAmt));
+			System.out
+					.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+					.contains(FormatTotalAmt));
 			jse.executeScript("window.scrollBy(0,500)");
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
@@ -411,7 +414,7 @@ public class ShopAndPurchasePackages extends base {
 		}
 	}
 
-	@Test(priority = 7, description = "Payment Method is Stored Card")
+	@Test(priority = 7, description = "Payment Method is Stored Card", enabled = true)
 	public void PurchaseStoredCard() throws InterruptedException, IOException {
 		try {
 			rm.activeMemberLogin(prop.getProperty("activeMember7_username"),
@@ -580,10 +583,10 @@ public class ShopAndPurchasePackages extends base {
 				Thread.sleep(500);
 			}
 
-			System.out.println(
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']"))
-					.getText().contains(FormatTotalAmt1));
+			System.out
+					.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+					.contains(FormatTotalAmt1));
 			jse.executeScript("window.scrollBy(0,500)");
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
@@ -618,7 +621,7 @@ public class ShopAndPurchasePackages extends base {
 
 	}
 
-	@Test(priority = 8, description = "Payment Method is New Card")
+	@Test(priority = 8, description = "Payment Method is New Card", enabled = true)
 	public void PurchaseNewCard() throws InterruptedException, IOException {
 		try {
 
@@ -816,10 +819,10 @@ public class ShopAndPurchasePackages extends base {
 					.isBlank()) {
 				Thread.sleep(500);
 			}
-			System.out.println(
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']"))
-					.getText().contains(FormatTotalAmt2));
+			System.out
+					.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+					.contains(FormatTotalAmt2));
 			jse.executeScript("window.scrollBy(0,500)");
 			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
 			Thread.sleep(2000);
