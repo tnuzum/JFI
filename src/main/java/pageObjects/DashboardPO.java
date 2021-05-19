@@ -14,8 +14,8 @@ public class DashboardPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By menuButton = By.xpath("//nav[@class='navbar navbar-static-top']/div/a/i");
-	By myPackagesButton = By.xpath("//button[@class='at-topnavbar-mypackages']");
-	By myPackagesShopPackages = By.xpath("//a[contains(@class, 'at-topnavbar-shoppackages-button')]");
+	By myPackagesButton = By.xpath("//button[contains(@class,'at-topnavbar-mypackages')]");
+	By myPackagesShopPackages = By.xpath("//button[contains(@class, 'at-topnavbar-shoppackages-button')]");
 	// By.linkText("Shop Packages");
 	By cartButton = By.xpath("//a[contains(text(),'Cart')]");
 	// "//nav[@class='navbar navbar-static-top']/ul/li[2]/a");
@@ -117,7 +117,7 @@ public class DashboardPO {
 	By myFamilyFamilyMemberCount2 = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]");
 
 //	By myFamilyManageButton = By.xpath("//div[@class='homeComponent']//familymembercount/div/div[3]/a[1]");
-	By myFamilyManageButton = By.xpath("//a[contains(@class, 'at-widget-managefamily')]");
+	By myFamilyManageButton = By.xpath("//button[contains(@class, 'at-widget-managefamily')]");
 
 	By AdditionalLinksSectionLabel = By.xpath("//div[@class='homeComponent']//externallinks/div/div[1]/div[1]");
 //	By BreadcrumbDashboard = By.xpath("//a[@class='ng-star-inserted']");
