@@ -67,7 +67,7 @@ public class loginPageTest extends base {
 	@Test(priority = 1)
 	public void pageTitle() throws IOException {
 		// Assert.assertEquals(driver.getTitle(), "Log In | Empower M.E.");
-		Assert.assertEquals(driver.getTitle(), "EMEWeb");// pagetitle Changed by seema
+		Assert.assertEquals(driver.getTitle(), "Log In | Empower M.E.");// pagetitle Changed by seema
 		log.info("Page Title Verified");
 	}
 
