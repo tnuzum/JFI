@@ -74,7 +74,7 @@ public class CalendarPO {
 	By applyFiltersLink = By.linkText("Apply Filters");
 	By memberClassDetails = By.xpath("//div[@class='column2']");
 //	By classGearButton = By.xpath("//i[@class='fa fa-gear pull-right m-r-xs ng-star-inserted']");
-	By classGearButton = By.xpath("//i[@class='fa fa-gear pull-right']");
+	By classGearButton = By.xpath("//i[@class='fas fa-cog pull-right m-r-xs']");
 	By addToCalButtonListView = By.xpath("//button[contains(text(), 'ADD TO CALENDAR')]");
 	By unenrollListview = By.xpath("//a[contains(text(), 'UNENROLL')]");
 	By memberSections = By.xpath("//div[@class = 'ng-star-inserted'] ");

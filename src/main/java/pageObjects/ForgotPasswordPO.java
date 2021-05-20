@@ -10,9 +10,9 @@ public class ForgotPasswordPO {
 
 // OBJECTS
 
-	By pageHeader = By.xpath("//div[@id='loginForm']/form/h2");// displays "Forgot your Username?"
+	By pageHeader = By.xpath("//div[@class='ibox-content']/div/h2");// displays "Forgot your Username?"
 	By pageDescription = By.xpath("//div[@id='loginForm']/form/p");
-	By cancelButton = By.xpath("//div[@id='loginForm']/form/div/div/div/a");
+	By cancelButton = By.xpath("//button[contains(text(),'Cancel')]");
 	By resetPasswordButton = By.xpath("//input[@type='submit']");// use .getAttribute("value") to get text
 	By userNameLabel = By.xpath("//div[@id='loginForm']/form/div/div/label");
 	By userNameInputbox = By.xpath("//div[@id='loginForm']/form/div/div/div[1]/input");
