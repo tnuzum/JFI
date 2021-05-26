@@ -128,8 +128,8 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr1", "Testing1!");
-//			rm.enrollInCourse(courseToEnroll1, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
-//					CourseStartYear);
+			rm.enrollInCourse(courseToEnroll1, paymentOption2, payMethod1, "Not Free", CourseStartMonth,
+					CourseStartYear);
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
 
@@ -199,7 +199,7 @@ public class CourseUnenrollTests extends base {
 
 		try {
 			rm.activeMemberLogin("unenrollmbr2_1", "Testing1!");
-//			rm.enrollInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth, CourseStartYear);
+			rm.enrollInCourse(courseToEnroll2, paymentOption1, "", "Not Free", CourseStartMonth, CourseStartYear);
 			int unitsBefore = rm.getPackageUnits("Day Pass");
 
 			rm.myCourseClickToUnenroll(dsiredMonthYear);
