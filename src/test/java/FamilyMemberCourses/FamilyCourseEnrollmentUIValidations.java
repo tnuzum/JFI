@@ -189,24 +189,24 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 			// System.out.println(fml.getText());
 			// System.out.print(fmc.getAttribute("ng-reflect-is-disabled"));
 			if (fml.getText().contains(member1))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true"); // verifies that the check box
+				Assert.assertEquals(fmc.getAttribute("disabled"), "true"); // verifies that the check box
 																							// is disabled for this
 																							// member
 
 			if (fml.getText().contains(member2))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false"); // verifies that the check box
+				Assert.assertEquals(fmc.getAttribute("disabled"), null); // verifies that the check box
 																							// is enabled for this
 																							// member
 
 			if (fml.getText().contains(member3))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
+				Assert.assertEquals(fmc.getAttribute("disabled"), null);
 
 			if (fml.getText().contains(member4))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
+				Assert.assertEquals(fmc.getAttribute("disabled"), "true");
 
 			if (fml.getText().contains(member5)) {
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-model"), "true");
+				Assert.assertEquals(fmc.getAttribute("disabled"), null);
+				//Assert.assertEquals(fmc.getAttribute("ng-reflect-model"), "true");
 				Assert.assertTrue(fmc.isSelected()); // Verifies that the check box is selected by default for the
 														// logged in HOH
 				fml.click(); // Unchecks the check box
@@ -219,13 +219,13 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 			}
 
 			if (fml.getText().contains(member6))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
+				Assert.assertEquals(fmc.getAttribute("disabled"), null);
 
 			if (fml.getText().contains(member7))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
+				Assert.assertEquals(fmc.getAttribute("disabled"), "true");
 
 			if (fml.getText().contains(member8))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
+				Assert.assertEquals(fmc.getAttribute("disabled"), "true");
 		}
 
 		// Selects the other eligible members
