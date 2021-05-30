@@ -31,6 +31,7 @@ public class AcctHistoryPO {
 
 	By calendarDates = By.xpath("//div[contains(@class,'mat-calendar-body-cell-content')]");
 	By rightCalendarArrow = By.xpath("//button[@class='mat-calendar-next-button mat-icon-button']");
+	By leftCalendarArrow = By.xpath("//button[contains(@class,'mat-calendar-previous-button mat-icon-button')]");
 	By calendarMonthselected = By.xpath("//button[contains(@class, 'mat-calendar-period-button')]/span");
 	// By columnNames = By.xpath("//div[@class = 'col-md-3']");
 	By columnNames = By.xpath("//div[@class = 'col-lg-3']");
@@ -132,6 +133,10 @@ public class AcctHistoryPO {
 
 	public WebElement getRightCalendarArrow() {
 		return driver.findElement(rightCalendarArrow);
+	}
+
+	public WebElement getleftCalendarArrow() {
+		return driver.findElement(leftCalendarArrow);
 	}
 
 	public WebElement getCalendarMonthselected() {

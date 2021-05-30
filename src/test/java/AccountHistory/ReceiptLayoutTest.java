@@ -94,6 +94,20 @@ public class ReceiptLayoutTest extends base {
 		d.getDashboardButton().click();
 		d.getMyAccountAccountHistory().click();
 
+		/*
+		 * ahp.getFirstCalendarIcon().click();
+		 * 
+		 * while (!ahp.getCalendarMonthselected().getText().contains("MAR")) {
+		 * 
+		 * ahp.getleftCalendarArrow().click(); }
+		 * 
+		 * java.util.List<WebElement> dates = ahp.getFirstCalendarDates(); int count =
+		 * dates.size();
+		 * 
+		 * for (int i = 0; i < count; i++) { String text = dates.get(i).getText(); if
+		 * (text.equalsIgnoreCase("1")) { dates.get(i).click(); break; } }
+		 */
+
 		ahp.getSearchField().sendKeys("206791");
 		Thread.sleep(2000);
 
