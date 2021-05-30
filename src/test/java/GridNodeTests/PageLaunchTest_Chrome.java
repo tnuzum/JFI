@@ -38,7 +38,7 @@ import resources.reusableWaits;
 
 public class PageLaunchTest_Chrome extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String EMELoginPage = "https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236";
+	private static String EMELoginPage = "https://ourclublogin-future2.test-jfisoftware.com:8911/login/236";
 
 	private static DashboardPO d;
 	private static JavascriptExecutor jse;
