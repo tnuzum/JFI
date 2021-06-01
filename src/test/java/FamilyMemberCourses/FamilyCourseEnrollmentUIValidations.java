@@ -28,7 +28,7 @@ import resources.reusableWaits;
 
 public class FamilyCourseEnrollmentUIValidations extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Jun";
+	private static String CourseStartMonth = "Aug";
 	private static int CourseStartYear = 2021;
 	private static String courseToEnroll = "FAMILYENROLLCOURSE";
 	private static String courseNameDisplayed = "FamilyEnrollCourse";
