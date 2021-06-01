@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterTest;
@@ -94,23 +95,27 @@ public class ReceiptLayoutTest extends base {
 		d.getDashboardButton().click();
 		d.getMyAccountAccountHistory().click();
 
-		/*
-		 * ahp.getFirstCalendarIcon().click();
-		 * 
-		 * while (!ahp.getCalendarMonthselected().getText().contains("MAR")) {
-		 * 
-		 * ahp.getleftCalendarArrow().click(); }
-		 * 
-		 * java.util.List<WebElement> dates = ahp.getFirstCalendarDates(); int count =
-		 * dates.size();
-		 * 
-		 * for (int i = 0; i < count; i++) { String text = dates.get(i).getText(); if
-		 * (text.equalsIgnoreCase("1")) { dates.get(i).click(); break; } }
-		 */
+		ahp.getFirstCalendarIcon().click();
+
+		while (!ahp.getCalendarMonthselected().getText().contains("MAR")) {
+
+			ahp.getleftCalendarArrow().click();
+		}
+
+		java.util.List<WebElement> dates = ahp.getFirstCalendarDates();
+		int count = dates.size();
+
+		for (int i = 0; i < count; i++) {
+			String text = dates.get(i).getText();
+			if (text.equalsIgnoreCase("1")) {
+				dates.get(i).click();
+				break;
+			}
+		}
 
 		ahp.getSearchField().sendKeys("206791");
 		Thread.sleep(2000);
-
+		ahp.getsearchDatesbutton().click();
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
 		Thread.sleep(3000);

@@ -83,6 +83,8 @@ public class AcctHistoryPO {
 	By subTotal = By.xpath("//div[@class = 'col-12']//div[@class ='row-box p-xs m-xs']//small");
 	By searchingAcctHistMessage = By.xpath("//div[@class = 'text-center']");
 
+	By searchDatesbutton = By.xpath("//span[@class = 'input-group-sm']//button");
+
 // CONSTRUCTOR
 
 	public AcctHistoryPO(WebDriver driver) {
@@ -246,6 +248,10 @@ public class AcctHistoryPO {
 
 	public List<WebElement> getdateRangeendDate() {
 		return driver.findElements(dateRangeendDate);
+	}
+
+	public WebElement getsearchDatesbutton() {
+		return driver.findElement(searchDatesbutton);
 	}
 
 }
