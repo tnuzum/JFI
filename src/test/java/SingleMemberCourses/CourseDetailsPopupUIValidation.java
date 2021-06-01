@@ -23,7 +23,7 @@ public class CourseDetailsPopupUIValidation extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String CourseToEnroll = "COURSENEEDSPUNCHES";
 	private static String CourseNameDisplayed = "CourseNeedsPunches";
-	private static String CourseStartMonth = "Jun";
+	private static String CourseStartMonth = "Aug";
 	private static int CourseStartYear = 2021;
 	private static DashboardPO d;
 	private static ClassSignUpPO c;
