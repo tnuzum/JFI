@@ -31,6 +31,7 @@ public class AcctHistoryPO {
 
 	By calendarDates = By.xpath("//div[contains(@class,'mat-calendar-body-cell-content')]");
 	By rightCalendarArrow = By.xpath("//button[@class='mat-calendar-next-button mat-icon-button']");
+	By leftCalendarArrow = By.xpath("//button[contains(@class,'mat-calendar-previous-button mat-icon-button')]");
 	By calendarMonthselected = By.xpath("//button[contains(@class, 'mat-calendar-period-button')]/span");
 	// By columnNames = By.xpath("//div[@class = 'col-md-3']");
 	By columnNames = By.xpath("//div[@class = 'col-lg-3']");
@@ -82,6 +83,8 @@ public class AcctHistoryPO {
 	By subTotal = By.xpath("//div[@class = 'col-12']//div[@class ='row-box p-xs m-xs']//small");
 	By searchingAcctHistMessage = By.xpath("//div[@class = 'text-center']");
 
+	By searchDatesbutton = By.xpath("//span[@class = 'input-group-sm']//button");
+
 // CONSTRUCTOR
 
 	public AcctHistoryPO(WebDriver driver) {
@@ -132,6 +135,10 @@ public class AcctHistoryPO {
 
 	public WebElement getRightCalendarArrow() {
 		return driver.findElement(rightCalendarArrow);
+	}
+
+	public WebElement getleftCalendarArrow() {
+		return driver.findElement(leftCalendarArrow);
 	}
 
 	public WebElement getCalendarMonthselected() {
@@ -241,6 +248,10 @@ public class AcctHistoryPO {
 
 	public List<WebElement> getdateRangeendDate() {
 		return driver.findElements(dateRangeendDate);
+	}
+
+	public WebElement getsearchDatesbutton() {
+		return driver.findElement(searchDatesbutton);
 	}
 
 }
