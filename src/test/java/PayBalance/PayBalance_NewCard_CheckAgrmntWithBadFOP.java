@@ -111,18 +111,19 @@ public class PayBalance_NewCard_CheckAgrmntWithBadFOP extends base {
 			}
 			p.getCustomAmountInput().sendKeys("5.00");
 			Thread.sleep(2000);
-
-			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
+			p.getSelectPaymentNewCardButton().click();
+			// jse.executeScript("arguments[0].click();",
+			// p.getSelectPaymentNewCardButton());
 			Thread.sleep(1000);
 
 			log.info("NewCard Button was clicked");
 			System.out.println("NewCard Button was clicked");
 
 			rw.waitForNewCardFormToOpen();
-			rm.OpenNewcardFormIfNotOpenInFirstAttempt();
+			// rm.OpenNewcardFormIfNotOpenInFirstAttempt();
 
 			Assert.assertEquals(p.getNameOnCard().getAttribute("value"), memberName);
-			//
+
 			jse.executeScript("arguments[0].click();", p.getCardNumber());
 			p.getCardNumber().sendKeys("4111111111111111");
 			p.getExpireMonth().sendKeys("04");
@@ -146,11 +147,12 @@ public class PayBalance_NewCard_CheckAgrmntWithBadFOP extends base {
 			}
 
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A Selection is Required')]")),
-					false);
+					true);
 
 			Thread.sleep(1000);
 			jse.executeScript("arguments[0].click();", p.getIAgreeCheckbox());
 			Thread.sleep(2000);
+// !!! blocked by recaptcha at this point...
 
 			Assert.assertTrue(p.getSubmitButton().isEnabled());
 
