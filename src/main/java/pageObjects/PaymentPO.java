@@ -65,10 +65,10 @@ public class PaymentPO {
 	By selectionRequired = By.xpath("//div[contains(@class,'text-danger')]");// By labelText1 =
 																				// By.xpath("//div[contains(text(),'A
 																				// Selection is Required')]");
-	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input");
+	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/input");
 	By agreementCheckBox = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]");
-	By agreementLabel = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]/following-sibling::label");
-	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/preceding-sibling::input");
+	By agreementLabel = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]/parent::label");
+	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/input");
 	By areYouSure = By.xpath("//input[contains(@class,'at-foplinkagreement-agreement-areyousure')]");
 	By slideDownBox = By.xpath("//div[@class='rate-box']");
 	By additionalQuestionsSection = By.xpath("//additionalquestions[contains(@class,'ng-tns')]/div");
