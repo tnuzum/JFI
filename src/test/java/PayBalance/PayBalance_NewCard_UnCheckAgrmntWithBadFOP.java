@@ -132,7 +132,7 @@ public class PayBalance_NewCard_UnCheckAgrmntWithBadFOP extends base {
 			Thread.sleep(2000);
 
 			Assert.assertTrue(p.getSlideDownBox().isDisplayed());
-			Assert.assertTrue(p.getLabelText1().isDisplayed());
+			Assert.assertTrue(p.getSelectionRequired().isDisplayed());
 			jse.executeScript("arguments[0].click();", p.getAreYouSure());
 			Assert.assertEquals(rm.isElementPresent(By.xpath("//div[contains(text(),'A Selection is Required')]")),
 					false);

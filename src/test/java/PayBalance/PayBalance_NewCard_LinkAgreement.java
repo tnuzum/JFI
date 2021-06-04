@@ -110,7 +110,7 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 
 			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
 			Assert.assertTrue(p.getLabelText().isDisplayed());
-			Assert.assertTrue(p.getLabelText1().isDisplayed());
+			Assert.assertTrue(p.getSelectionRequired().isDisplayed());
 
 			Assert.assertTrue(!p.getSubmitButton().isEnabled());
 
