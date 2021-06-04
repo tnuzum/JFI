@@ -80,6 +80,8 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(3000);
 
+			mp.getCreditCardLink().click();
+			Thread.sleep(1000);
 			mp.getNameOnCard().sendKeys(memberName);
 
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
@@ -283,7 +285,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 			Thread.sleep(1000);
 
-			String text = mp.getEditNameOnCard().getAttribute("ng-reflect-model");
+			String text = mp.getEditNameOnCard().getAttribute("value");
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);
@@ -302,14 +304,21 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
 
-					String isDisabled = AgreementCheckbox.getAttribute("ng-reflect-is-disabled");
+					try {
 
-					if (isDisabled.equals("false"))
+						String isDisabled = AgreementCheckbox.getAttribute("disabled");
 
-					{
+						if (isDisabled.equals("true"))
+
+						{
+							Thread.sleep(1000);
+						}
+					} catch (NullPointerException npe) {
+
 						jse.executeScript("arguments[0].click();", AgreementCheckbox);
 						m++;
 						Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
+
 					}
 
 				}
@@ -410,14 +419,22 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
 
-					String isDisabled = AgreementCheckbox.getAttribute("ng-reflect-is-disabled");
+					try {
 
-					if (isDisabled.equals("false"))
+						String isDisabled = AgreementCheckbox.getAttribute("value");
 
-					{
+						if (isDisabled.equals("true"))
+
+						{
+							Thread.sleep(1000);
+						}
+
+					} catch (NullPointerException npe) {
+
 						jse.executeScript("arguments[0].click();", AgreementCheckbox);
 						m++;
 						Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
+
 					}
 
 				}

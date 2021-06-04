@@ -29,11 +29,10 @@ public class ManageProfilePO {
 	By myAccount1 = By.xpath("//mat-nav-list[@class='mat-nav-list']/mat-list-item[2]/div/span");
 	// By manageProfile1 = By.xpath("/a[contains(test(),'ManageProfile')]");
 	By manageProfile1 = By.xpath("//a[contains(@class, 'at-mainnav-manageprofile')]");
-	By userName1 = By.xpath(
-			"//body/mss-app[1]/layout[1]/div[2]/mat-sidenav-container[1]/mat-sidenav-content[1]/div[1]/div[1]/manageprofile[1]/div[1]/div[2]/div[1]/div[1]/div[1]/div[1]/a[1]/h3[1]");
-	By currentUSerName1 = By.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[1]/input");
-	By newUSerName1 = By.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[2]/div[1]/input");
-	By confirmUSerName1 = By.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[2]/div[2]/input");;
+	By userName1 = By.xpath("//i[@class = 'fad fa-user m-r-sm']"); // updated by Bhagya
+	By currentUSerName1 = By.xpath("//input[@formcontrolname = 'fbCurrentUsername']"); // updated by Bhagya
+	By newUSerName1 = By.xpath("//input[@formcontrolname = 'fbNewUsername']"); // updated by Bhagya
+	By confirmUSerName1 = By.xpath("//input[@formcontrolname = 'fbConfirmNewUsername']"); // updated by Bhagya
 	By changeUSerName1 = By.xpath("//button[contains(text(),'change username')]");
 	By saveUsernmae = By.xpath("//button[contains(text(),'OK')]");
 
