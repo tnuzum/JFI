@@ -115,30 +115,30 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 			jse.executeScript("arguments[0].click();", mp.getIAgreeCheckbox());
 
 			Thread.sleep(2000);
-//
-//			Assert.assertTrue(mp.getAddCCButton().isEnabled());
-//
-//			jse.executeScript("arguments[0].click();", mp.getAddCCButton());
-//
-//			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
-//			Thread.sleep(1000);
-//			mp.getPopupConfirmationButton().click();
-//			Thread.sleep(1000);
-//			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
-//			Thread.sleep(1000);
-//			Actions a = new Actions(driver);
-//			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
-//					.release().build().perform();
-//
-//			Thread.sleep(1000);
-//
-//			mp.getAddCCButton().click();
-//			rw.waitForAcceptButton();
-//			System.out.println(mp.getPopupConfirmation1().getText());
-//			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
-//			mp.getPopupConfirmationButton().click();
-//
-//			Thread.sleep(3000);
+
+			Assert.assertTrue(mp.getAddCCButton().isEnabled());
+
+			jse.executeScript("arguments[0].click();", mp.getAddCCButton());
+
+			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
+			Thread.sleep(1000);
+			mp.getPopupConfirmationButton().click();
+			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
+			Thread.sleep(1000);
+			Actions a = new Actions(driver);
+			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
+					.release().build().perform();
+
+			Thread.sleep(1000);
+
+			mp.getAddCCButton().click();
+			rw.waitForAcceptButton();
+			System.out.println(mp.getPopupConfirmation1().getText());
+			Assert.assertEquals("CREDIT CARD ADDED", mp.getPopupConfirmation1().getText());
+			mp.getPopupConfirmationButton().click();
+
+			Thread.sleep(3000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -176,7 +176,7 @@ public class CheckAgrmnt_AgrmntWithBadFOP_AddEditCreditCard extends base {
 			int FopCount = mp.getCardNumbers().size();
 			for (int i = 0; i < FopCount; i++) {
 
-				if (mp.getCardNumbers().get(i).getText().contains("5454")) {
+				if (mp.getCardNumbers().get(i).getText().contains(prop.getProperty("CCLast4Digits"))) {
 					jse.executeScript("arguments[0].scrollIntoView(true);", mp.getEditPaymentMethodsButton().get(i));
 					jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(i));
 					break;
