@@ -33,17 +33,17 @@ public class PaymentPO {
 	By expireMonth = By.xpath("//input[@name='ExpireMonth']");
 	By expireYear = By.xpath("//input[@name='ExpireYear']");
 	By cvc = By.xpath("//input[@name='CVC']");
-	By saveCardNoRadio = By.xpath("//input[@id='sc-no']");
-	By saveCardYesRadio = By.xpath("//input[@id='sc-yes']");
+	By saveCardNoRadio = By.xpath("//input[contains(@id,'sc-no')]");
+	By saveCardYesRadio = By.xpath("//input[contains(@id,'sc-yes')]");
 	By moreInfoSaveCard = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfosavecard')]/a");
-	By houseAcctNoRadio = By.xpath("//input[@id='ac-no']");
-	By houseAcctYesRadio = By.xpath("//input[@id='ac-yes']");
+	By houseAcctNoRadio = By.xpath("//input[contains(@id,'ac-no')]");
+	By houseAcctYesRadio = By.xpath("//input[contains(@id,'ac-yes')]");
 	By moreInfoOnAccount = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfoonaccount')]/a");
-	By inClubPurchaseNoRadio = By.xpath("//input[@id='ic-no']");
-	By inClubPurchaseYesRadio = By.xpath("//input[@id='ic-yes']");
+	By inClubPurchaseNoRadio = By.xpath("//input[contains(@id,'ic-no')]");
+	By inClubPurchaseYesRadio = By.xpath("//input[contains(@id,'ic-yes')]");
 	By moreInfoUseInPos = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfouseinpos')]/a");
-	By iAgreeCheckbox = By.xpath("//div[contains(@class, 'at-paybalance-checkbox-tandc')]/input");
-	By submitButton = By.xpath("//button[contains(@class, 'at-paybalance-button-newcard-submit')]");
+	By iAgreeCheckbox = By.xpath("//input[@id='checkTermsPaymentMethods']");
+	By submitButton = By.xpath("//button[@type='submit']");
 	By popupPayButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 	By popupConfirmation1 = By.xpath("//div[@class='swal2-header']/h2");// displays Payment Made! message
 	By popupConfirmationButton = By.xpath("//div[@class='swal2-actions']/button[1]");
@@ -62,11 +62,13 @@ public class PaymentPO {
 	By linkAgreementsHeader = By.xpath("//span[contains(text(),'My Agreements')]");
 	By labelText = By.xpath(
 			"//label[contains(text(),'Would you like to use this form of payment for paying existing Membership/Service Plan(s)?')]");
-	By labelText1 = By.xpath("//div[contains(text(),'A Selection is Required')]");
-	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input");
+	By selectionRequired = By.xpath("//div[contains(@class,'text-danger')]");// By labelText1 =
+																				// By.xpath("//div[contains(text(),'A
+																				// Selection is Required')]");
+	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/input");
 	By agreementCheckBox = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]");
-	By agreementLabel = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]/following-sibling::label");
-	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/preceding-sibling::input");
+	By agreementLabel = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]/parent::label");
+	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/input");
 	By areYouSure = By.xpath("//input[contains(@class,'at-foplinkagreement-agreement-areyousure')]");
 	By slideDownBox = By.xpath("//div[@class='rate-box']");
 	By additionalQuestionsSection = By.xpath("//additionalquestions[contains(@class,'ng-tns')]/div");
@@ -247,8 +249,8 @@ public class PaymentPO {
 		return driver.findElement(labelText);
 	}
 
-	public WebElement getLabelText1() {
-		return driver.findElement(labelText1);
+	public WebElement getSelectionRequired() {
+		return driver.findElement(selectionRequired);
 	}
 
 	public WebElement getFirstAgreement() {

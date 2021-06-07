@@ -47,6 +47,72 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 
 	}
 
+	@Test(priority = 1, description = "Adding a new Credit Card for Terminated members")
+	public void AddCC_ForTerminatedMembers() throws IOException, InterruptedException {
+
+		try {
+
+			rm.activeMemberLogin("Seema", "June@123");
+			rm.openSideMenuIfNotOpenedAlready();
+			Assert.assertTrue(d.getMenuMyAccount().isDisplayed());
+			d.getMenuMyAccount().click();
+			d.getMenuManagePmntMethods().click();
+			mp.getCreditCardLink().click();
+			mp.getNameOnCard().sendKeys("Seema");
+			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
+			Thread.sleep(2000);
+			mp.getExpireMonth().sendKeys("12");
+			Thread.sleep(2000);
+			mp.getExpireYear().sendKeys("27");
+
+			JavascriptExecutor jse = (JavascriptExecutor) driver;
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
+			Thread.sleep(2000);
+			Actions a = new Actions(driver);
+			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
+					.release().build().perform();
+			Thread.sleep(2000);
+			mp.getIAgreeCheckbox().click();
+			mp.getAddCCButton().click();
+
+			rw.waitForAcceptButton();
+			System.out.println(mp.getPopupConfirmation1().getText());
+			String text = (mp.getPopupConfirmation1().getText());
+			log.info(text);
+			System.out.println(text);
+			mp.getPopupConfirmationButton().click();
+			Assert.assertEquals("CREDIT CARD ADDED", text);
+			Thread.sleep(2000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot(testName, driver);
+			log.error(eci.getMessage(), eci);
+			rm.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+		}
+
+	}
+
 	@Test(priority = 2, description = "Adding new ACH for Terminated members")
 	public void AddACH_ForTerminatedMembers() throws IOException, InterruptedException {
 
@@ -84,71 +150,6 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 			System.out.println(text);
 			mp.getPopupConfirmationButton().click();
 			Assert.assertEquals("BANK ACCOUNT ADDED", text);
-
-		} catch (java.lang.AssertionError ae) {
-			System.out.println("assertion error");
-			ae.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);
-			ae.printStackTrace();
-			// Assert.fail(ae.getMessage());
-		}
-
-		catch (org.openqa.selenium.NoSuchElementException ne) {
-			System.out.println("No element present");
-			ne.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(ne.getMessage(), ne);
-			// Assert.fail(ne.getMessage());
-		}
-
-		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
-			System.out.println("Element Click Intercepted");
-			eci.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(eci.getMessage(), eci);
-			rm.catchErrorMessage();
-			// Assert.fail(eci.getMessage());
-		}
-
-	}
-
-	@Test(priority = 1, description = "Adding a new Credit Card for Terminated members")
-	public void AddCC_ForTerminatedMembers() throws IOException, InterruptedException {
-
-		try {
-
-			rm.activeMemberLogin("Seema", "June@123");
-			rm.openSideMenuIfNotOpenedAlready();
-			Assert.assertTrue(d.getMenuMyAccount().isDisplayed());
-			d.getMenuMyAccount().click();
-			d.getMenuManagePmntMethods().click();
-			mp.getNameOnCard().sendKeys("Seema");
-			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
-			Thread.sleep(2000);
-			mp.getExpireMonth().sendKeys("12");
-			Thread.sleep(2000);
-			mp.getExpireYear().sendKeys("27");
-
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-
-			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(1));
-			Thread.sleep(2000);
-			Actions a = new Actions(driver);
-			a.moveToElement(mp.getSignaturePad().get(1)).clickAndHold().moveByOffset(30, 10).moveByOffset(80, 10)
-					.release().build().perform();
-			Thread.sleep(2000);
-			mp.getIAgreeCheckbox().click();
-			mp.getAddCCButton().click();
-
-			rw.waitForAcceptButton();
-			System.out.println(mp.getPopupConfirmation1().getText());
-			String text = (mp.getPopupConfirmation1().getText());
-			log.info(text);
-			System.out.println(text);
-			mp.getPopupConfirmationButton().click();
-			Assert.assertEquals("CREDIT CARD ADDED", text);
-			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

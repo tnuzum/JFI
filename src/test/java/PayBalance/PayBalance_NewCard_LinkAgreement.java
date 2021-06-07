@@ -110,11 +110,12 @@ public class PayBalance_NewCard_LinkAgreement extends base {
 
 			Assert.assertTrue(p.getLinkAgreementsHeader().isDisplayed());
 			Assert.assertTrue(p.getLabelText().isDisplayed());
-			Assert.assertTrue(p.getLabelText1().isDisplayed());
+			Assert.assertTrue(p.getSelectionRequired().isDisplayed());
 
 			Assert.assertTrue(!p.getSubmitButton().isEnabled());
 
 			for (int i = 0; i < p.getAgreementLabel().size(); i++) {
+
 				if (p.getAgreementLabel().get(i).getText().contains(agreement)) {
 					jse.executeScript("arguments[0].click();", p.getAgreementCheckBox().get(i));
 				}

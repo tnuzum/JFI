@@ -29,7 +29,7 @@ public class EnrollInFreeCourseTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static int CourseStartYear = 2021;
 	private static String CourseStartMonth = "Aug";
-	private static String dsiredMonthYear = "Auge 2021";
+	private static String dsiredMonthYear = "August 2021";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;

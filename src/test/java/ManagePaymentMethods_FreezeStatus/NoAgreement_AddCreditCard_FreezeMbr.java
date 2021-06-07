@@ -74,7 +74,7 @@ public class NoAgreement_AddCreditCard_FreezeMbr extends base {
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(2000);
 
-			mp.getNameOnCard().sendKeys(memberName);
+			mp.getCreditCardLink().click(); Thread.sleep(1000); mp.getNameOnCard().sendKeys(memberName);
 
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys("4111111111111111");

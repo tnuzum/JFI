@@ -14,13 +14,15 @@ public class CheckInHistoryPO {
 
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By calendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle']");
+//	By calendarIcons = By.xpath("//mat-datepicker-toggle[@class= 'mat-datepicker-toggle']");
+	By calendarIcons = By.xpath("//mat-datepicker-toggle[contains(@class, 'mat-datepicker-toggle')]");
 	By firstCalendarDates = By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td");
 	By secondCalendarDates = By.xpath("//div[contains(@class, 'cdk-overlay-pane')] //td");
 	By calendarDates = By.xpath("//div[contains(@class,'mat-calendar-body-cell-content')]");
 	By visitsByMonthSection = By.xpath("//div[@class='ibox-content no-margins no-padding']");
 	By checkinHistorySection = By.xpath("//div[@id='checkinHistory']");
-	By rightCalendarArrow = By.xpath("//button[@class='mat-calendar-next-button mat-icon-button']");
+//	By rightCalendarArrow = By.xpath("//button[@class='mat-calendar-next-button mat-icon-button']");
+	By rightCalendarArrow = By.xpath("//button[contains(@class,'mat-calendar-next-button mat-icon-button')]");
 	By noEntriesMessage = By.xpath("//div[@class='panel-body no-padding']");
 	By calendarMonthselected = By.xpath("//button[contains(@class, 'mat-calendar-period-button')]/span");
 
