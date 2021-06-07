@@ -77,8 +77,8 @@ public class MyAgreementsLayout extends base {
 
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(3000);
-
-			mp.getNameOnCard().sendKeys(memberName);
+			mp.getCreditCardLink().click();
+			mp.getCreditCardLink().click(); Thread.sleep(1000); mp.getNameOnCard().sendKeys(memberName);
 
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
@@ -291,7 +291,7 @@ public class MyAgreementsLayout extends base {
 
 			Thread.sleep(1000);
 
-			String text = mp.getEditNameOnCard().getAttribute("ng-reflect-model");
+			String text = mp.getEditNameOnCard().getAttribute("value");
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);
@@ -310,13 +310,17 @@ public class MyAgreementsLayout extends base {
 
 					Assert.assertTrue(AgreementCheckbox.isSelected());
 
-					String isDisabled = AgreementCheckbox.getAttribute("ng-reflect-is-disabled");
+					try {
+						String isDisabled = AgreementCheckbox.getAttribute("disabled");
 
-					if (isDisabled.equals("false"))
+						if (isDisabled.equals("true"))
 
-					{
-						Thread.sleep(1000);
+						{
+							Thread.sleep(1000);
 
+						}
+
+					} catch (NullPointerException npe) {
 						jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 						Thread.sleep(1000);
 						AgreementCheckbox.click();
@@ -393,12 +397,12 @@ public class MyAgreementsLayout extends base {
 			}
 			Thread.sleep(3000);
 
-			String text = mp.getEditAccountHolder().getAttribute("ng-reflect-model");
+			String text = mp.getEditAccountHolder().getAttribute("value");
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);
 
-			String text1 = mp.getEditUSRoutingNumber().getAttribute("ng-reflect-model");
+			String text1 = mp.getEditUSRoutingNumber().getAttribute("value");
 			System.out.println(text1);
 			Assert.assertEquals(text1, prop.getProperty("USBankRoutingNumber"));
 
@@ -420,15 +424,22 @@ public class MyAgreementsLayout extends base {
 
 					String isDisabled = AgreementCheckbox.getAttribute("ng-reflect-is-disabled");
 
-					if (isDisabled.equals("false"))
+					try {
 
-					{
+						if (isDisabled.equals("true"))
+
+						{
+
+							Thread.sleep(1000);
+						}
+					} catch (NullPointerException npe) {
 
 						jse.executeScript("arguments[0].scrollIntoView(true);", AgreementCheckbox);
 						Thread.sleep(1000);
 						AgreementCheckbox.click();
 						m++;
 						Assert.assertTrue(mp.getMultiSlideDownBox().get(m - 1).isDisplayed());
+
 					}
 
 				}

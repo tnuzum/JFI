@@ -15,17 +15,19 @@ public class ManagePayMethodsPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By noSavedCardMessage = By.xpath("//h1[@class='text-capitalize']");
-	By bankAccountLink = By.xpath("//a[@href = '#collapseOne'] //i");
+//	By bankAccountLink = By.xpath("//a[@href = '#collapseOne'] //i");
+	By bankAccountLink = By.xpath("//h3[contains (text(), ' BANK ACCOUNT (ACH) ')]");
+	By creditCardLink = By.xpath("//h3[contains (text(), ' CREDIT CARD ')]");
 	By managePMBreadcrumb = By.xpath("//a[contains(text(),'Manage Payment Methods')]");
 	By nameOnCard = By.xpath("//input[contains(@class, 'at-managepayments-addcc-input-nameoncard')]");
 	By cardNumber = By.xpath("//input[contains(@class, 'at-managepayments-addcc-input-cardnum')]");
 	By expireMonth = By.xpath("//input[contains(@class, 'at-managepayments-addcc-input-exp-month')]");
 	By expireYear = By.xpath("//input[contains(@class, 'at-managepayments-addcc-input-exp-year')]");
-	By houseAcctNoRadio = By.xpath("//input[@id='ac-no']");
-	By houseAcctYesRadio = By.xpath("//input[@id='ac-yes']");
+	By houseAcctNoRadio = By.xpath("//input[contains(@id,'ac-no')]");
+	By houseAcctYesRadio = By.xpath("//input[contains(@id,'ac-yes')]");
 	By moreInfoOnAccount = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfoonaccount')]/a");
-	By inClubPurchaseNoRadio = By.xpath("//input[@id='ic-no']");
-	By inClubPurchaseYesRadio = By.xpath("//input[@id='ic-yes']");
+	By inClubPurchaseNoRadio = By.xpath("//input[contains(@id,'ic-no')]");
+	By inClubPurchaseYesRadio = By.xpath("//input[contains(@id,'ic-yes')]");
 	By moreInfoUseInPos = By.xpath("//div[contains(@class, ' at-additionalquestions-moreinfouseinpos')]/a");
 	By iAgreeCheckbox = By.xpath("//input[contains(@class, 'at-managepayments-addcc-checkbox-tandc')]");
 	By signaturePad = By.xpath("//div[@class='m-signature-pad--body']");
@@ -104,6 +106,10 @@ public class ManagePayMethodsPO {
 
 	public WebElement getBankAccountLink() {
 		return driver.findElement(bankAccountLink);
+	}
+
+	public WebElement getCreditCardLink() {
+		return driver.findElement(creditCardLink);
 	}
 
 	public WebElement getManagePMBreadcrumb() {

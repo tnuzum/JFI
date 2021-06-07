@@ -81,7 +81,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCreditCard_FreezeMbr extends base {
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(2000);
 
-			mp.getNameOnCard().sendKeys(memberName);
+			mp.getCreditCardLink().click(); Thread.sleep(1000); mp.getNameOnCard().sendKeys(memberName);
 
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
@@ -187,7 +187,7 @@ public class UnCheckAgrmntWithBadFOP_AddEditCreditCard_FreezeMbr extends base {
 			}
 			Thread.sleep(1000);
 			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Card"));
-			String text = mp.getEditNameOnCard().getAttribute("ng-reflect-model");
+			String text = mp.getEditNameOnCard().getAttribute("value");
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);
