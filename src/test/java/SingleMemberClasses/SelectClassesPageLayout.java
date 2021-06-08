@@ -126,6 +126,8 @@ public class SelectClassesPageLayout extends base {
 
 		wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("classes"))));
 
+		Thread.sleep(2000);
+
 		int n = today.get(Calendar.DAY_OF_WEEK);
 		System.out.println(n);
 		System.out.println(day);
