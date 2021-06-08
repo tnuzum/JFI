@@ -26,6 +26,7 @@ public class loginPageTest_MSEdge extends base {
 	private static String wrongCredentialsMsg = "WE APOLOGIZE... It seems the credentials you entered are different than what is in our system. Please try again, and if the problem persists, contact your club for additional help.";
 	private static String invalid_username = "tpowers";
 	private static String invalid_password = "Not@Password1";
+	private static String invalidCredentialsMsg = "Invalid Credentials";
 
 //	@BeforeTest
 	@BeforeClass
@@ -100,8 +101,8 @@ public class loginPageTest_MSEdge extends base {
 		log.info("Log In Button Clicked");
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("li")));
-		Assert.assertEquals(l.getcredentialsErrorMessage().getText().trim(),
-				prop.getProperty("InvalidCredentialsMessage")); // Updated by Bhagya
+		Assert.assertEquals(l.getcredentialsErrorMessage().getText().trim(), invalidCredentialsMsg); // Updated by
+																										// Bhagya
 		log.info("Invalid Credentials Message Confirmed");
 //		Assert.assertEquals(l.getpasswordRequiredMessage().getText(), prop.getProperty("passwordRequiredMessage")); //commented by Bhagya
 //		log.info("Password Required Message Confirmed"); //commented by Bhagya
@@ -110,9 +111,9 @@ public class loginPageTest_MSEdge extends base {
 	@Test(priority = 4, enabled = true)
 	public void wrongCredentialsMessages() throws InterruptedException {
 		LoginPO l = new LoginPO(driver);
-		l.getuserName().sendKeys(prop.getProperty("invalid_username"));
+		l.getuserName().sendKeys(invalid_username);
 		log.info("User Name Entered");
-		l.getuserPassword().sendKeys(prop.getProperty("invalid_password"));
+		l.getuserPassword().sendKeys(invalid_password);
 		log.info("Password Entered");
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
@@ -125,7 +126,7 @@ public class loginPageTest_MSEdge extends base {
 			wait2.getText();
 		}
 
-		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), prop.getProperty("wrongCredentialsMessage"));
+		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), wrongCredentialsMsg);
 		log.info("Error Message Title Verified");
 	}
 
