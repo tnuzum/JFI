@@ -28,6 +28,9 @@ public class LoginPO {
 	By dobMembers = By.xpath("//div[@class = 'col-10']");
 	By dobInputFields = By.xpath("//div[@class = 'col-10'] // input");
 	By continueButton = By.xpath("//button[contains(text(),'Continue')]");
+	By missingDobMemberName = By.xpath("//h4[contains(text(),'Dandekar3, Seema3')]");
+	By cancelButton = By.xpath("//button[contains(text(),'Cancel')]");
+	By missingDobMemberNames = By.xpath("//div[@class='ng-star-inserted']");
 // CONSTRUCTOR
 
 	public LoginPO(WebDriver driver) {
@@ -94,6 +97,18 @@ public class LoginPO {
 
 	public WebElement getContinueButton() {
 		return driver.findElement(continueButton);
+	}
+
+	public WebElement getmissingDobMemberName() {
+		return driver.findElement(missingDobMemberName);
+	}
+
+	public WebElement getcancelButton() {
+		return driver.findElement(cancelButton);
+	}
+
+	public List<WebElement> getmissingDobMemberNames() {
+		return driver.findElements(missingDobMemberNames);
 	}
 
 }
