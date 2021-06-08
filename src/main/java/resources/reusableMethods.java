@@ -52,6 +52,30 @@ public class reusableMethods extends base {
 		rw.setDriver(wd);
 	}
 
+	public String nonHohActiveEwaiver() throws InterruptedException {
+
+		rw.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("nonHohActiveEwaiver_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("nonHohActiveEwaiver_password"));
+		l.getLoginButton().click();
+		Thread.sleep(1000);
+
+		return null;
+	}
+
+	public String HohActiveEwaiver() throws InterruptedException {
+
+		rw.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("HohActiveEwaiver_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("HohActiveEwaiver_password"));
+		l.getLoginButton().click();
+		Thread.sleep(1000);
+
+		return null;
+	}
+
 	public String activeMember1Login() throws InterruptedException {
 
 		rw.waitForLoginLoginButton();
