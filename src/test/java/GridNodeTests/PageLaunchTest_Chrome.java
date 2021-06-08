@@ -75,7 +75,7 @@ public class PageLaunchTest_Chrome extends base {
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(EMELoginPage);
-		rm.activeMemberLogin("rauto", "Testing1!");
+		rm.activeGridMemberLogin("rauto", "Testing1!");
 		rw.waitForDashboardLoaded();
 	}
 
@@ -163,7 +163,7 @@ public class PageLaunchTest_Chrome extends base {
 
 	@Test(priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException {
-		rm.activeMemberLogin("rauto", "Testing1!");
+		rm.activeGridMemberLogin("rauto", "Testing1!");
 		rw.waitForDashboardLoaded();
 		jse.executeScript("arguments[0].click();", d.getMyFamilyManageButton());
 		ManageFamilyPO a = new ManageFamilyPO(driver);

@@ -202,6 +202,23 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public String activeGridMemberLogin(String username, String password) throws InterruptedException {
+		rw.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().click();
+		log.info("User name element clicked");
+		l.getuserName().clear();
+		log.info("User name element cleared");
+		l.getuserName().sendKeys(username);
+		log.info("User name entered");
+		l.getuserPassword().sendKeys(password);
+		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded("01/01/2000");
+		rw.waitForDashboardLoaded1();
+		return null;
+	}
+
 	public void enterDOBIfNeeded(String DOB) {
 
 		LoginPO l = new LoginPO(driver);
