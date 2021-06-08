@@ -77,7 +77,7 @@ public class CourseDetailsPopupUIValidation extends base {
 		Assert.assertEquals(c.getClasslabel().getText(), CourseNameDisplayed);
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Course Instructor: Andrea"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Class Length: 60 min"));
-		Assert.assertTrue(c.getDetailsPopup().getText().contains("Date: 06/21/2021 - 06/30/2021"));
+		Assert.assertTrue(c.getDetailsPopup().getText().contains("Date: 08/21/2021 - 08/30/2021"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Time: 11:00 AM"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Days: MON, WED, THU, FRI"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("- COURSE DESCRIPTION -"));
