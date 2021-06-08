@@ -1136,7 +1136,7 @@ public class ShopAndPurchasePackages extends base {
 							.findElements(By.xpath("//select[contains(@class, 'at-shoppackage-dropdown-units')]"))
 							.get(i);
 					Select s = new Select(SelectDropdown);
-					s.selectByVisibleText("4 - $10.00/per");
+					s.selectByVisibleText("8 - $10.00/per");
 					Thread.sleep(1000);
 					jse.executeScript("arguments[0].click();", sp.getPurchaseButtons().get(i));
 					break;
@@ -1212,7 +1212,7 @@ public class ShopAndPurchasePackages extends base {
 			System.out.println("After: " + IntUnitCountAfter3);
 
 			// Verifies the package units is now incremented by one unit
-			IntUnitCountBefore3 = IntUnitCountBefore3 + 4;
+			IntUnitCountBefore3 = IntUnitCountBefore3 + 8;
 			Assert.assertEquals(IntUnitCountBefore3, IntUnitCountAfter3); // verifies the unit count of the Package
 			rm.memberLogout();
 

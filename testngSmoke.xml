@@ -24,7 +24,7 @@
 	<test name="Shop Packages And Class Course Ui Validations"
 		parallel="none" preserve-order="true" group-by-instances="true">
 		<classes>
-			<class name="ShopPackages.ShopAndPurchasePackages" />
+			<!--class name="ShopPackages.ShopAndPurchasePackages" /-->
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />
