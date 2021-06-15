@@ -39,8 +39,8 @@ public class ManagePayMethodsPO {
 	By labelText1 = By.xpath("//div[contains(text(),'A Selection is Required')]");
 	By firstAgreement = By.xpath("//label[contains(text(),'Balance Weight Loss 12 Week')]/preceding-sibling::input");
 	By agreementCheckBox = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]");
-	By agreementLabel = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]/following-sibling::label");
-	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/preceding-sibling::input");
+	By agreementLabel = By.xpath("//input[contains(@class, 'at-foplinkagreement-agreement')]/parent::label");
+	By noThanks = By.xpath("//label[contains(text(),'No Thanks')]/input");
 	By noThanksLabel = By.xpath("//label[contains(text(),'No Thanks')]");
 	By areYouSure = By.xpath("//input[contains(@class,'at-foplinkagreement-agreement-areyousure')]");
 	By addCCButton = By.xpath("//button[contains(@class, 'at-managepayments-addcc-button-addcard')]");

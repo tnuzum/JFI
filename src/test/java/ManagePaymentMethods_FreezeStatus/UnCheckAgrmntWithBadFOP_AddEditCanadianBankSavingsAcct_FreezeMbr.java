@@ -190,16 +190,16 @@ public class UnCheckAgrmntWithBadFOP_AddEditCanadianBankSavingsAcct_FreezeMbr ex
 			Thread.sleep(1000);
 			jse.executeScript("arguments[0].click();", mp.getEditCanadianBankRadio());
 			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Bank Account"));
-			String text = mp.getEditAccountHolder().getAttribute("ng-reflect-model");
+			String text = mp.getEditAccountHolder().getAttribute("value");
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);
 
-			String text1 = mp.getEditCanadaRoutingOne().getAttribute("ng-reflect-model");
+			String text1 = mp.getEditCanadaRoutingOne().getAttribute("value");
 			System.out.println(text1);
 			Assert.assertEquals(text1, prop.getProperty("CanadaBankRoutingNumberOne"));
 
-			String text2 = mp.getEditCanadaRoutingTwo().getAttribute("ng-reflect-model");
+			String text2 = mp.getEditCanadaRoutingTwo().getAttribute("value");
 			System.out.println(text2);
 			Assert.assertEquals(text2, prop.getProperty("CanadaBankRoutingNumberTwo"));
 

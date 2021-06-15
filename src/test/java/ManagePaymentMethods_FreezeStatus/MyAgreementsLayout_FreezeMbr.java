@@ -394,12 +394,12 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 			}
 			Thread.sleep(3000);
 
-			String text = mp.getEditAccountHolder().getAttribute("ng-reflect-model");
+			String text = mp.getEditAccountHolder().getAttribute("value");
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);
 
-			String text1 = mp.getEditUSRoutingNumber().getAttribute("ng-reflect-model");
+			String text1 = mp.getEditUSRoutingNumber().getAttribute("value");
 			System.out.println(text1);
 			Assert.assertEquals(text1, prop.getProperty("USBankRoutingNumber"));
 
@@ -421,7 +421,7 @@ public class MyAgreementsLayout_FreezeMbr extends base {
 
 					try {
 
-						String isDisabled = AgreementCheckbox.getAttribute("value");
+						String isDisabled = AgreementCheckbox.getAttribute("disabled");
 
 						if (isDisabled.equals("true"))
 

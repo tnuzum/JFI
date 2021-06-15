@@ -57,6 +57,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 			Assert.assertTrue(d.getMenuMyAccount().isDisplayed());
 			d.getMenuMyAccount().click();
 			d.getMenuManagePmntMethods().click();
+			Thread.sleep(3000);
 			jse.executeScript("arguments[0].click();", mp.getEditPaymentMethodsButton().get(0));
 			mp.getEditNameOnCard().clear();
 			mp.getEditNameOnCard().sendKeys("Seem");
