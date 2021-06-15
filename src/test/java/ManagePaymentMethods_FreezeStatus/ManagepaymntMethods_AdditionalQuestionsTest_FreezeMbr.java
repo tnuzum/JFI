@@ -69,6 +69,10 @@ public class ManagepaymntMethods_AdditionalQuestionsTest_FreezeMbr extends base 
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(3000);
 
+			mp.getCreditCardLink().click();
+
+			Thread.sleep(1000);
+
 			Assert.assertTrue(p.getAdditionalQuestionsSection().get(1).isDisplayed());
 			Assert.assertTrue(p.getOnAccountCardQuestion().isDisplayed());
 			jse.executeScript("arguments[0].click();", p.getMoreInfoOnAccount().get(1));

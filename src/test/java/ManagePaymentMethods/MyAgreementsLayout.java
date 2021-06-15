@@ -77,8 +77,10 @@ public class MyAgreementsLayout extends base {
 
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(3000);
+
 			mp.getCreditCardLink().click();
-			mp.getCreditCardLink().click(); Thread.sleep(1000); mp.getNameOnCard().sendKeys(memberName);
+			Thread.sleep(1000);
+			mp.getNameOnCard().sendKeys(memberName);
 
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));

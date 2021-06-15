@@ -187,12 +187,12 @@ public class UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct_FreezeMbr extends 
 			}
 			Thread.sleep(1000);
 			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Bank Account"));
-			String text = mp.getEditAccountHolder().getAttribute("ng-reflect-model");
+			String text = mp.getEditAccountHolder().getAttribute("value");
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);
 
-			String text1 = mp.getEditUSRoutingNumber().getAttribute("ng-reflect-model");
+			String text1 = mp.getEditUSRoutingNumber().getAttribute("value");
 			System.out.println(text1);
 			Assert.assertEquals(text1, prop.getProperty("USBankRoutingNumber"));
 
