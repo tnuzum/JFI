@@ -2120,7 +2120,7 @@ public class reusableMethods extends base {
 			Thread.sleep(2000);
 			log.info("calendar date was clicked again");
 			System.out.println("calendar date was clicked again");
-			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("style");
 			i++;
 			System.out.println(i);
 			log.info(i);
