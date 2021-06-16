@@ -43,7 +43,7 @@ public class EnrollCourseByBuyingPackage extends base {
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $10.00/per";
 	private static String classCostInUnits = "Course Cost: 2 Unit(s) - Your Current Unit Value Is ";
-	private static String CourseStartDate = "Date: 06/21/2021";
+	private static String CourseStartDate = "Date: 08/21/2021";
 	private static int unitCount = 0;
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;

@@ -403,12 +403,14 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			rm.SelectCourseStartMonth(CourseStartMonth1);
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+			Thread.sleep(3000);
 
 			rm.SelectCourseStartYear(CourseStartYear);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+			Thread.sleep(3000);
+
+			rm.SelectCourseStartMonth(CourseStartMonth1);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
