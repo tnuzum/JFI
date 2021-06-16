@@ -151,8 +151,8 @@ public class EmailConfirmations extends base {
 					"You have been successfully unenrolled from the following course. "));
 			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Location: Jonas Sports-Plex"));
 			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Course Name: Free Course Auto"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email4,
-					"Course Time: Every Monday, Wednesday, Thursday, Friday between 6/21/2021 and 6/30/2021 from 4:30 PM to 5:30 PM"));
+			Assert.assertTrue(
+					emailUtils.isTextInMessage(email4, "Course Time: Every Monday, Wednesday, Thursday, Friday"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
