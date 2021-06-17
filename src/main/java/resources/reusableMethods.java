@@ -2236,15 +2236,13 @@ public class reusableMethods extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		PaymentPO p = new PaymentPO(driver);
 
-		String ariaExpanded = driver.findElements(By.xpath("//div[contains(@class, 'panel-collapse collapse')]")).get(1)
-				.getAttribute("style");
+		String ariaExpanded = p.getNewCardForm().getAttribute("aria-expanded");
 
-		while (ariaExpanded.contains("hidden")) {
+		while (ariaExpanded.contains("false")) {
 			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			log.error("NewCard Button was clicked again");
 			System.out.println("NewCard Button was clicked again");
-			ariaExpanded = driver.findElement(By.xpath("//div[contains(@class, 'panel-collapse collapse')]"))
-					.getAttribute("style");
+			ariaExpanded = p.getNewCardForm().getAttribute("aria-expanded");
 		}
 		return null;
 
