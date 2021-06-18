@@ -636,7 +636,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
-		c.getPopupSignupButtonCourse().click();
+//		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		rw.waitForAcceptButton();
