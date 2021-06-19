@@ -3160,67 +3160,80 @@ public class reusableMethods extends base {
 		}
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
-		Thread.sleep(5000);
-		if (!classFee.equalsIgnoreCase("Free")) {
+		boolean e = this.catchErrorMessagePrivate();
 
-			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
+		if (e == true) {
+			System.out.println("ERROR: An Error Has Occurred");
+			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			er.getOKButton().click();
+		}
+		e = this.catchErrorMessagePrivate();
+		if (e == true) {
+			System.out.println("Error is not going away");
+			this.returnToDashboard();
+		} else {
 
-				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+			Thread.sleep(5000);
+			if (!classFee.equalsIgnoreCase("Free")) {
 
-				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+				if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
 
-				{
-					Thread.sleep(1000);
-					;
-				}
+					wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
-				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
-				if (payMethod.equalsIgnoreCase("Saved Card")) {
+					while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
-					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
-					for (int i = 0; i < count; i++) {
-						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-								.contains("5454")) {
+					{
+						Thread.sleep(1000);
+						;
+					}
 
-							jse.executeScript("arguments[0].scrollIntoView(true);",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+					wait.until(ExpectedConditions
+							.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
+					if (payMethod.equalsIgnoreCase("Saved Card")) {
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+						int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+						for (int i = 0; i < count; i++) {
+							if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+									.contains("5454")) {
 
-							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-							break;
+								jse.executeScript("arguments[0].scrollIntoView(true);",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								jse.executeScript("arguments[0].click();",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+								break;
+							}
 						}
 					}
-				}
-				while (!PM.getPaymentButton().isEnabled()) {
-					Thread.sleep(1000);
-				}
-				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+					while (!PM.getPaymentButton().isEnabled()) {
+						Thread.sleep(1000);
+					}
+					jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
+				}
 			}
-		}
-		rw.waitForAcceptButton();
-		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
-		// Verifies the success message
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			// Verifies the success message
 //		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
-		PP.getPopupOKButton().click();
-		Thread.sleep(1000);
+			PP.getPopupOKButton().click();
+			Thread.sleep(1000);
 
-		int count1 = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < count1; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+			int count1 = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count1; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
 
-			{
-				// rw.linksToBeClickable();
-				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-				break;
+				{
+					// rw.linksToBeClickable();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
+					break;
+				}
+
 			}
-
+			rw.waitForDashboardLoaded();
 		}
-		rw.waitForDashboardLoaded();
-
 		return null;
 	}
 
@@ -3375,7 +3388,7 @@ public class reusableMethods extends base {
 	}
 
 	public Object familyClassClickToUnenroll(String classEnrolled, String enrolledMemberName)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
@@ -3408,27 +3421,34 @@ public class reusableMethods extends base {
 		 * Thread.sleep(1000); cp.getCalDayBadge().click();
 		 */
 		Thread.sleep(1000);
+		try {
+			int eventCount = cp.getCalEventTitles().size();
 
-		int eventCount = cp.getCalEventTitles().size();
+			for (int i = 0; i < eventCount; i++) {
 
-		for (int i = 0; i < eventCount; i++) {
+				if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
 
-			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
-
-				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
-				Thread.sleep(1000);
-				Actions a = new Actions(driver);
-				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
-				break;
+					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+					Thread.sleep(1000);
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
+					break;
+				}
 			}
+
+			Thread.sleep(1000);
+
+			Assert.assertTrue(cp.getClassName().getText().contains(classEnrolled));
+			Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
+			cp.getUnEnrollBtn().click();
+			Thread.sleep(1000);
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot("familyClassUnenroll", driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
 		}
-
-		Thread.sleep(1000);
-
-		Assert.assertTrue(cp.getClassName().getText().contains(classEnrolled));
-		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
-		cp.getUnEnrollBtn().click();
-		Thread.sleep(1000);
 		return null;
 
 	}
