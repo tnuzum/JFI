@@ -93,6 +93,7 @@ public class EnrollInFreeClassTest extends base {
 				c.getPopupSignUpButton().click();
 
 			} else {
+				getScreenshot("SignUp Button", driver);
 				c.getPopupCancelButton().click();
 				// Assert.fail("SignUp button not available");
 

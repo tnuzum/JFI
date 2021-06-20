@@ -2811,6 +2811,7 @@ public class reusableMethods extends base {
 			c.getPopupSignUpButton().click();
 
 		} else {
+			getScreenshot("SignUp Button", driver);
 			c.getPopupCancelButton().click();
 			Assert.fail("SignUp button not available");
 
@@ -2941,6 +2942,7 @@ public class reusableMethods extends base {
 			c.getPopupSignupButtonCourse().click();
 
 		} else {
+			getScreenshot("SignUp Button", driver);
 			c.getPopupCancelButtonCourse().click();
 			Assert.fail("SignUp button not available");
 
@@ -3211,6 +3213,7 @@ public class reusableMethods extends base {
 			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 
 		} else {
+			getScreenshot("SignUp Button", driver);
 			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButton());
 			actions.moveToElement(c.getPopupCancelButton()).click().perform();
 			Assert.fail("SignUp button not available");
@@ -3377,6 +3380,7 @@ public class reusableMethods extends base {
 			actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 
 		} else {
+			getScreenshot("SignUp Button", driver);
 			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 			Assert.fail("SignUp button not available");
