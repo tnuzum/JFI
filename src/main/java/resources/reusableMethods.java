@@ -540,6 +540,7 @@ public class reusableMethods extends base {
 				this.returnToDashboard();
 			} else {
 				System.out.println("Error is not going away");
+				log.error("Error is not going away");
 			}
 //			Assert.assertFalse(e);
 		}
@@ -2784,7 +2785,7 @@ public class reusableMethods extends base {
 	}
 
 	public Object enrollInClass(String classToEnroll, String paymentOption, String payMethod, String classFee)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
@@ -2836,6 +2837,8 @@ public class reusableMethods extends base {
 		e = this.catchErrorMessagePrivate();
 		if (e == true) {
 			System.out.println("Error is not going away");
+			log.error("Error is not going away");
+			getScreenshot("enrollInClass", driver);
 			this.returnToDashboard();
 		} else {
 
@@ -2906,7 +2909,7 @@ public class reusableMethods extends base {
 	}
 
 	public Object enrollInCourse(String courseToEnroll, String paymentOption, String payMethod, String courseFee,
-			String CourseStartMonth, int CourseStartYear) throws InterruptedException {
+			String CourseStartMonth, int CourseStartYear) throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
@@ -2962,6 +2965,8 @@ public class reusableMethods extends base {
 		e = this.catchErrorMessagePrivate();
 		if (e == true) {
 			System.out.println("Error is not going away");
+			log.error("Error is not going away");
+			getScreenshot("enrollInCourse", driver);
 			this.returnToDashboard();
 		} else {
 
@@ -3056,7 +3061,7 @@ public class reusableMethods extends base {
 
 	}
 
-	public Object myCourseClickToUnenroll(String dsiredMonthYear) throws InterruptedException {
+	public Object myCourseClickToUnenroll(String dsiredMonthYear) throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -3089,23 +3094,51 @@ public class reusableMethods extends base {
 		}
 
 		Thread.sleep(1000);
-		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadges().get(1));
-		Thread.sleep(1000);
-		cp.getCalDayBadges().get(1).click();
-		Thread.sleep(1000);
-		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
-		Thread.sleep(1000);
-		cp.getCalEventTitle().click();
 
-		Thread.sleep(1000);
-		cp.getUnEnrollBtn().click();
-		Thread.sleep(1000);
+		try {
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadges().get(1));
+			Thread.sleep(1000);
+			cp.getCalDayBadges().get(1).click();
+			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
+			Thread.sleep(1000);
+			cp.getCalEventTitle().click();
+
+			Thread.sleep(1000);
+			cp.getUnEnrollBtn().click();
+			Thread.sleep(1000);
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(eci.getMessage(), eci);
+			this.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+
+		}
 		return null;
 
 	}
 
 	public Object enrollFamilyMbrInClass(String classToEnroll, String paymentOption, String payMethod, String classFee,
-			String familyMbrName) throws InterruptedException {
+			String familyMbrName) throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -3198,6 +3231,8 @@ public class reusableMethods extends base {
 		e = this.catchErrorMessagePrivate();
 		if (e == true) {
 			System.out.println("Error is not going away");
+			log.error("Error is not going away");
+			getScreenshot("enrollFamilyMbrInClass", driver);
 			this.returnToDashboard();
 		} else {
 
@@ -3267,7 +3302,7 @@ public class reusableMethods extends base {
 
 	public Object enrollFamilyMbrInCourse(String courseToEnroll, String paymentOption, String payMethod,
 			String courseFee, String CourseStartMonth, String familyMbrName, int CourseStartYear)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
@@ -3361,6 +3396,8 @@ public class reusableMethods extends base {
 		e = this.catchErrorMessagePrivate();
 		if (e == true) {
 			System.out.println("Error is not going away");
+			log.error("Error is not going away");
+			getScreenshot("familyClassUnenroll", driver);
 			this.returnToDashboard();
 		} else {
 
@@ -3496,7 +3533,7 @@ public class reusableMethods extends base {
 	}
 
 	public Object familyCourseClickToUnenroll(String dsiredMonthYear, String classEnrolled, String enrolledMemberName)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
@@ -3532,32 +3569,61 @@ public class reusableMethods extends base {
 
 		Thread.sleep(1000);
 
-		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
-		Thread.sleep(1000);
-		cp.getCalDayBadge().click();
+		try {
 
-		Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+			Thread.sleep(1000);
+			cp.getCalDayBadge().click();
 
-		int eventCount = cp.getCalEventTitles().size();
+			Thread.sleep(1000);
 
-		for (int i = 0; i < eventCount; i++) {
+			int eventCount = cp.getCalEventTitles().size();
 
-			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
+			for (int i = 0; i < eventCount; i++) {
 
-				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
-				Thread.sleep(1000);
-				Actions a = new Actions(driver);
-				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
-				break;
+				if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
+
+					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+					Thread.sleep(1000);
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
+					break;
+				}
 			}
+
+			Thread.sleep(1000);
+
+			Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
+			Thread.sleep(1000);
+			cp.getUnEnrollBtn().click();
+			Thread.sleep(1000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot("familyCourseClickToUnenroll", driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 
-		Thread.sleep(1000);
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot("familyCourseClickToUnenroll", driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
 
-		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
-		Thread.sleep(1000);
-		cp.getUnEnrollBtn().click();
-		Thread.sleep(1000);
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot("familyCourseClickToUnenroll", driver);
+			log.error(eci.getMessage(), eci);
+			this.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+
+		}
 		return null;
 
 	}
