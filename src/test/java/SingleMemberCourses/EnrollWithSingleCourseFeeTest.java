@@ -111,6 +111,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 				c.getPopupSignupButtonCourse().click();
 
 			} else {
+				getScreenshot("SignUp Button", driver);
 				c.getPopupCancelButtonCourse().click();
 				// Assert.fail("SignUp button not available");
 
