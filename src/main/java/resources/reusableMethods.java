@@ -528,12 +528,14 @@ public class reusableMethods extends base {
 		}
 	}
 
-	public String catchErrorMessage() throws InterruptedException {
+	public String catchErrorMessage() throws InterruptedException, IOException {
 		boolean e = this.catchErrorMessagePrivate();
 
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("catchErrorMessage", driver);
 			er.getOKButton().click();
 			e = this.catchErrorMessagePrivate();
 			if (e == false) {
@@ -2831,6 +2833,8 @@ public class reusableMethods extends base {
 
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("enrollInClass", driver);
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
 		}
@@ -2959,6 +2963,8 @@ public class reusableMethods extends base {
 
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("enrollInCourse", driver);
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
 		}
@@ -3107,12 +3113,14 @@ public class reusableMethods extends base {
 			Thread.sleep(1000);
 			cp.getUnEnrollBtn().click();
 			Thread.sleep(1000);
-		} catch (java.lang.AssertionError ae) {
-			System.out.println("assertion error");
-			ae.printStackTrace();
+
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
 			getScreenshot("myCourseClickToUnenroll", driver);
-			log.error(ae.getMessage(), ae);
-			ae.printStackTrace();
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
 			// Assert.fail(ae.getMessage());
 		}
 
@@ -3225,6 +3233,8 @@ public class reusableMethods extends base {
 
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("enrollFamilyMbrInClass", driver);
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
 		}
@@ -3390,6 +3400,8 @@ public class reusableMethods extends base {
 
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("enrollFamilyMbrInCourse", driver);
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
 			er.getOKButton().click();
 		}
@@ -3397,7 +3409,7 @@ public class reusableMethods extends base {
 		if (e == true) {
 			System.out.println("Error is not going away");
 			log.error("Error is not going away");
-			getScreenshot("familyClassUnenroll", driver);
+			getScreenshot("enrollFamilyMbrInCourse", driver);
 			this.returnToDashboard();
 		} else {
 
@@ -3523,6 +3535,7 @@ public class reusableMethods extends base {
 			Thread.sleep(1000);
 		} catch (org.openqa.selenium.NoSuchElementException ne) {
 			System.out.println("No element present");
+			log.error("No Element present");
 			ne.printStackTrace();
 			getScreenshot("familyClassUnenroll", driver);
 			log.error(ne.getMessage(), ne);
