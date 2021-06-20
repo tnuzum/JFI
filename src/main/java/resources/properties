@@ -28,6 +28,12 @@ MastercardNumber = 5454545454545454
 MastercardExpireMonth = 01
 MastercardExpireYear = 25
 MastercardCVC = 007
+nonHohActiveEwaiver_username = seema3
+nonHohActiveEwaiver_password = June@123
+
+HohActiveEwaiver_username = seema4
+HohActiveEwaiver_password = June@123
+
 activeMember1_username = rauto
 activeMember1_password = Testing1!
 activeMember1_fullname = Robert Auto
