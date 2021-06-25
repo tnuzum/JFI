@@ -14,6 +14,7 @@
 			<class name="EME.PageLaunchTest" />
 			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
+			<class name="EME.missingDob" />
 			<class name="PayBalance.PayBalance_StoredCard" />
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />

@@ -16,6 +16,7 @@
 			<class name="EME.PageLaunchTest" />
 			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
+			<class name="EME.missingDob" />
 
 			<class
 				name="PaymentMethods.ShopPackages_AdditionalQuestionsTest" />
