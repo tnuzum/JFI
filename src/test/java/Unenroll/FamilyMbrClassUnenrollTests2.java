@@ -624,7 +624,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 		}
 	}
 
-	@Test(priority = 16, description = "Unenroll Free Class - Course-Refund section should be hidden")
+	@Test(priority = 16, description = "Unenroll Free Class - Course-Refund section should be hidden", enabled = false)
 	public void Unenroll_Scenario15() throws IOException, InterruptedException {
 
 		try {
@@ -713,7 +713,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 		}
 	}
 
-	@Test(priority = 17, description = "Payment and Refund Methods displaying On Account and Credit cards should follow the Home club's configuration")
+	@Test(priority = 17, description = "Payment and Refund Methods displaying On Account and Credit cards should follow the Home club's configuration", enabled = false)
 	public void Unenroll_Scenario16() throws IOException, InterruptedException {
 
 		try {
@@ -941,7 +941,7 @@ public class FamilyMbrClassUnenrollTests2 extends base {
 		}
 	}
 
-	@Test(priority = 18, description = "class Start time in the future but unenrollment time falls inside the cannot cancel window")
+	@Test(priority = 18, description = "class Start time in the future but unenrollment time falls inside the cannot cancel window", enabled = false)
 	public void Unenroll_Scenario17() throws IOException, InterruptedException {
 
 		try {
