@@ -62,6 +62,18 @@ public class ChangeApptWithFee_CancelTransaction extends base {
 			log.error(npe.getMessage(), npe);
 
 		}
+
+		catch (org.openqa.selenium.WebDriverException we) {
+
+			driver = initializeDriver();
+
+			System.out.println("driver initialized again");
+			log.error("driver initialized again");
+			we.printStackTrace();
+			log.error(we.getMessage(), we);
+
+		}
+
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 		jse = (JavascriptExecutor) driver;

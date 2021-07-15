@@ -264,6 +264,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("collectionsMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("collectionsMember1_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded1();
 		return null;
 	}
@@ -274,6 +276,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("prospectMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("prospectMember1_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded1();
 		return null;
 	}
