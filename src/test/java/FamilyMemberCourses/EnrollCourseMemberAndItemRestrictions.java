@@ -25,8 +25,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 	private static int CourseStartYear = 2019;
 	private static int CourseStartYear1 = 2021;
 	private static String CourseStartMonth1 = "Jan";
-	private static String CourseStartMonth2 = "Aug";
-	private static String dsiredMonthYear = "August 2021";
+	private static String CourseStartMonth2 = "Nov";
+	private static String dsiredMonthYear = "November 2021";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;

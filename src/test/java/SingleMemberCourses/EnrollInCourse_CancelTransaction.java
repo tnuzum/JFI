@@ -28,7 +28,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
-	private static String CourseStartMonth = "Aug";
+	private static String CourseStartMonth = "Nov";
 	private static int CourseStartYear = 2021;
 	private static JavascriptExecutor jse;
 
