@@ -23,7 +23,7 @@ public class CourseDetailsPopupUIValidation extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String CourseToEnroll = "COURSENEEDSPUNCHES";
 	private static String CourseNameDisplayed = "CourseNeedsPunches";
-	private static String CourseStartMonth = "Aug";
+	private static String CourseStartMonth = "Nov";
 	private static int CourseStartYear = 2021;
 	private static DashboardPO d;
 	private static ClassSignUpPO c;
@@ -77,7 +77,7 @@ public class CourseDetailsPopupUIValidation extends base {
 		Assert.assertEquals(c.getClasslabel().getText(), CourseNameDisplayed);
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Course Instructor: Andrea"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Class Length: 60 min"));
-		Assert.assertTrue(c.getDetailsPopup().getText().contains("Date: 08/21/2021 - 08/30/2021"));
+		Assert.assertTrue(c.getDetailsPopup().getText().contains("Date: 11/21/2021 - 11/30/2021"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Time: 11:00 AM"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("Days: MON, WED, THU, FRI"));
 		Assert.assertTrue(c.getDetailsPopup().getText().contains("- COURSE DESCRIPTION -"));

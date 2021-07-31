@@ -33,10 +33,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
-	private static String CourseStartMonth = "Aug";
+	private static String CourseStartMonth = "Nov";
 	private static int CourseStartYear = 2021;
-	private static String dsiredMonthYear = "August 2021";
-	private static String courseDate = "Date: 08/21/2021";
+	private static String dsiredMonthYear = "November 2021";
+	private static String courseDate = "Date: 11/21/2021";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
