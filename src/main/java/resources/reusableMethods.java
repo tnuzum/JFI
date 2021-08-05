@@ -52,6 +52,30 @@ public class reusableMethods extends base {
 		rw.setDriver(wd);
 	}
 
+	public String nonHohActiveEwaiver() throws InterruptedException {
+
+		rw.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("nonHohActiveEwaiver_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("nonHohActiveEwaiver_password"));
+		l.getLoginButton().click();
+		Thread.sleep(1000);
+
+		return null;
+	}
+
+	public String HohActiveEwaiver() throws InterruptedException {
+
+		rw.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("HohActiveEwaiver_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("HohActiveEwaiver_password"));
+		l.getLoginButton().click();
+		Thread.sleep(1000);
+
+		return null;
+	}
+
 	public String activeMember1Login() throws InterruptedException {
 
 		rw.waitForLoginLoginButton();
@@ -59,6 +83,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember1_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -69,6 +95,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember2_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember2_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -79,6 +107,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember3_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember3_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -89,6 +119,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember4_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember4_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -99,6 +131,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember5_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember5_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -109,6 +143,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember6_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember6_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -119,6 +155,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember7_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember7_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -129,6 +167,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember8_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember8_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -139,6 +179,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys("NoOAMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -149,6 +191,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys("NoCCMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -159,6 +203,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys("NoOANoCCMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -174,8 +220,42 @@ public class reusableMethods extends base {
 		log.info("User name entered");
 		l.getuserPassword().sendKeys(password);
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded1();
 		return null;
+	}
+
+	public String activeGridMemberLogin(String username, String password) throws InterruptedException {
+		rw.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().click();
+		log.info("User name element clicked");
+		l.getuserName().clear();
+		log.info("User name element cleared");
+		l.getuserName().sendKeys(username);
+		log.info("User name entered");
+		l.getuserPassword().sendKeys(password);
+		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded("01/01/2000");
+		rw.waitForDashboardLoaded1();
+		return null;
+	}
+
+	public void enterDOBIfNeeded(String DOB) {
+
+		LoginPO l = new LoginPO(driver);
+		int count = l.getDobMembers().size();
+		if (count > 0) {
+			for (int i = 0; i < count; i++) {
+				l.getDobInputFields().get(i).click();
+				driver.findElement(By.tagName("button"));
+				l.getDobInputFields().get(i).sendKeys(DOB);
+			}
+			l.getContinueButton().click();
+		}
+
 	}
 
 	public String collectionsMember1Login() throws InterruptedException {
@@ -184,6 +264,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("collectionsMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("collectionsMember1_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded1();
 		return null;
 	}
@@ -194,6 +276,8 @@ public class reusableMethods extends base {
 		l.getuserName().sendKeys(prop.getProperty("prospectMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("prospectMember1_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded1();
 		return null;
 	}
@@ -448,18 +532,21 @@ public class reusableMethods extends base {
 		}
 	}
 
-	public String catchErrorMessage() throws InterruptedException {
+	public String catchErrorMessage() throws InterruptedException, IOException {
 		boolean e = this.catchErrorMessagePrivate();
 
 		if (e == true) {
 			System.out.println("ERROR: An Error Has Occurred");
 			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("catchErrorMessage", driver);
 			er.getOKButton().click();
 			e = this.catchErrorMessagePrivate();
 			if (e == false) {
 				this.returnToDashboard();
 			} else {
 				System.out.println("Error is not going away");
+				log.error("Error is not going away");
 			}
 //			Assert.assertFalse(e);
 		}
@@ -645,7 +732,7 @@ public class reusableMethods extends base {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-lg-9']"));
 		int monthCount = MonthNames.findElements(By.tagName("label")).size();
 		for (int i = 0; i < monthCount; i++) {
 			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
@@ -691,6 +778,8 @@ public class reusableMethods extends base {
 
 	public Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) throws InterruptedException {
 
+		Thread.sleep(2000);
+
 		int ClassOrCourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 
 		for (int j = 0; j < ClassOrCourseCount; j++) {
@@ -711,6 +800,7 @@ public class reusableMethods extends base {
 				break;
 			}
 		}
+		Thread.sleep(4000);
 		return null;
 	}
 
@@ -988,7 +1078,7 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Jun");
+		monthDropdown.selectByVisibleText("Nov");
 		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
 		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
@@ -1182,7 +1272,7 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Aug");
+		monthDropdown.selectByVisibleText("Nov");
 		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
 		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
@@ -2062,7 +2152,7 @@ public class reusableMethods extends base {
 			Thread.sleep(2000);
 			log.info("calendar date was clicked again");
 			System.out.println("calendar date was clicked again");
-			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+			selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("style");
 			i++;
 			System.out.println(i);
 			log.info(i);
@@ -2154,13 +2244,13 @@ public class reusableMethods extends base {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		PaymentPO p = new PaymentPO(driver);
 
-		String ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
+		String ariaExpanded = p.getNewCardForm().getAttribute("aria-expanded");
 
-		while (ariaExpanded.equals("false")) {
+		while (ariaExpanded.contains("false")) {
 			jse.executeScript("arguments[0].click();", p.getSelectPaymentNewCardButton());
 			log.error("NewCard Button was clicked again");
 			System.out.println("NewCard Button was clicked again");
-			ariaExpanded = driver.findElement(By.id("newcard")).getAttribute("aria-expanded");
+			ariaExpanded = p.getNewCardForm().getAttribute("aria-expanded");
 		}
 		return null;
 
@@ -2702,7 +2792,7 @@ public class reusableMethods extends base {
 	}
 
 	public Object enrollInClass(String classToEnroll, String paymentOption, String payMethod, String classFee)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
@@ -2726,6 +2816,7 @@ public class reusableMethods extends base {
 			c.getPopupSignUpButton().click();
 
 		} else {
+			getScreenshot("SignUp Button", driver);
 			c.getPopupCancelButton().click();
 			Assert.fail("SignUp button not available");
 
@@ -2744,73 +2835,91 @@ public class reusableMethods extends base {
 
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
-		Thread.sleep(5000);
-		if (!classFee.equalsIgnoreCase("Free")) {
+		boolean e = this.catchErrorMessagePrivate();
 
-			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
+		if (e == true) {
+			System.out.println("ERROR: An Error Has Occurred");
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("enrollInClass", driver);
+			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			er.getOKButton().click();
+		}
+		e = this.catchErrorMessagePrivate();
+		if (e == true) {
+			System.out.println("Error is not going away");
+			log.error("Error is not going away");
+			getScreenshot("enrollInClass", driver);
+			this.returnToDashboard();
+		} else {
 
-				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+			Thread.sleep(5000);
+			if (!classFee.equalsIgnoreCase("Free")) {
 
-				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+				if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
 
-				{
-					Thread.sleep(1000);
-					;
-				}
+					wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
-				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
-				if (payMethod.equalsIgnoreCase("Saved Card")) {
+					while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
-					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
-					for (int i = 0; i < count; i++) {
-						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-								.contains("5454")) {
+					{
+						Thread.sleep(1000);
+						;
+					}
 
-							jse.executeScript("arguments[0].scrollIntoView(true);",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+					wait.until(ExpectedConditions
+							.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
+					if (payMethod.equalsIgnoreCase("Saved Card")) {
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+						int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+						for (int i = 0; i < count; i++) {
+							if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+									.contains("5454")) {
 
-							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-							break;
+								jse.executeScript("arguments[0].scrollIntoView(true);",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								jse.executeScript("arguments[0].click();",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+								break;
+							}
 						}
 					}
-				}
-				while (!PM.getPaymentButton().isEnabled()) {
-					Thread.sleep(1000);
-				}
+					while (!PM.getPaymentButton().isEnabled()) {
+						Thread.sleep(1000);
+					}
 
-				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+					jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+
+				}
+			}
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			// Verifies the success message
+//		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			PP.getPopupOKButton().click();
+			Thread.sleep(2000);
+
+			int count1 = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count1; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+				{
+					// rw.linksToBeClickable();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
+					break;
+				}
 
 			}
+			rw.waitForDashboardLoaded();
 		}
-		rw.waitForAcceptButton();
-		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
-		// Verifies the success message
-		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
-		PP.getPopupOKButton().click();
-		Thread.sleep(2000);
-
-		int count1 = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < count1; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-			{
-				// rw.linksToBeClickable();
-				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-				break;
-			}
-
-		}
-		rw.waitForDashboardLoaded();
 
 		return null;
 	}
 
 	public Object enrollInCourse(String courseToEnroll, String paymentOption, String payMethod, String courseFee,
-			String CourseStartMonth, int CourseStartYear) throws InterruptedException {
+			String CourseStartMonth, int CourseStartYear) throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
@@ -2838,6 +2947,7 @@ public class reusableMethods extends base {
 			c.getPopupSignupButtonCourse().click();
 
 		} else {
+			getScreenshot("SignUp Button", driver);
 			c.getPopupCancelButtonCourse().click();
 			Assert.fail("SignUp button not available");
 
@@ -2856,67 +2966,85 @@ public class reusableMethods extends base {
 
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
-		Thread.sleep(5000);
-		if (!courseFee.equalsIgnoreCase("Free")) {
+		boolean e = this.catchErrorMessagePrivate();
 
-			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
+		if (e == true) {
+			System.out.println("ERROR: An Error Has Occurred");
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("enrollInCourse", driver);
+			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			er.getOKButton().click();
+		}
+		e = this.catchErrorMessagePrivate();
+		if (e == true) {
+			System.out.println("Error is not going away");
+			log.error("Error is not going away");
+			getScreenshot("enrollInCourse", driver);
+			this.returnToDashboard();
+		} else {
 
-				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+			Thread.sleep(5000);
+			if (!courseFee.equalsIgnoreCase("Free")) {
 
-				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+				if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
 
-				{
-					Thread.sleep(1000);
-					;
-				}
+					wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
-				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
-				if (payMethod.equalsIgnoreCase("Saved Card")) {
+					while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
-					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
-					for (int i = 0; i < count; i++) {
-						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-								.contains("5454")) {
+					{
+						Thread.sleep(1000);
+						;
+					}
 
-							jse.executeScript("arguments[0].scrollIntoView(true);",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+					wait.until(ExpectedConditions
+							.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
+					if (payMethod.equalsIgnoreCase("Saved Card")) {
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+						int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+						for (int i = 0; i < count; i++) {
+							if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+									.contains("5454")) {
 
-							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-							break;
+								jse.executeScript("arguments[0].scrollIntoView(true);",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								jse.executeScript("arguments[0].click();",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+								break;
+							}
 						}
 					}
-				}
-				while (!PM.getPaymentButton().isEnabled()) {
-					Thread.sleep(1000);
-				}
+					while (!PM.getPaymentButton().isEnabled()) {
+						Thread.sleep(1000);
+					}
 
-				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+					jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+
+				}
+			}
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			// Verifies the success message
+//		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			PP.getPopupOKButton().click();
+			Thread.sleep(2000);
+
+			int count1 = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count1; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+				{
+					// rw.linksToBeClickable();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
+					break;
+				}
 
 			}
+			rw.waitForDashboardLoaded();
 		}
-		rw.waitForAcceptButton();
-		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
-		// Verifies the success message
-		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
-		PP.getPopupOKButton().click();
-		Thread.sleep(2000);
-
-		int count1 = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < count1; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-			{
-				// rw.linksToBeClickable();
-				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-				break;
-			}
-
-		}
-		rw.waitForDashboardLoaded();
 
 		return null;
 	}
@@ -2946,7 +3074,7 @@ public class reusableMethods extends base {
 
 	}
 
-	public Object myCourseClickToUnenroll(String dsiredMonthYear) throws InterruptedException {
+	public Object myCourseClickToUnenroll(String dsiredMonthYear) throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -2979,23 +3107,53 @@ public class reusableMethods extends base {
 		}
 
 		Thread.sleep(1000);
-		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadges().get(1));
-		Thread.sleep(1000);
-		cp.getCalDayBadges().get(1).click();
-		Thread.sleep(1000);
-		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
-		Thread.sleep(1000);
-		cp.getCalEventTitle().click();
 
-		Thread.sleep(1000);
-		cp.getUnEnrollBtn().click();
-		Thread.sleep(1000);
+		try {
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadges().get(1));
+			Thread.sleep(1000);
+			cp.getCalDayBadges().get(1).click();
+			Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitle());
+			Thread.sleep(1000);
+			cp.getCalEventTitle().click();
+
+			Thread.sleep(1000);
+			cp.getUnEnrollBtn().click();
+			Thread.sleep(1000);
+
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
+
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(eci.getMessage(), eci);
+			this.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+
+		}
 		return null;
 
 	}
 
 	public Object enrollFamilyMbrInClass(String classToEnroll, String paymentOption, String payMethod, String classFee,
-			String familyMbrName) throws InterruptedException {
+			String familyMbrName) throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
@@ -3015,7 +3173,8 @@ public class reusableMethods extends base {
 
 		this.SelectClassOrCourseToEnroll(classToEnroll.toUpperCase());
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
@@ -3059,6 +3218,7 @@ public class reusableMethods extends base {
 			actions.moveToElement(c.getPopupSignUpButton()).click().perform();
 
 		} else {
+			getScreenshot("SignUp Button", driver);
 			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButton());
 			actions.moveToElement(c.getPopupCancelButton()).click().perform();
 			Assert.fail("SignUp button not available");
@@ -3077,73 +3237,90 @@ public class reusableMethods extends base {
 		}
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
-		Thread.sleep(5000);
-		if (!classFee.equalsIgnoreCase("Free")) {
+		boolean e = this.catchErrorMessagePrivate();
 
-			if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
+		if (e == true) {
+			System.out.println("ERROR: An Error Has Occurred");
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("enrollFamilyMbrInClass", driver);
+			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			er.getOKButton().click();
+		}
+		e = this.catchErrorMessagePrivate();
+		if (e == true) {
+			System.out.println("Error is not going away");
+			log.error("Error is not going away");
+			getScreenshot("enrollFamilyMbrInClass", driver);
+			this.returnToDashboard();
+		} else {
 
-				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+			Thread.sleep(5000);
+			if (!classFee.equalsIgnoreCase("Free")) {
 
-				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+				if (paymentOption.equalsIgnoreCase("Pay Single Class Fee")) {
 
-				{
-					Thread.sleep(1000);
-					;
-				}
+					wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
-				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
-				if (payMethod.equalsIgnoreCase("Saved Card")) {
+					while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
-					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
-					for (int i = 0; i < count; i++) {
-						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-								.contains("5454")) {
+					{
+						Thread.sleep(1000);
+						;
+					}
 
-							jse.executeScript("arguments[0].scrollIntoView(true);",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+					wait.until(ExpectedConditions
+							.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
+					if (payMethod.equalsIgnoreCase("Saved Card")) {
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+						int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+						for (int i = 0; i < count; i++) {
+							if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+									.contains("5454")) {
 
-							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-							break;
+								jse.executeScript("arguments[0].scrollIntoView(true);",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								jse.executeScript("arguments[0].click();",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+								break;
+							}
 						}
 					}
+					while (!PM.getPaymentButton().isEnabled()) {
+						Thread.sleep(1000);
+					}
+					jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+
 				}
-				while (!PM.getPaymentButton().isEnabled()) {
-					Thread.sleep(1000);
+			}
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			// Verifies the success message
+//		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			PP.getPopupOKButton().click();
+			Thread.sleep(1000);
+
+			int count1 = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count1; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+				{
+					// rw.linksToBeClickable();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
+					break;
 				}
-				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
 
 			}
+			rw.waitForDashboardLoaded();
 		}
-		rw.waitForAcceptButton();
-		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
-		// Verifies the success message
-		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
-		PP.getPopupOKButton().click();
-		Thread.sleep(1000);
-
-		int count1 = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < count1; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-			{
-				// rw.linksToBeClickable();
-				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-				break;
-			}
-
-		}
-		rw.waitForDashboardLoaded();
-
 		return null;
 	}
 
 	public Object enrollFamilyMbrInCourse(String courseToEnroll, String paymentOption, String payMethod,
 			String courseFee, String CourseStartMonth, String familyMbrName, int CourseStartYear)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
@@ -3166,7 +3343,8 @@ public class reusableMethods extends base {
 
 		this.SelectClassOrCourseToEnroll(courseToEnroll.toUpperCase());
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
@@ -3207,6 +3385,7 @@ public class reusableMethods extends base {
 			actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
 
 		} else {
+			getScreenshot("SignUp Button", driver);
 			jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupCancelButtonCourse());
 			actions.moveToElement(c.getPopupCancelButtonCourse()).click().perform();
 			Assert.fail("SignUp button not available");
@@ -3226,72 +3405,90 @@ public class reusableMethods extends base {
 
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 
-		Thread.sleep(5000);
-		if (!courseFee.equalsIgnoreCase("Free")) {
+		boolean e = this.catchErrorMessagePrivate();
 
-			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
+		if (e == true) {
+			System.out.println("ERROR: An Error Has Occurred");
+			log.error("ERROR: An Error Has Occurred");
+			getScreenshot("enrollFamilyMbrInCourse", driver);
+			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			er.getOKButton().click();
+		}
+		e = this.catchErrorMessagePrivate();
+		if (e == true) {
+			System.out.println("Error is not going away");
+			log.error("Error is not going away");
+			getScreenshot("enrollFamilyMbrInCourse", driver);
+			this.returnToDashboard();
+		} else {
 
-				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
-				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+			Thread.sleep(5000);
+			if (!courseFee.equalsIgnoreCase("Free")) {
 
-				{
-					Thread.sleep(1000);
-					;
-				}
+				if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
 
-				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
-				if (payMethod.equalsIgnoreCase("Saved Card")) {
+					wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+					while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
-					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
-					for (int i = 0; i < count; i++) {
-						if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
-								.contains("5454")) {
+					{
+						Thread.sleep(1000);
+						;
+					}
 
-							jse.executeScript("arguments[0].scrollIntoView(true);",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+					wait.until(ExpectedConditions
+							.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
+					if (payMethod.equalsIgnoreCase("Saved Card")) {
 
-							jse.executeScript("arguments[0].click();",
-									PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+						int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
+						for (int i = 0; i < count; i++) {
+							if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+									.contains("5454")) {
 
-							// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
-							break;
+								jse.executeScript("arguments[0].scrollIntoView(true);",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								jse.executeScript("arguments[0].click();",
+										PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i));
+
+								// PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).click();
+								break;
+							}
 						}
 					}
-				}
-				while (!PM.getPaymentButton().isEnabled()) {
-					Thread.sleep(1000);
-				}
+					while (!PM.getPaymentButton().isEnabled()) {
+						Thread.sleep(1000);
+					}
 
-				jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+					jse.executeScript("arguments[0].click();", PM.getPaymentButton());
+
+				}
+			}
+			rw.waitForAcceptButton();
+			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
+			// Verifies the success message
+//		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			PP.getPopupOKButton().click();
+			Thread.sleep(1000);
+
+			int count1 = driver.findElements(By.tagName("a")).size();
+			for (int i = 0; i < count1; i++) {
+				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
+
+				{
+					// rw.linksToBeClickable();
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
+					break;
+				}
 
 			}
+			rw.waitForDashboardLoaded();
 		}
-		rw.waitForAcceptButton();
-		wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
-		// Verifies the success message
-		Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
-		PP.getPopupOKButton().click();
-		Thread.sleep(1000);
-
-		int count1 = driver.findElements(By.tagName("a")).size();
-		for (int i = 0; i < count1; i++) {
-			if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-			{
-				// rw.linksToBeClickable();
-				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-				break;
-			}
-
-		}
-		rw.waitForDashboardLoaded();
 
 		return null;
 	}
 
 	public Object familyClassClickToUnenroll(String classEnrolled, String enrolledMemberName)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
@@ -3324,33 +3521,41 @@ public class reusableMethods extends base {
 		 * Thread.sleep(1000); cp.getCalDayBadge().click();
 		 */
 		Thread.sleep(1000);
+		try {
+			int eventCount = cp.getCalEventTitles().size();
 
-		int eventCount = cp.getCalEventTitles().size();
+			for (int i = 0; i < eventCount; i++) {
 
-		for (int i = 0; i < eventCount; i++) {
+				if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
 
-			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
-
-				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
-				Thread.sleep(1000);
-				Actions a = new Actions(driver);
-				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
-				break;
+					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+					Thread.sleep(1000);
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
+					break;
+				}
 			}
+
+			Thread.sleep(1000);
+
+			Assert.assertTrue(cp.getClassName().getText().contains(classEnrolled));
+			Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
+			cp.getUnEnrollBtn().click();
+			Thread.sleep(1000);
+		} catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			log.error("No Element present");
+			ne.printStackTrace();
+			getScreenshot("familyClassUnenroll", driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
 		}
-
-		Thread.sleep(1000);
-
-		Assert.assertTrue(cp.getClassName().getText().contains(classEnrolled));
-		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
-		cp.getUnEnrollBtn().click();
-		Thread.sleep(1000);
 		return null;
 
 	}
 
 	public Object familyCourseClickToUnenroll(String dsiredMonthYear, String classEnrolled, String enrolledMemberName)
-			throws InterruptedException {
+			throws InterruptedException, IOException {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		DashboardPO d = new DashboardPO(driver);
 		CalendarPO cp = new CalendarPO(driver);
@@ -3386,32 +3591,61 @@ public class reusableMethods extends base {
 
 		Thread.sleep(1000);
 
-		jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
-		Thread.sleep(1000);
-		cp.getCalDayBadge().click();
+		try {
 
-		Thread.sleep(1000);
+			jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalDayBadge());
+			Thread.sleep(1000);
+			cp.getCalDayBadge().click();
 
-		int eventCount = cp.getCalEventTitles().size();
+			Thread.sleep(1000);
 
-		for (int i = 0; i < eventCount; i++) {
+			int eventCount = cp.getCalEventTitles().size();
 
-			if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
+			for (int i = 0; i < eventCount; i++) {
 
-				jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
-				Thread.sleep(1000);
-				Actions a = new Actions(driver);
-				a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
-				break;
+				if (cp.getCalEventTitles().get(i).getText().contains(classEnrolled)) {
+
+					jse.executeScript("arguments[0].scrollIntoView(true);", cp.getCalEventTitles().get(i));
+					Thread.sleep(1000);
+					Actions a = new Actions(driver);
+					a.moveToElement(cp.getCalEventTitles().get(i)).click().build().perform();
+					break;
+				}
 			}
+
+			Thread.sleep(1000);
+
+			Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
+			Thread.sleep(1000);
+			cp.getUnEnrollBtn().click();
+			Thread.sleep(1000);
+
+		} catch (java.lang.AssertionError ae) {
+			System.out.println("assertion error");
+			ae.printStackTrace();
+			getScreenshot("familyCourseClickToUnenroll", driver);
+			log.error(ae.getMessage(), ae);
+			ae.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 
-		Thread.sleep(1000);
+		catch (org.openqa.selenium.NoSuchElementException ne) {
+			System.out.println("No element present");
+			ne.printStackTrace();
+			getScreenshot("familyCourseClickToUnenroll", driver);
+			log.error(ne.getMessage(), ne);
+			// Assert.fail(ne.getMessage());
+		}
 
-		Assert.assertTrue(cp.getEnrolledMemberName().getText().contains(enrolledMemberName));
-		Thread.sleep(1000);
-		cp.getUnEnrollBtn().click();
-		Thread.sleep(1000);
+		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
+			System.out.println("Element Click Intercepted");
+			eci.printStackTrace();
+			getScreenshot("familyCourseClickToUnenroll", driver);
+			log.error(eci.getMessage(), eci);
+			this.catchErrorMessage();
+			// Assert.fail(eci.getMessage());
+
+		}
 		return null;
 
 	}
@@ -3423,7 +3657,7 @@ public class reusableMethods extends base {
 
 		for (int i = 0; i < count; i++) {
 
-			paymethods.add(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText());
+			paymethods.add(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().trim());
 		}
 
 		Assert.assertTrue(paymethods.contains("On Account"));
@@ -3434,7 +3668,7 @@ public class reusableMethods extends base {
 					.contains(" On Account"))
 
 			{
-				Assert.assertTrue(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				Assert.assertTrue(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isEnabled());
 				break;
 			}
 		}

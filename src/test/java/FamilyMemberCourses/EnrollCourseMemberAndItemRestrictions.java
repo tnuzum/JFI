@@ -25,8 +25,8 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 	private static int CourseStartYear = 2019;
 	private static int CourseStartYear1 = 2021;
 	private static String CourseStartMonth1 = "Jan";
-	private static String CourseStartMonth2 = "Jun";
-	private static String dsiredMonthYear = "June 2021";
+	private static String CourseStartMonth2 = "Nov";
+	private static String dsiredMonthYear = "November 2021";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
@@ -403,12 +403,14 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 
 			WebDriverWait wait = new WebDriverWait(driver, 50);
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
-
-			rm.SelectCourseStartMonth(CourseStartMonth1);
-
-			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+			Thread.sleep(3000);
 
 			rm.SelectCourseStartYear(CourseStartYear);
+
+			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
+			Thread.sleep(3000);
+
+			rm.SelectCourseStartMonth(CourseStartMonth1);
 
 			wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(By.id("courses"))));
 
@@ -634,7 +636,7 @@ public class EnrollCourseMemberAndItemRestrictions extends base {
 		jse.executeScript("arguments[0].scrollIntoView(true);", c.getPopupSignupButtonCourse());
 		Actions actions = new Actions(driver);
 		actions.moveToElement(c.getPopupSignupButtonCourse()).click().perform();
-		c.getPopupSignupButtonCourse().click();
+//		c.getPopupSignupButtonCourse().click();
 		Thread.sleep(2000);
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
 		rw.waitForAcceptButton();

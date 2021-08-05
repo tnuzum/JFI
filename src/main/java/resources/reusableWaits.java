@@ -246,10 +246,9 @@ public class reusableWaits extends base {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 
 		try {
-			wait.until(ExpectedConditions.attributeContains(ap.getSelectATimeDrawer(), "ng-reflect-opened", "true"));
 			wait.until(ExpectedConditions.attributeContains(ap.getSelectATimeDrawer(), "style", "visible"));
-			System.out.println(ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened"));
-			log.info(ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened"));
+			System.out.println(ap.getSelectATimeDrawer().getAttribute("style"));
+			log.info(ap.getSelectATimeDrawer().getAttribute("style"));
 		} catch (Exception e) {
 			log.error("Select A Time drawer is not opened");
 
@@ -260,13 +259,13 @@ public class reusableWaits extends base {
 	public Object waitForNewCardFormToOpen() {
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
+		PaymentPO p = new PaymentPO(driver);
 
 		try {
-			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("newcard")), "aria-expanded",
-					"true"));
-			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("newcard")), "class", "in"));
-			System.out.println(driver.findElement(By.id("newcard")).getAttribute("aria-expanded"));
-			log.info(driver.findElement(By.id("newcard")).getAttribute("aria-expanded"));
+			wait.until(ExpectedConditions.attributeContains(p.getNewCardForm(), "aria-expanded", "true"));
+
+			System.out.println(p.getNewCardForm().getAttribute("aria-expanded"));
+			log.info(p.getNewCardForm().getAttribute("aria-expanded"));
 		} catch (Exception e) {
 			log.error("New card form is not opened");
 			System.out.println("New card form is not opened");

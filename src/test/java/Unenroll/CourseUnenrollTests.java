@@ -47,8 +47,8 @@ public class CourseUnenrollTests extends base {
 	private static String courseToEnroll16 = "UnenrollCourse16";
 	private static String courseToEnroll17 = "UnenrollCourse17";
 
-	private static String CourseStartMonth = "Aug";
-	private static String dsiredMonthYear = "August 2021";
+	private static String CourseStartMonth = "Nov";
+	private static String dsiredMonthYear = "November 2021";
 	private static int CourseStartYear = 2021;
 	private static String paymentOption1 = "Use Existing Package";
 	private static String paymentOption2 = "Pay Course Fee";
@@ -139,7 +139,7 @@ public class CourseUnenrollTests extends base {
 			wait.until(ExpectedConditions.textToBePresentInElement(u.getClassNameTitle(), courseToEnroll1));
 
 			Assert.assertEquals("Course", u.getType().getText());
-			Assert.assertEquals("05/10/2021", u.getStartDate().getText());
+			Assert.assertNotNull(u.getStartDate().getText());
 			Assert.assertEquals("7:00 AM", u.getStartTime().getText());
 			Assert.assertEquals("30 min", u.getDuration().getText());
 			Assert.assertEquals("Max Gibbs", u.getInstructor().getText());
@@ -191,6 +191,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -281,6 +299,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -364,6 +400,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -446,6 +500,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -509,6 +581,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -579,6 +669,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -640,6 +748,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -701,6 +827,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -761,6 +905,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -849,6 +1011,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -937,6 +1117,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -1026,6 +1224,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -1096,6 +1312,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -1157,6 +1391,24 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
@@ -1246,10 +1498,28 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
-	@Test(priority = 16, description = "Unenroll Free Course - Refund not allowed")
+	@Test(priority = 16, description = "Unenroll Free Course - Refund not allowed", enabled = false)
 	public void Unenroll_Scenario15() throws IOException, InterruptedException {
 
 		try {
@@ -1310,10 +1580,28 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
-	@Test(priority = 17, description = "Payment and Refund Methods displaying On Account and Credit cards should follow the Home club's configuration")
+	@Test(priority = 17, description = "Payment and Refund Methods displaying On Account and Credit cards should follow the Home club's configuration", enabled = false)
 	public void Unenroll_Scenario16() throws IOException, InterruptedException {
 
 		try {
@@ -1367,7 +1655,7 @@ public class CourseUnenrollTests extends base {
 
 			Thread.sleep(5000);
 			wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
-			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 
 			rm.selectSavedcard();
 
@@ -1476,10 +1764,28 @@ public class CourseUnenrollTests extends base {
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
 
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 	}
 
-	@Test(priority = 18, description = "course Start time in the future but unenrollment time falls inside the cannot cancel window")
+	@Test(priority = 18, description = "course Start time in the future but unenrollment time falls inside the cannot cancel window", enabled = false)
 	public void Unenroll_Scenario17() throws IOException, InterruptedException {
 
 		try {
@@ -1525,6 +1831,24 @@ public class CourseUnenrollTests extends base {
 			log.error(eci.getMessage(), eci);
 			rm.catchErrorMessage();
 			// Assert.fail(eci.getMessage());
+		} catch (java.lang.IndexOutOfBoundsException iobe) {
+			System.out.println("index out of bounds exception");
+			log.error("index out of bounds exception");
+			iobe.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(iobe.getMessage(), iobe);
+			iobe.printStackTrace();
+			// Assert.fail(ae.getMessage());
+		}
+
+		catch (org.openqa.selenium.TimeoutException te) {
+			System.out.println("Time out exception");
+			log.error("Time out exception");
+			te.printStackTrace();
+			getScreenshot("myCourseClickToUnenroll", driver);
+			log.error(te.getMessage(), te);
+			te.printStackTrace();
+			// Assert.fail(ae.getMessage());
 		}
 
 	}

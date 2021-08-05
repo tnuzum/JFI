@@ -29,7 +29,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	private static String classNameDisplayed = "Barre Combat Fusion";
 	private static String courseToEnroll = "FEECOURSE";
 	private static String courseNameDisplayed = "FeeCourse";
-	private static String CourseStartMonth = "Jun";
+	private static String CourseStartMonth = "Nov";
 	private static int CourseStartYear = 2021;
 	public reusableWaits rw;
 	public reusableMethods rm;

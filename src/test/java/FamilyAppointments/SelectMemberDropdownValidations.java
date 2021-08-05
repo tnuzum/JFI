@@ -39,6 +39,7 @@ public class SelectMemberDropdownValidations extends base {
 	private static List<WebElement> ProductCategories;
 	private static AppointmentsPO ap;
 	private static JavascriptExecutor jse;
+	private static WebElement bic;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -346,7 +347,10 @@ public class SelectMemberDropdownValidations extends base {
 	public void VerifyPackagePriceForFamilyMember() throws InterruptedException, IOException {
 
 		try {
+			bic = ap.getBookableItemCategory();
 
+			s2 = new Select(bic);
+			ProductCategories = s2.getOptions();
 			int count = ProductCategories.size();
 			System.out.println(count);
 

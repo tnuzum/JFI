@@ -14,6 +14,7 @@
 			<class name="EME.PageLaunchTest" />
 			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
+			<class name="EME.missingDob" />
 			<class name="PayBalance.PayBalance_StoredCard" />
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
@@ -24,7 +25,7 @@
 	<test name="Shop Packages And Class Course Ui Validations"
 		parallel="none" preserve-order="true" group-by-instances="true">
 		<classes>
-			<class name="ShopPackages.ShopAndPurchasePackages" />
+			<!--class name="ShopPackages.ShopAndPurchasePackages" /-->
 			<class name="SingleMemberClasses.SelectClassesPageLayout" />
 			<class name="SingleMemberCourses.SelectCoursesPageLayout" />
 			<class name="SingleMemberClasses.EnrollClass_ClubSettings" />

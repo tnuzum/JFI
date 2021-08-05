@@ -1,6 +1,8 @@
 package resources;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -57,6 +59,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember1_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember1_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -67,6 +71,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember2_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember2_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -77,6 +83,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember3_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember3_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -87,6 +95,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember4_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember4_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -97,6 +107,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember5_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember5_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -107,6 +119,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember6_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember6_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -117,6 +131,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember7_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember7_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -127,6 +143,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys(prop.getProperty("activeMember8_username"));
 		l.getuserPassword().sendKeys(prop.getProperty("activeMember8_password"));
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -137,6 +155,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys("NoOAMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -147,6 +167,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys("NoCCMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -157,6 +179,8 @@ public class reusableMethods2 extends base {
 		l.getuserName().sendKeys("NoOANoCCMember");
 		l.getuserPassword().sendKeys("Testing1!");
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded();
 		return null;
 	}
@@ -172,8 +196,25 @@ public class reusableMethods2 extends base {
 		log.info("User name entered");
 		l.getuserPassword().sendKeys(password);
 		l.getLoginButton().click();
+		Thread.sleep(1000);
+		this.enterDOBIfNeeded(prop.getProperty("memberDOB"));
 		rw.waitForDashboardLoaded1();
 		return null;
+	}
+
+	public void enterDOBIfNeeded(String DOB) {
+
+		LoginPO l = new LoginPO(driver);
+		int count = l.getDobMembers().size();
+		if (count > 0) {
+			for (int i = 0; i < count; i++) {
+				l.getDobInputFields().get(i).click();
+				driver.findElement(By.tagName("button"));
+				l.getDobInputFields().get(i).sendKeys(DOB);
+			}
+			l.getContinueButton().click();
+		}
+
 	}
 
 	public String collectionsMember1Login() throws InterruptedException {
@@ -213,10 +254,10 @@ public class reusableMethods2 extends base {
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		Thread.sleep(1000);
-		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-		while (leftMenuOpen.equals("false")) {
+		String leftMenuOpen = d.getLeftMenu().getAttribute("style");
+		while (leftMenuOpen.contains("hidden")) {
 			jse.executeScript("arguments[0].click();", d.getMenuButton());
-			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
+			leftMenuOpen = d.getLeftMenu().getAttribute("style");
 		}
 		wait.until(ExpectedConditions.elementToBeClickable(d.getDashboardButton()));
 
@@ -367,6 +408,10 @@ public class reusableMethods2 extends base {
 			Thread.sleep(1000);
 			UnenrollPO u = new UnenrollPO(driver);
 			WebDriverWait wait = new WebDriverWait(driver, 60);
+			while (u.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for enrollment details to display");
+				Thread.sleep(1000);
+			}
 			wait.until(ExpectedConditions.visibilityOf(u.getUnenrollNoRefund()));
 			wait.until(ExpectedConditions.elementToBeClickable(u.getUnenrollNoRefund()));
 			jse.executeScript("arguments[0].click();", u.getUnenrollNoRefund());
@@ -557,10 +602,10 @@ public class reusableMethods2 extends base {
 				"Participants with a valid email address on file will receive a confirmation email with details of this purchase."));
 
 		// Verifies the links to navigate to Dashboard and other pages are displayed
-		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/Home']")));
-		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/ClassList']")));
-		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/CourseList']")));
-		Assert.assertTrue(this.isElementPresent(By.xpath("//a[@href = '#/Appointments']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//div[@class = 'row']//a[@href = '/home']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//div[@class = 'row']//a[@href = '/ClassList']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//div[@class = 'row']//a[@href = '/CourseList']")));
+		Assert.assertTrue(this.isElementPresent(By.xpath("//div[@class = 'row']//a[@href = '/Appointments']")));
 		return null;
 	}
 
@@ -639,7 +684,7 @@ public class reusableMethods2 extends base {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 
-		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-md-9']"));
+		WebElement MonthNames = driver.findElement(By.xpath("//div[@class='col-lg-9']"));
 		int monthCount = MonthNames.findElements(By.tagName("label")).size();
 		for (int i = 0; i < monthCount; i++) {
 			String monthName = MonthNames.findElements(By.tagName("label")).get(i).getText();
@@ -684,6 +729,8 @@ public class reusableMethods2 extends base {
 	}
 
 	public Object SelectClassOrCourseToEnroll(String ClassOrCourseToEnroll) throws InterruptedException {
+
+		Thread.sleep(2000);
 
 		int ClassOrCourseCount = driver.findElements(By.xpath("//div[contains(@class, 'column2')]")).size();
 
@@ -909,7 +956,7 @@ public class reusableMethods2 extends base {
 					|| FOPRowSections.get(1).getText().equals("Checking"))
 					&& FOPRowSections.get(2).getText().equals(fopNumber)) {
 				driver.findElements(By.xpath("//i[@class = 'fa fa-2x fa-times']")).get(i - 3).click();
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 				driver.findElement(By.xpath("//a[@id='btn_ConfirmDel']")).click();
 				break;
 			}
@@ -982,7 +1029,7 @@ public class reusableMethods2 extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Jun");
+		monthDropdown.selectByVisibleText("Nov");
 		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
 		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
@@ -1176,7 +1223,7 @@ public class reusableMethods2 extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Aug");
+		monthDropdown.selectByVisibleText("Nov");
 		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
 		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
@@ -2033,10 +2080,10 @@ public class reusableMethods2 extends base {
 
 		DashboardPO d = new DashboardPO(driver);
 
-		String leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
-		while (leftMenuOpen.equals("false")) {
+		String leftMenuOpen = d.getLeftMenu().getAttribute("style");
+		while (leftMenuOpen.contains("hidden")) {
 			d.getMenuButton().click();
-			leftMenuOpen = d.getLeftMenu().getAttribute("ng-reflect-opened");
+			leftMenuOpen = d.getLeftMenu().getAttribute("style");
 		}
 		return null;
 
@@ -2046,11 +2093,11 @@ public class reusableMethods2 extends base {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
 
-		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened");
+		String selectATimeOpen = ap.getSelectATimeDrawer().getAttribute("style");
 
 		int i = 0;
 
-		while (selectATimeOpen.equals("false") && i < 20) {
+		while (selectATimeOpen.contains("hidden") && i < 20) {
 
 			Element.findElement(By.tagName("span")).click();
 			Thread.sleep(2000);
@@ -2465,7 +2512,7 @@ public class reusableMethods2 extends base {
 
 		rw.waitForSelectATimeToOpen();
 
-		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTwodaysAfter());
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		return null;
 
@@ -2577,7 +2624,7 @@ public class reusableMethods2 extends base {
 
 		rw.waitForSelectATimeToOpen();
 
-		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTwodaysAfter());
+		this.OpenSelectATimeDrawerIfNotOpenedInFirstAttempt(ap.getCalendarTomorrow());
 
 		return null;
 
@@ -2745,8 +2792,15 @@ public class reusableMethods2 extends base {
 
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
+				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+				{
+					Thread.sleep(1000);
+					;
+				}
+
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -2850,8 +2904,15 @@ public class reusableMethods2 extends base {
 
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
+				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+				{
+					Thread.sleep(1000);
+					;
+				}
+
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -2995,7 +3056,8 @@ public class reusableMethods2 extends base {
 
 		this.SelectClassOrCourseToEnroll(classToEnroll.toUpperCase());
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
@@ -3064,8 +3126,15 @@ public class reusableMethods2 extends base {
 
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
 
+				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+				{
+					Thread.sleep(1000);
+					;
+				}
+
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -3139,7 +3208,8 @@ public class reusableMethods2 extends base {
 
 		this.SelectClassOrCourseToEnroll(courseToEnroll.toUpperCase());
 
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
@@ -3205,9 +3275,15 @@ public class reusableMethods2 extends base {
 			if (paymentOption.equalsIgnoreCase("Pay Course Fee")) {
 
 				wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+				while (!PM.getOnAccountAndSavedCards().isDisplayed())
+
+				{
+					Thread.sleep(1000);
+					;
+				}
 
 				wait.until(
-						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[@class='fa fa-pencil-square-o']")));
+						ExpectedConditions.presenceOfElementLocated(By.xpath("//i[contains(@class,'fal fa-edit')]")));
 				if (payMethod.equalsIgnoreCase("Saved Card")) {
 
 					int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
@@ -3390,7 +3466,7 @@ public class reusableMethods2 extends base {
 
 		for (int i = 0; i < count; i++) {
 
-			paymethods.add(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText());
+			paymethods.add(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().trim());
 		}
 
 		Assert.assertTrue(paymethods.contains("On Account"));
@@ -3401,7 +3477,7 @@ public class reusableMethods2 extends base {
 					.contains(" On Account"))
 
 			{
-				Assert.assertTrue(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				Assert.assertTrue(u.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isEnabled());
 				break;
 			}
 		}
@@ -3409,12 +3485,14 @@ public class reusableMethods2 extends base {
 		return null;
 	}
 
-	public Object selectSavedcard() {
+	public Object selectSavedcard() throws InterruptedException {
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.textToBePresentInElement(PM.getTotalAmount(), "$"));
+
+		Thread.sleep(2000);
 
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < count; i++) {
@@ -3642,6 +3720,7 @@ public class reusableMethods2 extends base {
 			Thread.sleep(2000);
 
 			int memberCount = ap.getGroupPopupAddButtons().size();
+			System.out.println(memberCount);
 			for (int i = 0; i < memberCount; i++)
 
 			{
@@ -3906,6 +3985,7 @@ public class reusableMethods2 extends base {
 			}
 
 		}
+		Thread.sleep(3000);
 
 		wait.until(ExpectedConditions.textToBePresentInElement(PP.getShopPackageTotalAmount(), "$"));
 		Thread.sleep(3000);
@@ -3960,6 +4040,54 @@ public class reusableMethods2 extends base {
 		}
 
 		return receiptNumber;
+	}
+
+	public void deleteTempFolderFiles() {
+
+		String path = ("C:\\Automation\\Delete.bat");
+
+		try {
+			Runtime.getRuntime().exec(path);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		return;
+	}
+
+	public void runTerminalCommand(String command, String logText) {
+
+		String path = System.getProperty("user.dir");
+		String line;
+
+		try {
+
+			ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "cd \"" + path + "\" && " + command);
+			System.out.println("cd \"" + path + "\" && " + command);
+			Process p = builder.start();
+			Thread.sleep(15000);
+
+			BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			line = r.readLine();
+
+			while (true) {
+				line = r.readLine();
+
+				if (line.contains(logText)) {
+					Thread.sleep(5000);
+					System.out.println(line);
+					break;
+				}
+
+			}
+
+		} catch (Exception e)
+
+		{
+
+			e.printStackTrace();
+		}
+		return;
 	}
 
 }

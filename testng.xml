@@ -16,6 +16,7 @@
 			<class name="EME.PageLaunchTest" />
 			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
+			<class name="EME.missingDob" />
 
 			<class
 				name="PaymentMethods.ShopPackages_AdditionalQuestionsTest" />
@@ -352,8 +353,12 @@
 		<classes>
 
 			<class name="Unenroll.CourseUnenrollTests" />
+			<class name="Unenroll.CourseUnenrollTests2"/>
+        	<class name="Unenroll.CourseUnenrollTests3"/>
 			<class name="Unenroll.FamilyMbrCourseUnenrollTests" />
 			<class name="Unenroll.FamilyMbrCourseUnenrollTests2" />
+			<class name="Unenroll.FamilyMbrCourseUnenrollTests3" />
+			<class name="Unenroll.FamilyMbrCourseUnenrollTests4" />
 
 
 
@@ -375,8 +380,12 @@
 			<class
 				name="Unenroll.Class_NotPromoteFromStandby_UnenrollFallsWithinTheWindow" />
 				<class name="Unenroll.ClassUnenrollTests" />
+				<class name="Unenroll.ClassUnenrollTests2"/>
+       			<class name="Unenroll.ClassUnenrollTests3"/>
 			<class name="Unenroll.FamilyMbrClassUnenrollTests" />
 			<class name="Unenroll.FamilyMbrClassUnenrollTests2" />
+			<class name="Unenroll.FamilyMbrClassUnenrollTests3" />
+			<class name="Unenroll.FamilyMbrClassUnenrollTests4" />
 			
 			<class name="EME.EmailConfirmations" />
 

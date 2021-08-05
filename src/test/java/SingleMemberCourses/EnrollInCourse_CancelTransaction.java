@@ -28,7 +28,7 @@ public class EnrollInCourse_CancelTransaction extends base {
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
-	private static String CourseStartMonth = "Jun";
+	private static String CourseStartMonth = "Nov";
 	private static int CourseStartYear = 2021;
 	private static JavascriptExecutor jse;
 
@@ -133,22 +133,24 @@ public class EnrollInCourse_CancelTransaction extends base {
 
 		int radioButtonCount = driver.findElements(By.tagName("label")).size();
 		for (int i = 0; i < radioButtonCount; i++) {
-			if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Course Fee")) {
+			if (driver.findElements(By.tagName("label")).get(i).getText().trim().equals("Pay Course Fee")) {
 				jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 				break;
 			}
 		}
 
 		jse.executeScript("arguments[0].click();", c.getContinueButton());
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		rm.ReviewSectionValidation("Fee(s)");
 
 		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < count; i++) {
+
 			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
 					.contains(" On Account"))
-				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+
+				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isEnabled());
 		}
 
 		PurchaseConfirmationPO PP = new PurchaseConfirmationPO(driver);

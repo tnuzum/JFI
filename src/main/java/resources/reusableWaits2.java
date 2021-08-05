@@ -1,9 +1,5 @@
 package resources;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -15,32 +11,23 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pageObjects.AppointmentsPO;
 import pageObjects.DashboardPO;
+import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
 import pageObjects.PaymentPO;
 
 public class reusableWaits2 extends base {
 
-	/*
-	 * public reusableWaits3(WebDriver wd) { driver = wd; }
-	 */
+	// static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	// static Date date = new Date();
+	// static String DateTime = dateFormat.format(date);
+
 	public void setDriver(WebDriver wd) {
 		driver = wd;
 	}
 
-	static DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-	static Date date = new Date();
-	static String DateTime = dateFormat.format(date);
-
 	public String waitForDashboardLoaded() throws InterruptedException {
 
-		/*
-		 * boolean error = reusableMethods.isElementPresent(By.xpath(
-		 * "//div[@class='swal2-actions']/button[1]"));
-		 * 
-		 * if (error == true) {
-		 * driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click
-		 * (); System.out.println("Error was present"); }
-		 */
+		this.catchErrorMessage();
 
 		// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
@@ -75,21 +62,14 @@ public class reusableWaits2 extends base {
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyCoursesEventsScheduleButton()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyAccountPayNow()));
 		wait1.until(ExpectedConditions.elementToBeClickable(d.getMyInfoEditButton()));
-
-		/*
-		 * error = reusableMethods.isElementPresent(By.xpath(
-		 * "//div[@class='swal2-actions']/button[1]"));
-		 * 
-		 * if (error == true) {
-		 * driver.findElement(By.xpath("//div[@class='swal2-actions']/button[1]")).click
-		 * (); System.out.println("Error was present"); }
-		 */
+		this.catchErrorMessage();
 
 		return null;
 
 	}
 
 	public String waitForDashboardLoaded1() throws InterruptedException {
+		this.catchErrorMessage();
 		// Check 1: wait for MEMBER NAME element
 		WebDriverWait wait1 = new WebDriverWait(driver, 30);
 		wait1.until(ExpectedConditions.presenceOfElementLocated(
@@ -116,6 +96,7 @@ public class reusableWaits2 extends base {
 			Thread.sleep(500);
 			wait4.getText();
 		}
+		this.catchErrorMessage();
 
 		return null;
 
@@ -157,16 +138,23 @@ public class reusableWaits2 extends base {
 	}
 
 	public String waitForLoginLoginButton() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
-//			System.out.println(DateTime+" INFO: Element is now present");
 		LoginPO l = new LoginPO(driver);
-		WebElement n = l.getLoginButton();
-		while (!n.isEnabled())// while button is NOT(!) enabled
-		{
-			Thread.sleep(500);
-//				System.out.println(DateTime+" INFO: waiting 500ms for element to be enabled");
-		}
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+
+		wait.until(ExpectedConditions.visibilityOf(l.getLoginButton()));
+		log.info("Login button visible");
+		wait.until(ExpectedConditions.elementToBeClickable(l.getuserName()));
+		log.info("Username clickable");
+
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("button[type='submit']")));
+//			System.out.println(DateTime+" INFO: Element is now present");
+
+		/*
+		 * WebElement n = l.getLoginButton(); while (!n.isEnabled())// while button is
+		 * NOT(!) enabled { Thread.sleep(500); //
+		 * System.out.println(DateTime+" INFO: waiting 500ms for element to be enabled"
+		 * ); }
+		 */
 		return null;
 	}
 
@@ -229,13 +217,39 @@ public class reusableWaits2 extends base {
 
 	}
 
+	private boolean catchErrorMessagePrivate()// only used by catchErrorMessage method below; not available from
+	// other classes
+	{
+		try {
+			driver.findElement(By.xpath("//*[text()='An Error Has Occurred']"));
+			return true;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
+	}
+
+	public String catchErrorMessage() throws InterruptedException {
+		boolean e = this.catchErrorMessagePrivate();
+		if (e == true) {
+			log.error("ERROR: An Error Has Occurred");
+			System.out.println("ERROR: An Error Has Occurred");
+			ErrorMessagesPO er = new ErrorMessagesPO(driver);
+			er.getOKButton().click();
+
+		}
+		return null;
+	}
+
 	public Object waitForSelectATimeToOpen() {
 
 		AppointmentsPO ap = new AppointmentsPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+		WebDriverWait wait = new WebDriverWait(driver, 5);
 
 		try {
 			wait.until(ExpectedConditions.attributeContains(ap.getSelectATimeDrawer(), "ng-reflect-opened", "true"));
+			wait.until(ExpectedConditions.attributeContains(ap.getSelectATimeDrawer(), "style", "visible"));
+			System.out.println(ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened"));
+			log.info(ap.getSelectATimeDrawer().getAttribute("ng-reflect-opened"));
 		} catch (Exception e) {
 			log.error("Select A Time drawer is not opened");
 
@@ -243,4 +257,21 @@ public class reusableWaits2 extends base {
 		return null;
 	}
 
+	public Object waitForNewCardFormToOpen() {
+
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		try {
+			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("newcard")), "aria-expanded",
+					"true"));
+			wait.until(ExpectedConditions.attributeContains(driver.findElement(By.id("newcard")), "class", "in"));
+			System.out.println(driver.findElement(By.id("newcard")).getAttribute("aria-expanded"));
+			log.info(driver.findElement(By.id("newcard")).getAttribute("aria-expanded"));
+		} catch (Exception e) {
+			log.error("New card form is not opened");
+			System.out.println("New card form is not opened");
+
+		}
+		return null;
+	}
 }

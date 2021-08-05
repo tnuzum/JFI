@@ -28,8 +28,8 @@ import resources.reusableWaits;
 public class EnrollInFreeCourseTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static int CourseStartYear = 2021;
-	private static String CourseStartMonth = "Jun";
-	private static String dsiredMonthYear = "June 2021";
+	private static String CourseStartMonth = "Nov";
+	private static String dsiredMonthYear = "November 2021";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
@@ -103,6 +103,7 @@ public class EnrollInFreeCourseTest extends base {
 				c.getPopupSignupButtonCourse().click();
 
 			} else {
+				getScreenshot("SignUp Button", driver);
 				c.getPopupCancelButtonCourse().click();
 				// Assert.fail("SignUp button not available");
 
@@ -117,7 +118,7 @@ public class EnrollInFreeCourseTest extends base {
 			Assert.assertEquals("Start Time: 4:30 PM", c.getClassStartTime().getText());
 			Assert.assertEquals("Course Instructor: Jillian S", c.getCourseInstructor().getText());
 
-			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
+			Assert.assertEquals(c.getHowYouWishToPay().getText().trim(), "Free");
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
 
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
@@ -147,17 +148,7 @@ public class EnrollInFreeCourseTest extends base {
 			Thread.sleep(1000);
 
 			// Navigate to Dashboard
-			int count = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
@@ -205,7 +196,7 @@ public class EnrollInFreeCourseTest extends base {
 		}
 	}
 
-	@Test(priority = 2, description = "Unenroll from the course")
+	@Test(priority = 2, description = "Unenroll from the course", dependsOnMethods = { "EnrollInZeroDollarCourse" })
 
 	public void unenrollFromCourse() throws IOException, InterruptedException {
 		try {
@@ -349,7 +340,7 @@ public class EnrollInFreeCourseTest extends base {
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
-				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Use Existing Package")) {
+				if (driver.findElements(By.tagName("label")).get(i).getText().trim().equals("Use Existing Package")) {
 					Assert.assertTrue(driver.findElements(By.tagName("label")).get(i).isEnabled());
 					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
@@ -383,17 +374,7 @@ public class EnrollInFreeCourseTest extends base {
 			Thread.sleep(1000);
 
 			// Navigate to Appointments Page
-			int count = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Appointments"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getBookAppointmentsLink());
 			Thread.sleep(1000);
 
 			// Verifies the link navigates to the right page
@@ -502,7 +483,7 @@ public class EnrollInFreeCourseTest extends base {
 			Assert.assertEquals("Start Time: 6:30 PM", c.getClassStartTime().getText());
 			Assert.assertEquals("Course Instructor: Andrea", c.getCourseInstructor().getText());
 
-			Assert.assertEquals(c.getHowYouWishToPay().getText(), "Free");
+			Assert.assertEquals(c.getHowYouWishToPay().getText().trim(), "Free");
 			Assert.assertTrue(c.getHowYouWishToPay().isEnabled());
 
 			jse.executeScript("arguments[0].click();", c.getContinueButton());
@@ -532,17 +513,8 @@ public class EnrollInFreeCourseTest extends base {
 			Thread.sleep(1000);
 
 			// Navigate to Appointments Page
-			int count = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Appointments"))
+			jse.executeScript("arguments[0].click();", TY.getBookAppointmentsLink());
 
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
 			Thread.sleep(1000);
 
 			// Verifies the link navigates to the right page

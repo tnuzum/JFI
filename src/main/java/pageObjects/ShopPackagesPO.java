@@ -18,8 +18,8 @@ public class ShopPackagesPO {
 	By packageName = By.xpath("//span[contains(@class, 'shop-header')]");
 	By packagesection = By.xpath("//div[contains(@class, 'col-lg-12')]");
 	By purchaseButton = By.xpath("//div[@class= 'text-right']/a");
-	By breadcrumbDashboard = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][1]");
-	By breadcrumbShop = By.xpath("//li[@ng-reflect-klass = 'breadcrumbs__item'][2]");
+	By breadcrumbDashboard = By.xpath("//li[contains(@class, 'breadcrumbs__item')][1]");
+	By breadcrumbShop = By.xpath("//li[contains(@class, 'breadcrumbs__item')][2]");
 	By packagesList = By.xpath("//div[@class = 'row m-t-md']");
 	By warningMsg = By.xpath("//div[contains(@class, 'alert-warning')]");
 // CONSTRUCTOR

@@ -40,7 +40,7 @@ import resources.reusableWaits;
 
 public class PageLaunchTest_MSEdge extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String EMELoginPage = "https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236";
+	private static String EMELoginPage = "https://ourclublogin-future2.test-jfisoftware.com:8911/login/236";
 
 	private static DashboardPO d;
 	public reusableWaits rw;
@@ -77,7 +77,7 @@ public class PageLaunchTest_MSEdge extends base {
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(EMELoginPage);
-		rm.activeMemberLogin("rauto", "Testing1!");
+		rm.activeGridMemberLogin("rauto", "Testing1!");
 		rw.waitForDashboardLoaded();
 	}
 
@@ -343,7 +343,7 @@ public class PageLaunchTest_MSEdge extends base {
 	@Test(priority = 50)
 	public void ManageFamilyButtonTest() throws InterruptedException, IOException {
 		try {
-			rm.activeMemberLogin("rauto", "Testing1!");
+			rm.activeGridMemberLogin("rauto", "Testing1!");
 			jse.executeScript("arguments[0].click();", d.getMyFamilyManageButton());
 			ManageFamilyPO a = new ManageFamilyPO(driver);
 			WebElement w = a.getPageHeader();

@@ -28,7 +28,7 @@ import resources.reusableWaits;
 
 public class FamilyCourseEnrollmentUIValidations extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Jun";
+	private static String CourseStartMonth = "Nov";
 	private static int CourseStartYear = 2021;
 	private static String courseToEnroll = "FAMILYENROLLCOURSE";
 	private static String courseNameDisplayed = "FamilyEnrollCourse";
@@ -174,7 +174,8 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 		Thread.sleep(2000);
 
 		WebDriverWait wait = new WebDriverWait(driver, 30);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+				By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 		while (c.getClasslabel().getText().isBlank()) {
 			Thread.sleep(500);
 		}
@@ -188,24 +189,24 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 			// System.out.println(fml.getText());
 			// System.out.print(fmc.getAttribute("ng-reflect-is-disabled"));
 			if (fml.getText().contains(member1))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true"); // verifies that the check box
+				Assert.assertEquals(fmc.getAttribute("disabled"), "true"); // verifies that the check box
 																							// is disabled for this
 																							// member
 
 			if (fml.getText().contains(member2))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false"); // verifies that the check box
+				Assert.assertEquals(fmc.getAttribute("disabled"), null); // verifies that the check box
 																							// is enabled for this
 																							// member
 
 			if (fml.getText().contains(member3))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
+				Assert.assertEquals(fmc.getAttribute("disabled"), null);
 
 			if (fml.getText().contains(member4))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
+				Assert.assertEquals(fmc.getAttribute("disabled"), "true");
 
 			if (fml.getText().contains(member5)) {
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-model"), "true");
+				Assert.assertEquals(fmc.getAttribute("disabled"), null);
+				//Assert.assertEquals(fmc.getAttribute("ng-reflect-model"), "true");
 				Assert.assertTrue(fmc.isSelected()); // Verifies that the check box is selected by default for the
 														// logged in HOH
 				fml.click(); // Unchecks the check box
@@ -218,13 +219,13 @@ public class FamilyCourseEnrollmentUIValidations extends base {
 			}
 
 			if (fml.getText().contains(member6))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "false");
+				Assert.assertEquals(fmc.getAttribute("disabled"), null);
 
 			if (fml.getText().contains(member7))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
+				Assert.assertEquals(fmc.getAttribute("disabled"), "true");
 
 			if (fml.getText().contains(member8))
-				Assert.assertEquals(fmc.getAttribute("ng-reflect-is-disabled"), "true");
+				Assert.assertEquals(fmc.getAttribute("disabled"), "true");
 		}
 
 		// Selects the other eligible members

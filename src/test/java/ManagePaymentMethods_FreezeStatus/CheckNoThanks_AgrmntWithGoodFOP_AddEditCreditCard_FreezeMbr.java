@@ -81,7 +81,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends
 			d.getMenuManagePmntMethods().click();
 			Thread.sleep(2000);
 
-			mp.getNameOnCard().sendKeys(memberName);
+			mp.getCreditCardLink().click(); Thread.sleep(1000); mp.getNameOnCard().sendKeys(memberName);
 			JavascriptExecutor jse = (JavascriptExecutor) driver;
 			jse.executeScript("arguments[0].click();", mp.getCardNumber());
 			mp.getCardNumber().sendKeys(prop.getProperty("CCNumber"));
@@ -175,7 +175,7 @@ public class CheckNoThanks_AgrmntWithGoodFOP_AddEditCreditCard_FreezeMbr extends
 			}
 			Thread.sleep(1000);
 			Assert.assertTrue(bt.getBreadcrumb3().getText().contains("Edit Card"));
-			String text = mp.getEditNameOnCard().getAttribute("ng-reflect-model");
+			String text = mp.getEditNameOnCard().getAttribute("value");
 			System.out.println(text);
 
 			Assert.assertEquals(text, memberName);

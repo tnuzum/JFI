@@ -28,6 +28,12 @@ MastercardNumber = 5454545454545454
 MastercardExpireMonth = 01
 MastercardExpireYear = 25
 MastercardCVC = 007
+nonHohActiveEwaiver_username = seema3
+nonHohActiveEwaiver_password = June@123
+
+HohActiveEwaiver_username = seema4
+HohActiveEwaiver_password = June@123
+
 activeMember1_username = rauto
 activeMember1_password = Testing1!
 activeMember1_fullname = Robert Auto
@@ -90,5 +96,7 @@ CanadaBankAcctNumber = 1234567
 CanadianBankLast4Digits = 4567
 CCNumber = 4111111111111111
 CCLast4Digits = 1111
+
+memberDOB = 01/01/2000
 
 

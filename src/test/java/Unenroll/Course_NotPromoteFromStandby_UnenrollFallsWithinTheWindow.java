@@ -30,8 +30,8 @@ import resources.reusableWaits;
 
 public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Aug";
-	private static String dsiredMonthYear = "August 2021";
+	private static String CourseStartMonth = "Nov";
+	private static String dsiredMonthYear = "November 2021";
 	private static String CourseToEnroll = "STANDBYPROMONOCOURSE";
 	private static String CourseNameDisplayed = "StandbyPromoNoCourse";
 	private static int CourseStartYear = 2021;
@@ -114,7 +114,7 @@ public class Course_NotPromoteFromStandby_UnenrollFallsWithinTheWindow extends b
 			}
 
 			wait.until(
-					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+					ExpectedConditions.presenceOfElementLocated(By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 			while (c.getClasslabel().getText().isBlank()) {
 				Thread.sleep(500);
 			}

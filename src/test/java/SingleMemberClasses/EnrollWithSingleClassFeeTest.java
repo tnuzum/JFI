@@ -106,6 +106,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				c.getPopupSignUpButton().click();
 
 			} else {
+				getScreenshot("SignUp Button", driver);
 				c.getPopupCancelButton().click();
 				// Assert.fail("SignUp button not available");
 
@@ -154,9 +155,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 			{
 				int radioButtonCount = driver.findElements(By.tagName("label")).size();
 				for (int i = 0; i < radioButtonCount; i++) {
-					if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-						jse.executeScript("arguments[0].click();",
-								driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+					if (driver.findElements(By.tagName("label")).get(i).getText().trim()
+							.equals("Pay Single Class Fee")) {
+						jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 						break;
 					}
 				}
@@ -177,9 +178,9 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 		int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 		for (int i = 0; i < count; i++) {
-			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+			if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().trim()
 					.contains(" On Account"))
-				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isSelected());
+				Assert.assertTrue(PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).isEnabled());
 		}
 	}
 
@@ -190,13 +191,13 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			// Noting down the total amount
 			Thread.sleep(2000);
-//		System.out.println(PP.getTotalAmount().getText());
-			String totalAmt = PP.getClassesReviewtotalAmount().getText();
+//		System.out.println(PP.getTotalAmount().getText().trim());
+			String totalAmt = PP.getClassesReviewtotalAmount().getText().trim();
 
 //		System.out.println(TotalAmt);
 
 			// Verifies the Pay button contains the total amount
-			Assert.assertTrue(PM.getPaymentButton().getText().contains(totalAmt));
+			Assert.assertTrue(PM.getPaymentButton().getText().trim().contains(totalAmt));
 
 			while (!PM.getOnAccountAndSavedCards().isDisplayed())
 
@@ -217,7 +218,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 
 			// Verifies the success message
-			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText().trim());
 			PP.getPopupOKButton().click();
 			Thread.sleep(1000);
 
@@ -241,17 +242,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Thread.sleep(3000);
 
 			// Navigate to Dashboard
-			int count = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Dashboard"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getDashBoardLink());
 			rw.waitForDashboardLoaded();
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Dashboard", driver.getTitle());
@@ -336,9 +327,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
-				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					jse.executeScript("arguments[0].click();",
-							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+				if (driver.findElements(By.tagName("label")).get(i).getText().trim().equals("Pay Single Class Fee")) {
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -358,7 +348,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			jse.executeScript("arguments[0].scrollIntoView(true);", PM.getOnAccountAndSavedCards());
 			int count = PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).size();
 			for (int i = 0; i < count; i++) {
-				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText()
+				if (PM.getOnAccountAndSavedCards().findElements(By.tagName("label")).get(i).getText().trim()
 						.contains("1111")) {
 
 					jse.executeScript("arguments[0].click();",
@@ -386,7 +376,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			rw.waitForAcceptButton();
 			wait.until(ExpectedConditions.elementToBeClickable(PP.getPopupOKButton()));
 			// Verifies the success message
-			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText().trim());
 			PP.getPopupOKButton().click();
 			Thread.sleep(1000);
 
@@ -409,17 +399,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Thread.sleep(3000);
 
 			// Navigate to Select Classes
-			int count1 = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count1; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
+			jse.executeScript("arguments[0].click();", TY.getViewClassesLink());
 
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Classes", driver.getTitle());
@@ -507,9 +488,8 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			int radioButtonCount = driver.findElements(By.tagName("label")).size();
 			for (int i = 0; i < radioButtonCount; i++) {
-				if (driver.findElements(By.tagName("label")).get(i).getText().equals("Pay Single Class Fee")) {
-					jse.executeScript("arguments[0].click();",
-							driver.findElements(By.tagName("label")).get(i).findElement(By.tagName("i")));
+				if (driver.findElements(By.tagName("label")).get(i).getText().trim().equals("Pay Single Class Fee")) {
+					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("label")).get(i));
 					break;
 				}
 			}
@@ -558,6 +538,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			jse.executeScript("arguments[0].click();", PM.getSaveCardNo());
 			Thread.sleep(1000);
+
 			Assert.assertTrue(PM.getPaymentButton().isEnabled());
 
 			// Noting down the total amount
@@ -579,7 +560,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 
 			Thread.sleep(2000);
 			// Verifies the success message
-			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText());
+			Assert.assertEquals("Success", PP.getPopupSuccessMessage().getText().trim());
 			PP.getPopupOKButton().click();
 			Thread.sleep(1000);
 
@@ -603,17 +584,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 			Thread.sleep(3000);
 
 			// Navigate to Select Classes
-			int count1 = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count1; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Courses / Events"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getViewCoursesEventsLink());
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Courses / Events", driver.getTitle());
@@ -692,7 +663,7 @@ public class EnrollWithSingleClassFeeTest extends base {
 				u.getUnenrollConfirmYesButton().click();
 				rw.waitForAcceptButton();
 				Thread.sleep(1000);
-				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText());
+				Assert.assertEquals("Unenrolled", u.getUnenrollConfirmMessage1().getText().trim());
 				u.getUnenrollConfirmYesButton().click();
 				Thread.sleep(2000);
 

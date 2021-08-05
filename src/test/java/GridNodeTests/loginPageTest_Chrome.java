@@ -26,6 +26,7 @@ public class loginPageTest_Chrome extends base {
 	private static String wrongCredentialsMsg = "WE APOLOGIZE... It seems the credentials you entered are different than what is in our system. Please try again, and if the problem persists, contact your club for additional help.";
 	private static String invalid_username = "tpowers";
 	private static String invalid_password = "Not@Password1";
+	private static String invalidCredentialsMsg = "Invalid Credentials";
 
 //	@BeforeTest
 	@BeforeClass
@@ -59,12 +60,13 @@ public class loginPageTest_Chrome extends base {
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 
-		driver.get("https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236");
+		driver.get("https://ourclublogin-future2.test-jfisoftware.com:8911/login/236");
 	}
 
 	@Test(priority = 1)
 	public void pageTitle() throws IOException {
-		Assert.assertEquals(driver.getTitle(), "Log In | Empower M.E.");
+		// Assert.assertEquals(driver.getTitle(), "Log In | Empower M.E.");
+		Assert.assertEquals(driver.getTitle(), "Log In | Empower M.E.");// pagetitle Changed by seema
 		log.info("Page Title Verified");
 	}
 
@@ -81,28 +83,33 @@ public class loginPageTest_Chrome extends base {
 		log.info("Forgot Password link text Confirmed");
 		Assert.assertFalse(l.getRememberUsernameCheckbox().isSelected());// confirm check box is not selected
 		log.info("Remember Username Checkbox Unchecked Confirmed");
-		Assert.assertEquals(l.getRememberUsernameLabel().getText(), "REMEMBER USERNAME");
+		Assert.assertEquals(l.getRememberUsernameLabel().getText().trim(), "Remember Username");// commented by seema //
+																								// uncommented and
+																								// changed the text by
+																								// Bhagya
 		log.info("Remember Username label text Confirmed");
-		Assert.assertEquals(l.getLoginButton().getText(), "Login");
+		Assert.assertEquals(l.getLoginButton().getText(), " Login");// Changed by seema
 		log.info("Login button label text Confirmed");
-		Assert.assertTrue(l.getLoginButton().isEnabled());
-		log.info("Login button isEnabled Confirmed");
+		Assert.assertTrue(l.getLoginButton().isEnabled()); // commented temporary by
+		// seema // changed to True by Bhagya after Scott's changes on 5/4/2021
+		log.info("Login button isEnabled Confirmed");// commented temporary by seema
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3, enabled = true)
 	public void noUserMessages() throws IOException {
 		LoginPO l = new LoginPO(driver);
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
 		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//span[@id='Username-error']")));
-		Assert.assertEquals(l.getusernameRequiredMessage().getText(), "Username is required");
-		log.info("Username Required Message Confirmed");
-		Assert.assertEquals(l.getpasswordRequiredMessage().getText(), "Password is required");
-		log.info("Password Required Message Confirmed");
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("li")));
+		Assert.assertEquals(l.getcredentialsErrorMessage().getText().trim(), invalidCredentialsMsg); // Updated by
+																										// Bhagya
+		log.info("Invalid Credentials Message Confirmed");
+//		Assert.assertEquals(l.getpasswordRequiredMessage().getText(), prop.getProperty("passwordRequiredMessage")); //commented by Bhagya
+//		log.info("Password Required Message Confirmed"); //commented by Bhagya
 	}
 
-	@Test(priority = 4)
+	@Test(priority = 4, enabled = true)
 	public void wrongCredentialsMessages() throws InterruptedException {
 		LoginPO l = new LoginPO(driver);
 		l.getuserName().sendKeys(invalid_username);
@@ -111,8 +118,8 @@ public class loginPageTest_Chrome extends base {
 		log.info("Password Entered");
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='loginForm']/form/div[1]/ul/li")));
+//		WebDriverWait wait = new WebDriverWait(driver, 10);
+		// wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='loginForm']/form/div[1]/ul/li")));
 		WebElement wait2 = l.getcredentialsErrorMessage();
 		while (wait2.getText().isBlank()) {
 			System.out.println("INFO: Waiting 500ms for element to populate");
@@ -122,10 +129,10 @@ public class loginPageTest_Chrome extends base {
 
 		Assert.assertEquals(l.getcredentialsErrorMessage().getText(), wrongCredentialsMsg);
 		log.info("Error Message Title Verified");
-		System.out.println("Error Message Title Verified");
 	}
 
 //	@AfterTest
+
 	@AfterClass
 	public void teardown() throws InterruptedException {
 		driver.quit();

@@ -135,8 +135,7 @@ public class MemberWithCheckInHistoryTest extends base {
 	@Test(priority = 5)
 	public void verifyVisitsByMonthSectionIsPresentTest() throws InterruptedException {
 		Assert.assertTrue(chp.getVisitsByMonthSection().isDisplayed());
-		boolean checkinChartPresent = rm
-				.isElementPresent(By.xpath("//div[@class='ibox-content no-margins no-padding']/div"));
+		boolean checkinChartPresent = rm.isElementPresent(By.tagName("ngx-charts-chart"));
 		Assert.assertEquals(checkinChartPresent, true);
 		rm.memberLogout();
 

@@ -31,8 +31,8 @@ import resources.reusableWaits;
 
 public class FamilyStandbyInCourseTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String dsiredMonthYear = "June 2021";
-	private static String CourseStartMonth = "Jun";
+	private static String dsiredMonthYear = "November 2021";
+	private static String CourseStartMonth = "Nov";
 	private static int CourseStartYear = 2021;
 	private static String courseToEnroll = "DEMO STANDBY COURSE";
 	private static String courseNameDisplayed = "Demo Standby Course";
@@ -167,8 +167,8 @@ public class FamilyStandbyInCourseTest extends base {
 				}
 			}
 
-			wait.until(
-					ExpectedConditions.presenceOfElementLocated(By.xpath("//div[contains(@class, 'modal-content')]")));
+			wait.until(ExpectedConditions.presenceOfElementLocated(
+					By.xpath("//mat-dialog-container[contains(@class, 'mat-dialog-container')]")));
 			while (c.getClasslabel().getText().isBlank()) {
 				Thread.sleep(500);
 			}
@@ -328,7 +328,6 @@ public class FamilyStandbyInCourseTest extends base {
 			rm.ThankYouPageValidations();
 
 			// Note down the Receipt number
-			String receiptNumber2 = TY.getReceiptNumber().getText();
 
 			Assert.assertTrue(TY.getPrintReceiptButton().isDisplayed());
 			TY.getPrintReceiptButton().click();
@@ -341,17 +340,7 @@ public class FamilyStandbyInCourseTest extends base {
 			Thread.sleep(3000);
 
 			// Navigate to Select Classes
-			int count2 = driver.findElements(By.tagName("a")).size();
-			for (int i = 0; i < count2; i++) {
-				if (driver.findElements(By.tagName("a")).get(i).getText().equals("Classes"))
-
-				{
-					// rw.linksToBeClickable();
-					jse.executeScript("arguments[0].click();", driver.findElements(By.tagName("a")).get(i));
-					break;
-				}
-
-			}
+			jse.executeScript("arguments[0].click();", TY.getViewClassesLink());
 			Thread.sleep(2000);
 			// Verifies the link navigates to the right page
 			Assert.assertEquals("Select Classes", driver.getTitle());
