@@ -14,7 +14,15 @@ public class AcctHistoryPO {
 
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
-	By receiptNumbers = By.xpath("//div[@class = 'col-lg-3 d-none d-md-block']//a");
+	// By receiptNumbers = By.xpath("//div[@class = 'col-lg-3 d-none
+	// d-md-block']//a");
+
+	// By receiptNumbers = By.xpath("//button[contains(@class, 'btn btn-primary
+	// btn-xs')]");
+
+	By receiptNumbers = By
+			.xpath("//div[contains(@class, 'col-lg-2 d-none d-md-block')]/button[@class='btn btn-primary btn-xs']");
+
 	By receiptNumber = By.xpath("//div[@class = 'col-lg-3 d-none d-md-block']//a");
 	By receiptNumberTable = By.xpath("//div[contains(@class,'col-lg-12')]");
 	By searchField = By.xpath("//input[@placeholder='Search in table']");

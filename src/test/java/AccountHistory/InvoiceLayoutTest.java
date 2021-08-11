@@ -61,7 +61,6 @@ public class InvoiceLayoutTest extends base {
 
 	@Test(priority = 1, enabled = true)
 	public void verifyInvoiceHeader() throws InterruptedException, IOException {
-
 		try {
 
 			String receiptNumber = rm.purchasePackage("PT - Demo");
@@ -131,6 +130,7 @@ public class InvoiceLayoutTest extends base {
 
 	@Test(priority = 2, enabled = true)
 	public void verifyInvoiceDetails() throws InterruptedException, IOException {
+
 		try {
 
 			Assert.assertTrue(ahp.getMediaHeadings().get(0).getText().contains("We invoiced you for"));

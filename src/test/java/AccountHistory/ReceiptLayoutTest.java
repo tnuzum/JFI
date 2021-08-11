@@ -68,7 +68,7 @@ public class ReceiptLayoutTest extends base {
 		Thread.sleep(2000);
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(1));
 		Thread.sleep(3000);
 		jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
 
