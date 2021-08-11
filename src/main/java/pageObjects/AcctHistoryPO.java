@@ -23,7 +23,7 @@ public class AcctHistoryPO {
 	By receiptNumbers = By
 			.xpath("//div[contains(@class, 'col-lg-2 d-none d-md-block')]/button[@class='btn btn-primary btn-xs']");
 
-	By receiptNumber = By.xpath("//div[@class = 'col-lg-3 d-none d-md-block']//a");
+	By receiptNumber = By.xpath("//div[@class = 'col-lg-3 d-none d-md-block'][4]");
 	By receiptNumberTable = By.xpath("//div[contains(@class,'col-lg-12')]");
 	By searchField = By.xpath("//input[@placeholder='Search in table']");
 	By calendarIcons = By.xpath("//mat-datepicker-toggle[contains(@class, 'mat-datepicker-toggle')]");
