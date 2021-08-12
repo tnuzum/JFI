@@ -286,7 +286,7 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 		ahp.getSearchField().sendKeys(receiptNumber);
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
+		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
 		Thread.sleep(2000);
 
 		jse.executeScript("arguments[0].scrollIntoView(true);",
