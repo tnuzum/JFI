@@ -12,6 +12,18 @@ COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/
 EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
 COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
 
+!URL for Current
+EMELoginPage2 = https://ourclublogin.test-jfisoftware.com:8909/login/101
+
+!URL for Cert Future
+EMELoginPage3 = https://futurecert.ourclublogin.com/Login/22
+
+!URL for Prod Future
+EMELoginPage4 = https://future.ourclublogin.com/Login/510306
+
+!URL for Prod Current
+EMELoginPage5 = https://www.ourclublogin.com/Login/510223
+
 
 	**************************************************************************************
 	Web addresses for URL parameter
@@ -21,6 +33,9 @@ COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/
 	EMEFutureURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101
 	EMECurrentURL = https://ourclublogin.test-jfisoftware.com:8909/account/login/101
 	**************************************************************************************
+	
+		
+		
 JOLLoginPage = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236
 JOLSearchPromo = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236/1/searchpromo
 
