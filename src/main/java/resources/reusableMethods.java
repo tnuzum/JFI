@@ -907,7 +907,9 @@ public class reusableMethods extends base {
 
 			if (Text.contains(appointmentName)) {
 				System.out.println("appointment name present");
-				CheckInOptions.get(j).findElement(By.className("checkbox")).click();
+				CheckInOptions.get(j).findElement(By.className("icons")).click();
+				// CheckInOptions.get(j).findElement(By.xpath("td//label//span[@class =
+				// 'icons']")).click();
 				System.out.println("clicked");
 				Select s = new Select(CheckInOptions.get(j).findElement(By.id("ddlVisits")));
 				s.selectByValue(unitValue);
