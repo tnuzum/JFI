@@ -20,6 +20,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.CartPO;
@@ -60,7 +61,12 @@ public class PageLaunchTest_FF extends base {
 		dc.setPlatform(Platform.WINDOWS);
 		// dc.setCapability(FirefoxDriver.BINARY, "C:\\Program Files\\Mozilla
 		// Firefox\\firefox.exe");
-		System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
+//		System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
+
+		WebDriverManager.firefoxdriver().setup();
+
+		System.out.println(WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
+		log.info(WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
 
 		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 

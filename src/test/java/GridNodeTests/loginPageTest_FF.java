@@ -18,6 +18,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.LoginPO;
 import resources.base;
 
@@ -40,6 +41,11 @@ public class loginPageTest_FF extends base {
 		// Firefox\\firefox.exe");
 		// System.setProperty("webdriver.gecko.driver",
 		// "C:\\Automation\\libs\\webdrivers\\geckodriver.exe");
+
+		WebDriverManager.firefoxdriver().setup();
+
+		System.out.println(WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
+		log.info(WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
