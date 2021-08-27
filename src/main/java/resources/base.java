@@ -46,8 +46,8 @@ public class base {
 	public static String ssTime = null;
 	public static String COGLoginPage = null;
 	public static String EMELoginPage = null;
+	static String testRegion;
 
-	// String projectPath = System.getenv("EME_HOME");
 	String projectPath = System.getProperty("user.dir");
 
 	public WebDriver initializeDriver() throws IOException {
@@ -58,12 +58,21 @@ public class base {
 		dcch.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
 		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
-		prop = new Properties();
-//		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
-		FileInputStream fis = new FileInputStream(
-				System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
+//		testRegion = "Future2";
+		testRegion = System.getProperty("test_Region");
 
-		prop.load(fis);
+		prop = new Properties();
+
+		try {
+
+			FileInputStream fis = new FileInputStream(
+					System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties" + testRegion);
+			prop.load(fis);
+
+		} catch (NullPointerException e) {
+			System.out.println("Error: Properties file could not be loaded");
+		}
+
 //		String browserName = prop.getProperty("browser");
 		String browserName = System.getProperty("browser");
 		System.out.println(browserName);
@@ -272,8 +281,8 @@ public class base {
 
 	public void getEMEURL() {
 
-//		String EMELoginPage = prop.getProperty("EMELoginPage");
-		String EMELoginPage = System.getProperty("EMELoginPage");
+		String EMELoginPage = prop.getProperty("EMELoginPage");
+//		String EMELoginPage = System.getProperty("EMELoginPage");
 		System.out.println(EMELoginPage);
 
 		driver.get(EMELoginPage);
@@ -281,8 +290,8 @@ public class base {
 
 	public void getCOGURL() {
 
-//		String COGLoginPage = prop.getProperty("COGLoginPage");
-		String COGLoginPage = System.getProperty("COGLoginPage");
+		String COGLoginPage = prop.getProperty("COGLoginPage");
+//		String COGLoginPage = System.getProperty("COGLoginPage");
 		System.out.println(COGLoginPage);
 
 		driver.get(COGLoginPage);

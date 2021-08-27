@@ -16,6 +16,12 @@
      	 		</methods>
       		</class>
 			<class name="EME.DashBoard_Menu" />
+			
+			<!--class name="PayBalance.PayBalanceAndConfirmPayment" />
+			<class name="SingleMemberClasses.EnrollUnEnrollinTodaysClass" />
+			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount"/>
+			<class name="manageProfile.ChangeInterest" />
+			<class name="ShopPackages.ShopAndPurchasePackagesOnAccount" /-->
 
 		</classes>
 	</test>
