@@ -137,6 +137,8 @@ mssClubPricing = $5.15
 participant2 = Auto, Emailmember2
 unitsToBeSelected = 1 - $5.00/per
 
+interest = Cardio
+
 homeClubName = Jonas Sports-Plex
 
 barcodeId = 1141112
