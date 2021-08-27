@@ -161,7 +161,7 @@ public class DashBoard_Layout extends base {
 //			Home club is verified
 		Select s = new Select(driver.findElement(By.tagName("select")));
 
-		Assert.assertTrue(s.getFirstSelectedOption().getText().equals("Jonas Sports-Plex"));
+		Assert.assertTrue(s.getFirstSelectedOption().getText().equals(prop.getProperty("homeClubName")));
 
 	}
 

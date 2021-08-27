@@ -29,6 +29,9 @@ import resources.reusableWaits;
 public class PayBalanceAndConfirmPayment extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 
+	private static String barcodeId;
+	private static String homeClubName;
+
 	private static JavascriptExecutor jse;
 	private static String receiptNumber;
 
@@ -49,6 +52,9 @@ public class PayBalanceAndConfirmPayment extends base {
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
+
+		barcodeId = prop.getProperty("barcodeId");
+		homeClubName = prop.getProperty("homeClubName");
 
 		jse = (JavascriptExecutor) driver;
 		getEMEURL();
@@ -160,10 +166,9 @@ public class PayBalanceAndConfirmPayment extends base {
 
 	}
 
-	@Test(priority = 3, description = "Confirming in COG that payment is applied", dependsOnMethods = {
-			"MakePaymentWithStoredCard" })
+	@Test(priority = 3, description = "Confirming in COG that payment is applied")
 	public void ConfirmPaymentAppliedinCOG() throws InterruptedException, IOException {
-		rm.confirmPaymentInCOG("1141112", "Jonas Sports-Plex", DateTime);
+		rm.confirmPaymentInCOG(barcodeId, homeClubName, DateTime);
 
 	}
 

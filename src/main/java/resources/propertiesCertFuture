@@ -121,8 +121,8 @@ memberDOB = 01/01/2000
 
 classToEnroll = BARRE COMBAT FUSION
 classNameDisplayed = Barre Combat Fusion
-classTimeDisplayed = Start Time: 5:00 PM
-classInstructorDisplayed = Class Instructor: Andrea
+classTimeDisplayed = Start Time: 10:00 PM
+classInstructorDisplayed = Class Instructor: Himesh
 
 packageName = ServiceOA
 
@@ -136,3 +136,10 @@ mssClubPricing = $5.15
 
 participant2 = Auto, Emailmember2
 unitsToBeSelected = 1 - $5.00/per
+
+homeClubName = Jonas Cert Future Club
+
+barcodeId = 111978
+
+COGUserName = bkalle
+COGPassword = kalle1234!

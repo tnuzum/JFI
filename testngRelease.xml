@@ -10,18 +10,14 @@
 		<classes>
 			<class name="EME.loginPageTest" />
 			<class name="EME.PageLaunchTest" />
-			<class name="EME.DashBoard_Layout" >
-				<methods>
-     	 			<exclude name = "VerifyHomeClubName"/>
-     	 		</methods>
-      		</class>
+			<class name="EME.DashBoard_Layout"/>
 			<class name="EME.DashBoard_Menu" />
 			
-			<!--class name="PayBalance.PayBalanceAndConfirmPayment" />
+			<!--class name="PayBalance.PayBalanceAndConfirmPayment" /-->
 			<class name="SingleMemberClasses.EnrollUnEnrollinTodaysClass" />
-			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount"/>
+			<!--class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount"/-->
 			<class name="manageProfile.ChangeInterest" />
-			<class name="ShopPackages.ShopAndPurchasePackagesOnAccount" /-->
+			<class name="ShopPackages.ShopAndPurchasePackagesOnAccount" />
 
 		</classes>
 	</test>
