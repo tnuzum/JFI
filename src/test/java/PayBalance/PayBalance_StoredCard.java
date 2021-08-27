@@ -29,6 +29,7 @@ import resources.reusableWaits;
 public class PayBalance_StoredCard extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
+	private static String receiptNumber;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -92,6 +93,14 @@ public class PayBalance_StoredCard extends base {
 			rw.waitForAcceptButton();
 			System.out.println(p.getPopupText().getText());
 			Assert.assertEquals("Payment Made!", p.getPopupText().getText());
+
+			String content = p.getPopupContent().getText();
+			String[] splitContent = content.split(": ");
+			receiptNumber = splitContent[1];
+			System.out.println(receiptNumber);
+
+			Assert.assertTrue(!receiptNumber.equals("null"));
+
 			p.getPopupConfirmationButton().click();
 //		rm.returnToDashboard();
 			Thread.sleep(3000);
