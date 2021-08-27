@@ -18,7 +18,7 @@ COGLoginPage2 = https://ess-web.test-jfisoftware.com:8449/CompeteOnTheGo/home/in
 
 !URL for Cert Future
 EMELoginPage3 = https://futurecert.ourclublogin.com/Login/500202
-COGLoginPage3 = https://futurecert.competeselfservice.com/CompeteOnTheGo/Account/Login/500202
+COGLoginPage3 = https://futurecert.competeselfservice.com/CompeteOnTheGo/home/index/500202
 
 !URL for Prod Future
 EMELoginPage4 = https://future.ourclublogin.com/Login/510306
@@ -26,7 +26,7 @@ COGLoginPage4 = https://future.competeselfservice.com/CompeteOnTheGo/Account/Log
 
 !URL for Prod Current
 EMELoginPage = https://www.ourclublogin.com/Login/510223
-COGLoginPage = COGLoginPage5 = https://www.competeselfservice.com/CompeteOnTheGo/Account/Login/510223
+COGLoginPage = https://www.competeselfservice.com/CompeteOnTheGo/home/index/510223
 
 	**************************************************************************************
 	Web addresses for URL parameter

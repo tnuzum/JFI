@@ -9,7 +9,7 @@ browser4 = IE
 EMELoginPage4 = https://ourclublogin-future2.test-jfisoftware.com:8911/login/236
 COGLoginPage4 = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
 
-EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
+EMELoginPage1 = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
 COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
 
 !URL for Current
@@ -18,15 +18,15 @@ COGLoginPage2 = https://ess-web.test-jfisoftware.com:8449/CompeteOnTheGo/home/in
 
 !URL for Cert Future
 EMELoginPage3 = https://futurecert.ourclublogin.com/Login/500202
-COGLoginPage3 = https://futurecert.competeselfservice.com/CompeteOnTheGo/Account/Login/500202
+COGLoginPage3 = https://futurecert.competeselfservice.com/CompeteOnTheGo/home/index/500202
 
 !URL for Prod Future
 EMELoginPage = https://future.ourclublogin.com/Login/510306
-COGLoginPage = https://future.competeselfservice.com/CompeteOnTheGo/Account/Login/510306
+COGLoginPage = https://future.competeselfservice.com/CompeteOnTheGo//home/index/510306
 
 !URL for Prod Current
 EMELoginPage5 = https://www.ourclublogin.com/Login/510223
-COGLoginPage5 = COGLoginPage5 = https://www.competeselfservice.com/CompeteOnTheGo/Account/Login/510223
+COGLoginPage5 = https://www.competeselfservice.com/CompeteOnTheGo/home/index/510223
 
 
 	**************************************************************************************

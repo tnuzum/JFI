@@ -166,8 +166,9 @@ public class PayBalanceAndConfirmPayment extends base {
 
 	}
 
-	@Test(priority = 3, description = "Confirming in COG that payment is applied", dependsOnMethods = {
-			"MakePaymentWithStoredCard" })
+	@Test(priority = 3, description = "Confirming in COG that payment is applied")
+	// , dependsOnMethods = {
+	// "MakePaymentWithStoredCard" })
 	public void ConfirmPaymentAppliedinCOG() throws InterruptedException, IOException {
 		rm.confirmPaymentInCOG(barcodeId, homeClubName, DateTime);
 
