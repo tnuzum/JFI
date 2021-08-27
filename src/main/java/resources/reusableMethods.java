@@ -848,8 +848,8 @@ public class reusableMethods extends base {
 		// driver.get(prop.getProperty("COGLoginPage"));
 		getCOGURL();
 
-		driver.findElement(By.id("UserName")).sendKeys("bhagya");
-		driver.findElement(By.id("Password")).sendKeys("111");
+		driver.findElement(By.id("UserName")).sendKeys(prop.getProperty("COGUserName"));
+		driver.findElement(By.id("Password")).sendKeys(prop.getProperty("COGPassword"));
 		driver.findElement(By.id("submit")).click();
 		Thread.sleep(1000);
 		Select s = new Select(driver.findElement(By.id("ddl_clubSelection")));
