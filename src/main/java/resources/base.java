@@ -58,7 +58,7 @@ public class base {
 		dcch.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
 		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
-//		testRegion = "Future2";
+//		testRegion = "CertFuture";
 		testRegion = System.getProperty("test_Region");
 
 		prop = new Properties();
@@ -77,11 +77,11 @@ public class base {
 		String browserName = System.getProperty("browser");
 		System.out.println(browserName);
 
-//		String testEnvironment = prop.getProperty("test_environment");
-		String testEnvironment = System.getProperty("test_environment");
-		System.out.println(testEnvironment);
+//		String executionEnvironment = prop.getProperty("execution_Environment");
+		String executionEnvironment = System.getProperty("execution_Environment");
+		System.out.println(executionEnvironment);
 
-		if (testEnvironment.equals("grid")) {
+		if (executionEnvironment.equals("grid")) {
 			if (browserName.equals("Chrome")) {
 				log.info("Chrome Browser: Running Tests on Selenium Grid");
 				DesiredCapabilities dc = new DesiredCapabilities();
@@ -164,7 +164,7 @@ public class base {
 			}
 
 		} else {
-			if (testEnvironment.equals("local")) {
+			if (executionEnvironment.equals("local")) {
 
 				System.out.println("projectPath = " + projectPath);
 
