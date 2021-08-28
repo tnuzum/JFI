@@ -31,6 +31,9 @@ public class ChangeInterest extends base {
 
 		driver = initializeDriver();
 
+		log.info("Driver Initialized for " + this.getClass().getSimpleName());
+		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
+
 		rm.setDriver(driver);
 		rw.setDriver(driver);
 
