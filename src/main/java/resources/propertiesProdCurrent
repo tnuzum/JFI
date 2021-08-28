@@ -1,4 +1,4 @@
-test_environment = local
+execution_Environment = local
 browser = Chrome
 browser1 = Firefox
 browser2 = Edge

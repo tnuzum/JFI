@@ -12,7 +12,6 @@
 			<class name="EME.PageLaunchTest" />
 			<class name="EME.DashBoard_Layout"/>
 			<class name="EME.DashBoard_Menu" />
-			
 			<class name="PayBalance.PayBalanceAndConfirmPayment" />
 			<class name="SingleMemberClasses.EnrollUnEnrollinTodaysClass" />
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount"/>
