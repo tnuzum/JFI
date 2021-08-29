@@ -3,9 +3,10 @@
 <suite name="EMERelease - Automated Testing">
 	<listeners>
 		<listener class-name="EME.listeners" />
-		<!--listener class-name = "resources.ExtentReporterNG"/ -->
+		<!--listener class-name = "resources.ExtentReporterNG"/-->
 	</listeners>
-	<test thread-count="5" name="EMERelease- Smoke Testing">
+	<test thread-count="5" name="EMERelease- Smoke Testing" parallel="none"
+		preserve-order="true" group-by-instances="true">
 		
 		<classes>
 			<class name="EME.loginPageTest" />
@@ -17,6 +18,7 @@
 			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount"/>
 			<class name="manageProfile.ChangeInterest" />
 			<class name="ShopPackages.ShopAndPurchasePackagesOnAccount" />
+			
 
 		</classes>
 	</test>
