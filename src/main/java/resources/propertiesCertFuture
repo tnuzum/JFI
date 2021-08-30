@@ -126,15 +126,15 @@ classInstructorDisplayed = Class Instructor: Himesh
 
 packageName = ServiceOA
 
-clubName = Studio Jonas
-productCategory = Personal Training 1
+clubName = Jonas Cert Future Club
+productCategory = Personal Training
 appointmentToBook = PT Group-ThreeResources
-resourceName = FitExpert1-Grp
-additionalResourceName = "Gym-Grp
-clubNameDisplayed = Club: Studio Jonas
-mssClubPricing = $5.15
+resourceName = Anderson, Taurean
+additionalResourceName = Harms, Jan
+clubNameDisplayed = Club: Jonas Cert Future Club
+mssClubPricing = $5.13
 
-participant2 = Auto, Emailmember2
+participant2 = Auto, ApptMember2
 unitsToBeSelected = 1 - $5.00/per
 
 interest = Cardio
@@ -145,3 +145,9 @@ barcodeId = 111978
 
 COGUserName = bkalle
 COGPassword = kalle1234!
+
+ApptMember1 = ApptMember1
+ApptMember2 = ApptMember2
+memberPasswrod = Testing1!
+
+ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount.java

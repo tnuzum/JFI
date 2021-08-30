@@ -863,7 +863,7 @@ public class reusableMethods extends base {
 	public Object ApptCheckinInCOG(String memberName, String appointmentName, String username, String unitValue)
 			throws InterruptedException {
 
-		this.loginCOG("Studio Jonas");
+		this.loginCOG(prop.getProperty("clubName"));
 		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
 		int count = FrontDeskTile.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count; i++) {
