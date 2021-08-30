@@ -129,7 +129,7 @@ clubName = Studio Jonas
 productCategory = Personal Training 1
 appointmentToBook = PT Group-ThreeResources
 resourceName = FitExpert1-Grp
-additionalResourceName = "Gym-Grp
+additionalResourceName = Gym-Grp
 clubNameDisplayed = Club: Studio Jonas
 mssClubPricing = $5.15
 
@@ -144,3 +144,7 @@ barcodeId = 1141112
 
 COGUserName = bhagya
 COGPassword = 111
+
+ApptMember1 = Apptmember13
+ApptMember2 = Emailmember2
+memberPassword = Testing1!

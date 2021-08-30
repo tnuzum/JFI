@@ -75,7 +75,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount extends 
 	@Test(priority = 1)
 	public void ScheduleAppointment() throws IOException, InterruptedException {
 
-		rm.activeMemberLogin("apptmember13", "Testing1!");
+		rm.activeMemberLogin(prop.getProperty("ApptMember1"), prop.getProperty("memberPassword"));
 		rw.waitForDashboardLoaded();
 
 		DashboardPO p = new DashboardPO(driver);
@@ -91,7 +91,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount extends 
 
 		rm.selectProductCategory(productCategory);
 
-		rm.makeNewGrpAppointmentSelections("Emailmember2", appointmentToBook, resourceName);
+		rm.makeNewGrpAppointmentSelections(prop.getProperty("ApptMember2"), appointmentToBook, resourceName);
 
 		rm.calendarTomorrowClick();
 
@@ -363,9 +363,13 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount extends 
 	@Test(priority = 3)
 	public void CancelAppointment() throws IOException, InterruptedException {
 
-		rm.ApptCheckinInCOG("Auto, Apptmember13", appointmentToBook, "apptmember13", "1"); // Check In the Member
-																							// to the
-																							// appointment
+		rm.ApptCheckinInCOG("Auto, " + prop.getProperty("ApptMember1"), appointmentToBook,
+				prop.getProperty("ApptMember1"), "1"); // Check
+		// In
+		// the
+		// Member
+		// to the
+		// appointment
 		DashboardPO d = new DashboardPO(driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 
