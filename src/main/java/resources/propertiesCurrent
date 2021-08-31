@@ -1,4 +1,4 @@
-test_environment = local
+execution_Environment = local
 browser = Chrome
 browser1 = Firefox
 browser2 = Edge
@@ -6,11 +6,27 @@ browser3 = Safari
 browser4 = IE
 
 
-EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/login/236
-COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
+EMELoginPage2 = https://ourclublogin-future2.test-jfisoftware.com:8911/login/236
+COGLoginPage2 = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
 
 EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
 COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
+
+!URL for Current
+EMELoginPage = https://ourclublogin.test-jfisoftware.com:8909/login/101
+COGLoginPage = https://ess-web.test-jfisoftware.com:8449/CompeteOnTheGo/home/index/101
+
+!URL for Cert Future
+EMELoginPage3 = https://futurecert.ourclublogin.com/Login/500202
+COGLoginPage3 = https://futurecert.competeselfservice.com/CompeteOnTheGo/home/index/500202
+
+!URL for Prod Future
+EMELoginPage4 = https://future.ourclublogin.com/Login/510306
+COGLoginPage4 = https://future.competeselfservice.com/CompeteOnTheGo/home/index/510306
+
+!URL for Prod Current
+EMELoginPage5 = https://www.ourclublogin.com/Login/510223
+COGLoginPage5 = https://www.competeselfservice.com/CompeteOnTheGo/home/index/510223
 
 
 	**************************************************************************************
@@ -21,6 +37,9 @@ COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/
 	EMEFutureURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101
 	EMECurrentURL = https://ourclublogin.test-jfisoftware.com:8909/account/login/101
 	**************************************************************************************
+	
+		
+		
 JOLLoginPage = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236
 JOLSearchPromo = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236/1/searchpromo
 
@@ -99,4 +118,30 @@ CCLast4Digits = 1111
 
 memberDOB = 01/01/2000
 
+classToEnroll = BARRE COMBAT FUSION
+classNameDisplayed = Barre Combat Fusion
+classTimeDisplayed = Start Time: 5:00 PM
+classInstructorDisplayed = Class Instructor: Andrea
 
+
+packageName = ServiceOA
+
+clubName = Studio Jonas
+productCategory = Personal Training 1
+appointmentToBook = PT Group-ThreeResources
+resourceName = FitExpert1-Grp
+additionalResourceName = Gym-Grp
+clubNameDisplayed = Club: Studio Jonas
+mssClubPricing = $5.15
+
+participant2 = Auto, Emailmember2
+unitsToBeSelected = 1 - $5.00/per
+
+interest = Cardio
+
+homeClubName = Jonas Sports-Plex
+
+barcodeId = 1141112
+
+COGUserName = bhagya
+COGPassword = 111

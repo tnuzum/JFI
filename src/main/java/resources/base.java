@@ -32,6 +32,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
+
 public class base {
 	public WebDriver driver;
 	public static Properties prop; // or, public static Properties prop = new Properties(); this was recommended to
@@ -44,8 +46,8 @@ public class base {
 	public static String ssTime = null;
 	public static String COGLoginPage = null;
 	public static String EMELoginPage = null;
+	static String testRegion;
 
-	// String projectPath = System.getenv("EME_HOME");
 	String projectPath = System.getProperty("user.dir");
 
 	public WebDriver initializeDriver() throws IOException {
@@ -56,27 +58,42 @@ public class base {
 		dcch.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
 		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
-		prop = new Properties();
-//		FileInputStream fis = new FileInputStream(projectPath + "\\src\\main\\java\\resources\\properties");
-		FileInputStream fis = new FileInputStream(
-				System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties");
+//		testRegion = "CertFuture";
+		testRegion = System.getProperty("test_Region");
 
-		prop.load(fis);
+		prop = new Properties();
+
+		try {
+
+			FileInputStream fis = new FileInputStream(
+					System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties" + testRegion);
+			prop.load(fis);
+
+		} catch (NullPointerException e) {
+			System.out.println("Error: Properties file could not be loaded");
+		}
+
 //		String browserName = prop.getProperty("browser");
 		String browserName = System.getProperty("browser");
 		System.out.println(browserName);
 
-//		String testEnvironment = prop.getProperty("test_environment");
-		String testEnvironment = System.getProperty("test_environment");
-		System.out.println(testEnvironment);
+//		String executionEnvironment = prop.getProperty("execution_Environment");
+		String executionEnvironment = System.getProperty("execution_Environment");
+		System.out.println(executionEnvironment);
 
-		if (testEnvironment.equals("grid")) {
+		if (executionEnvironment.equals("grid")) {
 			if (browserName.equals("Chrome")) {
 				log.info("Chrome Browser: Running Tests on Selenium Grid");
 				DesiredCapabilities dc = new DesiredCapabilities();
 				dc.setBrowserName("chrome");
 				dc.setPlatform(Platform.WINDOWS);
-				System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\chromedriver.exe");
+//				System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\chromedriver.exe");
+
+				WebDriverManager.chromedriver().setup();
+
+				System.out.println(WebDriverManager.chromedriver().getDownloadedDriverVersion());
+				log.info(WebDriverManager.chromedriver().getDownloadedDriverVersion());
+
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}
 			if (browserName.equals("Firefox")) {
@@ -89,7 +106,13 @@ public class base {
 				dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 				FirefoxOptions fo = new FirefoxOptions();
 				fo.merge(dc);
-				System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\geckodriver.exe");
+//				System.setProperty("webdriver.gecko.driver", "C:\\Automation\\libs\\geckodriver.exe");
+
+				WebDriverManager.firefoxdriver().setup();
+
+				System.out.println(WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
+				log.info(WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
+
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}
 			if (browserName.equals("Edge")) {
@@ -97,7 +120,13 @@ public class base {
 				DesiredCapabilities dc = new DesiredCapabilities();
 				dc.setBrowserName("MicrosoftEdge");
 				dc.setPlatform(Platform.WINDOWS);
-				System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
+//				System.setProperty("webdriver.edge.driver", "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
+
+				WebDriverManager.edgedriver().setup();
+
+				System.out.println(WebDriverManager.edgedriver().getDownloadedDriverVersion());
+				log.info(WebDriverManager.edgedriver().getDownloadedDriverVersion());
+
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}
 
@@ -124,12 +153,18 @@ public class base {
 				dc.setCapability("ignoreZoomSetting", true); //
 				dc.setBrowserName("internet explorer");
 				dc.setPlatform(Platform.WINDOWS); //
-				System.setProperty("webdriver.ie.driver", "c:\\WebDrivers\\IEDriverServer.exe");
+//				System.setProperty("webdriver.ie.driver", "c:\\WebDrivers\\IEDriverServer.exe");
+
+				WebDriverManager.iedriver().setup();
+
+				System.out.println(WebDriverManager.iedriver().getDownloadedDriverVersion());
+				log.info(WebDriverManager.iedriver().getDownloadedDriverVersion());
+
 				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 			}
 
 		} else {
-			if (testEnvironment.equals("local")) {
+			if (executionEnvironment.equals("local")) {
 
 				System.out.println("projectPath = " + projectPath);
 
@@ -143,15 +178,19 @@ public class base {
 					// co.addArguments("--window-size=1920, 1080");
 					co.merge(dcch);
 
-					/*
-					 * co.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-					 * co.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
-					 * co.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION,
-					 * true); co.setCapability("chrome.switches", Arrays.asList("--incognito"));
-					 */
+//					co.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+//					co.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
+//					co.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
+//					co.setCapability("chrome.switches", Arrays.asList("--incognito"));
+//
+//					System.setProperty("webdriver.chrome.driver",
+//							projectPath + "\\src\\main\\java\\webDrivers\\chromedriver.exe");
 
-					System.setProperty("webdriver.chrome.driver",
-							projectPath + "\\src\\main\\java\\webDrivers\\chromedriver.exe");
+					WebDriverManager.chromedriver().setup();
+
+					System.out.println(WebDriverManager.chromedriver().getDownloadedDriverVersion());
+					log.info(WebDriverManager.chromedriver().getDownloadedDriverVersion());
+
 					if (browserName.contains("headless")) {
 						co.addArguments("--headless");
 					}
@@ -167,22 +206,40 @@ public class base {
 					dc.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 					FirefoxOptions fo = new FirefoxOptions();
 					fo.merge(dc);
-					System.setProperty("webdriver.gecko.driver",
-							projectPath + "\\src\\main\\java\\webDrivers\\geckodriver.exe");
+//					System.setProperty("webdriver.gecko.driver",
+//							projectPath + "\\src\\main\\java\\webDrivers\\geckodriver.exe");
+
+					WebDriverManager.firefoxdriver().setup();
+
+					System.out.println(WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
+					log.info(WebDriverManager.firefoxdriver().getDownloadedDriverVersion());
+
 					driver = new FirefoxDriver(fo);
 				}
 				if (browserName.equals("Edge")) {
 
 					log.info("Edge Browser: Running Tests on local machine");
-					System.setProperty("webdriver.edge.driver",
-							projectPath + "\\src\\main\\java\\webDrivers\\msedgedriver.exe");
+//					System.setProperty("webdriver.edge.driver",
+//							projectPath + "\\src\\main\\java\\webDrivers\\msedgedriver.exe");
+
+					WebDriverManager.edgedriver().setup();
+
+					System.out.println(WebDriverManager.edgedriver().getDownloadedDriverVersion());
+					log.info(WebDriverManager.edgedriver().getDownloadedDriverVersion());
+
 					driver = new EdgeDriver();
 				}
 				if (browserName.equals("IE")) {
 					log.info("IE Browser: Running Tests on local machine");
 					InternetExplorerOptions options = new InternetExplorerOptions();
-					System.setProperty("webdriver.ie.driver",
-							projectPath + "\\src\\main\\java\\webdrivers\\IEDriverServer.exe");
+//					System.setProperty("webdriver.ie.driver",
+//							projectPath + "\\src\\main\\java\\webdrivers\\IEDriverServer.exe");
+
+					WebDriverManager.iedriver().setup();
+
+					System.out.println(WebDriverManager.iedriver().getDownloadedDriverVersion());
+					log.info(WebDriverManager.iedriver().getDownloadedDriverVersion());
+
 					options.setCapability("ignoreZoomSetting", true);
 					driver = new InternetExplorerDriver(options);
 				}
@@ -224,8 +281,8 @@ public class base {
 
 	public void getEMEURL() {
 
-		// String EMELoginPage = prop.getProperty("EMELoginPage");
-		String EMELoginPage = System.getProperty("EMELoginPage");
+		String EMELoginPage = prop.getProperty("EMELoginPage");
+//		String EMELoginPage = System.getProperty("EMELoginPage");
 		System.out.println(EMELoginPage);
 
 		driver.get(EMELoginPage);
@@ -233,8 +290,8 @@ public class base {
 
 	public void getCOGURL() {
 
-//		String COGLoginPage = prop.getProperty("COGLoginPage");
-		String COGLoginPage = System.getProperty("COGLoginPage");
+		String COGLoginPage = prop.getProperty("COGLoginPage");
+//		String COGLoginPage = System.getProperty("COGLoginPage");
 		System.out.println(COGLoginPage);
 
 		driver.get(COGLoginPage);

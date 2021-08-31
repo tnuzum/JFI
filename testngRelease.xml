@@ -3,31 +3,22 @@
 <suite name="EMERelease - Automated Testing">
 	<listeners>
 		<listener class-name="EME.listeners" />
-		<!--listener class-name = "resources.ExtentReporterNG"/ -->
+		<!--listener class-name = "resources.ExtentReporterNG"/-->
 	</listeners>
-	<test thread-count="5" name="EMERelease- Smoke Testing">
-
-		<!-- URL for Future/ -->
-		<!--parameter name = "EMELoginPage" value="https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224"/ -->
-
-		<!-- URL for Current/ -->
-		<parameter name = "EMELoginPage" value="https://ourclublogin.test-jfisoftware.com:8909/account/login/101"/>
-
-		<!-- URL for Cert Future/ -->
-		<!--parameter name="EMELoginPage"
-			value="https://futurecert.ourclublogin.com/Login/22" /-->
-
-		<!-- URL for Prod Future/ -->
-		<!--parameter name = "EMELoginPage" value="https://future.ourclublogin.com/Account/Login?ReturnUrl=%2f510306"/ -->
-
-		<!-- URL for Prod Current/ -->
-		<!--parameter name = "EMELoginPage" value="https://www.ourclublogin.com/Account/Login?ReturnUrl=%2f510223"/-->
-
+	<test thread-count="5" name="EMERelease- Smoke Testing" parallel="none"
+		preserve-order="true" group-by-instances="true">
+		
 		<classes>
-			<class name="EME_EnvURL.loginPageTest" />
-			<class name="EME_EnvURL.PageLaunchTest" />
-			<class name="EME_EnvURL.DashBoard_Layout" />
-			<class name="EME_EnvURL.DashBoard_Menu" />
+			<class name="EME.loginPageTest" />
+			<class name="EME.PageLaunchTest" />
+			<class name="EME.DashBoard_Layout"/>
+			<class name="EME.DashBoard_Menu" />
+			<class name="PayBalance.PayBalanceAndConfirmPayment" />
+			<class name="SingleMemberClasses.EnrollUnEnrollinTodaysClass" />
+			<class name="GroupAppointments.ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount"/>
+			<class name="manageProfile.ChangeInterest" />
+			<class name="ShopPackages.ShopAndPurchasePackagesOnAccount" />
+			
 
 		</classes>
 	</test>

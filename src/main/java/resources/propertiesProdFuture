@@ -1,0 +1,147 @@
+execution_Environment = local
+browser = Chrome
+browser1 = Firefox
+browser2 = Edge
+browser3 = Safari
+browser4 = IE
+
+
+EMELoginPage4 = https://ourclublogin-future2.test-jfisoftware.com:8911/login/236
+COGLoginPage4 = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
+
+EMELoginPage1 = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
+COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
+
+!URL for Current
+EMELoginPage2 = https://ourclublogin.test-jfisoftware.com:8909/login/101
+COGLoginPage2 = https://ess-web.test-jfisoftware.com:8449/CompeteOnTheGo/home/index/101
+
+!URL for Cert Future
+EMELoginPage3 = https://futurecert.ourclublogin.com/Login/500202
+COGLoginPage3 = https://futurecert.competeselfservice.com/CompeteOnTheGo/home/index/500202
+
+!URL for Prod Future
+EMELoginPage = https://future.ourclublogin.com/Login/510306
+COGLoginPage = https://future.competeselfservice.com/CompeteOnTheGo//home/index/510306
+
+!URL for Prod Current
+EMELoginPage5 = https://www.ourclublogin.com/Login/510223
+COGLoginPage5 = https://www.competeselfservice.com/CompeteOnTheGo/home/index/510223
+
+
+	**************************************************************************************
+	Web addresses for URL parameter
+	EMEFuture2AutoURL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/236
+	EMEFutureAutoURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
+	EMEFuture2URL = https://ourclublogin-future2.test-jfisoftware.com:8911/account/login/101
+	EMEFutureURL = https://ourclublogin-future.test-jfisoftware.com:8910/account/login/101
+	EMECurrentURL = https://ourclublogin.test-jfisoftware.com:8909/account/login/101
+	**************************************************************************************
+	
+		
+		
+JOLLoginPage = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236
+JOLSearchPromo = https://jol-web-future2.test-jfisoftware.com:8944/CompeteJOL/236/1/searchpromo
+
+MastercardNumber = 5454545454545454
+MastercardExpireMonth = 01
+MastercardExpireYear = 25
+MastercardCVC = 007
+nonHohActiveEwaiver_username = seema3
+nonHohActiveEwaiver_password = June@123
+
+HohActiveEwaiver_username = seema4
+HohActiveEwaiver_password = June@123
+
+activeMember1_username = rauto
+activeMember1_password = Testing1!
+activeMember1_fullname = Robert Auto
+activeMember2_username = sauto
+activeMember2_password = Testing1!
+activeMember2_fullname = Susan Auto
+activeMember3_username = dauto
+activeMember3_password = Testing1!
+activeMember3_fullname = Debbie Auto
+activeMember4_username = fauto
+activeMember4_password = Testing1!
+activeMember4_fullname = Fred Auto
+activeMember5_username = bauto
+activeMember5_password = Testing1!
+activeMember5_fullname = Daisy Auto
+activeMember6_username = OAMember
+activeMember6_password = Testing1!
+activeMember6_fullname = OAMember Auto
+activeMember7_username = CCMember 
+activeMember7_password = Testing1!
+activeMember7_fullname = CCMember Auto
+activeMember8_username = NCMember 
+activeMember8_password = Testing1!
+activeMember8_fullname = NCMember Auto
+activeMember9_username = NoOAMember 
+activeMember9_password = Testing1!
+activeMember9_fullname = NoOAMember Auto
+activeMember10_username = NoCCMember 
+activeMember10_password = Testing1!
+activeMember10_fullname = NoCCMember Auto
+activeMember11_username = NoOANoCCMember 
+activeMember11_password = Testing1!
+activeMember11_fullname = NoOANoCCMember Auto
+collectionsMember1_username = jauto
+collectionsMember1_password = Testing1!
+collectionsMember1_fullname = James Auto
+prospectMember1_username = aauto
+prospectMember1_password = Testing1!
+prospectMember1_fullname = Adam Auto
+invalid_username = tpowers
+invalid_password = Not@Password1
+wrongCredentialsMessage = WE APOLOGIZE... It seems the credentials you entered are different than what is in our system. Please try again, and if the problem persists, contact your club for additional help.
+usernameRequiredMessage = Username is required
+passwordRequiredMessage = Password is required
+InvalidCredentialsMessage = Invalid Credentials
+forgotUsernameDescription = Enter the information in the fields below and we will try to recover your username for you.
+firstNameRequiredMessage = First Name is required
+lastNameRequiredMessage = Last Name is required
+phoneNumberRequiredMessage = Phone Number is required
+emailRequiredMessage = Email is required
+forgotPasswordDescription = Fill out the form below to reset your password. You will receive a temporary password via email.
+userNameRequiredMessage = Username is required
+
+USBankRoutingNumber = 322271627
+USBankAcctNumber = 9876543210
+USBankLast4Digits = 3210
+CanadaBankRoutingNumberOne = 12345
+CanadaBankRoutingNumberTwo = 678
+CanadaBankAcctNumber = 1234567
+CanadianBankLast4Digits = 4567
+CCNumber = 4111111111111111
+CCLast4Digits = 1111
+
+memberDOB = 01/01/2000
+
+
+classToEnroll = BARRE COMBAT FUSION
+classNameDisplayed = Barre Combat Fusion
+classTimeDisplayed = Start Time: 5:00 PM
+classInstructorDisplayed = Class Instructor: Andrea
+
+packageName = ServiceOA
+
+clubName = Studio Jonas
+productCategory = Personal Training 1
+appointmentToBook = PT Group-ThreeResources
+resourceName = FitExpert1-Grp
+additionalResourceName = Gym-Grp
+clubNameDisplayed = Club: Studio Jonas
+mssClubPricing = $5.15
+
+participant2 = Auto, Emailmember2
+unitsToBeSelected = 1 - $5.00/per
+
+homeClubName = Jonas Sports-Plex
+
+interest = Cardio
+
+barcodeId = 1141112
+
+COGUserName = bhagya
+COGPassword = 111

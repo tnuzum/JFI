@@ -37,13 +37,13 @@ public class EnrollCourseByBuyingPackage extends base {
 	private static String CourseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String buyPackageName = "Buy Day Pass";
 	private static String packageName = "Day Pass";
-	private static String CourseStartMonth = "Aug";
+	private static String CourseStartMonth = "Nov";
 	private static int CourseStartYear = 2021;
-	private static String dsiredMonthYear = "August 2021";
+	private static String dsiredMonthYear = "November 2021";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $10.00/per";
 	private static String classCostInUnits = "Course Cost: 2 Unit(s) - Your Current Unit Value Is ";
-	private static String CourseStartDate = "Date: 08/21/2021";
+	private static String CourseStartDate = "Date: 11/21/2021";
 	private static int unitCount = 0;
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;

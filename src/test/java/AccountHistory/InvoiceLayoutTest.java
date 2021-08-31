@@ -134,9 +134,9 @@ public class InvoiceLayoutTest extends base {
 		try {
 
 			Assert.assertTrue(ahp.getMediaHeadings().get(0).getText().contains("We invoiced you for"));
-			Assert.assertTrue(ahp.getaDataColumns().get(0).getText().contains("QTY"));
-			Assert.assertTrue(ahp.getaDataColumns().get(1).getText().contains("Discount"));
-			Assert.assertTrue(ahp.getaDataColumns().get(2).getText().contains("Charges"));
+			Assert.assertTrue(ahp.getaDataColumns().get(1).getText().contains("QTY"));
+			Assert.assertTrue(ahp.getaDataColumns().get(2).getText().contains("Discount"));
+			Assert.assertTrue(ahp.getaDataColumns().get(3).getText().contains("Charges"));
 
 			int count = ahp.getLineItems().size();
 

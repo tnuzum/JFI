@@ -29,8 +29,8 @@ import resources.reusableWaits;
 public class FamilyMemberEnrollmentInFreeCourse extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static int CourseStartYear = 2021;
-	private static String CourseStartMonth = "Aug";
-	private static String dsiredMonthYear = "August 2021";
+	private static String CourseStartMonth = "Nov";
+	private static String dsiredMonthYear = "November 2021";
 	private static String courseToEnroll = "FREE COURSE AUTO";
 	private static String courseNameDisplayed = "Free Course Auto";
 	private static String courseTimeDisplayed = "Start Time: 4:30 PM";
@@ -279,7 +279,7 @@ public class FamilyMemberEnrollmentInFreeCourse extends base {
 
 			Thread.sleep(2000);
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-			jse.executeScript("arguments[0].click();", ahp.getReceiptNumber());
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
 			Thread.sleep(3000);
 			jse.executeScript("arguments[0].scrollIntoView(true);",
 					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));

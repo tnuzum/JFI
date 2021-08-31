@@ -22,6 +22,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.CartPO;
@@ -66,6 +67,11 @@ public class PageLaunchTest_IE extends base {
 		dc.setPlatform(Platform.WINDOWS);
 		// System.setProperty("webdriver.edge.driver",
 		// "C:\\Automation\\libs\\MicrosoftWebDriver.exe");
+
+		WebDriverManager.iedriver().setup();
+
+		System.out.println(WebDriverManager.iedriver().getDownloadedDriverVersion());
+		log.info(WebDriverManager.iedriver().getDownloadedDriverVersion());
 
 		driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
 

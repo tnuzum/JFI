@@ -571,7 +571,7 @@ public class reusableMethods extends base {
 		int IntUnitCount = 0;
 		Thread.sleep(3000);
 		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//a[@class = 'dropdown-item']")));
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class = 'dropdown-item']")));
 		int packagesCount = PP.getPackagesList().size();
 		for (int j = 0; j < packagesCount; j++) {
 			wait.until(ExpectedConditions.textToBePresentInElement(PP.getPackagesList().get(j), "Remaining"));
@@ -848,8 +848,8 @@ public class reusableMethods extends base {
 		// driver.get(prop.getProperty("COGLoginPage"));
 		getCOGURL();
 
-		driver.findElement(By.id("UserName")).sendKeys("bhagya");
-		driver.findElement(By.id("Password")).sendKeys("111");
+		driver.findElement(By.id("UserName")).sendKeys(prop.getProperty("COGUserName"));
+		driver.findElement(By.id("Password")).sendKeys(prop.getProperty("COGPassword"));
 		driver.findElement(By.id("submit")).click();
 		Thread.sleep(1000);
 		Select s = new Select(driver.findElement(By.id("ddl_clubSelection")));
@@ -863,7 +863,7 @@ public class reusableMethods extends base {
 	public Object ApptCheckinInCOG(String memberName, String appointmentName, String username, String unitValue)
 			throws InterruptedException {
 
-		this.loginCOG("Studio Jonas");
+		this.loginCOG(prop.getProperty("clubName"));
 		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
 		int count = FrontDeskTile.findElements(By.tagName("a")).size();
 		for (int i = 0; i < count; i++) {
@@ -907,7 +907,9 @@ public class reusableMethods extends base {
 
 			if (Text.contains(appointmentName)) {
 				System.out.println("appointment name present");
-				CheckInOptions.get(j).findElement(By.className("checkbox")).click();
+				CheckInOptions.get(j).findElement(By.className("icons")).click();
+				// CheckInOptions.get(j).findElement(By.xpath("td//label//span[@class =
+				// 'icons']")).click();
 				System.out.println("clicked");
 				Select s = new Select(CheckInOptions.get(j).findElement(By.id("ddlVisits")));
 				s.selectByValue(unitValue);
@@ -1021,6 +1023,52 @@ public class reusableMethods extends base {
 
 	}
 
+	public Object confirmPaymentInCOG(String barcodeId, String clubName, String date) throws InterruptedException {
+
+		this.loginCOG(clubName);
+		WebElement BackOfficeTile = driver.findElement(By.xpath("(//div[@class='tile'])[2]"));
+		int count = BackOfficeTile.findElements(By.tagName("a")).size();
+		for (int i = 0; i < count; i++) {
+			// System.out.println(BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (BackOfficeTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("MemberManagement")) {
+				Thread.sleep(1000);
+				BackOfficeTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		driver.findElement(By.id("txt_barcodeId")).sendKeys(barcodeId);
+
+		driver.findElement(By.id("btn_search")).click();
+		driver.findElement(By.xpath("//i[@class='fa fa-cogs fa-2x']")).click();
+		Thread.sleep(2000);
+
+		List<WebElement> AccountingSections = driver
+				.findElements(By.xpath("//div[@class = 'floatleft checkb25 mlm AccountingSection']"));
+		int accountingSectionsCount = AccountingSections.size();
+
+		for (int j = 0; j < accountingSectionsCount; j++) {
+			if (AccountingSections.get(j).getText().contains("TRANSACTION HISTORY"))
+				AccountingSections.get(j).findElement(By.tagName("i")).click();
+		}
+
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("//a[@id='btn_search']")).click();
+
+		List<WebElement> PaymentRow = driver.findElements(By.tagName("tr"));
+
+		List<WebElement> PaymentColumns = PaymentRow.get(1).findElements(By.tagName("td"));
+
+//		Assert.assertTrue(PaymentColumns.get(0).getText().contains(date));
+
+//		Assert.assertTrue(PaymentColumns.get(1).getText().contains("Online Payment"));
+
+//		Assert.assertTrue(PaymentColumns.get(2).getText().contains("($1.00)"));
+
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		return null;
+	}
+
 	public Object VerifyFOPNotSavedInCOG(String barcodeId, String clubName, String fopNumber)
 			throws InterruptedException {
 
@@ -1078,7 +1126,7 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Aug");
+		monthDropdown.selectByVisibleText("Nov");
 		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
 		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));
@@ -1272,7 +1320,7 @@ public class reusableMethods extends base {
 
 		driver.findElement(By.xpath("//i[@class='fa fa-calendar calenderbtn']")).click();
 		Select monthDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-month']")));
-		monthDropdown.selectByVisibleText("Aug");
+		monthDropdown.selectByVisibleText("Nov");
 		Select yearDropdown = new Select(driver.findElement(By.xpath("//select[@class='ui-datepicker-year']")));
 		yearDropdown.selectByVisibleText("2021");
 		List<WebElement> Dates = driver.findElements(By.xpath("//table[@class='ui-datepicker-calendar'] //td/a"));

@@ -44,7 +44,7 @@ public class AcctHistoryPO {
 	// By columnNames = By.xpath("//div[@class = 'col-md-3']");
 	By columnNames = By.xpath("//div[@class = 'col-lg-3']");
 
-	By descriptionColumn = By.xpath("//div[@class = 'col-lg-6']");
+	By descriptionColumn = By.xpath("//div[@class = 'col-lg-5']//div[@class = 'col-lg-4']");
 	By acctSummaryBox = By.xpath("//div[@class = 'row-box p-sm']");
 	By unPaidInvoices = By.xpath("//h2[@class = 'at-accounthistorysummary-unpaidamount']");
 	By creditOnFile = By.xpath("//h2[@class = 'at-accounthistorysummary-creditamount']");

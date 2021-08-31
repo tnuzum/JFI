@@ -1,5 +1,7 @@
 package pageObjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,7 +19,8 @@ public class ManageProfilePO {
 	By passwordButton = By.xpath("//div[@class='ibox']/div[2]/div/div/div[2]/div/h4/a");
 	By generalInfoButton = By.xpath("//div[@class='ibox']/div[2]/div/div/div[3]/div/h4/a");
 	By groupActivityOptionsButton = By.xpath("//div[@class='ibox']/div[2]/div/div/div[4]/div/h4/a");
-	By interestsButton = By.xpath("//div[@class='ibox']/div[2]/div/div/div[5]/div/h4/a");
+//	By interestsButton = By.xpath("//div[@class='ibox']/div[2]/div/div/div[5]/div/h4/a");
+	By interestsButton = By.xpath("//div[@class = 'panel-group payments-method']/div[5]/div[1]/a/h3/i");
 	By currentUsernameLabel = By.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[1]/label");
 //** i'm having trouble locating labels for New Username and Confirm New Username **
 	By usernameInput = By.xpath("//div[@id='collapseOne']/editusernamecomponent/div/form/div[1]/input");
@@ -35,6 +38,14 @@ public class ManageProfilePO {
 	By confirmUSerName1 = By.xpath("//input[@formcontrolname = 'fbConfirmNewUsername']"); // updated by Bhagya
 	By changeUSerName1 = By.xpath("//button[contains(text(),'change username')]");
 	By saveUsernmae = By.xpath("//button[contains(text(),'OK')]");
+
+	By saveInterests = By.xpath("//button[contains(text(),'save interests')]");
+	By selectAllThaApply = By.xpath("//div[contains(@class, 'mat-select-value')]");
+	By interestCheckBoxes = By.xpath("//mat-option[contains(@class, 'mat-option')]");
+
+	By popupText = By.xpath("//h2[@id ='swal2-title']");
+
+	By popupConfirmationButton = By.xpath("//div[@class='swal2-actions']/button[1]");
 
 // CONSTRUCTOR
 
@@ -121,5 +132,25 @@ public class ManageProfilePO {
 
 	public WebElement getsaveUsernmae() {
 		return driver.findElement(saveUsernmae);
+	}
+
+	public WebElement getSaveInterests() {
+		return driver.findElement(saveInterests);
+	}
+
+	public WebElement getSelectAllThaApply() {
+		return driver.findElement(selectAllThaApply);
+	}
+
+	public List<WebElement> getInterestCheckBoxes() {
+		return driver.findElements(interestCheckBoxes);
+	}
+
+	public WebElement getPopupText() {
+		return driver.findElement(popupText);
+	}
+
+	public WebElement getPopupConfirmationButton() {
+		return driver.findElement(popupConfirmationButton);
 	}
 }

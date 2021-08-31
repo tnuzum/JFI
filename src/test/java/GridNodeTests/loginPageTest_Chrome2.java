@@ -18,6 +18,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import pageObjects.LoginPO;
 import resources.base;
 
@@ -47,8 +48,13 @@ public class loginPageTest_Chrome2 extends base {
 		chrome_options.addArguments("--headless");
 		chrome_options.addArguments("--disable-dev-shm-usage");
 		chrome_options.setExperimentalOption("useAutomationExtension", false);
-		System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
+//		System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
 //		chrome_options.merge(dc);
+
+		WebDriverManager.chromedriver().setup();
+
+		System.out.println(WebDriverManager.chromedriver().getDownloadedDriverVersion());
+		log.info(WebDriverManager.chromedriver().getDownloadedDriverVersion());
 
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);

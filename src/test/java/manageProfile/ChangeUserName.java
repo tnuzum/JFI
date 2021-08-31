@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pageObjects.DashboardPO;
@@ -23,7 +23,7 @@ public class ChangeUserName extends base {
 		rw = new reusableWaits();
 	}
 
-	@BeforeTest
+	@BeforeClass
 	public void initialize() throws Exception, IOException {
 
 		driver = initializeDriver();
