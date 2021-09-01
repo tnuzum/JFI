@@ -1300,6 +1300,49 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public Object ClassCheckInCOG(String className, String classSellClub, String username) throws InterruptedException {
+
+		this.loginCOG(classSellClub);
+
+		WebElement FrontDeskTile = driver.findElement(By.xpath("(//div[@class='tile'])[1]"));
+
+		int count = FrontDeskTile.findElements(By.tagName("a")).size();
+
+		for (int i = 0; i < count; i++) {
+			// System.out.println(FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href"));
+			if (FrontDeskTile.findElements(By.tagName("a")).get(i).getAttribute("href").contains("ClassCheckIn")) {
+				Thread.sleep(1000);
+				FrontDeskTile.findElements(By.tagName("a")).get(i).findElement(By.tagName("i")).click();
+				break;
+			}
+		}
+
+		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
+
+		int classCount = driver.findElements(By.tagName("tr")).size();
+
+		for (int i = 1; i < classCount; i++) {
+			WebElement ClassRow = driver.findElements(By.tagName("tr")).get(i);
+			List<WebElement> ClassRowSections = ClassRow.findElements(By.tagName("td"));
+			String classNameText = ClassRowSections.get(0).getText();
+			if (classNameText.equals(className)) {
+				driver.findElements(By.xpath("//a[@role = 'button']")).get(i - 1).click();
+				break;
+			}
+		}
+		Thread.sleep(2000);
+
+		driver.findElement(By.xpath("//tbody/tr[1]/td[1]/a[1]")).click();
+
+		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
+		// driver.get(prop.getProperty("EMELoginPage"));
+		getEMEURL();
+		this.activeMemberLogin(username, "Testing1!");
+
+		return null;
+
+	}
+
 	public Object deleteEnrollInCourseInCOG(String courseName, String classSellClub, String memberName)
 			throws InterruptedException {
 
