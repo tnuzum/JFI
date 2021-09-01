@@ -133,7 +133,7 @@ additionalResourceName = Gym-Grp
 clubNameDisplayed = Club: Studio Jonas
 mssClubPricing = $5.15
 
-participant2 = Auto, Emailmember2
+participant2 = Kalle, Bob
 unitsToBeSelected = 1 - $5.00/per
 
 interest = Build Muscle/Strength
@@ -146,5 +146,5 @@ COGUserName = bhagya
 COGPassword = 111
 
 ApptMember1 = Apptmember13
-ApptMember2 = Emailmember2
+ApptMember2 = Bob
 memberPassword = Testing1!
