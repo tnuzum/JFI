@@ -246,8 +246,16 @@ public class EnrollUnEnrollinTodaysClass extends base {
 		Thread.sleep(1000);
 		rm.returnToDashboard();
 
-		rm.unenrollFromClass();
 		rm.memberLogout();
+
+	}
+
+	@Test(priority = 3)
+
+	public void classCheckInCOG() throws InterruptedException, IOException {
+		rm.ClassCheckInCOG(classNameDisplayed, prop.getProperty("homeClubName"),
+				prop.getProperty("activeMember6_username"));
+		rm.unenrollFromClass();
 
 	}
 
