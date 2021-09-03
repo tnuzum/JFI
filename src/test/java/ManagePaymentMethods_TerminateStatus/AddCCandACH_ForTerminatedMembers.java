@@ -181,7 +181,7 @@ public class AddCCandACH_ForTerminatedMembers extends base {
 
 	@AfterClass
 	public void teardown() throws InterruptedException {
-		driver.close();
+		driver.quit();
 		driver = null;
 	}
 
