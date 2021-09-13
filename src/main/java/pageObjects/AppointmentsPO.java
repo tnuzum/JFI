@@ -16,6 +16,7 @@ public class AppointmentsPO {
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By loadingAvailabilityMessage = By.xpath("//div[contains(@class, 'swal2-loading')]");
 	By selectMember = By.xpath("//select[@name='familySelect']");
+	By eligibilityMessage = By.xpath("//div[contains(@class, 'alert alert-danger')]");
 	By clubs = By.xpath("(//select[@name='clubSelect'])");
 	By bookableItemCategory = By.xpath("(//select[@name='bookableItemCategory'])");
 	By bookableItem = By.xpath("(//select[@name='bookableItem'])");
@@ -128,6 +129,10 @@ public class AppointmentsPO {
 
 	public WebElement getSelectMember() {
 		return driver.findElement(selectMember);
+	}
+
+	public WebElement getEligibilityMessage() {
+		return driver.findElement(eligibilityMessage);
 	}
 
 	public WebElement getclubs() {

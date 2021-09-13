@@ -51,21 +51,18 @@ public class EmailConfirmations extends base {
 
 			Message email1 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 20)[0];
 
-			System.out.println(emailUtils.getMessageContent(email1));
-			String emailMessage1 = emailUtils.getMessageContent(email1);
-			Assert.assertTrue(emailMessage1.contains("You have been successfully enroll=ed in the following class."));
-
-			Assert.assertTrue(
-					emailUtils.isTextInMessage(email1, "You have been successfully enroll=ed in the following class."));
-			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Lo=cation: Jonas Sports-Plex"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email1, "Class Name: Free Class Auto"));
+			System.out.println(emailUtils.getMessageContent(email1).replaceAll("=", ""));
+			String emailMessage1 = emailUtils.getMessageContent(email1).replaceAll("=", "");
+			Assert.assertTrue(emailMessage1.contains("You have been successfully enrolled in the following class."));
+			Assert.assertTrue(emailMessage1.contains("Location: Jonas Sports-Plex"));
+			Assert.assertTrue(emailMessage1.contains("Class Name: Free Class Auto"));
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/d/yyyy");
 			Calendar today11 = Calendar.getInstance();
 			today11.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDate = dateFormat11.format(today11.getTime());
-			String classdateAndTime = "Cla=ss Time: " + tomorrowsDate + " 10:00 AM";
+			String classdateAndTime = "Class Time: " + tomorrowsDate + " 10:00 AM";
 			System.out.println(classdateAndTime);
-			Assert.assertTrue(emailUtils.isTextInMessage(email1, classdateAndTime));
+			Assert.assertTrue(emailMessage1.contains(classdateAndTime));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -84,22 +81,19 @@ public class EmailConfirmations extends base {
 			Message email2 = emailUtils.getMessagesBySubject("Free Class Auto - Unenrollment Notification", true,
 					20)[0];
 
-			System.out.println(emailUtils.getMessageContent(email2));
-			String emailMessage2 = emailUtils.getMessageContent(email2);
+			System.out.println(emailUtils.getMessageContent(email2).replaceAll("=", ""));
+			String emailMessage2 = emailUtils.getMessageContent(email2).replaceAll("=", "");
 			Assert.assertTrue(
 					emailMessage2.contains("You have been successfully unenrolled from the following class. "));
-
-			Assert.assertTrue(emailUtils.isTextInMessage(email2,
-					"You have been successfully unenrolled from the following class. "));
-			Assert.assertTrue(emailUtils.isTextInMessage(email2, "Location: Jonas Sports-Plex"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email2, "Class Name: Free Class Auto"));
+			Assert.assertTrue(emailMessage2.contains("Location: Jonas Sports-Plex"));
+			Assert.assertTrue(emailMessage2.contains("Class Name: Free Class Auto"));
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("M/d/yyyy");
 			Calendar today11 = Calendar.getInstance();
 			today11.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDate = dateFormat11.format(today11.getTime());
 			String classdateAndTime = "Class Time: " + tomorrowsDate + " 10:00 AM";
 			System.out.println(classdateAndTime);
-			Assert.assertTrue(emailUtils.isTextInMessage(email2, classdateAndTime));
+			Assert.assertTrue(emailMessage2.contains(classdateAndTime));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -117,14 +111,11 @@ public class EmailConfirmations extends base {
 
 			Message email3 = emailUtils.getMessagesBySubject("Enrollment Notification", true, 20)[0];
 
-			System.out.println(emailUtils.getMessageContent(email3));
-			String emailMessage3 = emailUtils.getMessageContent(email3);
-			Assert.assertTrue(emailMessage3.contains("You have been successfully enroll=ed in the following course."));
-
-			Assert.assertTrue(emailUtils.isTextInMessage(email3,
-					"You have been successfully enroll=ed in the following course."));
-			Assert.assertTrue(emailUtils.isTextInMessage(email3, "L=ocation: Jonas Sports-Plex"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email3, "Course Name: Free Course Auto"));
+			System.out.println(emailUtils.getMessageContent(email3).replaceAll("=", ""));
+			String emailMessage3 = emailUtils.getMessageContent(email3).replaceAll("=", "");
+			Assert.assertTrue(emailMessage3.contains("You have been successfully enrolled in the following course."));
+			Assert.assertTrue(emailMessage3.contains("Location: Jonas Sports-Plex"));
+			Assert.assertTrue(emailMessage3.contains("Course Name: Free Course Auto"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -142,17 +133,14 @@ public class EmailConfirmations extends base {
 			Message email4 = emailUtils.getMessagesBySubject("Free Course Auto - Unenrollment Notification", true,
 					20)[0];
 
-			System.out.println(emailUtils.getMessageContent(email4));
-			String emailMessage4 = emailUtils.getMessageContent(email4);
+			System.out.println(emailUtils.getMessageContent(email4).replaceAll("=", ""));
+			String emailMessage4 = emailUtils.getMessageContent(email4).replaceAll("=", "");
 			Assert.assertTrue(
 					emailMessage4.contains("You have been successfully unenrolled from the following course."));
 
-			Assert.assertTrue(emailUtils.isTextInMessage(email4,
-					"You have been successfully unenrolled from the following course. "));
-			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Location: Jonas Sports-Plex"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email4, "Course Name: Free Course Auto"));
-			Assert.assertTrue(
-					emailUtils.isTextInMessage(email4, "Course Time: Every Monday, Wednesday, Thursday, Friday"));
+			Assert.assertTrue(emailMessage4.contains("Location: Jonas Sports-Plex"));
+			Assert.assertTrue(emailMessage4.contains("Course Name: Free Course Auto"));
+			Assert.assertTrue(emailMessage4.contains("Course Time: Every Monday, Wednesday, Thursday, Friday"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -171,8 +159,8 @@ public class EmailConfirmations extends base {
 			Message email5 = emailUtils.getMessagesBySubject("Appointment Confirmation for Auto, Emailmember", true,
 					20)[0];
 
-			System.out.println(emailUtils.getMessageContent(email5));
-			String emailMessage5 = emailUtils.getMessageContent(email5);
+			System.out.println(emailUtils.getMessageContent(email5).replaceAll("=", ""));
+			String emailMessage5 = emailUtils.getMessageContent(email5).replaceAll("=", "");
 
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
@@ -180,16 +168,14 @@ public class EmailConfirmations extends base {
 			String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
 			System.out.println(tomorrowsDayAndDate);
 
-			Assert.assertTrue(emailMessage5.contains("Your appointment has been booked= as follows:"));
-
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Your appointment has been booked= as follows:"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Club: Jonas Fitness"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Participant(s): Auto, Emailmember"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Books: PT.Shepard, Ell=iana; FitExpert2; |Gym"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Description: PTServiceWith3Resour=ces"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "Date: " + tomorrowsDayAndDate));
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "0 Hour  15 Minute"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email5, "5:00 AM"));
+			Assert.assertTrue(emailMessage5.contains("Your appointment has been booked as follows:"));
+			Assert.assertTrue(emailMessage5.contains("Club: Jonas Fitness"));
+			Assert.assertTrue(emailMessage5.contains("Participant(s): Auto, Emailmember"));
+			Assert.assertTrue(emailMessage5.contains("Books: PT.Shepard, Elliana; FitExpert2; |Gym"));
+			Assert.assertTrue(emailMessage5.contains("Description: PTServiceWith3Resources"));
+			Assert.assertTrue(emailMessage5.contains("Date: " + tomorrowsDayAndDate));
+			Assert.assertTrue(emailMessage5.contains("0 Hour  15 Minute"));
+			Assert.assertTrue(emailMessage5.contains("5:00 AM"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -208,23 +194,20 @@ public class EmailConfirmations extends base {
 			Message email6 = emailUtils.getMessagesBySubject(
 					"Cancellation of Appointment Confirmation for Auto, Emailmember", true, 20)[0];
 
-			System.out.println(emailUtils.getMessageContent(email6));
-			String emailMessage6 = emailUtils.getMessageContent(email6);
+			System.out.println(emailUtils.getMessageContent(email6).replaceAll("=", ""));
+			String emailMessage6 = emailUtils.getMessageContent(email6).replaceAll("=", "");
 
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
 			today11.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
 			System.out.println(tomorrowsDayAndDate);
-			Assert.assertTrue(emailMessage6.contains("Your appointment for the followi=ng has been canceled:"));
-
-			Assert.assertTrue(
-					emailUtils.isTextInMessage(email6, "Your appointment for the followi=ng has been canceled:"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email6, "Description: PTServiceWith3Resourc=es"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email6, "Club: Jonas Fitness"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email6, "Date: " + tomorrowsDayAndDate));
-			Assert.assertTrue(emailUtils.isTextInMessage(email6, "5:00 AM"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email6, "15 Minute"));
+			Assert.assertTrue(emailMessage6.contains("Your appointment for the following has been canceled:"));
+			Assert.assertTrue(emailMessage6.contains("Description: PTServiceWith3Resources"));
+			Assert.assertTrue(emailMessage6.contains("Club: Jonas Fitness"));
+			Assert.assertTrue(emailMessage6.contains("Date: " + tomorrowsDayAndDate));
+			Assert.assertTrue(emailMessage6.contains("5:00 AM"));
+			Assert.assertTrue(emailMessage6.contains("15 Minute"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -243,8 +226,8 @@ public class EmailConfirmations extends base {
 			Message email7 = emailUtils.getMessagesBySubject("Appointment Confirmation for Auto, Emailmember2", true,
 					20)[0];
 
-			System.out.println(emailUtils.getMessageContent(email7));
-			String emailMessage7 = emailUtils.getMessageContent(email7);
+			System.out.println(emailUtils.getMessageContent(email7).replaceAll("=", ""));
+			String emailMessage7 = emailUtils.getMessageContent(email7).replaceAll("=", "");
 
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
@@ -252,18 +235,14 @@ public class EmailConfirmations extends base {
 			String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
 			System.out.println(tomorrowsDayAndDate);
 
-			Assert.assertTrue(emailMessage7.contains("Your appointment has been booke=d as follows:"));
-
-			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Your appointment has been booke=d as follows:"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Club: Studio Jonas"));
-			Assert.assertTrue(
-					emailUtils.isTextInMessage(email7, "Participant(s): Auto, Apptmember13; Auto, Emailmember2"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email7, "B=ooks: FitExpert1-Grp; Holmes, Jeff-Grp; |Gym-Grp"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email7, "Descrip=tion: PT Group-ThreeResources"));
-			// Assert.assertTrue(emailUtils.isTextInMessage(email7, "Date: " +
-			// tomorrowsDayAndDate));
-			Assert.assertTrue(emailUtils.isTextInMessage(email7, "1 Hour 0 Minute"));
-			// Assert.assertTrue(emailUtils.isTextInMessage(email7, "5:00 AM"));
+			Assert.assertTrue(emailMessage7.contains("Your appointment has been booked as follows:"));
+			Assert.assertTrue(emailMessage7.contains("Club: Studio Jonas"));
+			Assert.assertTrue(emailMessage7.contains("Participant(s): Auto, Apptmember13; Auto, Emailmember2"));
+			Assert.assertTrue(emailMessage7.contains("Books: FitExpert1-Grp; Holmes, Jeff-Grp; |Gym-Grp"));
+			Assert.assertTrue(emailMessage7.contains("Description: PT Group-ThreeResources"));
+			Assert.assertTrue(emailMessage7.contains("Date: " + tomorrowsDayAndDate));
+			Assert.assertTrue(emailMessage7.contains("1 Hour 0 Minute"));
+			Assert.assertTrue(emailUtils.isTextInMessage(email7, "5:00 AM"));
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -281,23 +260,20 @@ public class EmailConfirmations extends base {
 			Message email8 = emailUtils.getMessagesBySubject(
 					"Cancellation of Appointment Confirmation for Auto, Emailmember2", true, 20)[0];
 
-			System.out.println(emailUtils.getMessageContent(email8));
-			String emailMessage8 = emailUtils.getMessageContent(email8);
+			System.out.println(emailUtils.getMessageContent(email8).replaceAll("=", ""));
+			String emailMessage8 = emailUtils.getMessageContent(email8).replaceAll("=", "");
 
 			SimpleDateFormat dateFormat11 = new SimpleDateFormat("EEEE, MMMMM d, yyyy");
 			Calendar today11 = Calendar.getInstance();
 			today11.add(Calendar.DAY_OF_YEAR, 1);
 			String tomorrowsDayAndDate = dateFormat11.format(today11.getTime());
 			System.out.println(tomorrowsDayAndDate);
-			Assert.assertTrue(emailMessage8.contains("Your appointment for the follow=ing has been canceled:"));
-
-			Assert.assertTrue(
-					emailUtils.isTextInMessage(email8, "Your appointment for the follow=ing has been canceled:"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email8, "Description: PT Group-ThreeResour=ces"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email8, "Club: Studio Jonas"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email8, "Date: " + tomorrowsDayAndDate));
-			// Assert.assertTrue(emailUtils.isTextInMessage(email8, "5:00 AM"));
-			Assert.assertTrue(emailUtils.isTextInMessage(email8, "1 Hour"));
+			Assert.assertTrue(emailMessage8.contains("Your appointment for the following has been canceled:"));
+			Assert.assertTrue(emailMessage8.contains("Description: PT Group-ThreeResources"));
+			Assert.assertTrue(emailMessage8.contains("Club: Studio Jonas"));
+			Assert.assertTrue(emailMessage8.contains("Date: " + tomorrowsDayAndDate));
+			Assert.assertTrue(emailMessage8.contains("5:00 AM"));
+			Assert.assertTrue(emailMessage8.contains("1 Hour"));
 
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -20,21 +20,24 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import pageObjects.AcctHistoryPO;
 import pageObjects.DashboardPO;
 import pageObjects.PaymentPO;
+import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
 import resources.reusableWaits;
 
-public class PayBalance_StoredCard extends base {
+public class Bug183910_PayBalance_StoredCard extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
+	private static JavascriptExecutor jse;
 	private static String receiptNumber;
 
 	public reusableWaits rw;
 	public reusableMethods rm;
 
-	public PayBalance_StoredCard() {
+	public Bug183910_PayBalance_StoredCard() {
 		rw = new reusableWaits();
 		rm = new reusableMethods();
 
@@ -48,6 +51,9 @@ public class PayBalance_StoredCard extends base {
 		rw.setDriver(driver);
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
+
+		jse = (JavascriptExecutor) driver;
+
 		getEMEURL();
 //		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
@@ -161,6 +167,40 @@ public class PayBalance_StoredCard extends base {
 			Date date = new Date();
 			String DateTime = dateFormat.format(date);
 			Assert.assertEquals("Last Payment: " + DateTime, d.getMyAccountLastPaymentDate().getText());
+
+			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
+
+			AcctHistoryPO ahp = new AcctHistoryPO(driver);
+			ThankYouPO TY = new ThankYouPO(driver);
+
+			while (ahp.getSearchingAcctHistMessage().size() != 0) {
+				System.out.println("waiting for account history to display");
+				Thread.sleep(1000);
+			}
+
+			while (!ahp.getReceiptNumberTable().isDisplayed()) {
+				Thread.sleep(2000);
+				System.out.println("waiting");
+			}
+
+			// Clicks on the Receiptnumber in Account History
+
+			ahp.getSearchField().sendKeys(receiptNumber);
+
+			Thread.sleep(2000);
+			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
+			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
+
+			Thread.sleep(3000);
+
+			jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
+
+			// Verifies the Invoice amount
+			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//h2[@class='media-heading']")).getText()
+					.contains("$5.00"));
+			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+			Thread.sleep(1000);
+			rm.returnToDashboard();
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

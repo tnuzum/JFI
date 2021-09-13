@@ -18,7 +18,6 @@ import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
 import pageObjects.BreadcrumbTrailPO;
 import pageObjects.DashboardPO;
-import pageObjects.PaymentMethodsPO;
 import pageObjects.ThankYouPO;
 import resources.base;
 import resources.reusableMethods;
@@ -215,8 +214,6 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount extends 
 
 		Assert.assertEquals(FormatTotalAmt, mssClubPricing);
 
-		PaymentMethodsPO PM = new PaymentMethodsPO(driver);
-
 		Thread.sleep(2000);
 		// Verifies the Pay button contains the total amount
 
@@ -345,6 +342,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount extends 
 					}
 				}
 			}
+
 			rm.memberLogout();
 		} catch (Exception e) {
 			log.error(e.getMessage(), e);
@@ -371,7 +369,15 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount extends 
 		// to the
 		// appointment
 		DashboardPO d = new DashboardPO(driver);
-		WebDriverWait wait = new WebDriverWait(driver, 30);
+
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("arguments[0].click();", d.getMyPackagesButton());
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class = 'dropdown-item']")));
+
+		Assert.assertTrue(driver.findElement(By.xpath("//div[@class = 'col-12 text-center']/span")).getText()
+				.contains("You currently have no packages."));
 
 		appointmentsCount = d.getMyAppts().size();
 
