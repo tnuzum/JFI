@@ -46,6 +46,11 @@
 			<class name="SingleMemberCourses.EnrollCourse_ClubSettings" />
 			
 			<class name="ManageFamily.ManageFamilyLayoutTest"/>
+			<class name="ManageFamily.Bug175598_ManageFamily"/>
+			<class name="FamilyMemberClasses.Bug177368_FamilyMemberWithNoDuesServiceNotFree"/>
+			<class name="FamilyMemberClasses.Bug183925_MemberIsNotFreeWithVoidedDuesServiceAgreement"/>
+			<class name="FamilyAppointments.Bug171131_HOHCanNotBookForFreezeTerminateFamilyMembers"/>
+			<class name="manageProfile.ChangeInterest"/>
 			<class name ="manageProfile.ChangeUserName"/>
 			
 			<class name ="Messages.messageCenter"/>
@@ -298,7 +303,7 @@
 			<class name="PayBalance.PayBalance_NewCard_NoAgreement_NoSave" />
 			<class
 				name="PayBalance.PayBalance_NewCard_UnCheckAgrmntWithBadFOP" />
-			<class name="PayBalance.PayBalance_StoredCard" />
+			<class name="PayBalance.Bug183910_PayBalance_StoredCard" />
 			<class name="PayBalance.PayBalance_NewCard_LinkAgreement" />
 			<class name="PayBalance.PayBalance_NewCard_HasAgreement" />
 			<class name="PayBalance.PayBalance_NewCard_NoAgreement" />

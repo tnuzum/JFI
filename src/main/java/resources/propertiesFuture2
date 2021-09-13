@@ -123,7 +123,8 @@ memberDOB = 01/01/2000
 
 classToEnroll = BARRE COMBAT FUSION
 classNameDisplayed = Barre Combat Fusion
-classTimeDisplayed = Start Time: 5:00 PM
+classTimeDisplayed = Start Time: 10:30 PM
+
 classInstructorDisplayed = Class Instructor: Andrea
 
 packageName = ServiceOA
@@ -136,7 +137,7 @@ additionalResourceName = Gym-Grp
 clubNameDisplayed = Club: Studio Jonas
 mssClubPricing = $5.15
 
-participant2 = Auto, Emailmember2
+participant2 = Kalle, Bob
 unitsToBeSelected = 1 - $5.00/per
 
 interest = Build Muscle/Strength
@@ -149,5 +150,5 @@ COGUserName = bhagya
 COGPassword = 111
 
 ApptMember1 = Apptmember13
-ApptMember2 = Emailmember2
+ApptMember2 = Bob
 memberPassword = Testing1!

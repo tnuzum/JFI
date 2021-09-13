@@ -58,7 +58,7 @@ public class base {
 		dcch.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
 		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
-//		testRegion = "CertFuture";
+//		testRegion = "Future2";
 		testRegion = System.getProperty("test_Region");
 
 		prop = new Properties();
@@ -74,11 +74,12 @@ public class base {
 		}
 
 //		String browserName = prop.getProperty("browser");
-		String browserName = System.getProperty("browser");
-		System.out.println(browserName);
-
 //		String executionEnvironment = prop.getProperty("execution_Environment");
+
+		String browserName = System.getProperty("browser");
 		String executionEnvironment = System.getProperty("execution_Environment");
+
+		System.out.println(browserName);
 		System.out.println(executionEnvironment);
 
 		if (executionEnvironment.equals("grid")) {
@@ -174,6 +175,7 @@ public class base {
 					co.addArguments("--start-maximized");
 					co.addArguments("–no-sandbox");
 					co.addArguments("–disable-dev-shm-usage");
+					co.addArguments("--disable-gpu");
 
 					// co.addArguments("--window-size=1920, 1080");
 					co.merge(dcch);
@@ -186,7 +188,7 @@ public class base {
 //					System.setProperty("webdriver.chrome.driver",
 //							projectPath + "\\src\\main\\java\\webDrivers\\chromedriver.exe");
 
-					WebDriverManager.chromedriver().setup();
+					WebDriverManager.chromedriver().browserVersion("92").setup();
 
 					System.out.println(WebDriverManager.chromedriver().getDownloadedDriverVersion());
 					log.info(WebDriverManager.chromedriver().getDownloadedDriverVersion());

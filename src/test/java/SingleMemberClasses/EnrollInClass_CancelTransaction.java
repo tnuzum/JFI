@@ -25,7 +25,7 @@ public class EnrollInClass_CancelTransaction extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String classToEnroll = "BARRE COMBAT FUSION";
 	private static String classNameDisplayed = "Barre Combat Fusion";
-	private static String classTimeDisplayed = "Start Time: 5:00 PM";
+	private static String classTimeDisplayed = "Start Time: 10:30 PM";
 	private static String classInstructorDisplayed = "Class Instructor: Andrea";
 	private static JavascriptExecutor jse;
 

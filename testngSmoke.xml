@@ -15,10 +15,16 @@
 			<class name="EME.DashBoard_Layout" />
 			<class name="EME.DashBoard_Menu" />
 			<class name="EME.missingDob" />
-			<class name="PayBalance.PayBalance_StoredCard" />
+			<class name="PayBalance.Bug183910_PayBalance_StoredCard" />
 			<class name="CheckInHistory.MemberWithCheckInHistoryTest" />
 			<class name="CheckInHistory.MemberWithNoCheckInHistoryTest" />
 			<class name="ManageFamily.ManageFamilyLayoutTest"/>
+			<class name="ManageFamily.Bug175598_ManageFamily"/>
+			<class name="FamilyMemberClasses.Bug177368_FamilyMemberWithNoDuesServiceNotFree"/>
+			<class name="FamilyMemberClasses.Bug183925_MemberIsNotFreeWithVoidedDuesServiceAgreement"/>
+			<class name="FamilyAppointments.Bug171131_HOHCanNotBookForFreezeTerminateFamilyMembers"/>
+			<class name="manageProfile.ChangeInterest"/>
+			
 		</classes>
 	</test>
 
