@@ -19,7 +19,7 @@ public class EmailConfirmations extends base {
 	@BeforeClass
 	public static void connectToEmail() {
 		try {
-			emailUtils = new EmailUtils("jonasautotesting@gmail.com", "Testing1!", "smtp.gmail.com",
+			emailUtils = new EmailUtils("jonasautotesting@gmail.com", "JonasTesting1!", "smtp.gmail.com",
 					EmailUtils.EmailFolder.INBOX);
 		} catch (Exception e) {
 			e.printStackTrace();
