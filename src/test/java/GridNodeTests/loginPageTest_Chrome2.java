@@ -51,7 +51,7 @@ public class loginPageTest_Chrome2 extends base {
 //		System.setProperty("webdriver.chrome.driver", "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
 //		chrome_options.merge(dc);
 
-		WebDriverManager.chromedriver().setup();
+		WebDriverManager.chromedriver().browserVersion("92").setup();
 
 		System.out.println(WebDriverManager.chromedriver().getDownloadedDriverVersion());
 		log.info(WebDriverManager.chromedriver().getDownloadedDriverVersion());
