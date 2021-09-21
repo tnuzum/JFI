@@ -291,33 +291,33 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount extends 
 
 		ahp.getSearchField().sendKeys(receiptNumber);
 		Thread.sleep(1000);
-		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
-		Thread.sleep(3000);
-		jse.executeScript("arguments[0].scrollIntoView(true);",
-				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
-
-		/*
-		 * while (!ahp.getReceiptNumberTable().isDisplayed()) { Thread.sleep(2000);
-		 * System.out.println("waiting"); }
-		 * 
-		 * Thread.sleep(2000); for (int k = 0; k < ahp.getReceiptNumbers().size(); k++)
-		 * { receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
-		 * 
-		 * if (receiptNumber1.equals(receiptNumber)) {
-		 * ahp.getReceiptNumbers().get(k).click(); break; } }
-		 */
-
-//Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
-
-		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText().isBlank()) {
-			Thread.sleep(500);
-		}
-		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
-				.contains(FormatTotalAmt));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
-		Thread.sleep(2000);
+//		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
+//		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
+//		Thread.sleep(3000);
+//		jse.executeScript("arguments[0].scrollIntoView(true);",
+//				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
+//
+//		/*
+//		 * while (!ahp.getReceiptNumberTable().isDisplayed()) { Thread.sleep(2000);
+//		 * System.out.println("waiting"); }
+//		 * 
+//		 * Thread.sleep(2000); for (int k = 0; k < ahp.getReceiptNumbers().size(); k++)
+//		 * { receiptNumber1 = ahp.getReceiptNumbers().get(k).getText().trim();
+//		 * 
+//		 * if (receiptNumber1.equals(receiptNumber)) {
+//		 * ahp.getReceiptNumbers().get(k).click(); break; } }
+//		 */
+//
+////Verifies the amount in the receipt is the same as it was displayed on the Purchase Packages page
+//
+//		while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText().isBlank()) {
+//			Thread.sleep(500);
+//		}
+//		System.out.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
+//		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+//				.contains(FormatTotalAmt));
+//		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+//		Thread.sleep(2000);
 		rm.returnToDashboard();
 
 	}
