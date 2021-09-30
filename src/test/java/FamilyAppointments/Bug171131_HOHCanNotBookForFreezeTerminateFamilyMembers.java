@@ -18,12 +18,7 @@ import resources.reusableMethods;
 import resources.reusableWaits;
 
 public class Bug171131_HOHCanNotBookForFreezeTerminateFamilyMembers extends base {
-	private static String clubName = "Jonas Fitness";
-	private static String productCategory = "Personal Training 1";
-	private static String appointmentToBook = "PT 60 Mins-FamilyGrpAppointment";
-	private static String resourceName1 = "";
-	private static String resourceName2 = "T.Huff, Anthony";
-	private static String startTime;
+
 	private static AppointmentsPO ap;
 	private static String familyMember = "Auto, FreezeMember";
 
