@@ -273,6 +273,8 @@
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment" />
 			<class name="FamilyMemberClasses.FamilyMemberClassEnrollment2" />
 			<class name="FamilyMemberClasses.FamilyStandbyInClassTest" />
+			<class name="FamilyMemberClasses.Bug177368_FamilyMemberWithNoDuesServiceNotFree"/>
+			<class name="FamilyMemberClasses.Bug183925_MemberIsNotFreeWithVoidedDuesServiceAgreement"/>
 
 
 			<class
@@ -307,6 +309,7 @@
 			<class name="PayBalance.PayBalance_NewCard_LinkAgreement" />
 			<class name="PayBalance.PayBalance_NewCard_HasAgreement" />
 			<class name="PayBalance.PayBalance_NewCard_NoAgreement" />
+			<class name="PayBalance.Bug183910_PayBalance_StoredCard"/>
 
 			<class
 				name="ManagePaymentMethods.NoAgreement_AddCanadianBankSavingsAcct" />
@@ -458,7 +461,7 @@
 				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_NoFees_PkgReqd"/>
 				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_WithFees_NoPkg"/>
 				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_WithFees_PkgReqd"/>
-				<class name = "Bug171131_HOHCanNotBookForFreezeTerminateFamilyMembers"/>
+				<class name = "FamilyAppointments.Bug171131_HOHCanNotBookForFreezeTerminateFamilyMembers"/>
 		</classes>
 	</test>
 	
