@@ -458,7 +458,7 @@
 				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_NoFees_PkgReqd"/>
 				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_WithFees_NoPkg"/>
 				<class name = "FamilyAppointments.ChangeByHoh_PerMember_Single_WithFees_PkgReqd"/>
-				
+				<class name = "Bug171131_HOHCanNotBookForFreezeTerminateFamilyMembers"/>
 		</classes>
 	</test>
 	
