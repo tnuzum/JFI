@@ -9,6 +9,7 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import pageObjects.DashboardPO;
 import pageObjects.LoginPO;
 import resources.base;
 import resources.reusableMethods;
@@ -56,6 +57,18 @@ public class missingDob extends base {
 		// prop.getProperty("nonHohActiveEwaiver_username"));
 		Assert.assertEquals(l.getmissingDobMemberNames().size(), 3);
 		l.getcancelButton().click();
+	}
+
+	@Test(priority = 3, description = "Hoh NoActiveEwaiver On member's home club will not display missingDOB window")
+	public void HohNotActiveEwaiverMeberWithMissingDob() throws InterruptedException {
+		rm.HohNOtActiveEwaiver();
+		DashboardPO d = new DashboardPO(driver);
+		// System.out.println(l.getmissingDobMemberNames().size());
+		// prop.getProperty("nonHohActiveEwaiver_username"));
+		// Assert.assertEquals(l.getmissingDobMemberNames().size(), 3);
+		// l.getcancelButton().click();
+		Assert.assertEquals(d.getDashboardTitle().getText(), "Dashboard");
+		log.info("Dashboard title verified");
 	}
 
 //	@AfterTest

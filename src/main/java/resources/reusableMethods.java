@@ -76,6 +76,18 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+	public String HohNOtActiveEwaiver() throws InterruptedException {
+
+		rw.waitForLoginLoginButton();
+		LoginPO l = new LoginPO(driver);
+		l.getuserName().sendKeys(prop.getProperty("HohNotActiveEwaiver_username"));
+		l.getuserPassword().sendKeys(prop.getProperty("HohNotActiveEwaiver_password"));
+		l.getLoginButton().click();
+		Thread.sleep(1000);
+
+		return null;
+	}
+
 	public String activeMember1Login() throws InterruptedException {
 
 		rw.waitForLoginLoginButton();

@@ -122,6 +122,7 @@ public class DashboardPO {
 	By AdditionalLinksSectionLabel = By.xpath("//div[@class='homeComponent']//externallinks/div/div[1]/div[1]");
 //	By BreadcrumbDashboard = By.xpath("//a[@class='ng-star-inserted']");
 	By BreadcrumbDashboard = By.xpath("//a[contains(text(),'Dashboard')]");
+	By DashboardTitle = By.xpath("//h2[contains(text(),'Dashboard')]");
 
 	By privacyPolicyLink = By.linkText("Privacy Policy");
 	By privacyAndSecurityLabel = By.xpath("//h4[contains(text(),'Privacy & Security')]");
@@ -136,6 +137,10 @@ public class DashboardPO {
 
 // METHODS
 	// Top Row Buttons
+	public WebElement getDashboardTitle() {
+		return driver.findElement(DashboardTitle);
+	}
+
 	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);
 	}
