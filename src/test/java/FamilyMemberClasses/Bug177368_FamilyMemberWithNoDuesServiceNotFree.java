@@ -174,10 +174,13 @@ public class Bug177368_FamilyMemberWithNoDuesServiceNotFree extends base {
 
 				if (c.getMemberSections().get(i).getText().contains(member2)) {
 
-					Assert.assertFalse(paymentOptions.contains("Free")); // Class is free for this member
+					Assert.assertFalse(paymentOptions.contains("Free")); // Class is not free for this member
+					System.out.println(
+							"\n************\nClass is not free for a Family member with no Dues Service \n\n***********\n");
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Free"))
 							Assert.assertTrue(Labels.get(j).isEnabled());
+
 					}
 				}
 

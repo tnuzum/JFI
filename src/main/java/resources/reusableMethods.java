@@ -1329,6 +1329,8 @@ public class reusableMethods extends base {
 			}
 		}
 
+		Thread.sleep(3000);
+
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
 		int classCount = driver.findElements(By.tagName("tr")).size();
@@ -1344,7 +1346,15 @@ public class reusableMethods extends base {
 		}
 		Thread.sleep(2000);
 
-		driver.findElement(By.xpath("//tbody/tr[1]/td[1]/a[1]")).click();
+		try {
+
+			driver.findElement(By.xpath("//tbody/tr[1]/td[1]/a[1]")).click();
+
+		} catch (org.openqa.selenium.NoSuchElementException nse) {
+
+			System.out.println("Check In button is not available");
+
+		}
 
 		driver.findElement(By.xpath("//a[@href='/CompeteOnTheGo/Account/Logoff']")).click();
 		// driver.get(prop.getProperty("EMELoginPage"));

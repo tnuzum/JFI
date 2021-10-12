@@ -234,16 +234,16 @@ public class EnrollUnEnrollinTodaysClass extends base {
 		ahp.getSearchField().sendKeys(receiptNumber);
 
 		Thread.sleep(2000);
-		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
-		Thread.sleep(3000);
-		jse.executeScript("arguments[0].scrollIntoView(true);",
-				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
-		// Verifies the Invoice amount
-		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
-				.contains(totalAmt));
-		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
-		Thread.sleep(1000);
+//		wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
+//		jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
+//		Thread.sleep(3000);
+//		jse.executeScript("arguments[0].scrollIntoView(true);",
+//				TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
+//		// Verifies the Invoice amount
+//		Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+//				.contains(totalAmt));
+//		TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+//		Thread.sleep(1000);
 		rm.returnToDashboard();
 
 		rm.memberLogout();

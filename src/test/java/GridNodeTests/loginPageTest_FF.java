@@ -58,6 +58,15 @@ public class loginPageTest_FF extends base {
 			npe.printStackTrace();
 			log.error(npe.getMessage(), npe);
 
+		} catch (org.openqa.selenium.WebDriverException we) {
+
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), dc);
+
+			System.out.println("driver initialized again");
+			log.error("driver initialized again");
+			we.printStackTrace();
+			log.error(we.getMessage(), we);
+
 		}
 
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
@@ -125,8 +134,8 @@ public class loginPageTest_FF extends base {
 		log.info("Password Entered");
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-		// wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='loginForm']/form/div[1]/ul/li")));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("li")));
 		WebElement wait2 = l.getcredentialsErrorMessage();
 		while (wait2.getText().isBlank()) {
 			System.out.println("INFO: Waiting 500ms for element to populate");

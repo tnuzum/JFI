@@ -143,7 +143,10 @@ public class Bug183925_MemberIsNotFreeWithVoidedDuesServiceAgreement extends bas
 
 				if (c.getMemberSections().get(i).getText().contains(member)) {
 
-					Assert.assertFalse(paymentOptions.contains("Free")); // Class is free for this member
+					Assert.assertFalse(paymentOptions.contains("Free")); // Class is not free for this member
+
+					System.out.println(
+							"\n************\nClass is not free for a member with Voided Dues Service Agreement \n\n***********\n");
 					for (int j = 0; j < Labels.size(); j++) {
 						if (Labels.get(j).getText().contains("Free"))
 							Assert.assertTrue(Labels.get(j).isEnabled());

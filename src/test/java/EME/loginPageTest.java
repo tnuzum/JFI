@@ -119,8 +119,8 @@ public class loginPageTest extends base {
 		log.info("Password Entered");
 		l.getLoginButton().click();
 		log.info("Log In Button Clicked");
-//		WebDriverWait wait = new WebDriverWait(driver, 10);
-		// wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@id='loginForm']/form/div[1]/ul/li")));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.tagName("li")));
 		WebElement wait2 = l.getcredentialsErrorMessage();
 		while (wait2.getText().isBlank()) {
 			System.out.println("INFO: Waiting 500ms for element to populate");

@@ -53,7 +53,7 @@ nonHohActiveEwaiver_password = June@123
 HohActiveEwaiver_username = seema4
 HohActiveEwaiver_password = June@123
 
-activeMember1_username = rauto
+activeMember1_username = ApptMember1
 activeMember1_password = Testing1!
 activeMember1_fullname = Robert Auto
 activeMember2_username = sauto
@@ -148,6 +148,6 @@ COGPassword = kalle1234!
 
 ApptMember1 = ApptMember1
 ApptMember2 = ApptMember2
-memberPasswrod = Testing1!
+memberPassword = Testing1!
 
 ClubReqPackages_GrpAppt_MultiResourcesNotSelectedOnAccount.java
