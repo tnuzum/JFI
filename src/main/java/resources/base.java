@@ -188,7 +188,7 @@ public class base {
 //					System.setProperty("webdriver.chrome.driver",
 //							projectPath + "\\src\\main\\java\\webDrivers\\chromedriver.exe");
 
-					WebDriverManager.chromedriver().browserVersion("92").setup();
+					WebDriverManager.chromedriver().setup();
 
 					System.out.println(WebDriverManager.chromedriver().getDownloadedDriverVersion());
 					log.info(WebDriverManager.chromedriver().getDownloadedDriverVersion());

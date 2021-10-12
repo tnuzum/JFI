@@ -30,6 +30,7 @@ public class ManageFamilyLayoutTest extends base {
 	public static ManageFamilyPO mfp;
 	public static BreadcrumbTrailPO bt;
 	public static WebDriverWait wait;
+	private static int index;
 
 	public ManageFamilyLayoutTest() {
 		rw = new reusableWaits();
@@ -83,23 +84,29 @@ public class ManageFamilyLayoutTest extends base {
 	@Test(priority = 4)
 	public void verifyFamilyMemberSection() {
 
+		index = 0;
+
 		int count = mfp.getFamilyMemberNames().size();
 		for (int i = 0; i < count; i++) {
-			if (mfp.getFamilyMemberNames().get(i).getText().contains("FreeMember Auto"))
+
+			if (mfp.getFamilyMemberNames().get(i).getText().contains("FreeMember Auto")) {
 				mfp.getFamilyMemberNames().get(i).click();
+				index = i;
+				break;
+			}
 		}
 
 		Assert.assertTrue(mfp.getMemberName().isDisplayed());
-		Assert.assertTrue(mfp.getPayNowButtons().get(1).isDisplayed());
-		Assert.assertTrue(mfp.getMemberOptionsLabels().get(1).isDisplayed());
-		Assert.assertTrue(mfp.getHohOnOffSwitchLabels().get(1).isDisplayed());
+		Assert.assertTrue(mfp.getPayNowButtons().get(index).isDisplayed());
+		Assert.assertTrue(mfp.getMemberOptionsLabels().get(index).isDisplayed());
+		Assert.assertTrue(mfp.getHohOnOffSwitchLabels().get(index).isDisplayed());
 	}
 
 	@Test(priority = 4)
 	public void verifyPayNowFunctionality() throws InterruptedException {
 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("arguments[0].click();", mfp.getPayNowButtons().get(1));
+		jse.executeScript("arguments[0].click();", mfp.getPayNowButtons().get(index));
 		wait.until(ExpectedConditions.textToBePresentInElement(mfp.getPageHeader(), "Pay Balance"));
 
 		Select s = new Select(

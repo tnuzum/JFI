@@ -336,26 +336,26 @@ public class ShopAndPurchasePackagesOnAccount extends base {
 			ahp.getSearchField().sendKeys(receiptNumber);
 
 			Thread.sleep(3000);
-			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
-			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
-			Thread.sleep(3000);
-			jse.executeScript("arguments[0].scrollIntoView(true);",
-					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
-
-			// Verifies the amount in the receipt is the same as it was displayed on the
-			// Purchase Packages page
-
-			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
-					.isBlank()) {
-				Thread.sleep(500);
-			}
-			System.out
-					.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
-			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
-					.contains(FormatTotalAmt));
-			jse.executeScript("window.scrollBy(0,500)");
-			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
-			Thread.sleep(2000);
+//			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getReceiptNumber(), receiptNumber));
+//			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
+//			Thread.sleep(3000);
+//			jse.executeScript("arguments[0].scrollIntoView(true);",
+//					TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")));
+//
+//			// Verifies the amount in the receipt is the same as it was displayed on the
+//			// Purchase Packages page
+//
+//			while (TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+//					.isBlank()) {
+//				Thread.sleep(500);
+//			}
+//			System.out
+//					.println(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText());
+//			Assert.assertTrue(TY.getReceiptPopup().findElement(By.xpath("//div[@class='col-12 text-right']")).getText()
+//					.contains(FormatTotalAmt));
+//			jse.executeScript("window.scrollBy(0,500)");
+//			TY.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
+//			Thread.sleep(2000);
 			rm.memberLogout();
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");

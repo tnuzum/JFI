@@ -64,7 +64,7 @@ public class PageLaunchTest_Chrome extends base {
 		// System.setProperty("webdriver.chrome.driver",
 		// "C:\\Automation\\libs\\webdrivers\\chromedriver.exe");
 
-		WebDriverManager.chromedriver().setup();
+		WebDriverManager.chromedriver().browserVersion("92").setup();
 
 		System.out.println(WebDriverManager.chromedriver().getDownloadedDriverVersion());
 		log.info(WebDriverManager.chromedriver().getDownloadedDriverVersion());

@@ -55,42 +55,10 @@ HohActiveEwaiver_password = June@123
 activeMember1_username = rauto
 activeMember1_password = Testing1!
 activeMember1_fullname = Robert Auto
-activeMember2_username = sauto
-activeMember2_password = Testing1!
-activeMember2_fullname = Susan Auto
-activeMember3_username = dauto
-activeMember3_password = Testing1!
-activeMember3_fullname = Debbie Auto
-activeMember4_username = fauto
-activeMember4_password = Testing1!
-activeMember4_fullname = Fred Auto
-activeMember5_username = bauto
-activeMember5_password = Testing1!
-activeMember5_fullname = Daisy Auto
 activeMember6_username = OAMember
 activeMember6_password = Testing1!
 activeMember6_fullname = OAMember Auto
-activeMember7_username = CCMember 
-activeMember7_password = Testing1!
-activeMember7_fullname = CCMember Auto
-activeMember8_username = NCMember 
-activeMember8_password = Testing1!
-activeMember8_fullname = NCMember Auto
-activeMember9_username = NoOAMember 
-activeMember9_password = Testing1!
-activeMember9_fullname = NoOAMember Auto
-activeMember10_username = NoCCMember 
-activeMember10_password = Testing1!
-activeMember10_fullname = NoCCMember Auto
-activeMember11_username = NoOANoCCMember 
-activeMember11_password = Testing1!
-activeMember11_fullname = NoOANoCCMember Auto
-collectionsMember1_username = jauto
-collectionsMember1_password = Testing1!
-collectionsMember1_fullname = James Auto
-prospectMember1_username = aauto
-prospectMember1_password = Testing1!
-prospectMember1_fullname = Adam Auto
+
 invalid_username = tpowers
 invalid_password = Not@Password1
 wrongCredentialsMessage = WE APOLOGIZE... It seems the credentials you entered are different than what is in our system. Please try again, and if the problem persists, contact your club for additional help.
@@ -105,42 +73,35 @@ emailRequiredMessage = Email is required
 forgotPasswordDescription = Fill out the form below to reset your password. You will receive a temporary password via email.
 userNameRequiredMessage = Username is required
 
-USBankRoutingNumber = 322271627
-USBankAcctNumber = 9876543210
-USBankLast4Digits = 3210
-CanadaBankRoutingNumberOne = 12345
-CanadaBankRoutingNumberTwo = 678
-CanadaBankAcctNumber = 1234567
-CanadianBankLast4Digits = 4567
-CCNumber = 4111111111111111
-CCLast4Digits = 1111
-
 memberDOB = 01/01/2000
-
 
 classToEnroll = BARRE COMBAT FUSION
 classNameDisplayed = Barre Combat Fusion
 classTimeDisplayed = Start Time: 10:30 PM
-classInstructorDisplayed = Class Instructor: Andrea
+classInstructorDisplayed = Class Instructor: Christine
 
 packageName = ServiceOA
 
-clubName = Studio Jonas
-productCategory = Personal Training 1
-appointmentToBook = PT Group-ThreeResources
-resourceName = FitExpert1-Grp
-additionalResourceName = Gym-Grp
-clubNameDisplayed = Club: Studio Jonas
-mssClubPricing = $5.15
+clubName = Executive Fitness Club
+productCategory = *Personal Training - Adv IHRSA
+appointmentToBook = Bhagya's Training
+resourceName = Nuzum, Todd
+additionalResourceName = Bringman, Alan
+clubNameDisplayed = Club: Executive Fitness Club
+mssClubPricing = $9.00
 
-participant2 = Auto, Emailmember2
-unitsToBeSelected = 1 - $5.00/per
+participant2 = Kalle, Bhagya
+unitsToBeSelected = 1 - $9.00/per
 
-interest = Cardio
+interest = Personal Training
 
-homeClubName = Jonas Sports-Plex
+homeClubName = Executive Fitness Club
 
-barcodeId = 1141112
+barcodeId = 463
 
 COGUserName = bhagya
-COGPassword = 111
+COGPassword = Green123!
+
+ApptMember1 = soniya
+ApptMember2 = Bhagya
+memberPassword = Testing1!
