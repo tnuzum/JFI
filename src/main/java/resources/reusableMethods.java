@@ -1317,6 +1317,8 @@ public class reusableMethods extends base {
 			}
 		}
 
+		Thread.sleep(3000);
+
 		((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
 		int classCount = driver.findElements(By.tagName("tr")).size();
