@@ -19,7 +19,6 @@ import org.testng.annotations.Test;
 
 import pageObjects.AcctHistoryPO;
 import pageObjects.AppointmentsPO;
-import pageObjects.CartPO;
 import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.ForgotPasswordPO;
@@ -79,42 +78,6 @@ public class PageLaunchTest extends base {
 			ShopPackagesPO p = new ShopPackagesPO(driver);
 			Assert.assertEquals(p.getPageHeader().getText(), "Shop Packages");
 			log.info("Shop Packages Page Header Verified");
-			rm.returnToDashboard();
-
-		} catch (java.lang.AssertionError ae) {
-			System.out.println("assertion error");
-			ae.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(ae.getMessage(), ae);
-			ae.printStackTrace();
-			// Assert.fail(ae.getMessage());
-		}
-
-		catch (org.openqa.selenium.NoSuchElementException ne) {
-			System.out.println("No element present");
-			ne.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(ne.getMessage(), ne);
-			// Assert.fail(ne.getMessage());
-		}
-
-		catch (org.openqa.selenium.ElementClickInterceptedException eci) {
-			System.out.println("Element Click Intercepted");
-			eci.printStackTrace();
-			getScreenshot(testName, driver);
-			log.error(eci.getMessage(), eci);
-			rm.catchErrorMessage();
-			// Assert.fail(eci.getMessage());
-		}
-	}
-
-	@Test(priority = 25, description = "This test is no longer valid as Cart is removed from EME", enabled = false)
-	public void CartButtonTest() throws InterruptedException, IOException {
-		try {
-			d.getCartButton().click();
-			CartPO c = new CartPO(driver);
-			Assert.assertEquals(c.getPageHeader().getText(), "Shopping Cart");
-			log.info("Shopping Cart Page Header Verified");
 			rm.returnToDashboard();
 
 		} catch (java.lang.AssertionError ae) {

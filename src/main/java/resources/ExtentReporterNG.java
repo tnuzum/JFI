@@ -23,7 +23,7 @@ public class ExtentReporterNG extends base {
 
 		extent = new ExtentReports();
 		extent.attachReporter(reporter);
-		extent.setSystemInfo("Test Engineer", "Bhagya Kalle");
+		extent.setSystemInfo("Test Engineer", "JFI");
 		return extent;
 
 	}

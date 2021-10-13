@@ -58,8 +58,8 @@ public class base {
 		dcch.setCapability(CapabilityType.ForSeleniumServer.ENSURING_CLEAN_SESSION, true);
 		dcch.setCapability("chrome.switches", Arrays.asList("--incognito"));
 
-//		testRegion = "Future2";
-		testRegion = System.getProperty("test_Region");
+		testRegion = "Future2";
+//		testRegion = System.getProperty("test_Region");
 
 		prop = new Properties();
 
@@ -73,11 +73,11 @@ public class base {
 			System.out.println("Error: Properties file could not be loaded");
 		}
 
-//		String browserName = prop.getProperty("browser");
-//		String executionEnvironment = prop.getProperty("execution_Environment");
+		String browserName = prop.getProperty("browser");
+		String executionEnvironment = prop.getProperty("execution_Environment");
 
-		String browserName = System.getProperty("browser");
-		String executionEnvironment = System.getProperty("execution_Environment");
+//		String browserName = System.getProperty("browser");
+//		String executionEnvironment = System.getProperty("execution_Environment");
 
 		System.out.println(browserName);
 		System.out.println(executionEnvironment);
