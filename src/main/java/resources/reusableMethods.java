@@ -1002,7 +1002,8 @@ public class reusableMethods extends base {
 					driver.findElement(By.xpath(
 							"//a[@class='btn btn-lg btn-primary hidden-print'][contains(text(),'SAVE PLAN CHANGES')]"))
 							.click();
-					driver.findElement(By.xpath("//button[@id='btnsaveCanges']")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElement(By.xpath("//button[@id='btnsaveCanges']")));
 					Thread.sleep(1000);
 					break;
 				}
