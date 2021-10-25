@@ -54,7 +54,7 @@ public class PaymentPO {
 	By selectPaymentOnAccountPayWithButton = By
 			.xpath("//div[@id = 'collapseOne']/cartpaymentonaccount/div/div[2]/div/button");
 	By selectPaymentStoredCardsButton = By.xpath("//div[@id='accordion']/div[2]/div[1]/a/h5");
-	By selectPaymentNewCardButton = By.xpath("//h5[contains(text(),'NEW CREDIT CARD')]");
+	By selectPaymentNewCardButton = By.xpath("//div[contains(text(),'NEW CREDIT CARD')]");
 	By newCardForm = By.xpath("(//div[contains(@role, 'tabpanel')])[1]");
 	By storedCards = By.xpath("//div[@class = 'payment-card']");
 	By signaturePad = By.xpath("//div[@class='m-signature-pad--body']");
