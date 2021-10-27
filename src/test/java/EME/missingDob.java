@@ -59,7 +59,7 @@ public class missingDob extends base {
 		l.getcancelButton().click();
 	}
 
-	@Test(priority = 3, description = "Hoh NoActiveEwaiver On member's home club will not display missingDOB window")
+	@Test(priority = 3, description = "Hoh NoActiveEwaiver On member's home club will not display missingDOB window", enabled = false)
 	public void HohNotActiveEwaiverMeberWithMissingDob() throws InterruptedException {
 		rm.HohNOtActiveEwaiver();
 		DashboardPO d = new DashboardPO(driver);
@@ -71,7 +71,6 @@ public class missingDob extends base {
 		log.info("Dashboard title verified");
 	}
 
-//	@AfterTest
 	@AfterClass
 	public void teardown() {
 		driver.quit();
