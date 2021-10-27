@@ -16,8 +16,8 @@ public class ManagePayMethodsPO {
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By noSavedCardMessage = By.xpath("//h1[@class='text-capitalize']");
 //	By bankAccountLink = By.xpath("//a[@href = '#collapseOne'] //i");
-	By bankAccountLink = By.xpath("//h3[contains (text(), ' BANK ACCOUNT (ACH) ')]");
-	By creditCardLink = By.xpath("//h3[contains (text(), ' CREDIT CARD ')]");
+	By bankAccountLink = By.xpath("//strong[contains (text(), 'BANK ACCOUNT (ACH)')]");
+	By creditCardLink = By.xpath("//strong[contains (text(), 'CREDIT CARD')]");
 	By managePMBreadcrumb = By.xpath("//a[contains(text(),'Manage Payment Methods')]");
 	By nameOnCard = By.xpath("//input[contains(@class, 'at-managepayments-addcc-input-nameoncard')]");
 	By cardNumber = By.xpath("//input[contains(@class, 'at-managepayments-addcc-input-cardnum')]");

@@ -941,6 +941,7 @@ public class reusableMethods extends base {
 	public Object deleteFOPInCOG(String barcodeId, String clubName, String fopNumber, String agreementLinked,
 			String agreement) throws InterruptedException {
 
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		this.loginCOG(clubName);
 		WebElement BackOfficeTile = driver.findElement(By.xpath("(//div[@class='tile'])[2]"));
 		int count = BackOfficeTile.findElements(By.tagName("a")).size();
@@ -972,8 +973,6 @@ public class reusableMethods extends base {
 				if (AgrmntRowSections.get(1).getText().equals(agreement)) {
 					System.out.println(driver.findElements(By.xpath("//span[@class = 'hide-span']")).size());
 
-					JavascriptExecutor jse = (JavascriptExecutor) driver;
-
 					jse.executeScript("arguments[0].scrollIntoView(true);",
 							driver.findElements(By.xpath("//span[@class = 'hide-span']")).get(i - 1));
 
@@ -1003,7 +1002,8 @@ public class reusableMethods extends base {
 					driver.findElement(By.xpath(
 							"//a[@class='btn btn-lg btn-primary hidden-print'][contains(text(),'SAVE PLAN CHANGES')]"))
 							.click();
-					driver.findElement(By.xpath("//button[@id='btnsaveCanges']")).click();
+					jse.executeScript("arguments[0].click();",
+							driver.findElement(By.xpath("//button[@id='btnsaveCanges']")));
 					Thread.sleep(1000);
 					break;
 				}
@@ -1020,7 +1020,7 @@ public class reusableMethods extends base {
 					&& FOPRowSections.get(2).getText().equals(fopNumber)) {
 				driver.findElements(By.xpath("//i[@class = 'fa fa-2x fa-times']")).get(i - 3).click();
 				Thread.sleep(3000);
-				driver.findElement(By.xpath("//a[@id='btn_ConfirmDel']")).click();
+				jse.executeScript("arguments[0].click();", driver.findElement(By.xpath("//a[@id='btn_ConfirmDel']")));
 				break;
 			}
 		}
