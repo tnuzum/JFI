@@ -66,7 +66,7 @@ public class base {
 		try {
 
 			FileInputStream fis = new FileInputStream(
-					System.getProperty("user.dir") + "\\src\\main\\java\\resources\\properties" + testRegion);
+					System.getProperty("user.dir") + "\\src\\main\\java\\resources\\" + testRegion + ".properties");
 			prop.load(fis);
 
 		} catch (NullPointerException e) {

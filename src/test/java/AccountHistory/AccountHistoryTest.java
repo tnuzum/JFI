@@ -6,7 +6,6 @@ import java.text.ParseException;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -40,7 +39,6 @@ public class AccountHistoryTest extends base {
 
 	}
 
-//	@BeforeTest
 	@BeforeClass
 	public void initialize() throws IOException, InterruptedException {
 		driver = initializeDriver();
@@ -320,13 +318,15 @@ public class AccountHistoryTest extends base {
 			for (int i = 0; i < count; i++) {
 				Assert.assertTrue(count > 0);
 			}
-			JavascriptExecutor jse = (JavascriptExecutor) driver;
-			jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
-			Thread.sleep(2000);
-			jse.executeScript("arguments[0].scrollIntoView(true);", ahp.getReceiptPopup());
-
-			ahp.getReceiptPopup().findElement(By.xpath("//button[contains(text(), 'CLOSE')]")).click();
-			Thread.sleep(1000);
+			/*
+			 * JavascriptExecutor jse = (JavascriptExecutor) driver;
+			 * jse.executeScript("arguments[0].click();", ahp.getReceiptNumbers().get(0));
+			 * Thread.sleep(2000); jse.executeScript("arguments[0].scrollIntoView(true);",
+			 * ahp.getReceiptPopup());
+			 * 
+			 * ahp.getReceiptPopup().findElement(By.
+			 * xpath("//button[contains(text(), 'CLOSE')]")).click(); Thread.sleep(1000);
+			 */
 			rm.memberLogout();
 
 		} catch (java.lang.AssertionError ae) {
