@@ -30,11 +30,11 @@ import resources.reusableWaits;
 
 public class Course_PromoteFromStandby_UnenrollFallsOutsideTheWindow extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String CourseStartMonth = "Nov";
-	private static String dsiredMonthYear = "November 2021";
+	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "February 2022";
 	private static String CourseToEnroll = "STANDBYPROMOYESCOURSE";
 	private static String CourseNameDisplayed = "StandbyPromoYesCourse";
-	private static int CourseStartYear = 2021;
+	private static int CourseStartYear = 2022;
 	private static String YesRefundOnAccount = "This credit will be placed on your on account and be applied to your outstanding invoice.";
 	private static String YesRefundOATaxInfo = "Plus applicable taxes.";
 	private static String NoRefund = "This Course is non refundable";

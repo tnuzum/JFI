@@ -32,9 +32,9 @@ public class CourseUnenrollTests2 extends base {
 	private static String courseToEnroll15 = "UnenrollCourse15";
 	private static String courseToEnroll16 = "UnenrollCourse16";
 
-	private static String CourseStartMonth = "Nov";
-	private static String dsiredMonthYear = "November 2021";
-	private static int CourseStartYear = 2021;
+	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "February 2022";
+	private static int CourseStartYear = 2022;
 
 	private static String YesCancelFee = "Course Cancellation Fee";
 
