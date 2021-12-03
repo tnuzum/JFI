@@ -51,6 +51,7 @@ public class ChangeUserName extends base {
 		// Assert.assertTrue(d.getMenuManageProfile().isDisplayed());
 		d.getMenuManageProfile().click();
 		Thread.sleep(1000);
+		rm.myProfileLogin("Seema", "June@123");
 		m.getuserName().click();
 		m.getcurrentUSerName().sendKeys("Seema");
 		m.getnewUSerName().sendKeys("Seema1");
@@ -77,6 +78,7 @@ public class ChangeUserName extends base {
 		Thread.sleep(2000);
 		d.getMenuManageProfile().click();
 		Thread.sleep(1000);
+		rm.myProfileLogin("Seema1", "June@123");
 		m.getuserName().click();
 		m.getcurrentUSerName().sendKeys("Seema1");
 		m.getnewUSerName().sendKeys("Seema");

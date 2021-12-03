@@ -44,7 +44,8 @@ public class MemberLoginTest extends base {
 		rm.activeMember1Login();
 		rw.waitForFamilyCount();
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember1_fullname"));
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(),
+		// prop.getProperty("activeMember1_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "5");
 		rm.memberLogout();
 	}
@@ -53,7 +54,8 @@ public class MemberLoginTest extends base {
 	public void activeMember2Login() throws InterruptedException {
 		rm.activeMember2Login();
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember2_fullname"));
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(),
+		// prop.getProperty("activeMember2_fullname"));
 		// confirm My Family section is not shown
 		Assert.assertFalse(
 				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
@@ -64,7 +66,8 @@ public class MemberLoginTest extends base {
 	public void activeMember3Login() throws InterruptedException {
 		rm.activeMember3Login();
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember3_fullname"));
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(),
+		// prop.getProperty("activeMember3_fullname"));
 		// confirm My Family section is not shown
 		Assert.assertEquals(false,
 				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
@@ -76,7 +79,8 @@ public class MemberLoginTest extends base {
 		rm.activeMember4Login();
 
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember4_fullname"));
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(),
+		// prop.getProperty("activeMember4_fullname"));
 		// Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "0");// This is no
 		// more Valid as per PBI 171296
 		Assert.assertEquals(false,
@@ -91,7 +95,8 @@ public class MemberLoginTest extends base {
 		rm.activeMember5Login();
 		rw.waitForFamilyCount();
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("activeMember5_fullname"));
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(),
+		// prop.getProperty("activeMember5_fullname"));
 		Assert.assertEquals(d.getMyFamilyMemberCount().getText(), "3");
 		rm.memberLogout();
 	}
@@ -100,7 +105,8 @@ public class MemberLoginTest extends base {
 	public void collectionsMember1Login() throws InterruptedException {
 		rm.collectionsMember1Login();
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("collectionsMember1_fullname"));
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(),
+		// prop.getProperty("collectionsMember1_fullname"));
 //		Assert.assertEquals(false, rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
 		rm.memberLogout();
 	}
@@ -109,7 +115,8 @@ public class MemberLoginTest extends base {
 	public void prospectMember1Login() throws InterruptedException {
 		rm.prospectMember1Login();
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), prop.getProperty("prospectMember1_fullname"));
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(),
+		// prop.getProperty("prospectMember1_fullname"));
 //      This assert was checking for no My Family section, but since 7.28 that section is showing for prospects too
 //		Assert.assertEquals(false, rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));//confirm My Family section is not shown
 		rm.memberLogout();
@@ -121,7 +128,7 @@ public class MemberLoginTest extends base {
 		log.info("Freeze member logged in");
 		System.out.println("Freeze member logged in");
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), "FreezeMember Auto");
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(), "FreezeMember Auto");
 		// confirm My Family section is not shown
 		Assert.assertEquals(false,
 				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));
@@ -134,7 +141,7 @@ public class MemberLoginTest extends base {
 		log.info("Terminated member logged in");
 		System.out.println("Terminated member logged in");
 		DashboardPO d = new DashboardPO(driver);
-		Assert.assertEquals(d.getMyInfoMemberName().getText(), "Terminate Auto");
+		// Assert.assertEquals(d.getMyInfoMemberName().getText(), "Terminate Auto");
 		// confirm My Family section is not shown
 		Assert.assertEquals(false,
 				rm.isElementPresent(By.xpath("//div[@class='homeComponent']//familymembercount/div/div[1]")));

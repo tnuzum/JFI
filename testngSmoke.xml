@@ -24,6 +24,8 @@
 			<class name="FamilyMemberClasses.Bug183925_MemberIsNotFreeWithVoidedDuesServiceAgreement"/>
 			<class name="FamilyAppointments.Bug171131_HOHCanNotBookForFreezeTerminateFamilyMembers"/>
 			<class name="manageProfile.ChangeInterest"/>
+			<class name ="manageProfile.ChangeUserName"/>
+			<class name ="manageProfile.manageProfileLoginTest"/>
 			
 		</classes>
 	</test>
