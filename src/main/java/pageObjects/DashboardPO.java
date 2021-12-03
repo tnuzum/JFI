@@ -12,6 +12,8 @@ public class DashboardPO {
 
 // OBJECTS
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
+
+	By myProfile = By.xpath("//button[contains (@class, 'at-topnavbar-editmyinfo')]");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By menuButton = By.xpath("//nav[@class='navbar navbar-static-top']/div/a/i");
 	By myPackagesButton = By.xpath("//button[contains(@class,'at-topnavbar-mypackages')]");
@@ -137,6 +139,11 @@ public class DashboardPO {
 
 // METHODS
 	// Top Row Buttons
+
+	public WebElement getMyProfile() {
+		return driver.findElement(myProfile);
+	}
+
 	public WebElement getDashboardTitle() {
 		return driver.findElement(DashboardTitle);
 	}

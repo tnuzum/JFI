@@ -13,6 +13,13 @@ public class ManageProfilePO {
 // OBJECTS
 
 //	By pageHeader 			= By.xpath("//div[@class='col-sm-12']/h2");
+
+	By usernameField = By.xpath("//input[contains(@class,' at-verify-credential-username')]");
+	By passwordField = By.xpath("//input[contains(@class,' at-verify-credential-pswd')]");
+	By continueButton = By.xpath("//button[contains(@class,' at-verify-credential-submit')]");
+	By manageProfileLoginText = By.xpath("//h3[contains(text(),'Please enter your credentials to continue.')]");
+	By ivalidPwMyProfileText = By.xpath("//li[contains(text(),'WE APOLOGIZE... It seems the credentials you enter')]");
+	By invalidUserNameMyProfileText = By.xpath("//li[contains(text(),'Invalid Credentials')]");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By question = By.xpath("//div[@class='ibox']/div[1]/h5");
 	By usernameButton = By.xpath("//div[@class='ibox']/div[2]/div/div/div[1]/div[1]/h5/a");
@@ -53,6 +60,30 @@ public class ManageProfilePO {
 		this.driver = driver;
 	}
 // METHODS
+
+	public WebElement getusernameField() {
+		return driver.findElement(usernameField);
+	}
+
+	public WebElement getpasswordField() {
+		return driver.findElement(passwordField);
+	}
+
+	public WebElement getcontinueButton() {
+		return driver.findElement(continueButton);
+	}
+
+	public WebElement getmanageProfileLoginText() {
+		return driver.findElement(manageProfileLoginText);
+	}
+
+	public WebElement getInvalidUserNameMyProfileText() {
+		return driver.findElement(invalidUserNameMyProfileText);
+	}
+
+	public WebElement getIvalidPwMyProfileText() {
+		return driver.findElement(ivalidPwMyProfileText);
+	}
 
 	public WebElement getPageHeader() {
 		return driver.findElement(pageHeader);

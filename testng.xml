@@ -52,6 +52,7 @@
 			<class name="FamilyAppointments.Bug171131_HOHCanNotBookForFreezeTerminateFamilyMembers"/>
 			<class name="manageProfile.ChangeInterest"/>
 			<class name ="manageProfile.ChangeUserName"/>
+			<class name ="manageProfile.manageProfileLoginTest"/>
 			
 			<class name ="Messages.messageCenter"/>
 			<class name ="AccountHistory.AccountHistoryTest"/>
