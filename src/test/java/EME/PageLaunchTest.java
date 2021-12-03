@@ -366,7 +366,7 @@ public class PageLaunchTest extends base {
 
 	}
 
-	@Test(priority = 55)
+	@Test(priority = 55, enabled = false)
 	public void EditMyInfoButtonTest() throws InterruptedException, IOException {
 		try {
 			jse.executeScript("arguments[0].click();", d.getMyInfoEditButton());

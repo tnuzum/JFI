@@ -102,7 +102,7 @@ public class DashBoard_Layout extends base {
 		Assert.assertTrue(d.getMyCoursesEventsScheduleButton().isDisplayed());
 	}
 
-	@Test(priority = 6)
+	@Test(priority = 6, enabled = false)
 	public void VerifyMyInfo() {
 
 		// My Info Section

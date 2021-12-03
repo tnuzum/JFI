@@ -30,6 +30,7 @@ import pageObjects.ClassSignUpPO;
 import pageObjects.DashboardPO;
 import pageObjects.ErrorMessagesPO;
 import pageObjects.LoginPO;
+import pageObjects.ManageProfilePO;
 import pageObjects.PackagesPO;
 import pageObjects.PaymentMethodsPO;
 import pageObjects.PaymentPO;
@@ -60,6 +61,26 @@ public class reusableMethods extends base {
 		l.getuserPassword().sendKeys(prop.getProperty("nonHohActiveEwaiver_password"));
 		l.getLoginButton().click();
 		Thread.sleep(1000);
+
+		return null;
+	}
+
+	public String myProfileLogin(String username, String password) throws InterruptedException {
+
+		ManageProfilePO m = new ManageProfilePO(driver);
+		Assert.assertEquals(m.getmanageProfileLoginText().getText(), "Please enter your credentials to continue.");
+
+		m.getusernameField().click();
+		log.info("User name element clicked");
+		m.getusernameField().clear();
+		log.info("User name element cleared");
+		m.getusernameField().sendKeys(username);
+		log.info("User name entered");
+		m.getpasswordField().sendKeys(password);
+		m.getcontinueButton().click();
+		String pageTitle = driver.getTitle();
+
+		Assert.assertEquals(pageTitle, "Manage Profile");
 
 		return null;
 	}
