@@ -28,9 +28,9 @@ import resources.reusableWaits;
 
 public class FamilyMemberEnrollmentInFreeCourse extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static int CourseStartYear = 2021;
-	private static String CourseStartMonth = "Nov";
-	private static String dsiredMonthYear = "November 2021";
+	private static int CourseStartYear = 2022;
+	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "February 2022";
 	private static String courseToEnroll = "FREE COURSE AUTO";
 	private static String courseNameDisplayed = "Free Course Auto";
 	private static String courseTimeDisplayed = "Start Time: 4:30 PM";

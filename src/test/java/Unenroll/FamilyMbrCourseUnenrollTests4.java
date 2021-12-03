@@ -19,9 +19,9 @@ import resources.reusableWaits;
 public class FamilyMbrCourseUnenrollTests4 extends base {
 
 	private static String courseToEnroll17 = "UnenrollCourse17";
-	private static int CourseStartYear = 2021;
-	private static String CourseStartMonth = "Nov";
-	private static String dsiredMonthYear = "November 2021";
+	private static int CourseStartYear = 2022;
+	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "February 2022";
 
 	private static String paymentOption2 = "Pay Course Fee";
 	// private static String paymentOption3 = "Buy Day Pass";

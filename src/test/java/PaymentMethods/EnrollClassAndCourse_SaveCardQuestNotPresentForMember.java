@@ -33,8 +33,8 @@ public class EnrollClassAndCourse_SaveCardQuestNotPresentForMember extends base 
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseToEnroll1 = "FREEZEMEMBERCOURSE";
 	private static String courseNameDisplayed1 = "FreezeMemberCourse";
-	private static String CourseStartMonth = "Nov";
-	private static int CourseStartYear = 2021;
+	private static String CourseStartMonth = "Feb";
+	private static int CourseStartYear = 2022;
 	public reusableWaits rw;
 	public reusableMethods rm;
 	public static DashboardPO d;
