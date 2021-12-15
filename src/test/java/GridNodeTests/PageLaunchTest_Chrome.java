@@ -184,7 +184,7 @@ public class PageLaunchTest_Chrome extends base {
 
 	}
 
-	@Test(priority = 55)
+	@Test(priority = 55, enabled = false)
 	public void EditMyInfoButtonTest() throws InterruptedException {
 
 		jse.executeScript("arguments[0].click();", d.getMyInfoEditButton());
