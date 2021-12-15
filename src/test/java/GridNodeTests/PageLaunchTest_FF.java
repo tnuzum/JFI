@@ -173,7 +173,7 @@ public class PageLaunchTest_FF extends base {
 
 	}
 
-	@Test(priority = 55)
+	@Test(priority = 55, enabled = false)
 	public void EditMyInfoButtonTest() throws InterruptedException {
 		d.getMyInfoEditButton().click();
 		ManageProfilePO a = new ManageProfilePO(driver);
