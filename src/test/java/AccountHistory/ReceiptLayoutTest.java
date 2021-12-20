@@ -46,7 +46,7 @@ public class ReceiptLayoutTest extends base {
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		getEMEURL();
-		rm.activeMemberLogin("Dandekar1", "June@123");
+		rm.activeMemberLogin("Dandekar1", "Green@123");
 		rw.waitForDashboardLoaded();
 	}
 
@@ -57,11 +57,13 @@ public class ReceiptLayoutTest extends base {
 
 		rm.openSideMenuIfNotOpenedAlready();
 		d.getMenuMyAccount().click();
+
 		while (!d.getmenuMyAccountSubMenu().getAttribute("style").contains("1")) {
 			Thread.sleep(1000);
 		}
 		d.getMenuAccountHistory().click();
 
+		rm.myProfileLogin("Dandekar1", "Green@123");
 		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 
 		ahp.getSearchField().sendKeys(receiptNumber);
@@ -94,7 +96,7 @@ public class ReceiptLayoutTest extends base {
 		 */
 		d.getDashboardButton().click();
 		d.getMyAccountAccountHistory().click();
-
+		rm.myProfileLogin("Dandekar1", "Green@123");
 		ahp.getFirstCalendarIcon().click();
 
 		while (!ahp.getCalendarMonthselected().getText().contains("MAR")) {

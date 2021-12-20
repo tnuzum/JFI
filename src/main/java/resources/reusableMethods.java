@@ -65,6 +65,7 @@ public class reusableMethods extends base {
 		return null;
 	}
 
+// myProfileLogin Method for verifying credentials on MyProfile, AccountHistory and CheckinHistory.
 	public String myProfileLogin(String username, String password) throws InterruptedException {
 
 		ManageProfilePO m = new ManageProfilePO(driver);
@@ -78,9 +79,9 @@ public class reusableMethods extends base {
 		log.info("User name entered");
 		m.getpasswordField().sendKeys(password);
 		m.getcontinueButton().click();
-		String pageTitle = driver.getTitle();
+		// String pageTitle = driver.getTitle();
 
-		Assert.assertEquals(pageTitle, "Manage Profile");
+		// Assert.assertEquals(pageTitle, "Manage Profile");
 
 		return null;
 	}
