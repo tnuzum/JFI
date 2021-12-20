@@ -68,7 +68,7 @@ public class AccountHistoryTest extends base {
 				Thread.sleep(1000);
 			}
 			d.getMenuAccountHistory().click();
-
+			rm.myProfileLogin("bhagya", "111");
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getPageHeader(), "Account History"));
 			Assert.assertEquals(bt.getBreadcrumb1().getText(), "Dashboard");
 			Assert.assertEquals(bt.getBreadcrumb2().getText(), "Account History");
@@ -102,6 +102,7 @@ public class AccountHistoryTest extends base {
 
 	@Test(priority = 1)
 	public void verifyAcctSummaryBoxTest() throws InterruptedException, ParseException, IOException {
+
 		try {
 			Thread.sleep(2000);
 			Assert.assertTrue(ahp.getAcctSummaryBox().isDisplayed());
@@ -170,6 +171,7 @@ public class AccountHistoryTest extends base {
 
 	@Test(priority = 2, enabled = true)
 	public void verifyDefaultDateSelectionOnEndDateCalendarIconTest() throws InterruptedException, IOException {
+
 		try {
 
 			wait.until(ExpectedConditions.elementToBeClickable(ahp.getSecondCalendarIcon()));
