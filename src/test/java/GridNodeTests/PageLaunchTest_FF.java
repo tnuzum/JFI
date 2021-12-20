@@ -107,6 +107,7 @@ public class PageLaunchTest_FF extends base {
 	@Test(priority = 30)
 	public void AcctHistoryButtonTest() throws InterruptedException {
 		jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
+		rm.myProfileLogin("rauto", "Testing1!");
 		AcctHistoryPO a = new AcctHistoryPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(), "Account History");
 		log.info("Account History Page Header Verified");
