@@ -170,6 +170,7 @@ public class PageLaunchTest_MSEdge extends base {
 	public void AcctHistoryButtonTest() throws InterruptedException, IOException {
 		try {
 			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
+			rm.myProfileLogin("rauto", "Testing1!");
 			AcctHistoryPO a = new AcctHistoryPO(driver);
 			Assert.assertEquals(a.getPageHeader().getText(), "Account History");
 			log.info("Account History Page Header Verified");
@@ -388,7 +389,7 @@ public class PageLaunchTest_MSEdge extends base {
 
 	}
 
-	@Test(priority = 55)
+	@Test(priority = 55, enabled = false)
 	public void EditMyInfoButtonTest() throws InterruptedException, IOException {
 		try {
 			jse.executeScript("arguments[0].click();", d.getMyInfoEditButton());

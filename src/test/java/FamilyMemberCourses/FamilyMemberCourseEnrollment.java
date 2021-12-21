@@ -374,6 +374,7 @@ public class FamilyMemberCourseEnrollment extends base {
 			wait.until(ExpectedConditions
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 			jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
+			rm.myProfileLogin("hoh", "Testing1!");
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
 
 			while (ahp.getSearchingAcctHistMessage().size() != 0) {
