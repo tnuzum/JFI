@@ -63,7 +63,7 @@ public class ReceiptLayoutTest extends base {
 		}
 		d.getMenuAccountHistory().click();
 
-		rm.myProfileLogin("Dandekar1", "Green@123");
+		// rm.myProfileLogin("Dandekar1", "Green@123");
 		wait.until(ExpectedConditions.visibilityOf(ahp.getReceiptNumberTable()));
 
 		ahp.getSearchField().sendKeys(receiptNumber);
@@ -96,7 +96,7 @@ public class ReceiptLayoutTest extends base {
 		 */
 		d.getDashboardButton().click();
 		d.getMyAccountAccountHistory().click();
-		rm.myProfileLogin("Dandekar1", "Green@123");
+		// rm.myProfileLogin("Dandekar1", "Green@123");
 		ahp.getFirstCalendarIcon().click();
 
 		while (!ahp.getCalendarMonthselected().getText().contains("MAR")) {
