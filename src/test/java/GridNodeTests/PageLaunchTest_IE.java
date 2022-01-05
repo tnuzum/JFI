@@ -173,7 +173,7 @@ public class PageLaunchTest_IE extends base {
 	public void AcctHistoryButtonTest() throws InterruptedException, IOException {
 		try {
 			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
-			rm.myProfileLogin("rauto", "Testing1!");
+			//rm.myProfileLogin("rauto", "Testing1!");
 			AcctHistoryPO a = new AcctHistoryPO(driver);
 			Assert.assertEquals(a.getPageHeader().getText(), "Account History");
 			log.info("Account History Page Header Verified");
