@@ -55,7 +55,7 @@ public class ChangeInterest extends base {
 
 		d.getMenuManageProfile().click();
 		Thread.sleep(1000);
-		rm.myProfileLogin("rauto", "Testing1!");
+		// rm.myProfileLogin("rauto", "Testing1!");
 		m.getinterestsButton().click();
 		m.getSelectAllThaApply().click();
 		System.out.println(m.getInterestCheckBoxes().size());
@@ -101,7 +101,7 @@ public class ChangeInterest extends base {
 		Thread.sleep(1000);
 		d.getMenuManageProfile().click();
 		Thread.sleep(1000);
-		rm.myProfileLogin("rauto", "Testing1!");
+		// rm.myProfileLogin("rauto", "Testing1!");
 		m.getinterestsButton().click();
 
 		m.getSelectAllThaApply().click();
