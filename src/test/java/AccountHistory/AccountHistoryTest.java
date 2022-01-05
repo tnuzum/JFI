@@ -68,7 +68,7 @@ public class AccountHistoryTest extends base {
 				Thread.sleep(1000);
 			}
 			d.getMenuAccountHistory().click();
-			rm.myProfileLogin("bhagya", "111");
+			// rm.myProfileLogin("bhagya", "111");
 			wait.until(ExpectedConditions.textToBePresentInElement(ahp.getPageHeader(), "Account History"));
 			Assert.assertEquals(bt.getBreadcrumb1().getText(), "Dashboard");
 			Assert.assertEquals(bt.getBreadcrumb2().getText(), "Account History");

@@ -35,7 +35,7 @@ public class manageProfileLoginTest extends base {
 
 	}
 
-	@Test(priority = 1)
+	@Test(priority = 1, enabled = false)
 	public void validLoginTest() throws IOException, InterruptedException {
 		ManageProfilePO m = new ManageProfilePO(driver);
 		DashboardPO d = new DashboardPO(driver);
@@ -56,7 +56,7 @@ public class manageProfileLoginTest extends base {
 
 	}
 
-	@Test(priority = 2)
+	@Test(priority = 2, enabled = false)
 	public void invalidPasswordTest() throws IOException, InterruptedException {
 		ManageProfilePO m = new ManageProfilePO(driver);
 		DashboardPO d = new DashboardPO(driver);
@@ -77,7 +77,7 @@ public class manageProfileLoginTest extends base {
 
 	}
 
-	@Test(priority = 3)
+	@Test(priority = 3, enabled = false)
 	public void invalidUsernameTest() throws IOException, InterruptedException {
 		ManageProfilePO m = new ManageProfilePO(driver);
 		DashboardPO d = new DashboardPO(driver);
