@@ -317,7 +317,7 @@ public class ShopAndPurchasePackagesOnAccount extends base {
 			wait.until(ExpectedConditions
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
-			rm.myProfileLogin(prop.getProperty("activeMember6_username"), "Testing1!");
+			//rm.myProfileLogin(prop.getProperty("activeMember6_username"), "Testing1!");
 
 			while (ahp.getSearchingAcctHistMessage().size() != 0) {
 				System.out.println("waiting for account history to display");

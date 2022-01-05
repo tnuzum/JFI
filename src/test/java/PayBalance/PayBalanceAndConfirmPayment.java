@@ -129,7 +129,7 @@ public class PayBalanceAndConfirmPayment extends base {
 		Assert.assertEquals("Last Payment: " + DateTime, d.getMyAccountLastPaymentDate().getText());
 
 		jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
-		rm.myProfileLogin("rauto", "Testing1!");
+		//rm.myProfileLogin("rauto", "Testing1!");
 
 		AcctHistoryPO ahp = new AcctHistoryPO(driver);
 		ThankYouPO TY = new ThankYouPO(driver);

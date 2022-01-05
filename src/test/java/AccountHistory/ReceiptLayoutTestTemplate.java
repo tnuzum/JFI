@@ -69,7 +69,7 @@ public class ReceiptLayoutTestTemplate extends base {
 				Thread.sleep(1000);
 			}
 			d.getMenuAccountHistory().click();
-			rm.myProfileLogin("aqmember", "Testing1!");
+			//rm.myProfileLogin("aqmember", "Testing1!");
 
 			while (ahp.getSearchingAcctHistMessage().size() != 0) {
 				System.out.println("waiting for account history to display");
