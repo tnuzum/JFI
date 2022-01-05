@@ -63,7 +63,7 @@ public class MemberWithCheckInHistoryTest extends base {
 			Thread.sleep(1000);
 		}
 		d.getMenuCheckInHistory().click();
-		rm.myProfileLogin("apptmember1", "Testing1!");
+		// rm.myProfileLogin("apptmember1", "Testing1!");
 		wait.until(ExpectedConditions.textToBePresentInElement(chp.getPageHeader(), "Check-In History"));
 		Assert.assertEquals(bt.getBreadcrumb1().getText(), "Dashboard");
 		Assert.assertEquals(bt.getBreadcrumb2().getText(), "Check-In History");
