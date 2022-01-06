@@ -271,7 +271,7 @@ public class FamilyMemberEnrollmentInFreeClass extends base {
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 			jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
 
-			rm.myProfileLogin("hoh", "Testing1!");
+			//rm.myProfileLogin("hoh", "Testing1!");
 
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
 

@@ -310,7 +310,7 @@ public class ClubReqPackages_GrpAppt_MultiResourcesNotSelected extends base {
 			wait.until(ExpectedConditions
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 			jse.executeScript("arguments[0].click();", dp.getMyAccountAccountHistory());
-			rm.myProfileLogin("apptmember13", "Testing1!");
+			//rm.myProfileLogin("apptmember13", "Testing1!");
 
 			AcctHistoryPO ahp = new AcctHistoryPO(driver);
 
