@@ -7,6 +7,8 @@ browser4 = IE
 
 
 EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/login/236
+!https://eme-qa.dev-jfisoftware.com/login/236  
+
 COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
 
 EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
@@ -109,9 +111,9 @@ emailRequiredMessage = Email is required
 forgotPasswordDescription = Fill out the form below to reset your password. You will receive a temporary password via email.
 userNameRequiredMessage = Username is required
 
-USBankRoutingNumber = 322271627
-USBankAcctNumber = 9876543210
-USBankLast4Digits = 3210
+USBankRoutingNumber = 122199983
+USBankAcctNumber = 91204552325
+USBankLast4Digits = 2325
 CanadaBankRoutingNumberOne = 12345
 CanadaBankRoutingNumberTwo = 678
 CanadaBankAcctNumber = 1234567
