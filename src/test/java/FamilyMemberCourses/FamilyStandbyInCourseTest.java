@@ -31,8 +31,8 @@ import resources.reusableWaits;
 
 public class FamilyStandbyInCourseTest extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
-	private static String dsiredMonthYear = "February 2022";
-	private static String CourseStartMonth = "Feb";
+	private static String dsiredMonthYear = "May 2022";
+	private static String CourseStartMonth = "May";
 	private static int CourseStartYear = 2022;
 	private static String courseToEnroll = "DEMO STANDBY COURSE";
 	private static String courseNameDisplayed = "Demo Standby Course";
