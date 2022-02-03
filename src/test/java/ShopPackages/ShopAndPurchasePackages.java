@@ -346,7 +346,7 @@ public class ShopAndPurchasePackages extends base {
 			wait.until(ExpectedConditions
 					.invisibilityOfElementLocated(By.xpath("//div[(contains@class, 'swal2-center')]")));
 			jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
-			//rm.myProfileLogin(prop.getProperty("activeMember6_username"), "Testing1!");
+			// rm.myProfileLogin(prop.getProperty("activeMember6_username"), "Testing1!");
 
 			while (ahp.getSearchingAcctHistMessage().size() != 0) {
 				System.out.println("waiting for account history to display");
@@ -555,7 +555,7 @@ public class ShopAndPurchasePackages extends base {
 			d.getMenuMyAccount().click();
 			Thread.sleep(1000);
 			d.getMenuAccountHistory().click();
-			//rm.myProfileLogin(prop.getProperty("activeMember7_username"), "Testing1!");
+			// rm.myProfileLogin(prop.getProperty("activeMember7_username"), "Testing1!");
 			Thread.sleep(3000);
 
 			while (ahp.getSearchingAcctHistMessage().size() != 0) {
@@ -788,7 +788,7 @@ public class ShopAndPurchasePackages extends base {
 			d.getMenuMyAccount().click();
 			Thread.sleep(1000);
 			d.getMenuAccountHistory().click();
-			//rm.myProfileLogin(prop.getProperty("activeMember8_username"), "Testing1!");
+			// rm.myProfileLogin(prop.getProperty("activeMember8_username"), "Testing1!");
 			Thread.sleep(3000);
 
 			while (ahp.getSearchingAcctHistMessage().size() != 0) {
