@@ -196,7 +196,7 @@ public class EditCCandACH_forTerminatedMembers extends base {
 		try {
 
 			rm.deleteFOPInCOG("1147810", "Jonas Health and Wellness", "1111", "No", "");
-			rm.deleteFOPInCOG("1147810", "Jonas Health and Wellness", "3210", "No", "");
+			rm.deleteFOPInCOG("1147810", "Jonas Health and Wellness", "2325", "No", "");
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
 			ae.printStackTrace();
