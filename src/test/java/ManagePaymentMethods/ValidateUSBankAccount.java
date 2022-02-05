@@ -24,7 +24,6 @@ public class ValidateUSBankAccount extends base {
 	private static Logger log = LogManager.getLogger(base.class.getName());
 	private static String testName = null;
 	private static String memberName = "Paymember Auto";
-	private static String agreement = "Balance Weight Loss 12 Week";
 	private static JavascriptExecutor jse;
 	public reusableWaits rw;
 	public reusableMethods rm;
