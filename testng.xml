@@ -326,6 +326,8 @@
 				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct" />
 			<class
 				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditUSBankCheckingAcct" />
+				<class
+				name="ManagePaymentMethods.ValidateUSBankAccount" />
 			<class name="ManagePaymentMethods.MyAgreementsLayout" />
 			<class name="ManagePaymentMethods.VerifyMessageTest" />
 			<class

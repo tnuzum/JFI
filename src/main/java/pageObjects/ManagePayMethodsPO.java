@@ -70,6 +70,9 @@ public class ManagePayMethodsPO {
 	By editCanAccountHolder = By
 			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-cancctholder')]");
 	By editUSRoutingNumber = By.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-radio-usrouting')]");
+	By USAccountNumberEditBtn = By.xpath("//button[contains(@class, 'at-managepayments-editbankaccount-button-edit')]");
+	By editUSAccountNumber = By
+			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-button-usacctnum')]");
 	By editCanadaRoutingOne = By
 			.xpath("//input[contains(@class, 'at-managepayments-editbankaccount-input-canroutingone')]");
 	By editCanadaRoutingTwo = By
@@ -310,6 +313,14 @@ public class ManagePayMethodsPO {
 
 	public WebElement getEditUSRoutingNumber() {
 		return driver.findElement(editUSRoutingNumber);
+	}
+
+	public WebElement getUSAccountNumberEditBtn() {
+		return driver.findElement(USAccountNumberEditBtn);
+	}
+
+	public WebElement geteditUSAccountNumber() {
+		return driver.findElement(editUSAccountNumber);
 	}
 
 	public WebElement getEditCanadaRoutingOne() {

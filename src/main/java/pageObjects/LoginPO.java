@@ -31,6 +31,7 @@ public class LoginPO {
 	By missingDobMemberName = By.xpath("//h4[contains(text(),'Dandekar3, Seema3')]");
 	By cancelButton = By.xpath("//button[contains(text(),'Cancel')]");
 	By missingDobMemberNames = By.xpath("//div[@class='ng-star-inserted']");
+	By LoadingMessage = By.xpath("//H1[contains(text(), 'ONE MOMENT')]");
 // CONSTRUCTOR
 
 	public LoginPO(WebDriver driver) {
@@ -109,6 +110,10 @@ public class LoginPO {
 
 	public List<WebElement> getmissingDobMemberNames() {
 		return driver.findElements(missingDobMemberNames);
+	}
+
+	public List<WebElement> getLoadingMessage() {
+		return driver.findElements(LoadingMessage);
 	}
 
 }
