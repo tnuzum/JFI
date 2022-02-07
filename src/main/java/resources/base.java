@@ -33,6 +33,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariOptions;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import pageObjects.LoginPO;
 
 public class base {
 	public WebDriver driver;
@@ -288,6 +289,17 @@ public class base {
 		System.out.println(EMELoginPage);
 
 		driver.get(EMELoginPage);
+
+		LoginPO l = new LoginPO(driver);
+
+//		System.out.println(l.getLoadingMessage().size());
+
+		while (l.getLoadingMessage().size() != 0) {
+
+//			System.out.println("waiting1");
+
+		}
+
 	}
 
 	public void getCOGURL() {

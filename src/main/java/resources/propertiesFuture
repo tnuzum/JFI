@@ -109,9 +109,11 @@ emailRequiredMessage = Email is required
 forgotPasswordDescription = Fill out the form below to reset your password. You will receive a temporary password via email.
 userNameRequiredMessage = Username is required
 
-USBankRoutingNumber = 122199983
-USBankAcctNumber = 91204552325
-USBankLast4Digits = 2325
+USBankRoutingNumber = 111099984
+USBankAcctNumber = 333333330430
+USBankLast4Digits = 0430
+InvalidUSBankRoutingNumber = 122199983
+InvalidUSBankAcctNumber = 91204552325
 CanadaBankRoutingNumberOne = 12345
 CanadaBankRoutingNumberTwo = 678
 CanadaBankAcctNumber = 1234567
