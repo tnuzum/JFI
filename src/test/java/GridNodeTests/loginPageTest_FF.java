@@ -77,6 +77,15 @@ public class loginPageTest_FF extends base {
 		driver.manage().window().maximize();
 
 		driver.get("https://ourclublogin-future2.test-jfisoftware.com:8911/login/236");
+		LoginPO l = new LoginPO(driver);
+
+//		System.out.println(l.getLoadingMessage().size());
+
+		while (l.getLoadingMessage().size() != 0) {
+
+//			System.out.println("waiting1");
+
+		}
 	}
 
 	@Test(priority = 1)
