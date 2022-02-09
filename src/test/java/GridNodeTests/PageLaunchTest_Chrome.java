@@ -82,6 +82,17 @@ public class PageLaunchTest_Chrome extends base {
 		log.info("Driver Initialized for " + this.getClass().getSimpleName());
 		System.out.println("Driver Initialized for " + this.getClass().getSimpleName());
 		driver.get(EMELoginPage);
+
+		LoginPO l = new LoginPO(driver);
+
+//		System.out.println(l.getLoadingMessage().size());
+
+		while (l.getLoadingMessage().size() != 0) {
+
+//			System.out.println("waiting1");
+
+		}
+
 		rm.activeGridMemberLogin("rauto", "Testing1!");
 		rw.waitForDashboardLoaded();
 	}
@@ -108,7 +119,7 @@ public class PageLaunchTest_Chrome extends base {
 	@Test(priority = 30)
 	public void AcctHistoryButtonTest() throws InterruptedException {
 		jse.executeScript("arguments[0].click();", d.getMyAccountAccountHistory());
-		//rm.myProfileLogin("rauto", "Testing1!");
+		// rm.myProfileLogin("rauto", "Testing1!");
 		AcctHistoryPO a = new AcctHistoryPO(driver);
 		Assert.assertEquals(a.getPageHeader().getText(), "Account History");
 		log.info("Account History Page Header Verified");
