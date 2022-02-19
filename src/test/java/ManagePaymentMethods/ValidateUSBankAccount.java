@@ -97,7 +97,7 @@ public class ValidateUSBankAccount extends base {
 			Assert.assertTrue(mp.getPopupContent().getText().contains("A signature is required to continue."));
 			Thread.sleep(1000);
 			mp.getPopupConfirmationButton().click();
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 
 			jse.executeScript("arguments[0].scrollIntoView(true);", mp.getSignaturePad().get(0));
 			Thread.sleep(2000);
@@ -115,6 +115,7 @@ public class ValidateUSBankAccount extends base {
 			Assert.assertEquals(mp.getPopupContent().getText(),
 					"Account information incorrectly entered, please correct and try again.");
 			mp.getPopupConfirmationButton().click();
+			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -163,6 +164,7 @@ public class ValidateUSBankAccount extends base {
 			Assert.assertEquals(mp.getPopupContent().getText(),
 					"Account information incorrectly entered, please correct and try again.");
 			mp.getPopupConfirmationButton().click();
+			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -211,6 +213,7 @@ public class ValidateUSBankAccount extends base {
 			Assert.assertEquals(mp.getPopupContent().getText(),
 					"Account information incorrectly entered, please correct and try again.");
 			mp.getPopupConfirmationButton().click();
+			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -257,6 +260,7 @@ public class ValidateUSBankAccount extends base {
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals(mp.getPopupConfirmation1().getText(), "BANK ACCOUNT ADDED");
 			mp.getPopupConfirmationButton().click();
+			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
@@ -335,8 +339,7 @@ public class ValidateUSBankAccount extends base {
 			System.out.println(mp.getPopupConfirmation1().getText());
 			Assert.assertEquals("BANK ACCOUNT UPDATED", mp.getPopupConfirmation1().getText());
 			mp.getPopupConfirmationButton().click();
-
-			Thread.sleep(3000);
+			Thread.sleep(2000);
 
 		} catch (java.lang.AssertionError ae) {
 			System.out.println("assertion error");
