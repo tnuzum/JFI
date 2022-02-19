@@ -310,7 +310,7 @@
 			<class name="PayBalance.PayBalance_NewCard_LinkAgreement" />
 			<class name="PayBalance.PayBalance_NewCard_HasAgreement" />
 			<class name="PayBalance.PayBalance_NewCard_NoAgreement" />
-			<class name="PayBalance.Bug183910_PayBalance_StoredCard"/>
+			
 
 			<class
 				name="ManagePaymentMethods.NoAgreement_AddCanadianBankSavingsAcct" />
@@ -326,8 +326,8 @@
 				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditUSBankSavingsAcct" />
 			<class
 				name="ManagePaymentMethods.UnCheckAgrmntWithBadFOP_AddEditUSBankCheckingAcct" />
-				<class
-				name="ManagePaymentMethods.ValidateUSBankAccount" />
+				<!--class
+				name="ManagePaymentMethods.ValidateUSBankAccount" /-->
 			<class name="ManagePaymentMethods.MyAgreementsLayout" />
 			<class name="ManagePaymentMethods.VerifyMessageTest" />
 			<class
