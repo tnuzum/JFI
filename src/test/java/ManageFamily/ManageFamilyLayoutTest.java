@@ -91,7 +91,7 @@ public class ManageFamilyLayoutTest extends base {
 
 			if (mfp.getFamilyMemberNames().get(i).getText().contains("FreeMember Auto")) {
 				mfp.getFamilyMemberNames().get(i).click();
-				index = i;
+				index = i / 6;
 				break;
 			}
 		}
