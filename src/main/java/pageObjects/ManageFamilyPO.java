@@ -15,7 +15,7 @@ public class ManageFamilyPO {
 //	By pageHeader = By.xpath("//div[@class='col-sm-12']/h2");
 	By pageHeader = By.xpath("//h2[@class = 'at-breadcrumb-title']");
 	By pageText = By.xpath("//h2[contains(text(),'Who Would You Like To Manage?')]");
-	By familyMemberNames = By.tagName("h3");
+	By familyMemberNames = By.tagName("strong");
 	By memberName = By.xpath("//h2[contains(text(),'FreeMember Auto')]");
 	By memberOptionsLabels = By.xpath("//strong[contains(text(), '- MEMBER OPTIONS -')]");
 	By payNowButtons = By.xpath("//button[contains(@class, 'at-managefamily-button-paynow')]");

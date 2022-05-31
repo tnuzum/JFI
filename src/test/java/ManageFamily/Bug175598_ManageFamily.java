@@ -65,8 +65,10 @@ public class Bug175598_ManageFamily extends base {
 
 		int count = mfp.getFamilyMemberNames().size();
 		for (int i = 0; i < count; i++) {
-			if (mfp.getFamilyMemberNames().get(i).getText().contains("Jessica Auto"))
+			if (mfp.getFamilyMemberNames().get(i).getText().contains("Jessica Auto")) {
 				mfp.getFamilyMemberNames().get(i).click();
+				break;
+			}
 		}
 
 		Assert.assertTrue(mfp.getPayNowButtons().get(0).isDisplayed());
