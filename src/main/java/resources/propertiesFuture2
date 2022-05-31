@@ -6,10 +6,10 @@ browser3 = Safari
 browser4 = IE
 
 
-EMELoginPage = https://ourclublogin-future2.test-jfisoftware.com:8911/login/236
+EMELoginPage = https://eme-qa.dev-jfisoftware.com/login/236
 !https://eme-qa.dev-jfisoftware.com/login/236  
 
-COGLoginPage = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
+COGLoginPage = https://ess-qa.dev-jfisoftware.com/CompeteOnTheGo/home/index/236
 
 EMELoginPage1 =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
 COGLoginPage1 = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
