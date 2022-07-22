@@ -9,7 +9,7 @@ browser4 = IE
 EMELoginPage1 = https://ourclublogin-future2.test-jfisoftware.com:8911/login/236
 COGLoginPage1 = https://ess-web-future2.test-jfisoftware.com:8945/CompeteOnTheGo/home/index/236
 
-EMELoginPage =  https://ourclublogin-future.test-jfisoftware.com:8910/account/login/224
+EMELoginPage = https://eme-regression.stage-jfisoftware.com/login/257
 COGLoginPage = https://ess-web-future.test-jfisoftware.com:8453/CompeteOnTheGo/home/index/224
 
 !URL for Current
