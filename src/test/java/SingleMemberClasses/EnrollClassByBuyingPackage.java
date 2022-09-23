@@ -565,7 +565,7 @@ public class EnrollClassByBuyingPackage extends base {
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getExpirationMonth().sendKeys("04");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getSecurityCode().sendKeys("123");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");

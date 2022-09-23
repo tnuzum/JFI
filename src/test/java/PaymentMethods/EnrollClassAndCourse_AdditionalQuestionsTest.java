@@ -29,7 +29,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 	private static String classNameDisplayed = "Barre Combat Fusion";
 	private static String courseToEnroll = "FEECOURSE";
 	private static String courseNameDisplayed = "FeeCourse";
-	private static String CourseStartMonth = "May";
+	private static String CourseStartMonth = "Aug";
 	private static int CourseStartYear = 2022;
 	public reusableWaits rw;
 	public reusableMethods rm;
@@ -130,7 +130,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
@@ -245,7 +245,7 @@ public class EnrollClassAndCourse_AdditionalQuestionsTest extends base {
 
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());

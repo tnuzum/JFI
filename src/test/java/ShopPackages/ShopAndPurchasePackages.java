@@ -698,7 +698,7 @@ public class ShopAndPurchasePackages extends base {
 			jse.executeScript("arguments[0].click();", PM.getCardNumberField());
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			PM.getSecurityCode().sendKeys("123");
 			jse.executeScript("arguments[0].click();", PM.getCheckBox());
 			while (!PM.getPaymentButton().isEnabled()) {

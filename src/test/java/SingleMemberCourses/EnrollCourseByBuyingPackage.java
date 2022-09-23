@@ -37,13 +37,13 @@ public class EnrollCourseByBuyingPackage extends base {
 	private static String CourseInstructorDisplayed = "Course Instructor: Andrea";
 	private static String buyPackageName = "Buy Day Pass";
 	private static String packageName = "Day Pass";
-	private static String CourseStartMonth = "May";
+	private static String CourseStartMonth = "Aug";
 	private static int CourseStartYear = 2022;
-	private static String dsiredMonthYear = "May 2022";
+	private static String dsiredMonthYear = "August 2022";
 	private static String defaultSelection = null;
 	private static String unitsToBeSelected = "2 - $10.00/per";
 	private static String classCostInUnits = "Course Cost: 2 Unit(s) - Your Current Unit Value Is ";
-	private static String CourseStartDate = "Date: 05/21/2022";
+	private static String CourseStartDate = "Date: 08/21/2022";
 	private static int unitCount = 0;
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
@@ -597,7 +597,7 @@ public class EnrollCourseByBuyingPackage extends base {
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getExpirationMonth().sendKeys("04");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getSecurityCode().sendKeys("123");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");

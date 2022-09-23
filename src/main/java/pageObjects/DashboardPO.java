@@ -27,7 +27,9 @@ public class DashboardPO {
 	By leftMenu = By.xpath("//mat-sidenav[contains(@class, 'mat-sidenav')]");
 	By menuDashboardButton = By.xpath("//a[contains(@class, 'at-mainnav-dashboard')]");
 	// By.xpath("//mat-nav-list[@class='mat-nav-list']/a[1]/div");
-	By menuMyActivies = By.xpath("//mat-nav-list[contains(@class,'mat-nav-list')]/mat-list-item[1]/div/span");
+	// By menuMyActivies =
+	// By.xpath("//mat-nav-list[contains(@class,'mat-nav-list')]/mat-list-item[1]/div/span");
+	By menuMyActivies = By.xpath("//span[contains(text(), 'My Activities')]");
 	By menuMyActivitiesSubMenu = By.xpath("//mat-nav-list[contains(@class,'mat-nav-list')]/div[1]");
 	By menuMyAccount = By.xpath("//mat-nav-list[contains(@class,'mat-nav-list')]/mat-list-item[2]/div/span");
 	By menuMyAccountSubMenu = By.xpath("//mat-nav-list[contains(@class,'mat-nav-list')]/div[2]");

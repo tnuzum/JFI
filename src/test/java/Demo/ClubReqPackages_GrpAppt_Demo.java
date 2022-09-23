@@ -319,7 +319,7 @@ public class ClubReqPackages_GrpAppt_Demo extends base {
 		 * 
 		 * PM.getCardNumberField().sendKeys("4111111111111111");
 		 * PM.getExpirationMonth().sendKeys("04");
-		 * PM.getExpirationYear().sendKeys("22"); PM.getSecurityCode().sendKeys("123");
+		 * PM.getExpirationYear().sendKeys("29"); PM.getSecurityCode().sendKeys("123");
 		 * Thread.sleep(1000); PM.getCheckBox().click(); while
 		 * (!ap.getPaymentButton().isEnabled()) { Thread.sleep(1000); }
 		 * ap.getPaymentButton().click(); Thread.sleep(1000);

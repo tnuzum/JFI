@@ -203,7 +203,7 @@ public class Appointments_AdditionalQuestions extends base {
 
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
@@ -409,7 +409,7 @@ public class Appointments_AdditionalQuestions extends base {
 
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
@@ -561,7 +561,7 @@ public class Appointments_AdditionalQuestions extends base {
 
 			PM.getCardNumberField().sendKeys("4111111111111111");
 			PM.getExpirationMonth().sendKeys("04");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			PM.getSecurityCode().sendKeys("123");
 
 			Assert.assertTrue(PM.getSaveCardQuestion().isDisplayed());
