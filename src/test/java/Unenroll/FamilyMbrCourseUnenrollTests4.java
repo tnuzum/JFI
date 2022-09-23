@@ -20,8 +20,8 @@ public class FamilyMbrCourseUnenrollTests4 extends base {
 
 	private static String courseToEnroll17 = "UnenrollCourse17";
 	private static int CourseStartYear = 2022;
-	private static String CourseStartMonth = "May";
-	private static String dsiredMonthYear = "May 2022";
+	private static String CourseStartMonth = "Aug";
+	private static String dsiredMonthYear = "August 2022";
 
 	private static String paymentOption2 = "Pay Course Fee";
 	// private static String paymentOption3 = "Buy Day Pass";

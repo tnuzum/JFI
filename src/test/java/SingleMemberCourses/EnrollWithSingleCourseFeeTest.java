@@ -33,10 +33,10 @@ public class EnrollWithSingleCourseFeeTest extends base {
 	private static String courseNameDisplayed = "FeeCourse";
 	private static String courseTimeDisplayed = "Start Time: 11:00 AM";
 	private static String courseInstructorDisplayed = "Course Instructor: Andrea";
-	private static String CourseStartMonth = "May";
+	private static String CourseStartMonth = "Aug";
 	private static int CourseStartYear = 2022;
-	private static String dsiredMonthYear = "May 2022";
-	private static String courseDate = "Date: 05/21/2022";
+	private static String dsiredMonthYear = "August 2022";
+	private static String courseDate = "Date: 08/21/2022";
 	private static DashboardPO d;
 	private static BreadcrumbTrailPO BT;
 	private static ClassSignUpPO c;
@@ -552,7 +552,7 @@ public class EnrollWithSingleCourseFeeTest extends base {
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getExpirationMonth().sendKeys("04");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
-			PM.getExpirationYear().sendKeys("22");
+			PM.getExpirationYear().sendKeys("29");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
 			PM.getSecurityCode().sendKeys("123");
 			Assert.assertEquals(PM.getPaymentButton().getAttribute("disabled"), "true");
